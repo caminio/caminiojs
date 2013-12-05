@@ -1,0 +1,11 @@
+{
+  "name": "nginuo.us",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "nginuous": "~0.0.1"
+  }
+}

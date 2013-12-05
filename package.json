@@ -1,0 +1,22 @@
+{
+  "name": "nginuous",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.6",
+    "mocha": "~1.15.1",
+    "passport": "~0.1.17",
+    "mongoose": "~3.8.1",
+    "ejs-locals": "~1.0.2",
+    "commander": "~2.1.0",
+    "winston": "~0.7.2"
+  },
+  "main": "./lib/nginuous",
+  "bin": {
+    "nginuous": "./bin/nginuous"
+  },
+  "scripts": {
+    "prepublish": "npm prune",
+    "test": "make test"
+  }
+}

@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var fs = require('fs');
+var child_process = require("child_process");
+
+program
+  .version('0.0.1')
+  .usage('new <app_name>')
+  .option('new [name]', 'Create a new nginuous application' )
+
+program.on('new', function( name ){
+  child_process.exec( 'express '+name, function( err, stderr, stdout ){
+    fs.mkdirSync( name+'/config' );
+    fs.unlink( name+'/app.js' );
+    fs.createReadStream(__dirname+'/../lib/install/app.js').pipe(fs.createWriteStream(name+'/app.js'));
+    fs.createReadStream(__dirname+'/../lib/install/env.json').pipe(fs.createWriteStream(name+'/config/env.json'));
+    fs.createReadStream(__dirname+'/../lib/install/package.json').pipe(fs.createWriteStream(name+'/package.json'));
+    console.log('application', name, 'created successfully');
+  });
+});
+
+program.parse(process.argv);
