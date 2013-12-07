@@ -9,7 +9,9 @@
     "mongoose": "~3.8.1",
     "ejs-locals": "~1.0.2",
     "commander": "~2.1.0",
-    "winston": "~0.7.2"
+    "winston": "~0.7.2",
+    "sequelize": "~2.0.0-beta.1",
+    "sqlite3": "~2.1.19"
   },
   "main": "./lib/nginuous",
   "bin": {
