@@ -1,10 +1,11 @@
 {
   "name": "nginuous",
+  "description": "multi-domain/multi-tenancy application web ecosystem",
   "version": "0.0.1",
   "private": true,
+  "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
   "dependencies": {
     "express": "3.4.6",
-    "mocha": "~1.15.1",
     "passport": "~0.1.17",
     "mongoose": "~3.8.1",
     "ejs-locals": "~1.0.2",
@@ -13,12 +14,26 @@
     "sequelize": "~2.0.0-beta.1",
     "sqlite3": "~2.1.19"
   },
+  "devDependencies": {
+    "mocha": "~1.15.1",
+    "chai": "~1.8.1",
+    "yuidocjs": "~0.3.46"
+  },
   "main": "./lib/nginuous",
   "bin": {
     "nginuous": "./bin/nginuous"
   },
   "scripts": {
     "prepublish": "npm prune",
-    "test": "make test"
+    "test": "make test",
+    "docs": "node_modules/.bin/yuidoc . -o docs"
+  },
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tastenwerk/nginuous.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tastenwerk/nginuous/issues"
   }
 }

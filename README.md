@@ -31,7 +31,18 @@ You should see something like:
 
   [nginuous] running at port 3000
 
+## concept
 
+the concept of nginuous is to provide data from different servers and aggregate them
+into one website, cms, crm or whatever.
+
+Example:
+
+[server with event dates]     ->    [server with tickets]    ->     [website]
+
+dateA   <hashed> ->    cryptedDateA  ->   <dehashed> dateA         same data from server with dates
+
+copy of userA   <-       crypted    <-      userA     <-     cryped   <-      userA
 
 
 

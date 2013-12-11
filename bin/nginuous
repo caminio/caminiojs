@@ -12,9 +12,12 @@ program
 program.on('new', function( name ){
   child_process.exec( 'express '+name, function( err, stderr, stdout ){
     fs.mkdirSync( name+'/config' );
+    fs.mkdirSync( name+'/config/environments' );
     fs.unlink( name+'/app.js' );
     fs.createReadStream(__dirname+'/../lib/install/app.js').pipe(fs.createWriteStream(name+'/app.js'));
-    fs.createReadStream(__dirname+'/../lib/install/env.json').pipe(fs.createWriteStream(name+'/config/env.json'));
+    fs.createReadStream(__dirname+'/../lib/install/development.json').pipe(fs.createWriteStream(name+'/config/environments/development.json'));
+    fs.createReadStream(__dirname+'/../lib/install/production.json').pipe(fs.createWriteStream(name+'/config/environments/production.json'));
+    fs.createReadStream(__dirname+'/../lib/install/test.json').pipe(fs.createWriteStream(name+'/config/environments/production.json'));
     fs.createReadStream(__dirname+'/../lib/install/package.json').pipe(fs.createWriteStream(name+'/package.json'));
     console.log('application', name, 'created successfully');
   });
