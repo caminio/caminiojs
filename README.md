@@ -45,4 +45,10 @@ dateA   <hashed> ->    cryptedDateA  ->   <dehashed> dateA         same data fro
 copy of userA   <-       crypted    <-      userA     <-     cryped   <-      userA
 
 
+### register a plugin
 
+nginuous is just the core engine. It needs gears in order to serve functionality. Such a gear
+can be registered in form of a plugin:
+
+  var Gear = nginuous.Gear;
+  var myGear = Gear.new();
