@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tastenwerk/nginuous.png)](https://travis-ci.org/tastenwerk/nginuous)
+
 # nginuous
 
 an SaaS appliction which can be highly adapted and modulized.
