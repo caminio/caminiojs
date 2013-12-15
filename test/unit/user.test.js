@@ -1,6 +1,5 @@
 var chai = require('chai')
   , expect = chai.expect
-  , mongoose = require('mongoose')
   , helper = require('../helper')
   , nginuous = helper.nginuous;
 
@@ -10,7 +9,8 @@ describe( 'User', function(){
   describe( 'properties', function(){
 
     before( function(){
-      this.user = new mongoose.models.User( helper.fixtures.user.plain );
+      console.log('models: ', Object.keys(nginuous.models));
+      this.user = new nginuous.models.User( helper.fixtures.user.plain );
     })
   
     it('has .name.first', function(){
