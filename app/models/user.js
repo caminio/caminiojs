@@ -7,7 +7,7 @@
 
 
 var jsonSelect = require('mongoose-json-select')
-  , db = require( __dirname + '/../../lib/db' )
+  , mongoose = require('mongoose')
   , crypto = require('crypto');
 
 /**
@@ -16,7 +16,7 @@ var jsonSelect = require('mongoose-json-select')
  * the login log keeps track of
  * the users logins
  */
-var UserLoginLogSchema = new db.Schema({
+var UserLoginLogSchema = new mongoose.Schema({
   ip: String,
   createdAt: { type: Date, default: Date.now }
 });
@@ -27,10 +27,10 @@ var UserLoginLogSchema = new db.Schema({
  * a message is for inner communication
  * between users
  */
-var UserMessagesSchema = new db.Schema({
+var UserMessagesSchema = new mongoose.Schema({
   content: String,
   read: {type: Boolean, default: false},
-  author: { type: db.Schema.Types.ObjectId, ref: 'User' },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -64,14 +64,14 @@ function getUserFullName(){
  * the actual UserSchema
  *
  */
-var UserSchema = db.Schema({
+var UserSchema = mongoose.Schema({
       name: {
         first: String,
         last: String
       },
       hashed_password: {type: String, required: true},
       salt: {type: String, required: true},
-      preferences: { type: db.Schema.Types.Mixed, default: { common: { locale: 'en', hosts: [] }, docklets: [ 'notification_service/docklets/summary' ] } },
+      preferences: { type: mongoose.Schema.Types.Mixed, default: { common: { locale: 'en', hosts: [] }, docklets: [ 'notification_service/docklets/summary' ] } },
       messages: [ UserMessagesSchema ],
       email: {type: String, 
               lowercase: true,
@@ -83,7 +83,7 @@ var UserSchema = db.Schema({
         createdAt: Date,
         ip: String
       },
-      groups: [{ type: db.Schema.Types.ObjectId, ref: 'Group' } ],
+      groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Group' } ],
       confirmation: {
         key: String,
         expires: Date,
@@ -92,15 +92,15 @@ var UserSchema = db.Schema({
       },
       created: { 
         at: { type: Date, default: Date.now },
-        by: { type: db.Schema.Types.ObjectId, ref: 'User' }
+        by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
       },
       updated: { 
         at: { type: Date, default: Date.now },
-        by: { type: db.Schema.Types.ObjectId, ref: 'User' }
+        by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
       },
       locked: { 
         at: { type: Date, default: Date.now },
-        by: { type: db.Schema.Types.ObjectId, ref: 'User' }
+        by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
       },
       description: String,
       phone: {
@@ -191,4 +191,4 @@ UserSchema.method('encryptPassword', function(password) {
 
 UserSchema.plugin(jsonSelect, '-hashed_password -salt -confirmation -login_log');
 
-module.exports = db.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
