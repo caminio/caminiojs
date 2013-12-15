@@ -2,8 +2,8 @@ var chai = require('chai')
   , expect = chai.expect
   , helper = require('./helper')
   , nginuous = helper.nginuous
-  , modelRegistry = require('../lib/nginuous/db/model_registry')
-  , Gear = nginuous.Gear;
+  , Gear = nginuous.Gear
+  , modelRegistry = require('../lib/nginuous/db/model_registry');
 
 
 var myGear = new Gear({});
