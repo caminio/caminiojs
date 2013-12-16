@@ -16,9 +16,10 @@
   "devDependencies": {
     "mocha": "~1.15.1",
     "chai": "~1.8.1",
-    "yuidocjs": "~0.3.46"
+    "yuidocjs": "~0.3.46",
+    "jscoverage": "~0.3.8"
   },
-  "main": "./lib/nginuous",
+  "main": "index.js",
   "bin": {
     "nginuous": "./bin/nginuous"
   },

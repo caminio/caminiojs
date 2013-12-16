@@ -69,21 +69,32 @@ var UserSchema = mongoose.Schema({
         first: String,
         last: String
       },
-      hashed_password: {type: String, required: true},
+      encryptedPassword: {type: String, required: true},
       salt: {type: String, required: true},
-      preferences: { type: mongoose.Schema.Types.Mixed, default: { common: { locale: 'en', hosts: [] }, docklets: [ 'notification_service/docklets/summary' ] } },
+      preferences: {
+        locale: { type: String, default: 'en' },
+        api_tokens: {
+          host: String,
+          name: String,
+          description: String
+        },
+        dashboard: {
+          docklets: []
+        }
+      },
       messages: [ UserMessagesSchema ],
       email: {type: String, 
               lowercase: true,
               required: true,
               index: { unique: true },
               match: /@/ },
-      login_log: [ UserLoginLogSchema ],
-      last_request: {
-        createdAt: Date,
-        ip: String
+      loginLog: [ UserLoginLogSchema ],
+      lastRequest: {
+        at: Date,
+        ipAddress: String
       },
       groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Group' } ],
+      domains: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Domain' } ],
       confirmation: {
         key: String,
         expires: Date,
@@ -136,14 +147,18 @@ UserSchema.virtual('unreadMessages').get( function(){
 });;
 
 /**
- * set hashed_password
+ * set password for this user
+ *
+ * the password will be available for the rest of this 
+ * instance's live-time. Only the encrytped version in 
+ * property encryptedPassword will be stored to the db
  *
  * @param {String} password - the unencrypted password to be set
  */
 UserSchema.virtual('password').set(function( password ) {
     this._password = password;
     this.salt = this.generateSalt();
-    this.hashed_password = this.encryptPassword(password);
+    this.encryptedPassword = this.encryptPassword(password);
 })
 
 /**
@@ -159,14 +174,14 @@ UserSchema.virtual('password').get(function() {
 /**
  * authenticate user
  *
- * compares hashed password with given plain text password
+ * compares encrytped password with given plain text password
  *
  * @param {String} plainTextPassword the plain text password which
  * will be hase-compared against the original password saved to
  * the database
  */
 UserSchema.method('authenticate', function(plainTextPassword) {
-  return this.encryptPassword(plainTextPassword) === this.hashed_password;
+  return this.encryptPassword(plainTextPassword) === this.encryptedPassword;
 });
 
 /**
@@ -186,9 +201,9 @@ UserSchema.method('generateSalt', function() {
  * to be encrypted
  */
 UserSchema.method('encryptPassword', function(password) {
-  return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+  return crypto.createHmac('sha256WithRSAEncryption', this.salt).update(password).digest('hex');
 });
 
-UserSchema.plugin(jsonSelect, '-hashed_password -salt -confirmation -login_log');
+UserSchema.plugin(jsonSelect, '-encryptedPassword -salt -confirmation -login_log');
 
 module.exports = mongoose.model('User', UserSchema);

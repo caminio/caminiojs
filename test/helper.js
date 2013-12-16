@@ -4,7 +4,7 @@
 
 var helper = {};
 
-helper.nginuous = require('../lib/nginuous');
+helper.nginuous = require('../');
 
 helper.fixtures = require('./fixtures');
 
