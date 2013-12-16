@@ -8,6 +8,7 @@
 
 var jsonSelect = require('mongoose-json-select')
   , mongoose = require('mongoose')
+  , MessageSchema = require('./schemas/message')
   , crypto = require('crypto');
 
 /**
@@ -21,25 +22,6 @@ var UserLoginLogSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-/**
- * UserMessagesSchema
- *
- * a message is for inner communication
- * between users
- */
-var UserMessagesSchema = new mongoose.Schema({
-  content: String,
-  read: {type: Boolean, default: false},
-  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  createdAt: { type: Date, default: Date.now }
-});
-
-/**
- * a message can have followups
- */
-UserMessagesSchema.add({
-  followUps: [UserMessagesSchema]
-});
 
 /**
  * computes the user's full name
@@ -82,7 +64,7 @@ var UserSchema = mongoose.Schema({
           docklets: []
         }
       },
-      messages: [ UserMessagesSchema ],
+      messages: [ MessageSchema ],
       email: {type: String, 
               lowercase: true,
               required: true,
@@ -204,6 +186,6 @@ UserSchema.method('encryptPassword', function(password) {
   return crypto.createHmac('sha256WithRSAEncryption', this.salt).update(password).digest('hex');
 });
 
-UserSchema.plugin(jsonSelect, '-encryptedPassword -salt -confirmation -login_log');
+UserSchema.plugin(jsonSelect, '-encryptedPassword -salt -confirmation -loginLog');
 
 module.exports = mongoose.model('User', UserSchema);
