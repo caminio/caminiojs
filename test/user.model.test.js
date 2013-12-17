@@ -10,7 +10,7 @@ describe( 'User', function(){
   describe( 'properties', function(){
 
     before( function(){
-      this.user = new nginuous.models.User( helper.fixtures.user.plain );
+      this.user = new nginuous.orm.models.User( helper.fixtures.user.plain );
     });
   
     it('has .name.first', function(){
@@ -100,11 +100,11 @@ describe( 'User', function(){
         nginuous();
         async.parallel({
           user: function( callback ){
-            nginuous.models.User.create( 
+            nginuous.orm.models.User.create( 
               helper.fixtures.user.plain, callback );
           },
           group: function( callback ){
-            nginuous.models.Group.create( helper.fixtures.group.plain, callback );
+            nginuous.orm.models.Group.create( helper.fixtures.group.plain, callback );
           }
         }, function( err, results ){
           self.group = results.group;
@@ -118,7 +118,8 @@ describe( 'User', function(){
         expect(this.user.groups).to.have.length.of(1);
         expect(this.user.groups[0].toString()).to.eq(this.group.id.toString());
       });
-    })
+
+    });
 
   });
 

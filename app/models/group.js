@@ -10,8 +10,8 @@ var MessageSchema = require('./schemas/message')
   , mongoose = require('mongoose');
 
 var GroupSchema = mongoose.Schema({
-    name: String,
-    users: [ { type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    name: { type: String, required: true },
+    users: [ { type: mongoose.Schema.Types.ObjectId, ref: 'User' } ],
     messages: [ MessageSchema ],
     domains: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Domain' } ],
     created: { 

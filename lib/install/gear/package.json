@@ -1,0 +1,20 @@
+{
+  "name": "nginuous-gear-<GEAR NAME>",
+  "private": true,
+  "author": "<YOUR EMAIL ADDRESS>",
+  "dependencies": {
+    "nginuous": "~0.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.15.1",
+    "chai": "~1.8.1",
+    "yuidocjs": "~0.3.46",
+    "jscoverage": "~0.3.8"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "make test",
+    "docs": "node_modules/.bin/yuidoc . -o docs"
+  },
+  "license": "GPLv3"
+}

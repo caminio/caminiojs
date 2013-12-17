@@ -15,19 +15,26 @@ program
   .version('0.0.1')
   .usage('new <app_name>')
   .option('new [name]', 'Create a new nginuous application' )
-
-program.on('new', function( name ){
-  child_process.exec( 'express '+name, function( err, stderr, stdout ){
-    fs.mkdirSync( name+'/config' );
-    fs.mkdirSync( name+'/config/environments' );
-    fs.unlink( name+'/app.js' );
-    fs.createReadStream(__dirname+'/../lib/install/app.js').pipe(fs.createWriteStream(name+'/app.js'));
-    fs.createReadStream(__dirname+'/../lib/install/environments/development.js').pipe(fs.createWriteStream(name+'/config/environments/development.js'));
-    fs.createReadStream(__dirname+'/../lib/install/environments/production.js').pipe(fs.createWriteStream(name+'/config/environments/production.js'));
-    fs.createReadStream(__dirname+'/../lib/install/environments/test.js').pipe(fs.createWriteStream(name+'/config/environments/production.js'));
-    fs.createReadStream(__dirname+'/../lib/install/package.json').pipe(fs.createWriteStream(name+'/package.json'));
-    console.log('application', name, 'created successfully');
-  });
-});
+  .on('new', function( name ){
+      child_process.exec( 'express '+name, function( err, stderr, stdout ){
+        fs.mkdirSync( name+'/config' );
+        fs.mkdirSync( name+'/config/environments' );
+        fs.unlink( name+'/app.js' );
+        fs.createReadStream(__dirname+'/../lib/install/app.js').pipe(fs.createWriteStream(name+'/app.js'));
+        fs.createReadStream(__dirname+'/../lib/install/environments/development.js').pipe(fs.createWriteStream(name+'/config/environments/development.js'));
+        fs.createReadStream(__dirname+'/../lib/install/environments/production.js').pipe(fs.createWriteStream(name+'/config/environments/production.js'));
+        fs.createReadStream(__dirname+'/../lib/install/environments/test.js').pipe(fs.createWriteStream(name+'/config/environments/production.js'));
+        fs.createReadStream(__dirname+'/../lib/install/package.json').pipe(fs.createWriteStream(name+'/package.json'));
+        console.log('application', name, 'created successfully');
+        });
+      })
+  .option('gear [name]', 'Create a plain nginuous gear folder' )
+  .on('gear', function( name ){
+      fs.mkdirSync( name );
+      fs.createReadStream(__dirname+'/../lib/install/gear/package.json').pipe(fs.createWriteStream(name+'/package.json'));
+      fs.createReadStream(__dirname+'/../lib/install/gear/index.js').pipe(fs.createWriteStream(name+'/index.js'));
+      fs.createReadStream(__dirname+'/../lib/install/gear/Makefile').pipe(fs.createWriteStream(name+'/Makefile'));
+      console.log('your gear', name, 'is ready to use!');
+      });
 
 program.parse(process.argv);

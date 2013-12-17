@@ -7,9 +7,9 @@
 
 
 var jsonSelect = require('mongoose-json-select')
-  , mongoose = require('mongoose')
   , MessageSchema = require('./schemas/message')
-  , crypto = require('crypto');
+  , crypto = require('crypto')
+  , orm = require('../../lib/nginuous').orm;
 
 /**
  * UserLoginLogSchema
@@ -17,7 +17,7 @@ var jsonSelect = require('mongoose-json-select')
  * the login log keeps track of
  * the users logins
  */
-var UserLoginLogSchema = new mongoose.Schema({
+var UserLoginLogSchema = new orm.Schema({
   ip: String,
   createdAt: { type: Date, default: Date.now }
 });
@@ -46,7 +46,7 @@ function getUserFullName(){
  * the actual UserSchema
  *
  */
-var UserSchema = mongoose.Schema({
+var UserSchema = orm.Schema({
       name: {
         first: String,
         last: String
@@ -75,8 +75,8 @@ var UserSchema = mongoose.Schema({
         at: Date,
         ipAddress: String
       },
-      groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Group' } ],
-      domains: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Domain' } ],
+      groups: [{ type: orm.Schema.Types.ObjectId, ref: 'Group' } ],
+      domains: [{ type: orm.Schema.Types.ObjectId, ref: 'Domain' } ],
       confirmation: {
         key: String,
         expires: Date,
@@ -85,15 +85,15 @@ var UserSchema = mongoose.Schema({
       },
       created: { 
         at: { type: Date, default: Date.now },
-        by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+        by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
       },
       updated: { 
         at: { type: Date, default: Date.now },
-        by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+        by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
       },
       locked: { 
         at: { type: Date, default: Date.now },
-        by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+        by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
       },
       description: String,
       phone: {
@@ -188,4 +188,4 @@ UserSchema.method('encryptPassword', function(password) {
 
 UserSchema.plugin(jsonSelect, '-encryptedPassword -salt -confirmation -loginLog');
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = orm.model('User', UserSchema);
