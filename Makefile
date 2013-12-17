@@ -1,10 +1,10 @@
 TESTS = $(shell find test -name "*.test.js")
-MOCHA_OPTS= --check-leaks --bail
+MOCHA_OPTS= --check-leaks
 REPORTER=spec
 export NODE_ENV=test
 
 test:
-	@./node_modules/.bin/mocha --reporter $(REPORTER) $(MOCHA_OPTS) test/*.test.js
+	./node_modules/.bin/mocha --reporter $(REPORTER) $(MOCHA_OPTS) test/*.test.js
 
 lib-cov:
 	@./node_modules/.bin/jscoverage lib lib-cov

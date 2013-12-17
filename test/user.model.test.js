@@ -1,7 +1,7 @@
-var chai = require('chai')
-  , expect = chai.expect
-  , async = require('async')
+var async = require('async')
   , helper = require('./helper')
+  , fixtures = helper.fixtures
+  , expect = helper.chai.expect
   , nginuous = helper.nginuous;
 
 
@@ -10,27 +10,27 @@ describe( 'User', function(){
   describe( 'properties', function(){
 
     before( function(){
-      this.user = new nginuous.orm.models.User( helper.fixtures.user.plain );
+      this.user = fixtures.user.build();
     });
   
     it('has .name.first', function(){
-      expect( this.user.name.first ).to.eq( helper.fixtures.user.plain.name.first );
+      expect( this.user.name.first ).to.eq( this.user.name.first );
     });
 
     it('has .name.last', function(){
-      expect( this.user.name.last ).to.eq( helper.fixtures.user.plain.name.last );
+      expect( this.user.name.last ).to.eq( this.user.name.last );
     });
 
     it('has .email', function(){
-      expect( this.user.email ).to.eq( helper.fixtures.user.plain.email );
+      expect( this.user.email ).to.eq( this.user.email );
     });
 
     it('has .description', function(){
-      expect( this.user.description ).to.eq( helper.fixtures.user.plain.description );
+      expect( this.user.description ).to.eq( this.user.description );
     });
 
     it('has .phone', function(){
-      expect( this.user.phone ).to.eq( helper.fixtures.user.plain.phone );
+      expect( this.user.phone ).to.eq( this.user.phone );
     });
 
     it('has .encryptedPassword', function(){
@@ -58,11 +58,11 @@ describe( 'User', function(){
     });
 
     it('returns .name.full (virtual)', function(){
-      expect( this.user.name.full ).to.eq( helper.fixtures.user.plain.name.first+' '+helper.fixtures.user.plain.name.last );
+      expect( this.user.name.full ).to.eq( this.user.name.first+' '+this.user.name.last );
     });
 
     it('returns .password (virtual)', function(){
-      expect( this.user.password ).to.eq( helper.fixtures.user.plain.password );
+      expect( this.user.password ).to.eq( this.user.password );
     });
 
     it('returns number of unreadMessages (virtual)', function(){
@@ -80,7 +80,7 @@ describe( 'User', function(){
     describe('authenticate', function(){
 
       it('valid password', function(){
-        expect( this.user.authenticate( helper.fixtures.user.plain.password ) ).to.be.true;
+        expect( this.user.authenticate( this.user.password ) ).to.be.true;
       });
 
       it('no password', function(){
@@ -100,11 +100,10 @@ describe( 'User', function(){
         nginuous();
         async.parallel({
           user: function( callback ){
-            nginuous.orm.models.User.create( 
-              helper.fixtures.user.plain, callback );
+            fixtures.user.create( callback );
           },
           group: function( callback ){
-            nginuous.orm.models.Group.create( helper.fixtures.group.plain, callback );
+            fixtures.group.create( callback );
           }
         }, function( err, results ){
           self.group = results.group;

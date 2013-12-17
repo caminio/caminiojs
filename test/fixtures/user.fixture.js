@@ -5,19 +5,17 @@
  *
  */
 
-// User fixture
+var fixtures = require('nginuous-fixtures');
 
-var fixture = {};
-
-fixture.plain = {
+fixtures.define('user', {
   name: {
     first: 'Henry',
     last: 'King'
   },
-  email: 'henry.king'+(new Date().getTime().toString())+'@localhost.local',
+  email: function(){
+    return 'henry.king'+(Math.random(1000)*(new Date().getTime()).toString())+'@localhost.local';
+  },
   password: 'test123?T',
   description: '',
   phone: '013920369236'
-};
-
-module.exports = fixture
+});

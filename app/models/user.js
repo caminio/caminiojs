@@ -186,6 +186,6 @@ UserSchema.method('encryptPassword', function(password) {
   return crypto.createHmac('sha256WithRSAEncryption', this.salt).update(password).digest('hex');
 });
 
-UserSchema.plugin(jsonSelect, '-encryptedPassword -salt -confirmation -loginLog');
+UserSchema.plugin(jsonSelect, '+password -encryptedPassword -salt -confirmation -loginLog');
 
 module.exports = orm.model('User', UserSchema);

@@ -5,13 +5,9 @@
  *
  */
 
-// Group fixture
+var fixtures = require('nginuous-fixtures');
 
-var fixture = {};
-
-fixture.plain = {
+fixtures.define('group', {
   name: 'kings',
   description: ''
-};
-
-module.exports = fixture
+});

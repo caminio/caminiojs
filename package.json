@@ -18,7 +18,8 @@
     "mocha": "~1.15.1",
     "chai": "~1.8.1",
     "yuidocjs": "~0.3.46",
-    "jscoverage": "~0.3.8"
+    "jscoverage": "~0.3.8",
+    "nginuous-fixtures": "git://github.com/tastenwerk/nginuous-fixtures#master"
   },
   "main": "index.js",
   "bin": {
