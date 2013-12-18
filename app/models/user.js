@@ -42,6 +42,15 @@ function getUserFullName(){
 }
 
 /**
+ * validates, if email has at least @
+ *
+ */
+var EmailValidator = function EmailValidator( val ){
+  if( !val ) return false;
+  return val.match(/@/);
+}
+
+/**
  * the actual UserSchema
  *
  */
@@ -64,11 +73,11 @@ var UserSchema = orm.Schema({
         }
       },
       messages: [ MessageSchema ],
-      email: {type: String, 
-              lowercase: true,
-              required: true,
-              index: { unique: true },
-              match: /@/ },
+      email: { type: String, 
+               lowercase: true,
+               required: true,
+               index: { unique: true },
+               validate: [EmailValidator, 'invalid email address'] },
       loginLog: [ UserLoginLogSchema ],
       lastRequest: {
         at: Date,
@@ -95,6 +104,20 @@ var UserSchema = orm.Schema({
         by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
       },
       description: String,
+      billingInformation: {
+        address: {
+          street: String,
+          zip: String,
+          city: String,
+          state: String,
+          country: String,
+          salutation: String,
+          academicalTitle: String
+        },
+        email: { type: String, 
+                 lowercase: true,
+                 match: /@/ },
+      },
       phone: {
         type: String,
         match: /^[\d]*$/
