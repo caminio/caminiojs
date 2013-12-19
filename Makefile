@@ -3,8 +3,13 @@ MOCHA_OPTS= --check-leaks
 REPORTER=spec
 export NODE_ENV=test
 
-test:
+test-integration:
+	./node_modules/.bin/mocha --reporter ${REPORTER} $(MOCHA_OPTS) test/*.integration.test.js
+
+test-unit:
 	./node_modules/.bin/mocha --reporter $(REPORTER) $(MOCHA_OPTS) test/*.test.js
+
+test: test-integration test-unit
 
 lib-cov:
 	@./node_modules/.bin/jscoverage lib lib-cov

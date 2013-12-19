@@ -26,4 +26,4 @@ var GroupSchema = nginuous.orm.Schema({
     description: String,
 });
 
-module.exports = nginuous.orm.model('Group', GroupSchema);
+module.exports = GroupSchema;

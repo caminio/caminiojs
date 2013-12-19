@@ -136,7 +136,6 @@ var async = require('async')
               this.user.email = 'john@kings.com';
               this.user.validate( 
                 function( err ){
-                  console.log(err);
                   expect( err ).to.not.exist;
                   done();
                 });

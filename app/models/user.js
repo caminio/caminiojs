@@ -210,4 +210,4 @@ UserSchema.method('encryptPassword', function(password) {
 
 UserSchema.plugin(jsonSelect, '-encryptedPassword -salt -confirmation -loginLog');
 
-module.exports = orm.model('User', UserSchema);
+module.exports = UserSchema;

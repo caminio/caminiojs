@@ -39,4 +39,4 @@ var DomainSchema = nginuous.orm.Schema({
     description: String,
 });
 
-module.exports = nginuous.orm.model('Domain', DomainSchema);
+module.exports = DomainSchema;
