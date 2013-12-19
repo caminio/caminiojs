@@ -59,7 +59,7 @@ var UserSchema = orm.Schema({
         first: String,
         last: String
       },
-      encryptedPassword: {type: String, required: true},
+      encrypted_password: {type: String, required: true},
       salt: {type: String, required: true},
       preferences: {
         locale: { type: String, default: 'en' },
@@ -78,7 +78,7 @@ var UserSchema = orm.Schema({
                required: true,
                index: { unique: true },
                validate: [EmailValidator, 'invalid email address'] },
-      loginLog: [ UserLoginLogSchema ],
+      login_log: [ UserLoginLogSchema ],
       lastRequest: {
         at: Date,
         ipAddress: String
@@ -103,8 +103,13 @@ var UserSchema = orm.Schema({
         at: { type: Date, default: Date.now },
         by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
       },
+      auth_token: {
+        token: String,
+        ip_address: String,
+        at: Date
+      },
       description: String,
-      billingInformation: {
+      billing_information: {
         address: {
           street: String,
           zip: String,
@@ -142,7 +147,7 @@ UserSchema.virtual('name.full').get( getUserFullName ).set( function( name ){
  * show the number of unread messages
  *
  */
-UserSchema.virtual('unreadMessages').get( function(){
+UserSchema.virtual('unread_messages').get( function(){
   var unread = 0;
   this.messages.forEach( function( message ){
     if( !message.read ) unread+=1;
@@ -155,14 +160,14 @@ UserSchema.virtual('unreadMessages').get( function(){
  *
  * the password will be available for the rest of this 
  * instance's live-time. Only the encrytped version in 
- * property encryptedPassword will be stored to the db
+ * property encrypted_password will be stored to the db
  *
  * @param {String} password - the unencrypted password to be set
  */
 UserSchema.virtual('password').set(function( password ) {
     this._password = password;
     this.salt = this.generateSalt();
-    this.encryptedPassword = this.encryptPassword(password);
+    this.encrypted_password = this.encryptPassword(password);
 })
 
 /**
@@ -185,7 +190,21 @@ UserSchema.virtual('password').get(function() {
  * the database
  */
 UserSchema.method('authenticate', function(plainTextPassword) {
-  return this.encryptPassword(plainTextPassword) === this.encryptedPassword;
+  return this.encryptPassword(plainTextPassword) === this.encrypted_password;
+});
+
+/**
+ * regenerateAuthToken
+ *
+ * regenerates the auth_token object by generating a
+ * new random hash and updating ip address of user
+ *
+ * @param {String} ip address of user
+ */
+UserSchema.method('regenerateAuthToken', function(ipAddress) {
+  this.auth_token.token = this.encryptPassword(ipAddress);
+  this.auth_token.ip_address = ipAddress;
+  this.auth_token.at = new Date();
 });
 
 /**
@@ -208,6 +227,7 @@ UserSchema.method('encryptPassword', function(password) {
   return crypto.createHmac('sha256WithRSAEncryption', this.salt).update(password).digest('hex');
 });
 
-UserSchema.plugin(jsonSelect, '-encryptedPassword -salt -confirmation -loginLog');
+
+UserSchema.plugin(jsonSelect, '-encrypted_password -salt -confirmation -login_log');
 
 module.exports = UserSchema;

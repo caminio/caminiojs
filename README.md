@@ -110,6 +110,10 @@ via `config/routes.js` file, which should have been copied over when creating th
     
     nginuous.router.add( '/my_namespace', 'my' );
 
+alternatively, if the roue is going to have the same name as the controller:
+
+    nginuous.router.add( 'my' );
+
 This would connect the my controller from above to the /my_namespace.
 
 

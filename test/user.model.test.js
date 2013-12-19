@@ -35,8 +35,8 @@ var async = require('async')
           expect( this.user.phone ).to.eq( this.user.phone );
         });
 
-        it('.encryptedPassword', function(){
-          expect( this.user.encryptedPassword ).to.have.length(64);
+        it('.encrypted_password', function(){
+          expect( this.user.encrypted_password ).to.have.length(64);
         });
 
       });
@@ -51,8 +51,8 @@ var async = require('async')
           expect( this.user.messages ).to.be.an('array');
         });
 
-        it('.loginLog (embedded)', function(){
-          expect( this.user.loginLog ).to.be.an('array');
+        it('.login_log (embedded)', function(){
+          expect( this.user.login_log ).to.be.an('array');
         });
 
         it('.groups (ref)', function(){
@@ -91,8 +91,8 @@ var async = require('async')
           expect( this.user.password ).to.eq( this.user.password );
         });
 
-        it('returns number of unreadMessages (virtual)', function(){
-          expect( this.user.unreadMessages ).to.eq(0);
+        it('returns number of unread_messages (virtual)', function(){
+          expect( this.user.unread_messages ).to.eq(0);
         });
 
       });
