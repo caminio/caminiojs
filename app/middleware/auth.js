@@ -20,11 +20,11 @@ auth.fail = function fail( res, status, msg ){
   switch( status ){
     case 401:
       json.name = 'denied';
-      json.msg = 'access denied';
+      json.message = 'access denied';
       break;
     case 423:
       json.name = 'locked';
-      json.msg = msg || 'the requested account is locked';
+      json.message = msg || 'the requested account is locked';
       break;
     case 500:
       json = msg;

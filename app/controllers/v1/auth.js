@@ -13,9 +13,9 @@ var nginuous = require('../../../')
 function tryAuthentication( req, res, next ){
   nginuous.orm.models.User.findOne({ email: req.body.email }, function( err, user ){
     if( !user )
-      return nginuous.app.gears.nginuous.auth.fail(401);
+      return nginuous.app.gears.nginuous.auth.fail(res, 401);
     if( !user.authenticate( req.body.password ) )
-      return nginuous.app.gears.nginuous.auth.fail(401);
+      return nginuous.app.gears.nginuous.auth.fail(res, 401);
 
     next( user, req, res );
   });
@@ -30,11 +30,13 @@ function tryAuthentication( req, res, next ){
  * @api private
  */
 function saveAndRenderAuthToken( user, req, res ){
-  if( user.auth_token_at && user.auth_token.at > ((new Date())-(nginuous.config.auth_token_timeout_min*60*1000)) ){
+  console.log('user:', user.auth_token);
+  var ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  if( ipAddress !== user.auth_token.ip_address && user.auth_token.at &&
+      user.auth_token.at.getTime() > ((new Date())-(nginuous.app.config.auth_token_timeout_min*60*1000)) ){
     var lastTokenAgeMin = parseInt( (new Date() - user.auth_token.at) / 1000 / 60 )
-    return nginuous.app.gears.nginuous.auth.fail(res, 423, 'The requested account is locked for ' + lastTokenAgeMin + ' minutes' );
+    return nginuous.app.gears.nginuous.auth.fail(res, 423, 'account locked by another ip for ' + lastTokenAgeMin + ' minutes' );
   }
-  var ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress
   user.regenerateAuthToken( ipAddress );
   user.save( function( err ){
     if( err )
