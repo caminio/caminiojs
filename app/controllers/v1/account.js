@@ -5,12 +5,12 @@ var AuthController = Controller.define( function( app ){
 
   this.before( nginuous.gears.nginuous.auth.authenticate );
 
-  this.get('/accaunt', function( req, res ){
-    if( req.body.email && req.body.password )
-      tryAuthentication( req, res, saveAndRenderAuthToken );
-    else
-      nginuous.app.gears.nginuous.auth.fail(res, 401);
-  });
+  this.get('/account',
+    login.ensureLoggedIn(),
+    function(req, res) {
+      res.json( req.user );
+      //res.render('/views/account', { user: req.user });
+    });
 
 });
 

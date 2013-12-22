@@ -18,21 +18,19 @@ describe( 'Auth API '+V, function(){
     });
   });
 
-  describe('POST /'+V+'/oauth', function(){
+  describe('POST /'+V+'/auth/login', function(){
 
-    //it('authorizes a user and returns api_token', function(done){
-    //  request(this.app.express)
-    //  .post('/v1/auth')
-    //  .set('Accept', 'application/json')
-    //  .send({email: this.user.email, password: this.user.password})
-    //  .expect('Content-Type', /json/)
-    //  .end(function(err, res){
-    //    expect(res.status).to.eq(200);
-    //    expect(JSON.parse(res.text)).to.have.property('auth_token');
-    //    expect(JSON.parse(res.text).auth_token).to.have.length(64);
-    //    done();
-    //  });
-    //});
+    it('authorizes a user and returns api_token', function(done){
+      request(this.app.express)
+      .post('/'+V+'/auth/login')
+      .set('Accept', 'application/json')
+      .send({username: this.user.email, password: this.user.password})
+      .end(function(err, res){
+        expect(res.status).to.eq(302);
+        expect(res.header.location).to.eq('/');
+        done();
+      });
+    });
   });
 
   //  describe('wrong', function(){

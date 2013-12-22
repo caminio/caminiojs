@@ -182,18 +182,29 @@ var userDecision = [
 
 var AuthController = Controller.define( function( app ){
 
-  app.get('/provider', passport.authenticate('provider', { scope: 'all' }));
+  this.post('/login', passport.authenticate('local', { successReturnToOrRedirect: '/', failureRedirect: '/login' }) );
 
-  app.get('/provider/callback', passport.authenticate('provider', { 
+  this.get('/login', function( res, res ){ 
+    res.render('login') 
+  });
+
+  this.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
+
+  this.get('/provider', passport.authenticate('provider', { scope: 'all' }));
+
+  this.get('/provider/callback', passport.authenticate('provider', { 
                                                               successRedirect: '/',
                                                               failureRedirect: '/login' })
     );
 
-  app.get('/dialog/authorize', userAuthorization);
-  app.post('/dialog/authorize/decision', userDecision);
+  this.get('/dialog/authorize', userAuthorization);
+  this.post('/dialog/authorize/decision', userDecision);
 
-  app.post('/oauth/request_token', requestToken);
-  app.post('/oauth/access_token', accessToken);
+  this.post('/oauth/request_token', requestToken);
+  this.post('/oauth/access_token', accessToken);
 
 });
 

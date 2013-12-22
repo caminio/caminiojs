@@ -5,8 +5,7 @@
  *
  */
 
-var orm = require('../../').orm
-  , AuthFailureSchema = require('./schemas/auth_failure');
+var orm = require('../../').orm;
 
 /**
  * AuthTokenSchema
@@ -15,19 +14,17 @@ var orm = require('../../').orm
  * application or web browser
  *
  */
-var AuthTokenSchema = new orm.Schema({
+var ClientTokenSchema = new orm.Schema({
   ip_address: String,
   token: String,
   user_id: { type: orm.Schema.Types.ObjectId, ref: 'User' },
-  client_id: String,
   client_secret: String,
   consumer_secret: String,
   callbackURL: String,
-  tries: [ AuthFailureSchema ],
   expires: {
     at: Date
   },
 });
 
 
-module.exports = AuthTokenSchema;
+module.exports = ClientTokenSchema;
