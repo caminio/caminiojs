@@ -51,10 +51,6 @@ var async = require('async')
           expect( this.user.messages ).to.be.an('array');
         });
 
-        it('.login_log (embedded)', function(){
-          expect( this.user.login_log ).to.be.an('array');
-        });
-
         it('.groups (ref)', function(){
           expect( this.user.groups ).to.be.an('array');
         });

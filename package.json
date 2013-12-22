@@ -13,7 +13,10 @@
     "mongoose": "~3.8.1",
     "mongoose-json-select": "~0.2.1",
     "async": "~0.2.9",
-    "string": "~1.7.0"
+    "string": "~1.7.0",
+    "passport-oauth": "~1.0.0",
+    "oauthorize": "~0.1.0",
+    "connect-ensure-login": "~0.1.1"
   },
   "devDependencies": {
     "mocha": "~1.15.1",
@@ -30,7 +33,7 @@
   "scripts": {
     "prepublish": "npm prune",
     "test": "make test",
-    "docs": "node_modules/.bin/yuidoc . -o docs"
+    "doc": "node_modules/.bin/yuidoc"
   },
   "license": "GPLv3",
   "repository": {

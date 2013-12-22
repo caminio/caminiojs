@@ -8,18 +8,7 @@
 var jsonSelect = require('mongoose-json-select')
   , MessageSchema = require('./schemas/message')
   , crypto = require('crypto')
-  , orm = require('../../lib/nginuous').orm;
-
-/**
- * UserLoginLogSchema
- *
- * the login log keeps track of
- * the users logins
- */
-var UserLoginLogSchema = new orm.Schema({
-  ip: String,
-  createdAt: { type: Date, default: Date.now }
-});
+  , orm = require('../../').orm;
 
 
 /**
@@ -63,11 +52,6 @@ var UserSchema = orm.Schema({
       salt: {type: String, required: true},
       preferences: {
         locale: { type: String, default: 'en' },
-        api_tokens: {
-          host: String,
-          name: String,
-          description: String
-        },
         dashboard: {
           docklets: []
         }
@@ -78,11 +62,6 @@ var UserSchema = orm.Schema({
                required: true,
                index: { unique: true },
                validate: [EmailValidator, 'invalid email address'] },
-      login_log: [ UserLoginLogSchema ],
-      lastRequest: {
-        at: Date,
-        ipAddress: String
-      },
       groups: [{ type: orm.Schema.Types.ObjectId, ref: 'Group' } ],
       domains: [{ type: orm.Schema.Types.ObjectId, ref: 'Domain' } ],
       confirmation: {
@@ -102,11 +81,6 @@ var UserSchema = orm.Schema({
       locked: { 
         at: { type: Date, default: Date.now },
         by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
-      },
-      auth_token: {
-        token: String,
-        ip_address: String,
-        at: Date
       },
       description: String,
       billing_information: {
@@ -228,6 +202,6 @@ UserSchema.method('encryptPassword', function(password) {
 });
 
 
-UserSchema.plugin(jsonSelect, '-encrypted_password -salt -confirmation -login_log');
+UserSchema.plugin(jsonSelect, '-encrypted_password -salt -confirmation -auth_tokens');
 
 module.exports = UserSchema;

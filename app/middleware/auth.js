@@ -13,29 +13,53 @@ var nginuous = require('../../');
  * fails and render json response
  *
  * @param {Object} express response
- * @param {Number} status a valid http status number
+ * @param {Object} options
+ *  * status: {Number} status code
+ *  * state: {String} if request had a state present, this state must be returned
+ *  * description: {String} optional human readable description
+ *
  */
-auth.fail = function fail( res, status, msg ){
-  var json = { status: status };
-  switch( status ){
+auth.fail = function fail( res, options ){
+  var json = {};
+  if( options.state )
+    json.state = options.state;
+  if( options.description )
+    json.error_description = options.description;
+  switch( options.status ){
+    case 400:
+      json.error = 'invalid_request'
     case 401:
-      json.name = 'denied';
-      json.message = 'access denied';
+      json.error = 'access_denied';
       break;
     case 423:
-      json.name = 'locked';
-      json.message = msg || 'the requested account is locked';
+      json.error = 'client_id_locked';
       break;
     case 500:
-      json = msg;
+      json.error = 'server_error';
       break;
   }
-  res.json( status, { error: json } );
+  res.json( status, json );
 }
 
 auth.authenticate = function authenticate( req, res, next ){
   auth.fail(res, 401);
   //next();
+}
+
+/**
+
+  tries to authenticate given credentials
+
+@method try
+@param {String} accessToken
+@param {String} refreshToken
+@param {String} profile
+@param {Function} done
+**/
+auth.try = function tryAuthentication(accessToken, refreshToken, profile, done){
+
+  nginuous.orm.models.User.findOne({}, done );
+
 }
 
 module.exports = auth;

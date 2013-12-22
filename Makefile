@@ -19,8 +19,15 @@ html-cov: lib-cov
 
 coverage:	html-cov
 
+docs:
+	yuidoc --config .yuidoc.json
+	cp .yuidoc-theme/nginuous-logo_661x128.png doc/
+	cp .yuidoc-theme/logo.png doc/
+
+
 clean:
 	rm -f coverage.html
 	rm -rf lib-cov
+	rm -rf doc
 
 .PHONY: test clean

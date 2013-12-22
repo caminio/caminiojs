@@ -1,0 +1,15 @@
+{
+  "name": "nginuous",
+  "description": "nginuous documentation",
+  "version": "1.0",
+  "url": "http://doc.nginuo.us",
+  "themedir": ".yuidoc-theme",
+  "logo": "./logo.png",
+  "options": {
+      "linkNatives": "true",
+      "attributesEmit": "true",
+      "exclude": "test,node_modules",
+      "paths": [ "." ],
+      "outdir": "./doc"
+    }
+}
