@@ -46,6 +46,10 @@ auth.authenticate = function authenticate( req, res, next ){
   //next();
 }
 
+auth.ipAddress = function ipAddress( req ){
+  return req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+}
+
 /**
 
   tries to authenticate given credentials

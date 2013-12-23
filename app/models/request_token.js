@@ -9,19 +9,28 @@ var orm = require('../../').orm
   , AuthFailureSchema = require('./schemas/auth_failure');
 
 /**
- * AuthTokenSchema
- *
- * a basic authentication grant to an
- * application or web browser
- *
- */
+
+A request token is obtained, if a client/consumer (an application)
+want's to get access to nginuous resources or to another nginuous
+instance's resources.
+
+Mongoose Model
+
+@class RequestToken
+@constructor
+
+**/
 var RequestTokenSchema = new orm.Schema({
   ip_address: String,
+  user: { type: orm.Schema.Types.ObjectId, ref: 'User' },
+  client: { type: orm.Schema.Types.ObjectId, ref: 'Client' },
   token: String,
-  client_id: String,
-  client_secret: String,
-  callbackURL: String,
+  secret: String,
+  redirect_uri: String,
   tries: [ AuthFailureSchema ],
+  approved: {
+    at: Date
+  },
   expires: {
     at: Date
   },

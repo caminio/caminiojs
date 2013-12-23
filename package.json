@@ -18,7 +18,8 @@
     "oauthorize": "~0.1.0",
     "connect-ensure-login": "~0.1.1",
     "passport-local": "~0.1.6",
-    "passport-http-oauth": "~0.1.3"
+    "passport-http-oauth": "~0.1.3",
+    "ejs": "~0.8.5"
   },
   "devDependencies": {
     "mocha": "~1.15.1",
@@ -26,6 +27,9 @@
     "yuidocjs": "~0.3.46",
     "jscoverage": "~0.3.8",
     "supertest": "~0.8.2",
+    "superagent-oauth": "~0.2.3",
+    "superagent": "~0.15.7",
+    "node-oauth": "~0.1.3",
     "nginuous-fixtures": "git://github.com/tastenwerk/nginuous-fixtures#master"
   },
   "main": "index.js",
