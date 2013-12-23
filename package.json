@@ -1,5 +1,5 @@
 {
-  "name": "nginuous",
+  "name": "nginious",
   "description": "multi-domain/multi-tenancy application web ecosystem",
   "version": "0.0.1",
   "private": true,
@@ -14,12 +14,10 @@
     "mongoose-json-select": "~0.2.1",
     "async": "~0.2.9",
     "string": "~1.7.0",
-    "passport-oauth": "~1.0.0",
-    "oauthorize": "~0.1.0",
     "connect-ensure-login": "~0.1.1",
     "passport-local": "~0.1.6",
-    "passport-http-oauth": "~0.1.3",
-    "ejs": "~0.8.5"
+    "ejs": "~0.8.5",
+    "moment": "~2.0.0"
   },
   "devDependencies": {
     "mocha": "~1.15.1",
@@ -27,14 +25,12 @@
     "yuidocjs": "~0.3.46",
     "jscoverage": "~0.3.8",
     "supertest": "~0.8.2",
-    "superagent-oauth": "~0.2.3",
     "superagent": "~0.15.7",
-    "node-oauth": "~0.1.3",
-    "nginuous-fixtures": "git://github.com/tastenwerk/nginuous-fixtures#master"
+    "nginious-fixtures": "git://github.com/tastenwerk/nginious-fixtures#master"
   },
   "main": "index.js",
   "bin": {
-    "nginuous": "./bin/nginuous"
+    "nginious": "./bin/nginious"
   },
   "scripts": {
     "prepublish": "npm prune",
@@ -44,9 +40,9 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tastenwerk/nginuous.git"
+    "url": "https://github.com/tastenwerk/nginious.git"
   },
   "bugs": {
-    "url": "https://github.com/tastenwerk/nginuous/issues"
+    "url": "https://github.com/tastenwerk/nginious/issues"
   }
 }

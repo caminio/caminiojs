@@ -1,13 +1,15 @@
 /*
- * nginuous
+ * nginious
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
  */
 
-var auth = {};
+var moment = require('moment')
+  , nginious = require('../../');
 
-var nginuous = require('../../');
+
+var auth = {};
 
 /**
  * fails and render json response
@@ -38,7 +40,7 @@ auth.fail = function fail( res, options ){
       json.error = 'server_error';
       break;
   }
-  res.json( status, json );
+  res.json( options.status, json );
 }
 
 auth.authenticate = function authenticate( req, res, next ){
@@ -48,6 +50,61 @@ auth.authenticate = function authenticate( req, res, next ){
 
 auth.ipAddress = function ipAddress( req ){
   return req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+}
+
+auth.loadClient = function loadClient( req, res, next ){
+  if( req.param('client_id') && req.param('client_secret') ){
+    nginious.orm.models.Client.findOne({ 
+      _id: req.param('client_id'),
+      secret: req.param('client_secret')
+    }).exec( function( err, client ){
+      if( err ){ return next(err); }
+      if( client )
+        res.locals.client = client;
+      next();
+    });
+  } else {
+    auth.fail( res, { status: 400, description: 'invalid_request' });
+  }
+}
+
+auth.maintainRequestTokens = function maintainRequestTokens( req, res, next ){
+  nginious.orm.models.RequestToken.remove({ 
+    '$lte': { created_at: moment().subtract('m', nginious.app.config.auth_token_timeout_min).toDate() }
+  }, next );
+}
+
+auth.maintainAccessTokens = function maintainAccessTokens( req, res, next ){
+  nginious.orm.models.AccessToken.remove({ 
+    '$lte': { expires_at: (new Date()) }
+  }, next );
+}
+
+auth.loadRequestToken = function loadRequestToken( req, res, next ){
+  nginious.orm.models.RequestToken.findOne({
+    token: req.param('code'),
+    redirect_uri: req.param('redirect_uri')
+  }, function( err, requestToken ){
+    if( err ){ return auth.fail( res, { status: 500, description: 'server_error' }); }
+    if( !requestToken ){ return auth.fail( res, { status: 401, description: 'access_denied' }); }
+    res.locals.requestToken = requestToken;
+    next();
+  });
+}
+
+auth.token = function token( req, res, next ){
+  if( !req.headers['authorization'] )
+    return auth.fail( res, { status: 400, description: 'invalid_request' } );
+
+  var bearer = req.headers['authorization'].replace('Bearer ','')
+  nginious.orm.models.AccessToken.findOne({
+    token: bearer
+  }).populate('user').exec( function( err, token ){
+    if( err ){ return auth.fail( res, { status: 500, description: err }); }
+    if( !token ){ return auth.fail( res, { status: 401, description: 'access_deneid' }); }
+    res.locals.user = token.user;
+    next();
+  });
 }
 
 /**
@@ -62,7 +119,7 @@ auth.ipAddress = function ipAddress( req ){
 **/
 auth.try = function tryAuthentication(accessToken, refreshToken, profile, done){
 
-  nginuous.orm.models.User.findOne({}, done );
+  nginious.orm.models.User.findOne({}, done );
 
 }
 

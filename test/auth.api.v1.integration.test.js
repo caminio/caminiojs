@@ -3,236 +3,316 @@ var async = require('async')
   , fixtures = helper.fixtures
   , expect = helper.chai.expect
   , request = require('superagent')
-  , nginuous = helper.nginuous;
+  , nginious = helper.nginious;
 
 var URL='http://localhost:3000/v1/auth';
 
 describe( 'Auth API '+URL, function(){
-/*
+
   before(function( done ){
     helper.startServer( this, function( test ){
       fixtures.user.create( function(err, user){
         test.user = user;
         fixtures.Client.create( function( err, client ){
-          test.client = client;
-          helper.setupOauth( test, URL );
-          done();
+          client.user = user;
+          client.save( function( err ){
+            test.client = client;
+            done();
+          });
         })
       });
     });
   });
 
-    describe('POST '+URL+'/oauth/request_token', function(){
-    
-      it('gets token and scret', function(done){
-        var test = this;
-        test.oauth.getOAuthRequestToken( function( err, request_token, request_token_secret, res ){
-          expect(err).to.be.a('null');
-          expect(request_token).to.be.a('string');
-          expect(request_token).to.have.length.of(8);
-          expect(request_token_secret).to.be.a('string');
-          expect(request_token_secret).to.have.length.of(32);
-          done();
-        });
-      });
-
-    });
-
-    describe('POST '+URL+'/oauth/access_token', function(){
-    
-      before(function(done){
-        var test = this;
-        test.oauth.getOAuthRequestToken( function( err, request_token, request_token_secret, res ){
-          test.request_token = request_token;
-          test.request_token_secret = request_token_secret;
-          done();
-        });
-      
-      });
-
-      it('gets token and scret', function(done){
-        var test = this;
-        test.oauth.getOAuthAccessToken( test.request_token, test.request_token_secret, 
-          function (err, access_token, access_token_secret, results){
-            console.log(err);
-            expect(err).to.be.a('null');
-            expect(access_token).to.be.a('string');
-            expect(access_token).to.have.length.of(8);
-          });
-        });
-
-    });
-    */
-/*
-  describe('GET '+URL+'/dialog/authorize', function(){
-
-    it('redirects to user login before showing the authorize form', function(done){
+  describe('GET '+URL+'/login', function(){
+  
+    it('renders login form', function(done){
       var test = this;
       test.agent
-      .get(URL+'/dialog/authorize')
+      .get(URL+'/login')
       .end(function(err, res){
         expect(res.status).to.eq(200);
+        expect(res.text).to.match(/<form/);
         expect(res.text).to.match(/password/);
         done();
       });
+    });
+
+  });
+
+  describe('POST '+URL+'/login', function(){
+
+    describe('wrong', function(){
+
+      it('passwort', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/login')
+        .send({email: this.user.email, password: this.user.password.substr(0,this.user.password.length-2)})
+        .end(function(err, res){
+          expect(res.status).to.eq(200);
+          expect(res.text).to.match(/<form/);
+          expect(res.text).to.match(/password/);
+          done();
+        });
+      });
+
+      it('email', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/login')
+        .send({email: this.user.email+'a', password: this.user.password})
+        .end(function(err, res){
+          expect(res.status).to.eq(200);
+          expect(res.text).to.match(/<form/);
+          expect(res.text).to.match(/password/);
+          done();
+        });
+      });
+
+      it('all wrong', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/login')
+        .send({email: 'a@localhost.local', password: 'pass'})
+        .end(function(err, res){
+          expect(res.status).to.eq(200);
+          expect(res.text).to.match(/<form/);
+          expect(res.text).to.match(/password/);
+          done();
+        });
+      });
 
     });
 
-    //it('grants access to a known client', function( done ){
-    //  var test = this;
-    //  test.oauth.getOAuthRequestToken( function( err, request_token, request_token_secret, res ){
-    //    test.oauth.getOAuthAccessToken( request_token, request_token_secret, function (err, access_token, access_token_secret, results){
-    //      console.log( access_token );
-    //      test.oauth.get( URL.replace('/auth','/accounts/me'),
-    //        access_token, 
-    //        access_token_secret,
-    //        function( err, data, res ){
-    //          console.log(err);
-    //          console.log(data);
-    //          expect(res.status).to.eq(200);
-    //          done();
-    //        });
+  });
+  describe('POST '+URL+'/oauth/request_token', function(){
 
-    //    });
-    //  });
-    //});
+    describe('invalid_request', function(){
 
-    //it('shows authorization form after login', function(done){
-    //  var self = this;
-    //  self.request
-    //  .get('/'+V+'/auth/dialog/authorize')
-    //  .end(function(){
-    //    self.request
-    //    .post('/'+V+'/auth/login')
-    //    .send({username: self.user.email, password: self.user.password})
-    //    .end(function(err, res){
-    //      self.cookie = res.headers['set-cookie'];
-    //      expect(res.status).to.eq(302);
-    //      self.request
-    //      .get('/'+V+'/auth/dialog/authorize?oauth_token=bla&oauth_callback=/ow')
-    //      .set('cookie', self.cookie)
-    //      .end(function(err, res){
-    //        console.log(res.text);
-    //        expect(res.status).to.eq(200);
-    //        done();
-    //      });
-    //    });
-    //  
-    //  })
-    //});
+      it('no client info at all', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/request_token')
+        .send({redirect_uri: '/oauth/access_token'})
+        .end( function( err, res ){
+          expect(res.status).to.eq(400);
+          done();
+        })
+      });
+
+      it('no client_id', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/request_token')
+        .send({redirect_uri: '/oauth/access_token', client_secret: test.client.secret, response_type: 'code'})
+        .end( function( err, res ){
+          expect(res.status).to.eq(400);
+          done();
+        })
+      });
+
+      it('no client_secret', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/request_token')
+        .send({redirect_uri: '/oauth/access_token', client_id: test.client.id, response_type: 'code'})
+        .end( function( err, res ){
+          expect(res.status).to.eq(400);
+          done();
+        })
+      });
+
+    });
+
+    describe('passes', function(){
+
+      it('gets token and secret', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/request_token')
+        .send({
+          redirect_uri: '/oauth/access_token',
+          client_id: test.client.id,
+          client_secret: test.client.secret,
+          response_type: 'code'
+        })
+        .end( function( err, res ){
+          expect(res.status).to.eq(200);
+          expect(res.header['content-type']).to.match(/json/);
+          expect(JSON.parse(res.text)).to.have.property('code');
+          done();
+        });
+
+      });
+
+    });
 
   });
-*/
+  
+  describe('POST '+URL+'/oauth/access_token', function(){
 
-  //  describe('wrong', function(){
-  //  
-  //    it('passwort', function(done){
-  //      request(this.app.express)
-  //      .post('/v1/auth')
-  //      .set('Accept', 'application/json')
-  //      .send({email: this.user.email, password: this.user.password.substr(0,this.user.password.length-2)})
-  //      .expect('Content-Type', /json/)
-  //      .end(function(err, res){
-  //        expect(res.status).to.eq(401);
-  //        expect(JSON.parse(res.text)).to.have.property('error');
-  //        expect(JSON.parse(res.text).error.status).to.eq(401);
-  //        expect(JSON.parse(res.text).error.name).to.eq('denied');
-  //        expect(JSON.parse(res.text).error.message).to.eq('access denied');
-  //        done();
-  //      });
-  //    });
+    describe('invalid_request', function(){
 
-  //    it('email', function(done){
-  //      request(this.app.express)
-  //      .post('/'+V+'/auth')
-  //      .set('Accept', 'application/json')
-  //      .send({email: this.user.email+'a', password: this.user.password})
-  //      .expect('Content-Type', /json/)
-  //      .end(function(err, res){
-  //        expect(res.status).to.eq(401);
-  //        expect(JSON.parse(res.text)).to.have.property('error');
-  //        expect(JSON.parse(res.text).error.status).to.eq(401);
-  //        expect(JSON.parse(res.text).error.name).to.eq('denied');
-  //        expect(JSON.parse(res.text).error.message).to.eq('access denied');
-  //        done();
-  //      });
-  //    });
+      it('no client info at all', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/access_token')
+        .send({redirect_uri: '/oauth/access_token'})
+        .end( function( err, res ){
+          expect(res.status).to.eq(400);
+          done();
+        })
+      });
 
-  //    it('all wrong', function(done){
-  //      request(this.app.express)
-  //      .post('/'+V+'/auth')
-  //      .set('Accept', 'application/json')
-  //      .send({email: 'a@localhost.local', password: 'pass'})
-  //      .expect('Content-Type', /json/)
-  //      .end(function(err, res){
-  //        expect(res.status).to.eq(401);
-  //        expect(JSON.parse(res.text)).to.have.property('error');
-  //        expect(JSON.parse(res.text).error.status).to.eq(401);
-  //        expect(JSON.parse(res.text).error.name).to.eq('denied');
-  //        expect(JSON.parse(res.text).error.message).to.eq('access denied');
-  //        done();
-  //      });
-  //    });
+      it('no client_id', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/access_token')
+        .send({redirect_uri: '/oauth/access_token', client_secret: test.client.secret, response_type: 'code'})
+        .end( function( err, res ){
+          expect(res.status).to.eq(400);
+          done();
+        })
+      });
 
-  //  });
+      it('no client_secret', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/access_token')
+        .send({redirect_uri: '/oauth/access_token', client_id: test.client.id, response_type: 'code'})
+        .end( function( err, res ){
+          expect(res.status).to.eq(400);
+          done();
+        })
+      });
 
-  //  describe('locked', function(){
+      it('no request_token', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/access_token')
+        .end(function(err,res){
+          expect(res.status).to.eq(400);
+          done();
+        });
+      });
 
-  //    it('another ip address is logged in already', function(done){
-  //      
-  //      var self = this;
-  //      this.user.auth_token.ip_address = '127.0.0.2';
-  //      this.user.save( next );
+    });
 
-  //      function next( err ){
-  //        request(self.app.express)
-  //          .post('/'+V+'/auth')
-  //          .set('Accept', 'application/json')
-  //          .send({email: self.user.email, password: self.user.password})
-  //          .expect('Content-Type', /json/)
-  //          .end(function(err, res){
-  //            expect(res.status).to.eq(423);
-  //            expect(JSON.parse(res.text)).to.have.property('error');
-  //            expect(JSON.parse(res.text).error.status).to.eq(423);
-  //            expect(JSON.parse(res.text).error.name).to.eq('locked');
-  //            expect(JSON.parse(res.text).error.message).to.eq('account locked by another ip for 0 minutes');
-  //            done();
-  //          });
-  //      }
+    describe('passes', function(){
 
-  //    });
+      before(function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/request_token')
+        .send({
+          redirect_uri: 'http://localhost:3000/v1/accounts/me',
+          client_id: test.client.id,
+          client_secret: test.client.secret,
+          response_type: 'code'
+        })
+        .end( function( err, res ){
+          test.requestCode = JSON.parse(res.text).code;
+          done();
+        });
+      });
 
-  //  });
+      it('gets token and secret', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/oauth/access_token')
+        .send({
+          redirect_uri: 'http://localhost:3000/v1/accounts/me',
+          client_id: test.client.id,
+          client_secret: test.client.secret,
+          code: test.requestCode,
+          response_type: 'code'
+        })
+        .end( function( err, res ){
+          expect(res.status).to.eq(200);
+          expect(JSON.parse(res.text)).to.have.property('access_token');
+          expect(JSON.parse(res.text).access_token).to.have.length(8);
+          done();
+        })
+      });
 
-  //  //describe('content through auth_token', function(){
-  //  // 
-  //  //  before( function(done){
-  //  //    var self = this;
-  //  //    request(self.app.express)
-  //  //      .post('/'+V+'/auth')
-  //  //      .set('Accept', 'application/json')
-  //  //      .send({email: self.user.email, password: self.user.password})
-  //  //      .end(function(err,res){
-  //  //        self.auth_token = JSON.parse('auth_token');
-  //  //      });
-  //  //  });
+    });
 
-  //  //  it('GET /'+V+'/account', function(){
-  //  //    request(self.app.express)
-  //  //      .get('/'+V+'/auth/test')
-  //  //      .set('Accept', 'application/json')
-  //  //      .send({auth_token: this.auth_token})
-  //  //      .expect('Content-Type', /json/)
-  //  //      .end(function(err, res){
-  //  //        expect(res.status).to.eq(200);
-  //  //        expect(JSON.parse(res.text)).to.have.property('');
-  //  //        done();
-  //  //      });
-  //  //    
-  //  //  });
+  });
 
-  //  //});
+  describe('GET '+URL+'/test', function(){
+  
+    before(function(done){
+      var test = this;
+      test.agent
+      .post(URL+'/oauth/request_token')
+      .send({
+        redirect_uri: URL+'/test',
+        client_id: test.client.id,
+        client_secret: test.client.secret,
+        response_type: 'code'
+      })
+      .end( function( err, res ){
+        test.requestCode = 
+        test.agent
+        .post(URL+'/oauth/access_token?')
+        .send({
+          redirect_uri: URL+'/test',
+          client_id: test.client.id,
+          client_secret: test.client.secret,
+          code: JSON.parse(res.text).code,
+          response_type: 'code'
+        })
+        .end( function( err, res ){
+          test.accessToken = JSON.parse(res.text).access_token;
+          done();
+        });
+      });
+    });
 
-  ////});
+    describe('fails', function(){
+    
+      it('no authorization information', function(done){
+        var test = this;
+        test.agent
+        .get(URL+'/test')
+        .end( function( err, res ){
+          expect(res.status).to.eq(400);
+          done();
+        });
+      });
+    
+      it('wrong authorization', function(done){
+        var test = this;
+        test.agent
+        .get(URL+'/test')
+        .set('Authorization', 'Bearer woiwetu29')
+        .end( function( err, res ){
+          expect(res.status).to.eq(401);
+          done();
+        });
+      });
+
+    })
+
+    describe('passes', function(){
+    
+      it('gets the resource', function(done){
+        var test = this;
+        test.agent
+        .get(URL+'/test')
+        .set('Authorization', 'Bearer '+test.accessToken)
+        .end( function( err, res ){
+          expect(res.status).to.eq(200);
+          var user = JSON.parse(res.text);
+          expect(user.id).to.eq(test.user.id);
+          done();
+        });
+      });
+
+    });
+
+  });
+
 
 });

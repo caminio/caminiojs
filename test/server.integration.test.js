@@ -1,13 +1,13 @@
 //var async = require('async')
 //  , helper = require('./helper')
 //  , expect = helper.chai.expect
-//  , nginuous = helper.nginuous;
+//  , nginious = helper.nginious;
 //
 //
 //describe( 'Web server', function(){
 //
 //  before(function(){
-//    this.app = nginuous();
+//    this.app = nginious();
 //  });
 //
 //  it('starts a new webserver instance', function(done){

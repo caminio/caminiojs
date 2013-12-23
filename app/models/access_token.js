@@ -1,5 +1,5 @@
 /*
- * nginuous
+ * nginious
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -11,7 +11,7 @@ var orm = require('../../').orm
 /**
 
 An access token is a permanent token granting a client
-to communicate with this nginuous instance. It can also
+to communicate with this nginious instance. It can also
 have an expires property to define a life time.
 
 @class AccessToken
@@ -27,9 +27,8 @@ var AccessTokenSchema = new orm.Schema({
   client: { type: orm.Schema.Types.ObjectId, ref: 'Client' },
   redirect_url: String,
   tries: [ AuthFailureSchema ],
-  expires: {
-    at: Date
-  },
+  created_at: { type: Date, default: Date.now },
+  expires_at: Date
 });
 
 

@@ -1,15 +1,15 @@
 /**
- * nginuous test helper
+ * nginious test helper
  */
 
 var helper = {};
 
-helper.nginuous = require('../');
+helper.nginious = require('../');
 
-helper.fixtures = require('nginuous-fixtures');
+helper.fixtures = require('nginious-fixtures');
 helper.fixtures.readFixtures();
 // enable ORM (mongoose)
-helper.fixtures.enableORM( helper.nginuous );
+helper.fixtures.enableORM( helper.nginious );
 
 helper.chai = require('chai');
 helper.chai.Assertion.includeStack = true;
@@ -25,7 +25,7 @@ helper.startServer = function( test, done ){
 
   var superagent = require('superagent');
 
-  test.app = helper.nginuous();
+  test.app = helper.nginious();
   test.app.server.start( function(){
     running = true;
     test.agent = superagent.agent();

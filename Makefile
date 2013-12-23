@@ -15,13 +15,13 @@ lib-cov:
 	@./node_modules/.bin/jscoverage lib lib-cov
 
 html-cov: lib-cov
-	@NGINUOUS_COV=1 ./node_modules/.bin/mocha --reporter html-cov > coverage.html
+	@nginious_COV=1 ./node_modules/.bin/mocha --reporter html-cov > coverage.html
 
 coverage:	html-cov
 
 docs:
 	yuidoc --config .yuidoc.json
-	cp .yuidoc-theme/nginuous-logo_661x128.png doc/
+	cp .yuidoc-theme/nginious-logo_661x128.png doc/
 	cp .yuidoc-theme/logo.png doc/
 
 

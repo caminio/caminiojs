@@ -1,5 +1,5 @@
 /*
- * nginuous
+ * nginious
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -201,7 +201,11 @@ UserSchema.method('encryptPassword', function(password) {
   return crypto.createHmac('sha256WithRSAEncryption', this.salt).update(password).digest('hex');
 });
 
+UserSchema.virtual('id').get(function(){
+  return this._id.toHexString();
+});
 
+UserSchema.set('toJSON', { virtuals: true });
 UserSchema.plugin(jsonSelect, '-encrypted_password -salt -confirmation -auth_tokens');
 
 module.exports = UserSchema;

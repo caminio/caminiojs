@@ -3,13 +3,13 @@ var async = require('async')
   , fixtures = helper.fixtures
   , expect = helper.chai.expect
   , request = require('supertest')
-  , nginuous = helper.nginuous;
+  , nginious = helper.nginious;
 
 
 describe( 'Domain API v1', function(){
 
  // before(function(){
- //   this.app = nginuous();
+ //   this.app = nginious();
  // });
 
  // describe('GET /domains', function(){

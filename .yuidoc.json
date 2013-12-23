@@ -1,6 +1,6 @@
 {
-  "name": "nginuous",
-  "description": "nginuous documentation",
+  "name": "nginious",
+  "description": "nginious documentation",
   "version": "1.0",
   "url": "http://doc.nginuo.us",
   "themedir": ".yuidoc-theme",

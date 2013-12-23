@@ -1,5 +1,5 @@
 /*
- * nginuous
+ * nginious
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -11,7 +11,7 @@ var orm = require('../../').orm
 /**
 
 A request token is obtained, if a client/consumer (an application)
-want's to get access to nginuous resources or to another nginuous
+want's to get access to nginious resources or to another nginious
 instance's resources.
 
 Mongoose Model
@@ -23,17 +23,13 @@ Mongoose Model
 var RequestTokenSchema = new orm.Schema({
   ip_address: String,
   user: { type: orm.Schema.Types.ObjectId, ref: 'User' },
-  client: { type: orm.Schema.Types.ObjectId, ref: 'Client' },
+  client: { type: orm.Schema.Types.ObjectId, ref: 'Client', required: true },
   token: String,
   secret: String,
   redirect_uri: String,
   tries: [ AuthFailureSchema ],
-  approved: {
-    at: Date
-  },
-  expires: {
-    at: Date
-  },
+  approved_at: Date,
+  created_at: { type: Date, default: Date.now }
 });
 
 
