@@ -36,5 +36,10 @@ var ClientSchema = new orm.Schema({
   },
 });
 
+ClientSchema.virtual('id').get(function(){
+  return this._id.toHexString();
+});
+
+ClientSchema.set('toJSON', { virtuals: true });
 
 module.exports = ClientSchema;

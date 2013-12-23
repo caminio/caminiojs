@@ -1,6 +1,7 @@
 var nginious = require('../../../')
   , passport = require('passport')
   , login = require('connect-ensure-login')
+  , moment = require('moment')
   , utils = nginious.utils
   , Controller = nginious.Controller;
 
@@ -100,12 +101,14 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
           request_uri: req.param('request_uri'),
           scope: req.param('scope'),
           ip_address: nginious.app.gears.nginious.auth.ipAddress( req ),
+          refresh_token: utils.uid(8),
+          expires_in: moment().add('h',2).toDate(),
           token: token, 
           secret: secret });
         accessToken.save( function( err ){
             if( err ){ return fail( res, { status: 500, description: err })}
             if( !accessToken ){ return fail( res, { status: 500, description: 'server_error' }); }
-            res.json( { token_type: 'bearer', access_token: accessToken.token } );
+            res.json( accessToken.toToken() ); 
           });
       });
 

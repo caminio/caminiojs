@@ -231,6 +231,8 @@ describe( 'Auth API '+URL, function(){
         .end( function( err, res ){
           expect(res.status).to.eq(200);
           expect(JSON.parse(res.text)).to.have.property('access_token');
+          expect(JSON.parse(res.text)).to.have.property('refresh_token');
+          expect(JSON.parse(res.text)).to.have.property('expires_in');
           expect(JSON.parse(res.text).access_token).to.have.length(8);
           done();
         })

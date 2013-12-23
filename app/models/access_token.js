@@ -28,8 +28,16 @@ var AccessTokenSchema = new orm.Schema({
   redirect_url: String,
   tries: [ AuthFailureSchema ],
   created_at: { type: Date, default: Date.now },
-  expires_at: Date
+  expires_in: Date,
+  refresh_token: String
 });
 
+AccessTokenSchema.method('toToken', function(){
+  return {
+    access_token: this.token,
+    expires_in: this.expires_in,
+    refresh_token: this.refresh_token
+  }
+})
 
 module.exports = AccessTokenSchema;
