@@ -4,12 +4,6 @@ var passport = require('passport')
 
 var AccountsController = Controller.define( function( app ){
 
-  this.get('/me',
-    passport.authenticate('token', { session: false }),
-    function(req, res) {
-      res.json( {name:'test'} );
-    });
-
 });
 
 module.exports = AccountsController;
