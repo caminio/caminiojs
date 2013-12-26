@@ -1,9 +1,13 @@
 {
   "name": "nginious",
-  "description": "multi-domain/multi-tenancy application web ecosystem",
+  "description": "MVC framework inspired by RoR architecture",
   "version": "0.0.1",
   "private": true,
   "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
+  "keywords": [
+    "nginious",
+    "mvc framework"
+  ],
   "dependencies": {
     "express": "3.4.6",
     "passport": "~0.1.17",

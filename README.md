@@ -2,21 +2,24 @@
 
 # nginious
 
-nginious is a modularized content management system atop of
-express js with authentication and a predefined API system.
+nginious is a modularized MVC framework inspired by Ruby on Rails.
+It is build on top of the express js with build-in OAuth authentication 
+and a simplified routing system.
 
-It serves multi-domain/multi-tenancy by default, but can also
-serve as standalone system.
+## Features
 
-It's power is its modularity. Event nginious' core resources
-are defined through [gears](#gear)
-an SaaS appliction which can be highly adapted and modulized.
+* MVC framework
+* Multi-Domain / Multi-Teancy system build in (but also works perfect as a single-domain instance)
+* highly modularizable through [gears](#gear). Even it's core functionality is implemented as a gear
+* Works similar to Rails Engines (can read in complete app/controller, app/models ... architecture from a plugged in gear)
 
-nginious is a multi-tenancy system (but it can also be used as
-a single client application). It uses mongoose and passport to
-store it's users (and the users' users), provides a web frontend,
-notification and audit systems and with it's plugins, it can be
-turned into an exciting CMS and CRM.
+## Dependencies
+
+* expressjs
+* mongoose
+* passport
+
+As well as low resource modules like momentjs, async, winston, commander
 
 ##requirements
 
@@ -57,6 +60,18 @@ for occurrence of `app` directory and `models`, `views` and `controllers` direct
 inside. These structure works pretty much the same as rails' organizational strucutre
 works.
 
+So keep in mind, that Gear.new() has to be called from the directory relative to the ./app directory.
+
+#### Gear Options
+
+##### absolutePath
+
+An absolute path to the directory containing the app structure. Default: ./app
+
+##### name
+
+An alternative name this gear should be registered with. Default: Filename of the file calling Gear.new(). 
+
 ## Model
 
 Resource management is currently fixed to [mongoose](http://mongoosejs.com), but NeDB is also considered to
@@ -87,7 +102,7 @@ it via the mapper function `nginious.orm.models.My`
     var nginious = require('../../')
       , Controller = nginious.Controller;
     
-    var MyController = Controller.define( function(){
+    var MyController = Controller.define( function( app ){
     
       this.get('/', function( req, res ){
         res.json(null);
@@ -96,6 +111,12 @@ it via the mapper function `nginious.orm.models.My`
     });
     
     module.exports = DomainsController;
+
+#### Parameters
+
+##### app
+
+The app Object which has been instantiated in the application's `app.js` file.
 
 ## Routing
 
