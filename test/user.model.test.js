@@ -170,7 +170,7 @@ var async = require('async')
       describe('group membership', function(){
 
         before( function( done ){
-          var self = this;
+          var test = this;
           nginious();
           async.parallel({
             user: function( callback ){
@@ -180,16 +180,16 @@ var async = require('async')
                      fixtures.group.create( callback );
                    }
           }, function( err, results ){
-            self.group = results.group;
-            self.user = results.user;
-            self.user.groups.push( self.group );
-          done();
+            test.user = results.user;
+            test.group = results.group;
+            results.user.addGroup( results.group, results.user );
+            done();
         });
       });
 
       it('has one group membership', function(){
         expect(this.user.groups).to.have.length.of(1);
-        expect(this.user.groups[0].toString()).to.eq(this.group.id.toString());
+        expect(this.user.groups[0].group.toString()).to.eq(this.group.id.toString());
       });
 
     });

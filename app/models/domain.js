@@ -17,6 +17,13 @@ var DomainNameValidator = function DomainNameValidator( val ){
   return val.match(/^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[\.]{0,1}[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/);
 }
 
+/**
+
+  @class Domain
+  @constructor
+
+**/
+
 var DomainSchema = nginious.orm.Schema({
     name: { type: String, 
             required: true,
@@ -26,7 +33,7 @@ var DomainSchema = nginious.orm.Schema({
             validate: [ DomainNameValidator, 'invalid domain name' ] },
     users: [ { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' } ],
     groups: [ { type: nginious.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
-    owner: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' },
+    owner: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User', required: true },
     messages: [ MessageSchema ],
     created: { 
       at: { type: Date, default: Date.now },
@@ -36,7 +43,27 @@ var DomainSchema = nginious.orm.Schema({
       at: { type: Date, default: Date.now },
       by: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' }
     },
+    locked: {
+      at: { type: Date },
+      by: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' }
+    },
     description: String,
+});
+
+/**
+locks a domain. This affects any user associated with this domain.
+
+Sets. locked.at, locked.by
+
+@method lock
+@class Domain
+@param {User} user The user object which locks the domain (must be admin)
+**/
+DomainSchema.method('lock', function(user){
+  if( !user.isAdmin(this) )
+    throw 'insufficient rights';
+  this.locked.at = new Date();
+  this.locked.by = user;
 });
 
 module.exports = DomainSchema;

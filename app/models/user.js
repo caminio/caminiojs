@@ -7,6 +7,8 @@
 
 var jsonSelect = require('mongoose-json-select')
   , MessageSchema = require('./schemas/message')
+  , UserGroupsSchema = require('./schemas/user_groups_schema')
+  , UserDomainsSchema = require('./schemas/user_domains_schema')
   , crypto = require('crypto')
   , orm = require('../../').orm;
 
@@ -62,8 +64,8 @@ var UserSchema = orm.Schema({
                required: true,
                index: { unique: true },
                validate: [EmailValidator, 'invalid email address'] },
-      groups: [{ type: orm.Schema.Types.ObjectId, ref: 'Group' } ],
-      domains: [{ type: orm.Schema.Types.ObjectId, ref: 'Domain' } ],
+      groups: [ UserGroupsSchema ],
+      domains: [ UserDomainsSchema ],
       confirmation: {
         key: String,
         expires: Date,
@@ -79,7 +81,7 @@ var UserSchema = orm.Schema({
         by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
       },
       locked: { 
-        at: { type: Date, default: Date.now },
+        at: { type: Date },
         by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
       },
       description: String,
@@ -130,14 +132,21 @@ UserSchema.virtual('unread_messages').get( function(){
 });;
 
 /**
- * set password for this user
- *
- * the password will be available for the rest of this 
- * instance's live-time. Only the encrytped version in 
- * property encrypted_password will be stored to the db
- *
- * @param {String} password - the unencrypted password to be set
- */
+set password for this user
+
+the password will be available for the rest of this 
+instance's live-time. Only the encrytped version in 
+property encrypted_password will be stored to the db
+
+  @class User
+  @method password virtual set
+  @param {String} password
+
+  @example
+    
+    user.password('test');
+
+**/
 UserSchema.virtual('password').set(function( password ) {
     this._password = password;
     this.salt = this.generateSalt();
@@ -145,36 +154,44 @@ UserSchema.virtual('password').set(function( password ) {
 })
 
 /**
- * get unenrypted password
- *
- * @return {String} the unencrypted password (exists only for the time of obejct
- * creation)
- */
+
+  get unenrypted password
+
+  @class User
+  @method password virtual get
+  @return {String} the unencrypted password (exists only for the time of obejct
+creation)
+**/
 UserSchema.virtual('password').get(function() { 
   return this._password; 
 });
 
 /**
- * authenticate user
- *
- * compares encrytped password with given plain text password
- *
- * @param {String} plainTextPassword the plain text password which
- * will be hase-compared against the original password saved to
- * the database
- */
+authenticate user
+
+compares encrytped password with given plain text password
+
+  @class User
+  @method authenticate
+  @param {String} plainTextPassword the plain text password which
+will be hase-compared against the original password saved to
+the database
+**/
 UserSchema.method('authenticate', function(plainTextPassword) {
   return this.encryptPassword(plainTextPassword) === this.encrypted_password;
 });
 
 /**
- * regenerateAuthToken
- *
- * regenerates the auth_token object by generating a
- * new random hash and updating ip address of user
- *
- * @param {String} ip address of user
- */
+regenerateAuthToken
+
+regenerates the auth_token object by generating a
+new random hash and updating ip address of user
+
+  @class User
+  @method regenerateAuthToken
+  @param {String} ip address of user
+
+**/
 UserSchema.method('regenerateAuthToken', function(ipAddress) {
   this.auth_token.token = this.encryptPassword(ipAddress);
   this.auth_token.ip_address = ipAddress;
@@ -182,23 +199,67 @@ UserSchema.method('regenerateAuthToken', function(ipAddress) {
 });
 
 /**
- * generate salt
- *
- * generate the password salt
- */
+generate salt
+
+generate the password salt
+
+  @class User
+  @method generateSalt
+  @private
+**/
 UserSchema.method('generateSalt', function() {
   return Math.round((new Date().valueOf() * Math.random())) + '';
 });
 
 /**
- *
- * encrypt password
- *
- * @param {String} password - clear text password string
- * to be encrypted
- */
+
+encrypt password
+
+  @class User.encryptPassword
+  @param {String} password - clear text password string
+to be encrypted
+**/
 UserSchema.method('encryptPassword', function(password) {
   return crypto.createHmac('sha256WithRSAEncryption', this.salt).update(password).digest('hex');
+});
+
+/**
+
+  @class User
+  @method isAdmin
+  @param {Domain|Group|ObjectId|String} groupOrDomain [optional] domain or group object, ObjectId of group/domain object or string of group/domain object id
+  @return {Boolean} if the user is admin
+**/
+UserSchema.method('isAdmin', function(groupOrDomain){
+  return true;
+});
+
+/**
+
+  @class User
+  @method addGroup
+  @param {Group|ObjectId|String} group The group to be added
+  @param {User} user The user that adds this group
+  @param {Object} options
+  @param {Boolean} options.can_manage [optional] default: false
+  @param {Boolean} options.can_delete [optional] default: false
+**/
+UserSchema.method('addGroup', function(group, user, options){
+
+  options = options || {};
+
+  this.groups.push({
+    can_manage: options.can_manage,
+    can_delete: options.can_delete,
+    group: group,
+    created: {
+      by: user
+    },
+    updated: {
+      by: user         
+    }
+  });
+
 });
 
 UserSchema.virtual('id').get(function(){

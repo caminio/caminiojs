@@ -51,15 +51,23 @@ describe( 'Domain', function(){
         this.domain = fixtures.domain.build();
       });
 
-      it('.name', function( done ){
+      it('.name', function(){
         this.domain.name = null;
          this.domain.validate( 
            function( err ){
              expect( err ).to.exist;
              expect( err.errors.name.type ).to.eq('required');
-             done();
            });
-       });
+      });
+
+      it('.owner', function(){
+        this.domain.owner = null;
+        this.domain.validate(
+          function( err ){
+            expect( err ).to.exist;
+            expect( err.errors.owner.type ).to.eq('required');
+          });
+      });
 
       describe('format', function(){
 
@@ -84,7 +92,6 @@ describe( 'Domain', function(){
             this.domain.name = 'test.example.com';
             this.domain.validate( 
               function( err ){
-                console.log(err);
                 expect( err ).to.not.exist;
                 done();
               });
@@ -96,10 +103,44 @@ describe( 'Domain', function(){
 
     });
 
-
   });
 
   describe('methods', function(){
+
+    describe('locking', function(){
+      
+      before( function(done){
+        var test = this;
+        fixtures.domain.create( function( err, domain ){
+          test.domain = domain;
+          done();
+        });
+      });
+
+      describe('#lock()', function(){
+     
+        it('default: unlocked', function(){
+          expect(this.domain.locked.at).to.not.exist;
+          expect(this.domain.locked.by).to.not.exist;
+        });
+
+        it('marks the domain locked', function(done){
+          var test = this;
+          this.domain.lock(test.user);
+          this.domain.save( function(err){
+            expect(err).to.not.exist;
+            expect(test.domain.locked.at).to.be.a('date');
+            expect(test.domain.locked.by.id).to.be.a('string');
+            expect(test.domain.locked.at.getTime()).to.be.above( new Date() - 1000);
+            done();
+          });
+        
+        });
+
+      });
+
+    });
+
 
     describe('has many .users', function(){
       
