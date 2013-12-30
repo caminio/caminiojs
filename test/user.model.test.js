@@ -5,138 +5,136 @@ var async = require('async')
   , nginious = helper.nginious;
 
 
-  describe( 'User', function(){
+describe( 'User', function(){
 
-    describe( 'properties', function(){
+  describe( 'properties', function(){
 
-      describe('has', function(){
+    describe('has', function(){
 
-        before( function(){
-          this.user = fixtures.user.build();
-        });
-
-        it('.name.first', function(){
-          expect( this.user.name.first ).to.eq( this.user.name.first );
-        });
-
-        it('.name.last', function(){
-          expect( this.user.name.last ).to.eq( this.user.name.last );
-        });
-
-        it('.email', function(){
-          expect( this.user.email ).to.eq( this.user.email );
-        });
-
-        it('.description', function(){
-          expect( this.user.description ).to.eq( this.user.description );
-        });
-
-        it('.phone', function(){
-          expect( this.user.phone ).to.eq( this.user.phone );
-        });
-
-        it('.encrypted_password', function(){
-          expect( this.user.encrypted_password ).to.have.length(64);
-        });
-
+      before( function(){
+        this.user = fixtures.user.build();
       });
 
-      describe('associates', function(){
-
-        before( function(){
-          this.user = fixtures.user.build();
-        });
-
-        it('.messages (embedded)', function(){
-          expect( this.user.messages ).to.be.an('array');
-        });
-
-        it('.groups (ref)', function(){
-          expect( this.user.groups ).to.be.an('array');
-        });
-
-        it('.domains (ref)', function(){
-          expect( this.user.groups ).to.be.an('array');
-        });
-
+      it('.name.first', function(){
+        expect( this.user.name.first ).to.eq( this.user.name.first );
       });
 
-      describe('embedds', function(){
-
-        before( function(){
-          this.user = fixtures.user.build();
-        });
-
-        it('.preferences (nested)', function(){
-          expect( this.user.preferences ).to.be.a('object');
-        });
-
+      it('.name.last', function(){
+        expect( this.user.name.last ).to.eq( this.user.name.last );
       });
 
-      describe('returns', function(){
-
-        before( function(){
-          this.user = fixtures.user.build();
-        });
-
-        it('returns .name.full (virtual)', function(){
-          expect( this.user.name.full ).to.eq( this.user.name.first+' '+this.user.name.last );
-        });
-
-        it('returns .password (virtual)', function(){
-          expect( this.user.password ).to.eq( this.user.password );
-        });
-
-        it('returns number of unread_messages (virtual)', function(){
-          expect( this.user.unread_messages ).to.eq(0);
-        });
-
+      it('.email', function(){
+        expect( this.user.email ).to.eq( this.user.email );
       });
 
-      describe('requires', function(){
-      
-        beforeEach( function(){
-          this.user = fixtures.user.build();
-        });
+      it('.description', function(){
+        expect( this.user.description ).to.eq( this.user.description );
+      });
 
-        it('.email', function( done ){
-          this.user.email = null;
-          this.user.validate( 
-            function( err ){
-              expect( err ).to.exist;
-              expect( err.errors.email.type ).to.eq('required');
-              done();
-            });
-        });
+      it('.phone', function(){
+        expect( this.user.phone ).to.eq( this.user.phone );
+      });
 
-        describe('format', function(){
+      it('.encrypted_password', function(){
+        expect( this.user.encrypted_password ).to.have.length(64);
+      });
 
-          describe('.email', function(){
+    });
 
-            beforeEach( function(){
-              this.user = fixtures.user.build();
-            });
+    describe('associates', function(){
 
-            it('invalid if no @', function(done){
-              this.user.email = 'test';
-              this.user.validate( 
-                function( err ){
-                  expect( err ).to.exist;
-                  expect( err.errors.email.type ).to.eq('user defined');
-                  expect( err.errors.email.message ).to.eq('invalid email address');
-                  done();
-                });
-            });
+      before( function(){
+        this.user = fixtures.user.build();
+      });
 
-            it('valid', function(done){
-              this.user.email = 'john@kings.com';
-              this.user.validate( 
-                function( err ){
-                  expect( err ).to.not.exist;
-                  done();
-                });
-            });
+      it('.messages (embedded)', function(){
+        expect( this.user.messages ).to.be.an('array');
+      });
 
+      it('.groups (ref)', function(){
+        expect( this.user.groups ).to.be.an('array');
+      });
+
+      it('.domains (ref)', function(){
+        expect( this.user.groups ).to.be.an('array');
+      });
+
+    });
+
+    describe('embedds', function(){
+
+      before( function(){
+        this.user = fixtures.user.build();
+      });
+
+      it('.preferences (nested)', function(){
+        expect( this.user.preferences ).to.be.a('object');
+      });
+
+    });
+
+    describe('returns', function(){
+
+      before( function(){
+        this.user = fixtures.user.build();
+      });
+
+      it('returns .name.full (virtual)', function(){
+        expect( this.user.name.full ).to.eq( this.user.name.first+' '+this.user.name.last );
+      });
+
+      it('returns .password (virtual)', function(){
+        expect( this.user.password ).to.eq( this.user.password );
+      });
+
+      it('returns number of unread_messages (virtual)', function(){
+        expect( this.user.unread_messages ).to.eq(0);
+      });
+
+    });
+
+    describe('requires', function(){
+
+      beforeEach( function(){
+        this.user = fixtures.user.build();
+      });
+
+      it('.email', function( done ){
+        this.user.email = null;
+        this.user.validate( 
+          function( err ){
+            expect( err ).to.exist;
+            expect( err.errors.email.type ).to.eq('required');
+            done();
+          });
+      });
+
+      describe('format', function(){
+
+        describe('.email', function(){
+
+          beforeEach( function(){
+            this.user = fixtures.user.build();
+          });
+
+          it('invalid if no @', function(done){
+            this.user.email = 'test';
+            this.user.validate( 
+              function( err ){
+                expect( err ).to.exist;
+                expect( err.errors.email.type ).to.eq('user defined');
+                expect( err.errors.email.message ).to.eq('invalid email address');
+                done();
+              });
+          });
+
+          it('valid', function(done){
+            this.user.email = 'john@kings.com';
+            this.user.validate( 
+              function( err ){
+                expect( err ).to.not.exist;
+                done();
+              });
           });
 
         });
@@ -145,45 +143,47 @@ var async = require('async')
 
     });
 
-    describe('methods', function(){
+  });
 
-      it('returns a salt for the user', function(){
-        expect( this.user.generateSalt() ).to.have.length.above(9);
+  describe('methods', function(){
+
+    it('returns a salt for the user', function(){
+      expect( this.user.generateSalt() ).to.have.length.above(9);
+    });
+
+    describe('authenticate', function(){
+
+      it('valid password', function(){
+        expect( this.user.authenticate( this.user.password ) ).to.be.true;
       });
 
-      describe('authenticate', function(){
-
-        it('valid password', function(){
-          expect( this.user.authenticate( this.user.password ) ).to.be.true;
-        });
-
-        it('no password', function(){
-          expect( this.user.authenticate('') ).not.to.be.true;
-        });
-
-        it('invalid password', function(){
-          expect( this.user.authenticate('10326Test!') ).not.to.be.true;
-        });
-
+      it('no password', function(){
+        expect( this.user.authenticate('') ).not.to.be.true;
       });
 
-      describe('group membership', function(){
+      it('invalid password', function(){
+        expect( this.user.authenticate('10326Test!') ).not.to.be.true;
+      });
 
-        before( function( done ){
-          var test = this;
-          nginious();
-          async.parallel({
-            user: function( callback ){
-                    fixtures.user.create( callback );
-                  },
-            group: function( callback ){
-                     fixtures.group.create( callback );
-                   }
-          }, function( err, results ){
-            test.user = results.user;
-            test.group = results.group;
-            results.user.addGroup( results.group, results.user );
-            done();
+    });
+
+    describe('group membership', function(){
+
+      before( function( done ){
+        var test = this;
+        nginious();
+        async.parallel({
+          user: function( callback ){
+                  fixtures.user.create( callback );
+                },
+          group: function( callback ){
+                   fixtures.group.create( callback );
+                 }
+        }, function( err, results ){
+          test.user = results.user;
+          test.group = results.group;
+          results.user.addGroup( results.group, results.user );
+          done();
         });
       });
 
@@ -193,6 +193,34 @@ var async = require('async')
       });
 
     });
+
+    describe('domain membership', function(){
+
+      before( function( done ){
+        var test = this;
+        nginious();
+        async.parallel({
+          user: function( callback ){
+                  fixtures.user.create( callback );
+                },
+          domain: function( callback ){
+                   fixtures.domain.create( callback );
+                 }
+        }, function( err, results ){
+          test.user = results.user;
+          test.domain = results.domain;
+          results.domain.addUser( results.user, results.user );
+          done();
+        });
+      });
+
+      it('has one domain membership', function(){
+        expect(this.user.domains).to.have.length.of(1);
+        expect(this.user.domains[0].domain.toString()).to.eq(this.domain.id.toString());
+      });
+
+    });
+
 
   });
 

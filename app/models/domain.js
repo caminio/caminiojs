@@ -66,4 +66,27 @@ DomainSchema.method('lock', function(user){
   this.locked.by = user;
 });
 
+/**
+
+  Adds a user to this domain
+
+  @class Domain
+  @method addUser
+  @param {User} user the user to be added
+  @param {User} manager a user with owner status (only domain managers can add users)
+  @param {Object} options
+  @param {Boolean} options.can_manage
+**/
+DomainSchema.method('addUser', function(user,manager,options){
+  if( !manager.isAdmin(this) )
+    throw 'insufficient rights';
+  options = options || {};
+  user.domains.push({
+    can_manage: options.can_manage,
+    domain: this,
+    created: { by: manager },
+    updated: { by: manager }
+  });
+});
+
 module.exports = DomainSchema;

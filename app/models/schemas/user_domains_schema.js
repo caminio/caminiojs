@@ -14,7 +14,6 @@ var mongoose = require('mongoose');
 
 **/
 var UserDomainsSchema = new mongoose.Schema({
-  can_delete: { type: Boolean, default: false },
   can_manage: { type: Boolean, default: false },
   domain: { type: mongoose.Schema.Types.ObjectId, ref: 'Domain' },
   created: { 
