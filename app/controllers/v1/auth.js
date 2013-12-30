@@ -14,9 +14,14 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
   this.post('/login',
     passport.authenticate('local', { successReturnToOrRedirect: '/', failureRedirect: namespacePrefix+'/login' }) );
 
+  this.get('/',
+    function( req, res){
+      res.ng.render( 'login' );
+    });
+
   this.get('/login', 
-    function( res, res ){ 
-      res.render('login') 
+    function( req, res ){ 
+      res.ng.render( 'login' );
     });
 
   this.get('/logout', 
