@@ -1,0 +1,14 @@
+doctype html
+html(lang=i18n.locale())
+  head
+    title nginio
+
+    link(rel='stylesheet', href='/css/reset.css')
+    link(rel='stylesheet', href='/css/unauth.css')
+
+  body
+
+    .unauth-box
+      img.nginios-logo(src='/img/nginios-logo_350x83.png')
+      block content
+
