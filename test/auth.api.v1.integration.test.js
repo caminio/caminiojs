@@ -3,7 +3,7 @@ var async = require('async')
   , fixtures = helper.fixtures
   , expect = helper.chai.expect
   , request = require('superagent')
-  , nginious = helper.nginious;
+  , nginios = helper.nginios;
 
 var URL='http://localhost:3000/v1/auth';
 

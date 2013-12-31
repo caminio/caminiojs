@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
- * nginious
+ * nginios
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -14,7 +14,7 @@ var child_process = require("child_process");
 program
   .version('0.0.1')
   .usage('new <app_name>')
-  .option('new [name]', 'Create a new nginious application' )
+  .option('new [name]', 'Create a new nginios application' )
   .on('new', function( name ){
       child_process.exec( 'express '+name, function( err, stderr, stdout ){
         fs.mkdirSync( name+'/config' );
@@ -29,7 +29,7 @@ program
         console.log('application', name, 'created successfully');
         });
       })
-  .option('gear [name]', 'Create a plain nginious gear folder' )
+  .option('gear [name]', 'Create a plain nginios gear folder' )
   .on('gear', function( name ){
       fs.mkdirSync( name );
       fs.createReadStream(__dirname+'/../lib/install/gear/package.json').pipe(fs.createWriteStream(name+'/package.json'));

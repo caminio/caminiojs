@@ -1,12 +1,12 @@
 /*
- * nginious
+ * nginios
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
  */
 
 var moment = require('moment')
-  , nginious = require('../../');
+  , nginios = require('../../');
 
 
 var auth = {};
@@ -54,7 +54,7 @@ auth.ipAddress = function ipAddress( req ){
 
 auth.loadClient = function loadClient( req, res, next ){
   if( req.param('client_id') && req.param('client_secret') ){
-    nginious.orm.models.Client.findOne({ 
+    nginios.orm.models.Client.findOne({ 
       _id: req.param('client_id'),
       secret: req.param('client_secret')
     }).exec( function( err, client ){
@@ -69,19 +69,19 @@ auth.loadClient = function loadClient( req, res, next ){
 }
 
 auth.maintainRequestTokens = function maintainRequestTokens( req, res, next ){
-  nginious.orm.models.RequestToken.remove({ 
-    '$lte': { created_at: moment().subtract('m', nginious.app.config.auth_token_timeout_min).toDate() }
+  nginios.orm.models.RequestToken.remove({ 
+    '$lte': { created_at: moment().subtract('m', nginios.app.config.auth_token_timeout_min).toDate() }
   }, next );
 }
 
 auth.maintainAccessTokens = function maintainAccessTokens( req, res, next ){
-  nginious.orm.models.AccessToken.remove({ 
+  nginios.orm.models.AccessToken.remove({ 
     '$lte': { expires_at: (new Date()) }
   }, next );
 }
 
 auth.loadRequestToken = function loadRequestToken( req, res, next ){
-  nginious.orm.models.RequestToken.findOne({
+  nginios.orm.models.RequestToken.findOne({
     token: req.param('code'),
     redirect_uri: req.param('redirect_uri')
   }, function( err, requestToken ){
@@ -97,7 +97,7 @@ auth.token = function token( req, res, next ){
     return auth.fail( res, { status: 400, description: 'invalid_request' } );
 
   var bearer = req.headers['authorization'].replace('Bearer ','')
-  nginious.orm.models.AccessToken.findOne({
+  nginios.orm.models.AccessToken.findOne({
     token: bearer
   }).populate('user').exec( function( err, token ){
     if( err ){ return auth.fail( res, { status: 500, description: err }); }
@@ -119,7 +119,7 @@ auth.token = function token( req, res, next ){
 **/
 auth.try = function tryAuthentication(accessToken, refreshToken, profile, done){
 
-  nginious.orm.models.User.findOne({}, done );
+  nginios.orm.models.User.findOne({}, done );
 
 }
 

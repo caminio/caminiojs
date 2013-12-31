@@ -1,6 +1,6 @@
 var helper = require('../helper')
-  , nginious = helper.nginious;
+  , nginios = helper.nginios;
 
-nginious.router.add( 'v1/auth' );
-nginious.router.add( 'v1/domains' );
-nginious.router.add( 'v1/accounts' );
+nginios.router.add( 'v1/auth' );
+nginios.router.add( 'v1/domains' );
+nginios.router.add( 'v1/accounts' );

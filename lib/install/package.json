@@ -6,6 +6,6 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "nginious": "~0.0.1"
+    "nginios": "~0.0.1"
   }
 }

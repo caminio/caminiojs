@@ -7,13 +7,13 @@ var expect = chai.expect;
 var mongoose = require('mongoose');
 
 var helper = require('./helper');
-var nginious = helper.nginious;
-var Application = require('../lib/nginious/application');
+var nginios = helper.nginios;
+var Application = require('../lib/nginios/application');
 
 describe( 'MongoDB connectivity', function(){
 
   before( function(){
-    this.app = nginious();
+    this.app = nginios();
   });
 
   it( 'application has the mongoose.connection object in db object', function(){
@@ -22,7 +22,7 @@ describe( 'MongoDB connectivity', function(){
   });
 
   it('does not create a new connection if already initialized, but shares mongoose connection', function(){
-    var app = nginious();
+    var app = nginios();
     expect(this.app.db.connection).to.eq( app.db.connection );
   });
 

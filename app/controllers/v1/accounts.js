@@ -1,6 +1,6 @@
 var passport = require('passport')
-  , nginious = require('../../../')
-  , Controller = nginious.Controller;
+  , nginios = require('../../../')
+  , Controller = nginios.Controller;
 
 var AccountsController = Controller.define( function( app ){
 

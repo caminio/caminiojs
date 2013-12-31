@@ -1,9 +1,9 @@
 {
-  "name": "nginious-gear-<GEAR NAME>",
+  "name": "nginios-gear-<GEAR NAME>",
   "private": true,
   "author": "<YOUR EMAIL ADDRESS>",
   "dependencies": {
-    "nginious": "~0.0"
+    "nginios": "~0.0"
   },
   "devDependencies": {
     "mocha": "~1.15.1",

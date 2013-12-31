@@ -1,12 +1,12 @@
 /*
- * nginious
+ * nginios
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
  */
   
 var MessageSchema = require('./schemas/message')
-  , nginious = require('../../lib/nginious');
+  , nginios = require('../../lib/nginios');
 
 /**
  * validates, if domain name has at least
@@ -24,28 +24,28 @@ var DomainNameValidator = function DomainNameValidator( val ){
 
 **/
 
-var DomainSchema = nginious.orm.Schema({
+var DomainSchema = nginios.orm.Schema({
     name: { type: String, 
             required: true,
             lowercase: true,
             required: true,
             index: { unique: true },
             validate: [ DomainNameValidator, 'invalid domain name' ] },
-    users: [ { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' } ],
-    groups: [ { type: nginious.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
-    owner: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User', required: true },
+    users: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' } ],
+    groups: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
+    owner: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User', required: true },
     messages: [ MessageSchema ],
     created: { 
       at: { type: Date, default: Date.now },
-      by: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     updated: { 
       at: { type: Date, default: Date.now },
-      by: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     locked: {
       at: { type: Date },
-      by: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     description: String,
 });

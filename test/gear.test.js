@@ -1,9 +1,9 @@
 var chai = require('chai')
   , expect = chai.expect
   , helper = require('./helper')
-  , nginious = helper.nginious
-  , Gear = nginious.Gear
-  , modelRegistry = require('../lib/nginious/db/model_registry');
+  , nginios = helper.nginios
+  , Gear = nginios.Gear
+  , modelRegistry = require('../lib/nginios/db/model_registry');
 
 
 var myGear = new Gear({});
@@ -17,7 +17,7 @@ describe( 'Gear', function(){
   describe( 'after app initializiation', function(){
 
     before( function(){
-      this.app = nginious();
+      this.app = nginios();
     });
 
     it('has a gear.test gear defined', function(){

@@ -1,12 +1,12 @@
 /*
- * nginious
+ * nginios
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
  */
 
-var fixtures = require('nginious-fixtures')
-  , utils = require('../../lib/nginious/utils');
+var fixtures = require('nginios-fixtures')
+  , utils = require('../../lib/nginios/utils');
 
 fixtures.define('Client', {
   name: function(){ return 'test-client-'+Math.random(1000)*(new Date().getTime()).toString(); },

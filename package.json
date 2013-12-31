@@ -1,11 +1,11 @@
 {
-  "name": "nginious",
+  "name": "nginios",
   "description": "MVC framework inspired by RoR architecture",
   "version": "0.0.1",
   "private": true,
   "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
   "keywords": [
-    "nginious",
+    "nginios",
     "mvc framework"
   ],
   "dependencies": {
@@ -30,11 +30,11 @@
     "jscoverage": "~0.3.8",
     "supertest": "~0.8.2",
     "superagent": "~0.15.7",
-    "nginious-fixtures": "git://github.com/tastenwerk/nginious-fixtures#master"
+    "nginios-fixtures": "git://github.com/tastenwerk/nginios-fixtures#master"
   },
   "main": "index.js",
   "bin": {
-    "nginious": "./bin/nginious"
+    "nginios": "./bin/nginios"
   },
   "scripts": {
     "prepublish": "npm prune",
@@ -44,9 +44,9 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tastenwerk/nginious.git"
+    "url": "https://github.com/tastenwerk/nginios.git"
   },
   "bugs": {
-    "url": "https://github.com/tastenwerk/nginious/issues"
+    "url": "https://github.com/tastenwerk/nginios/issues"
   }
 }

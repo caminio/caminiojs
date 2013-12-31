@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/tastenwerk/nginious.png)](https://travis-ci.org/tastenwerk/nginious)
+[![Build Status](https://travis-ci.org/tastenwerk/nginios.png)](https://travis-ci.org/tastenwerk/nginios)
 
-# nginious
+# nginios
 
-nginious is a modularized MVC framework inspired by Ruby on Rails.
+nginios is a modularized MVC framework inspired by Ruby on Rails.
 It is build on top of the express js with build-in OAuth authentication 
 and a simplified routing system.
 
@@ -28,13 +28,13 @@ As well as low resource modules like momentjs, async, winston, commander
 
 ## installation
 
-create a nginious application:
+create a nginios application:
 
-    nginious new myapp
+    nginios new myapp
 
-add nginious dependency to it's package.json by comitting
+add nginios dependency to it's package.json by comitting
 
-    npm install --save nginious
+    npm install --save nginios
 
 run the app the usual way
 
@@ -42,20 +42,20 @@ run the app the usual way
 
 You should see something like:
 
-    [nginious] running at port 3000
+    [nginios] running at port 3000
 
 
 ## <a name="gear"></a> Gear
 
 a Gear is a logical unit or, if you want, a plugin. It is defined before
-`nginious()` is called. The order does not matter.
+`nginios()` is called. The order does not matter.
 
 ### defining a new gear
 
-    var Gear = nginious.Gear;
+    var Gear = nginios.Gear;
     var myGear = Gear.new();
 
-When `nginious()` is called, the gear's base directory is parsed
+When `nginios()` is called, the gear's base directory is parsed
 for occurrence of `app` directory and `models`, `views` and `controllers` directories
 inside. These structure works pretty much the same as rails' organizational strucutre
 works.
@@ -82,9 +82,9 @@ model's filenames are used to compute the model's name to register it to mongoos
 
     // file: app/models/my.js
     //
-    var nginious = require('nginious');
+    var nginios = require('nginios');
 
-    var MySchema = nginious.orm.Schema({
+    var MySchema = nginios.orm.Schema({
       name: String,
       num: { type: Number, required: true }
     });
@@ -93,14 +93,14 @@ model's filenames are used to compute the model's name to register it to mongoos
 
 This will create a model / collection named 'My', resp. 'mys'. It can be accessed
 directly via `var mongoose = require('mongoose'); mongoose.models.My` or the prefered way is to access
-it via the mapper function `nginious.orm.models.My`
+it via the mapper function `nginios.orm.models.My`
 
 
 ## Controller
 
     // file: app/controllers/my.js
-    var nginious = require('../../')
-      , Controller = nginious.Controller;
+    var nginios = require('../../')
+      , Controller = nginios.Controller;
     
     var MyController = Controller.define( function( app ){
     
@@ -127,13 +127,13 @@ via `config/routes.js` file, which should have been copied over when creating th
 
 
     var helper = require('../helper')
-      , nginious = helper.nginious;
+      , nginios = helper.nginios;
     
-    nginious.router.add( '/my_namespace', 'my' );
+    nginios.router.add( '/my_namespace', 'my' );
 
 alternatively, if the roue is going to have the same name as the controller:
 
-    nginious.router.add( 'my' );
+    nginios.router.add( 'my' );
 
 This would connect the my controller from above to the /my_namespace.
 

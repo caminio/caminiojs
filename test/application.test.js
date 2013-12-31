@@ -6,13 +6,13 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var helper = require('./helper');
-var nginious = helper.nginious;
-var Application = require('../lib/nginious/application');
+var nginios = helper.nginios;
+var Application = require('../lib/nginios/application');
 
 describe( 'Application', function(){
 
   before( function(){
-    this.app = nginious();
+    this.app = nginios();
   });
 
   it('app is an instance of Application', function(){

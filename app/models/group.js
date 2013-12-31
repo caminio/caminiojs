@@ -1,5 +1,5 @@
 /*
- * nginious
+ * nginios
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -8,20 +8,20 @@
   
 var jsonSelect = require('mongoose-json-select')
   , MessageSchema = require('./schemas/message')
-  , nginious = require('../../lib/nginious');
+  , nginios = require('../../lib/nginios');
 
-var GroupSchema = nginious.orm.Schema({
+var GroupSchema = nginios.orm.Schema({
     name: { type: String, required: true },
-    users: [ { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' } ],
+    users: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' } ],
     messages: [ MessageSchema ],
-    domains: [{ type: nginious.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
+    domains: [{ type: nginios.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
     created: { 
       at: { type: Date, default: Date.now },
-      by: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     updated: { 
       at: { type: Date, default: Date.now },
-      by: { type: nginious.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     description: String,
 });
