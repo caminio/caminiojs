@@ -2,4 +2,52 @@ extends ../unauth
 
 block content
 
-  h2=t('hello')
+  form#login(action='login', method='post')
+    .field-box
+      label=t('username_email')
+      input(type='text', name='username')
+    .field-box
+      label=t('password')
+      input(type='password', name='password')
+
+    .control
+      button.forgot-password-btn(title=t('forgot_password'), class='tooltip')
+        i(class='fa fa-question')
+      button
+        =t('login')
+        i(class='fa fa-arrow-right')
+      input(type='submit', style='display:none')
+
+block next_content
+
+  #forgot-box.unauth-box.slide-away
+
+    img.nginios-logo(src='/img/logo.png')
+    .unauth-content-block
+
+      form#forgot-password-form(action='reset_password', method='post')
+        
+        p.desc=t('remember_your_email')
+
+        .field-box
+          label=t('enter_email')
+          input(type='text', name='email')
+  
+        .control
+          button.forgot-password-btn(title=t('back_to_login'), class='tooltip')
+            i(class='fa fa-arrow-left')
+          button
+            =t('request_link')
+            i(class='fa fa-envelope')
+          input(type='submit', style='display:none')
+
+append header
+  script(type='text/javascript').
+    jQuery( function($){
+      $('.forgot-password-btn').on('click', function(e){
+        e.preventDefault();
+        $('#main-box').toggleClass('slide-away');
+        $('#forgot-box').toggleClass('slide-away');
+      });
+    })
+
