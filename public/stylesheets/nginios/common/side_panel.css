@@ -1,0 +1,37 @@
+#side-panel{
+  background-color: #373737;
+  position: fixed;
+  left: 0;
+  width: 240px;
+  top: 50px;
+  bottom: 0;
+}
+#side-panel .account-info{
+  padding: 10px;
+}
+#side-panel .avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: #f5f5f5;
+  padding: 3px;
+  margin: 5px 15px 5px 5px;
+}
+#side-panel .username{
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 0 0;
+  color: #eee;
+  width: 150px;
+}
+#side-panel .notification{
+  font-size: 10px;
+  color: #999;
+  width: 30px;
+  margin-top: 6px;
+  margin-right: 5px;
+}
+#side-panel .notification .fa{
+  float: left;
+  margin: 1px 5px 0 0;
+}

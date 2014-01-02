@@ -7,3 +7,23 @@
 .float-left{
   float: left;
 }
+.fixed{
+  position: fixed;
+}
+.btn{
+  border: 1px solid #ddd;
+  padding: 2px;
+  border-radius: 2px;
+}
+.borderless{
+  border: none;
+}
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}

@@ -1,0 +1,12 @@
+#side-panel
+  .account-info
+    img.avatar.float-left(src='/images/avatar.png')
+    .float-left.username=currentUser.name.full
+    .notifications
+      .mailbox-messages.notification.float-left
+        i.fa.fa-envelope
+        span#num-mailbox-messages 0
+      .action-required.notification.float-left
+        i.fa.fa-warning
+        span#num-required-actions 0
+     

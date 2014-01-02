@@ -8,5 +8,7 @@ en.remember_your_email = 'If you remember your Email address, you can request a 
 en.request_link = 'Request link'
 en.user_unknown = 'Login failed! - User unkown'
 en.authentication_failed = 'Login failed!'
+en.toggle_sidebar = 'Toggle sidebar'
+en.logout = 'Logout'
 
 module.exports = en;
