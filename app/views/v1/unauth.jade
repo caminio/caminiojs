@@ -3,16 +3,16 @@ html(lang=i18n.locale())
   head
     title nginio
 
-    link(rel='stylesheet', href='/css/reset.css')
-    link(rel='stylesheet', href='/css/common.css')
     link(rel='stylesheet', href='/fonts/opensans.css')
-    link(rel='stylesheet', href='/css/vendor/font-awesome.min.css')
-    link(rel='stylesheet', href='/css/vendor/jquery.qtip.min.css')
-    link(rel='stylesheet', href='/css/unauth.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/reset.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/common.css')
+    link(rel='stylesheet', href='/stylesheets/vendor/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/vendor/jquery.qtip.min.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/unauth.css')
 
-    script(type='text/javascript', src='/js/vendor/jquery-2.0.3.min.js')
-    script(type='text/javascript', src='/js/vendor/jquery.qtip.min.js')
-    script(type='text/javascript', src='/js/nginios/main.js')
+    script(type='text/javascript', src='/javascripts/vendor/jquery-2.0.3.min.js')
+    script(type='text/javascript', src='/javascripts/vendor/jquery.qtip.min.js')
+    script(type='text/javascript', src='/javascripts/nginios/main.js')
 
     block header
 
@@ -22,7 +22,7 @@ html(lang=i18n.locale())
       if( messages.count > 0 )
         .message(class=(messages.error ? 'error' : ''))
           =t(messages.error || messages.info)
-      img.nginios-logo(src='/img/logo.png')
+      img.nginios-logo(src='/images/logo.png')
       .unauth-content-block
         block content
 

@@ -19,12 +19,12 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
 
   this.get('/',
     function( req, res){
-      res.ng.render( 'login' );
+      res.nginios.render( 'login' );
     });
 
   this.get('/login', 
     function( req, res ){ 
-      res.ng.render( 'login' );
+      res.nginios.render( 'login' );
     });
 
   this.get('/logout', 
@@ -44,6 +44,7 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
     });
 
   this.get('/dialog/authorize',
+      //login.ensureLoggedIn( this.resolvePath(null,'/login')),
       login.ensureLoggedIn(namespacePrefix+'/login'),
       function( req, res ){
         nginios.orm.models.RequestToken.findOne({ token: req.param('request_token') }, function(err, token) {
