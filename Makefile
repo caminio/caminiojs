@@ -21,8 +21,8 @@ coverage:	html-cov
 
 docs:
 	yuidoc --config .yuidoc.json
-	cp .yuidoc-theme/nginios-logo_661x128.png doc/
-	cp .yuidoc-theme/logo.png doc/
+	cp public/images/nginios-logo_200x35.png doc/logo-w-text.png
+	cp public/images/favicon.png doc/logo.png
 
 
 clean:

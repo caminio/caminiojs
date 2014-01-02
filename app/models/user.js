@@ -12,13 +12,23 @@ var jsonSelect = require('mongoose-json-select')
   , crypto = require('crypto')
   , orm = require('../../').orm;
 
+/**
+ * The user class is the main user object
+ * for any operations in nginios
+ *
+ * @class User
+ */
 
 /**
  * computes the user's full name
  * to display
  * in worst case, this is the user's email
  * address
- */
+ *
+ * @method getUserFullName
+ * @private
+ *
+ **/
 function getUserFullName(){
   if( this.name.first && this.name.last )
     return this.name.first + ' ' + this.name.last;
@@ -35,16 +45,32 @@ function getUserFullName(){
 /**
  * validates, if email has at least @
  *
- */
+ * @method EmailValidator
+ * @private
+ *
+ **/
 var EmailValidator = function EmailValidator( val ){
   if( !val ) return false;
   return val.match(/@/);
 }
 
 /**
- * the actual UserSchema
  *
- */
+ * @constructor
+ *
+ * @property name
+ * @type Object
+ *
+ * @property name.first
+ * @type String
+ *
+ * @property name.last
+ * @type String
+ *
+ * @property email
+ * @type String
+ *
+ **/
 var UserSchema = orm.Schema({
       name: {
         first: String,
@@ -111,7 +137,16 @@ var UserSchema = orm.Schema({
  *
  * constructs a string which is definitely not null
  * and represents a (not unique) name of this user
- */
+ *
+ * @method name.full
+ * @return {String} full name of the user
+ *
+ * @example
+ *
+ *    user.name.full
+ *    > Henry King
+ *
+ **/
 UserSchema.virtual('name.full').get( getUserFullName ).set( function( name ){
   if( name.split(' ') ){
     this.name.first = name.split(' ')[0];
@@ -123,7 +158,9 @@ UserSchema.virtual('name.full').get( getUserFullName ).set( function( name ){
 /**
  * show the number of unread messages
  *
- */
+ * @method unread_messages
+ *
+ **/
 UserSchema.virtual('unread_messages').get( function(){
   var unread = 0;
   this.messages.forEach( function( message ){
@@ -139,13 +176,12 @@ the password will be available for the rest of this
 instance's live-time. Only the encrytped version in 
 property encrypted_password will be stored to the db
 
-  @class User
   @method password virtual set
   @param {String} password
 
   @example
     
-    user.password('test');
+      user.password('test');
 
 **/
 UserSchema.virtual('password').set(function( password ) {
@@ -158,7 +194,6 @@ UserSchema.virtual('password').set(function( password ) {
 
   get unenrypted password
 
-  @class User
   @method password virtual get
   @return {String} the unencrypted password (exists only for the time of obejct
 creation)
@@ -172,7 +207,6 @@ authenticate user
 
 compares encrytped password with given plain text password
 
-  @class User
   @method authenticate
   @param {String} plainTextPassword the plain text password which
 will be hase-compared against the original password saved to
@@ -188,7 +222,6 @@ regenerateAuthToken
 regenerates the auth_token object by generating a
 new random hash and updating ip address of user
 
-  @class User
   @method regenerateAuthToken
   @param {String} ip address of user
 
@@ -204,7 +237,6 @@ generate salt
 
 generate the password salt
 
-  @class User
   @method generateSalt
   @private
 **/
@@ -216,7 +248,6 @@ UserSchema.method('generateSalt', function() {
 
 encrypt password
 
-  @class User.encryptPassword
   @param {String} password - clear text password string
 to be encrypted
 **/
@@ -226,7 +257,6 @@ UserSchema.method('encryptPassword', function(password) {
 
 /**
 
-  @class User
   @method isAdmin
   @param {Domain|Group|ObjectId|String} groupOrDomain [optional] domain or group object, ObjectId of group/domain object or string of group/domain object id
   @return {Boolean} if the user is admin
@@ -237,7 +267,6 @@ UserSchema.method('isAdmin', function(groupOrDomain){
 
 /**
 
-  @class User
   @method addGroup
   @param {Group|ObjectId|String} group The group to be added
   @param {User} user The user that adds this group

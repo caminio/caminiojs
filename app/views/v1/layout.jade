@@ -3,12 +3,23 @@ html(lang=i18n.locale())
   head
     title nginio
 
-    link(rel='stylesheet', href='/stylesheets/reset.css')
-    link(rel='stylesheet', href='/stylesheets/main.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/reset.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/common.css')
+    link(rel='stylesheet', href='/fonts/opensans.css')
+    link(rel='stylesheet', href='/stylesheets/vendor/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/vendor/jquery.qtip.min.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/common/account_panel.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/main.css')
+
+    script(type='text/javascript', src='/javascripts/vendor/jquery-2.0.3.min.js')
+    script(type='text/javascript', src='/javascripts/vendor/jquery.qtip.min.js')
+    script(type='text/javascript', src='/javascripts/nginios/main.js')
 
     block header
 
   body
+
+    include common/account_panel.jade
 
     block content
 

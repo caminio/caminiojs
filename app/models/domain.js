@@ -9,21 +9,38 @@ var MessageSchema = require('./schemas/message')
   , nginios = require('../../lib/nginios');
 
 /**
+ * Everything needs to be inside a domain, if nginios is operated
+ * in multi-tenancy mode.
+ *
+ * @class Domain
+ **/
+
+/**
  * validates, if domain name has at least
  * one dot and consists of at least 2 chars LHS and RHS
- */
+ *
+ * @method DomainNameValidator
+ * @private
+ *
+ **/
 var DomainNameValidator = function DomainNameValidator( val ){
   if( !val ) return false;
   return val.match(/^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[\.]{0,1}[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/);
 }
 
 /**
-
-  @class Domain
-  @constructor
-
-**/
-
+ * @constructor
+ *
+ * @property name
+ * @type String
+ *
+ * @property users
+ * @type Array
+ *
+ * @property groups
+ * @type Array
+ *
+ **/
 var DomainSchema = nginios.orm.Schema({
     name: { type: String, 
             required: true,
@@ -51,13 +68,10 @@ var DomainSchema = nginios.orm.Schema({
 });
 
 /**
-locks a domain. This affects any user associated with this domain.
-
-Sets. locked.at, locked.by
-
-@method lock
-@class Domain
-@param {User} user The user object which locks the domain (must be admin)
+ * locks a domain. This affects any user associated with this domain.
+ * Sets. locked.at, locked.by
+ * @method lock
+ * @param {User} user The user object which locks the domain (must be admin)
 **/
 DomainSchema.method('lock', function(user){
   if( !user.isAdmin(this) )
@@ -70,7 +84,6 @@ DomainSchema.method('lock', function(user){
 
   Adds a user to this domain
 
-  @class Domain
   @method addUser
   @param {User} user the user to be added
   @param {User} manager a user with owner status (only domain managers can add users)
