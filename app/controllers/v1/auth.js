@@ -12,7 +12,10 @@ function fail( res, options ){
 var AuthController = Controller.define( function( app, namespacePrefix ){
 
   this.post('/login',
-    passport.authenticate('local', { successReturnToOrRedirect: '/', failureRedirect: namespacePrefix+'/login' }) );
+    passport.authenticate('local', { successReturnToOrRedirect: this.resolvePath('v1/dashboard'), 
+      failureRedirect: namespacePrefix+'/login',
+      failureFlash: true }) 
+    );
 
   this.get('/',
     function( req, res){

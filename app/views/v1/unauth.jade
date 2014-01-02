@@ -4,6 +4,7 @@ html(lang=i18n.locale())
     title nginio
 
     link(rel='stylesheet', href='/css/reset.css')
+    link(rel='stylesheet', href='/css/common.css')
     link(rel='stylesheet', href='/fonts/opensans.css')
     link(rel='stylesheet', href='/css/vendor/font-awesome.min.css')
     link(rel='stylesheet', href='/css/vendor/jquery.qtip.min.css')
@@ -18,6 +19,9 @@ html(lang=i18n.locale())
   body
 
     #main-box.unauth-box
+      if( messages.count > 0 )
+        .message(class=(messages.error ? 'error' : ''))
+          =t(messages.error || messages.info)
       img.nginios-logo(src='/img/logo.png')
       .unauth-content-block
         block content

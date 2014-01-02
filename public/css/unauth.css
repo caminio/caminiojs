@@ -9,6 +9,7 @@ html{
 }
 body{
   background: #f5f5f5;
+  overflow: hidden;
 }
 .nginios-logo{
   float: left;
@@ -100,10 +101,24 @@ body{
 #main-box.slide-away{
   transition: all 0.5s;
   left: -500px;
-  right: auto;
+  right: 110%;
 }
 #forgot-box.slide-away{
   transition: all 0.5s;
   right: -500px;
-  left: auto;
+  left: 110%;
+}
+.message{
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  background: #09f;
+  border-radius: 2px;
+  padding: 10px 0;
+  text-align: center;
+  color: #fff;
+}
+.message.error{
+  background-color: #d55;
 }

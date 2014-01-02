@@ -2,25 +2,26 @@ extends ../unauth
 
 block content
 
-  form#login(action='login', method='post')
+  form#login(action=resolvePath('v1/auth','login'), method='post')
+    input(type='hidden', name='_csrf', value=csrf)
     .field-box
       label=t('username_email')
-      input(type='text', name='username')
+      input(type='text', name='username',tabindex=1)
     .field-box
       label=t('password')
-      input(type='password', name='password')
+      input(type='password', name='password', tabindex=2)
 
     .control
-      button.forgot-password-btn(title=t('forgot_password'), class='tooltip')
-        i(class='fa fa-question')
-      button
+      button.float-right(tabindex=3)
         =t('login')
         i(class='fa fa-arrow-right')
+      button.forgot-password-btn(title=t('forgot_password'), class='tooltip', tabindex=4)
+        i(class='fa fa-question')
       input(type='submit', style='display:none')
 
 block next_content
 
-  #forgot-box.unauth-box.slide-away
+  #forgot-box.unauth-box.slide-away.hide
 
     img.nginios-logo(src='/img/logo.png')
     .unauth-content-block
@@ -31,23 +32,43 @@ block next_content
 
         .field-box
           label=t('enter_email')
-          input(type='text', name='email')
+          input(type='text', name='email', tabindex=5)
   
         .control
-          button.forgot-password-btn(title=t('back_to_login'), class='tooltip')
-            i(class='fa fa-arrow-left')
-          button
+          button.float-right(tabindex=6)
             =t('request_link')
             i(class='fa fa-envelope')
           input(type='submit', style='display:none')
+          button.forgot-password-btn(title=t('back_to_login'), class='tooltip', tabindex=7)
+            i(class='fa fa-arrow-left')
 
 append header
   script(type='text/javascript').
     jQuery( function($){
       $('.forgot-password-btn').on('click', function(e){
         e.preventDefault();
-        $('#main-box').toggleClass('slide-away');
-        $('#forgot-box').toggleClass('slide-away');
+        if( $('#main-box').is(':visible') ){
+          $('#main-box').addClass('slide-away');
+          $('#forgot-box').show();
+          setTimeout( function(){
+            $('#forgot-box').removeClass('slide-away');
+          }, 10);
+          setTimeout( function(){
+            $('#main-box').hide();
+            $('#forgot-box input[type=text]:first').focus();
+          }, 500);
+        } else {
+          $('#forgot-box').addClass('slide-away');
+          $('#main-box').show();
+          setTimeout( function(){
+            $('#main-box').removeClass('slide-away');
+          }, 10);
+          setTimeout( function(){
+            $('#forgot-box').hide();
+            $('#main-box input[type=text]:first').focus();
+          }, 500);
+        }
       });
+      $('#main-box input[type=text]:first').focus();
     })
 

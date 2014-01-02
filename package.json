@@ -21,7 +21,11 @@
     "passport-local": "~0.1.6",
     "moment": "~2.0.0",
     "jade": "~1.0.2",
-    "i18next": "~1.7.1"
+    "i18next": "~1.7.1",
+    "prompt": "~0.2.12",
+    "colors": "~0.6.2",
+    "connect-flash": "~0.1.1",
+    "connect-mongo": "~0.4.0"
   },
   "devDependencies": {
     "mocha": "~1.15.1",

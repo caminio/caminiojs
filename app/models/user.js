@@ -48,7 +48,8 @@ var EmailValidator = function EmailValidator( val ){
 var UserSchema = orm.Schema({
       name: {
         first: String,
-        last: String
+        last: String,
+        nick: String
       },
       encrypted_password: {type: String, required: true},
       salt: {type: String, required: true},
