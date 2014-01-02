@@ -20,11 +20,29 @@ program
   .option('new [name]', 'Create a new nginios application' )
   .on('new', function( name ){
       child_process.exec( 'express '+name, function( err, stderr, stdout ){
+        console.log('\n\n');
         fs.mkdirSync( name+'/config' );
-        console.log((name+'/app').green);
-        console.log((name+'/lib').green);
-        console.log((name+'/config').green);
-        console.log((name+'/public').green);
+        console.log('[ok]'.green, (name+'/app').bold);
+
+        fs.mkdirSync( name+'/app' );
+        console.log('[ok]'.green, (name+'/app/controllers').bold);
+
+        fs.mkdirSync( name+'/app/controllers' );
+        fs.createReadStream(__dirname+'/../lib/install/app/controllers/main.js').pipe(fs.createWriteStream(name+'/app/controllers/main.js'));
+        console.log('[ok]'.green, (name+'/app/views').bold);
+
+        fs.mkdirSync( name+'/app/views' );
+        fs.mkdirSync( name+'/app/views/main' );
+        fs.createReadStream(__dirname+'/../lib/install/app/views/layout.jade').pipe(fs.createWriteStream(name+'/app/views/layout.jade'));
+        fs.createReadStream(__dirname+'/../lib/install/app/views/main/index.jade').pipe(fs.createWriteStream(name+'/app/views/main/index.jade'));
+        console.log('[ok]'.green, (name+'/app/models').bold);
+
+        fs.mkdirSync( name+'/app/models' );
+        console.log('[ok]'.green, (name+'/lib').bold);
+        console.log('[ok]'.green, (name+'/config').bold);
+        console.log('[ok]'.green, (name+'/public').bold);
+
+        fs.createReadStream(__dirname+'/../lib/install/public/stylesheets/main.css').pipe(fs.createWriteStream(name+'/public/stylesheets/main.css'));
         fs.mkdirSync( name+'/config/environments' );
         fs.unlink( name+'/app.js' );
         fs.createReadStream(__dirname+'/../lib/install/app.js').pipe(fs.createWriteStream(name+'/app.js'));
@@ -33,7 +51,7 @@ program
         fs.createReadStream(__dirname+'/../lib/install/environments/test.js').pipe(fs.createWriteStream(name+'/config/environments/production.js'));
         fs.createReadStream(__dirname+'/../lib/install/routes.js').pipe(fs.createWriteStream(name+'/config/routes.js'));
         fs.createReadStream(__dirname+'/../lib/install/package.json').pipe(fs.createWriteStream(name+'/package.json'));
-        console.log('application', name.bold, 'created successfully'.green);
+        console.log('\n\napplication', name.bold, 'created successfully'.green);
         });
       });
 
