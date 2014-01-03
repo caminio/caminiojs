@@ -25,7 +25,8 @@
     "prompt": "~0.2.12",
     "colors": "~0.6.2",
     "connect-flash": "~0.1.1",
-    "connect-mongo": "~0.4.0"
+    "connect-mongo": "~0.4.0",
+    "mongoose-shortid": "~0.4.1"
   },
   "devDependencies": {
     "mocha": "~1.15.1",

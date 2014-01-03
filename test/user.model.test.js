@@ -182,14 +182,14 @@ describe( 'User', function(){
         }, function( err, results ){
           test.user = results.user;
           test.group = results.group;
-          results.user.addGroup( results.group, results.user );
+          results.user.groups.push( results.group );
           done();
         });
       });
 
       it('has one group membership', function(){
         expect(this.user.groups).to.have.length.of(1);
-        expect(this.user.groups[0].group.toString()).to.eq(this.group.id.toString());
+        expect(this.user.groups[0].toString()).to.eq(this.group.id.toString());
       });
 
     });
@@ -209,14 +209,13 @@ describe( 'User', function(){
         }, function( err, results ){
           test.user = results.user;
           test.domain = results.domain;
-          results.domain.addUser( results.user, results.user );
-          done();
+          results.domain.addUser( results.user, false, done );
         });
       });
 
       it('has one domain membership', function(){
         expect(this.user.domains).to.have.length.of(1);
-        expect(this.user.domains[0].domain.toString()).to.eq(this.domain.id.toString());
+        expect(this.user.domains[0].toString()).to.eq(this.domain.id.toString());
       });
 
     });

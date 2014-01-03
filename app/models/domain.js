@@ -40,6 +40,10 @@ var DomainNameValidator = function DomainNameValidator( val ){
  * @property groups
  * @type Array
  *
+ * List of applications this domain can access
+ * @property granted_apps
+ * @type Array
+ *
  **/
 var DomainSchema = nginios.orm.Schema({
     name: { type: String, 
@@ -50,7 +54,8 @@ var DomainSchema = nginios.orm.Schema({
             validate: [ DomainNameValidator, 'invalid domain name' ] },
     users: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' } ],
     groups: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
-    owner: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User', required: true },
+    owner: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' },
+    allowed_gears: { type: Array, default: ['nginios'] },
     messages: [ MessageSchema ],
     created: { 
       at: { type: Date, default: Date.now },
@@ -82,24 +87,20 @@ DomainSchema.method('lock', function(user){
 
 /**
 
-  Adds a user to this domain
+  Adds a user to this domain. The user has to be saved seperately
 
   @method addUser
   @param {User} user the user to be added
   @param {User} manager a user with owner status (only domain managers can add users)
-  @param {Object} options
-  @param {Boolean} options.can_manage
+  @param {Function} callback
+  @param {Object} err The error object, if anything goes wrong saving the domain
 **/
-DomainSchema.method('addUser', function(user,manager,options){
-  if( !manager.isAdmin(this) )
+DomainSchema.method('addUser', function( user, manager, callback ){
+  if( manager && manager.id !== this.owner )
     throw 'insufficient rights';
-  options = options || {};
-  user.domains.push({
-    can_manage: options.can_manage,
-    domain: this,
-    created: { by: manager },
-    updated: { by: manager }
-  });
+  user.domains.push( this );
+  this.users.push( user );
+  this.save( callback );
 });
 
 module.exports = DomainSchema;

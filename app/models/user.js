@@ -7,8 +7,6 @@
 
 var jsonSelect = require('mongoose-json-select')
   , MessageSchema = require('./schemas/message')
-  , UserGroupsSchema = require('./schemas/user_groups_schema')
-  , UserDomainsSchema = require('./schemas/user_domains_schema')
   , crypto = require('crypto')
   , orm = require('../../').orm;
 
@@ -91,8 +89,8 @@ var UserSchema = orm.Schema({
                required: true,
                index: { unique: true },
                validate: [EmailValidator, 'invalid email address'] },
-      groups: [ UserGroupsSchema ],
-      domains: [ UserDomainsSchema ],
+      groups: [ { type: orm.Schema.Types.ObjectId, ref: 'Group' } ],
+      domains: [ { type: orm.Schema.Types.ObjectId, ref: 'Domain' } ],
       confirmation: {
         key: String,
         expires: Date,
@@ -263,33 +261,6 @@ UserSchema.method('encryptPassword', function(password) {
 **/
 UserSchema.method('isAdmin', function(groupOrDomain){
   return true;
-});
-
-/**
-
-  @method addGroup
-  @param {Group|ObjectId|String} group The group to be added
-  @param {User} user The user that adds this group
-  @param {Object} options
-  @param {Boolean} options.can_manage [optional] default: false
-  @param {Boolean} options.can_delete [optional] default: false
-**/
-UserSchema.method('addGroup', function(group, user, options){
-
-  options = options || {};
-
-  this.groups.push({
-    can_manage: options.can_manage,
-    can_delete: options.can_delete,
-    group: group,
-    created: {
-      by: user
-    },
-    updated: {
-      by: user         
-    }
-  });
-
 });
 
 UserSchema.virtual('id').get(function(){

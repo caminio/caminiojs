@@ -60,15 +60,6 @@ describe( 'Domain', function(){
            });
       });
 
-      it('.owner', function(){
-        this.domain.owner = null;
-        this.domain.validate(
-          function( err ){
-            expect( err ).to.exist;
-            expect( err.errors.owner.type ).to.eq('required');
-          });
-      });
-
       describe('format', function(){
 
         describe('.name', function(){

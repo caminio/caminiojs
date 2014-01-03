@@ -17,6 +17,13 @@ html(lang=i18n.locale())
     script(type='text/javascript', src='/javascripts/vendor/jquery.tooltipster.min.js')
     script(type='text/javascript', src='/javascripts/nginios/main.js')
 
+    script(type='text/javascript', src='/javascripts/vendor/handlebars-v1.1.2.js')
+    if( nginios.env === 'development' )  
+      script(type='text/javascript', src='/javascripts/vendor/ember.js')
+    else
+      script(type='text/javascript', src='/javascripts/vendor/ember.min.js')
+    script(type='text/javascript', src='/javascripts/nginios/app.js')
+  
     block header
 
   body
@@ -27,3 +34,5 @@ html(lang=i18n.locale())
     block content
 
     block footer
+
+

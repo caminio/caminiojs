@@ -83,6 +83,7 @@ program
       }
       ], function( err, result ){
         var app = nginios();
+        new nginios.Gear();
         nginios.orm.models.Domain.find({ name: domainName }, function(err, domain){
           if( err ){ console.log(err); }
           if( domain )
@@ -95,15 +96,37 @@ program
     });
   });
 
+  program
+  .option('setup [domainName]', 'add a user to a domain' )
+  .usage('setup kings.com')
+  .on('setup', function(domainName){
+
+    console.log('attempting to create ', domainName.bold);
+
+    var app = nginios();
+    new nginios.Gear();
+    nginios.orm.models.Domain.create({
+      name: domainName,
+      allowed_gears: [ 'nginios' ]
+    }, function( err, domain ){
+      if( err ){ return console.log( err ); }
+      if( domain )
+        return createUser( domain, 'Administrator', 'manager@'+domainName, 'mgr' );
+    })
+    
+  });
+
 function createUser( domain, name, email, password ){
 
   nginios.orm.models.User.create({ 
     name: { full: name }, 
     email: email,
-    password: password,
-    domains: [ domain ] }, function( err, user ){
+    domains: [ domain ],
+    password: password }, function( err, user ){
       if( err ){ return console.log(err); }
-      console.log('User', name.bold, ' has been created'.green);
+      if( user ){
+        console.log('User', name.bold, ' has been created'.green);
+      }
   });
 
 }
