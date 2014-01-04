@@ -1,6 +1,11 @@
 extends ../layout
 
+
 block content
   include ../common/templates/top_panel.hbs
   include ../common/templates/side_panel.hbs
   include ../common/templates/main.hbs
+
+append footer
+  script(type='text/javascript', src='/javascripts/nginios/dashboard/app.js')
+

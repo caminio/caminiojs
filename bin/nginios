@@ -107,7 +107,7 @@ program
     new nginios.Gear();
     nginios.orm.models.Domain.create({
       name: domainName,
-      allowed_gears: [ 'nginios' ]
+      allowed_gears: [ '*' ]
     }, function( err, domain ){
       if( err ){ return console.log( err ); }
       if( domain )

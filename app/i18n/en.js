@@ -14,8 +14,8 @@ en.toggle_sidebar = 'Toggle sidebar'
 en.logout = 'Logout'
 
 // gears (application list)
-en.gears = {};
-en.gears.paths = {};
+en.gears = en.gears || {};
+en.gears.paths = en.gears.paths || {};
 en.gears.paths.users = 'Users';
 en.gears.paths.dashboard = 'Dashboard';
 en.gears.paths.domains = 'Domains';

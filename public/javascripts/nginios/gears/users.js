@@ -5,7 +5,7 @@
   var App = window.App;
 
   App.Router.map( function(){
-    this.resource('dashboard', { path: '/' });
+    this.resource('users', { path: '/users' });
   });
 
   App.DashboardRoute = Ember.Route.extend({
@@ -14,6 +14,7 @@
            }
   });
 
-  registerHbs('dashboard', 'dashboard', 'id');
+  registerHbs('users', 'users', 'id');
 
 })();
+

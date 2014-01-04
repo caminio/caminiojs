@@ -22,19 +22,20 @@ html(lang=i18n.locale())
 
     block content
 
-    block footer
-
     script(type='text/javascript', src='/javascripts/vendor/handlebars-v1.1.2.js')
     if( nginios.env === 'development' )  
       script(type='text/javascript', src='/javascripts/vendor/ember.js')
     else
       script(type='text/javascript', src='/javascripts/vendor/ember.min.js')
+    script(type='text/javascript', src='/javascripts/vendor/ember-data.js')
     
-    script(type='text/javascript', src='/javascripts/nginios/app.js')
-    each app in getApplicationsForUser()
-      script(type='text/javascript', src='/gears/'+app.name.toLowerCase()+'.js')
+    //script(type='text/javascript', src='/javascripts/nginios/app.js')
+    //each app in getApplicationsForUser()
+    //  script(type='text/javascript', src='/gears/'+app.name.toLowerCase()+'.js')
 
-      if app.hbs
-        each hbs in app.hbs
-          script(type='text/x-handlebars', id=(hbs.id ? hbs.id : null), data-template-name=(hbs.id ? null : hbs.name) )
-            !{getHbsFileContent(hbs.filename)}
+    if( handlebarTemplates )
+      each hbs in handlebarTemplates
+        script(type='text/x-handlebars', id=(hbs.id ? hbs.id : null), data-template-name=(hbs.id ? null : hbs.name) )!{getHbsFileContent(hbs.filename)}
+    
+    block footer
+

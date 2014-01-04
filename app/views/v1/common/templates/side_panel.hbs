@@ -15,7 +15,7 @@
     <ul class="nav">
       {{#each app in apps}}
       <li class="clearfix">
-      <a class="float-left" {{bind-attr href=app.hashed_path}}><i {{bind-attr class=":fa :float-left app.icon"}}></i><span class="title">{{app.name}}</span></a>
+      <a class="float-left" {{bind-attr href=app.path}}><i {{bind-attr class=":fa :float-left app.icon"}}></i><span class="title">{{app.name}}</span></a>
       </li>
       {{/each}}
     </ul>

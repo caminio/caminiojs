@@ -6,7 +6,6 @@
 
   // using fixtures
   App.ApplicationAdapter = DS.FixtureAdapter.extend();
-
   window.App = App;
   
   App.ApplicationController = Ember.Controller.extend({
@@ -18,5 +17,17 @@
             });
           }
   });
+
+  App.Router.map( function(){
+    this.resource('dashboard', { path: '/' });
+  });
+
+  App.DashboardRoute = Ember.Route.extend({
+    model: function(){
+              return [{name:'test'}];
+           }
+  });
+
+  registerHbs('dashboard', 'dashboard', 'id');
 
 })();
