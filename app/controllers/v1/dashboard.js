@@ -1,8 +1,11 @@
 var nginios = require('../../../')
   , login = require('connect-ensure-login')
+  , gearFactory = require('../../../lib/nginios/gear_factory')
   , Controller = nginios.Controller;
 
 var DashboardController = Controller.define( function( app ){
+
+  var ctrl = this;
 
   this.get('/',
     login.ensureLoggedIn( this.resolvePath('v1/auth','/login')),
@@ -10,17 +13,10 @@ var DashboardController = Controller.define( function( app ){
       res.nginios.render('index');
     });
 
-  this.get('/gears/list',
+  this.get('/apps/list',
     login.ensureLoggedIn( this.resolvePath('v1/auth','/login')),
     function( req, res ){
-      gears = [];
-      for( var gearName in nginios.app.gears ){
-        var gear = nginios.app.gears[gearName];
-        console.log( res.locals.currentUser );
-        if( res.locals.currentDomain.allowed_gears.indexOf(gear.name) )
-          gears.push( gear );
-      }
-      res.json(gears);
+      res.json(gearFactory.getApplicationsForUser(nginios.app.gears, res.locals.currentUser, res.locals.currentDomain, req.i18n ));
     });
 
 });

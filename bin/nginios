@@ -125,7 +125,12 @@ function createUser( domain, name, email, password ){
     password: password }, function( err, user ){
       if( err ){ return console.log(err); }
       if( user ){
-        console.log('User', name.bold, ' has been created'.green);
+        domain.owner = user;
+        domain.users.push( user );
+        domain.save( function( err ){
+          if( err ){ return console.log(err); }
+          console.log('User', name.bold, ' has been created'.green);
+        })
       }
   });
 

@@ -8,7 +8,8 @@
 var jsonSelect = require('mongoose-json-select')
   , MessageSchema = require('./schemas/message')
   , crypto = require('crypto')
-  , orm = require('../../').orm;
+  , nginios = require('../../')
+  , orm = nginios.orm;
 
 /**
  * The user class is the main user object
@@ -260,7 +261,31 @@ UserSchema.method('encryptPassword', function(password) {
   @return {Boolean} if the user is admin
 **/
 UserSchema.method('isAdmin', function(groupOrDomain){
-  return true;
+  if( groupOrDomain instanceof orm.models.Domain )
+    return groupOrDomain.owner.equals( this._id.toString() );
+  return false;
+});
+
+/**
+
+  Return, if this user is a superuser.
+
+  This method looks up in the app.config object for a superusers key. The email address of this user
+  must be an array item of this key.
+
+  @method isSuperUser
+  @return {Boolean} if the user is superuser
+
+  @example
+
+    // ${APP_HOME}/config/environments/production.js
+    ...
+    config.superusers = [ 'admin@example.com' ];
+    ...
+
+**/
+UserSchema.method('isSuperUser', function(){
+  return nginios.app.config.superusers.indexOf(this.email) >= 0;
 });
 
 UserSchema.virtual('id').get(function(){

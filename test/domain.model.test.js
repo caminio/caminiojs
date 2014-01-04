@@ -102,9 +102,13 @@ describe( 'Domain', function(){
       
       before( function(done){
         var test = this;
+        test.user = fixtures.user.build();
         fixtures.domain.create( function( err, domain ){
-          test.domain = domain;
-          done();
+          domain.owner = test.user;
+          domain.save( function( err ){
+            test.domain = domain;
+            done();
+          })
         });
       });
 

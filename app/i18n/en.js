@@ -1,4 +1,6 @@
 var en = {};
+
+// auth
 en.username_email = 'Username';
 en.password = 'Password';
 en.login = 'Login';
@@ -10,5 +12,13 @@ en.user_unknown = 'Login failed! - User unkown'
 en.authentication_failed = 'Login failed!'
 en.toggle_sidebar = 'Toggle sidebar'
 en.logout = 'Logout'
+
+// gears (application list)
+en.gears = {};
+en.gears.paths = {};
+en.gears.paths.users = 'Users';
+en.gears.paths.dashboard = 'Dashboard';
+en.gears.paths.domains = 'Domains';
+
 
 module.exports = en;
