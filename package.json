@@ -26,7 +26,9 @@
     "colors": "~0.6.2",
     "connect-flash": "~0.1.1",
     "connect-mongo": "~0.4.0",
-    "mongoose-shortid": "~0.4.1"
+    "mongoose-shortid": "~0.4.1",
+    "ejs": "~0.8.5",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "mocha": "~1.15.1",

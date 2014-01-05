@@ -1,15 +1,29 @@
 jQuery( function($){
 
-  /*
-  $('.tooltip').qtip({
-    style: { classes: 'qtip-tipsy' },
-    target: 'mouse',
-    position: { adjust: { mouse: true, y: 25, x: 30 } }
-  });
-  */
-
   $('.tooltip').tooltipster({
     theme: 'tooltipster-light'
   });
+
+  // get translations
+  $.getJSON( '/nginios/i18n_translations', function(resources){
+    $.i18n.init({
+      fallbackLng: 'en',
+      ns: 'nginios',
+      useCookie: false,
+      detectLngFromHeaders: false,
+      resStore: resources
+    }, function(){
+      continueInit();
+    });
+  });
+
+  pager.Href.hash = '#!/';
+  pager.extendWithPage(viewModel);
+  ko.applyBindings(viewModel);
+  pager.start();
+
+  function continueInit(){
+    console.log('nginios is ready'); 
+  }
 
 });

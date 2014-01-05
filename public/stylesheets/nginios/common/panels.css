@@ -106,7 +106,7 @@ header.top-panel .account-info:focus{
   text-decoration: none;
   transition: all 0.7s;
 }
-#side-panel ul.nav li:first-of-type a{
+#side-panel ul.nav li:first-child a{
   border-top: 1px solid #2a2a2a;
 }
 #side-panel ul.nav a .fa{

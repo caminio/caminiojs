@@ -8,7 +8,7 @@
   "options": {
       "linkNatives": "true",
       "attributesEmit": "true",
-      "exclude": "test,node_modules",
+      "exclude": "test,node_modules,public/javascripts/vendor",
       "paths": [ "." ],
       "outdir": "./doc"
     }

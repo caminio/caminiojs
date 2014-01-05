@@ -1,0 +1,18 @@
+#side-panel
+  .account-info
+    img.avatar.float-left(src='/images/avatar.png')
+    .float-left.username=currentUser.name.full
+    .notifications
+      .mailbox-messages.notification.float-left
+        i.fa.fa-envelope
+        span#num-mailbox-messages 0
+      .action-required.notification.float-left
+        i.fa.fa-warning
+        span#num-required-actions 0
+
+  ul.nav
+    each app in getApplicationsForUser()
+      li.clearfix(class=(controllerNameWithoutNS==app.original_name ? 'active' : ''))
+        a.float-left( href=app.action)
+          i.float-left.fa( class=app.icon )
+          span.title=app.name

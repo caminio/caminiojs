@@ -14,28 +14,22 @@ html(lang=i18n.locale())
 
     script(type='text/javascript', src='/javascripts/vendor/jquery-2.0.3.min.js')
     script(type='text/javascript', src='/javascripts/vendor/jquery.tooltipster.min.js')
+    script(type='text/javascript', src='/javascripts/vendor/knockout-3.0.0.js')
+    script(type='text/javascript', src='/javascripts/vendor/moment.min.js')
+    script(type='text/javascript', src='/javascripts/vendor/jquery.ba-hashchange.min.js')
+    script(type='text/javascript', src='/javascripts/vendor/pager.min.js')
+    script(type='text/javascript', src='/javascripts/vendor/i18next-1.7.1.min.js')
     script(type='text/javascript', src='/javascripts/nginios/main.js')
 
     block header
 
   body
 
-    block content
+    include common/top_panel.jade
+    include common/side_panel.jade
 
-    script(type='text/javascript', src='/javascripts/vendor/handlebars-v1.1.2.js')
-    if( nginios.env === 'development' )  
-      script(type='text/javascript', src='/javascripts/vendor/ember.js')
-    else
-      script(type='text/javascript', src='/javascripts/vendor/ember.min.js')
-    script(type='text/javascript', src='/javascripts/vendor/ember-data.js')
-    
-    //script(type='text/javascript', src='/javascripts/nginios/app.js')
-    //each app in getApplicationsForUser()
-    //  script(type='text/javascript', src='/gears/'+app.name.toLowerCase()+'.js')
+    .main-view
+      block content
 
-    if( handlebarTemplates )
-      each hbs in handlebarTemplates
-        script(type='text/x-handlebars', id=(hbs.id ? hbs.id : null), data-template-name=(hbs.id ? null : hbs.name) )!{getHbsFileContent(hbs.filename)}
-    
     block footer
 
