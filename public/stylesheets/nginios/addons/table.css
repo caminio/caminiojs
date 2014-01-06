@@ -47,4 +47,5 @@ table td.actions{
 table td.actions .btn-group{
   float:right;
   margin-bottom: -5px;
+  font-size: 0.9em;
 }

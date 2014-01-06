@@ -14,21 +14,22 @@ helper.fixtures.enableORM( helper.nginios );
 helper.chai = require('chai');
 helper.chai.Assertion.includeStack = true;
 
-var running;
-
 helper.startServer = function( test, done ){
 
-  if( running ){
-    test.agent = superagent.agent();
-    done(test);
+  if( test.superagent ){
+    test.agent = test.superagent.agent();
+    return done(test);
   }
 
-  var superagent = require('superagent');
+  test.superagent = require('superagent');
+
+  if( test.server )
+    test.server.close();
 
   test.app = helper.nginios();
-  test.app.server.start( function(){
-    running = true;
-    test.agent = superagent.agent();
+  test.server = test.app.server.start( function(){
+    test.running = true;
+    test.agent = test.superagent.agent();
     done(test);
   });
 

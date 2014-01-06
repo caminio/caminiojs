@@ -21,7 +21,10 @@ html(lang=i18n.locale())
 
     link(rel='stylesheet', href='/stylesheets/nginios/common/panels.css')
     link(rel='stylesheet', href='/stylesheets/nginios/sections.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/form.css')
     link(rel='stylesheet', href='/stylesheets/nginios/addons/table.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/addons/message.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/addons/loader.css')
     link(rel='stylesheet', href='/stylesheets/nginios/main.css')
 
     script(type='text/javascript').
@@ -38,10 +41,14 @@ html(lang=i18n.locale())
     include common/side_panel.jade
 
     #applicationHost.main-view
-      .splash
-        .message STARTING NGINIOS
-      i.icon-spinner.icon-2x.icon-spin.active
-
+      #splash
+        .text=t('init_application')
+        .loader
+          .circle
+          .circle
+          .circle
+          .circle
+          .circle
 
     script(src='/socket.io/socket.io.js', type='text/javascript')
 

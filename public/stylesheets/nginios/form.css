@@ -1,0 +1,36 @@
+form.nginios-form{
+  width: 100%;
+}
+
+form.nginios-form .field{
+  margin: 10px 0;
+}
+form.nginios-form .field label{
+  float: left;
+  width: 100px;
+  text-align: right;
+  margin: 10px 10px 0 0;
+  font-size: 14px;
+  color: #777;
+  font-weight: 600;
+}
+form.nginios-form input[type=text],
+form.nginios-form input[type=password]{
+  padding: 8px 0;
+  text-indent: 5px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  width: 400px;
+}
+form.nginios-form button.btn{
+  cursor: pointer;
+  padding: 4px 15px 5px 15px;
+  line-height: 19px;
+}
+form.nginios-form .label-offset{
+  margin: 8px 0 0 110px;
+}
+form.nginios-form .label-offset .btn{
+  margin-right: 5px;
+}

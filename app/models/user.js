@@ -98,6 +98,7 @@ var UserSchema = orm.Schema({
         last_success: Date,
         tries: { type: Number, default: 3 }
       },
+      role: { type: Number, default: 100 },
       last_login: {
         at: Date,
         ip: String
@@ -261,6 +262,9 @@ UserSchema.method('encryptPassword', function(password) {
 
 /**
 
+Reads domain, superuser attribute or role number
+If role number is less than equal 5, user is admin
+
   @method isAdmin
   @param {Domain|Group|ObjectId|String} groupOrDomain [optional] domain or group object, ObjectId of group/domain object or string of group/domain object id
   @return {Boolean} if the user is admin
@@ -268,7 +272,13 @@ UserSchema.method('encryptPassword', function(password) {
 UserSchema.method('isAdmin', function(groupOrDomain){
   if( groupOrDomain instanceof orm.models.Domain )
     return groupOrDomain.owner.equals( this._id.toString() );
-  return false;
+  return this.role <= 5;
+});
+
+UserSchema.virtual('admin').get(function(){
+  if( this.isSuperUser() )
+    return true;
+  return this.role <= 5;
 });
 
 /**
@@ -294,7 +304,7 @@ UserSchema.method('isSuperUser', function(){
 });
 
 UserSchema.virtual('id').get(function(){
-  return this._id.toHexString();
+  return this._id ? this._id.toHexString() : null;
 });
 
 UserSchema.set('toJSON', { virtuals: true });

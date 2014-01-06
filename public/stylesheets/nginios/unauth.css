@@ -65,6 +65,7 @@ body{
   font-weight: 400;
   border-radius: 2px;
   cursor: pointer;
+  margin-left: 5px;
 }
 .unauth-box button:focus,
 .unauth-box button:hover{

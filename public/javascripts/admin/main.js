@@ -2,18 +2,22 @@ requirejs.config({
   paths: {
     'text': '../vendor/requirejs-text/text',
     'knockout': '../vendor/knockout.js/knockout.debug',
+    'knockout-validation': '../vendor/knockout.js/knockout.validation',
     'jquery': '../vendor/jquery/jquery',
     'durandal':'../vendor/durandal',
     'plugins' : '../vendor/durandal/plugins',
     'transitions' : '../vendor/durandal/transitions',
     'i18next': '../vendor/i18next/i18next.amd.withJQuery-1.7.1',
     'moment': '../vendor/moment/moment',
-    'data_service': '../data_service'
+    'data_service': '../data_service',
+    'nginios': '../nginios'
   },
   shim: {
-    'bootstrap': {
-      deps: ['jquery'],
+    'jquery': {
       exports: 'jQuery'
+    },
+    'knockout': {
+      depends: [ 'knockout-validation' ]
     }
   }
 });
@@ -24,19 +28,22 @@ define(function(require) {
     , viewLocator = require('durandal/viewLocator')
     , system = require('durandal/system')
     , binder = require('durandal/binder')
+    , nginiosHelper = require('nginios/helper')
     , i18n = require('i18next');
 
   //>>excludeStart("build", true);
   system.debug(true);
   //>>excludeEnd("build");
 
-  app.title = 'nginios';
+  app.title = 'camin.io';
 
   app.configurePlugins({
-    router:true,
-    dialog: true,
+    router: true,
     widget: true
   });
+
+  // a message implementation
+  app.message = nginiosHelper.message;
 
   var i18NOptions = {
     detectFromHeaders: false,
@@ -61,6 +68,7 @@ define(function(require) {
 
       //Show the app by setting the root view model for our application with a transition.
       app.setRoot('viewmodels/shell', 'entrance');
+
     });
 
   });

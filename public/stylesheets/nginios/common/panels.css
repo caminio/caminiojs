@@ -10,6 +10,7 @@ header.top-panel .brand img{
 }
 header.top-panel .toggle-side-panel{
   color: #999;
+  margin: -3px 0 0;
 }
 header.top-panel .brand{
   margin: 15px;

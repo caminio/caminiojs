@@ -1,5 +1,15 @@
 var en = {};
 
+// general
+en.init_application = 'Initializing application';
+
+// navigation
+en.back = 'Back';
+
+// form control
+en.save = 'Save';
+en.create = 'Create';
+
 // auth
 en.username_email = 'Username';
 en.password = 'Password';
@@ -32,7 +42,22 @@ en.users.email = 'Email';
 en.users.last_login = 'Last Login';
 en.users.action = 'Action';
 en.users.nr = 'No.';
+en.users.edit = 'Edit user';
+en.users.lock = 'Lock user';
+en.users.delete = 'Delete user';
+en.users.new = 'New user';
 
-
+// ADMIN user
+en.user = en.user || {};
+en.user.full_name = 'Name';
+en.user.full_name_exmpl = 'e.g.: Elisabeth Queen';
+en.user.email = 'Email';
+en.user.email_exmpl = 'e.g.: elisabeth@example.com';
+en.user.password = 'Password';
+en.user.password_exmpl = 'at least 6 characters';
+en.user.password_res = 'Password is:';
+en.user.send_link_to_set_pwd = 'Generate a link'
+en.user.suggest_pwd = 'Suggest';
+en.user.created = 'User has been created!'
 
 module.exports = en;

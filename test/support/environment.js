@@ -10,6 +10,8 @@ module.exports = function testEnvironment( config ){
 
   config.session_secret = '238293t8uoiauowaietuoawietuawet';
 
+  config.superusers = [];
+
   return config;
 
 };

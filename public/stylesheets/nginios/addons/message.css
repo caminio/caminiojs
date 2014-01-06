@@ -1,0 +1,25 @@
+#message{
+  position: absolute;
+  top: 51px;
+  left: 230px;
+  right: 0;
+  height: 40px;
+  background-color: #09f;
+  color: #fff;
+  display: none;
+}
+#message.error{
+  background-color: #d55;
+}
+#message .content{
+  padding: 10px;
+  text-align: center;
+}
+#message .close-btn{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}

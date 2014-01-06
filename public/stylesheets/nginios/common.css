@@ -7,6 +7,9 @@
 .float-left{
   float: left;
 }
+.align-right{
+  text-align: right;
+}
 .fixed{
   position: fixed;
 }
@@ -31,12 +34,13 @@
 /* ------------------------------------------------ widgets */
 
 .btn{
-  padding: 5px 10px;
+  padding: 5px 15px;
   color: #fff;
   border-radius: 2px;
   border: none;
-  background-color: #373737;
+  background-color: #454545;
   transition: background-color 0.8s;
+  font-size: 14px;
 }
 
 .btn:hover{
@@ -47,10 +51,26 @@
 a.btn,
 .btn a{
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn.small{
   padding: 3px 5px;
+}
+
+.btn.tiny{
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+.btn.pale{
+  background: none;
+  color: inherit;
+  border: 1px solid #ddd;
+}
+
+.btn.borderless{
+  border-color: transparent;
 }
 
 .btn.primary{
@@ -59,6 +79,18 @@ a.btn,
 
 .btn.danger{
   background-color: #d55;
+}
+
+.btn.light{
+  background-color: #ccc;
+}
+
+.btn.transparent{
+  background: none;
+}
+
+.btn.icon-text .fa{
+  margin: -1px 5px 0 0;
 }
 
 .btn.black{
@@ -84,4 +116,8 @@ a.btn,
 .btn-group .btn:last-child{
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
+}
+.desc{
+  color: #777;
+  font-size: 0.8em;
 }
