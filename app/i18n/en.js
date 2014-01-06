@@ -16,9 +16,23 @@ en.logout = 'Logout'
 // gears (application list)
 en.gears = en.gears || {};
 en.gears.paths = en.gears.paths || {};
-en.gears.paths.users = 'Users';
+en.gears.paths.admin = 'Administration';
 en.gears.paths.dashboard = 'Dashboard';
-en.gears.paths.domains = 'Domains';
+
+// ADMIN module
+en.navbar = en.navbar || {};
+en.navbar.overview = 'Overview';
+en.navbar.billing = 'Billing';
+en.navbar.users_groups = 'Users';
+
+// ADMIN users
+en.users = en.users || {};
+en.users.name = 'Name';
+en.users.email = 'Email';
+en.users.last_login = 'Last Login';
+en.users.action = 'Action';
+en.users.nr = 'No.';
+
 
 
 module.exports = en;

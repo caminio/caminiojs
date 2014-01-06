@@ -27,3 +27,61 @@
 .clearfix:after {
     clear: both;
 }
+
+/* ------------------------------------------------ widgets */
+
+.btn{
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 2px;
+  border: none;
+  background-color: #373737;
+  transition: background-color 0.8s;
+}
+
+.btn:hover{
+  background-color: #d55;
+  transition: background-color: 0.3s;
+}
+
+a.btn,
+.btn a{
+  cursor: pointer;
+}
+
+.btn.small{
+  padding: 3px 5px;
+}
+
+.btn.primary{
+  background-color: #d55;
+}
+
+.btn.danger{
+  background-color: #d55;
+}
+
+.btn.black{
+  background-color: #373737;
+}
+
+.btn-group{
+  display: inline-block;
+  position: relative;
+}
+.btn-group .btn{
+  border-radius: 0;
+  margin: 0;
+  position: relative;
+  float: left;
+  width: 12px;
+  text-align: center;
+}
+.btn-group .btn:first-child{
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.btn-group .btn:last-child{
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}

@@ -1,7 +1,17 @@
 doctype html
 html(lang=i18n.locale())
   head
-    title nginio
+    title nginios
+    
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
+
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+    link(rel='apple-touch-startup-image', href='/images/ios-startup-images-landscape.png', media='(orientation:landscape)')
+    link(rel='apple-touch-startup-image', href='/images/ios-startup-images-portrait.png', media='(orientation:portrait)')
+
+    link(rel='apple-touch-icon', href='/images/icon.png')
 
     link(rel='stylesheet', href='/stylesheets/nginios/reset.css')
     link(rel='stylesheet', href='/stylesheets/nginios/common.css')
@@ -10,26 +20,30 @@ html(lang=i18n.locale())
     link(rel='stylesheet', href='/stylesheets/vendor/tooltipster.css')
 
     link(rel='stylesheet', href='/stylesheets/nginios/common/panels.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/sections.css')
+    link(rel='stylesheet', href='/stylesheets/nginios/addons/table.css')
     link(rel='stylesheet', href='/stylesheets/nginios/main.css')
 
-    script(type='text/javascript', src='/javascripts/vendor/jquery-2.0.3.min.js')
-    script(type='text/javascript', src='/javascripts/vendor/jquery.tooltipster.min.js')
-    script(type='text/javascript', src='/javascripts/vendor/knockout-3.0.0.js')
-    script(type='text/javascript', src='/javascripts/vendor/moment.min.js')
-    script(type='text/javascript', src='/javascripts/vendor/jquery.ba-hashchange.min.js')
-    script(type='text/javascript', src='/javascripts/vendor/pager.min.js')
-    script(type='text/javascript', src='/javascripts/vendor/i18next-1.7.1.min.js')
-    script(type='text/javascript', src='/javascripts/nginios/main.js')
-
-    block header
+    script(type='text/javascript').
+      if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+          var msViewportStyle = document.createElement("style");
+          var mq = "@@-ms-viewport{width:auto!important}";
+          msViewportStyle.appendChild(document.createTextNode(mq));
+          document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+      }
 
   body
 
     include common/top_panel.jade
     include common/side_panel.jade
 
-    .main-view
-      block content
+    #applicationHost.main-view
+      .splash
+        .message STARTING NGINIOS
+      i.icon-spinner.icon-2x.icon-spin.active
+
+
+    script(src='/socket.io/socket.io.js', type='text/javascript')
 
     block footer
 

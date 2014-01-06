@@ -1,0 +1,50 @@
+table{
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+table thead{
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+table th{
+  padding: 20px 10px 10px;
+  text-align: left;
+}
+table tbody tr{
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+table th.align-left,
+table td.align-left{
+  text-align: left;
+}
+table th.align-right,
+table td.align-right{
+  text-align: right;
+}
+table th.nr,
+table td.nr{
+  text-align: right;
+  width: 30px;
+}
+table td{
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+}
+table tbody tr:nth-child(even) td{
+  background-color: #f7f7f7;
+}
+table tbody tr:last-child{
+  border-bottom: none;
+}
+
+table td.actions{
+  width: 80px;
+}
+table td.actions .btn-group{
+  float:right;
+  margin-bottom: -5px;
+}

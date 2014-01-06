@@ -1,0 +1,32 @@
+<section>
+<table>
+  <thead>
+    <tr>
+      <th data-i18n='nginios:users.nr' class="nr"></th>
+      <th data-i18n='nginios:users.name'></th>
+      <th data-i18n='nginios:users.email'></th>
+      <th data-i18n='nginios:users.last_login'></th>
+      <th data-i18n='nginios:users.action' class="align-right"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr data-bind="foreach: items">
+      <td data-bind="text: $index()+1" class="nr"></td>
+      <td data-bind="text: name.full"></td>
+      <td data-bind="text: email"></td>
+      <td data-bind="text: last_login_at"></td>
+      <td class="actions">
+        <div class="btn-group">
+          <a class="btn small" data-bind="click: edit, attr: { title: i18n.t('users.edit') }"><i class="fa fa-pencil"></i></a>
+          <a class="btn small" data-bind="click: lock, attr: { title: i18n.t('users.lock') }"><i class="fa fa-lock"></i></a>
+          <a class="btn danger small" data-bind="click: delete, attr: { title: i18n.t('users.delete') }"><i class="fa fa-times"></i></a>
+        </div>
+      </td>
+
+    </tr>
+  </tbody>
+
+</table>
+
+</section>

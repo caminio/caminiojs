@@ -26,7 +26,7 @@ var UsersController = Controller.define( function( app ){
            login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
            this.getUsers,
            function( req, res ){
-             res.json({ users: req.users });
+             res.json( { items: req.users } );
            });
 
 });

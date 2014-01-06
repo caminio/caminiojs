@@ -98,6 +98,11 @@ var UserSchema = orm.Schema({
         last_success: Date,
         tries: { type: Number, default: 3 }
       },
+      last_login: {
+        at: Date,
+        ip: String
+      },
+      last_request_at: Date,
       created: { 
         at: { type: Date, default: Date.now },
         by: { type: orm.Schema.Types.ObjectId, ref: 'User' }
@@ -293,6 +298,6 @@ UserSchema.virtual('id').get(function(){
 });
 
 UserSchema.set('toJSON', { virtuals: true });
-UserSchema.plugin(jsonSelect, '-encrypted_password -salt -confirmation -auth_tokens');
+UserSchema.plugin(jsonSelect, '-encrypted_password -salt -confirmation -auth_tokens -_id -__v');
 
 module.exports = UserSchema;

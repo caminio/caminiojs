@@ -20,9 +20,12 @@ var DashboardController = Controller.define( function( app ){
       res.json(gearFactory.getApplicationsForUser(nginios.app.gears, res.locals.currentUser, res.locals.currentDomain, req.i18n ));
     });
 
-  this.get('/i18n_translations',
+  this.get('/translations/:lang.json',
     function( req, res ){
-      res.json(i18nFactory.getTranslations());
+      var locale = i18nFactory.getTranslations();
+      if( req.param('lang') in locale )
+        return res.json(locale[req.param('lang')]['nginios']);
+      res.json({});
     });
 
 });

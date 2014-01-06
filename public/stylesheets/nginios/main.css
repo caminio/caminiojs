@@ -10,6 +10,8 @@ body{
   background: #f5f5f5;
 }
 .main-view{ 
-  margin-left: 240px;
-  margin-top: 10px;
+  margin-left: 230px;
+  margin-top: 13px;
+  heigth: 100%;
+  position: relative;
 }
