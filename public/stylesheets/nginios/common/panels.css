@@ -35,10 +35,14 @@ header.top-panel .account-info{
   padding: 12px 14px;
   color: #555;
 }
-header.top-panel .account-info .username{
+header.top-panel .account-info .username,
+header.top-panel .domainname{
   font-size: 12px;
   margin-top: 7px;
   font-weight: 600;
+}
+header.top-panel .domainname{
+  margin-top: 4px;
 }
 header.top-panel .avatar{
   width: 20px;

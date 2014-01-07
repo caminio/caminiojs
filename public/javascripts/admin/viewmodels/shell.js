@@ -13,8 +13,8 @@
     activate: function () {
       router.map([
         { route: '', title: i18n.t('navbar.overview'), moduleId: 'viewmodels/overview', nav: true },
-        { route: 'billing', title: i18n.t('navbar.billing'), moduleId: 'viewmodels/billing', nav: true },
         { route: 'users', title: i18n.t('navbar.users_groups'), moduleId: 'viewmodels/users', nav: true },
+        { route: 'domains', title: i18n.t('navbar.domains'), moduleId: 'viewmodels/domains', nav: (currentUser.superuser ? true : false) },
         { route: 'users/:id', moduleId: 'viewmodels/user', nav: false }
       ]).buildNavigationModel();
 

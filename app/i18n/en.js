@@ -3,6 +3,7 @@ var en = {};
 // general
 en.init_application = 'Initializing application';
 en.never = 'never';
+en.action = 'Action';
 
 // navigation
 en.back = 'Back';
@@ -35,13 +36,13 @@ en.navbar = en.navbar || {};
 en.navbar.overview = 'Overview';
 en.navbar.billing = 'Billing';
 en.navbar.users_groups = 'Users';
+en.navbar.domains = 'Domains';
 
 // ADMIN users
 en.users = en.users || {};
 en.users.name = 'Name';
 en.users.email = 'Email';
 en.users.last_login = 'Last Login';
-en.users.action = 'Action';
 en.users.nr = 'No.';
 en.users.edit = 'Edit user';
 en.users.lock = 'Lock user';
@@ -63,5 +64,15 @@ en.user.created = 'User has been created!';
 en.user.creation_failed = 'User failed to create!';
 en.user.saved = 'User has been saved';
 en.user.saving_failed = 'Failed to save user';
+
+// ADMIN domains
+en.domains = en.domains || {};
+en.domains.name = 'Name';
+en.domains.nr = 'No.';
+en.domains.plan = 'Current plan';
+en.domains.edit = 'Edit domain';
+en.domains.lock = 'Lock domain';
+en.domains.delete = 'Delete domain';
+en.domains.new = 'New domain';
 
 module.exports = en;

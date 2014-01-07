@@ -49,9 +49,12 @@ var UsersController = Controller.define( function( app ){
           login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
           this.requireAdmin,
           function( req, res ){
-            console.log('test');
+            if( !res.locals.currentDomain )
+              return res.json( 400, { error: 'no domain selected'});
             if( 'user' in req.body ){
-              nginios.orm.models.User.create( req.body.user, function( err, user ){
+              var user = new nginios.orm.models.User( req.body.user );
+              user.domains.push( res.locals.currentDomain );
+              user.save( function( err ){
                 if( err ){ return res.json(400, { error: err }); }
                 if( user )
                   return res.json({ item: user });

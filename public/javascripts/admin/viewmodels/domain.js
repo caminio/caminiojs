@@ -5,14 +5,14 @@ define(function(require) {
     , i18n = require('i18next')
     , app = require('durandal/app')
     , nginiosHelper = require('nginios/helper')
-    , UserModel = require('models/user')
+    , DomainModel = require('models/user')
     , router = require('plugins/router')
-    , users = require('viewmodels/users')
+    , domains = require('viewmodels/domains')
     , moment = require('moment');
 
-  return function User( data ){
+  return function Domain( data ){
     
-    this.item = new UserModel( data );
+    this.item = new DomainModel( data );
 
     this.toggleCheckbox = nginiosHelper.toggleCheckbox;
 
@@ -38,13 +38,13 @@ define(function(require) {
     this.createItem = function( form ){
       var self = this;
       var attrs = $(form).serializeArray();
-      dataService.save( '/v1/users', null, attrs, function( err, user ){
+      dataService.save( '/v1/domains', null, attrs, function( err, user ){
         if( err ){ return app.message(err); }
         if( user ){
           self.item.setAttributes( user );
-          users.items.push( self.item );
+          domains.items.push( self.item );
           app.message( i18n.t('user.created') );
-          router.navigate('#users');
+          router.navigate('#domains');
         } else
           return app.message(i18n.t('user.creation_failed'));
       })
@@ -53,12 +53,12 @@ define(function(require) {
     this.saveItem = function( form ){
       var self = this;
       var attrs = $(form).serializeArray();
-      dataService.save( '/v1/users', this.item.id, attrs, function( err, user ){
+      dataService.save( '/v1/domains', this.item.id, attrs, function( err, user ){
         if( err ){ return app.message(err); }
         if( user ){
           self.item.setAttributes( user );
           app.message( i18n.t('user.saved') );
-          router.navigate('#users');
+          router.navigate('#domains');
         } else
           return app.message(i18n.t('user.creation_failed'));
       })
@@ -68,20 +68,18 @@ define(function(require) {
     this.activate = function( id ){
       var self = this;
       self.item = null;
-      console.log('here', id);
       if( id === 'new' )
-        return self.item = new UserModel();
-      if( users.items().length > 0 ){
-        var match = ko.utils.arrayFirst(users.items(), function(item) {
-          console.log('item', item);
+        return self.item = new DomainModel();
+      if( domains.items().length > 0 ){
+        var match = ko.utils.arrayFirst(domains.items(), function(item) {
           if( id === item.id ){
             self.item = item;
           }
         });
       }
       if( !self.item )
-        dataService.getById('/v1/users', id, function( err, user_data ){
-          self.item = new UserModel( user_data );
+        dataService.getById('/v1/domains', id, function( err, user_data ){
+          self.item = new DomainModel( user_data );
         });
     }
 
@@ -96,14 +94,14 @@ define(function(require) {
 
   }
 
-  function getUser(id){
+  function getDomain(id){
     if( id === 'new' )
-      return new User();
-    dataService.get('/v1/users/'+id)
+      return new Domain();
+    dataService.get('/v1/domains/'+id)
     .find()
     .exec( function( err, user_data ){
       if( err ){ return console.log('error:', err); }
-      return new User( user_data );
+      return new Domain( user_data );
     });
   }
 

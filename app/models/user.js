@@ -281,6 +281,10 @@ UserSchema.virtual('admin').get(function(){
   return this.role <= 5;
 });
 
+UserSchema.virtual('superuser').get(function(){
+  return this.isSuperUser();
+});
+
 /**
 
   Return, if this user is a superuser.

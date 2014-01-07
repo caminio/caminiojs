@@ -17,10 +17,14 @@ fixtures.define('admin', 'User', {
   },
   role: 1,
   password: 'test123?T',
-}).afterBuild( function( admin, next ){
-  fixtures.domain.create( function( domain ){
-    admin.domains.push( domain );
-    console.log('here');
-    next(admin);
+}).beforeCreate( function( err, admin, next ){
+  fixtures.domain.create( function( err, domain ){
+    domain.owner = admin;
+    domain.save( function( err ){
+      admin.domains.push( domain );
+      admin.save( function( err ){
+        next(err, admin);
+      })
+    })
   });
 });

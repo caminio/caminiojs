@@ -1,13 +1,26 @@
 var nginios = require('../../../')
+  , login = require('connect-ensure-login')
   , Controller = nginios.Controller;
 
 var DomainsController = Controller.define( function( app ){
 
-  this.before( app.gears.nginios.auth.authenticate );
+  // private
+  this.getDomains = function getDomains( req, res, next ){
+    nginios.orm.models.Domain
+    .find()
+    .exec( function( err, domains ){
+      req.domains = domains;
+      next(err);
+    });
+  }
 
-  this.get('/', function( req, res ){
-    res.json(null);
-  });
+  // actions
+  this.get('/',
+          login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
+          this.getDomains,
+          function( req, res ){
+            res.json( { items: req.domains } );
+          });
 
 });
 

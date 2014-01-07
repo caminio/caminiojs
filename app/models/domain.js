@@ -6,6 +6,7 @@
  */
   
 var MessageSchema = require('./schemas/message')
+  , jsonSelect = require('mongoose-json-select')
   , nginios = require('../../lib/nginios');
 
 /**
@@ -55,6 +56,7 @@ var DomainSchema = nginios.orm.Schema({
     users: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' } ],
     groups: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
     owner: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' },
+    plan: { type: String, default: 'default' },
     allowed_gears: { type: Array, default: ['nginios'] },
     messages: [ MessageSchema ],
     created: { 
@@ -102,5 +104,8 @@ DomainSchema.method('addUser', function( user, manager, callback ){
   this.users.push( user );
   this.save( callback );
 });
+
+DomainSchema.set('toJSON', { virtuals: true });
+DomainSchema.plugin(jsonSelect, '-_id -__v');
 
 module.exports = DomainSchema;

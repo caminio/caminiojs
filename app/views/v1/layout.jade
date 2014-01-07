@@ -35,6 +35,7 @@ html(lang=i18n.locale())
           document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
       }
       var CSRF = '!{csrf}';
+      var currentUser = JSON.parse('!{JSON.stringify(currentUser.toJSON())}');
 
   body
 
@@ -42,14 +43,15 @@ html(lang=i18n.locale())
     include common/side_panel.jade
 
     #applicationHost.main-view
-      #splash
-        .text=t('init_application')
-        .loader
-          .circle
-          .circle
-          .circle
-          .circle
-          .circle
+      block content
+        #splash
+          .text=t('init_application')
+          .loader
+            .circle
+            .circle
+            .circle
+            .circle
+            .circle
 
     script(src='/socket.io/socket.io.js', type='text/javascript')
 
