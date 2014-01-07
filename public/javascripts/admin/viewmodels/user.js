@@ -5,38 +5,14 @@ define(function(require) {
     , i18n = require('i18next')
     , app = require('durandal/app')
     , nginiosHelper = require('nginios/helper')
+    , UserModel = require('models/user')
+    , router = require('plugins/router')
+    , users = require('viewmodels/users')
     , moment = require('moment');
 
-  var User = function User( data ){
+  return function User( data ){
     
-    var self = this;
-
-    this.setAttributes = function setAttributes( data ){
-
-      data = data || { name: {}, last_login: {} };
-
-      for( var i in data )
-        this[i] = data[i];
-
-      this.email = ko.observable( data.email || '');
-
-      this.name = {
-        last: ko.observable(data.name.last || ''),
-        first: ko.observable(data.name.first || ''),
-      };
-      this.name.full = ko.computed( function(){ 
-        return this.name.first()+' '+this.name.last(); 
-      }, this);
-
-      this.last_login_at = ko.computed( function(){
-        return moment(this.last_login.at).fromNow();
-      }, this);
-
-      this.password = ko.observable();
-
-    }
-
-    this.setAttributes( data );
+    this.item = new UserModel( data );
 
     this.toggleCheckbox = nginiosHelper.toggleCheckbox;
 
@@ -59,32 +35,57 @@ define(function(require) {
     // methods
     this.i18n = i18n;
 
-    // events
-    this.editItem = function(item,e){
-    }
-
-    this.lockItem = function(item,e){
-    }
-    this.deleteItem = function(item, e){
-    }
-
-    this.createItem = function( item, e ){
-      dataService.post( '/v1/users', ko.toJS(this), function( err ){
+    this.createItem = function( form ){
+      var self = this;
+      var attrs = $(form).serializeArray();
+      dataService.save( '/v1/users', null, attrs, function( err, user ){
         if( err ){ return app.message(err); }
-        app.message( i18n.t('user.created') );
+        if( user ){
+          self.item.setAttributes( user );
+          users.items.push( self.item );
+          app.message( i18n.t('user.created') );
+          router.navigate('#users');
+        } else
+          return app.message(i18n.t('user.creation_failed'));
       })
     }
 
+    this.saveItem = function( form ){
+      var self = this;
+      var attrs = $(form).serializeArray();
+      dataService.save( '/v1/users', this.item.id, attrs, function( err, user ){
+        if( err ){ return app.message(err); }
+        if( user ){
+          self.item.setAttributes( user );
+          app.message( i18n.t('user.saved') );
+          router.navigate('#users');
+        } else
+          return app.message(i18n.t('user.creation_failed'));
+      })
+    
+    }
+
     this.activate = function( id ){
+      var self = this;
+      self.item = null;
       if( id === 'new' )
-        return new User();
-      dataService.getById('/v1/users', id, function( err, user_data ){
-        self.setAttributes( user_data );
-      });
+        return new UserModel();
+      if( users.items().length > 0 ){
+        var match = ko.utils.arrayFirst(users.items(), function(item) {
+          console.log('item', item);
+          if( id === item.id ){
+            self.item = item;
+          }
+        });
+      }
+      if( !self.item )
+        dataService.getById('/v1/users', id, function( err, user_data ){
+          self.item = new UserModel( user_data );
+        });
     }
 
     this.attached = function( view ){
-   
+
       // wait for animation to complete
       setTimeout(function(){
         $(view).find('.focus:first').focus();
@@ -94,8 +95,6 @@ define(function(require) {
 
   }
 
-  return User;
-
   function getUser(id){
     if( id === 'new' )
       return new User();
@@ -103,7 +102,7 @@ define(function(require) {
     .find()
     .exec( function( err, user_data ){
       if( err ){ return console.log('error:', err); }
-        return new User( user_data );
+      return new User( user_data );
     });
   }
 

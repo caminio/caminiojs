@@ -2,6 +2,7 @@ var en = {};
 
 // general
 en.init_application = 'Initializing application';
+en.never = 'never';
 
 // navigation
 en.back = 'Back';
@@ -58,6 +59,9 @@ en.user.password_exmpl = 'at least 6 characters';
 en.user.password_res = 'Password is:';
 en.user.send_link_to_set_pwd = 'Generate a link'
 en.user.suggest_pwd = 'Suggest';
-en.user.created = 'User has been created!'
+en.user.created = 'User has been created!';
+en.user.creation_failed = 'User failed to create!';
+en.user.saved = 'User has been saved';
+en.user.saving_failed = 'Failed to save user';
 
 module.exports = en;

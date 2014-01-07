@@ -1,30 +1,30 @@
 <section>
 
-  <form class="nginios-form">
-    
+  <form class="nginios-form" data-bind="submit: typeof(item.id) === 'undefined' ? createItem : saveItem">
+
     <div class="main-ctrl align-right">
       <a href="#users" class="btn icon-text"><i class="fa fa-arrow-left"></i><span data-i18n="nginios:back"></span></a>
-      <!-- ko if: (typeof(id) !== 'undefined') -->
+      <!-- ko if: (typeof(item.id) !== 'undefined') -->
       <button class="btn primary" data-i18n="nginios:save"></button>
       <!-- /ko -->
-      <!-- ko if: (typeof(id) === 'undefined') -->
+      <!-- ko if: (typeof(item.id) === 'undefined') -->
       <button class="btn primary" data-i18n="nginios:create"></button>
       <!-- /ko -->
     </div>
 
     <div class="field">
       <label data-i18n='nginios:user.full_name'></label>
-      <input type="text" name="user[name][full]" data-bind="value: name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus" />
+      <input type="text" name="user[name][full]" data-bind="value: item.name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus" />
     </div>
 
     <div class="field">
       <label data-i18n='nginios:user.email'></label>
-      <input type="text" name="user[email]" data-bind="value: email, attr: { placeholder: i18n.t('user.email_exmpl') }" />
+      <input type="text" name="user[email]" data-bind="value: item.email, attr: { placeholder: i18n.t('user.email_exmpl') }" />
     </div>
 
     <div class="field">
       <label data-i18n='nginios:user.password'></label>
-      <input type="password" name="user[password]" data-bind="value: password, attr: { placeholder: i18n.t('user.password_exmpl') }, event: { keydown: updateAutoGen }" />
+      <input type="password" name="user[password]" data-bind="value: item.password, attr: { placeholder: i18n.t('user.password_exmpl') }, event: { keydown: updateAutoGen }" />
       <br />
       <div class="label-offset desc">
         <a class="btn tiny pale borderless" data-bind="click: toggleCheckbox">
@@ -44,6 +44,7 @@
     </div>
 
     <input type="submit" class="hide" />
+    <input type="hidden" name="_csrf" data-bind="value: CSRF" />
 
   </form>
 

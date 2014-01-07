@@ -49,6 +49,7 @@ var UsersController = Controller.define( function( app ){
           login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
           this.requireAdmin,
           function( req, res ){
+            console.log('test');
             if( 'user' in req.body ){
               nginios.orm.models.User.create( req.body.user, function( err, user ){
                 if( err ){ return res.json(400, { error: err }); }
@@ -65,6 +66,10 @@ var UsersController = Controller.define( function( app ){
           this.requireAdmin,
           function( req, res ){
             if( req.user && 'user' in req.body ){
+              if( req.body.user.name && req.body.user.name.full ){
+                req.body.user.name.first = req.body.user.name.full.split(' ')[0];
+                req.body.user.name.last = req.body.user.name.full.replace( req.body.user.name.first + ' ', '');
+              }
               req.user.update( req.body.user, function( err ){
                 if( err ){ return res.json(400, { error: err }); }
                 nginios.orm.models.User.findOne({ _id: req.params.id }, function( err, user ){

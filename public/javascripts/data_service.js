@@ -1,11 +1,11 @@
 define(function(require) {
 
+
   var cache = {};
 
   return new ServiceConnector();
 
   function ServiceConnector(){
-
     this.getById = function getById( url, id, callback ){
       if( cache[url] && cache[url][id] )
         return callback( null, cache[url][id] );
@@ -17,8 +17,15 @@ define(function(require) {
       return this;
     }
 
-    this.save = function( id, attrs, callback ){
-      $.post( this.url+'/'+id, attrs )
+    this.save = function( url, id, attrs, callback ){
+      if( id )
+        url += '/'+id;
+      $.ajax({
+        url: url,
+        data: attrs,
+        type: id ? 'put' : 'post',
+        dataType: 'json'
+      })
       .done( function( res ){
         if( res.item )
           return callback( null, res.item );
