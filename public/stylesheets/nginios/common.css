@@ -57,6 +57,9 @@ button.btn,
   cursor: pointer;
   text-decoration: none;
 }
+button.btn{
+  padding: 5px 15px 6px;
+}
 
 .btn.small{
   padding: 3px 5px;
@@ -91,7 +94,6 @@ button.btn,
 .btn.info{
   background-color: #5BC0DE;
 }
-en.preferences.save = 'Save preferences';
 .btn.success{
   background-color: #5CB85C;
 }
@@ -151,4 +153,20 @@ en.preferences.save = 'Save preferences';
 .box .content{
   padding: 20px;
   
+}
+
+.span200px{
+  width: 200px;
+}
+.span250px{
+  width: 250px;
+}
+.span300px{
+  width: 300px;
+}
+.span400px{
+  width: 400px;
+}
+.span100perc{
+  width: 100%;
 }

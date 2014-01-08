@@ -12,11 +12,14 @@ body{
   background: #f5f5f5;
 }
 .main-view{ 
-  margin-top: 63px;
-  position: relative;
+  position: absolute;
+  top: 63px;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 body.side-panel-active .main-view{
-  margin-left: 230px;
+  left: 230px;
 }
 #splash{
   position: absolute;

@@ -1,6 +1,7 @@
 requirejs.config({
   paths: {
     'text': '../vendor/requirejs-text/text',
+    'bootstrap': '../vendor/bootstrap/bootstrap',
     'knockout': '../vendor/knockout.js/knockout.debug',
     'knockout-validation': '../vendor/knockout.js/knockout.validation',
     'jquery': '../vendor/jquery/jquery',
@@ -17,8 +18,13 @@ requirejs.config({
     'jquery': {
       exports: 'jQuery'
     },
-    'knockout': {
-      depends: [ 'knockout-validation' ]
+    'knockout-validation': {
+      deps: [ 'knockout' ],
+      exports: 'ko'
+    },
+    'bootstrap': {
+      deps: ['jquery'],
+      exports: 'jQuery'
     }
   }
 });
@@ -45,7 +51,7 @@ define(function(require) {
   });
 
   // a message implementation
-  app.message = nginiosHelper.message;
+  app.notify = nginiosHelper.notify;
 
   var i18NOptions = {
     detectFromHeaders: false,

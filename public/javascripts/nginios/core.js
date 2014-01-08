@@ -1,7 +1,8 @@
 define( function( require ){
 
   'use strict';
-  var $ = require('jquery');
+  var $ = require('jquery')
+    , bootstrap = require('bootstrap');
 
   var nginios = window.nginios || {};
 

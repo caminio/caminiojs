@@ -34,7 +34,8 @@ header.top-panel .ctrl-btn:focus{
   color: #fff;
   transition: all 0.5s;
 }
-header.top-panel .account-info{
+header.top-panel .account-info,
+header.top-panel .domain{
   padding: 12px 14px;
   color: #555;
 }
@@ -45,7 +46,7 @@ header.top-panel .domainname{
   font-weight: 600;
 }
 header.top-panel .domainname{
-  margin-top: 4px;
+  padding: 1px 10px 7px;
 }
 header.top-panel .avatar{
   width: 20px;
@@ -55,10 +56,6 @@ header.top-panel .avatar{
   background-color: #fff;
   padding: 3px;
   margin: -1px 7px 0 0;
-}
-header.top-panel .account-info:hover,
-header.top-panel .account-info:focus{
-  color: #333;
 }
 
 /*

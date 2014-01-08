@@ -8,6 +8,10 @@ en.total = 'Total';
 en.remove = 'Remove';
 en.add = 'Add';
 
+// errors
+en.errors = en.errors || {};
+en.errors.unknown = 'An unknown error occured!';
+
 // navigation
 en.back = 'Back';
 
@@ -96,5 +100,17 @@ en.preferences = en.preferences || {};
 en.preferences.save = 'Save preferences';
 en.preferences.saved = 'Preferences have been saved';
 en.preferences.saving_failed = 'Failed to save preferences';
+
+// address defaults
+en.addr = en.addr || {};
+en.addr.address = 'Address';
+en.addr.zip = 'Zip';
+en.addr.city = 'City';
+en.addr.street = 'Street';
+en.addr.firstname = 'Firstname';
+en.addr.lastname = 'Lastname';
+en.addr.organization = 'Organization';
+en.addr.email = 'Email';
+en.addr.phone = 'Phone';
 
 module.exports = en;

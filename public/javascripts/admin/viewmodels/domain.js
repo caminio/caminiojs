@@ -40,17 +40,17 @@ define(function(require) {
       var attrs = $(form).serializeArray();
       var newRecord = typeof(this.item.id) !== 'string';
       dataService.save( '/v1/domains', this.item.id, attrs, function( err, domain ){
-        if( err ){ return app.message(err); }
+        if( err ){ return app.notify(err); }
         if( domain ){
           self.item.setAttributes( domain );
           if( newRecord ){
             domains.items.push( self.item );
-            app.message( i18n.t('domain.created') );
+            app.notify( i18n.t('domain.created') );
           } else
-            app.message( i18n.t('domain.saved') );
+            app.notify( i18n.t('domain.saved') );
           router.navigate('#domains');
         } else
-          return app.message(i18n.t('domain.creation_failed'));
+          return app.notify(i18n.t('domain.creation_failed'));
       });
     
     }

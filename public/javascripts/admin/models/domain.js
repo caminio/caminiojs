@@ -26,10 +26,10 @@ define(function(require) {
     this.setAttributes( data );
 
     this.lockItem = function(item,e){
-      app.message( 'Not implemented yet' );
+      app.notify( 'Not implemented yet' );
     }
     this.deleteItem = function(item, e){
-      app.message( 'Not implemented yet' );
+      app.notify( 'Not implemented yet' );
     }
 
 

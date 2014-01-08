@@ -34,7 +34,6 @@ define(function(require) {
 
     this.updateRole = function updateRole( item, e ){
       this.item.role( this.item.role() <= 5 ? 100 : 1 );
-      console.log(this.item.role());
       return true;
     }
 
@@ -45,14 +44,14 @@ define(function(require) {
       var self = this;
       var attrs = $(form).serializeArray();
       dataService.save( '/v1/users', null, attrs, function( err, user ){
-        if( err ){ return app.message(err); }
+        if( err ){ return app.notify(err); }
         if( user ){
           self.item.setAttributes( user );
           users.items.push( self.item );
-          app.message( i18n.t('user.created') );
+          app.notify( i18n.t('user.created') );
           router.navigate('#users');
         } else
-          return app.message(i18n.t('user.creation_failed'));
+          return app.notify(i18n.t('user.creation_failed'));
       })
     }
 
@@ -60,13 +59,13 @@ define(function(require) {
       var self = this;
       var attrs = $(form).serializeArray();
       dataService.save( '/v1/users', this.item.id, attrs, function( err, user ){
-        if( err ){ return app.message(err); }
+        if( err ){ return app.notify(err); }
         if( user ){
           self.item.setAttributes( user );
-          app.message( i18n.t('user.saved') );
+          app.notify( i18n.t('user.saved') );
           router.navigate('#users');
         } else
-          return app.message(i18n.t('user.creation_failed'));
+          return app.notify(i18n.t('user.creation_failed'));
       })
     
     }
@@ -78,7 +77,6 @@ define(function(require) {
         return self.item = new UserModel();
       if( users.items().length > 0 ){
         var match = ko.utils.arrayFirst(users.items(), function(item) {
-          console.log('item', item);
           if( id === item.id ){
             self.item = item;
           }

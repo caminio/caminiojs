@@ -1,5 +1,6 @@
 input[type=text],
-input[type=password]{
+input[type=password],
+textarea{
   padding: 6px;
   border: 1px solid #ddd;
 }
@@ -24,13 +25,17 @@ form.nginios-form .field select{
   padding: 5px;
 }
 form.nginios-form input[type=text],
-form.nginios-form input[type=password]{
+form.nginios-form input[type=password],
+form.nginios-form textarea{
   padding: 8px 0;
   text-indent: 5px;
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 2px;
-  width: 400px;
+}
+form.nginios-form textarea{
+  padding-bottom: 0;
+  min-height: 3em;
 }
 form.nginios-form button.btn{
   cursor: pointer;
@@ -52,4 +57,19 @@ form.nginios-form .title{
   font-weight: 600;
   color: #ccc;
   margin: 40px 0;
+}
+form.nginios-form .field.multiple input{
+  float: left;
+}
+form.nginios-form input.span2multiples,
+form.nginios-form textarea.span2multiples{
+  width: 612px;
+}
+form.nginios-form .field.multiple input.zip{
+  width: 100px;
+  margin-top: 0px;
+  margin-right: 20px;
+}
+form.nginios-form input.city{
+  width: 490px;
 }

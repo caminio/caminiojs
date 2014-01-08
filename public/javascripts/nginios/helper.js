@@ -1,26 +1,9 @@
 define(function(require) {
 
   return {
-    message: message,
     toggleCheckbox: toggleCheckbox,
-    generatePassword: generatePassword
-  }
-
-  function message( message, options ){
-    if( arguments.length < 2 )
-      options = message;
-    options = options || {};
-    var $closeBtn = $('<div class="close-btn"><i class="fa fa-times"></i></div>');
-    $('#message').remove();
-    var $message = $('<div id="message"/>')
-    .append( $('<div class="content"/>').html( message ) )
-    .append( $closeBtn );
-    $message.on('click', function(){ $(this).slideUp(); });
-    if( options.error )
-      $message.addClass('error');
-
-    $('body').append($message);
-    $message.slideDown();
+    generatePassword: generatePassword,
+    formatPrice: formatPrice
   }
 
   function toggleCheckbox(item, e){
@@ -43,6 +26,15 @@ define(function(require) {
       retVal += charset.charAt(Math.floor(Math.random() * n));
     }
     return retVal;
+  }
+
+  function formatPrice( price ){
+    price = price.toString();
+    if( price.split('.').length > 1 )
+      price = price.split('.')[0] + ',' + (price.split('.')[1].length === 1 ? price.split('.')[1]+'0' : price.split('.')[1]);
+    else
+      price = price + ',--';
+    return price;
   }
 
 });

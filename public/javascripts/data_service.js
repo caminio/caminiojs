@@ -37,19 +37,37 @@ define(function(require) {
     }
 
     this.findOne = function findOne( query ){
-      this.query = query || '';
+      this.setQuery( query );
       this.one = true;
       return this;
     }
 
     this.find = function find( query ){
-      this.query = query || '';
+      this.setQuery( query );
       return this;
+    }
+
+    this.setQuery = function setQuery( query ){
+      this.query = this.query || {};
+      if( typeof(query) === 'object' )
+        for( var i in query )
+          this.query[i] = query[i];
+    }
+
+    this.createQueryStr = function createQueryStr(){
+      var self = this;
+      var queryStr = '';
+      var keys = Object.keys(this.query);
+      keys.forEach(function(key, i){
+        queryStr += i === 0 ? '?' : '&';
+        queryStr += key + '=' + self.query[key];
+      });
+      return queryStr;
     }
 
     this.exec = function exec( callback ){
       var self = this;
-      $.getJSON( this.url + '?query=' + this.query )
+      $.getJSON( this.url + this.createQueryStr() )
       .done( function( json ){
         if( self.one && json.item )
           return callback( null, json.item );
