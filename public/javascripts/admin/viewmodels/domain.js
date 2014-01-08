@@ -5,7 +5,7 @@ define(function(require) {
     , i18n = require('i18next')
     , app = require('durandal/app')
     , nginiosHelper = require('nginios/helper')
-    , DomainModel = require('models/user')
+    , DomainModel = require('models/domain')
     , router = require('plugins/router')
     , domains = require('viewmodels/domains')
     , moment = require('moment');
@@ -18,7 +18,7 @@ define(function(require) {
 
     this.genPwd = function genPwd(item, e){
       this.autoGenPwd = nginiosHelper.generatePassword();
-      $('input[name=user\\[password\\]]').val( this.autoGenPwd );
+      $('input[name=domain\\[password\\]]').val( this.autoGenPwd );
       $('#pwd-suggestion-cleartext .result').text( this.autoGenPwd );
       $('#pwd-suggestion-cleartext').fadeIn();
       $('#suggest-pwd').removeClass('light').addClass('danger');
@@ -35,33 +35,23 @@ define(function(require) {
     // methods
     this.i18n = i18n;
 
-    this.createItem = function( form ){
-      var self = this;
-      var attrs = $(form).serializeArray();
-      dataService.save( '/v1/domains', null, attrs, function( err, user ){
-        if( err ){ return app.message(err); }
-        if( user ){
-          self.item.setAttributes( user );
-          domains.items.push( self.item );
-          app.message( i18n.t('user.created') );
-          router.navigate('#domains');
-        } else
-          return app.message(i18n.t('user.creation_failed'));
-      })
-    }
-
     this.saveItem = function( form ){
       var self = this;
       var attrs = $(form).serializeArray();
-      dataService.save( '/v1/domains', this.item.id, attrs, function( err, user ){
+      var newRecord = typeof(this.item.id) !== 'string';
+      dataService.save( '/v1/domains', this.item.id, attrs, function( err, domain ){
         if( err ){ return app.message(err); }
-        if( user ){
-          self.item.setAttributes( user );
-          app.message( i18n.t('user.saved') );
+        if( domain ){
+          self.item.setAttributes( domain );
+          if( newRecord ){
+            domains.items.push( self.item );
+            app.message( i18n.t('domain.created') );
+          } else
+            app.message( i18n.t('domain.saved') );
           router.navigate('#domains');
         } else
-          return app.message(i18n.t('user.creation_failed'));
-      })
+          return app.message(i18n.t('domain.creation_failed'));
+      });
     
     }
 
@@ -78,8 +68,8 @@ define(function(require) {
         });
       }
       if( !self.item )
-        dataService.getById('/v1/domains', id, function( err, user_data ){
-          self.item = new DomainModel( user_data );
+        dataService.getById('/v1/domains', id, function( err, domain_data ){
+          self.item = new DomainModel( domain_data );
         });
     }
 
@@ -99,9 +89,9 @@ define(function(require) {
       return new Domain();
     dataService.get('/v1/domains/'+id)
     .find()
-    .exec( function( err, user_data ){
+    .exec( function( err, domain_data ){
       if( err ){ return console.log('error:', err); }
-      return new Domain( user_data );
+      return new Domain( domain_data );
     });
   }
 

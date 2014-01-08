@@ -1,0 +1,49 @@
+<section>
+
+  <form class="nginios-form" data-bind="submit: saveItem">
+
+    <div class="main-ctrl align-right">
+      <a href="#users" class="btn icon-text"><i class="fa fa-arrow-left"></i><span data-i18n="nginios:back"></span></a>
+      <!-- ko if: (typeof(item.id) !== 'undefined') -->
+      <button class="btn primary" data-i18n="nginios:save"></button>
+      <!-- /ko -->
+      <!-- ko if: (typeof(item.id) === 'undefined') -->
+      <button class="btn primary" data-i18n="nginios:create"></button>
+      <!-- /ko -->
+    </div>
+
+    <div class="title" data-i18n="nginios:domain.domain"></div>
+    <div class="field">
+      <label data-i18n='nginios:domain.name'></label>
+      <input type="text" name="domain[name]" data-bind="value: item.name, attr: { placeholder: i18n.t('domain.name_exmpl') }" class="focus" />
+    </div>
+
+    <div class="field">
+      <label data-i18n='nginios:domain.plan'></label>
+      <select name="domain[plan]" data-bind="options: availablePlans, selectedOption: item.plan"></select>
+    </div>
+
+    <hr />
+
+    <div class="title" data-i18n="nginios:domain.owner"></div>
+    <div class="field">
+      <label data-i18n='nginios:user.full_name'></label>
+      <input type="text" name="owner[name][full]" data-bind="value: item.owner.name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus" />
+    </div>
+
+    <div class="field">
+      <label data-i18n='nginios:user.email'></label>
+      <input type="text" name="owner[email]" data-bind="value: item.owner.email, attr: { placeholder: i18n.t('user.email_exmpl') }" />
+    </div>
+
+    <div class="field">
+      <label data-i18n='nginios:user.password'></label>
+      <input type="password" name="owner[password]" data-bind="value: item.owner.password, attr: { placeholder: i18n.t('user.password_exmpl') }" />
+      <br />
+    </div>
+    <input type="submit" class="hide" />
+    <input type="hidden" name="_csrf" data-bind="value: CSRF" />
+
+  </form>
+
+</section>

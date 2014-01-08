@@ -2,7 +2,10 @@ header.top-panel{
   background-color: #fafafa;
   border-bottom: 1px solid #ddd;
   height: 50px;
-  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }
 header.top-panel .brand img{
   max-width: 100px;
@@ -69,6 +72,11 @@ header.top-panel .account-info:focus{
   width: 230px;
   top: 51px;
   bottom: 0;
+  display: none;
+  z-index: 2;
+}
+body.side-panel-active #side-panel{
+  display: block;
 }
 #side-panel .account-info{
   padding: 10px;
@@ -105,7 +113,7 @@ header.top-panel .account-info:focus{
 #side-panel ul.nav a{
   width: 227px;
   color: #fff;
-  padding: 14px 0;
+  padding: 15px 0;
   border-bottom: 1px solid #2a2a2a;
   border-left: 3px solid transparent;
   text-decoration: none;
@@ -116,7 +124,7 @@ header.top-panel .account-info:focus{
 }
 #side-panel ul.nav a .fa{
   font-size: 18px;
-  margin: 0 10px 0 15px;
+  margin: -3px 10px 0 15px;
   text-align: center;
   width: 25px;
   color: #fff;

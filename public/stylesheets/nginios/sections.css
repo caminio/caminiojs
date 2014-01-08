@@ -16,7 +16,7 @@
 
 .main-view section{
   position: absolute;
-  top: 60px;
+  top: 40px;
   left: 10px;
   right: 10px;
   bottom: 10px;
@@ -24,4 +24,10 @@
 
 .main-ctrl{
   margin-bottom: 20px;
+}
+
+.main-view section h1{
+  margin: 40px 20px;
+  font-size: 32px;
+  color: #aaa;
 }

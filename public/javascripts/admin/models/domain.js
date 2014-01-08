@@ -2,6 +2,7 @@ define(function(require) {
 
   var ko = require('knockout')
     , app = require('durandal/app')
+    , UserModel = require('models/user')
     , i18n = require('i18next');
 
   return function User( data ){
@@ -17,6 +18,8 @@ define(function(require) {
 
       this.name = ko.observable( data.name || '' );
       this.plan = ko.observable( data.plan || '' );
+
+      this.owner = new UserModel(data.owner) || new UserModel({});
 
     }
 

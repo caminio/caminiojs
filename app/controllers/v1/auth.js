@@ -12,6 +12,10 @@ function fail( res, options ){
 var AuthController = Controller.define( function( app, namespacePrefix ){
 
   this.post('/login',
+    function( req, res, next ){
+      req.session.domain = null;
+      next();
+    },
     passport.authenticate('local', { successReturnToOrRedirect: this.resolvePath('v1/dashboard'), 
       failureRedirect: namespacePrefix+'/login',
       failureFlash: true }) 

@@ -6,11 +6,13 @@ define(function(require) {
     , i18n = require('i18next')
     , DomainModel = require('models/domain');
 
+  getDomains();
+
   var viewModel = {
     items: ko.observableArray(),
     i18n: i18n,
     activate: function(){
-      getDomains();
+      //getDomains();
     }
   }
 
@@ -20,7 +22,6 @@ define(function(require) {
     dataService.get('/v1/domains')
     .find()
     .exec( function( err, domains ){
-      console.log('got', domains);
       if( err ){ return console.log('error:', err); }
       viewModel.items = ko.observableArray();
       domains.forEach( function(domain_data){

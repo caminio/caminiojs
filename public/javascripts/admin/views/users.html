@@ -4,10 +4,11 @@
   <a href="#users/new" class="btn primary" data-i18n="nginios:users.new"></a>
 </div>
 
-<table>
+<table class="nginios">
   <thead>
     <tr>
       <th data-i18n='nginios:users.nr' class="nr"></th>
+      <th style="width: 20px"></th>
       <th data-i18n='nginios:users.name'></th>
       <th data-i18n='nginios:users.email'></th>
       <th data-i18n='nginios:users.last_login'></th>
@@ -18,14 +19,15 @@
   <tbody data-bind="foreach: items">
     <tr>
       <td data-bind="text: $index()+1" class="nr"></td>
+      <td data-bind="if: role() <= 5, attr: {title: $.i18n.t('user.admin')} "><i class="fa fa-gears"></i></td>
       <td data-bind="text: name.full"></td>
       <td data-bind="text: email"></td>
       <td data-bind="text: last_login_at"></td>
       <td class="actions">
         <div class="btn-group">
-          <a class="btn small" data-bind="attr: { href: '#users/'+id, title: $parent.i18n.t('users.edit') }"><i class="fa fa-pencil"></i></a>
-          <a class="btn small" data-bind="click: lockItem; attr: { title: $parent.i18n.t('users.lock') }"><i class="fa fa-lock"></i></a>
-          <a class="btn danger small" data-bind="click: deleteItem; attr: { title: $parent.i18n.t('users.delete') }"><i class="fa fa-times"></i></a>
+          <a class="btn small" data-bind="attr: { href: '#users/'+id, title: $.i18n.t('users.edit') }"><i class="fa fa-pencil"></i></a>
+          <a class="btn small" data-bind="click: lockItem, attr: { title: $.i18n.t('users.lock') }"><i class="fa fa-lock"></i></a>
+          <a class="btn danger small" data-bind="click: deleteItem, attr: { title: $.i18n.t('users.delete') }"><i class="fa fa-times"></i></a>
         </div>
       </td>
     </tr>

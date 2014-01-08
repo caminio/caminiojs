@@ -57,6 +57,7 @@ var DomainSchema = nginios.orm.Schema({
     groups: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
     owner: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' },
     plan: { type: String, default: 'default' },
+    preferences: { type: nginios.orm.Schema.Types.Mixed },
     allowed_gears: { type: Array, default: ['nginios'] },
     messages: [ MessageSchema ],
     created: { 
@@ -103,6 +104,10 @@ DomainSchema.method('addUser', function( user, manager, callback ){
   user.domains.push( this );
   this.users.push( user );
   this.save( callback );
+});
+
+DomainSchema.virtual('id').get(function(){
+  return this._id ? this._id.toHexString() : null;
 });
 
 DomainSchema.set('toJSON', { virtuals: true });

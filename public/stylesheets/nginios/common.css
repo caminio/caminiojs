@@ -1,3 +1,6 @@
+strong{
+  font-weight: 600;
+}
 .hide{
   display: none;
 }
@@ -49,6 +52,7 @@
 }
 
 a.btn,
+button.btn,
 .btn a{
   cursor: pointer;
   text-decoration: none;
@@ -83,6 +87,13 @@ a.btn,
 
 .btn.light{
   background-color: #ccc;
+}
+.btn.info{
+  background-color: #5BC0DE;
+}
+en.preferences.save = 'Save preferences';
+.btn.success{
+  background-color: #5CB85C;
 }
 
 .btn.transparent{
@@ -120,4 +131,24 @@ a.btn,
 .desc{
   color: #777;
   font-size: 0.8em;
+}
+
+.box{
+  border: 1px solid #ddd;
+  margin: 20px 0;
+  background-color: #fafafa;
+}
+
+.box .header{
+  background-color: #373737;
+  color: #fff;
+  padding: 15px 10px 10px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.box .content{
+  padding: 20px;
+  
 }

@@ -31,6 +31,8 @@ define(function(require) {
         return i18n.t('never');
       }, this);
 
+      this.role = ko.observable( data.role || 100);
+
       this.password = ko.observable();
 
     }

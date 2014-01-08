@@ -270,6 +270,8 @@ If role number is less than equal 5, user is admin
   @return {Boolean} if the user is admin
 **/
 UserSchema.method('isAdmin', function(groupOrDomain){
+  if( this.isSuperUser() )
+    return true;
   if( groupOrDomain instanceof orm.models.Domain )
     return groupOrDomain.owner.equals( this._id.toString() );
   return this.role <= 5;

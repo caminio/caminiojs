@@ -1,6 +1,7 @@
-(function(){
+define( function( require ){
 
   'use strict';
+  var $ = require('jquery');
 
   var nginios = window.nginios || {};
 
@@ -8,4 +9,9 @@
 
   window.nginios = nginios;
 
-})();
+  $('#toggle-side-panel').on('click', function(){
+    $('#side-panel').toggle();
+    $('body').toggleClass('side-panel-active');
+  });
+
+});

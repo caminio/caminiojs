@@ -32,6 +32,12 @@ define(function(require) {
       return true;
     }
 
+    this.updateRole = function updateRole( item, e ){
+      this.item.role( this.item.role() <= 5 ? 100 : 1 );
+      console.log(this.item.role());
+      return true;
+    }
+
     // methods
     this.i18n = i18n;
 
@@ -68,7 +74,6 @@ define(function(require) {
     this.activate = function( id ){
       var self = this;
       self.item = null;
-      console.log('here', id);
       if( id === 'new' )
         return self.item = new UserModel();
       if( users.items().length > 0 ){

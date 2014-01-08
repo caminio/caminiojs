@@ -8,6 +8,7 @@ requirejs.config({
     'plugins' : '../vendor/durandal/plugins',
     'transitions' : '../vendor/durandal/transitions',
     'i18next': '../vendor/i18next/i18next.amd.withJQuery-1.7.1',
+    'select2': '../vendor/select2/select2',
     'moment': '../vendor/moment/moment',
     'data_service': '../data_service',
     'nginios': '../nginios'
@@ -29,6 +30,7 @@ define(function(require) {
     , system = require('durandal/system')
     , binder = require('durandal/binder')
     , nginiosHelper = require('nginios/helper')
+    , nginiosCore = require('nginios/core')
     , i18n = require('i18next');
 
   //>>excludeStart("build", true);

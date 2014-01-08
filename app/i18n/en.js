@@ -4,6 +4,9 @@ var en = {};
 en.init_application = 'Initializing application';
 en.never = 'never';
 en.action = 'Action';
+en.total = 'Total';
+en.remove = 'Remove';
+en.add = 'Add';
 
 // navigation
 en.back = 'Back';
@@ -64,6 +67,7 @@ en.user.created = 'User has been created!';
 en.user.creation_failed = 'User failed to create!';
 en.user.saved = 'User has been saved';
 en.user.saving_failed = 'Failed to save user';
+en.user.admin = 'Administrative privileges';
 
 // ADMIN domains
 en.domains = en.domains || {};
@@ -74,5 +78,23 @@ en.domains.edit = 'Edit domain';
 en.domains.lock = 'Lock domain';
 en.domains.delete = 'Delete domain';
 en.domains.new = 'New domain';
+
+// ADMIN domain
+en.domain = en.domain || {};
+en.domain.domain = 'Domain';
+en.domain.name = 'Name';
+en.domain.name_exmpl = 'my-organization.org';
+en.domain.plan = 'Plan';
+en.domain.owner = 'Domain owner';
+en.domain.created = 'Domain has been created!';
+en.domain.creation_failed = 'Failed to create domain!';
+en.domain.saved = 'Domain has been saved';
+en.domain.saving_failed = 'Failed to save domain';
+
+// preferences
+en.preferences = en.preferences || {};
+en.preferences.save = 'Save preferences';
+en.preferences.saved = 'Preferences have been saved';
+en.preferences.saving_failed = 'Failed to save preferences';
 
 module.exports = en;

@@ -43,9 +43,19 @@
       </div>
     </div>
 
+    <hr />
+
+    <div class="field desc">
+      <div class="label-offset">
+        <input type="hidden" name="user[role]" data-bind="value: item.role" />
+        <input type="checkbox" id="user-role" data-bind="checked: item.role() <= 5, event: { click: updateRole }" />
+        <span data-i18n='nginios:user.admin' data-bind="attr: { title: 'PrivId: '+item.role()}"></span>
+      </div>
+    </div>
+
     <input type="submit" class="hide" />
     <input type="hidden" name="_csrf" data-bind="value: CSRF" />
 
   </form>
 
-</section>
+  </section>

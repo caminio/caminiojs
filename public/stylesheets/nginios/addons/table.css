@@ -1,51 +1,87 @@
-table{
-  width: 100%;
+table.nginios{
   border: 1px solid #ddd;
   padding: 10px;
 }
-table thead{
+table.nginios:not(.auto-width){
+  width: 100%;
+}
+table.nginios thead{
   font-size: 14px;
   font-weight: 600;
   color: #555;
 }
-table th{
+table.nginios th{
   padding: 20px 10px 10px;
   text-align: left;
 }
-table tbody tr{
+table.nginios thead tr{
   background-color: #fafafa;
   border-bottom: 1px solid #ddd;
 }
-table th.align-left,
-table td.align-left{
+
+table.nginios tbody tr{
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+table.nginios th.align-left,
+table.nginios td.align-left{
   text-align: left;
 }
-table th.align-right,
-table td.align-right{
+table.nginios th.align-right,
+table.nginios td.align-right{
   text-align: right;
 }
-table th.nr,
-table td.nr{
+table.nginios th.nr,
+table.nginios td.nr{
   text-align: right;
   width: 30px;
 }
-table td{
+table.nginios td{
   padding: 10px;
   font-size: 14px;
+}
+table.nginios tr{
   color: #333;
 }
-table tbody tr:nth-child(even) td{
+table.nginios tbody tr:nth-child(even){
   background-color: #f7f7f7;
 }
-table tbody tr:last-child{
+table.nginios tbody tr:last-child{
   border-bottom: none;
 }
+table.nginios tbody tr.selected,
+table.nginios tbody tr.selected:nth-child(even){
+  background-color: #09f;
+  color: #fff;
+}
+table.nginios:not(.no-hover) tbody tr:hover,
+table.nginios:not(.no-hover) tbody tr:hover:nth-child(even){
+  background-color: #c0e8ff;
+}
+table.nginios tbody tr.selected .fa,
+table.nginios tbody tr.selected a{
+  color: #fff;
+}
 
-table td.actions{
+table.nginios td.actions{
   width: 80px;
 }
-table td.actions .btn-group{
+table.nginios a.btn{
+  color: #fff;
+}
+table.nginios td.actions .btn-group{
   float:right;
   margin-bottom: -5px;
   font-size: 0.9em;
 }
+
+table.nginios td a{
+  color: #555;
+}
+
+table.nginios td table.nginios{
+  border: none;
+  padding: 0;
+  font-size: 12px;
+}
+

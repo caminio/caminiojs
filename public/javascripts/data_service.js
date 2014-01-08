@@ -6,6 +6,7 @@ define(function(require) {
   return new ServiceConnector();
 
   function ServiceConnector(){
+
     this.getById = function getById( url, id, callback ){
       if( cache[url] && cache[url][id] )
         return callback( null, cache[url][id] );

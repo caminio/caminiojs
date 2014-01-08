@@ -1,7 +1,7 @@
 doctype html
 html(lang=i18n.locale())
   head
-    title nginios
+    title camin.io
     
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
@@ -18,6 +18,8 @@ html(lang=i18n.locale())
     link(rel='stylesheet', href='/fonts/opensans.css')
     link(rel='stylesheet', href='/stylesheets/vendor/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/vendor/tooltipster.css')
+    link(rel='stylesheet', href='/stylesheets/vendor/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/vendor/datepicker.css')
 
     link(rel='stylesheet', href='/stylesheets/nginios/common/panels.css')
     link(rel='stylesheet', href='/stylesheets/nginios/sections.css')
@@ -26,6 +28,8 @@ html(lang=i18n.locale())
     link(rel='stylesheet', href='/stylesheets/nginios/addons/message.css')
     link(rel='stylesheet', href='/stylesheets/nginios/addons/loader.css')
     link(rel='stylesheet', href='/stylesheets/nginios/main.css')
+
+    block header
 
     script(type='text/javascript').
       if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
@@ -36,8 +40,9 @@ html(lang=i18n.locale())
       }
       var CSRF = '!{csrf}';
       var currentUser = JSON.parse('!{JSON.stringify(currentUser.toJSON())}');
+      var availablePlans = JSON.parse('!{JSON.stringify(Object.keys(nginios.config.available_plans))}');
 
-  body
+  body.side-panel-active
 
     include common/top_panel.jade
     include common/side_panel.jade

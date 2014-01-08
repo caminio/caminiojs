@@ -8,7 +8,7 @@ var UsersController = Controller.define( function( app ){
   // private
   this.getUsers = function getUsers( req, res, next ){
     nginios.orm.models.User
-    .find()
+    .find({ 'domains': res.locals.currentDomain.id })
     .exec( function( err, users ){
       req.users = users;
       next(err);

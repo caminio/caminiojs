@@ -12,9 +12,11 @@ body{
   background: #f5f5f5;
 }
 .main-view{ 
-  margin-left: 230px;
-  margin-top: 13px;
+  margin-top: 63px;
   position: relative;
+}
+body.side-panel-active .main-view{
+  margin-left: 230px;
 }
 #splash{
   position: absolute;
@@ -36,4 +38,11 @@ body{
   margin-top: 40px;
   width: 100px;
   height: 100px;
+}
+.navbar-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
 }
