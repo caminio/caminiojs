@@ -13,6 +13,9 @@ strong{
 .align-right{
   text-align: right;
 }
+.align-center{
+  text-align: center;
+}
 .fixed{
   position: fixed;
 }

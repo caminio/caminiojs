@@ -20,7 +20,7 @@ form.caminio-form .field label{
   color: #777;
   font-weight: 600;
 }
-form.caminio-form .field select{
+select{
   font-size: 14px;
   padding: 5px;
 }

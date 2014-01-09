@@ -112,6 +112,11 @@ define(function(require) {
           }
           return true;
         }
+      }).fail( function( err ){
+        if( err.status === 409 )
+          notify( $.i18n.t('ticketeer.quota_exceeds_for_requested_amount'), { error: true } );
+        else if( err.responseJSON && err.responseJSON.error )
+          notify( err.responseJSON.error, { error: true } );
       })
     );
   }
