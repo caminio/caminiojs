@@ -1,6 +1,6 @@
 define(function(require) {
 
-  return function notify( message, options ){
+  var notify = function notify( message, options ){
     if( arguments.length < 2 )
       options = message;
     options = options || {};
@@ -16,5 +16,19 @@ define(function(require) {
     $('body').append($message);
     $message.slideDown();
   }
+
+  notify.error = function( message, options ){
+    options = options || {};
+    options.error = true;
+    console.log(message);
+    if( typeof(message) === 'object' && message.responseJSON ){
+      if( typeof(message.responseJSON.error) === 'object' )
+        throw 'notify.error handling error objects is not implemented yet';
+      return notify( message.responseJSON.error, options );
+    }
+    return notify('not recognized error in notify.error', { error: true });
+  }
+
+  return notify;
 
 });

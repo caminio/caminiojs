@@ -24,9 +24,11 @@ header.top-panel ul.ctrl{
 header.top-panel .ctrl-btn{
   padding: 15px 17px;
   color: #ccc;
-  font-size: 20px;
   border-left: 1px solid #ddd;
   transition: all 0.8s;
+}
+header.top-panel .ctrl-btn.icn{
+  font-size: 20px;
 }
 header.top-panel .ctrl-btn:hover,
 header.top-panel .ctrl-btn:focus{
@@ -36,26 +38,42 @@ header.top-panel .ctrl-btn:focus{
 }
 header.top-panel .account-info,
 header.top-panel .domain{
-  padding: 12px 14px;
+  padding: 9px 14px;
   color: #555;
+  position: relative;
+  cursor: pointer;
 }
-header.top-panel .account-info .username,
-header.top-panel .domainname{
-  font-size: 12px;
-  margin-top: 7px;
+header.top-panel .domain,
+header.top-panel .account-info{
+  padding: 17px;
+}
+header.top-panel .account-info{
+  padding-left: 50px;
+}
+header.top-panel .fa-caret-down{
+  font-size: 14px;
+  margin: 2px 0 0;
+  float: right;
+}
+header.top-panel .domainname,
+header.top-panel .account-info .username{
   font-weight: 600;
+  font-size: 12px;
 }
 header.top-panel .domainname{
-  padding: 1px 10px 7px;
+  padding: 0 15px;
 }
 header.top-panel .avatar{
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   border-radius: 20px;
   border: 1px solid #ddd;
   background-color: #fff;
   padding: 3px;
-  margin: -1px 7px 0 0;
+  margin: -7px 7px 0 0;
+  position: absolute;
+  left: 10px;
+  top: 15px;
 }
 
 /*

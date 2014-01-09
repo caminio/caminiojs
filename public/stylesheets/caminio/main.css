@@ -1,9 +1,7 @@
 /* caminio main styles */
 
 html,body{ 
-  height: 100%; 
-}
-html{ 
+  height: 100%;
   font-family: 'OpenSans', 'Open Sans', sans-serif;
   font-size: 14px;
   line-height: 16px;

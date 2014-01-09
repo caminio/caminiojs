@@ -34,6 +34,7 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
   this.get('/logout', 
     function(req, res) {
       req.logout();
+      req.session.current_domain_id = null;
       res.redirect('/');
     });
 

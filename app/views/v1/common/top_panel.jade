@@ -7,12 +7,17 @@ header.top-panel.fixed
 
   ul.ctrl.float-right
     li.float-right
-      a.ctrl-btn.float-right(href=resolvePath('v1/auth','logout'))
+      a.ctrl-btn.icn.float-right(href=resolvePath('v1/auth','logout'))
         i.fa.fa-sign-out
     li.float-right
       a.account-info.ctrl-btn.float-right
         img.avatar.float-left( src='/images/avatar.png' )
         span.float-left.username=currentUser.name.full
-    li.float-right
-      a.domain.ctrl-btn.float-right
+    li.float-right.dropdown
+      a.dropdown-toggle.dropdown-hover.domain.ctrl-btn.float-right( data-toggle='dropdown' )
         span.float-left.domainname=currentDomain.name
+        i.fa.fa-caret-down
+      ul.dropdown-menu( role='menu' )
+        each domain in currentUser.domains
+          li( role='presentation' )
+            a(href='/?change_domain_id='+domain.id)=domain.name

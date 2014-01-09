@@ -1,122 +1,124 @@
-var en = {};
+var t = {};
 
 // general
-en.init_application = 'Initializing application';
-en.never = 'never';
-en.action = 'Action';
-en.total = 'Total';
-en.remove = 'Remove';
-en.add = 'Add';
-en.yes = 'Yes';
-en.no = 'No';
-en.really_delete_caption = 'Really delete?';
-en.really_delete = 'Really delete __name__?';
-
-en.total = 'Total';
+t.init_application = 'Initializing application';
+t.never = 'never';
+t.action = 'Action';
+t.total = 'Total';
+t.remove = 'Remove';
+t.add = 'Add';
+t.yes = 'Yes';
+t.no = 'No';
+t.really_delete_caption = 'Really delete?';
+t.really_delete = 'Really delete __name__?';
+t.created_by = 'Created by';
+t.updated_by = 'Updated by';
+t.time = 'Zeit';
+t.total = 'Total';
 
 // errors
-en.errors = en.errors || {};
-en.errors.unknown = 'An unknown error occured!';
+t.errors = t.errors || {};
+t.errors.unknown = 'An unknown error occured!';
 
 // navigation
-en.back = 'Back';
+t.back = 'Back';
 
 // form control
-en.save = 'Save';
-en.create = 'Create';
+t.save = 'Save';
+t.create = 'Create';
 
 // auth
-en.username_email = 'Username';
-en.password = 'Password';
-en.login = 'Login';
-en.forgot_password = 'Forgot your password?';
-en.enter_email = 'Email address';
-en.remember_your_email = 'If you remember your Email address, you can request a link to reset your password.';
-en.request_link = 'Request link'
-en.user_unknown = 'Login failed! - User unkown'
-en.authentication_failed = 'Login failed!'
-en.toggle_sidebar = 'Toggle sidebar'
-en.logout = 'Logout'
+t.username_email = 'Username';
+t.password = 'Password';
+t.login = 'Login';
+t.forgot_password = 'Forgot your password?';
+t.enter_email = 'Email address';
+t.remember_your_email = 'If you remember your Email address, you can request a link to reset your password.';
+t.request_link = 'Request link'
+t.user_unknown = 'Login failed! - User unkown'
+t.authentication_failed = 'Login failed!'
+t.toggle_sidebar = 'Toggle sidebar'
+t.logout = 'Logout'
 
 // gears (application list)
-en.gears = en.gears || {};
-en.gears.paths = en.gears.paths || {};
-en.gears.paths.admin = 'Administration';
-en.gears.paths.dashboard = 'Dashboard';
+t.gears = t.gears || {};
+t.gears.paths = t.gears.paths || {};
+t.gears.paths.admin = 'Administration';
+t.gears.paths.dashboard = 'Dashboard';
 
 // ADMIN module
-en.navbar = en.navbar || {};
-en.navbar.overview = 'Overview';
-en.navbar.billing = 'Billing';
-en.navbar.users_groups = 'Users';
-en.navbar.domains = 'Domains';
+t.navbar = t.navbar || {};
+t.navbar.overview = 'Overview';
+t.navbar.billing = 'Billing';
+t.navbar.users_groups = 'Users';
+t.navbar.domains = 'Domains';
 
 // ADMIN users
-en.users = en.users || {};
-en.users.name = 'Name';
-en.users.email = 'Email';
-en.users.last_login = 'Last Login';
-en.users.nr = 'No.';
-en.users.edit = 'Edit user';
-en.users.lock = 'Lock user';
-en.users.delete = 'Delete user';
-en.users.new = 'New user';
+t.users = t.users || {};
+t.users.name = 'Name';
+t.users.email = 'Email';
+t.users.last_login = 'Last Login';
+t.users.nr = 'No.';
+t.users.edit = 'Edit user';
+t.users.lock = 'Lock user';
+t.users.delete = 'Delete user';
+t.users.new = 'New user';
 
 // ADMIN user
-en.user = en.user || {};
-en.user.full_name = 'Name';
-en.user.full_name_exmpl = 'e.g.: Elisabeth Queen';
-en.user.email = 'Email';
-en.user.email_exmpl = 'e.g.: elisabeth@example.com';
-en.user.password = 'Password';
-en.user.password_exmpl = 'at least 6 characters';
-en.user.password_res = 'Password is:';
-en.user.send_link_to_set_pwd = 'Generate a link'
-en.user.suggest_pwd = 'Suggest';
-en.user.created = 'User has been created!';
-en.user.creation_failed = 'User failed to create!';
-en.user.saved = 'User has been saved';
-en.user.saving_failed = 'Failed to save user';
-en.user.admin = 'Administrative privileges';
+t.user = t.user || {};
+t.user.full_name = 'Name';
+t.user.full_name_exmpl = 'e.g.: Elisabeth Queen';
+t.user.email = 'Email';
+t.user.email_exmpl = 'e.g.: elisabeth@example.com';
+t.user.password = 'Password';
+t.user.password_exmpl = 'at least 6 characters';
+t.user.password_res = 'Password is:';
+t.user.send_link_to_set_pwd = 'Generate a link'
+t.user.suggest_pwd = 'Suggest';
+t.user.created = 'User has been created!';
+t.user.creation_failed = 'User failed to create!';
+t.user.saved = 'User has been saved';
+t.user.saving_failed = 'Failed to save user';
+t.user.admin = 'Administrative privileges';
 
 // ADMIN domains
-en.domains = en.domains || {};
-en.domains.name = 'Name';
-en.domains.nr = 'No.';
-en.domains.plan = 'Current plan';
-en.domains.edit = 'Edit domain';
-en.domains.lock = 'Lock domain';
-en.domains.delete = 'Delete domain';
-en.domains.new = 'New domain';
+t.domains = t.domains || {};
+t.domains.name = 'Name';
+t.domains.nr = 'No.';
+t.domains.plan = 'Current plan';
+t.domains.edit = 'Edit domain';
+t.domains.lock = 'Lock domain';
+t.domains.delete = 'Delete domain';
+t.domains.new = 'New domain';
 
 // ADMIN domain
-en.domain = en.domain || {};
-en.domain.domain = 'Domain';
-en.domain.name = 'Name';
-en.domain.name_exmpl = 'my-organization.org';
-en.domain.plan = 'Plan';
-en.domain.owner = 'Domain owner';
-en.domain.created = 'Domain has been created!';
-en.domain.creation_failed = 'Failed to create domain!';
-en.domain.saved = 'Domain has been saved';
-en.domain.saving_failed = 'Failed to save domain';
+t.domain = t.domain || {};
+t.domain.domain = 'Domain';
+t.domain.name = 'Name';
+t.domain.name_exmpl = 'my-organization.org';
+t.domain.plan = 'Plan';
+t.domain.owner = 'Domain owner';
+t.domain.created = 'Domain has been created!';
+t.domain.creation_failed = 'Failed to create domain!';
+t.domain.saved = 'Domain has been saved';
+t.domain.saving_failed = 'Failed to save domain';
 
 // preferences
-en.preferences = en.preferences || {};
-en.preferences.save = 'Save preferences';
-en.preferences.saved = 'Preferences have been saved';
-en.preferences.saving_failed = 'Failed to save preferences';
+t.preferences = t.preferences || {};
+t.preferences.save = 'Save preferences';
+t.preferences.saved = 'Preferences have been saved';
+t.preferences.saving_failed = 'Failed to save preferences';
 
 // address defaults
-en.addr = en.addr || {};
-en.addr.address = 'Address';
-en.addr.zip = 'Zip';
-en.addr.city = 'City';
-en.addr.street = 'Street';
-en.addr.firstname = 'Firstname';
-en.addr.lastname = 'Lastname';
-en.addr.organization = 'Organization';
-en.addr.email = 'Email';
-en.addr.phone = 'Phone';
+t.addr = t.addr || {};
+t.addr.address = 'Address';
+t.addr.zip = 'Zip';
+t.addr.city = 'City';
+t.addr.street = 'Street';
+t.addr.firstname = 'Firstname';
+t.addr.lastname = 'Lastname';
+t.addr.organization = 'Organization';
+t.addr.email = 'Email';
+t.addr.phone = 'Phone';
 
-module.exports = en;
+module.exports = t;
