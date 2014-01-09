@@ -12,7 +12,7 @@ requirejs.config({
     'select2': '../vendor/select2/select2',
     'moment': '../vendor/moment/moment',
     'data_service': '../data_service',
-    'nginios': '../nginios'
+    'caminio': '../caminio'
   },
   shim: {
     'jquery': {
@@ -35,8 +35,8 @@ define(function(require) {
     , viewLocator = require('durandal/viewLocator')
     , system = require('durandal/system')
     , binder = require('durandal/binder')
-    , nginiosHelper = require('nginios/helper')
-    , nginiosCore = require('nginios/core')
+    , caminioHelper = require('caminio/helper')
+    , caminioCore = require('caminio/core')
     , i18n = require('i18next');
 
   //>>excludeStart("build", true);
@@ -54,7 +54,7 @@ define(function(require) {
     detectFromHeaders: false,
     lng: window.navigator.userLanguage || window.navigator.language || 'en',
     fallbackLng: 'en',
-    ns: 'nginios',
+    ns: 'caminio',
     resGetPath: '/v1/dashboard/translations/__lng__.json',
     useCookie: false
   };

@@ -1,11 +1,11 @@
 {
-  "name": "nginios",
+  "name": "caminio",
   "description": "MVC framework inspired by RoR architecture",
   "version": "1.0.0",
   "private": true,
   "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
   "keywords": [
-    "nginios",
+    "caminio",
     "mvc framework"
   ],
   "dependencies": {
@@ -37,11 +37,11 @@
     "jscoverage": "~0.3.8",
     "supertest": "~0.8.2",
     "superagent": "~0.15.7",
-    "nginios-fixtures": "git://github.com/tastenwerk/nginios-fixtures#master"
+    "caminio-fixtures": "git://github.com/tastenwerk/caminio-fixtures#master"
   },
   "main": "index.js",
   "bin": {
-    "nginios": "./bin/nginios"
+    "caminio": "./bin/caminio"
   },
   "scripts": {
     "prepublish": "npm prune",
@@ -51,9 +51,9 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tastenwerk/nginios.git"
+    "url": "https://github.com/tastenwerk/caminio.git"
   },
   "bugs": {
-    "url": "https://github.com/tastenwerk/nginios/issues"
+    "url": "https://github.com/tastenwerk/caminio/issues"
   }
 }

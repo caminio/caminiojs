@@ -2,7 +2,7 @@ var async = require('async')
   , helper = require('./helper')
   , fixtures = helper.fixtures
   , expect = helper.chai.expect
-  , nginios = helper.nginios;
+  , caminio = helper.caminio;
 
 
 describe( 'User', function(){
@@ -171,7 +171,7 @@ describe( 'User', function(){
 
       before( function( done ){
         var test = this;
-        nginios();
+        caminio();
         async.parallel({
           user: function( callback ){
                   fixtures.user.create( callback );
@@ -198,7 +198,7 @@ describe( 'User', function(){
 
       before( function( done ){
         var test = this;
-        nginios();
+        caminio();
         async.parallel({
           user: function( callback ){
                   fixtures.user.create( callback );

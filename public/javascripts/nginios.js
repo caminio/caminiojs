@@ -5,10 +5,10 @@ jQuery( function($){
   });
 
   // get translations
-  $.getJSON( '/nginios/i18n_translations', function(resources){
+  $.getJSON( '/caminio/i18n_translations', function(resources){
     $.i18n.init({
       fallbackLng: 'en',
-      ns: 'nginios',
+      ns: 'caminio',
       useCookie: false,
       detectLngFromHeaders: false,
       resStore: resources
@@ -23,7 +23,7 @@ jQuery( function($){
   pager.start();
 
   function continueInit(){
-    console.log('nginios is ready'); 
+    console.log('caminio is ready'); 
   }
 
 });

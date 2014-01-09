@@ -1,0 +1,101 @@
+table.caminio{
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+table.caminio:not(.auto-width){
+  width: 100%;
+}
+table.caminio thead{
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+table.caminio th{
+  padding: 20px 10px 10px;
+  text-align: left;
+}
+table.caminio thead tr{
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+table.caminio tfoot tr{
+  background-color: #f2f2f2;
+  border-top: 1px solid #ddd;
+}
+table.caminio tfoot tr.totals{
+  font-size: 10px;
+  font-weight: 600;
+}
+
+table.caminio tbody tr{
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+table.caminio th.align-left,
+table.caminio td.align-left{
+  text-align: left;
+}
+table.caminio th.align-right,
+table.caminio td.align-right{
+  text-align: right;
+}
+table.caminio th.nr,
+table.caminio td.nr{
+  text-align: right;
+  width: 30px;
+}
+table.caminio td{
+  padding: 10px;
+  font-size: 14px;
+}
+table.caminio tr{
+  color: #333;
+}
+table.caminio tbody tr:nth-child(even){
+  background-color: #f7f7f7;
+}
+table.caminio tbody tr:last-child{
+  border-bottom: none;
+}
+table.caminio tbody tr.selected,
+table.caminio tbody tr.selected:nth-child(even){
+  background-color: #09f;
+  color: #fff;
+}
+table.caminio:not(.no-hover) tbody tr:hover,
+table.caminio:not(.no-hover) tbody tr:hover:nth-child(even){
+  background-color: #c0e8ff;
+}
+table.caminio tbody tr.selected .fa,
+table.caminio tbody tr.selected a{
+  color: #fff;
+}
+
+table.caminio td.actions{
+  width: 80px;
+  opacity: 0.5;
+}
+table.caminio td.actions:hover{
+  opacity: 1;
+}
+table.caminio td.actions:not(:hover) .btn{
+  background-color: #aaa;
+}
+table.caminio a.btn{
+  color: #fff;
+}
+table.caminio td.actions .btn-group{
+  float:right;
+  margin-bottom: -5px;
+  font-size: 0.9em;
+}
+
+table.caminio td a{
+  color: #555;
+}
+
+table.caminio td table.caminio{
+  border: none;
+  padding: 0;
+  font-size: 12px;
+}

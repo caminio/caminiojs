@@ -1,12 +1,12 @@
-var nginios = require('../../../')
+var caminio = require('../../../')
   , login = require('connect-ensure-login')
-  , Controller = nginios.Controller;
+  , Controller = caminio.Controller;
 
 var DomainsController = Controller.define( function( app ){
 
   // private
   this.getDomains = function getDomains( req, res, next ){
-    nginios.orm.models.Domain
+    caminio.orm.models.Domain
     .find()
     .populate('owner')
     .exec( function( err, domains ){
@@ -16,7 +16,7 @@ var DomainsController = Controller.define( function( app ){
   }
 
   this.getDomain = function getDomains( req, res, next ){
-    nginios.orm.models.Domain
+    caminio.orm.models.Domain
     .findOne({ _id: req.params.id })
     .populate('owner')
     .exec( function( err, domain ){
@@ -54,13 +54,13 @@ var DomainsController = Controller.define( function( app ){
           this.requireSU,
           function( req, res ){
             if( 'owner' in req.body && 'domain' in req.body ){
-              var owner = new nginios.orm.models.User( req.body.owner );
+              var owner = new caminio.orm.models.User( req.body.owner );
               owner.save( function( err ){
                 if( err ){ return res.json(400, { error: err }); }
-                var domain = new nginios.orm.models.Domain( req.body.domain );
+                var domain = new caminio.orm.models.Domain( req.body.domain );
                 domain.owner = owner;
-                if( req.body.domain.plan in nginios.app.config.available_plans )
-                  domain.allowed_gears = nginios.app.config.available_plans[req.body.domain.plan];
+                if( req.body.domain.plan in caminio.app.config.available_plans )
+                  domain.allowed_gears = caminio.app.config.available_plans[req.body.domain.plan];
                 domain.save( function( err ){
                   if( err ){ return res.json(400, { error: err }); }
                   owner.domains.push( domain );
@@ -96,8 +96,8 @@ var DomainsController = Controller.define( function( app ){
                   req.domain.name = req.body.domain.name;
                 if( req.body.domain.plan )
                   req.domain.plan = req.body.domain.plan;
-                if( req.body.domain.plan in nginios.app.config.available_plans )
-                  req.domain.allowed_gears = nginios.app.config.available_plans[req.body.domain.plan];
+                if( req.body.domain.plan in caminio.app.config.available_plans )
+                  req.domain.allowed_gears = caminio.app.config.available_plans[req.body.domain.plan];
                 req.domain.save( function( err ){
                   if( err ){ return res.json(400, { error: err }); }
                   res.json({ item: req.domain });

@@ -4,11 +4,11 @@ define( function( require ){
   var $ = require('jquery')
     , bootstrap = require('bootstrap');
 
-  var nginios = window.nginios || {};
+  var caminio = window.caminio || {};
 
   var loader = '<div class="loader"><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /><div class="circle" /></div>';
 
-  window.nginios = nginios;
+  window.caminio = caminio;
 
   $('#toggle-side-panel').on('click', function(){
     $('#side-panel').toggle();

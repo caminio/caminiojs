@@ -1,12 +1,12 @@
-var nginios = require('../../../')
+var caminio = require('../../../')
   , passport = require('passport')
   , login = require('connect-ensure-login')
   , moment = require('moment')
-  , utils = nginios.utils
-  , Controller = nginios.Controller;
+  , utils = caminio.utils
+  , Controller = caminio.Controller;
 
 function fail( res, options ){
-  nginios.app.gears.nginios.auth.fail( res, options );
+  caminio.app.gears.caminio.auth.fail( res, options );
 }
 
 var AuthController = Controller.define( function( app, namespacePrefix ){
@@ -23,12 +23,12 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
 
   this.get('/',
     function( req, res){
-      res.nginios.render( 'login' );
+      res.caminio.render( 'login' );
     });
 
   this.get('/login', 
     function( req, res ){ 
-      res.nginios.render( 'login' );
+      res.caminio.render( 'login' );
     });
 
   this.get('/logout', 
@@ -51,7 +51,7 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
       //login.ensureLoggedIn( this.resolvePath(null,'/login')),
       login.ensureLoggedIn(namespacePrefix+'/login'),
       function( req, res ){
-        nginios.orm.models.RequestToken.findOne({ token: req.param('request_token') }, function(err, token) {
+        caminio.orm.models.RequestToken.findOne({ token: req.param('request_token') }, function(err, token) {
           if (err) { return fail( res, { status: 401, description: err }); }
           if( !token ) { return fail( res, { status: 401, description: 'unauthorized_client' }) }
           res.render('authorize');
@@ -61,7 +61,7 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
   this.post('/dialog/authorize/decision',
       login.ensureLoggedIn(namespacePrefix+'/login'),
       function( req, res ){
-        nginios.orm.models.RequestToken.findOne({ token: req.param('request_token') }, function(err, token) {
+        caminio.orm.models.RequestToken.findOne({ token: req.param('request_token') }, function(err, token) {
           if (err) { return fail( res, { status: 401, description: err }); }
           if( !token ) { return fail( res, { status: 401, description: 'unauthorized_client' }) }
           token.approved.at = new Date();
@@ -73,22 +73,22 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
       });
 
   this.post('/oauth/request_token',
-      app.gears.nginios.auth.maintainRequestTokens,
-      app.gears.nginios.auth.loadClient,
+      app.gears.caminio.auth.maintainRequestTokens,
+      app.gears.caminio.auth.loadClient,
       function(req,res){
         var token = utils.uid(8);
         var secret = utils.uid(32);
         // TODO: prevent reply attacks by looking up if that ip address
         // has any request tokens already
-        var requestToken = new nginios.orm.models.RequestToken({ 
+        var requestToken = new caminio.orm.models.RequestToken({ 
           client: req.param('client_id'), 
             redirect_uri: req.param('redirect_uri'),
             scope: req.param('scope'),
-            ip_address: nginios.app.gears.nginios.auth.ipAddress( req ),
+            ip_address: caminio.app.gears.caminio.auth.ipAddress( req ),
             token: token, 
             secret: secret });
         requestToken.tries.push({ 
-          ip_address: nginios.app.gears.nginios.auth.ipAddress(req),
+          ip_address: caminio.app.gears.caminio.auth.ipAddress(req),
           at: new Date(),
           tries: 1
         });
@@ -100,20 +100,20 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
       });
 
   this.post('/oauth/access_token',
-      app.gears.nginios.auth.maintainAccessTokens,
-      app.gears.nginios.auth.loadClient,
-      app.gears.nginios.auth.loadRequestToken,
+      app.gears.caminio.auth.maintainAccessTokens,
+      app.gears.caminio.auth.loadClient,
+      app.gears.caminio.auth.loadRequestToken,
       function(req,res){
         var token = utils.uid(8);
         var secret = utils.uid(32);
         // TODO: prevent reply attacks by looking up if that ip address
         // has any request tokens already
-        var accessToken = new nginios.orm.models.AccessToken({ 
+        var accessToken = new caminio.orm.models.AccessToken({ 
           client: req.param('client_id'), 
           user: res.locals.client.user,
           request_uri: req.param('request_uri'),
           scope: req.param('scope'),
-          ip_address: nginios.app.gears.nginios.auth.ipAddress( req ),
+          ip_address: caminio.app.gears.caminio.auth.ipAddress( req ),
           refresh_token: utils.uid(8),
           expires_in: moment().add('h',2).toDate(),
           token: token, 
@@ -126,7 +126,7 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
       });
 
   this.get('/test',
-      app.gears.nginios.auth.token,
+      app.gears.caminio.auth.token,
       function(req,res){
         res.json( res.locals.user );
       });

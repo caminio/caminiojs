@@ -1,10 +1,10 @@
 /*
- * nginios
+ * caminio
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  * 
  */
 
-module.exports = process.env.nginios_COV
-? require('./lib-cov/nginios')
-: require('./lib/nginios');
+module.exports = process.env.caminio_COV
+? require('./lib-cov/caminio')
+: require('./lib/caminio');

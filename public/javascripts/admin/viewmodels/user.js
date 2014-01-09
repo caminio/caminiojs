@@ -3,8 +3,8 @@ define(function(require) {
   var dataService = require('data_service')
     , ko = require('knockout')
     , i18n = require('i18next')
-    , notify = require('nginios/notify')
-    , nginiosHelper = require('nginios/helper')
+    , notify = require('caminio/notify')
+    , caminioHelper = require('caminio/helper')
     , UserModel = require('models/user')
     , router = require('plugins/router')
     , users = require('viewmodels/users')
@@ -14,10 +14,10 @@ define(function(require) {
     
     this.item = new UserModel( data );
 
-    this.toggleCheckbox = nginiosHelper.toggleCheckbox;
+    this.toggleCheckbox = caminioHelper.toggleCheckbox;
 
     this.genPwd = function genPwd(item, e){
-      this.autoGenPwd = nginiosHelper.generatePassword();
+      this.autoGenPwd = caminioHelper.generatePassword();
       $('input[name=user\\[password\\]]').val( this.autoGenPwd );
       $('#pwd-suggestion-cleartext .result').text( this.autoGenPwd );
       $('#pwd-suggestion-cleartext').fadeIn();

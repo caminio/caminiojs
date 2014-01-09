@@ -1,13 +1,13 @@
-var nginios = require('../../../')
+var caminio = require('../../../')
   , login = require('connect-ensure-login')
   , moment = require('moment')
-  , Controller = nginios.Controller;
+  , Controller = caminio.Controller;
 
 var UsersController = Controller.define( function( app ){
 
   // private
   this.getUsers = function getUsers( req, res, next ){
-    nginios.orm.models.User
+    caminio.orm.models.User
     .find({ 'domains': res.locals.currentDomain.id })
     .exec( function( err, users ){
       req.users = users;
@@ -16,7 +16,7 @@ var UsersController = Controller.define( function( app ){
   }
 
   this.getUserById = function getUserById( req, res, next ){
-    nginios.orm.models.User
+    caminio.orm.models.User
     .findById( req.params.id )
     .exec( function( err, user ){
       req.user = user;
@@ -52,7 +52,7 @@ var UsersController = Controller.define( function( app ){
             if( !res.locals.currentDomain )
               return res.json( 400, { error: 'no domain selected'});
             if( 'user' in req.body ){
-              var user = new nginios.orm.models.User( req.body.user );
+              var user = new caminio.orm.models.User( req.body.user );
               user.domains.push( res.locals.currentDomain );
               user.save( function( err ){
                 if( err ){ return res.json(400, { error: err }); }
@@ -75,7 +75,7 @@ var UsersController = Controller.define( function( app ){
               }
               req.user.update( req.body.user, function( err ){
                 if( err ){ return res.json(400, { error: err }); }
-                nginios.orm.models.User.findOne({ _id: req.params.id }, function( err, user ){
+                caminio.orm.models.User.findOne({ _id: req.params.id }, function( err, user ){
                   if( err ){ return res.json(400, { error: err }); }
                   if( user )
                     return res.json({ item: user });
@@ -93,7 +93,7 @@ var UsersController = Controller.define( function( app ){
             if( req.user ){
               req.user.update( { locked: { at: new Date(), by: res.locals.currentUser } }, function( err ){
                 if( err ){ return res.json(400, { error: err }); }
-                nginios.orm.models.User.findOne({ _id: req.params.id }, function( err, user ){
+                caminio.orm.models.User.findOne({ _id: req.params.id }, function( err, user ){
                   if( err ){ return res.json(400, { error: err }); }
                   res.json({ item: user });
                 });

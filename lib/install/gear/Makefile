@@ -10,7 +10,7 @@ lib-cov:
 	@./node_modules/.bin/jscoverage lib lib-cov
 
 html-cov: lib-cov
-	@nginios_COV=1 ./node_modules/.bin/mocha --reporter html-cov > coverage.html
+	@caminio_COV=1 ./node_modules/.bin/mocha --reporter html-cov > coverage.html
 
 coverage:	html-cov
 

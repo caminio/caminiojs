@@ -1,7 +1,7 @@
 define(function(require) {
 
   var ko = require('knockout')
-    , notify = require('nginios/notify')
+    , notify = require('caminio/notify')
     , $ = require('jquery');
 
 

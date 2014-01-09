@@ -1,43 +1,43 @@
 <section>
 
-  <form class="nginios-form" data-bind="submit: typeof(item.id) === 'undefined' ? createItem : saveItem">
+  <form class="caminio-form" data-bind="submit: typeof(item.id) === 'undefined' ? createItem : saveItem">
 
     <div class="main-ctrl align-right">
-      <a href="#users" class="btn icon-text"><i class="fa fa-arrow-left"></i><span data-i18n="nginios:back"></span></a>
+      <a href="#users" class="btn icon-text"><i class="fa fa-arrow-left"></i><span data-i18n="caminio:back"></span></a>
       <!-- ko if: (typeof(item.id) !== 'undefined') -->
-      <button class="btn primary" data-i18n="nginios:save"></button>
+      <button class="btn primary" data-i18n="caminio:save"></button>
       <!-- /ko -->
       <!-- ko if: (typeof(item.id) === 'undefined') -->
-      <button class="btn primary" data-i18n="nginios:create"></button>
+      <button class="btn primary" data-i18n="caminio:create"></button>
       <!-- /ko -->
     </div>
 
     <div class="field">
-      <label data-i18n='nginios:user.full_name'></label>
+      <label data-i18n='caminio:user.full_name'></label>
       <input type="text" name="user[name][full]" data-bind="value: item.name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus" />
     </div>
 
     <div class="field">
-      <label data-i18n='nginios:user.email'></label>
+      <label data-i18n='caminio:user.email'></label>
       <input type="text" name="user[email]" data-bind="value: item.email, attr: { placeholder: i18n.t('user.email_exmpl') }" />
     </div>
 
     <div class="field">
-      <label data-i18n='nginios:user.password'></label>
+      <label data-i18n='caminio:user.password'></label>
       <input type="password" name="user[password]" data-bind="value: item.password, attr: { placeholder: i18n.t('user.password_exmpl') }, event: { keydown: updateAutoGen }" />
       <br />
       <div class="label-offset desc">
         <a class="btn tiny pale borderless" data-bind="click: toggleCheckbox">
           <i class="fa fa-square-o"></i>
           <input type="checkbox" class="hide" name="gen_link" />
-          <span data-i18n="nginios:user.send_link_to_set_pwd"></span>
+          <span data-i18n="caminio:user.send_link_to_set_pwd"></span>
         </a>
         <a data-bind="click: genPwd" class="btn tiny light" id="suggest-pwd">
           <i class="fa fa-dashboard"></i>
-          <span data-i18n="nginios:user.suggest_pwd"></span>
+          <span data-i18n="caminio:user.suggest_pwd"></span>
         </a>
         <span id="pwd-suggestion-cleartext" class="hide">
-          <span data-i18n="nginios:user.password_res"></span>
+          <span data-i18n="caminio:user.password_res"></span>
           <span class="result"></span>
         </span>
       </div>
@@ -49,7 +49,7 @@
       <div class="label-offset">
         <input type="hidden" name="user[role]" data-bind="value: item.role" />
         <input type="checkbox" id="user-role" data-bind="checked: item.role() <= 5, event: { click: updateRole }" />
-        <span data-i18n='nginios:user.admin' data-bind="attr: { title: 'PrivId: '+item.role()}"></span>
+        <span data-i18n='caminio:user.admin' data-bind="attr: { title: 'PrivId: '+item.role()}"></span>
       </div>
     </div>
 

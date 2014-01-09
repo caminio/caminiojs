@@ -1,5 +1,5 @@
 /*
- * nginios
+ * caminio
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -8,12 +8,12 @@
 var jsonSelect = require('mongoose-json-select')
   , MessageSchema = require('./schemas/message')
   , crypto = require('crypto')
-  , nginios = require('../../')
-  , orm = nginios.orm;
+  , caminio = require('../../')
+  , orm = caminio.orm;
 
 /**
  * The user class is the main user object
- * for any operations in nginios
+ * for any operations in caminio
  *
  * @class User
  */
@@ -306,7 +306,7 @@ UserSchema.virtual('superuser').get(function(){
 
 **/
 UserSchema.method('isSuperUser', function(){
-  return nginios.app.config.superusers.indexOf(this.email) >= 0;
+  return caminio.app.config.superusers.indexOf(this.email) >= 0;
 });
 
 UserSchema.virtual('id').get(function(){

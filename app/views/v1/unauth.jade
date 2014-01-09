@@ -4,11 +4,11 @@ html(lang=i18n.locale())
     title nginio
 
     link(rel='stylesheet', href='/fonts/opensans.css')
-    link(rel='stylesheet', href='/stylesheets/nginios/reset.css')
-    link(rel='stylesheet', href='/stylesheets/nginios/common.css')
+    link(rel='stylesheet', href='/stylesheets/caminio/reset.css')
+    link(rel='stylesheet', href='/stylesheets/caminio/common.css')
     link(rel='stylesheet', href='/stylesheets/vendor/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/vendor/tooltipster.css')
-    link(rel='stylesheet', href='/stylesheets/nginios/unauth.css')
+    link(rel='stylesheet', href='/stylesheets/caminio/unauth.css')
 
     script(type='text/javascript', src='/javascripts/vendor/jquery/jquery.js')
     //script(type='text/javascript', src='/javascripts/vendor/jquery.tooltipster.min.js')
@@ -21,7 +21,7 @@ html(lang=i18n.locale())
       if( messages.count > 0 )
         .message(class=(messages.error ? 'error' : ''))
           =t(messages.error || messages.info)
-      img.nginios-logo(src='/images/logo.png')
+      img.caminio-logo(src='/images/logo.png')
       .unauth-content-block
         block content
 

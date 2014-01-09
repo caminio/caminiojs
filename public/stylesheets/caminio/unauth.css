@@ -1,4 +1,4 @@
-/* nginios main styles for unauthenticated users */
+/* caminio main styles for unauthenticated users */
 
 html,body{ 
   height: 100%; 
@@ -11,7 +11,7 @@ body{
   background: #f5f5f5;
   overflow: hidden;
 }
-.nginios-logo{
+.caminio-logo{
   float: left;
   margin: 20px 0 20px 20px;
 }

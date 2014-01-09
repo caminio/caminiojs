@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/tastenwerk/nginios.png)](https://travis-ci.org/tastenwerk/nginios)
+[![Build Status](https://travis-ci.org/tastenwerk/caminio.png)](https://travis-ci.org/tastenwerk/caminio)
 
-# nginios
+# caminio
 
-nginios is a modularized MVC framework inspired by Ruby on Rails.
+caminio is a modularized MVC framework inspired by Ruby on Rails.
 It is build on top of the express js with build-in OAuth authentication 
 and a simplified routing system.
 
@@ -28,13 +28,13 @@ As well as low resource modules like momentjs, async, winston, commander
 
 ## installation
 
-create a nginios application:
+create a caminio application:
 
-    nginios new myapp
+    caminio new myapp
 
-add nginios dependency to it's package.json by comitting
+add caminio dependency to it's package.json by comitting
 
-    npm install --save nginios
+    npm install --save caminio
 
 run the app the usual way
 
@@ -42,20 +42,20 @@ run the app the usual way
 
 You should see something like:
 
-    [nginios] running at port 3000
+    [caminio] running at port 3000
 
 
 ## <a name="gear"></a> Gear
 
 a Gear is a logical unit or, if you want, a plugin. It is defined before
-`nginios()` is called. The order does not matter.
+`caminio()` is called. The order does not matter.
 
 ### defining a new gear
 
-    var Gear = nginios.Gear;
+    var Gear = caminio.Gear;
     var myGear = Gear.new();
 
-When `nginios()` is called, the gear's base directory is parsed
+When `caminio()` is called, the gear's base directory is parsed
 for occurrence of `app` directory and `models`, `views` and `controllers` directories
 inside. These structure works pretty much the same as rails' organizational strucutre
 works.
@@ -82,9 +82,9 @@ model's filenames are used to compute the model's name to register it to mongoos
 
     // file: app/models/my.js
     //
-    var nginios = require('nginios');
+    var caminio = require('caminio');
 
-    var MySchema = nginios.orm.Schema({
+    var MySchema = caminio.orm.Schema({
       name: String,
       num: { type: Number, required: true }
     });
@@ -93,14 +93,14 @@ model's filenames are used to compute the model's name to register it to mongoos
 
 This will create a model / collection named 'My', resp. 'mys'. It can be accessed
 directly via `var mongoose = require('mongoose'); mongoose.models.My` or the prefered way is to access
-it via the mapper function `nginios.orm.models.My`
+it via the mapper function `caminio.orm.models.My`
 
 
 ## Controller
 
     // file: app/controllers/my.js
-    var nginios = require('../../')
-      , Controller = nginios.Controller;
+    var caminio = require('../../')
+      , Controller = caminio.Controller;
     
     var MyController = Controller.define( function( app ){
     
@@ -127,13 +127,13 @@ via `config/routes.js` file, which should have been copied over when creating th
 
 
     var helper = require('../helper')
-      , nginios = helper.nginios;
+      , caminio = helper.caminio;
     
-    nginios.router.add( '/my_namespace', 'my' );
+    caminio.router.add( '/my_namespace', 'my' );
 
 alternatively, if the roue is going to have the same name as the controller:
 
-    nginios.router.add( 'my' );
+    caminio.router.add( 'my' );
 
 This would connect the my controller from above to the /my_namespace.
 

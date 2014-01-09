@@ -1,12 +1,12 @@
-var nginios = require('../../../')
+var caminio = require('../../../')
   , login = require('connect-ensure-login')
-  , Controller = nginios.Controller;
+  , Controller = caminio.Controller;
 
 var UsersController = Controller.define( function( app ){
 
   this.changeDomainIfReq = function changeDomainIfReq( req, res, next ){
     if( req.param('change_domain_id') )
-      nginios.orm.models.Domain.findOne({ _id: req.param('change_domain_id') }, function( err, domain ){
+      caminio.orm.models.Domain.findOne({ _id: req.param('change_domain_id') }, function( err, domain ){
         if( err )
           console.log('error', err);
         if( domain )
@@ -19,7 +19,7 @@ var UsersController = Controller.define( function( app ){
 
   this.requireAdmin = function requireAdmin( req, res, next ){
     if( !res.locals.currentUser.isAdmin( res.locals.currentDomain ) )
-      return res.nginios.render('/errors/404');
+      return res.caminio.render('/errors/404');
     next();
   }
 
@@ -30,7 +30,7 @@ var UsersController = Controller.define( function( app ){
            this.changeDomainIfReq,
            this.requireAdmin,
            function( req, res ){
-             res.nginios.render('index');
+             res.caminio.render('index');
            });
 
 });

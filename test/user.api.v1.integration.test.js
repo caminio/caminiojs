@@ -3,7 +3,7 @@ var async = require('async')
   , fixtures = helper.fixtures
   , expect = helper.chai.expect
   , request = require('superagent')
-  , nginios = helper.nginios;
+  , caminio = helper.caminio;
 
 var URL='http://localhost:3000/v1/users';
 
@@ -47,7 +47,7 @@ describe( 'User API '+URL, function(){
   describe('POST '+URL, function(){
  
     beforeEach( function(done){
-      nginios.orm.models.User.remove({ email: 'maria.shelley@example.com' }, function( err ){
+      caminio.orm.models.User.remove({ email: 'maria.shelley@example.com' }, function( err ){
         done(err);
       })
     });

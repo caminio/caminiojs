@@ -1,15 +1,15 @@
 /**
- * nginios test helper
+ * caminio test helper
  */
 
 var helper = {};
 
-helper.nginios = require('../');
+helper.caminio = require('../');
 
-helper.fixtures = require('nginios-fixtures');
+helper.fixtures = require('caminio-fixtures');
 helper.fixtures.readFixtures();
 // enable ORM (mongoose)
-helper.fixtures.enableORM( helper.nginios );
+helper.fixtures.enableORM( helper.caminio );
 
 helper.chai = require('chai');
 helper.chai.Assertion.includeStack = true;
@@ -26,7 +26,7 @@ helper.startServer = function( test, done ){
   if( test.server )
     test.server.close();
 
-  test.app = helper.nginios();
+  test.app = helper.caminio();
   test.server = test.app.server.start( function(){
     test.running = true;
     test.agent = test.superagent.agent();

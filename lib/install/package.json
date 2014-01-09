@@ -6,6 +6,6 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "nginios": "~0.0.1"
+    "caminio": "~0.0.1"
   }
 }

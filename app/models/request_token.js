@@ -1,5 +1,5 @@
 /*
- * nginios
+ * caminio
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -11,7 +11,7 @@ var orm = require('../../').orm
 /**
 
 A request token is obtained, if a client/consumer (an application)
-want's to get access to nginios resources or to another nginios
+want's to get access to caminio resources or to another caminio
 instance's resources.
 
 Mongoose Model

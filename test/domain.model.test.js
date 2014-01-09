@@ -2,7 +2,7 @@ var async = require('async')
   , helper = require('./helper')
   , fixtures = helper.fixtures
   , expect = helper.chai.expect
-  , nginios = helper.nginios;
+  , caminio = helper.caminio;
 
 describe( 'Domain', function(){
 
@@ -14,7 +14,7 @@ describe( 'Domain', function(){
     });
 
     it('is instance of Domain', function(){
-      expect( this.domain ).to.be.instanceOf( nginios.orm.models.Domain );
+      expect( this.domain ).to.be.instanceOf( caminio.orm.models.Domain );
     });
 
     describe( 'has', function(){
@@ -141,7 +141,7 @@ describe( 'Domain', function(){
       
       before( function( done ){
         var self = this;
-        nginios();
+        caminio();
         async.parallel({
           domain: function( callback ){
             fixtures.domain.create( callback );
@@ -168,7 +168,7 @@ describe( 'Domain', function(){
       
       before( function( done ){
         var self = this;
-        nginios();
+        caminio();
         async.parallel({
           domain: function( callback ){
             fixtures.domain.create( callback );

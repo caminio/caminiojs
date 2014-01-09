@@ -2,7 +2,7 @@ var async = require('async')
   , helper = require('./helper')
   , fixtures = helper.fixtures
   , expect = helper.chai.expect
-  , nginios = helper.nginios;
+  , caminio = helper.caminio;
 
 
 describe( 'Group', function(){
@@ -14,7 +14,7 @@ describe( 'Group', function(){
     });
 
     it('is instance of User', function(){
-      expect( this.group ).to.be.instanceOf( nginios.orm.models.Group );
+      expect( this.group ).to.be.instanceOf( caminio.orm.models.Group );
     });
   
     it('has .name', function(){
@@ -41,7 +41,7 @@ describe( 'Group', function(){
       
       before( function( done ){
         var self = this;
-        nginios();
+        caminio();
         async.parallel({
           group: function( callback ){
             fixtures.group.create( callback );

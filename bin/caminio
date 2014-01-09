@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /*
- * nginios
+ * caminio
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -12,12 +12,12 @@ var prompt = require('prompt');
 var colors = require('colors');
 var fs = require('fs');
 var child_process = require("child_process");
-var nginios = require(__dirname+'/../');
+var caminio = require(__dirname+'/../');
 
 program
   .version('0.0.1')
   .usage('new <app_name>')
-  .option('new [name]', 'Create a new nginios application' )
+  .option('new [name]', 'Create a new caminio application' )
   .on('new', function( name ){
       child_process.exec( 'express '+name, function( err, stderr, stdout ){
         console.log('\n\n');
@@ -57,7 +57,7 @@ program
 
   program
   .usage('gear <name>')
-  .option('gear [name]', 'Create a plain nginios gear folder' )
+  .option('gear [name]', 'Create a plain caminio gear folder' )
   .on('gear', function( name ){
       fs.mkdirSync( name );
       fs.createReadStream(__dirname+'/../lib/install/gear/package.json').pipe(fs.createWriteStream(name+'/package.json'));
@@ -82,14 +82,14 @@ program
         hidden: true
       }
       ], function( err, result ){
-        var app = nginios();
-        new nginios.Gear();
-        nginios.orm.models.Domain.find({ name: domainName }, function(err, domain){
+        var app = caminio();
+        new caminio.Gear();
+        caminio.orm.models.Domain.find({ name: domainName }, function(err, domain){
           if( err ){ console.log(err); }
           if( domain )
           return createUser( domain, name, result.email, result.password );
 
-          nginios.orm.models.Domain.create({ name: domainName }, function(err, domain){
+          caminio.orm.models.Domain.create({ name: domainName }, function(err, domain){
             createUser( domain, name, result.email, result.password );
             });
           });
@@ -103,9 +103,9 @@ program
 
     console.log('attempting to create ', domainName.bold);
 
-    var app = nginios();
-    new nginios.Gear();
-    nginios.orm.models.Domain.create({
+    var app = caminio();
+    new caminio.Gear();
+    caminio.orm.models.Domain.create({
       name: domainName,
       allowed_gears: [ '*' ]
     }, function( err, domain ){
@@ -118,7 +118,7 @@ program
 
 function createUser( domain, name, email, password ){
 
-  nginios.orm.models.User.create({ 
+  caminio.orm.models.User.create({ 
     name: { full: name }, 
     email: email,
     domains: [ domain ],

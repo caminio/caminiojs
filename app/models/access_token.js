@@ -1,5 +1,5 @@
 /*
- * nginios
+ * caminio
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -11,7 +11,7 @@ var orm = require('../../').orm
 /**
 
 An access token is a permanent token granting a client
-to communicate with this nginios instance. It can also
+to communicate with this caminio instance. It can also
 have an expires property to define a life time.
 
 @class AccessToken

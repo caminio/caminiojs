@@ -1,5 +1,5 @@
 /*
- * nginios
+ * caminio
  * (c) 2014 by TASTENWERK
  * license: GPLv3
  *
@@ -7,10 +7,10 @@
   
 var MessageSchema = require('./schemas/message')
   , jsonSelect = require('mongoose-json-select')
-  , nginios = require('../../lib/nginios');
+  , caminio = require('../../lib/caminio');
 
 /**
- * Everything needs to be inside a domain, if nginios is operated
+ * Everything needs to be inside a domain, if caminio is operated
  * in multi-tenancy mode.
  *
  * @class Domain
@@ -46,31 +46,31 @@ var DomainNameValidator = function DomainNameValidator( val ){
  * @type Array
  *
  **/
-var DomainSchema = nginios.orm.Schema({
+var DomainSchema = caminio.orm.Schema({
     name: { type: String, 
             required: true,
             lowercase: true,
             required: true,
             index: { unique: true },
             validate: [ DomainNameValidator, 'invalid domain name' ] },
-    users: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' } ],
-    groups: [ { type: nginios.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
-    owner: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' },
+    users: [ { type: caminio.orm.Schema.Types.ObjectId, ref: 'User' } ],
+    groups: [ { type: caminio.orm.Schema.Types.ObjectId, ref: 'Domain' } ],
+    owner: { type: caminio.orm.Schema.Types.ObjectId, ref: 'User' },
     plan: { type: String, default: 'default' },
-    preferences: { type: nginios.orm.Schema.Types.Mixed },
-    allowed_gears: { type: Array, default: ['nginios'] },
+    preferences: { type: caminio.orm.Schema.Types.Mixed },
+    allowed_gears: { type: Array, default: ['caminio'] },
     messages: [ MessageSchema ],
     created: { 
       at: { type: Date, default: Date.now },
-      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: caminio.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     updated: { 
       at: { type: Date, default: Date.now },
-      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: caminio.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     locked: {
       at: { type: Date },
-      by: { type: nginios.orm.Schema.Types.ObjectId, ref: 'User' }
+      by: { type: caminio.orm.Schema.Types.ObjectId, ref: 'User' }
     },
     description: String,
 });

@@ -4,14 +4,14 @@ textarea{
   padding: 6px;
   border: 1px solid #ddd;
 }
-form.nginios-form{
+form.caminio-form{
   width: 100%;
 }
 
-form.nginios-form .field{
+form.caminio-form .field{
   margin: 10px 0;
 }
-form.nginios-form .field label{
+form.caminio-form .field label{
   float: left;
   width: 100px;
   text-align: right;
@@ -20,24 +20,24 @@ form.nginios-form .field label{
   color: #777;
   font-weight: 600;
 }
-form.nginios-form .field select{
+form.caminio-form .field select{
   font-size: 14px;
   padding: 5px;
 }
-form.nginios-form input[type=text],
-form.nginios-form input[type=password],
-form.nginios-form textarea{
+form.caminio-form input[type=text],
+form.caminio-form input[type=password],
+form.caminio-form textarea{
   padding: 8px 0;
   text-indent: 5px;
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 2px;
 }
-form.nginios-form textarea{
+form.caminio-form textarea{
   padding-bottom: 0;
   min-height: 3em;
 }
-form.nginios-form button.btn{
+form.caminio-form button.btn{
   cursor: pointer;
   padding: 4px 15px 5px 15px;
   line-height: 19px;
@@ -48,28 +48,28 @@ form.nginios-form button.btn{
 .label-offset .btn{
   margin-right: 5px;
 }
-form.nginios-form hr{
+form.caminio-form hr{
   border: none;
   border-top: 1px solid #ddd;
 }
-form.nginios-form .title{
+form.caminio-form .title{
   font-size: 24px;
   font-weight: 600;
   color: #ccc;
   margin: 40px 0;
 }
-form.nginios-form .field.multiple input{
+form.caminio-form .field.multiple input{
   float: left;
 }
-form.nginios-form input.span2multiples,
-form.nginios-form textarea.span2multiples{
+form.caminio-form input.span2multiples,
+form.caminio-form textarea.span2multiples{
   width: 612px;
 }
-form.nginios-form .field.multiple input.zip{
+form.caminio-form .field.multiple input.zip{
   width: 100px;
   margin-top: 0px;
   margin-right: 20px;
 }
-form.nginios-form input.city{
+form.caminio-form input.city{
   width: 490px;
 }

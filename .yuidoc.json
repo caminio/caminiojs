@@ -1,6 +1,6 @@
 {
-  "name": "nginios",
-  "description": "nginios documentation",
+  "name": "caminio",
+  "description": "caminio documentation",
   "version": "1.0",
   "url": "http://doc.nginuo.us",
   "themedir": ".yuidoc-theme",
