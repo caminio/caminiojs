@@ -12,6 +12,8 @@ en.no = 'No';
 en.really_delete_caption = 'Really delete?';
 en.really_delete = 'Really delete __name__?';
 
+en.total = 'Total';
+
 // errors
 en.errors = en.errors || {};
 en.errors.unknown = 'An unknown error occured!';

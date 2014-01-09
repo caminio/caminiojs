@@ -48,6 +48,9 @@ define(function(require) {
   QueryManager.prototype.save = function save( namespace, item ){
     
     var data = { _csrf: CSRF };
+    if( this.query )
+      for( var i in this.query )
+        data[i] = this.query[i];
     data[namespace] = JSON.parse(ko.toJSON( item ));
 
     var url = this.url
@@ -112,11 +115,6 @@ define(function(require) {
           }
           return true;
         }
-      }).fail( function( err ){
-        if( err.status === 409 )
-          notify( $.i18n.t('ticketeer.quota_exceeds_for_requested_amount'), { error: true } );
-        else if( err.responseJSON && err.responseJSON.error )
-          notify( err.responseJSON.error, { error: true } );
       })
     );
   }
