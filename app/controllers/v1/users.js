@@ -53,7 +53,7 @@ var UsersController = Controller.define( function( app ){
               return res.json( 400, { error: 'no domain selected'});
             if( 'user' in req.body ){
               var user = new caminio.orm.models.User( req.body.user );
-              user.domains.push( res.locals.currentDomain );
+              user.domains.push( res.locals.currentDomain.id );
               user.save( function( err ){
                 if( err ){ return res.json(400, { error: err }); }
                 if( user )
