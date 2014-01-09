@@ -7,6 +7,10 @@ en.action = 'Action';
 en.total = 'Total';
 en.remove = 'Remove';
 en.add = 'Add';
+en.yes = 'Yes';
+en.no = 'No';
+en.really_delete_caption = 'Really delete?';
+en.really_delete = 'Really delete __name__?';
 
 // errors
 en.errors = en.errors || {};

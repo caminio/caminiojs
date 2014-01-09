@@ -48,15 +48,32 @@ define(function(require) {
   QueryManager.prototype.save = function save( namespace, item ){
     
     var data = { _csrf: CSRF };
-    data[namespace] = ko.toJS( item );
+    data[namespace] = JSON.parse(ko.toJSON( item ));
+
+    var url = this.url
+    if( data[namespace].id )
+      url +='/'+data[namespace].id;
 
     this.ajaxOptions = {
-      type: item.id ? 'put' : 'post',
-      url: this.url,
+      type: data[namespace].id ? 'put' : 'post',
+      url: url,
       dataType: 'json',
-      data: ko.toJSON(data)
+      data: data
     }
     return this.exec();
+  }
+
+  QueryManager.prototype.remove = function remove( id ){
+
+    this.ajaxOptions = {
+      type: 'delete',
+      url: this.url + '/' + id,
+      dataType: 'json',
+      data: { _csrf: CSRF }
+    }
+
+    return this.exec();
+
   }
 
   QueryManager.prototype.addQuery = function( query ){
@@ -76,17 +93,26 @@ define(function(require) {
     return $.when( 
       $.when( $.ajax( this.ajaxOptions ) ).then( function( res ){
         if( typeof(res) === 'object' ){
-          if( res.item )
-            return new self.model(res.item);
+          if( res.item ){
+            if( self.model )
+              return new self.model(res.item);
+            return res.item;
+          }
           if( res.items ){
             res.items.map( function(item){
-              return new self.model(item);
+              if( self.model )
+                return new self.model(item);
+              return item;
             });
             return res.items;
           }
-          app.notify( $.i18n.t('errors.unknown'), { error: true });
+          if( res.error ){
+            notify( res.error, { error: true });
+            return false;
+          }
+          return true;
         }
-      }) 
+      })
     );
   }
 

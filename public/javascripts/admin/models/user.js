@@ -1,7 +1,7 @@
 define(function(require) {
 
   var ko = require('knockout')
-    , app = require('durandal/app')
+    , notify = require('nginios/notify')
     , i18n = require('i18next');
 
   return function User( data ){
@@ -40,10 +40,10 @@ define(function(require) {
     this.setAttributes( data );
 
     this.lockItem = function(item,e){
-      app.notify( 'Not implemented yet' );
+      notify( 'Not implemented yet' );
     }
     this.deleteItem = function(item, e){
-      app.notify( 'Not implemented yet' );
+      notify( 'Not implemented yet' );
     }
 
 

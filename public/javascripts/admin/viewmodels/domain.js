@@ -3,7 +3,7 @@ define(function(require) {
   var dataService = require('data_service')
     , ko = require('knockout')
     , i18n = require('i18next')
-    , app = require('durandal/app')
+    , notify = require('nginios/notify')
     , nginiosHelper = require('nginios/helper')
     , DomainModel = require('models/domain')
     , router = require('plugins/router')
@@ -40,17 +40,17 @@ define(function(require) {
       var attrs = $(form).serializeArray();
       var newRecord = typeof(this.item.id) !== 'string';
       dataService.save( '/v1/domains', this.item.id, attrs, function( err, domain ){
-        if( err ){ return app.notify(err); }
+        if( err ){ return notify(err); }
         if( domain ){
           self.item.setAttributes( domain );
           if( newRecord ){
             domains.items.push( self.item );
-            app.notify( i18n.t('domain.created') );
+            notify( i18n.t('domain.created') );
           } else
-            app.notify( i18n.t('domain.saved') );
+            notify( i18n.t('domain.saved') );
           router.navigate('#domains');
         } else
-          return app.notify(i18n.t('domain.creation_failed'));
+          return notify(i18n.t('domain.creation_failed'));
       });
     
     }

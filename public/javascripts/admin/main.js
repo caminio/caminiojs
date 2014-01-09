@@ -50,9 +50,6 @@ define(function(require) {
     widget: true
   });
 
-  // a message implementation
-  app.notify = nginiosHelper.notify;
-
   var i18NOptions = {
     detectFromHeaders: false,
     lng: window.navigator.userLanguage || window.navigator.language || 'en',

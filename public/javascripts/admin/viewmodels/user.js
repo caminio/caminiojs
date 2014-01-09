@@ -3,7 +3,7 @@ define(function(require) {
   var dataService = require('data_service')
     , ko = require('knockout')
     , i18n = require('i18next')
-    , app = require('durandal/app')
+    , notify = require('nginios/notify')
     , nginiosHelper = require('nginios/helper')
     , UserModel = require('models/user')
     , router = require('plugins/router')
@@ -44,14 +44,14 @@ define(function(require) {
       var self = this;
       var attrs = $(form).serializeArray();
       dataService.save( '/v1/users', null, attrs, function( err, user ){
-        if( err ){ return app.notify(err); }
+        if( err ){ return notify(err); }
         if( user ){
           self.item.setAttributes( user );
           users.items.push( self.item );
-          app.notify( i18n.t('user.created') );
+          notify( i18n.t('user.created') );
           router.navigate('#users');
         } else
-          return app.notify(i18n.t('user.creation_failed'));
+          return notify(i18n.t('user.creation_failed'));
       })
     }
 
@@ -59,13 +59,13 @@ define(function(require) {
       var self = this;
       var attrs = $(form).serializeArray();
       dataService.save( '/v1/users', this.item.id, attrs, function( err, user ){
-        if( err ){ return app.notify(err); }
+        if( err ){ return notify(err); }
         if( user ){
           self.item.setAttributes( user );
-          app.notify( i18n.t('user.saved') );
+          notify( i18n.t('user.saved') );
           router.navigate('#users');
         } else
-          return app.notify(i18n.t('user.creation_failed'));
+          return notify(i18n.t('user.creation_failed'));
       })
     
     }
