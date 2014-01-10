@@ -14,7 +14,16 @@ define(function(require) {
       $message.addClass('error');
 
     $('body').append($message);
+
     $message.slideDown();
+
+    if( $(document).scrollTop() > 0 ){
+      var oldPos = parseInt($('#message').css('top').replace('px',''));
+      $('#message').css('top', $(document).scrollTop()+49);
+      setTimeout(function(){
+        $message.animate({ top: oldPos }, 500);
+      },1500);
+    }
   }
 
   notify.error = function( message, options ){

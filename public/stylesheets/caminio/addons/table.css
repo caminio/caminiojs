@@ -72,7 +72,7 @@ table.caminio tbody tr.selected a{
 }
 
 table.caminio td.actions{
-  width: 80px;
+  width: 120px;
   opacity: 0.5;
 }
 table.caminio td.actions:hover{

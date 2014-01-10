@@ -1,18 +1,19 @@
 #message{
   position: absolute;
-  top: 51px;
+  top: 50px;
   left: 230px;
   right: 0;
   height: 40px;
   background-color: #09f;
   color: #fff;
   display: none;
+  opacity: 0.9;
 }
 #message.error{
   background-color: #d55;
 }
 #message .content{
-  padding: 10px;
+  padding: 12px;
   text-align: center;
 }
 #message .close-btn{

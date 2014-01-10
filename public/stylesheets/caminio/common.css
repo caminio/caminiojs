@@ -45,13 +45,14 @@ strong{
   border-radius: 2px;
   border: none;
   background-color: #454545;
-  transition: background-color 0.8s;
+  transition: opacity 0.8s;
+  opacity: 1;
   font-size: 14px;
 }
 
 .btn:hover{
-  background-color: #d55;
-  transition: background-color: 0.3s;
+  opacity: 0.9;
+  transition: opacity 0.3s;
 }
 
 a.btn,
@@ -84,7 +85,7 @@ button.btn{
 }
 
 .btn.primary{
-  background-color: #d55;
+  background-color: #5cb85c;
 }
 
 .btn.danger{
