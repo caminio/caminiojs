@@ -37,6 +37,7 @@ define(function(require) {
     , binder = require('durandal/binder')
     , caminioHelper = require('caminio/helper')
     , caminioCore = require('caminio/core')
+    , moment = require('moment')
     , i18n = require('i18next');
 
   //>>excludeStart("build", true);

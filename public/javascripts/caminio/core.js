@@ -3,6 +3,7 @@ define( function( require ){
   'use strict';
   var $ = require('jquery')
     , bootstrap = require('bootstrap')
+    , moment = require('moment')
     , app = require('durandal/app');
 
   var caminio = window.caminio || {};
