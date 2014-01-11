@@ -181,3 +181,30 @@ button.btn{
 .span100perc{
   width: 100%;
 }
+.search{
+  display: inline-block;
+  position: relative;
+}
+.search input[type=text]{
+  padding: 5px 30px 5px 0;
+  text-indent: 5px;
+  font-size: 14px;
+  border-radius: 2px;
+  width: 150px;
+  transition: all 0.8s;
+}
+.search button{
+  border: none;
+  background: none;
+  font-size: 14px;
+  float: right;
+  position: absolute;
+  top: 8px;
+  right: 4px;
+  color: #777;
+}
+.search input[type=text]:hover,
+.search input[type=text]:focus{
+  width: 250px;
+  transition: all 0.8s;
+}
