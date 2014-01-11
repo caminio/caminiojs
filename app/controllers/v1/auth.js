@@ -132,6 +132,12 @@ var AuthController = Controller.define( function( app, namespacePrefix ){
         res.json( res.locals.user );
       });
 
+  this.get('/test_login_or_token',
+      app.gears.caminio.auth.ensureLoginOrToken,
+      function(req,res){
+        res.json( req.user );
+      });
+
 });
 
 module.exports = AuthController;

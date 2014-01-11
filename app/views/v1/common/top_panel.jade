@@ -15,7 +15,7 @@ header.top-panel.fixed
         span.float-left.username=currentUser.name.full
     li.float-right.dropdown
       a.dropdown-toggle.dropdown-hover.domain.ctrl-btn.float-right( data-toggle='dropdown' )
-        span.float-left.domainname=currentDomain.name
+        span.float-left.domainname=(currentDomain ? currentDomain.name : 'no domain')
         i.fa.fa-caret-down
       ul.dropdown-menu( role='menu' )
         each domain in currentUser.domains

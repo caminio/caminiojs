@@ -48,7 +48,7 @@ describe( 'Auth API '+URL, function(){
         var test = this;
         test.agent
         .post(URL+'/login')
-        .send({email: this.user.email, password: this.user.password.substr(0,this.user.password.length-2)})
+        .send({username: this.user.email, password: this.user.password.substr(0,this.user.password.length-2)})
         .end(function(err, res){
           expect(res.status).to.eq(200);
           expect(res.text).to.match(/<form/);
@@ -61,7 +61,7 @@ describe( 'Auth API '+URL, function(){
         var test = this;
         test.agent
         .post(URL+'/login')
-        .send({email: this.user.email+'a', password: this.user.password})
+        .send({username: this.user.email+'a', password: this.user.password})
         .end(function(err, res){
           expect(res.status).to.eq(200);
           expect(res.text).to.match(/<form/);
@@ -74,7 +74,7 @@ describe( 'Auth API '+URL, function(){
         var test = this;
         test.agent
         .post(URL+'/login')
-        .send({email: 'a@localhost.local', password: 'pass'})
+        .send({username: 'a@localhost.local', password: 'pass'})
         .end(function(err, res){
           expect(res.status).to.eq(200);
           expect(res.text).to.match(/<form/);
@@ -85,7 +85,25 @@ describe( 'Auth API '+URL, function(){
 
     });
 
+    describe('right', function(){
+
+      it('passes', function(done){
+        var test = this;
+        test.agent
+        .post(URL+'/login')
+        .send({username: this.user.email, password: this.user.password})
+        .end(function(err, res){
+          expect(res.status).to.eq(200);
+          expect(res.text).to.not.match(/<form/);
+          expect(res.text).to.not.match(/password/);
+          done();
+        });
+      });
+
+    })
+
   });
+
   describe('POST '+URL+'/oauth/request_token', function(){
 
     describe('invalid_request', function(){
@@ -314,7 +332,54 @@ describe( 'Auth API '+URL, function(){
 
     });
 
-  });
+    describe('passes with token', function(){
 
+      it('gets the resource with token', function(done){
+        var test = this;
+        test.agent
+        .get(URL+'/test_login_or_token')
+        .set('Authorization', 'Bearer '+test.accessToken)
+        .end( function( err, res ){
+          expect(res.status).to.eq(200);
+          var user = JSON.parse(res.text);
+          expect(user.id).to.eq(test.user.id);
+          done();
+        });
+      });
+
+    });
+
+    describe('passes with login', function(){
+
+      before( function(done){
+        var test = this;
+        test.agent
+        .get(URL+'/logout')
+        .end( function(){
+          test.agent
+          .post(URL+'/login')
+          .send({username: test.user.email, password: test.user.password})
+          .end(function(err, res){
+            done();
+          });
+
+        });
+      });
+
+      it('gets the resource with login', function(done){
+        var test = this;
+        test.agent
+        .get(URL+'/test_login_or_token')
+        .end( function( err, res ){
+          expect(res.status).to.eq(200);
+          var user = JSON.parse(res.text);
+          expect(user.id).to.eq(test.user.id);
+          done();
+        });
+      });
+
+    });
+
+  });
 
 });

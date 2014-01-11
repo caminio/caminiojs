@@ -8,6 +8,10 @@ module.exports = function testEnvironment( config ){
 
   config.auth_token_timeout_min = 30;
 
+  config.available_plans = {
+    ticketeer: ['caminio', 'caminio-ticketeer']
+  }
+
   config.session_secret = '238293t8uoiauowaietuoawietuawet';
 
   config.superusers = [];
