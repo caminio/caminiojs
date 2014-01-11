@@ -2,15 +2,15 @@ var t = {};
 
 // general
 t.init_application = 'Initializing application';
-t.never = 'never';
-t.action = 'Action';
-t.total = 'Total';
-t.remove = 'Remove';
-t.add = 'Add';
-t.yes = 'Yes';
-t.no = 'No';
-t.really_delete_caption = 'Really delete?';
-t.really_delete = 'Really delete __name__?';
+t.never = 'nie';
+t.action = 'Aktion';
+t.total = 'Gesamt';
+t.remove = 'Löschen';
+t.add = 'Hinzufügen';
+t.yes = 'Ja';
+t.no = 'Nein';
+t.really_delete_caption = 'Löschen bestätigen';
+t.really_delete = '__name__ wirkliche löschen?';
 t.created_by = 'Erstellt von';
 t.updated_by = 'Aktualisiert von';
 t.time = 'Zeit';

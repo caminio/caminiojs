@@ -1,7 +1,7 @@
 {
   "name": "caminio",
   "description": "MVC framework inspired by RoR architecture",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
   "keywords": [
