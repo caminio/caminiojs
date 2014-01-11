@@ -39,7 +39,7 @@ form.caminio-form textarea{
 }
 form.caminio-form button.btn{
   cursor: pointer;
-  padding: 4px 15px 5px 15px;
+  padding: 5px 15px 6px;
   line-height: 19px;
 }
 .label-offset{

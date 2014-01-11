@@ -45,9 +45,16 @@ strong{
   border-radius: 2px;
   border: none;
   background-color: #454545;
-  transition: opacity 0.8s;
+  transition: all 0.8s;
   opacity: 1;
   font-size: 14px;
+}
+
+.btn[disabled]{
+  background-color: #ddd !important;
+  color: #999;
+  cursor: not-allowed !important;
+  transition: all 0.8s;
 }
 
 .btn:hover{
