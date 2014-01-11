@@ -6,6 +6,7 @@
  */
 
 var moment = require('moment')
+  , login = require('connect-ensure-login')
   , caminio = require('../../');
 
 
@@ -95,6 +96,24 @@ auth.loadRequestToken = function loadRequestToken( req, res, next ){
 auth.token = function token( req, res, next ){
   if( !req.headers['authorization'] )
     return auth.fail( res, { status: 400, description: 'invalid_request' } );
+
+  var bearer = req.headers['authorization'].replace('Bearer ','')
+  caminio.orm.models.AccessToken.findOne({
+    token: bearer
+  }).populate('user').exec( function( err, token ){
+    if( err ){ return auth.fail( res, { status: 500, description: err }); }
+    if( !token ){ return auth.fail( res, { status: 401, description: 'access_deneid' }); }
+    res.locals.user = token.user;
+    next();
+  });
+}
+
+auth.ensureLoginOrToken = function ensureLoginOrToken( req, res, next ){
+  if( !req.headers['authorization'] ){
+    if( req.xhr )
+      return auth.fail( res, { status: 400, description: 'invalid_request' } );
+    return login.ensureLoggedIn( this.resolvePath( null, '/login' ) )( req, res, next );
+  }
 
   var bearer = req.headers['authorization'].replace('Bearer ','')
   caminio.orm.models.AccessToken.findOne({
