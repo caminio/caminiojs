@@ -71,6 +71,12 @@ button.btn,
 button.btn{
   padding: 5px 15px 6px;
 }
+div.btn{
+  display: inline-block;
+}
+div.btn.icon-only{
+  padding: 7px;
+}
 
 .btn.small{
   padding: 3px 5px;
@@ -113,8 +119,11 @@ button.btn{
   background: none;
 }
 
-.btn.icon-text .fa{
+.icon-text .fa{
   margin: -1px 5px 0 0;
+}
+.icon-only{
+  padding: 5px 7px;
 }
 
 .btn.black{

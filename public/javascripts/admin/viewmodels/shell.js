@@ -12,8 +12,9 @@
     },
     activate: function () {
       router.map([
-        { route: '', title: i18n.t('navbar.overview'), moduleId: 'viewmodels/overview', nav: true },
-        { route: 'users', title: i18n.t('navbar.users_groups'), moduleId: 'viewmodels/users', nav: true },
+        //{ route: '', title: i18n.t('navbar.overview'), moduleId: 'viewmodels/overview', nav: true },
+        { route: '', title: i18n.t('navbar.users_groups'), moduleId: 'viewmodels/users', nav: true },
+        { route: 'users', title: i18n.t('navbar.users_groups'), moduleId: 'viewmodels/users', nav: false },
         { route: 'domains', title: i18n.t('navbar.domains'), moduleId: 'viewmodels/domains', nav: (currentUser.superuser ? true : false) },
         { route: 'domains/:id', title: i18n.t('navbar.domains'), moduleId: 'viewmodels/domain', nav: false },
         { route: 'users/:id', moduleId: 'viewmodels/user', nav: false }
