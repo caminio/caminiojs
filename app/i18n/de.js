@@ -9,14 +9,18 @@ t.remove = 'Löschen';
 t.add = 'Hinzufügen';
 t.yes = 'Ja';
 t.no = 'Nein';
+t.nr = 'Nr.';
 t.unsaved_changes_really_leave = 'Es gibt ungespeicherte Änderungen. Diese Ansicht wirklich verlassen?';
 t.no_cancel = 'Nein, abbrechen';
 t.really_delete_caption = 'Löschen bestätigen';
 t.really_delete = '__name__ wirkliche löschen?';
 t.changes_saved = 'Änderungen gespeichert';
 t.created_by = 'Erstellt von';
+t.created_at = 'Erstellt am';
+t.updated_at = 'Aktualisert am';
 t.updated_by = 'Aktualisiert von';
 t.time = 'Zeit';
+t.name = 'Name';
 
 t.total = 'Total';
 

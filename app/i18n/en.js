@@ -9,6 +9,7 @@ t.remove = 'Remove';
 t.add = 'Add';
 t.yes = 'Yes';
 t.no = 'No';
+t.nr = 'No.';
 t.unsaved_changes_really_leave = 'You have unsaved changes. Are you sure you want to leave this view?';
 t.no_cancel = 'No, cancel';
 t.really_delete_caption = 'Really delete?';
@@ -16,8 +17,11 @@ t.really_delete = 'Really delete __name__?';
 t.changes_saved = 'Changes saved';
 t.created_by = 'Created by';
 t.updated_by = 'Updated by';
+t.created_at = 'Created at';
+t.updated_at = 'Updated at';
 t.time = 'Zeit';
 t.total = 'Total';
+t.name = 'Name';
 
 // errors
 t.errors = t.errors || {};
