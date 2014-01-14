@@ -78,7 +78,7 @@ var UserSchema = orm.Schema({
       },
       encrypted_password: {type: String, required: true},
       salt: {type: String, required: true},
-      preferences: { type: orm.Schema.Types.Mixed },
+      preferences: { type: orm.Schema.Types.Mixed, default: {} },
       messages: [ MessageSchema ],
       lang: { type: String, default: 'en' },
       email: { type: String, 
