@@ -22,7 +22,7 @@ define( function( require ){
   var i18NOptions = {
     detectFromHeaders: false,
     lng: (currentUser.lang || 'de'),
-    fallbackLng: (currentUser.lang || 'de'),
+    fallbackLng: 'de',
     ns: 'caminio',
     resGetPath: '/v1/dashboard/translations/__lng__.json',
     useCookie: false

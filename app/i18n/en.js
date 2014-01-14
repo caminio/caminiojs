@@ -15,6 +15,7 @@ t.no_cancel = 'No, cancel';
 t.really_delete_caption = 'Really delete?';
 t.really_delete = 'Really delete __name__?';
 t.changes_saved = 'Changes saved';
+t.changes_failed_to_save = 'Changes failed to save';
 t.created_by = 'Created by';
 t.updated_by = 'Updated by';
 t.created_at = 'Created at';
@@ -22,6 +23,10 @@ t.updated_at = 'Updated at';
 t.time = 'Zeit';
 t.total = 'Total';
 t.name = 'Name';
+
+t.lang = t.lang || {};
+t.lang.de = 'German';
+t.lang.en = 'English';
 
 // errors
 t.errors = t.errors || {};
@@ -92,6 +97,10 @@ t.user.admin = 'Administrative privileges';
 t.user.passwords_missmatch = 'Passwords missmatch';
 t.user.password_too_short = 'The given password is too short (6 charachters required)';
 t.user.lang = 'Language';
+t.user.edit_profile = 'Edit profile';
+t.user.profile = t.user.profile || {};
+t.user.profile.general = 'General';
+t.user.profile.password = 'Password';
 
 // ADMIN domains
 t.domains = t.domains || {};

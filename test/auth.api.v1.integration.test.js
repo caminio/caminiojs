@@ -11,7 +11,7 @@ describe( 'Auth API '+URL, function(){
 
   before(function( done ){
     helper.startServer( this, function( test ){
-      fixtures.user.create( function(err, user){
+      fixtures.admin.create( function(err, user){
         test.user = user;
         fixtures.Client.create( function( err, client ){
           client.user = user;
@@ -85,7 +85,7 @@ describe( 'Auth API '+URL, function(){
 
     });
 
-    describe('right', function(){
+    describe('correct login', function(){
 
       it('passes', function(done){
         var test = this;

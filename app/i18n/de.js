@@ -15,6 +15,7 @@ t.no_cancel = 'Nein, abbrechen';
 t.really_delete_caption = 'Löschen bestätigen';
 t.really_delete = '__name__ wirkliche löschen?';
 t.changes_saved = 'Änderungen gespeichert';
+t.changes_failed_to_save = 'Änderungen konnten nicht gespeichert werden';
 t.created_by = 'Erstellt von';
 t.created_at = 'Erstellt am';
 t.updated_at = 'Aktualisert am';
@@ -23,6 +24,10 @@ t.time = 'Zeit';
 t.name = 'Name';
 
 t.total = 'Total';
+
+t.lang = t.lang || {}
+t.lang.de = 'Deutsch';
+t.lang.en = 'English';
 
 // errors
 t.errors = t.errors || {};
@@ -93,6 +98,10 @@ t.user.admin = 'Administrationsrechte';
 t.user.passwords_missmatch = 'Die Passwörter stimmen nicht überein';
 t.user.password_too_short = 'Das angegebene Passwort ist zu kurz. Mind. 6 Zeichen';
 t.user.lang = 'Sprache';
+t.user.edit_profile = 'Profil bearbeiten';
+t.user.profile = t.user.profile || {};
+t.user.profile.general = 'Allgemeines';
+t.user.profile.password = 'Passwort';
 
 // ADMIN domains
 t.domains = t.domains || {};

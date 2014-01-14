@@ -4,7 +4,7 @@ REPORTER=spec
 export NODE_ENV=test
 
 test-integration:
-	./node_modules/.bin/mocha --reporter ${REPORTER} $(MOCHA_OPTS) test/*.integration.test.js
+	./node_modules/.bin/mocha -b --reporter ${REPORTER} $(MOCHA_OPTS) test/*.integration.test.js
 
 test-unit:
 	./node_modules/.bin/mocha --reporter $(REPORTER) $(MOCHA_OPTS) test/*.test.js

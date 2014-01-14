@@ -1,0 +1,90 @@
+extends ../layout
+
+block content
+
+  section
+
+    h1=t('user.edit_profile')
+
+
+    .box.full-width
+
+      .header=t('user.profile.general')
+
+      .content
+
+        form.caminio-form( action='/v1/users/'+user.id, method='post' )
+
+          input(type='hidden', name='_csrf', value=csrf)
+
+          .main-ctrl.align-right
+            input.btn(type='submit',value=t('save'))
+
+          .field
+            label=t('addr.firstname')
+            input.span400px(type='text',name='user[name][first]', value=user.name.first)
+
+          .field
+            label=t('addr.lastname')
+            input.span400px(type='text',name='user[name][last]', value=user.name.last)
+
+          .field
+            label=t('addr.email')
+            input.span400px(type='text',name='user[email]', value=user.email)
+
+          .field
+            label=t('user.lang')
+            select.span400px(name='user[lang]')
+              each lang in ['de','en']
+                option(value=lang, selected=(user.lang===lang))=t('lang.'+lang)
+
+    .box.full-width
+
+      .header=t('user.profile.password')
+
+      .content
+
+        form.caminio-form( action='/v1/users/'+user.id, method='post' )
+
+          input(type='hidden', name='_csrf', value=csrf)
+
+          .main-ctrl.align-right
+            input.btn(type='submit',value=t('save'))
+
+          .field
+            label=t('user.password')
+            input#pwd.span400px(type='password',name='user[password]')
+
+          .field
+            label=t('user.password_confirm')
+            input#pwd_c.span400px(type='password',name='user[password_confirm]')
+
+
+  script(type='text/javascript', src='/javascripts/vendor/jquery/jquery.js')
+  script(type='text/javascript').
+    jQuery( function($){
+      $('form.caminio-form').on('submit', function(e){
+        e.preventDefault();
+        if( $('#pwd').val() !== $('#pwd_c').val() )
+          return notify('!{t('user.passwords_missmatch')}', { error: true });
+        $.ajax({
+          url: $(this).attr('action'),
+          data: $(this).serializeArray(),
+          type: 'put',
+          dataType: 'json'
+        }).done( function( res ){
+          if( res.item )
+            notify( '!{t('changes_saved')}' );
+          else
+            notify( res.error, { error: true });
+        }).fail(function( err ){
+          notify( '!{t('changes_failed_to_save')}', {error: true});
+        });
+      });
+    });
+
+    window.define = function( callback ){
+      window.notify = callback();
+    }
+
+  script(type='text/javascript', src='/javascripts/caminio/notify.js')

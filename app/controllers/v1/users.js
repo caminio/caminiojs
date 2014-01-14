@@ -5,6 +5,8 @@ var caminio = require('../../../')
 
 var UsersController = Controller.define( function( app ){
 
+  var auth = app.gears.caminio.auth;
+
   // private
   this.getUsers = function getUsers( req, res, next ){
     caminio.orm.models.User
@@ -32,21 +34,29 @@ var UsersController = Controller.define( function( app ){
 
   // actions
   this.get('/',
-          login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
+          auth.ensureLogin,
           this.getUsers,
           function( req, res ){
             res.json( { items: req.users } );
           });
 
+  this.get('/:id/edit',
+          auth.ensureLogin,
+          this.getUserById,
+          function( req, res ){
+            res.locals.user = req.user;
+            res.caminio.render('edit');
+          });
+
   this.get('/:id',
-          login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
+          auth.ensureLogin,
           this.getUserById,
           function( req, res ){
             res.json( { item: req.user } );
           });
 
   this.post('/',
-          login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
+          auth.ensureLogin,
           this.requireAdmin,
           function( req, res ){
             if( !res.locals.currentDomain )
@@ -64,16 +74,39 @@ var UsersController = Controller.define( function( app ){
           });
 
   this.put('/:id',
-          login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
+          auth.ensureLogin,
           this.getUserById,
-          this.requireAdmin,
           function( req, res ){
+            
+            if( !res.locals.currentUser.isAdmin( res.locals.currentDomain ) && !res.locals.currentUser._id.eql( req.user._id ) )
+              return res.json(401, { error: 'insufficient_rights' });
+
             if( req.user && 'user' in req.body ){
+
               if( req.body.user.name && req.body.user.name.full ){
                 req.body.user.name.first = req.body.user.name.full.split(' ')[0];
                 req.body.user.name.last = req.body.user.name.full.replace( req.body.user.name.first + ' ', '');
               }
-              req.user.update( req.body.user, function( err ){
+
+              if( req.body.user.name ){
+                if( req.body.user.name.first && req.body.user.name.first.length > 0 )
+                  req.user.name.first = req.body.user.name.first;
+
+                if( req.body.user.name.last && req.body.user.name.last.length > 0 )
+                  req.user.name.last = req.body.user.name.last;
+              }
+
+              if( req.body.user.email && req.body.user.email.length > 0 )
+                req.user.email = req.body.user.email;
+
+              if( req.body.user.password && req.body.user.password.length > 0 )
+                req.user.password = req.body.user.password;
+
+              if( req.body.user.lang && req.body.user.lang.length > 0 )
+                req.user.lang = req.body.user.lang;
+
+
+              req.user.save( function( err ){
                 if( err ){ return res.json(400, { error: err }); }
                 caminio.orm.models.User.findOne({ _id: req.params.id }, function( err, user ){
                   if( err ){ return res.json(400, { error: err }); }
@@ -86,7 +119,7 @@ var UsersController = Controller.define( function( app ){
           });
 
   this.put('/:id/lock',
-          login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
+          auth.ensureLogin,
           this.getUserById,
           this.requireAdmin,
           function( req, res ){
@@ -103,7 +136,7 @@ var UsersController = Controller.define( function( app ){
           });
 
   this.delete('/:id',
-          login.ensureLoggedIn( this.resolvePath( null, '/login' ) ),
+          auth.ensureLogin,
           this.getUserById,
           this.requireAdmin,
           function( req, res ){

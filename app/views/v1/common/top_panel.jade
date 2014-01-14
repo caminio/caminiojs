@@ -10,7 +10,7 @@ header.top-panel.fixed
       a.ctrl-btn.icn.float-right(href=resolvePath('v1/auth','logout'))
         i.fa.fa-sign-out
     li.float-right
-      a.account-info.ctrl-btn.float-right
+      a.account-info.ctrl-btn.float-right( href='/v1/users/'+currentUser.id+'/edit' )
         img.avatar.float-left( src='/images/avatar.png' )
         span.float-left.username=currentUser.name.full
     li.float-right.dropdown
