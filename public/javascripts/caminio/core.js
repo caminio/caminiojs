@@ -17,12 +17,12 @@ define( function( require ){
     $('body').toggleClass('side-panel-active');
   });
 
-  moment.lang('de');
+  moment.lang( currentUser.lang || 'de' );
 
   var i18NOptions = {
     detectFromHeaders: false,
-    lng: 'de',
-    fallbackLng: 'de',
+    lng: (currentUser.lang || 'de'),
+    fallbackLng: (currentUser.lang || 'de'),
     ns: 'caminio',
     resGetPath: '/v1/dashboard/translations/__lng__.json',
     useCookie: false

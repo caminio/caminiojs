@@ -103,7 +103,7 @@ auth.token = function token( req, res, next ){
     token: bearer
   }).populate('user').exec( function( err, token ){
     if( err ){ return auth.fail( res, { status: 500, description: err }); }
-    if( !token ){ return auth.fail( res, { status: 401, description: 'access_deneid' }); }
+    if( !token ){ return auth.fail( res, { status: 401, description: 'access_denied' }); }
     res.locals.user = req.user = token.user;
     next();
   });
@@ -116,6 +116,10 @@ auth.ensureLoginOrToken = function ensureLoginOrToken( req, res, next ){
     return login.ensureLoggedIn( router.resolve( 'v1/auth', '/login' ) )( req, res, next );
   }
   auth.token( req, res, next );
+}
+
+auth.ensureLogin = function ensureLogin( req, res, next ){
+  return login.ensureLoggedIn( router.resolve( 'v1/auth', '/login' ) )( req, res, next );
 }
 
 /**

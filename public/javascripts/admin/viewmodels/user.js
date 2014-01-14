@@ -96,6 +96,10 @@ define(function(require) {
       }, 500);
     }
 
+    this.availableLangs = function(){
+      return ko.observableArray(['de','en']);
+    }
+
 
   }
 

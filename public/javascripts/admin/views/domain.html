@@ -15,12 +15,12 @@
     <div class="title" data-i18n="caminio:domain.domain"></div>
     <div class="field">
       <label data-i18n='caminio:domain.name'></label>
-      <input type="text" name="domain[name]" data-bind="value: item.name, attr: { placeholder: i18n.t('domain.name_exmpl') }" class="focus" />
+      <input type="text" name="domain[name]" data-bind="value: item.name, attr: { placeholder: i18n.t('domain.name_exmpl') }" class="focus span400px" />
     </div>
 
     <div class="field">
       <label data-i18n='caminio:domain.plan'></label>
-      <select name="domain[plan]" data-bind="options: availablePlans, selectedOption: item.plan"></select>
+      <select name="domain[plan]" data-bind="options: availablePlans, selectedOption: item.plan" class="span400px"></select>
     </div>
 
     <hr />
@@ -28,19 +28,25 @@
     <div class="title" data-i18n="caminio:domain.owner"></div>
     <div class="field">
       <label data-i18n='caminio:user.full_name'></label>
-      <input type="text" name="owner[name][full]" data-bind="value: item.owner.name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus" />
+      <input type="text" name="owner[name][full]" data-bind="value: item.owner.name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus span400px" />
     </div>
 
     <div class="field">
       <label data-i18n='caminio:user.email'></label>
-      <input type="text" name="owner[email]" data-bind="value: item.owner.email, attr: { placeholder: i18n.t('user.email_exmpl') }" />
+      <input type="text" name="owner[email]" data-bind="value: item.owner.email, attr: { placeholder: i18n.t('user.email_exmpl') }" class="span400px" />
     </div>
 
     <div class="field">
       <label data-i18n='caminio:user.password'></label>
-      <input type="password" name="owner[password]" data-bind="value: item.owner.password, attr: { placeholder: i18n.t('user.password_exmpl') }" />
+      <input type="password" name="owner[password]" data-bind="value: item.owner.password, attr: { placeholder: i18n.t('user.password_exmpl') }" class="span400px" />
       <br />
     </div>
+    <div class="field">
+      <label data-i18n='caminio:user.password_confirm'></label>
+      <input type="password" name="owner[password_confirm]" data-bind="value: item.owner.password, attr: { placeholder: i18n.t('user.password_exmpl') }" class="span400px" />
+      <br />
+    </div>
+
     <input type="submit" class="hide" />
     <input type="hidden" name="_csrf" data-bind="value: CSRF" />
 

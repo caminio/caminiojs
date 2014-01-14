@@ -3,6 +3,7 @@ define(function(require) {
   var dataService = require('data_service')
     , ko = require('knockout')
     , i18n = require('i18next')
+    , app = require('durandal/app')
     , notify = require('caminio/notify')
     , caminioHelper = require('caminio/helper')
     , DomainModel = require('models/domain')
@@ -36,6 +37,8 @@ define(function(require) {
     this.i18n = i18n;
 
     this.saveItem = function( form ){
+      if( !checkPasswords() )
+        return false;
       var self = this;
       var attrs = $(form).serializeArray();
       var newRecord = typeof(this.item.id) !== 'string';
@@ -81,7 +84,6 @@ define(function(require) {
       }, 500);
     }
 
-
   }
 
   function getDomain(id){
@@ -93,6 +95,21 @@ define(function(require) {
       if( err ){ return console.log('error:', err); }
       return new Domain( domain_data );
     });
+  }
+
+  function checkPasswords(){
+    
+    return true;
+
+    if( this.owner().password() !== this.owner().password_confirmation() ){
+      app.showMessage( $.i18n.t('user.passwords_missmatch') );
+      return false;
+    }
+    if( this.owner().password().length < 6 ){
+      app.showMessage( $.i18n.t('user.password_too_short') );
+      return false;
+    }
+    return true;
   }
 
 });

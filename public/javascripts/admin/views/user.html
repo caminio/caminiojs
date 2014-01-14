@@ -14,17 +14,17 @@
 
     <div class="field">
       <label data-i18n='caminio:user.full_name'></label>
-      <input type="text" name="user[name][full]" data-bind="value: item.name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus" />
+      <input type="text" name="user[name][full]" data-bind="value: item.name.full, attr: { placeholder: i18n.t('user.full_name_exmpl') }" class="focus span400px" />
     </div>
 
     <div class="field">
       <label data-i18n='caminio:user.email'></label>
-      <input type="text" name="user[email]" data-bind="value: item.email, attr: { placeholder: i18n.t('user.email_exmpl') }" />
+      <input type="text" name="user[email]" data-bind="value: item.email, attr: { placeholder: i18n.t('user.email_exmpl') }" class="span400px" />
     </div>
 
     <div class="field">
       <label data-i18n='caminio:user.password'></label>
-      <input type="password" name="user[password]" data-bind="value: item.password, attr: { placeholder: i18n.t('user.password_exmpl') }, event: { keydown: updateAutoGen }" />
+      <input type="password" name="user[password]" data-bind="value: item.password, attr: { placeholder: i18n.t('user.password_exmpl') }, event: { keydown: updateAutoGen }" class="span400px" />
       <br />
       <div class="label-offset desc">
         <a class="btn tiny pale borderless" data-bind="click: toggleCheckbox">
@@ -46,11 +46,18 @@
     <hr />
 
     <div class="field desc">
+
       <div class="label-offset">
         <input type="hidden" name="user[role]" data-bind="value: item.role" />
         <input type="checkbox" id="user-role" data-bind="checked: item.role() <= 5, event: { click: updateRole }" />
         <span data-i18n='caminio:user.admin' data-bind="attr: { title: 'PrivId: '+item.role()}"></span>
       </div>
+
+      <div class="field">
+      <label data-i18n='caminio:user.lang'></label>
+        <select name="user[lang]" data-bind="options: availableLangs(), value: item.lang"></select>
+      </div>
+
     </div>
 
     <input type="submit" class="hide" />

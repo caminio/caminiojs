@@ -60,6 +60,7 @@ t.navbar.overview = 'Übersicht';
 t.navbar.billing = 'Abrechnung';
 t.navbar.users_groups = 'BenutzerInnen';
 t.navbar.domains = 'Domains';
+t.navbar.api_keys = 'API Schlüssel';
 
 // ADMIN users
 t.users = t.users || {};
@@ -79,6 +80,7 @@ t.user.full_name_exmpl = 'e.g.: Elisabeth Queen';
 t.user.email = 'Email';
 t.user.email_exmpl = 'e.g.: elisabeth@example.com';
 t.user.password = 'Passwort';
+t.user.password_confirm = 'Wiederholen';
 t.user.password_exmpl = 'mind. 6 Zeichen';
 t.user.password_res = 'Passwort ist:';
 t.user.send_link_to_set_pwd = 'Link generieren'
@@ -88,6 +90,9 @@ t.user.creation_failed = 'User failed to create!';
 t.user.saved = 'User has been saved';
 t.user.saving_failed = 'Failed to save user';
 t.user.admin = 'Administrationsrechte';
+t.user.passwords_missmatch = 'Die Passwörter stimmen nicht überein';
+t.user.password_too_short = 'Das angegebene Passwort ist zu kurz. Mind. 6 Zeichen';
+t.user.lang = 'Sprache';
 
 // ADMIN domains
 t.domains = t.domains || {};

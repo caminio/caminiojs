@@ -27,7 +27,7 @@ var ClientSchema = new orm.Schema({
   ip_address: String,
   token: String,
   secret: String,
-  name: { type: String, index: { unique: true } },
+  name: { type: String },
   user: { type: orm.Schema.Types.ObjectId, ref: 'User' },
   scope: { type: Array, default: ['*'] },
   callbackURL: String,

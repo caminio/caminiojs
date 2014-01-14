@@ -78,13 +78,9 @@ var UserSchema = orm.Schema({
       },
       encrypted_password: {type: String, required: true},
       salt: {type: String, required: true},
-      preferences: {
-        locale: { type: String, default: 'en' },
-        dashboard: {
-          docklets: []
-        }
-      },
+      preferences: { type: orm.Schema.Types.Mixed },
       messages: [ MessageSchema ],
+      lang: { type: String, default: 'en' },
       email: { type: String, 
                lowercase: true,
                required: true,

@@ -22,8 +22,14 @@ define(function(require) {
         first: ko.observable(data.name.first || ''),
       };
       this.name.full = ko.computed( function(){ 
-        return this.name.first()+' '+this.name.last(); 
+        var name = this.name.first()
+        if( name.length > 0 )
+          name += ' ';
+        name+=this.name.last(); 
+        return name;
       }, this);
+
+      this.lang = ko.observable();
 
       this.last_login_at = ko.computed( function(){
         if( this.last_login )
@@ -34,6 +40,7 @@ define(function(require) {
       this.role = ko.observable( data.role || 100);
 
       this.password = ko.observable();
+      this.password_confirm = ko.observable('');
 
     }
 
