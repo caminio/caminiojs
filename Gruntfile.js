@@ -16,18 +16,12 @@ module.exports = function(grunt) {
         },
         src: ['test/**/*.test.js']
       }
-    },
-
-    express: {
-      default_option: {}
     }
-
   });
 
   // Load the plugin that provides the "uglify" task.
   //grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-express');
 
   grunt.registerTask('testAll', 'runs all tests', function(){
     grunt.config('mochaTest.test.src', ['test/**/*.test.js']);
@@ -41,7 +35,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('testApi', 'runs only api tests', function(){
     grunt.config('mochaTest.test.src', ['test/**/*.api.test.js']);
-    grunt.task.run('express');
     grunt.task.run('mochaTest');
   });
 
