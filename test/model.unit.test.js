@@ -35,10 +35,10 @@ describe('model', function(){
 
   });
 
-  describe('namespaced MyNamespace (my/namespace)', function(){
+  describe('namespaced My::Namespace (my/namespace)', function(){
 
     it('read from support/app/api/models/my/namespace.js', function(){
-      expect(caminio.models).to.have.property('MyNamespace');
+      expect(caminio.models).to.have.property('My::Namespace');
     });
 
     it('instance of Waterline Model', function(){

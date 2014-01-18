@@ -32,7 +32,7 @@ describe('controller', function(){
   describe('a namespaced controller', function(){
 
     it('read from support/app/api/controllers/my/namespaced_controller.js', function(){
-      expect( caminio.controller.routes() ).to.include('/namespaced GET MyNamespacedController');
+      expect( caminio.controller.routes() ).to.include('/namespaced GET My::NamespacedController');
     });
 
   });

@@ -7,7 +7,7 @@ module.exports.routes = {
   
   '/': 'MainController#index',
 
-  '/namespaced': 'MyNamespacedController#index',
+  '/namespaced': 'My::NamespacedController#index',
 
   'resource /main': 'MainController',
 
