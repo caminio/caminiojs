@@ -1,60 +1,38 @@
 {
   "name": "caminio",
-  "description": "MVC framework inspired by RoR architecture",
-  "version": "1.0.7",
+  "description": "core module of the caminio cms",
+  "version": "0.0.1",
   "private": true,
-  "author": "thorsten zerha <thorsten.zerha@tastenwerk.com>",
+  "author": "quaqua <quaqua@tastenwerk.com>",
   "keywords": [
     "caminio",
-    "mvc framework"
+    "mvc framework",
+    "cms"
   ],
   "dependencies": {
-    "express": "3.4.6",
-    "passport": "~0.1.17",
-    "commander": "~2.1.0",
+    "express": "~3.4.8",
+    "waterline": "~0.9.11",
     "winston": "~0.7.2",
-    "mongoose": "~3.8.1",
-    "mongoose-json-select": "~0.2.1",
-    "async": "~0.2.9",
-    "string": "~1.7.0",
-    "connect-ensure-login": "~0.1.1",
-    "passport-local": "~0.1.6",
-    "moment": "~2.0.0",
-    "jade": "~1.0.2",
-    "i18next": "~1.7.1",
-    "prompt": "~0.2.12",
-    "colors": "~0.6.2",
+    "lodash": "~2.4.1",
     "connect-flash": "~0.1.1",
-    "connect-mongo": "~0.4.0",
-    "mongoose-shortid": "~0.4.1",
-    "ejs": "~0.8.5",
-    "socket.io": "~0.9.16",
-    "nodemailer": "~0.6.0"
+    "async": "~0.2.9",
+    "inflection": "~1.3.2"
   },
   "devDependencies": {
+    "caminio-fixtures": "~0.1.0",
     "mocha": "~1.15.1",
     "chai": "~1.8.1",
-    "yuidocjs": "~0.3.46",
-    "jscoverage": "~0.3.8",
-    "supertest": "~0.8.2",
     "superagent": "~0.15.7",
-    "caminio-fixtures": "git://github.com/tastenwerk/caminio-fixtures#master"
+    "grunt": "~0.4.2",
+    "grunt-jsdoc": "~0.5.1",
+    "grunt-mocha-test": "~0.8.2",
+    "grunt-express": "~1.2.1",
+    "sails-disk": "~0.9.3"
   },
-  "main": "index.js",
-  "bin": {
-    "caminio": "./bin/caminio"
-  },
-  "scripts": {
-    "prepublish": "npm prune",
-    "test": "make test",
-    "doc": "node_modules/.bin/yuidoc"
-  },
-  "license": "GPLv3",
+  "main": "lib/caminio.js",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/tastenwerk/caminio.git"
-  },
-  "bugs": {
-    "url": "https://github.com/tastenwerk/caminio/issues"
   }
 }

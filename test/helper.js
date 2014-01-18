@@ -2,36 +2,38 @@
  * caminio test helper
  */
 
-var helper = {};
+process.env['NODE_ENV'] = 'test';
 
-helper.caminio = require('../');
+var helper = {};
 
 helper.fixtures = require('caminio-fixtures');
 helper.fixtures.readFixtures();
-// enable ORM (mongoose)
-helper.fixtures.enableORM( helper.caminio );
 
 helper.chai = require('chai');
 helper.chai.Assertion.includeStack = true;
 
-helper.startServer = function( test, done ){
+helper.initApp = function( test, done ){
 
-  if( test.superagent ){
-    test.agent = test.superagent.agent();
-    return done(test);
-  }
+  if( helper.caminio )
+    return done();
 
-  test.superagent = require('superagent');
+  helper.caminio = require('../lib/caminio')
+  var Gear = helper.Gear = require('../lib/gear');
 
-  if( test.server )
-    test.server.close();
+  helper.caminio.gears.register( new Gear({ api: true, absolutePath: __dirname+'/support/app' }) );
 
-  test.app = helper.caminio();
-  test.server = test.app.server.start( function(){
-    test.running = true;
-    test.agent = test.superagent.agent();
-    done(test);
+  helper.caminio.init({ 
+    config: { 
+      root: __dirname+'/support/app',
+      log: {
+        filename: process.cwd()+'/test.log'
+      }
+    }
   });
+
+  helper.url = 'http://localhost:'+helper.caminio.config.port;
+
+  helper.caminio.on('ready', done);
 
 }
 

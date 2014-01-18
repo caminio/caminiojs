@@ -6,9 +6,6 @@
  * @copyright TASTENWERK http://tastenwerk.com
  * @license MIT
  *
- * TODO: test
- *
  */
-var Caminio = require('./app');
 
-module.exports = new Caminio();
+module.exports = require('./lib/gear');

@@ -4,3 +4,4 @@ lib-cov
 coverage.html
 npm-debug.log
 doc
+.tmp
