@@ -1,11 +1,9 @@
 module.exports.adapters = {
   
-  'default':        'disk',
+  'default':        'mongoose',
 
-  disk: {
-
-    module:   'sails-disk'
-
+  mongoose: {
+    url:      'mongodb://localhost:27071/caminio_test'
   }
 
 }

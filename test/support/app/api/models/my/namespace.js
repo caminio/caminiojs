@@ -1,9 +1,9 @@
-module.exports = {
-  
-  attributes: {
+module.exports = function( caminio, mongoose ){
 
-    name: 'string'
+  var Schema = mongoose.Schema({
+    name: { type: String }
+  });
 
-  }
+  return Schema;
 
 }

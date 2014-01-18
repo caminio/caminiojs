@@ -33,6 +33,11 @@ module.exports = function(grunt) {
     grunt.task.run('mochaTest');
   });
 
+  grunt.registerTask('testModels', 'runs only model tests', function(){
+    grunt.config('mochaTest.test.src', ['test/**/*model.unit.test.js']);
+    grunt.task.run('mochaTest');
+  });
+
   grunt.registerTask('testApi', 'runs only api tests', function(){
     grunt.config('mochaTest.test.src', ['test/**/*.api.test.js']);
     grunt.task.run('mochaTest');

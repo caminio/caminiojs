@@ -11,8 +11,7 @@
 var helper = require('./helper')
   , fixtures = helper.fixtures
   , caminio
-  , expect = helper.chai.expect
-  , Waterline = require('waterline');
+  , expect = helper.chai.expect;
 
 
 describe('model', function(){
@@ -27,11 +26,16 @@ describe('model', function(){
       expect(caminio.models).to.have.property('TestModel');
     });
 
-    it('instance of Waterline Model', function(){
+    it('instance of Mongoose Model', function(){
       expect(caminio.models.TestModel).to.have.property('create');
       expect(caminio.models.TestModel).to.have.property('find');
       expect(caminio.models.TestModel).to.have.property('findOne');
     });
+
+    it('builds a new instance of model', function(){
+      var testModel = new caminio.models.TestModel({ name: 'test' });
+      expect(testModel).to.have.property('name');
+    })
 
   });
 
@@ -41,7 +45,7 @@ describe('model', function(){
       expect(caminio.models).to.have.property('My::Namespace');
     });
 
-    it('instance of Waterline Model', function(){
+    it('instance of Mongoose Model', function(){
       expect(caminio.models.TestModel).to.have.property('create');
     });
 
