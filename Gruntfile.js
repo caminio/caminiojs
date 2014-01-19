@@ -10,6 +10,7 @@ module.exports = function(grunt) {
         options: {
           globals: ['should'],
           timeout: 3000,
+          bail: true,
           ignoreLeaks: false,
           ui: 'bdd',
           reporter: 'spec'

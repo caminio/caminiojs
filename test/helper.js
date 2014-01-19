@@ -20,7 +20,7 @@ helper.initApp = function( test, done ){
   helper.caminio = require('../lib/caminio')
   var Gear = helper.Gear = require('../lib/gear');
 
-  helper.caminio.gears.register( new Gear({ api: true, absolutePath: __dirname+'/support/app' }) );
+  new Gear({ api: true, absolutePath: __dirname+'/support/app' });
 
   helper.caminio.init({ 
     config: { 
