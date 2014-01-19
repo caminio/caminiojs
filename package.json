@@ -1,8 +1,8 @@
 {
   "name": "caminio",
-  "description": "core module of the caminio cms",
-  "version": "0.0.1",
-  "private": true,
+  "description": "cms framework wrapping expressjs/mongoose, inspired by Ruby on Rails and sailsjs",
+  "version": "1.99.1",
+  "private": false,
   "author": "quaqua <quaqua@tastenwerk.com>",
   "keywords": [
     "caminio",
@@ -19,7 +19,7 @@
     "mongoose": "~3.8.4"
   },
   "devDependencies": {
-    "caminio-fixtures": "~0.1.0",
+    "caminio-fixtures": "git://github.com/tastenwerk/caminio-fixtures#0.1.1",
     "mocha": "~1.15.1",
     "chai": "~1.8.1",
     "superagent": "~0.15.7",
