@@ -68,9 +68,23 @@ describe('controller', function(){
       .end( function( err, res ){
         expect(res.text).to.include('specialincluded');
         expect(res.text).to.include('againspecincluded');
+        expect(res.text).to.include('middleware_w_exception');
         done();
       });
     });
 
+    it('includes both middleware modules', function(done){
+      request.get(helper.url+'/middleware_w_exception')
+      .end( function( err, res ){
+        expect(res.text).to.include('specialincluded');
+        expect(res.text).to.include('againspecincluded');
+        expect(res.text).to.not.include('middleware_w_exception');
+        done();
+      });
+    });
+
+
   });
+
+
 });

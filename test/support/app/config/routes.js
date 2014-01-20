@@ -11,6 +11,8 @@ module.exports.routes = {
 
   'resource /main': 'MainController',
 
-  '/middleware': 'MainController#middleware'
+  '/middleware': 'MainController#middleware',
+
+  '/middleware_w_exception': 'MainController#middleware_w_exception'
 
 }
