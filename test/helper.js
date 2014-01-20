@@ -6,8 +6,8 @@ process.env['NODE_ENV'] = 'test';
 
 var helper = {};
 
-helper.fixtures = require('caminio-fixtures');
-helper.fixtures.readFixtures();
+//helper.fixtures = require('caminio-fixtures');
+//helper.fixtures.readFixtures();
 
 helper.chai = require('chai');
 helper.chai.Assertion.includeStack = true;

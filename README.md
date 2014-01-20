@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tastenwerk/caminio.png)](https://travis-ci.org/tastenwerk/caminio)
+
 # caminio
 
 Caminio is a cms framework wrapping expressjs/mongoose heavily inspired by RubyOnRails.
