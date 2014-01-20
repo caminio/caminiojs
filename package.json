@@ -29,7 +29,7 @@
   },
   "main": "lib/caminio.js",
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "grunt testAll --verbose"
   },
   "license": "MIT",
   "repository": {
