@@ -28,6 +28,9 @@
     "grunt-mocha-test": "~0.8.2"
   },
   "main": "lib/caminio.js",
+  "scripts": {
+    "test": "grunt test --verbose"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
