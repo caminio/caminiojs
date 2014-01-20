@@ -51,7 +51,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('clearLogs', function(){
-    fs.unlinkSync('test.log');
+    if( fs.existsSync('test.log') )
+      fs.unlinkSync('test.log');
   });
   
   // Default task(s).
