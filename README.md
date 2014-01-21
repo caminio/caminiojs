@@ -12,9 +12,9 @@ Caminio is a cms framework wrapping expressjs/mongoose heavily inspired by RubyO
 * autoRest, a feature inspired by sailsjs, generating a complete rest api automatically for a model
 * keep control over middleware and policies through a highly adaptable middleware ecosystem
 * asset minification
-* themable GUI support. No need to start from scratch, just select the gears you want to use and start
-  writing your own gear
-  * GUI is driven by knockoutjs/durandal, a great combination
+* themable GUI support (requires caminio-front) No need to start from scratch, just select the gears you want to use and start
+  writing your own gear and embedd it in the GUI caminio provides.
+  * GUI is driven by knockoutjs/durandal, a great team!
 
 
 ## installation
@@ -40,3 +40,8 @@ Who knows RubyOnRails, can think of gears as of rails engines. A gear can carry 
     // make this application a caminio gear:
     new Gear({ api: true });
     // ...
+
+
+## License
+
+caminio is licensed under the MIT license. See LICENSE for more details.
