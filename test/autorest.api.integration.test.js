@@ -75,6 +75,7 @@ describe('Autorest', function(){
       .put(helper.url+'/butter/'+this.butter.id)
       .send({ 'my/butter': { amount: test.butter.amount } })
       .end( function(err,res){
+        console.log(err,res.body);
         expect(res.status).to.eql(200);
         expect(res.body.amount).to.eql(test.butter.amount);
         done();
@@ -93,6 +94,28 @@ describe('Autorest', function(){
       });
     });
 
+    it('find', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find')
+      .end( function(err,res){
+        expect(res.status).to.eql(200);
+        expect(res.body).to.be.an.instanceOf(Array);
+        done();
+      });
+    });
+
+    it('destroy', function(done){
+      var test = this;
+      superagent.agent()
+      .del(helper.url+'/butter/'+this.butter.id)
+      .end( function(err,res){
+        console.log(res.text);
+        expect(res.status).to.eql(200);
+        expect(res.body).to.be.empty;
+        done();
+      });
+    });
   });
 
 

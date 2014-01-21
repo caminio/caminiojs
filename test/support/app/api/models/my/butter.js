@@ -4,11 +4,13 @@
  */
 module.exports = function( caminio, mongoose ){
 
-  var Schema = mongoose.Schema({
+  var schema = new mongoose.Schema({
     name: { type: String },
     amount: { type: Number }
   });
 
-  return Schema;
+  schema.publicAttributes = ['name','amount'];
+
+  return schema;
 
 }
