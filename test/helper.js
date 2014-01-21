@@ -2,12 +2,14 @@
  * caminio test helper
  */
 
+var mongoose = require('mongoose');
+
 process.env['NODE_ENV'] = 'test';
 
 var helper = {};
 
-//helper.fixtures = require('caminio-fixtures');
-//helper.fixtures.readFixtures();
+helper.fixtures = require('caminio-fixtures');
+helper.fixtures.readFixtures();
 
 helper.chai = require('chai');
 helper.chai.Assertion.includeStack = true;
@@ -16,6 +18,8 @@ helper.initApp = function( test, done ){
 
   if( helper.caminio )
     return done();
+
+  helper.fixtures.enableORM( mongoose );
 
   helper.caminio = require('../lib/caminio')
   var Gear = helper.Gear = require('../lib/gear');
