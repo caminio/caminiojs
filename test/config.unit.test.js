@@ -25,14 +25,19 @@ describe('config', function(){
     expect(caminio.config.routes).to.have.property('/');
   });
 
-  it('adapters.js', function(){
-    expect(caminio.config.adapters).to.be.an('object');
-    expect(caminio.config.adapters).to.have.property('default');
+  it('token.js', function(){
+    expect(caminio.config.token).to.be.an('object');
+    expect(caminio.config.token).to.have.property('timeout');
+  });
+
+  it('environemnts/<env>.js', function(){
+    expect(caminio.config.port).to.be.a('number');
   });
 
   it('session.js', function(){
     expect(caminio.config.session).to.be.an('object');
     expect(caminio.config.session).to.have.property('timeout');
+    expect(caminio.config.session).to.have.property('secret');
   });
 
 });
