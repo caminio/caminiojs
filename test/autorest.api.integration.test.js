@@ -10,11 +10,11 @@
 
 var superagent = require('superagent');
 
-var helper = require('./helper')
-  , fixtures = helper.fixtures
-  , caminio
-  , autorest
-  , expect = helper.chai.expect;
+var helper = require('./helper');
+var fixtures = helper.fixtures;
+var caminio;
+var autorest;
+var expect = helper.chai.expect;
 
 describe('Autorest', function(){
 
@@ -31,7 +31,7 @@ describe('Autorest', function(){
 
     it('fails', function(){
       expect( function(){
-        autorest.create( 'NonExistentModel', '/non_existent' ) 
+        autorest.create( 'NonExistentModel', '/non_existent' );
       }).to.throw(/Missing model/);
     });
 
