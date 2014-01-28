@@ -52,8 +52,7 @@ describe('Autorest', function(){
       .get(helper.url+'/butter')
       .end( function(err,res){
         expect(res.status).to.eql(200);
-        expect(res.body).to.have.property('my/butters');
-        expect(res.body['my/butters']).to.be.instanceOf(Array);
+        expect(res.body).to.be.instanceOf(Array);
         done();
       });
     });
@@ -77,7 +76,7 @@ describe('Autorest', function(){
       .send({ 'my/butter': { amount: test.butter.amount } })
       .end( function(err,res){
         expect(res.status).to.eql(200);
-        expect(res.body['my/butter'].amount).to.eql(test.butter.amount);
+        expect(res.body.amount).to.eql(test.butter.amount);
         done();
       });
     });
@@ -88,8 +87,8 @@ describe('Autorest', function(){
       .get(helper.url+'/butter/'+this.butter.id)
       .end( function(err,res){
         expect(res.status).to.eql(200);
-        expect(res.body['my/butter'].amount).to.eql(test.butter.amount);
-        expect(res.body['my/butter'].name).to.eql(test.butter.name);
+        expect(res.body.amount).to.eql(test.butter.amount);
+        expect(res.body.name).to.eql(test.butter.name);
         done();
       });
     });
@@ -100,7 +99,7 @@ describe('Autorest', function(){
       .get(helper.url+'/butter/find')
       .end( function(err,res){
         expect(res.status).to.eql(200);
-        expect(res.body['my/butters']).to.be.an.instanceOf(Array);
+        expect(res.body).to.be.an.instanceOf(Array);
         done();
       });
     });
