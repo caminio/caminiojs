@@ -1,7 +1,7 @@
 {
   "name": "caminio",
   "description": "cms framework wrapping expressjs/mongoose, inspired by Ruby on Rails and sailsjs",
-  "version": "1.99.2",
+  "version": "1.99.1",
   "private": false,
   "author": "quaqua <quaqua@tastenwerk.com>",
   "keywords": [
