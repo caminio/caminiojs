@@ -1,6 +1,7 @@
 caminio is a node CMS highly modularized. It sticks to mongoosejs. It is - in my opinion - the highest ellaborated database adapter for nodejs you can find. You start with a MVC Ruby on Rails like system and get an amazing auto-REST functionallity.
 
 [![Build Status](https://travis-ci.org/caminio/caminio.png)](https://travis-ci.org/tastenwerk/caminio)
+[![GitHub version](https://badge.fury.io/gh/caminio%2Fcaminio.png)](http://badge.fury.io/gh/caminio%2Fcaminio)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## Features

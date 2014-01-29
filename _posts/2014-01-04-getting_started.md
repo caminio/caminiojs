@@ -53,11 +53,51 @@ This is, why caminio is a very fine rapid prototyping eco-system: The only setti
 
 {% endhighlight %}
 
-If you start the server with:
-
-    $ npm start
+If your server isn't running, start it up with `npm start`.
 
 The Gruntfile will take control and start caminio in `watch` mode. Any changes will be recognized and cause the server to reload immediately. The default port of caminio is `4000`. Fire up your favorite browser and visit `http://localhost:4000`.
+
+I recommend the RESTClient addon for Firefox or Postman for Google Chrome to test the API. You can - of course also just use curl as I do below:
+
+## Autorest
+
+receive posts:
+
+    $ curl http://localhost:4000/posts
+    []
+
+create a new post:
+
+    $ curl -X POST --data "post[name]=John\ Doe" http://localhost:4000/posts
+    {
+      "name": "John Doe",
+      [...],
+      "id": "52s826624e84320aaby01337"
+    }
+
+retrieve a single post by its id:
+
+    $ curl http://localhost:4000/posts/52s826624e84320aaby01337
+    {
+      "name": "Joh",
+      [...],
+      "id": "52s826624e84320aaby01337"
+    }
+
+update a post:
+
+    $ curl -X PUT --data "post[name]=changed" http://localhost:4000/posts/52s826624e84320aaby01337
+    {
+      "name": "changed",
+      [...],
+      "id": "52s826624e84320aaby01337"
+    }
+
+find posts with name like 'Joh':
+
+    $ curl http://localhost:4000/posts/find\?name\=regexp\(/Joh/i\)
+
+Here, RESTClient or Postman are a bit more handsome.
 
 
 ## Controller
@@ -67,3 +107,4 @@ Similar to the model, caminio-cli provides a template generator:
     $ caminio controller PostsController
 
 This creates `app/controllers/posts_controller.js` and an index file in `app/views/posts/index.html.jade`. Note, that in caminio, your jade files should wear the .html.jade extension. That way, you can have different types of views, like `.xml.jade`, `.csv.jade` and so on.
+

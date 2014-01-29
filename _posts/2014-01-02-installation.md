@@ -18,4 +18,8 @@ With caminio-cli you can easily set up a new project:
     $ cd my-project
     $ npm install
 
-And you are ready to go.
+And you are ready to go. That's already the point where you can start the server
+
+    $ npm start
+
+This fires up the `grunt server` in development mode. Open your favorite browser and go to `http://localhost:4000`.
