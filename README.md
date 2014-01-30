@@ -19,29 +19,18 @@ Caminio is a cms framework wrapping expressjs/mongoose heavily inspired by RubyO
 
 ## installation
 
-    npm install -g caminio
+    $ npm install -g caminio-cli
+    $ caminio project myproject
+    $ cd myproject && npm install
 
-## usage
+starting caminio
 
-    caminio new myapp
+    $ npm start
 
-This will create a new caminio application scaffold.
+## Documentation
 
-By default, you get 2 other plugins along with caminio:
-
-* [caminio-auth][http://npmjs.org/package/caminio-auth] provides a User, a Group and a Domain model with authentication through passportjs
-* [caminio-dashboard][http://npmjs.org/package/caminio-dashboard] provides a basic layout, the theming system and html files for the login system.
-
-## The concept of Gears [gears] ##
-
-Who knows RubyOnRails, can think of gears as of rails engines. A gear can carry a full /api tree with all features caminio provides. But caminio goes a step further. Basically, everything is considered a gear. Even the main application is considered a gear. If you take a look at your `index.js` file in the created app dirctory, you will find a line, invoking the gear:
-
-    // ...
-    // make this application a caminio gear:
-    new Gear({ api: true });
-    // ...
-
-
+  [http://caminio.github.io/caminio](http://caminio.github.io/caminio)
+  
 ## License
 
 caminio is licensed under the MIT license. See LICENSE for more details.
