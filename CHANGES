@@ -1,0 +1,5 @@
+1.1.0
+  - entirely new oauth implementation
+  - new controller definition (not compatible to older versions)
+  - mailer (caminio.mailer.send is a simple mailer implementation with nodemailer)
+  - audit.log
