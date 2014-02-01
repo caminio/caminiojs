@@ -233,6 +233,8 @@ header {
 
 p.header {
 	font-size: 16px;
+  text-align: right;
+  margin-top: 0;
 }
 
 h1.header {
@@ -242,6 +244,7 @@ h1.header {
 	border-bottom: none;
   text-align: right;
   padding: 0;
+  margin-bottom: 0;
 }
 
 
