@@ -16,7 +16,7 @@ knockout and durandal are great, but, they do not come with a data service. Bree
 
 I really love the way ember-data works and I tried to took some ideas from that:
 
-#### Preface: AMD / requirejs
+#### A note on AMD / requirejs
 
 Be a friend of it or not. AMD increases development process as it structures dependencies, helps you dispatching your code in smaller files and keeps it more readable. People warning you of using AMD as it makes loads of network calls, just don't know the power of requirejs, actually: javascript. caminio (`grunt build`) zips all requirejs files together into one large file in production mode. You require one single file, require still recognises the dependencies.
 
