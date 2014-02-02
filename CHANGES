@@ -3,3 +3,4 @@
   - new controller definition (not compatible to older versions)
   - mailer (caminio.mailer.send is a simple mailer implementation with nodemailer)
   - audit.log
+  - caminio.mainGear references to the directory of the gear initializing caminio
