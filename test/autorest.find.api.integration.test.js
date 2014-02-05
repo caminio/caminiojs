@@ -70,7 +70,6 @@ describe('Autorest find functions', function(){
       superagent.agent()
       .get(helper.url+'/butter/find?amount=lt(100)')
       .end( function(err,res){
-        console.log(res.body);
         expect(res.status).to.eql(200);
         expect(res.body).to.be.an.instanceOf(Array);
         done();
@@ -82,10 +81,28 @@ describe('Autorest find functions', function(){
       superagent.agent()
       .get(helper.url+'/butter/find?amount=gh(500)')
       .end( function(err,res){
-        expect(res.status).to.eql(400);
+        expect(res.status).to.eql(500);
         done();
       });
     });
+
+    it('finds $or operator', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find/')
+      .send({
+        or: [
+        { name: 'test' },
+        { name: 'regexp(/ram/)'}
+        ],
+        amount: 132
+      })
+      .end( function(err,res){
+        expect(res.status).to.eql(200);
+        done();
+      });
+    });
+
 
   });
 
