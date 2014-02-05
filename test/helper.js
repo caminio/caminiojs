@@ -2,7 +2,8 @@
  * caminio test helper
  */
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+  , async = require('async');
 
 process.env['NODE_ENV'] = 'test';
 
@@ -40,5 +41,12 @@ helper.initApp = function( test, done ){
   helper.caminio.on('ready', done);
 
 }
+
+helper.cleanup = function( caminio, done ){
+  async.each( Object.keys(caminio.models), function( modelId, next ){
+    caminio.models[modelId].remove({}, next);
+  }, done );
+};
+
 
 module.exports = helper;
