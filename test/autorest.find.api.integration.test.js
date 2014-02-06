@@ -110,6 +110,42 @@ describe('Autorest find functions', function(){
       });
     });
 
+    it('less than equal operator - key lte( ... ) ', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find?amount=lte(3)')
+      .end( function(err,res){
+        expect(res.status).to.eql(200);
+        expect(res.body).to.be.an.instanceOf(Array);
+        expect(res.body).to.have.length(1);
+        done();
+      });
+    });
+
+    it('greater than operator - key gt( ... ) ', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find?amount=gt(100)')
+      .end( function(err,res){
+        expect(res.status).to.eql(200);
+        expect(res.body).to.be.an.instanceOf(Array);
+        expect(res.body).to.have.length(1);
+        done();
+      });
+    });
+
+    it('greater than equal operator - key gte( ... ) ', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find?amount=gte(134)')
+      .end( function(err,res){
+        expect(res.status).to.eql(200);
+        expect(res.body).to.be.an.instanceOf(Array);
+        expect(res.body).to.have.length(1);
+        done();
+      });
+    });
+
     it('or operator - or [{ key: ... }, { key: ... }]', function(done){
       var test = this;
       superagent.agent()
@@ -169,7 +205,39 @@ describe('Autorest find functions', function(){
       });
     });
 
+    it('or and lt', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find/')
+      .send({
+        or: [
+        { name: 'test' },
+        { name: 'regexp(/ram/)'},
+        { amount: 134},
+        { amount: 'lt(3)'}
+        ]
+      })
+      .end( function(err,res){
+        expect(res.body).to.have.length(4);
+        expect(res.status).to.eql(200);
+        done();
+      });
+    });
 
+    it('and and gt', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find/')
+      .send({
+        name: 'rama',
+        amount: 'gte(3)'
+      })
+      .end( function(err,res){        
+        expect(res.body).to.have.length(3);
+        expect(res.status).to.eql(200);
+        done();
+      });
+    });
 
   });
 
