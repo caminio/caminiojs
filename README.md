@@ -16,7 +16,6 @@ Caminio is a cms framework wrapping expressjs/mongoose heavily inspired by RubyO
   writing your own gear and embedd it in the GUI caminio provides.
   * GUI is driven by knockoutjs/durandal, a great team!
 
-
 ## installation
 
     $ npm install -g caminio-cli
@@ -26,6 +25,8 @@ Caminio is a cms framework wrapping expressjs/mongoose heavily inspired by RubyO
 starting caminio
 
     $ npm start
+
+caminio express server by defaults listens to `http://localhost:4000/caminio`.
 
 ## Documentation
 

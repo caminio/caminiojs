@@ -6,9 +6,24 @@
   "author": "quaqua <quaqua@tastenwerk.com>",
   "keywords": [
     "caminio",
-    "mvc framework",
-    "cms"
+    "mvc",
+    "framework",
+    "cms",
+    "autorest"
   ],
+  "author": { 
+    "name" : "thorsten zerha", 
+    "email" : "quaqua@tastenwerk.com",
+    "url" : "https://github.com/quaqua"
+  },
+  "contributors": [
+    {
+      "name": "David Reinisch"
+    }
+  ],
+  "engines": {
+    "node" : ">=0.10.1"
+  },
   "dependencies": {
     "express": "~3.4.8",
     "winston": "~0.7.2",
@@ -24,7 +39,7 @@
     "nodemailer": "~0.6.0"
   },
   "devDependencies": {
-    "caminio-fixtures": "git://github.com/tastenwerk/caminio-fixtures#0.1.1",
+    "caminio-fixtures": "git://github.com/caminio/caminio-fixtures#0.1.1",
     "mocha": "~1.15.1",
     "chai": "~1.8.1",
     "superagent": "~0.15.7",
@@ -38,6 +53,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tastenwerk/caminio.git"
+    "url": "https://github.com/caminio/caminio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/caminio/caminio/issues"
   }
 }
