@@ -4,7 +4,7 @@ If you know a typical structure of a Ruby on Rails project, you might find this 
     |-- Gruntfile.js
     |-- package.json
     |
-    |-- app
+    |-- api
     |   |-- models
     |   |-- controllers
     |   |-- views

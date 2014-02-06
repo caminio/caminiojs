@@ -59,47 +59,6 @@ The Gruntfile will take control and start caminio in `watch` mode. Any changes w
 
 I recommend the RESTClient addon for Firefox or Postman for Google Chrome to test the API. You can - of course also just use curl as I do below:
 
-## Autorest
-
-receive posts:
-
-    $ curl http://localhost:4000/posts
-    []
-
-create a new post:
-
-    $ curl -X POST --data "post[name]=John\ Doe" http://localhost:4000/posts
-    {
-      "name": "John Doe",
-      [...],
-      "id": "52s826624e84320aaby01337"
-    }
-
-retrieve a single post by its id:
-
-    $ curl http://localhost:4000/posts/52s826624e84320aaby01337
-    {
-      "name": "Joh",
-      [...],
-      "id": "52s826624e84320aaby01337"
-    }
-
-update a post:
-
-    $ curl -X PUT --data "post[name]=changed" http://localhost:4000/posts/52s826624e84320aaby01337
-    {
-      "name": "changed",
-      [...],
-      "id": "52s826624e84320aaby01337"
-    }
-
-find posts with name like 'Joh':
-
-    $ curl http://localhost:4000/posts/find\?name\=regexp\(/Joh/i\)
-
-Here, RESTClient or Postman are a bit more handsome.
-
-
 ## Controller
 
 Similar to the model, caminio-cli provides a template generator:

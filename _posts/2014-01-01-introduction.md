@@ -1,4 +1,4 @@
-caminio is a highly modularizeable CMS written in nodejs very practical for rapid prototyping. It sticks to mongoosejs - the IMO highest ellaborated database adapter for nodejs you can find. You start with a MVC Ruby on Rails like system and get an amazing auto-REST functionallity.
+caminio is a highly modularizeable CMS written in nodejs very practical for rapid prototyping. You can also understand it as a higher level pre-configured expressjs wrapper with some extra features. It sticks to mongoosejs - the IMO highest ellaborated database adapter for nodejs you can find. You start with a MVC Ruby on Rails like system and get an amazing auto-REST functionallity.
 
 [![Build Status](https://travis-ci.org/caminio/caminio.png)](https://travis-ci.org/tastenwerk/caminio)
 [![GitHub version](https://badge.fury.io/gh/caminio%2Fcaminio.png)](http://badge.fury.io/gh/caminio%2Fcaminio)
