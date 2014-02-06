@@ -77,6 +77,7 @@ describe('Autorest find functions', function(){
       .end( function(err,res){
         expect(res.status).to.eql(200);
         expect(res.body).to.be.an.instanceOf(Array);
+        expect(res.body).to.have.length(2);
         done();
       });
     });
@@ -100,10 +101,11 @@ describe('Autorest find functions', function(){
     it('less than operator - key lt( ... ) ', function(done){
       var test = this;
       superagent.agent()
-      .get(helper.url+'/butter/find?amount=lt(500)')
+      .get(helper.url+'/butter/find?amount=lt(100)')
       .end( function(err,res){
         expect(res.status).to.eql(200);
         expect(res.body).to.be.an.instanceOf(Array);
+        expect(res.body).to.have.length(1);
         done();
       });
     });
@@ -145,9 +147,10 @@ describe('Autorest find functions', function(){
     it('in operator - key in([..., ...]) }', function(done){
       var test = this;
       superagent.agent()
-      .get(helper.url+'/butter/find?name=in(test, blabla)')
+      .get(helper.url+'/butter/find?name=in(test,rama)')
       .end( function(err,res){
         expect(res.status).to.eql(200);
+        expect(res.body).to.have.length(2);
         done();
       });
     });
