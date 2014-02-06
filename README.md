@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/tastenwerk/caminio.png)](https://travis-ci.org/tastenwerk/caminio)
+[![Build Status](https://travis-ci.org/caminio/caminio.png)](https://travis-ci.org/caminio/caminio)
 
 # caminio
 
