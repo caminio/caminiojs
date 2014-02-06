@@ -1,2 +1,6 @@
+.tmp
+/doc
+/node_modules
+test.log
 _site
 .DS_Store
