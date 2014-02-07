@@ -10,7 +10,7 @@ module.exports = function( caminio, policies, middleware ){
     },
 
     'index': [
-      function(req,res,next){ req.text += 'primary'; next() },
+      function(req,res,next){ req.text += 'primary'; next(); },
       function( req, res ){
         res.send( req.text );
       }
@@ -28,8 +28,21 @@ module.exports = function( caminio, policies, middleware ){
       function( req, res ){
         res.send( req.text );
       }
+    ],
+
+    'testSugars': [
+      function( req, res ){
+        res.send( typeof(policies.testSugars) );
+      }
+    ],
+
+    'testChocolate': [
+      function( req, res ){
+        res.send( typeof(policies.testChocolate) );
+      }
     ]
 
-  }
 
-}
+  };
+
+};

@@ -47,6 +47,22 @@ describe('controller', function(){
       });
     });
 
+    it('singular policy name remains singular', function(done){
+      request.get(helper.url+'/testChocolate')
+      .end( function( err, res ){
+        expect(res.text).to.include('function');
+        done();
+      });
+    });
+
+    it('plural policy name remains plural', function(done){
+      request.get(helper.url+'/testSugars')
+      .end( function( err, res ){
+        expect(res.text).to.include('function');
+        done();
+      });
+    });
+
   });
 
   describe('middleware from middleware', function(){

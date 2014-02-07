@@ -15,6 +15,10 @@ module.exports.routes = {
 
   '/middleware_w_exception': 'MainController#middleware_w_exception',
 
+  '/testSugars': 'MainController#testSugars',
+
+  '/testChocolate': 'MainController#testChocolate',
+
   'autorest /butter': 'My::Butter'
 
-}
+};
