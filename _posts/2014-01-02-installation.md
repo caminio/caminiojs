@@ -22,4 +22,4 @@ And you are ready to go. That's already the point where you can start the server
 
     $ npm start
 
-This fires up the `grunt server` in development mode. Open your favorite browser and go to `http://localhost:4000`.
+This fires up the `grunt server` in development mode. Open your favorite browser and go to `http://localhost:4000`. To log in and create a user account, navigate to `http://localhost:4000/caminio`. If your database is empty, you will be prompted to create a new user.
