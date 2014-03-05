@@ -110,6 +110,19 @@ describe('Autorest find functions', function(){
       });
     });
 
+    it('less than operator - key ne(null) ', function(done){
+      var test = this;
+      superagent.agent()
+      .get(helper.url+'/butter/find?amount=ne(null)')
+      .end( function(err,res){
+        console.log(res.body);
+        expect(res.status).to.eql(200);
+        expect(res.body).to.be.an.instanceOf(Array);
+        expect(res.body).to.have.length(2);
+        done();
+      });
+    });
+
     it('less than equal operator - key lte( ... ) ', function(done){
       var test = this;
       superagent.agent()
