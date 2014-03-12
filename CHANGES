@@ -2,6 +2,9 @@
   - Fix Issues #1: singular/plural policies definition mixed up by loader
   - config/site.js (options to config the current site) current options: 'name'
   - lib/util/index: new function - formatErrors( <MongooseErrors> )
+  - autorest with sideload and namespace features
+  - autorest auto updates updatedBy updatedAt (if available)
+  - autorest index works same as /find
 
 1.1.0
   - entirely new oauth implementation
