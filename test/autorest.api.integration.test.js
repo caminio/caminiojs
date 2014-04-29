@@ -75,6 +75,7 @@ describe('Autorest', function(){
       .put(helper.url+'/butter/'+this.butter.id)
       .send({ 'my/butter': { amount: test.butter.amount } })
       .end( function(err,res){
+        console.log('err', res.text);
         expect(res.status).to.eql(200);
         expect(res.body.amount).to.eql(test.butter.amount);
         done();
