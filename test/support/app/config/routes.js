@@ -17,6 +17,8 @@ module.exports.routes = {
 
   '/testSugars': 'MainController#testSugars',
 
+  '/resp2': 'MainController#resp2',
+
   '/testChocolate': 'MainController#testChocolate',
 
   'autorest /butter': 'My::Butter'

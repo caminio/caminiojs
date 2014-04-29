@@ -99,8 +99,22 @@ describe('controller', function(){
       });
     });
 
+  });
+
+  describe('_beforeResponse array', function(){
+
+    it('includes _before + _beforeResponse actions', function(done){
+      request.get(helper.url+'/resp2')
+      .end( function( err, res ){
+        expect(res.text).to.include('secondary');
+        expect(res.text).to.include('tertiary');
+        expect(res.text).to.include('quarter');
+        done();
+      });
+    });
 
   });
+
 
 
 });

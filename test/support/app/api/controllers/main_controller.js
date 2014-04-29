@@ -5,8 +5,17 @@ module.exports = function( caminio, policies, middleware ){
     _before: {
       '*': policies.testAuthenticated,
       '*!(middleware_w_exception)': function( req, res, next ){ req.text += ' middleware_w_exception '; next(); },
-      'index,other': function( req, res, next ){ req.text += 'secondary'; next(); },
+      'index,other,resp2': function( req, res, next ){ req.text += 'secondary'; next(); },
       'middleware,middleware_w_exception': [ middleware.special, middleware.special2 ]
+    },
+
+    _beforeResponse: {
+      'resp2': function( req, res, next ){ req.text += 'tertiary'; next(); }
+    },
+
+    'resp2': function( req, res ){
+      req.text += 'quarter';
+      res.send( req.text );
     },
 
     'index': [
