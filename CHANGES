@@ -2,6 +2,7 @@
   - util.normalizeFilename
   - added some util tests
   - crud_models get interceptable (control flow can be intercepted via _beforeResponse)
+  - siteVersion, caminioVersion as variable in layouts
 
 1.1.1
   - Fix Issues #1: singular/plural policies definition mixed up by loader
