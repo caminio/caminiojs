@@ -115,6 +115,19 @@ describe('Autorest', function(){
         done();
       });
     });
+
+    it('restore', function(done){
+      var test = this;
+      superagent.agent()
+      .post(helper.url+'/butter/'+this.butter.id+'/restore')
+      .end( function(err,res){
+        expect(res.status).to.eql(200);
+        expect(res.body).to.have.property('_id');
+        expect(res.body._id).to.eql(test.butter._id.toString());
+        done();
+      });
+    });
+
   });
 
 

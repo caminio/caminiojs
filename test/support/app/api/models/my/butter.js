@@ -9,8 +9,9 @@ module.exports = function( caminio, mongoose ){
     amount: { type: Number }
   });
 
+  schema.trash = true;
   schema.publicAttributes = ['name','amount'];
 
   return schema;
 
-}
+};
