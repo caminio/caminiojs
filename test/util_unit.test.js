@@ -61,4 +61,24 @@ describe('util', function(){
 
   });
 
+  describe('split filename into filename part an extension', function(){
+  
+    it('#getFilename simple', function(){
+      expect( util.getFilename('test.jpg') ).to.eql('test');
+    });
+
+    it('#getFilename without extension', function(){
+      expect( util.getFilename('test') ).to.eql('test');
+    });
+
+    it('#getFilename multi-dots', function(){
+      expect( util.getFilename('test.my.test.jpg') ).to.eql('test.my.test');
+    });
+
+    it('#getFilename with dirs', function(){
+      expect( util.getFilename('test/test.jpg') ).to.eql('test/test');
+    });
+
+  });
+
 });

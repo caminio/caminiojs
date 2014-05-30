@@ -1,5 +1,6 @@
 1.1.2
   - util.normalizeFilename
+  - util.getFilename (without extension)
   - added some util tests
   - crud_models get interceptable (control flow can be intercepted via _beforeResponse)
   - siteVersion, caminioVersion as variable in layouts
