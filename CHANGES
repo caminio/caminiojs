@@ -1,4 +1,5 @@
-1.1.2
+1.2.0
+  - new hook system
   - util.normalizeFilename
   - util.getFilename (without extension)
   - added some util tests
