@@ -1,3 +1,6 @@
+1.2.1
+  - new notify system
+  - change mailer boundries
 1.2.0
   - new hook system
   - util.normalizeFilename
