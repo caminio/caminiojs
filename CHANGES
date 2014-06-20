@@ -8,6 +8,7 @@
   - crud update calls mongoose' update on instantiated model (instead of Model class) which
     causes middleware to get executed
   - restore functionallity in autorest with :id/restore, a model can be restored
+  - config/logger can configure additional array of logging resources
 
 1.1.1
   - Fix Issues #1: singular/plural policies definition mixed up by loader
