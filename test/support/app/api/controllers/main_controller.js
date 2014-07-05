@@ -10,7 +10,7 @@ module.exports = function( caminio, policies, middleware ){
     },
 
     _beforeResponse: {
-      'resp2': function( req, res, next ){ req.text += 'tertiary'; next(); }
+      'resp2': function resp2BeforeResponse( req, res, next ){ req.text += 'tertiary'; next(); }
     },
 
     'resp2': function( req, res ){
