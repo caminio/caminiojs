@@ -1,5 +1,7 @@
 module.exports = function( caminio, policies, stack ){
 
+  'use strict';
+
   return {
 
     _before: {
@@ -8,12 +10,12 @@ module.exports = function( caminio, policies, stack ){
     },
 
     'index': [
-      function(req,res,next){ req.text += 'primary'; next() },
+      function(req,res,next){ req.text += 'primary'; next(); },
       function( req, res ){
         res.send( req.text );
       }
     ]
 
-  }
+  };
 
-}
+};
