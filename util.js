@@ -1,11 +1,9 @@
-/*
- * camin.io
- *
- * @author quaqua <quaqua@tastenwerk.com>
- * @date 01/2014
- * @copyright TASTENWERK http://tastenwerk.com
- * @license MIT
- *
- */
+/* jslint node: true */
+'use strict';
 
-module.exports = require('./lib/util');
+module.exports.mixin = function extend(destination, source) {
+  for (var k in source)
+    if (source.hasOwnProperty(k))
+      destination[k] = source[k];
+  return destination;
+};
