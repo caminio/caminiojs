@@ -3,17 +3,14 @@
 
 var vows          = require('vows'),
     assert        = require('assert'),
-    Caminio       = require('../index');
+    request       = require('superagent'),
+    caminio       = require('../index');
 
 vows
-  .describe('initialization')
+  .describe('caminio()')
   .addBatch({
-    'default init': {
-      topic: new Caminio(),
-
-      'returns a caminio app instance': function( app ){
-        assert.instanceOf( app, Caminio );
-      },
+    'default config': {
+      topic: caminio(),
 
       '@env: development': function( app ){
         assert.equal( app.env, 'development');
@@ -30,7 +27,10 @@ vows
   })
   .addBatch({
     '#start': {
-      topic: (new Caminio()).start(),
+      topic: function(){
+        var cb = this.callback;
+        caminio().start( function(err,cb){
+        });
 
       'server is running': function( app ){
         assert.equal( app.status, 'running' );

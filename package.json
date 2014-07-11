@@ -35,7 +35,8 @@
   "devDependencies": {
     "grunt-cli": "^0.1.13",
     "grunt-vows": "^0.4.1",
-    "vows": "^0.7.0"
+    "vows": "^0.7.0",
+    "superagent": "~0.18.1"
   },
   "main": "index.js",
   "scripts": {
