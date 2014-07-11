@@ -7,54 +7,50 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    mochaTest: {
-      test: {
+    vows: {
+      all: {
         options: {
-          globals: ['should'],
-          timeout: 3000,
-          bail: true,
-          ignoreLeaks: false,
-          ui: 'bdd',
-          reporter: 'spec'
+          // String {spec|json|dot-matrix|xunit|tap}
+          // defaults to "dot-matrix"
+          reporter: "spec",
+          // String or RegExp which is
+          // matched against title to
+          // restrict which tests to run
+          // onlyRun: /helper/,
+          // Boolean, defaults to false
+          verbose: false,
+          // Boolean, defaults to false
+          silent: false,
+          // Colorize reporter output,
+          // boolean, defaults to true
+          colors: true,
+          // Run each test in its own
+          // vows process, defaults to
+          // false
+          isolate: false,
+          // String {plain|html|json|xml}
+          // defaults to none
+          coverage: "plain"
         },
-        src: ['test/**/*.test.js']
+        // String or array of strings
+        // determining which files to include.
+        // This option is grunt's "full" file format.
+        src: ['test/**/*.js']
       }
     }
+
   });
 
   // Load the plugin that provides the "uglify" task.
   //grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-vows');
 
-  grunt.registerTask('test', 'runs all tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('testUnit', 'runs only unit tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*.unit.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('testModels', 'runs only model tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*model.unit.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('testApi', 'runs only api tests', function(){
-    grunt.task.run('clearLogs');
-    grunt.config('mochaTest.test.src', ['test/**/*.api.integration.test.js']);
-    grunt.task.run('mochaTest');
-  });
-
-  grunt.registerTask('clearLogs', function(){
+  grunt.registerTask('test', function(){
     if( fs.existsSync('test.log') )
       fs.unlinkSync('test.log');
+    grunt.task.run('vows');
   });
-  
+
   // Default task(s).
   grunt.registerTask('default', ['test']);
 
