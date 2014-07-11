@@ -1,37 +1,29 @@
-[![Build Status](https://travis-ci.org/caminio/caminio.png)](https://travis-ci.org/caminio/caminio)
+# Caminio
 
-# caminio
+TODO: Write a gem description
 
-Caminio is a cms framework wrapping expressjs/mongoose heavily inspired by RubyOnRails.
+## Installation
 
-## features
+Add this line to your application's Gemfile:
 
-* modularized [gears][] allowing to write reusable parts of a cms
-  * the /api directory is read in every gear and includes views, controllers, middleware and models
-* namespacing allows to write versioned apis
-* autoRest, a feature inspired by sailsjs, generating a complete rest api automatically for a model
-* keep control over middleware and policies through a highly adaptable middleware ecosystem
-* asset minification
-* themable GUI support (requires caminio-front) No need to start from scratch, just select the gears you want to use and start
-  writing your own gear and embedd it in the GUI caminio provides.
-  * GUI is driven by knockoutjs/durandal, a great team!
+    gem 'caminio'
 
-## installation
+And then execute:
 
-    $ npm install -g caminio-cli
-    $ caminio project myproject
-    $ cd myproject && npm install
+    $ bundle
 
-starting caminio
+Or install it yourself as:
 
-    $ npm start
+    $ gem install caminio
 
-caminio express server by defaults listens to `http://localhost:4000/caminio`.
+## Usage
 
-## Documentation
+TODO: Write usage instructions here
 
-  [http://caminio.github.io/caminio](http://caminio.github.io/caminio)
-  
-## License
+## Contributing
 
-caminio is licensed under the MIT license. See LICENSE for more details.
+1. Fork it ( https://github.com/[my-github-username]/caminio/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
