@@ -1,5 +1,3 @@
 require "caminio/version"
-
-module Caminio
-  # Your code goes here...
-end
+require "caminio/core"
+require "caminio/loader"
