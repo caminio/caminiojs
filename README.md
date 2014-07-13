@@ -40,6 +40,30 @@ After restarting the server, you can access your rest api with:
     curl http://localhost:4000/orders
     => []
 
+# Under the hood
+
+We took several ideas from rails which we were using for years and found very helpful. The initializer
+architecture is one of such features.
+
+## Initialization process
+
+When calling `caminio()`, a new `Caminio` instance is created and passed back. After caminio has loaded
+all native modules, all configurations are parsed (but not instantiated yet):
+
+                      |
+                      V
+                   caminio
+                      |
+                      V
+        process.cwd() / config / env.js
+                      |
+                      V
+      process.cwd() / config / initializers / *
+                      |
+                      V
+            app / {models,controllers,views}
+
+
 # LICENSE
 
 MIT
