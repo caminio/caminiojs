@@ -34,9 +34,10 @@
   },
   "devDependencies": {
     "grunt-cli": "^0.1.13",
-    "grunt-vows": "^0.4.1",
-    "vows": "^0.7.0",
-    "superagent": "~0.18.1"
+    "superagent": "~0.18.1",
+    "mocha": "~1.20.1",
+    "chai": "~1.9.1",
+    "grunt-mocha-test": "~0.11.0"
   },
   "main": "index.js",
   "scripts": {

@@ -1,4 +1,4 @@
-var fs = require('fs');
+'use strict';
 
 module.exports = function(grunt) {
 
@@ -7,48 +7,40 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    vows: {
-      all: {
+    clean: ['test.log'],
+
+    mochaTest: {
+      test: {
         options: {
-          // String {spec|json|dot-matrix|xunit|tap}
-          // defaults to "dot-matrix"
-          reporter: "spec",
-          // String or RegExp which is
-          // matched against title to
-          // restrict which tests to run
-          // onlyRun: /helper/,
-          // Boolean, defaults to false
-          verbose: false,
-          // Boolean, defaults to false
-          silent: false,
-          // Colorize reporter output,
-          // boolean, defaults to true
-          colors: true,
-          // Run each test in its own
-          // vows process, defaults to
-          // false
-          isolate: false,
-          // String {plain|html|json|xml}
-          // defaults to none
-          coverage: "plain"
+          reporter: 'spec',
+          require: 'coverage/blanket'
         },
-        // String or array of strings
-        // determining which files to include.
-        // This option is grunt's "full" file format.
+        src: ['test/**/*.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          // use the quiet flag to suppress the mocha console output
+          quiet: true,
+          // specify a destination file to capture the mocha
+          // output (the quiet option does not suppress this)
+          captureFile: 'coverage.html'
+        },
         src: ['test/**/*.js']
       }
     }
 
   });
 
-  // Load the plugin that provides the "uglify" task.
-  //grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-vows');
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('test', function(){
-    if( fs.existsSync('test.log') )
-      fs.unlinkSync('test.log');
-    grunt.task.run('vows');
+    grunt.task.run('mochaTest');
+  });
+
+  grunt.registerTask('coverage', function(){
+    grunt.task.run('mochaTest:coverage');
   });
 
   // Default task(s).
