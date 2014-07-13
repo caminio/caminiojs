@@ -1,10 +1,12 @@
-/* jslint node: true */
+/* jshint node: true */
+/* jshint expr: true */
 'use strict';
 
-var vows          = require('vows'),
-    assert        = require('assert'),
+var chai          = require('chai'),
+    expect        = chai.expect,
     request       = require('superagent'),
     caminio       = require('../index');
+
 
 vows
   .describe('caminio()')

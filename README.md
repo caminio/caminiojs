@@ -1,37 +1,45 @@
 [![Build Status](https://travis-ci.org/caminio/caminio.png)](https://travis-ci.org/caminio/caminio)
 
-# caminio
+# Motivation
 
-Caminio is a cms framework wrapping expressjs/mongoose heavily inspired by RubyOnRails.
+caminio aims to provide a very small and modularized web framework covering the needs of a tiny
+rest api provider up to a full featured and themed cms user interface.
 
-## features
+This module just covers the loading and routing process.
 
-* modularized [gears][] allowing to write reusable parts of a cms
-  * the /api directory is read in every gear and includes views, controllers, middleware and models
-* namespacing allows to write versioned apis
-* autoRest, a feature inspired by sailsjs, generating a complete rest api automatically for a model
-* keep control over middleware and policies through a highly adaptable middleware ecosystem
-* asset minification
-* themable GUI support (requires caminio-front) No need to start from scratch, just select the gears you want to use and start
-  writing your own gear and embedd it in the GUI caminio provides.
-  * GUI is driven by knockoutjs/durandal, a great team!
+# Getting started
 
-## installation
+    npm install -g caminio-cli
 
-    $ npm install -g caminio-cli
-    $ caminio project myproject
-    $ cd myproject && npm install
+    caminio new my-rest-project
 
-starting caminio
+This will set up a minimalistic project where you can start from. Within the project:
 
-    $ npm start
+    npm start
 
-caminio express server by defaults listens to `http://localhost:4000/caminio`.
+## Using the API restifier
 
-## Documentation
+You might want to add a database adapter:
 
-  [http://caminio.github.io/caminio](http://caminio.github.io/caminio)
-  
-## License
+    npm install --save caminio-db-sequelize
 
-caminio is licensed under the MIT license. See LICENSE for more details.
+Now, you can start using the structure `app/models` and it will be associated with the current db
+adapter. Note, it is not possible to mix db adapters.
+
+As a last step you want to create a route for a model. Let's assume, we have a model called `Order`:
+
+__config/routes.js__:
+    module.exports = exports = {
+      'restify /orders': 'Order'
+    };
+
+That's it!
+
+After restarting the server, you can access your rest api with:
+
+    curl http://localhost:4000/orders
+    => []
+
+# LICENSE
+
+MIT
