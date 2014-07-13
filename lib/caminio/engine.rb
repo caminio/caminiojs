@@ -3,18 +3,32 @@ module Caminio
 
     isolate_namespace Caminio
 
-    initializer "assets_initializers.initialize_rails", :group => :assets do |app|
-      require "#{Rails.root}/config/initializers/load_config.rb"
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[File.join( File.expand_path('../../../',__FILE__), 'app', 'api', '*')]
+
+    # rspec
+    config.generators do |g|
+      g.test_framework :rspec, :fixture => false
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.assets false
+      g.helper false
     end
+
+    # initializer "assets_initializers.initialize_rails", :group => :assets do |app|
+    #   require "#{Rails.root}/config/initializers/load_config.rb"
+    # end
 
     initializer :assets do |config|
-      Rails.application.config.assets.precompile << %w(
-        nothin/yet
-      )
+      Rails.application.config.assets.precompile += %w( caminio.js caminio.css )
     end
+    #   Rails.application.config.assets.precompile << %w(
+    #     caminio/index.js
+    #     caminio/index.css
+    #   )
+    # end
 
     if defined?( ActiveRecord )
-      ActiveRecord::Base.send( :include, Iox::DocumentSchema )
+      ActiveRecord::Base.send( :include, Caminio::Schemas::WebObject )
     end
 
     initializer :append_migrations do |app|

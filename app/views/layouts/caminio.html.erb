@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head>
+  <title>caminio workplace</title>
+  <%= stylesheet_link_tag    'caminio', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'caminio', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
