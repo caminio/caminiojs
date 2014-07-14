@@ -2,7 +2,7 @@
 #= require_tree ./routes
 #= require_tree ./models
 #= require_tree ./controllers
-#= require ./templates/index.hbs
+#= require_tree ./templates
 #= require ./router
 
 window.App = Ember.Application.create
