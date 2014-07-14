@@ -53,8 +53,7 @@ module Caminio
         route 'get "/login" => "auth#login"'
 
         gem 'doorkeeper'
-        gem 'ember-rails'
-        gem 'ember-source'
+        gem 'bower-rails'
 
       end
 
