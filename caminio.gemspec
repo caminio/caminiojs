@@ -23,7 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "coffee-rails", "~> 4.0.0"
   spec.add_dependency "ember-rails"
   spec.add_dependency "ember-source", "1.6.0"
-  spec.add_dependency "jquery-rails", "2.1.0"
   spec.add_dependency "bcrypt", "3.1.7"
   spec.add_dependency "rack-oauth2", "1.0.8"
   spec.add_dependency "doorkeeper", "1.3.1"

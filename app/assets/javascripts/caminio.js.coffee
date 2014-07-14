@@ -1,4 +1,5 @@
 #= require jquery
+#= require jquery.cookie
 #= require bootstrap
 #= require handlebars
 #= require ember
@@ -22,3 +23,6 @@ App.Router.map ->
   @route 'index', path: '/'
   @resource 'sessions', ->
     @route 'new'
+
+App.ApplicationAdapter = DS.RESTAdapter.extend
+

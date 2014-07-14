@@ -5,9 +5,10 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :circles
 
+  has_many :api_keys
+
   has_secure_password
 
-  attr_accessible :email, :password, :password_confirmation
   validates_presence_of :password, :on => :create
 
 end

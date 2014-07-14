@@ -10,7 +10,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.string        :phone
       t.string        :categories
 
-      t.integer       :role, default: 50
+      t.integer       :access_level, default: 50
       t.boolean       :suspended, default: false
       t.boolean       :superuser, default: false
 
@@ -82,6 +82,12 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.timestamps
     end
     add_index :subscriptions, :obj_id
+
+    create_table :api_keys do |t|
+      t.references    :user
+      t.string        :access_token
+      t.datetime      :expires_at
+    end
 
   end
 end
