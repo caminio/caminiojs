@@ -59,7 +59,7 @@ module Caminio
 
       def run_other_generators
         # generate "doorkeeper:install"
-        generate 'ember:install'
+        # generate 'ember:install'
       end
 
     end
