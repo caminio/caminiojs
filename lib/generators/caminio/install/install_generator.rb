@@ -53,7 +53,10 @@ module Caminio
         route 'get "/login" => "auth#login"'
 
         gem 'doorkeeper'
-        gem 'bower-rails'
+        # gem 'bower-rails'
+        gem 'ember-rails'
+        gem 'bootstrap-sass'
+        gem 'jquery-ui-rails'
 
       end
 
