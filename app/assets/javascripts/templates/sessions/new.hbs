@@ -1,5 +1,32 @@
-<form class="login" {{action 'login' on='submit'}}>
-  {{input value=email class="form-control" placeholder="email"}}
-  {{input value=password class="form-control" placeholder="password" type="password"}}
-  <button type="submit" class="btn">Login</button>
-</form>
+<div class="login-box">
+  <div class="login-logo-wrap">
+    <div class="login-logo"></div>
+  </div>
+  <form {{action 'login' on='submit'}}>
+
+    {{#if errorMessage}}
+    <div class="alert alert-danger">{{{errorMessage}}}</div>
+    {{else}}
+    <div class="alert"></div>
+    {{/if}}
+
+    <div class="form-group">
+      {{input value=login class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="email_or_username"}}
+    </div>
+
+    <div class="form-group">
+      {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
+    </div>
+
+    <div class="form-group align-right">
+      <button class="btn btn-success" type="submit">
+        {{t 'login'}}
+      </button>
+      <div class="controls">
+        {{#link-to 'sessions.forgot_password'}}
+          {{t 'forgot_password'}}
+        {{/link-to}}
+    </div>
+
+  </form>
+</div>

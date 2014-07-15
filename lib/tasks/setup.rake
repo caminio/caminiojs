@@ -11,7 +11,7 @@ namespace :caminio do
     password = "mgr"
     puts "[caminio] email #{green email} pass #{green password}"
 
-    @user = User.new firstname: 'caminio', lastname: 'superuser', email: email, access_level: 1, password: password, password_confirmation: password
+    @user = User.new username: 'manager', firstname: 'caminio', lastname: 'superuser', email: email, access_level: 1, password: password, password_confirmation: password
     if @user.valid? && @user.save
       puts "[caminio] successfully created user #{email}"
     else

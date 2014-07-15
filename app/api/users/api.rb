@@ -8,7 +8,7 @@ class Users::API < Grape::API
 
   get '/' do
     logger.info "here"
-    { hello: 1 }
+    { users: [] }
   end
 
 end

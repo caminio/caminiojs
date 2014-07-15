@@ -4,8 +4,12 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require cldr-plurals
+#= require ember-i18n
 #
 #= require_self
+#= require ./router
+#= require_tree ./locales
 #= require_tree ./routes
 #= require_tree ./models
 #= require_tree ./controllers
@@ -15,14 +19,14 @@ window.App = Ember.Application.create
   LOG_TRANSITIONS: true
 
 App.ApplicationAdapter = DS.RESTAdapter.extend
-  host: '<%= request.protocol %><%= request.host %><%= request.port %>/caminio'
+  host: '/caminio'
   headers:
     'X-CSRF-Token': '<%= csrf %>'
 
-App.Router.map ->
-  @route 'index', path: '/'
-  @resource 'sessions', ->
-    @route 'new'
+# App.ApplicationAdapter = DS.RESTAdapter.extend
 
-App.ApplicationAdapter = DS.RESTAdapter.extend
+App.ApplicationStore = DS.Store.extend
+  adapter: DS.RESTAdapter.extend
 
+# ember i18n
+Ember.View.reopen Em.I18n.TranslateableAttributes

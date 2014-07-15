@@ -3,7 +3,7 @@ class CreateCaminioTables < ActiveRecord::Migration
 
     create_table :users do |t|
 
-      t.string        :nickname
+      t.string        :username
       t.string        :firstname
       t.string        :lastname
       t.string        :email, required: true

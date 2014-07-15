@@ -6,16 +6,11 @@ module Caminio
 
       source_root File.expand_path('../templates', __FILE__)
 
-      desc "Installs TASTENbOX into your application"
+      desc "Installs caminio into your application"
 
       def setup_and_create
 
         copy_file "favicon.ico", "public/favicon.ico"
-        template "doorkeeper.rb", "config/initializers/doorkeeper.rb"
-
-      end
-
-      def setup_config
 
         application do
           "\n"+
@@ -48,21 +43,41 @@ module Caminio
           "\n"
         end
 
-        route "mount Caminio::Engine, at: \"/caminio\""
-        route 'use_doorkeeper'
-        route 'get "/login" => "auth#login"'
-
-        gem 'doorkeeper'
-        # gem 'bower-rails'
-        gem 'ember-rails'
-        gem 'bootstrap-sass'
-        gem 'jquery-ui-rails'
-
       end
 
-      def run_other_generators
-        # generate "doorkeeper:install"
-        # generate 'ember:install'
+      def setup_routes
+        route "mount Caminio::Engine, at: \"/caminio\""
+        route 'root to: "main#index"'
+      end
+
+      def setup_doorkeeper
+        gem 'doorkeeper'
+        route 'use_doorkeeper'
+        template "doorkeeper.rb", "config/initializers/doorkeeper.rb"
+      end
+
+      desc "setup handlebars assets"
+      def setup_handlebars_assets
+        gem 'handlebars_assets'
+        template "handlebars_assets.rb", "config/initializers/handlebars_assets.rb"
+      end
+
+      desc "setup and install bower"
+      def setup_bower
+        gem 'bower-rails'
+
+        template "Bowerfile", "Bowerfile"
+        template "bower_rails.rb", "config/initializers/bower_rails.rb"
+
+        rake "bower:install"
+      end
+
+      def copy_fonts
+        directory "fonts", "public/fonts"
+      end
+
+      def readme_file
+        readme "README"
       end
 
     end

@@ -1,6 +1,6 @@
 # 3rd
 require "grape"
-require "doorkeeper"
+# require "doorkeeper"
 
 require "caminio/version"
 require "caminio/schemas/web_object"

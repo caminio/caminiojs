@@ -1,0 +1,54 @@
+body.authorization-required{
+  height: 100%;
+  font-size: 12px;
+  background: #e60;
+  background: -moz-linear-gradient(top,  #e60 0%, #b30 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e60), color-stop(100%,#b30)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #e60 0%,#b30 100%); /* Chrome10+,Safari5.1+ */
+  background: -ms-linear-gradient(top,  #e60 0%,#b30 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #e60 0%,#b30 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e60', endColorstr='#b30',GradientType=0 ); /* IE6-9 */
+}
+
+.login-box{
+  background: none repeat scroll 0 0 #eee;
+  bottom: 0;
+  box-shadow: 2px 2px 3px #333;
+  height: 400px;
+  left: 0;
+  margin: auto;
+  padding: 110px 40px 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 360px;
+}
+
+.login-box .alert{
+  min-height: 50px;
+}
+
+.login-logo-wrap{
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 70px;
+  height: 90px;
+  background: #e60;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.login-logo{
+  background: url(asset-path('logo_128x128.png'));
+  background-size: cover;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.login-box .controls{
+  margin-top: 0.5em;
+}

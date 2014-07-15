@@ -1,5 +1,5 @@
 App.SessionsController = Ember.Controller.extend
-  email: null
+  login: null
   password: null
 
   reset: ->
@@ -10,7 +10,7 @@ App.SessionsController = Ember.Controller.extend
 
   actions:
     login: ->
-      data = @getProperties 'email', 'password'
+      data = @getProperties 'login', 'password'
       controller = @
       Ember.$.post '/caminio/sessions', data
         .then (response)->
@@ -23,7 +23,7 @@ App.SessionsController = Ember.Controller.extend
               'Authorization': 'Bearer ' + response.api_key.access_token
         .fail (error)->
           if error.status == 401
-            alert('wrong username or password')
+            controller.set 'errorMessage', Em.I18n.t('invalid_username_or_password')
 
     logout: ->
       controller = @
