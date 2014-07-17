@@ -7,7 +7,7 @@ class ApiKey < ActiveRecord::Base
   private
 
   def setup_access_token
-    self.access_token = SecureRandom.base64(64)
+    self.access_token = SecureRandom.hex(64)
     setup_access_token if self.class.where( access_token: self.access_token ).first
   end
 

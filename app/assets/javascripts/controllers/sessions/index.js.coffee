@@ -15,12 +15,10 @@ App.SessionsController = Ember.Controller.extend
       Ember.$.post '/caminio/sessions', data
         .then (response)->
           Ember.$.cookie 'caminio-session', response.api_key.access_token
-          controller.set 'currentApiKey', response.api_key
           controller.set 'currentUser', controller.store.find('user',
             response.api_key.user_id)
-          Ember.$.ajaxSetup
-            headers:
-              'Authorization': 'Bearer ' + response.api_key.access_token
+          App.setAuthenticationBearer( response.api_key )
+          controller.transitionToRoute('dashboard.index')
         .fail (error)->
           if error.status == 401
             controller.set 'errorMessage', Em.I18n.t('invalid_username_or_password')

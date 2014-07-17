@@ -28,5 +28,10 @@ App.ApplicationAdapter = DS.RESTAdapter.extend
 App.ApplicationStore = DS.Store.extend
   adapter: DS.RESTAdapter.extend
 
+App.setAuthenticationBearer = (api_key)->
+  Ember.$.ajaxSetup
+    headers:
+      'Authorization': 'Bearer ' + api_key.access_token
+
 # ember i18n
 Ember.View.reopen Em.I18n.TranslateableAttributes

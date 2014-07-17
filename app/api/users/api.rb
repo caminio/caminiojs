@@ -11,4 +11,8 @@ class Users::API < Grape::API
     { users: [] }
   end
 
+  get '/:id' do
+    { user: User.find_by_id(params[:id]) }
+  end
+
 end

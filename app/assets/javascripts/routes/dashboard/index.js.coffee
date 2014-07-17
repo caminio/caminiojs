@@ -1,3 +1,3 @@
-App.DashboardIndexRoute = Ember.Route.extend
+App.DashboardIndexRoute = App.AuthRoute.extend
   model: ->
     console.log "index"
