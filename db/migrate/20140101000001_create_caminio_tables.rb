@@ -10,14 +10,9 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.string        :phone
       t.string        :categories
 
-      t.integer       :access_level, default: 50
-      t.boolean       :suspended, default: false
-      t.boolean       :superuser, default: false
-
       t.datetime      :last_login_at
       t.datetime      :last_request_at
       t.string        :last_login_ip
-      t.text          :app_ids
 
       t.string        :password_digest
 
@@ -34,60 +29,71 @@ class CreateCaminioTables < ActiveRecord::Migration
 
       t.timestamps
     end
-
     add_index :users, :email, unique: true
     add_index :users, :categories
     add_index :users, :public_key, unique: true
     add_index :users, :private_key, unique: true
 
-    create_table :domains do |t|
+    create_table :organizational_unit_members do |t|
+      t.integer       :user_id
+      t.integer       :organizational_unit_id
+      t.integer       :access_level, default: 1
+      t.timestamps
+    end
+    add_index :organizational_unit_members, :user_id
+    add_index :organizational_unit_members, :organizational_unit_id
+
+    create_table :organization_unit_apps do |t|
+      t.integer       :app_plan_id
+      t.integer       :organizational_unit_id
+    end
+    add_index :organizational_unit_apps, :app_plan_id
+    add_index :organizational_unit_apps, :organizational_unit_id
+
+    create_table :app_plans do |t|
+      t.string        :name
+      t.integer       :price
+      t.integer       :app_id
+      t.integer       :users_amount, default: 1
+      t.boolean       :visible, default: false
+      t.timestamps
+    end
+    add_index :app_plans, :app_id, unique: true
+
+    create_table :organizational_units do |t|
 
       t.string        :name
-      t.string        :qualified_name
-
-      t.integer       :role, default: 50
-      t.boolean       :suspended, default: false
-      t.boolean       :superuser, default: false
-
-      t.datetime      :last_login_at
-      t.datetime      :last_request_at
-      t.string        :last_login_ip
-
-      t.text          :app_ids
-
-      t.string        :password_digest
-
-      t.text          :settings
-
-      t.timestamps
-    end
-
-    add_index :domains, :name, unique: true
-    add_index :domains, :qualified_name, unique: true
-
-    create_table :circles do |t|
-      t.references    :user
-      t.boolean       :follow, default: false
+      t.integer       :app_id
+      t.integer       :owner_id
+      t.string        :type
+      t.string        :color
       t.text          :settings
       t.timestamps
+
     end
+    add_index :organizational_units, :type
+    add_index :organizational_units, :app_id
 
-    add_index :circles, :user_id
+    create_table :messages do |t|
 
-    create_table :subscriptions do |t|
-
-      t.string        :obj_type
-      t.integer       :obj_id
-
+      t.string        :title
+      t.text          :content
+      t.integer       :followup_id
+      t.integer       :created_by
+      t.integer       :organizational_unit_id
       t.timestamps
+
     end
-    add_index :subscriptions, :obj_id
+    add_index :messages, :followup_id
+    add_index :messages, :created_by
 
     create_table :api_keys do |t|
       t.references    :user
       t.string        :access_token
       t.datetime      :expires_at
     end
+
+    add_index :api_keys, :user_id, unique: true
 
   end
 end

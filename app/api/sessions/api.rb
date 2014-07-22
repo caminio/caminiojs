@@ -11,6 +11,7 @@ class Sessions::API < Grape::API
     #invalidate other logins:
     @user.api_keys.delete_all
     { api_key: @user.api_keys.create }
+
   end
 
 end
