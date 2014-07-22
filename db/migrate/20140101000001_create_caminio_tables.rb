@@ -43,7 +43,7 @@ class CreateCaminioTables < ActiveRecord::Migration
     add_index :organizational_unit_members, :user_id
     add_index :organizational_unit_members, :organizational_unit_id
 
-    create_table :organization_unit_app_plans do |t|
+    create_table :organizational_unit_app_plans do |t|
       t.integer       :app_plan_id
       t.integer       :organizational_unit_id
     end
@@ -69,6 +69,9 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.text            :content
       t.text            :description
       t.string          :keywords
+      t.integer         :created_by
+      t.integer         :updated_by
+      t.timestamps
     end
 
     create_table :apps do |t|
@@ -80,21 +83,23 @@ class CreateCaminioTables < ActiveRecord::Migration
 
       t.string        :name
       t.integer       :owner_id
-      t.string        :type
       t.string        :color
       t.text          :settings
+      t.integer       :created_by
+      t.integer       :updated_by
       t.timestamps
 
     end
-    add_index :organizational_units, :type
-    add_index :organizational_units, :app_id
 
     create_table :messages do |t|
 
-      t.string        :title
-      t.text          :content
-      t.integer       :followup_id
-      t.integer       :created_by
+      t.string          :title
+      t.text            :content
+      t.integer         :followup_id
+      t.integer         :created_by
+      t.integer         :updated_by
+      t.datetime        :deleted_at
+      t.integer         :deleted_by
       t.timestamps
 
     end
@@ -109,23 +114,25 @@ class CreateCaminioTables < ActiveRecord::Migration
     add_index :api_keys, :user_id, unique: true
 
     create_table :labels do |t|
-      t.string        :name
-      t.string        :color
-      t.integer       :created_by
+      t.string          :name
+      t.string          :color
+      t.integer         :created_by
+      t.integer         :updated_by
+      t.datetime        :deleted_at
+      t.integer         :deleted_by
       t.timestamps
     end
     add_index :labels, :name
-    add_index :labels, :parent_id
 
     create_table :row_labels do |t|
-      t.references    :label
-      t.integer       :row_id
-      t.string        :row_type
+      t.references      :label
+      t.integer         :row_id
+      t.string          :row_type
     end
     add_index :row_labels, :row_id
     add_index :row_labels, :row_type
 
-    create_table :rules do |t|
+    create_table :access_rules do |t|
       t.integer       :row_id
       t.string        :row_type
       t.integer       :group_id
@@ -134,10 +141,14 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.boolean       :can_write, default: false
       t.boolean       :can_share, default: false
       t.boolean       :can_delete, default: false
+      t.boolean       :is_owner, default: false
+      t.integer       :created_by
+      t.integer       :updated_by
+      t.timestamps
     end
-    add_index :rules, :user_id
-    add_index :rules, :row_id
-    add_index :rules, :row_type
+    add_index :access_rules, :user_id
+    add_index :access_rules, :row_id
+    add_index :access_rules, :row_type
 
   end
 end

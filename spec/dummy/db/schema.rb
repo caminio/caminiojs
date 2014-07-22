@@ -13,40 +13,77 @@
 
 ActiveRecord::Schema.define(version: 20140712151957) do
 
+  create_table "access_rules", force: true do |t|
+    t.integer  "row_id"
+    t.string   "row_type"
+    t.integer  "group_id"
+    t.integer  "label_id"
+    t.integer  "user_id"
+    t.boolean  "can_write",  default: false
+    t.boolean  "can_share",  default: false
+    t.boolean  "can_delete", default: false
+    t.boolean  "is_owner",   default: false
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "access_rules", ["row_id"], name: "index_access_rules_on_row_id"
+  add_index "access_rules", ["row_type"], name: "index_access_rules_on_row_type"
+  add_index "access_rules", ["user_id"], name: "index_access_rules_on_user_id"
+
   create_table "api_keys", force: true do |t|
     t.integer  "user_id"
     t.string   "access_token"
     t.datetime "expires_at"
   end
 
-  create_table "circles", force: true do |t|
-    t.integer  "user_id"
-    t.boolean  "follow",     default: false
-    t.text     "settings"
+  add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", unique: true
+
+  create_table "app_plans", force: true do |t|
+    t.integer  "price"
+    t.integer  "app_id"
+    t.integer  "users_amount", default: 1
+    t.boolean  "visible",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "circles", ["user_id"], name: "index_circles_on_user_id"
+  add_index "app_plans", ["app_id"], name: "index_app_plans_on_app_id", unique: true
 
-  create_table "domains", force: true do |t|
+  create_table "apps", force: true do |t|
+    t.string  "path"
+    t.boolean "is_public"
+  end
+
+  create_table "labels", force: true do |t|
     t.string   "name"
-    t.string   "qualified_name"
-    t.integer  "role",            default: 50
-    t.boolean  "suspended",       default: false
-    t.boolean  "superuser",       default: false
-    t.datetime "last_login_at"
-    t.datetime "last_request_at"
-    t.string   "last_login_ip"
-    t.text     "app_ids"
-    t.string   "password_digest"
-    t.text     "settings"
+    t.string   "color"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "deleted_at"
+    t.integer  "deleted_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "domains", ["name"], name: "index_domains_on_name", unique: true
-  add_index "domains", ["qualified_name"], name: "index_domains_on_qualified_name", unique: true
+  add_index "labels", ["name"], name: "index_labels_on_name"
+
+  create_table "messages", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "followup_id"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "deleted_at"
+    t.integer  "deleted_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["created_by"], name: "index_messages_on_created_by"
+  add_index "messages", ["followup_id"], name: "index_messages_on_followup_id"
 
   create_table "oauth_access_grants", force: true do |t|
     t.integer  "resource_owner_id", null: false
@@ -87,14 +124,60 @@ ActiveRecord::Schema.define(version: 20140712151957) do
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
 
-  create_table "subscriptions", force: true do |t|
-    t.string   "obj_type"
-    t.integer  "obj_id"
+  create_table "organizational_unit_app_plans", force: true do |t|
+    t.integer "app_plan_id"
+    t.integer "organizational_unit_id"
+  end
+
+  add_index "organizational_unit_app_plans", ["app_plan_id"], name: "index_organizational_unit_app_plans_on_app_plan_id"
+  add_index "organizational_unit_app_plans", ["organizational_unit_id"], name: "index_organizational_unit_app_plans_on_organizational_unit_id"
+
+  create_table "organizational_unit_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "organizational_unit_id"
+    t.integer  "access_level",           default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "subscriptions", ["obj_id"], name: "index_subscriptions_on_obj_id"
+  add_index "organizational_unit_members", ["organizational_unit_id"], name: "index_organizational_unit_members_on_organizational_unit_id"
+  add_index "organizational_unit_members", ["user_id"], name: "index_organizational_unit_members_on_user_id"
+
+  create_table "organizational_units", force: true do |t|
+    t.string   "name"
+    t.integer  "owner_id"
+    t.string   "color"
+    t.text     "settings"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "row_labels", force: true do |t|
+    t.integer "label_id"
+    t.integer "row_id"
+    t.string  "row_type"
+  end
+
+  add_index "row_labels", ["row_id"], name: "index_row_labels_on_row_id"
+  add_index "row_labels", ["row_type"], name: "index_row_labels_on_row_type"
+
+  create_table "translations", force: true do |t|
+    t.string   "locale"
+    t.string   "title"
+    t.string   "subtitle"
+    t.text     "aside"
+    t.text     "aside2"
+    t.text     "aside3"
+    t.text     "content"
+    t.text     "description"
+    t.string   "keywords"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -103,13 +186,9 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.string   "email"
     t.string   "phone"
     t.string   "categories"
-    t.integer  "access_level",                default: 50
-    t.boolean  "suspended",                   default: false
-    t.boolean  "superuser",                   default: false
     t.datetime "last_login_at"
     t.datetime "last_request_at"
     t.string   "last_login_ip"
-    t.text     "app_ids"
     t.string   "password_digest"
     t.string   "confirmation_key"
     t.datetime "confirmation_key_expires_at"
