@@ -43,12 +43,12 @@ class CreateCaminioTables < ActiveRecord::Migration
     add_index :organizational_unit_members, :user_id
     add_index :organizational_unit_members, :organizational_unit_id
 
-    create_table :organization_unit_apps do |t|
+    create_table :organization_unit_app_plans do |t|
       t.integer       :app_plan_id
       t.integer       :organizational_unit_id
     end
-    add_index :organizational_unit_apps, :app_plan_id
-    add_index :organizational_unit_apps, :organizational_unit_id
+    add_index :organizational_unit_app_plans, :app_plan_id
+    add_index :organizational_unit_app_plans, :organizational_unit_id
 
     create_table :app_plans do |t|
       t.string        :name
@@ -60,10 +60,14 @@ class CreateCaminioTables < ActiveRecord::Migration
     end
     add_index :app_plans, :app_id, unique: true
 
+    create_table :apps do |t|
+      t.string        :name
+      t.boolean       :is_public
+    end
+
     create_table :organizational_units do |t|
 
       t.string        :name
-      t.integer       :app_id
       t.integer       :owner_id
       t.string        :type
       t.string        :color
