@@ -1,0 +1,21 @@
+.footer-wrap{
+  // background: none repeat scroll 0 0 #eee;
+  // box-shadow: 0 2px 3px #444 inset;
+  color: rgba(255,255,255,0.7);
+  bottom: 0;
+  height: 30px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.footer-wrap .right{
+  float: right;
+  margin: 7px 10px 0;
+}
+
+.footer-wrap .left{
+  float: left;
+  margin: 7px 0 0 10px;
+}
+
