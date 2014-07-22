@@ -1,0 +1,242 @@
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.8ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-22 09:15:55.865082"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$lHRtK8lsrz.8NRG0dVlaMOeRhLN25Vik71rJb0cUtWqw3AUK1lAI2"], ["settings", "null"], ["updated_at", "2014-07-22 09:15:55.865082"], ["username", "john"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:15:55.872748"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$aznMnaRNp5Tew5G2crJMmO38xFpjXxPn4p1LM9KCbpHSSye7qQHk."], ["settings", "null"], ["updated_at", "2014-07-22 09:15:55.872748"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-22 09:17:15.143363"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$Povoyin86BtWDVnbK9ZZ0.s2Uoh/jK.WtVwERaRrlLtkxHosPYIfi"], ["settings", "null"], ["updated_at", "2014-07-22 09:17:15.143363"], ["username", "john"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:17:15.150862"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$nz65nBxkNPG.8Q/dT9gcsO0P7WdV0WR.u8EtnkRTi0h6s6iqAPCc6"], ["settings", "null"], ["updated_at", "2014-07-22 09:17:15.150862"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-22 09:17:55.886191"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$58Mu9yB2iqpRxY/Swvg6WOkRQWmODM6hIJNYVS8ep3WhLzd9h/Rqa"], ["settings", "null"], ["updated_at", "2014-07-22 09:17:55.886191"], ["username", "john"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:17:55.893757"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$gSXqEhIukAv.2z6a/rXnLewbcVgYmLlGDI9pzlOInz4rJbHX/Y0OG"], ["settings", "null"], ["updated_at", "2014-07-22 09:17:55.893757"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:17:55.930056"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$9w9Ge0DpUOf5soiM/j2esegcCEjFUIgdWrUq.COkuO2.X1VkERnOa"], ["settings", "null"], ["updated_at", "2014-07-22 09:17:55.930056"], ["username", "john"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-22 09:18:09.643816"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$2JIZHXwM.g8DbpJ..y.t8.JHW5ajillsaXE9VnOlNrNYh570eG7CK"], ["settings", "null"], ["updated_at", "2014-07-22 09:18:09.643816"], ["username", "john"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:18:09.652395"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$cmUGVnzfcvHTkF.6t.6ryeS8BrChSyZGyuTmGC4GOzDgDyccKge8K"], ["settings", "null"], ["updated_at", "2014-07-22 09:18:09.652395"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:18:09.694292"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$b1ypDMMr1OqOp64jmGsaeenx1OJ6hfFUmUJ4jwPq4bl.Tf/6JjN5C"], ["settings", "null"], ["updated_at", "2014-07-22 09:18:09.694292"], ["username", "john"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-22 09:18:43.888046"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$KB5fon5GgneCa6k.KrL5ruOj3mt6UZj5h4KjSX3zF.jORjcYiFkjm"], ["settings", "null"], ["updated_at", "2014-07-22 09:18:43.888046"], ["username", "john"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:18:43.895671"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$z5IzZzz9kB9NfF3lGyRv.OjnOFCFLglaHcUZd9o3iOHb3cRXDRON2"], ["settings", "null"], ["updated_at", "2014-07-22 09:18:43.895671"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:18:43.933269"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$VDKfQXoCFOlikbYP6Twz4O0NIdfzsAVrrg9KNUaIFR5V1KpZBr0.K"], ["settings", "null"], ["updated_at", "2014-07-22 09:18:43.933269"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-22 09:19:26.064588"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$cu2hN8QHhkYAvw38i91.u..vPZjVXlTV82cTEks4nA4d09ybgUbQu"], ["settings", "null"], ["updated_at", "2014-07-22 09:19:26.064588"], ["username", "john"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:19:26.074125"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$DfINA7YWTvvPMCMUhuz0medR5.ZQgjSU3uoH63F5Hw.gtqSTm/5Yy"], ["settings", "null"], ["updated_at", "2014-07-22 09:19:26.074125"], ["username", "john"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:19:26.116848"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$bZAH785H7xtPUO2wKmlTxefLWQXoMU/dKkjNWtY3i3sSPxIl4Iqx2"], ["settings", "null"], ["updated_at", "2014-07-22 09:19:26.116848"], ["username", "john"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-22 09:20:21.556624"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$vJQ66OJjNT3ib9cGDp7LlOj02jF6tXhmieBeURBYe2Z9SFzGcBqFq"], ["settings", "null"], ["updated_at", "2014-07-22 09:20:21.556624"], ["username", "john"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:20:21.564102"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$nzl2jpCHaxGn.EwM7UNzGu8KcDtGjKf/Ffe6Pgh.n/lWW3q49P3kG"], ["settings", "null"], ["updated_at", "2014-07-22 09:20:21.564102"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "firstname", "lastname", "password_digest", "settings", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-07-22 09:20:21.604975"], ["firstname", "John"], ["lastname", "Doe"], ["password_digest", "$2a$04$c4hIKRP44FjQzVg2sjHzp.WT5KKB2Epdrq2KeRItSd05g7Y39eoiG"], ["settings", "null"], ["updated_at", "2014-07-22 09:20:21.604975"], ["username", "john"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."email" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
