@@ -12,13 +12,22 @@ module HasAccessRules
       belongs_to :updater, class_name: 'User', foreign_key: :updated_by
       belongs_to :deleter, class_name: 'User', foreign_key: :deleted_by
 
-      has_many :access_rules, as: :row
+      has_many :access_rules, as: :row, dependent: :delete_all
 
+      before_validation :set_updater, on: :create
       after_create :create_default_rule
+
+      validates_presence_of :creator, :updater
 
       default_scope { where(deleted_at: nil) }
 
+
     end
+
+    def with_user(user)
+      self.includes(:access_rules).where( access_rules: { user_id: user.id })
+    end
+
   end
 
   module InstanceMethods
@@ -32,6 +41,10 @@ module HasAccessRules
         created_by: self.created_by,
         updated_by: self.updated_by
       )
+    end
+
+    def set_updater
+      self.updated_by = self.created_by
     end
 
     def delete
