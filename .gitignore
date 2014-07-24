@@ -21,3 +21,4 @@ tmp
 *.a
 mkmf.log
 spec/dummy/log/*
+node_modules
