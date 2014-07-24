@@ -19,6 +19,7 @@ module HasAccessRules
       before_validation :set_updater, on: :create
       before_validation :check_if_updater_is_set, on: :save
       validate :check_if_updater_has_rights
+      before_destroy :check_if_updater_has_rights
       after_create :create_default_rule
 
       validates_presence_of :creator, :updater
@@ -36,6 +37,7 @@ module HasAccessRules
   module InstanceMethods
 
     def check_if_updater_has_rights
+      puts "THERE?????" +  updater.inspect
       return if new_record?
       rule = access_rules.find_by( updater: updater )
       return errors.add( :updater, "insufficient rights") unless rule 

@@ -92,6 +92,11 @@ describe 'user' do
       Label.find_by( name: "a label" )
     end
 
+    let!(:label2) do
+      create(:label, name: "another label", creator: user2 ) 
+      Label.find_by( name: "another label" )
+    end
+
     it "can create labels" do
       expect( Label.find_by( name: "no label" ) ).to eq( nil )
       expect( Label.find_by( name: "a label" ) ).to be_a( Label )
@@ -106,11 +111,25 @@ describe 'user' do
       expect( label.with_user(user2).update( name: "other name" ) ).to eq( false )
     end
 
-    it "can edit labels if got rights"
+    it "can edit labels if got rights" do
+      expect( label2.with_user(user).update( name: "new name" ) ).to eq( false )
+      AccessRule.create( row: label2, updater: user, creator: user, can_write: true )
+      expect( label2.with_user(user).update( name: "new name" ) ).to eq( true )
+    end
 
-    it "can destroy labels if owner"
+    it "can destroy labels if owner" do 
+      # expect( label.with_user(user2).destroy ).to eq( label )
+      puts "AFTER"
+      # expect( Label.find_by( id: label.id ) ).to eq( nil ) 
 
-    it "can destroy labels if got rights"
+      # destroyed = label.with_user(user).destroy
+      # expect( destroyed ).to eq( label )
+      # expect( Label.find_by( id: destroyed.id ) ).to eq( nil ) 
+    end
+
+    it "can destroy labels if got rights" do
+
+    end
 
   end
 
