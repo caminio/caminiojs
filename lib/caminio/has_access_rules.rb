@@ -45,7 +45,6 @@ module HasAccessRules
 
     def check_if_updater_has_rights
       return if new_record?
-      puts "WE ARE THERE: " + access_rules.inspect
       rule = access_rules.find_by( updater: updater )
       return errors.add( :updater, "insufficient rights") unless rule 
       return if rule.is_owner

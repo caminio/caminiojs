@@ -6,7 +6,7 @@
 # @Date:   2014-07-24 16:58:50
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-24 17:09:36
+# @Last Modified time: 2014-07-24 17:22:16
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -49,7 +49,7 @@ describe 'app_plan' do
 
   context "destroy" do
 
-    it "cannot be destroyed if an user is using this plan"
+    it "cannot be destroyed if an organizational unit is using this plan"
 
   end
 
