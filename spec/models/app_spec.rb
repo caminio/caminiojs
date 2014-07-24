@@ -6,7 +6,7 @@
 # @Date:   2014-07-24 17:11:47
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-24 17:34:26
+# @Last Modified time: 2014-07-24 17:35:27
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -41,7 +41,7 @@ describe 'app' do
 
   context "destroy" do
 
-    ît "can only be destroyed if no app_plan is connected to this app"
+    it "can only be destroyed if no app_plan is connected to this app"
 
   end
 
