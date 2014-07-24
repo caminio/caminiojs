@@ -16,7 +16,7 @@ RSpec.configure do |config|
   config.color = true
   config.tty = true
   config.fail_fast = true
-  # config.formatter = :documentation # :progress, :html, :textmate
+  config.formatter = :documentation # :progress, :html, :textmate
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
