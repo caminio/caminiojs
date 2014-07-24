@@ -18,15 +18,21 @@
 window.App = Ember.Application.create
   LOG_TRANSITIONS: true
 
-App.ApplicationAdapter = DS.RESTAdapter.extend
+App.ApplicationAdapter = DS.ActiveModelAdapter.extend
   host: '/caminio'
   headers:
     'X-CSRF-Token': '<%= csrf %>'
 
-# App.ApplicationAdapter = DS.RESTAdapter.extend
-
 App.ApplicationStore = DS.Store.extend
   adapter: DS.RESTAdapter.extend
+
+# App.ApplicationSerializer = DS.ActiveModelSerializer.extend
+#   typeForRoot: (root)->
+#     camelized = Ember.String.camelize(root)
+#     Ember.String.singularize(camelized)
+#   serializeIntoHash: (data, type, record, options)->
+#     root = Ember.String.decamelize(type.typeKey)
+#     data[root] = @.serialize(record, options)
 
 App.setAuthenticationBearer = (api_key)->
   Ember.$.ajaxSetup

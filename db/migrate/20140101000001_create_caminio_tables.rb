@@ -75,9 +75,13 @@ class CreateCaminioTables < ActiveRecord::Migration
     end
 
     create_table :apps do |t|
-      t.string        :path
-      t.boolean       :is_public
+      t.string          :name
+      t.string          :path
+      t.string          :icon
+      t.boolean         :is_public
     end
+    add_index :apps, :path, unique: true
+    add_index :apps, :name, unique: true
 
     create_table :organizational_units do |t|
 

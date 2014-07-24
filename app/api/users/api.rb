@@ -15,4 +15,8 @@ class Users::API < Grape::API
     { user: User.find_by_id(params[:id]) }
   end
 
+  get '/:id/apps' do
+    [{ id: 1, name: 'Messanger', path: '/messenger', icon: 'fa-envelope' }]
+  end
+
 end

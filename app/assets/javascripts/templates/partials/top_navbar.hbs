@@ -1,3 +1,7 @@
 <div class="top-nav">
-  
+  <div class="all-apps-wrap">
+    {{#each app in apps}}
+      <div class="app"><i {{bind-attr class=":fa :appIcon"}}></i></div>
+    {{/each}}
+  </div>
 </div>

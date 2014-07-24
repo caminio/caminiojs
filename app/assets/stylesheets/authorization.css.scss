@@ -2,12 +2,12 @@ body.authorization-required{
   height: 100%;
   font-size: 12px;
   background: #e60;
-  background: -moz-linear-gradient(top,  #e60 0%, #b30 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e60), color-stop(100%,#b30)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #e60 0%,#b30 100%); /* Chrome10+,Safari5.1+ */
-  background: -ms-linear-gradient(top,  #e60 0%,#b30 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #e60 0%,#b30 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e60', endColorstr='#b30',GradientType=0 ); /* IE6-9 */
+  // background: -moz-linear-gradient(top,  #e60 0%, #b30 100%); /* FF3.6+ */
+  // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e60), color-stop(100%,#b30)); /* Chrome,Safari4+ */
+  // background: -webkit-linear-gradient(top,  #e60 0%,#b30 100%); /* Chrome10+,Safari5.1+ */
+  // background: -ms-linear-gradient(top,  #e60 0%,#b30 100%); /* IE10+ */
+  // background: linear-gradient(to bottom,  #e60 0%,#b30 100%); /* W3C */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e60', endColorstr='#b30',GradientType=0 ); /* IE6-9 */
 }
 
 .login-box{
