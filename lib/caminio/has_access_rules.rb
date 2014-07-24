@@ -36,9 +36,16 @@ module HasAccessRules
 
   module InstanceMethods
 
+    def check_if_destroyer_has_rights
+      rule = access_rules.find_by( updater: updater )
+      return false unless rule 
+      return true if rule.is_owner
+      return false unless rule.can_write
+    end
+
     def check_if_updater_has_rights
-      puts "THERE?????" +  updater.inspect
       return if new_record?
+      puts "WE ARE THERE: " + access_rules.inspect
       rule = access_rules.find_by( updater: updater )
       return errors.add( :updater, "insufficient rights") unless rule 
       return if rule.is_owner

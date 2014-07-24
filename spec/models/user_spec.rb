@@ -118,8 +118,9 @@ describe 'user' do
     end
 
     it "can destroy labels if owner" do 
+      # expect( Label.find_by( id: label.id ) ).to eq( label ) 
       # expect( label.with_user(user2).destroy ).to eq( label )
-      puts "AFTER"
+      # puts "AFTER"
       # expect( Label.find_by( id: label.id ) ).to eq( nil ) 
 
       # destroyed = label.with_user(user).destroy

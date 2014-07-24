@@ -10,8 +10,8 @@ describe 'has_access_rules (example: Message)' do
 
   context 'rule is created along with a has_access_rule message' do
 
-    let(:user){ create(:user) }
-    let(:message){ create(:message, creator: user) }
+    let!(:user){ create(:user) }
+    let!(:message){ create(:message, creator: user) }
 
     it{ expect(message).to be_a(Message) }
 
@@ -39,6 +39,11 @@ describe 'has_access_rules (example: Message)' do
 
     it{ expect(AccessRule.count).to eq(1) }
 
+    it "test" do
+      puts message.access_rules.inspect
+      test = AccessRule.find_by( row: message.id )
+      # puts test.inspect
+    end
     it{ Message.first.destroy; expect(AccessRule.count).to eq(0) }
 
   end
