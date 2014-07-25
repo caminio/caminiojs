@@ -5,9 +5,10 @@ App.SessionsNewRoute = Ember.Route.extend
 
   beforeModel: ->
     route = @
+    if !Ember.$.cookie('caminio-session')
+      return
     @.isAuthenticated()
       .then ->
-        console.log "here check if log in #"
         route.transitionTo "dashboard.index"
       .catch ->
         console.log "not authenticated"
