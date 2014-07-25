@@ -113,7 +113,7 @@ describe 'user' do
 
     it "can edit labels if got rights" do
       expect( label2.with_user(user).update( name: "new name" ) ).to eq( false )
-      AccessRule.create( row: label2, updater: user, creator: user, can_write: true )
+      label2.with_user(user2).share(user, {can_write:true})
       expect( label2.with_user(user).update( name: "new name" ) ).to eq( true )
     end
 

@@ -6,7 +6,7 @@
 # @Date:   2014-07-24 16:58:50
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-24 17:22:16
+# @Last Modified time: 2014-07-25 09:40:24
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -37,6 +37,8 @@ describe 'app_plan' do
 
     it "must be confirmed if its not a free plan"
 
+    it "is bound to an organizational_unit"
+
   end
 
   context "visibility" do
@@ -49,7 +51,7 @@ describe 'app_plan' do
 
   context "destroy" do
 
-    it "cannot be destroyed if an organizational unit is using this plan"
+    it "cannot be destroyed if an organizational_unit is using this plan"
 
   end
 

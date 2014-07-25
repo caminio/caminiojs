@@ -35,16 +35,21 @@ describe 'has_access_rules (example: Message)' do
   context 'removes all rules along with message' do
 
     let!(:user){ create(:user) }
+    let!(:user2){ create(:user) }
     let!(:message){ create(:message, creator: user) }
 
     it{ expect(AccessRule.count).to eq(1) }
 
-    it "test" do
-      puts message.access_rules.inspect
-      test = AccessRule.find_by( row: message.id )
-      # puts test.inspect
+    it "owner can delete" do
+      expect( message.destroy ).to eq(message)
+      expect(AccessRule.count).to eq(0) 
     end
-    it{ Message.first.destroy; expect(AccessRule.count).to eq(0) }
+
+    it "user with insufficient rights cannot delete" do
+
+
+    end
+
 
   end
 

@@ -12,14 +12,13 @@ module HasAccessRules
       belongs_to :updater, class_name: 'User', foreign_key: :updated_by
       belongs_to :deleter, class_name: 'User', foreign_key: :deleted_by
 
-      has_many :access_rules, as: :row, dependent: :delete_all
+      has_many :access_rules, as: :row, dependent: :destroy
       has_many :labels, through: :row_labels
       has_many :row_labels, as: :row, dependent: :delete_all
 
       before_validation :set_updater, on: :create
       before_validation :check_if_updater_is_set, on: :save
       validate :check_if_updater_has_rights
-      before_destroy :check_if_updater_has_rights
       after_create :create_default_rule
 
       validates_presence_of :creator, :updater
@@ -36,16 +35,18 @@ module HasAccessRules
 
   module InstanceMethods
 
-    def check_if_destroyer_has_rights
-      rule = access_rules.find_by( updater: updater )
-      return false unless rule 
-      return true if rule.is_owner
-      return false unless rule.can_write
+    def share(user, rights={can_read: false, can_write: false, can_share: false})
+      rule = access_rules.find_by( user: updater )
+      can_share = rule && ( rule.can_share? || rule.is_owner? ) 
+      puts "vggg#{can_share} #{rule}"
+      return false unless can_share 
+      access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
     end
 
     def check_if_updater_has_rights
       return if new_record?
-      rule = access_rules.find_by( updater: updater )
+      rule = access_rules.find_by( user: updater )
+      puts "we have the rule: #{rule.inspect}" 
       return errors.add( :updater, "insufficient rights") unless rule 
       return if rule.is_owner
       return errors.add( :updater, "insufficient rights") unless rule.can_write
@@ -62,7 +63,7 @@ module HasAccessRules
         user_id: self.created_by,
         is_owner: true,
         created_by: self.created_by,
-        updated_by: self.updated_by
+        updated_by: self.created_by
       )
     end
 
