@@ -6,7 +6,7 @@
 # @Date:   2014-07-23 10:58:57
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-25 14:48:04
+# @Last Modified time: 2014-07-25 15:07:13
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -37,7 +37,9 @@ describe 'labels' do
     end
 
     it "gets access rules for creator" do
-
+      rules_size = AccessRule.count
+      expect( create(:label, name: "a label", creator: user ) ).to be_a(Label)
+      expect(AccessRule.count).to eq(rules_size+=1)
     end
 
   end  
