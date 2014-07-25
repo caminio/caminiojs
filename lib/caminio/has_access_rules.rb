@@ -4,8 +4,18 @@ module HasAccessRules
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def has_access_rules(options = {})
 
+    def has_access_rules(options={})
+
+      app_name = File.basename( File.expand_path("../../../", __FILE__))
+      app = App.find_or_create_by( name: app_name )
+
+      if options.size >0
+        app_model = AppModel.find_or_create_by( name: self.name, app_id: app.id ) 
+
+        app_model.update!( options )
+      end
+      
       include InstanceMethods
 
       belongs_to :creator, class_name: 'User', foreign_key: :created_by

@@ -17,18 +17,20 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.integer  "row_id"
     t.string   "row_type"
     t.integer  "group_id"
+    t.integer  "organizational_unit_id"
     t.integer  "label_id"
     t.integer  "user_id"
-    t.boolean  "can_write",  default: false
-    t.boolean  "can_share",  default: false
-    t.boolean  "can_delete", default: false
-    t.boolean  "is_owner",   default: false
+    t.boolean  "can_write",              default: false
+    t.boolean  "can_share",              default: false
+    t.boolean  "can_delete",             default: false
+    t.boolean  "is_owner",               default: false
     t.integer  "created_by"
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "access_rules", ["organizational_unit_id"], name: "index_access_rules_on_organizational_unit_id"
   add_index "access_rules", ["row_id"], name: "index_access_rules_on_row_id"
   add_index "access_rules", ["row_type"], name: "index_access_rules_on_row_type"
   add_index "access_rules", ["user_id"], name: "index_access_rules_on_user_id"
@@ -40,6 +42,13 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   end
 
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", unique: true
+
+  create_table "app_models", force: true do |t|
+    t.string  "name"
+    t.integer "app_id"
+    t.string  "icon"
+    t.string  "path"
+  end
 
   create_table "app_plans", force: true do |t|
     t.integer  "price"
@@ -53,9 +62,11 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   add_index "app_plans", ["app_id"], name: "index_app_plans_on_app_id", unique: true
 
   create_table "apps", force: true do |t|
-    t.string  "path"
+    t.string  "name"
     t.boolean "is_public"
   end
+
+  add_index "apps", ["name"], name: "index_apps_on_name", unique: true
 
   create_table "labels", force: true do |t|
     t.string   "name"

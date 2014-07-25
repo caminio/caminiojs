@@ -5,7 +5,6 @@ class AccessRule < ActiveRecord::Base
   belongs_to :user
   belongs_to :label
 
-
   before_destroy :check_if_destroyer_has_rights
 
   private

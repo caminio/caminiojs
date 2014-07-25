@@ -74,13 +74,17 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :app_models do |t|
+      t.string          :name
+      t.integer         :app_id
+      t.string          :icon
+      t.string          :path
+    end
+
     create_table :apps do |t|
       t.string          :name
-      t.string          :path
-      t.string          :icon
       t.boolean         :is_public
     end
-    add_index :apps, :path, unique: true
     add_index :apps, :name, unique: true
 
     create_table :organizational_units do |t|
@@ -140,6 +144,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.integer       :row_id
       t.string        :row_type
       t.integer       :group_id
+      t.integer       :organizational_unit_id
       t.references    :label
       t.references    :user
       t.boolean       :can_write, default: false
@@ -153,6 +158,7 @@ class CreateCaminioTables < ActiveRecord::Migration
     add_index :access_rules, :user_id
     add_index :access_rules, :row_id
     add_index :access_rules, :row_type
+    add_index :access_rules, :organizational_unit_id
 
   end
 end

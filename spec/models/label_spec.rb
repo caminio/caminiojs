@@ -6,7 +6,7 @@
 # @Date:   2014-07-23 10:58:57
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-25 15:07:13
+# @Last Modified time: 2014-07-25 15:11:08
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -20,8 +20,6 @@ describe 'labels' do
   context "attributes" do
 
     let(:label){ create(:label) }
-
-    # it{ expect(label).to be_a(Label) }
 
   end
 
@@ -106,6 +104,5 @@ describe 'labels' do
     end
 
   end
-
 
 end
