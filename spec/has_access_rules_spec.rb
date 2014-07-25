@@ -38,16 +38,21 @@ describe 'has_access_rules (example: Message)' do
     let!(:user2){ create(:user) }
     let!(:message){ create(:message, creator: user) }
 
-    it{ expect(AccessRule.count).to eq(1) }
-
     it "owner can delete" do
       expect( message.destroy ).to eq(message)
-      expect(AccessRule.count).to eq(0) 
+      expect( Message.find_by( id: message.id ) ).to be(nil)
+     end
+
+    it "user with rights can delete" do
+      message.share(user2, {can_delete: true} )
+      expect( message.with_user(user2).destroy ).to eq(message)
+      expect( Message.find_by( id: message.id ) ).to eq(nil)
     end
 
     it "user with insufficient rights cannot delete" do
-
-
+      message.share(user2)
+      expect{ message.with_user(user2).destroy }.to raise_error(StandardError, "Insufficient rights" )
+      expect( Message.find_by( id: message.id ) ).to be_a(Message)
     end
 
 

@@ -11,8 +11,7 @@ class AccessRule < ActiveRecord::Base
   private
 
     def check_if_destroyer_has_rights
-      puts "is here!"
-      is_owner || can_delete
+      raise StandardError.new("Insufficient rights") unless is_owner || can_delete
     end
 
 end

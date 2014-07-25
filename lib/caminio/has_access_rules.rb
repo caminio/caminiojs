@@ -20,6 +20,7 @@ module HasAccessRules
       before_validation :check_if_updater_is_set, on: :save
       validate :check_if_updater_has_rights
       after_create :create_default_rule
+      after_find :set_temporary_updater
 
       validates_presence_of :creator, :updater
 
@@ -35,10 +36,9 @@ module HasAccessRules
 
   module InstanceMethods
 
-    def share(user, rights={can_read: false, can_write: false, can_share: false})
+    def share(user, rights={can_delete: false, can_write: false, can_share: false})
       rule = access_rules.find_by( user: updater )
       can_share = rule && ( rule.can_share? || rule.is_owner? ) 
-      puts "vggg#{can_share} #{rule}"
       return false unless can_share 
       access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
     end
@@ -46,7 +46,6 @@ module HasAccessRules
     def check_if_updater_has_rights
       return if new_record?
       rule = access_rules.find_by( user: updater )
-      puts "we have the rule: #{rule.inspect}" 
       return errors.add( :updater, "insufficient rights") unless rule 
       return if rule.is_owner
       return errors.add( :updater, "insufficient rights") unless rule.can_write
@@ -65,6 +64,10 @@ module HasAccessRules
         created_by: self.created_by,
         updated_by: self.created_by
       )
+    end
+
+    def set_temporary_updater
+      with_user( updater )
     end
 
     def with_user( user )
