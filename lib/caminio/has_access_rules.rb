@@ -10,11 +10,7 @@ module HasAccessRules
       app_name = File.basename( File.expand_path("../../../", __FILE__))
       app = App.find_or_create_by( name: app_name )
 
-      if options.size >0
-        app_model = AppModel.find_or_create_by( name: self.name, app_id: app.id ) 
-
-        app_model.update!( options )
-      end
+      Caminio::ModelRegistry.add self.name, app.id, options
       
       include InstanceMethods
 

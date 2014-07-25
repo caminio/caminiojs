@@ -43,11 +43,22 @@ ActiveRecord::Schema.define(version: 20140712151957) do
 
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", unique: true
 
+  create_table "app_model_user_roles", force: true do |t|
+    t.integer "user_id"
+    t.integer "app_model_id"
+    t.string  "access_level"
+  end
+
+  add_index "app_model_user_roles", ["app_model_id"], name: "index_app_model_user_roles_on_app_model_id"
+  add_index "app_model_user_roles", ["user_id"], name: "index_app_model_user_roles_on_user_id"
+
   create_table "app_models", force: true do |t|
     t.string  "name"
     t.integer "app_id"
     t.string  "icon"
     t.string  "path"
+    t.boolean "hidden", default: false
+    t.boolean "always", default: false
   end
 
   create_table "app_plans", force: true do |t|
@@ -146,7 +157,6 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   create_table "organizational_unit_members", force: true do |t|
     t.integer  "user_id"
     t.integer  "organizational_unit_id"
-    t.integer  "access_level",           default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

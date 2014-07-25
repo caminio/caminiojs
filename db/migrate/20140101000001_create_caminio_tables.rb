@@ -37,7 +37,6 @@ class CreateCaminioTables < ActiveRecord::Migration
     create_table :organizational_unit_members do |t|
       t.integer       :user_id
       t.integer       :organizational_unit_id
-      t.integer       :access_level, default: 1
       t.timestamps
     end
     add_index :organizational_unit_members, :user_id
@@ -79,7 +78,18 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.integer         :app_id
       t.string          :icon
       t.string          :path
+      t.boolean         :hidden, default: false
+      t.boolean         :always, default: false 
     end
+
+    create_table :app_model_user_roles do |t|
+      t.integer         :user_id
+      t.integer         :app_model_id
+      t.integer         :organizational_unit_id
+      t.string          :access_level
+    end
+    add_index :app_model_user_roles, :user_id
+    add_index :app_model_user_roles, :app_model_id
 
     create_table :apps do |t|
       t.string          :name

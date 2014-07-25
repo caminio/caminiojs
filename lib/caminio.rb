@@ -12,3 +12,7 @@ require "caminio/has_access_rules"
 
 # Rails engine
 require "caminio/engine"
+
+# Access rights
+require "caminio/access"
+require "caminio/model_registry"
