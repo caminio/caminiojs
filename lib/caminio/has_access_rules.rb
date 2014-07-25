@@ -30,6 +30,7 @@ module HasAccessRules
     end
 
     def with_user(user)
+      Thread.current.thread_variable_set(:curren_user, user)
       self.includes(:access_rules).where( access_rules: { user_id: user.id })
     end
 
@@ -37,7 +38,7 @@ module HasAccessRules
 
   module InstanceMethods
 
-    def check_if_user_can_destroy#
+    def check_if_user_can_destroy
       rule = access_rules.find_by( user: updater )
       can_destroy = rule && ( rule.can_delete? || rule.is_owner? ) 
       return false unless can_destroy 
@@ -48,7 +49,11 @@ module HasAccessRules
       rule = access_rules.find_by( user: updater )
       can_share = rule && ( rule.can_share? || rule.is_owner? ) 
       return false unless can_share 
-      access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
+      if existing_rule = access_rules.find_by( user: user )      
+        existing_rule.update(rights)
+      else
+        access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
+      end
     end
 
     def check_if_updater_has_rights
@@ -75,13 +80,8 @@ module HasAccessRules
     end
 
     def set_temporary_updater
-      with_user( updater )
-    end
-
-    def with_user( user )
-      self.updater = user 
-      @updater_has_been_set = true
-      self
+      with_user( Thread.current.thread_variable_get(:curren_user) )
+      Thread.current.thread_variable_set(:curren_user, nil)
     end
 
     def set_updater
@@ -100,6 +100,14 @@ module HasAccessRules
       self.deleted_at = nil
       self.save
     end
+
+    private
+
+      def with_user( user )
+        self.updater = user 
+        @updater_has_been_set = true
+        self
+      end
 
     # def create_slug( name=name )
     #   #strip the string

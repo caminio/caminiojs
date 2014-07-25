@@ -6,7 +6,7 @@
 # @Date:   2014-07-23 10:58:57
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-25 12:20:32
+# @Last Modified time: 2014-07-25 14:48:04
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -27,7 +27,18 @@ describe 'labels' do
 
   context "creation" do
 
-    it "gets access rules for creator"
+    let!(:user) do
+      create(:user, password: "tesT123", email: "test@test.com") 
+      User.find_by( email: "test@test.com" )
+    end   
+
+    it "needs a creator" do
+      expect{ create(:label) }.to raise_error ActiveRecord::RecordInvalid
+    end
+
+    it "gets access rules for creator" do
+
+    end
 
   end  
 
@@ -53,8 +64,8 @@ describe 'labels' do
     end
 
     it "user can create labels" do
-      expect( Label.find_by( name: "no label" ) ).to eq( nil )
-      expect( Label.find_by( name: "a label" ) ).to be_a( Label )
+      expect( Label.with_user(user).find_by( name: "no label" ) ).to eq( nil )
+      expect( Label.with_user(user).find_by( name: "a label" ) ).to be_a( Label )
     end
 
     it "user gets a access_role" do
@@ -62,30 +73,34 @@ describe 'labels' do
     end
 
     it "user can edit labels if owner" do
-      expect( label.with_user(user).update( name: "new name" ) ).to eq( true )
-      expect( label.with_user(user2).update( name: "other name" ) ).to eq( false )
+      expect( Label.with_user(user).find_by(id: label.id).update( name: "new name" ) ).to eq( true )
+      Label.with_user(user).find_by(id: label.id).share(user2)
+      expect( Label.with_user(user2).find_by(id: label.id).update( name: "other name" ) ).to eq( false )
     end
 
     it "user can edit labels if got rights" do
-      expect( label2.with_user(user).update( name: "new name" ) ).to eq( false )
-      label2.with_user(user2).share(user, {can_write:true})
-      expect( label2.with_user(user).update( name: "new name" ) ).to eq( true )
+      Label.with_user(user2).find_by(id: label2.id).share(user)
+      expect( Label.with_user(user).find_by(id: label2.id).update( name: "new name" ) ).to eq( false )
+      Label.with_user(user2).find_by(id: label2.id).share(user, {can_write:true})
+      expect( Label.with_user(user).find_by(id: label.id).update( name: "new name" ) ).to eq( true )
     end
 
     it "user can destroy labels if owner" do 
-      expect( Label.find_by(id: label.id) ).to eq(label)
-      expect( label.with_user(user2).destroy ).to be(false)
-      expect( Label.find_by(id: label.id) ).to eq(label)
-      expect( label.with_user(user).destroy ).to be_a(Label)
-      expect( Label.find_by(id: label.id) ).to eq(nil)
+      expect( Label.with_user(user).find_by(id: label.id) ).to eq(label)
+      Label.with_user(user).find_by(id: label.id).share(user2)
+      expect( Label.with_user(user2).find_by(id: label.id).destroy ).to be(false)
+      expect( Label.with_user(user).find_by(id: label.id) ).to eq(label)
+      expect( Label.with_user(user).find_by(id: label.id).destroy ).to be_a(Label)
+      expect( Label.with_user(user).find_by(id: label.id) ).to eq(nil)
     end
 
     it "user can destroy labels if got rights" do
-      expect( Label.find_by(id: label.id) ).to eq(label)
-      expect( label.with_user(user2).destroy ).to be(false)
-      label.with_user(user).share(user2,{can_delete: true})
-      expect( label.with_user(user2).destroy ).to be(label)
-      expect( Label.find_by(id: label.id) ).to eq(nil)
+      Label.with_user(user).find_by(id: label.id).share(user2)
+      expect( Label.with_user(user2).find_by(id: label.id).destroy ).to be(false)
+      Label.with_user(user).find_by(id: label.id).share(user2,{can_delete: true})
+      expect( Label.with_user(user2).find_by(id: label.id) ).to eq(label)
+      expect( Label.with_user(user2).find_by(id: label.id).destroy ).to eq(label)
+      expect( Label.with_user(user2).find_by(id: label.id) ).to eq(nil)
     end
 
   end

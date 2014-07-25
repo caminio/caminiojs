@@ -45,13 +45,13 @@ describe 'has_access_rules (example: Message)' do
 
     it "user with rights can delete" do
       message.share(user2, {can_delete: true} )
-      expect( message.with_user(user2).destroy ).to eq(message)
+      expect( Message.with_user(user2).find_by(id: message.id).destroy ).to eq(message)
       expect( Message.find_by( id: message.id ) ).to eq(nil)
     end
 
     it "user with insufficient rights cannot delete" do
-      message.share(user2)
-      expect( message.with_user(user2).destroy ).to be(false)
+      Message.with_user(user).find_by(id: message.id).share(user2)
+      expect( Message.with_user(user2).find_by(id: message.id).destroy ).to be(false)
       expect( Message.find_by( id: message.id ) ).to be_a(Message)
     end
 
