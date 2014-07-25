@@ -12,12 +12,13 @@ module HasAccessRules
       belongs_to :updater, class_name: 'User', foreign_key: :updated_by
       belongs_to :deleter, class_name: 'User', foreign_key: :deleted_by
 
-      has_many :access_rules, as: :row, dependent: :destroy
+      has_many :access_rules, as: :row
       has_many :labels, through: :row_labels
       has_many :row_labels, as: :row, dependent: :delete_all
 
       before_validation :set_updater, on: :create
       before_validation :check_if_updater_is_set, on: :save
+      before_destroy :check_if_user_can_destroy
       validate :check_if_updater_has_rights
       after_create :create_default_rule
       after_find :set_temporary_updater
@@ -35,6 +36,13 @@ module HasAccessRules
   end
 
   module InstanceMethods
+
+    def check_if_user_can_destroy#
+      rule = access_rules.find_by( user: updater )
+      can_destroy = rule && ( rule.can_delete? || rule.is_owner? ) 
+      return false unless can_destroy 
+      access_rules.delete_all
+    end
 
     def share(user, rights={can_delete: false, can_write: false, can_share: false})
       rule = access_rules.find_by( user: updater )

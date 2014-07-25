@@ -51,7 +51,7 @@ describe 'has_access_rules (example: Message)' do
 
     it "user with insufficient rights cannot delete" do
       message.share(user2)
-      expect{ message.with_user(user2).destroy }.to raise_error(StandardError, "Insufficient rights" )
+      expect( message.with_user(user2).destroy ).to be(false)
       expect( Message.find_by( id: message.id ) ).to be_a(Message)
     end
 

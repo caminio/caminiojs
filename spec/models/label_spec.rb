@@ -6,7 +6,7 @@
 # @Date:   2014-07-23 10:58:57
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-25 11:07:31
+# @Last Modified time: 2014-07-25 12:11:40
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -73,14 +73,11 @@ describe 'labels' do
     end
 
     it "user can destroy labels if owner" do 
-      expect( Label.find_by( id: label.id ) ).to eq( label ) 
-      expect( label.destroy ).to eq( label )
-      # puts "AFTER"
-      expect( Label.find_by( id: label.id ) ).to eq( nil ) 
-
-      # destroyed = label.with_user(user).destroy
-      # expect( destroyed ).to eq( label )
-      # expect( Label.find_by( id: destroyed.id ) ).to eq( nil ) 
+      expect( Label.find_by(id: label.id) ).to eq(label)
+      expect( label.with_user(user2).destroy ).to be(false)
+      expect( Label.find_by(id: label.id) ).to eq(label)
+      expect( label.with_user(user).destroy ).to be_a(Label)
+      expect( Label.find_by(id: label.id) ).to eq(nil)
     end
 
     it "user can destroy labels if got rights" do
