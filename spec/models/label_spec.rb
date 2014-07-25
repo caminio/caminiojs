@@ -6,7 +6,7 @@
 # @Date:   2014-07-23 10:58:57
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-25 12:11:40
+# @Last Modified time: 2014-07-25 12:20:32
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -81,7 +81,11 @@ describe 'labels' do
     end
 
     it "user can destroy labels if got rights" do
-
+      expect( Label.find_by(id: label.id) ).to eq(label)
+      expect( label.with_user(user2).destroy ).to be(false)
+      label.with_user(user).share(user2,{can_delete: true})
+      expect( label.with_user(user2).destroy ).to be(label)
+      expect( Label.find_by(id: label.id) ).to eq(nil)
     end
 
   end
