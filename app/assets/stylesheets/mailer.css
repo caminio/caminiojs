@@ -1,0 +1,15 @@
+body{
+  background: #eee;
+  color: #333;
+  font-family: 'Roboto', 'Verdana', sans-serif;
+}
+
+.main{
+  margin: 10px auto;
+  width: 500px;
+}
+
+.logo-wrap{
+  margin: 0 100px 20px 0;
+  display: block;
+}
