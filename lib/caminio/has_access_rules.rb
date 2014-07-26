@@ -4,22 +4,30 @@ module HasAccessRules
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def has_access_rules(options = {})
 
+    def has_access_rules(options={})
+
+      app_name = File.basename( File.expand_path("../../../", __FILE__))
+      app = App.find_or_create_by( name: app_name )
+
+      Caminio::ModelRegistry.add self.name, app.id, options
+      
       include InstanceMethods
 
       belongs_to :creator, class_name: 'User', foreign_key: :created_by
       belongs_to :updater, class_name: 'User', foreign_key: :updated_by
       belongs_to :deleter, class_name: 'User', foreign_key: :deleted_by
 
-      has_many :access_rules, as: :row, dependent: :delete_all
+      has_many :access_rules, as: :row
       has_many :labels, through: :row_labels
       has_many :row_labels, as: :row, dependent: :delete_all
 
       before_validation :set_updater, on: :create
       before_validation :check_if_updater_is_set, on: :save
+      before_destroy :check_if_user_can_destroy
       validate :check_if_updater_has_rights
       after_create :create_default_rule
+      after_find :set_temporary_updater
 
       validates_presence_of :creator, :updater
 
@@ -28,6 +36,7 @@ module HasAccessRules
     end
 
     def with_user(user)
+      Thread.current.thread_variable_set(:curren_user, user)
       self.includes(:access_rules).where( access_rules: { user_id: user.id })
     end
 
@@ -35,9 +44,27 @@ module HasAccessRules
 
   module InstanceMethods
 
+    def check_if_user_can_destroy
+      rule = access_rules.find_by( user: updater )
+      can_destroy = rule && ( rule.can_delete? || rule.is_owner? ) 
+      return false unless can_destroy 
+      access_rules.delete_all
+    end
+
+    def share(user, rights={can_delete: false, can_write: false, can_share: false})
+      rule = access_rules.find_by( user: updater )
+      can_share = rule && ( rule.can_share? || rule.is_owner? ) 
+      return false unless can_share 
+      if existing_rule = access_rules.find_by( user: user )      
+        existing_rule.update(rights)
+      else
+        access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
+      end
+    end
+
     def check_if_updater_has_rights
       return if new_record?
-      rule = access_rules.find_by( updater: updater )
+      rule = access_rules.find_by( user: updater )
       return errors.add( :updater, "insufficient rights") unless rule 
       return if rule.is_owner
       return errors.add( :updater, "insufficient rights") unless rule.can_write
@@ -54,14 +81,13 @@ module HasAccessRules
         user_id: self.created_by,
         is_owner: true,
         created_by: self.created_by,
-        updated_by: self.updated_by
+        updated_by: self.created_by
       )
     end
 
-    def with_user( user )
-      self.updater = user 
-      @updater_has_been_set = true
-      self
+    def set_temporary_updater
+      with_user( Thread.current.thread_variable_get(:curren_user) )
+      Thread.current.thread_variable_set(:curren_user, nil)
     end
 
     def set_updater
@@ -80,6 +106,14 @@ module HasAccessRules
       self.deleted_at = nil
       self.save
     end
+
+    private
+
+      def with_user( user )
+        self.updater = user 
+        @updater_has_been_set = true
+        self
+      end
 
     # def create_slug( name=name )
     #   #strip the string

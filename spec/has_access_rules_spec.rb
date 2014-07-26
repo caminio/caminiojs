@@ -10,8 +10,8 @@ describe 'has_access_rules (example: Message)' do
 
   context 'rule is created along with a has_access_rule message' do
 
-    let(:user){ create(:user) }
-    let(:message){ create(:message, creator: user) }
+    let!(:user){ create(:user) }
+    let!(:message){ create(:message, creator: user) }
 
     it{ expect(message).to be_a(Message) }
 
@@ -35,11 +35,26 @@ describe 'has_access_rules (example: Message)' do
   context 'removes all rules along with message' do
 
     let!(:user){ create(:user) }
+    let!(:user2){ create(:user) }
     let!(:message){ create(:message, creator: user) }
 
-    it{ expect(AccessRule.count).to eq(1) }
+    it "owner can delete" do
+      expect( message.destroy ).to eq(message)
+      expect( Message.find_by( id: message.id ) ).to be(nil)
+     end
 
-    it{ Message.first.destroy; expect(AccessRule.count).to eq(0) }
+    it "user with rights can delete" do
+      message.share(user2, {can_delete: true} )
+      expect( Message.with_user(user2).find_by(id: message.id).destroy ).to eq(message)
+      expect( Message.find_by( id: message.id ) ).to eq(nil)
+    end
+
+    it "user with insufficient rights cannot delete" do
+      Message.with_user(user).find_by(id: message.id).share(user2)
+      expect( Message.with_user(user2).find_by(id: message.id).destroy ).to be(false)
+      expect( Message.find_by( id: message.id ) ).to be_a(Message)
+    end
+
 
   end
 

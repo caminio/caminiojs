@@ -35,14 +35,8 @@ describe 'user' do
 
   context "creation" do
 
-    let!(:user) do
-      create(:user, password: "tesT123", email: "test@test.com") 
-      User.find_by( email: "test@test.com" )
-    end
-
-    it("is a user") { expect(user).to be_a(User) }
-
     it "creates an organization_unit along with a new user" do
+      create(:user, password: "tesT123", email: "test@test.com") 
       expect( OrganizationalUnit.find_by( name: "private" ) ).to be_a( OrganizationalUnit )
     end
 
@@ -52,67 +46,31 @@ describe 'user' do
       expect( OrganizationalUnit.find_by( name: "test" ) ).to be_a( OrganizationalUnit )
     end
 
+    it "adds the user to an organizational_unit_member for each unit" do 
+      unit = OrganizationalUnit.create( name: "test" )
+      cur_number = OrganizationalUnitMember.count;
+      User.create( attributes_for(:user, organizational_units: [ unit ] ))
+      expect( OrganizationalUnitMember.count ).to eq( cur_number + 1 )
+    end
+
+    it "gets all apps where at least one model is set visible" do
+      Caminio::ModelRegistry::init
+      puts AppModel.first.inspect
+      puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      unit = OrganizationalUnit.create( name: "test" )
+      User.create( attributes_for(:user, organizational_units: [ unit ] ))
+    end
+
+    it "sets the access-level for the apps if passed"
+
+    it "sets the access-level for the apps to no access by default"
+
     it "activates messenger app to organizational_unit "
 
     it "assigns free plan for messenger app for organizional_unit"
 
   end
 
-  context "grouping" do 
-
-    it "can create a group"
-
-    it "can edit a group if owner"
-
-    it "can edit a group if got rights"
-
-    it "can destroy a group if owner"
-
-    it "can destroy a group if got rights"
-
-    it "can invite other users to its group"
-
-    it "can give other users different access levels to if owner"
-
-  end
-
-  context "labeling" do
-
-    let!(:user) do
-      create(:user, password: "tesT123", email: "test@test.com") 
-      User.find_by( email: "test@test.com" )
-    end   
-
-    let!(:user2) do
-      create(:user ) 
-    end
-
-    let!(:label) do
-      create(:label, name: "a label", creator: user ) 
-      Label.find_by( name: "a label" )
-    end
-
-    it "can create labels" do
-      expect( Label.find_by( name: "no label" ) ).to eq( nil )
-      expect( Label.find_by( name: "a label" ) ).to be_a( Label )
-    end
-
-    it "gets a access_role" do
-      expect( AccessRule.find_by( row_id: label.id ).user_id ).to eq( user.id )
-    end
-
-    it "can edit labels if owner" do
-      expect( label.with_user(user).update( name: "new name" ) ).to eq( true )
-      expect( label.with_user(user2).update( name: "other name" ) ).to eq( false )
-    end
-
-    it "can edit labels if got rights"
-
-    it "can destroy labels if owner"
-
-    it "can destroy labels if got rights"
-
-  end
 
   context "sharing" do
 

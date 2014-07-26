@@ -18,8 +18,10 @@ require 'spec_helper'
 describe 'messages' do
 
   context "attributes" do
+  
 
-    let(:message){ create(:message) }
+    let!(:user) { create(:user) }
+    let(:message){ create(:message, creator: user )}
 
     it{ expect(message).to be_a(Message) }
 
