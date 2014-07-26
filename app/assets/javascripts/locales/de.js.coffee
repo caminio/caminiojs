@@ -13,3 +13,4 @@ Em.I18n.translations =
   'logout': 'Abmelden'
   'cancel': 'Abbrechen'
   'send_email': 'Email senden'
+  'error.email_unknown': 'The email address <em>{{email}}</em> is unknown'

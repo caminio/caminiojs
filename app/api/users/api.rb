@@ -17,8 +17,8 @@ class Users::API < Grape::API
   end
 
   post '/reset_password' do
-    error!('Email unknown',404) unless user = User.find_by_email( params[:email] )
-    error!('Mail error',500) unless UserMailer.reset_password( user ).deliver
+    error!('Email unknown',403) unless user = User.find_by_email( params[:email] )
+    error!('Mail error',500) unless UserMailer.reset_password( user, "#{request.protocol}#{request.host}#{(!(/80|443/).match(request.port) ? '' : request.port)}/caminio#/sessions/reset_password?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key!}" ).deliver
     {}
   end
 

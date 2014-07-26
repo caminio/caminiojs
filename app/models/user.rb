@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class User < ActiveRecord::Base
   
   serialize :settings, JSON
@@ -19,6 +21,22 @@ class User < ActiveRecord::Base
   after_create :init_dependencies
 
   attr_accessor :choosen_apps
+
+  # generates a new confirmation_key and returns
+  # it
+  def gen_confirmation_key
+    self.confirmation_key = SecureRandom.hex(64)
+    self.confirmation_key_expires_at = 1.hour.from_now
+    confirmation_key
+  end
+
+  # alias for `gen_confirmation_key` and invokes save!
+  # will fail, if anything is wrong with saving to db
+  def gen_confirmation_key!
+    gen_confirmation_key
+    self.save!
+    confirmation_key
+  end
 
   private
 
