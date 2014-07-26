@@ -47,7 +47,6 @@ module Caminio
 
       def setup_routes
         route "mount Caminio::Engine, at: \"/caminio\""
-        route 'root to: "main#index"'
       end
 
       def setup_doorkeeper

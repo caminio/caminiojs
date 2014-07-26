@@ -1,4 +1,4 @@
-class MainController < ActionController::Base
+class Caminio::MainController < ActionController::Base
   protect_from_forgery with: :exception
   layout 'caminio'
 
