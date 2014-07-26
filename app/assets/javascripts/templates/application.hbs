@@ -1,14 +1,16 @@
-<div class="outlet-wrap">
-  {{#if isAuthenticated}}
+<div {{bind-attr class=":main-wrap isAuthenticated::unauthenticated"}}>
+  <div class="outlet-wrap">
+    {{#if isAuthenticated}}
     {{partial 'partials/top_navbar'}}
-  {{/if}}
-  {{outlet}}
-</div>
-<div class="footer-wrap">
-  <div class="left">
-    &copy; TASTENWERK, Graz, Austria
+    {{/if}}
+    {{outlet}}
   </div>
-  <div class="right">
-    caminio version {{CAMINIO_ENGINE_VERSION}}
+  <div class="footer-wrap">
+    <div class="left">
+      &copy; TASTENWERK, Graz, Austria
+    </div>
+    <div class="right">
+      caminio version {{CAMINIO_ENGINE_VERSION}}
+    </div>
   </div>
 </div>

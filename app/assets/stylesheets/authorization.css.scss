@@ -1,7 +1,5 @@
-body.authorization-required{
-  height: 100%;
-  font-size: 12px;
-  background: #e60;
+.unauthenticated{
+  background: #fafafa;
   // background: -moz-linear-gradient(top,  #e60 0%, #b30 100%); /* FF3.6+ */
   // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e60), color-stop(100%,#b30)); /* Chrome,Safari4+ */
   // background: -webkit-linear-gradient(top,  #e60 0%,#b30 100%); /* Chrome10+,Safari5.1+ */
@@ -49,6 +47,18 @@ body.authorization-required{
   left: 5px;
 }
 
-.login-box .controls{
-  margin-top: 0.5em;
+.login-box .form-group a{
+  margin-right: 10px;
+}
+
+.login-box .form-group{
+  position: relative;
+}
+
+.forgot-password{
+  color: #999;
+  font-size: 12px;
+  position: absolute;
+  top: 9px;
+  right: 10px;
 }

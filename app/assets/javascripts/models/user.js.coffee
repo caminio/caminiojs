@@ -4,5 +4,16 @@ App.User = DS.Model.extend
   email:                  DS.attr "string"
   password:               DS.attr "string"
   password_confirmation:  DS.attr "string"
-  # api_keys:               DS.hasMany "apiKey"
+  username:               DS.attr "string"
+  organizational_units:   DS.belongsTo "organizational_unit", async: true
+  imgSrc: (->
+    return "/caminio/users/#{@.get('id')}/profile_picture"
+  ).property('img')
+  name: (->
+    return @.get('username') unless Em.isEmpty(@.get('username'))
+    name = @.get('firstname')
+    name << ' ' unless Em.isEmpty(name)
+    name << @.get('lastname')
+    name
+  ).property('username','firstname','lastname')
 

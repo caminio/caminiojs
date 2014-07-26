@@ -16,6 +16,9 @@
 
     <div class="form-group">
       {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
+      {{#link-to 'sessions.forgot_password' class="forgot-password"}}
+        {{t 'forgot_password'}}?
+      {{/link-to}}
     </div>
 
     <div class="form-group align-right">
@@ -23,9 +26,7 @@
         {{t 'login'}}
       </button>
       <div class="controls">
-        {{#link-to 'sessions.forgot_password'}}
-          {{t 'forgot_password'}}
-        {{/link-to}}
+      </div>
     </div>
 
   </form>

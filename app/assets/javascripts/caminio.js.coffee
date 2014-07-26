@@ -12,6 +12,7 @@
 #= require_tree ./locales
 #= require_tree ./routes
 #= require_tree ./models
+#= require_tree ./views
 #= require_tree ./controllers
 #= require_tree ./templates
 
@@ -26,18 +27,11 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend
 App.ApplicationStore = DS.Store.extend
   adapter: DS.RESTAdapter.extend
 
-# App.ApplicationSerializer = DS.ActiveModelSerializer.extend
-#   typeForRoot: (root)->
-#     camelized = Ember.String.camelize(root)
-#     Ember.String.singularize(camelized)
-#   serializeIntoHash: (data, type, record, options)->
-#     root = Ember.String.decamelize(type.typeKey)
-#     data[root] = @.serialize(record, options)
-
-App.setAuthenticationBearer = (api_key)->
+App.setAuthenticationBearer = (access_token)->
   Ember.$.ajaxSetup
     headers:
-      'Authorization': 'Bearer ' + api_key.access_token
+      'Authorization': 'Bearer ' + access_token
 
 # ember i18n
 Ember.View.reopen Em.I18n.TranslateableAttributes
+

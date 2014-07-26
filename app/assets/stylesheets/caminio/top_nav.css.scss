@@ -7,3 +7,109 @@
   background: #333;
   color: #fff;
 }
+
+.apps-list-trigger{
+  width: 40px;
+  height: 40px;
+  color: #aaa;
+  font-size: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.apps-list-trigger:hover{
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.apps-list ul{
+  background: #eee;
+  border-radius: 0;
+  max-width: 40%;
+}
+
+.apps-list .dropdown-menu > li > a{
+  width: 130px;
+  height: 80px;
+  text-align: center;
+  padding: 10px;
+  opacity: 0.7;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.apps-list .dropdown-menu > li > a:hover{
+  background: none;
+  opacity: 1;
+}
+
+.apps-list .dropdown-menu > li > a > .fa{
+  font-size: 40px;
+  display: block;
+  color: #555
+}
+
+.apps-list a span{
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.account-info{
+  color: #ddd;
+}
+
+.account-name{
+  padding: 8px;
+}
+
+.account-image{
+  background-color: #fff;
+  border-radius: 16px;
+  height: 32px;
+  margin: 3px 20px 3px 5px;
+  width: 32px;
+}
+
+.account-image-big{
+  width: 96px;
+  height: 96px;
+  margin: 10px 20px 10px 10px;
+}
+
+.account-name-big{
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.account-email{
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+}
+
+.account-info .dropdown-menu{
+  color: #555;
+}
+
+.account-info .dropdown-menu a{
+  color: #444;
+  text-decoration: none;
+}
+
+.account-info .dropdown-menu a:hover{
+  text-decoration: underline;
+}
+
+.account-info .dropdown-menu{
+  background: #eee;
+  border-radius: 0;
+  width: 400px;
+}
+
+.account-info-details{
+  margin: 20px;
+}

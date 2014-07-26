@@ -19,8 +19,14 @@ module Caminio
     # end
 
     initializer :assets do |config|
-      Rails.application.config.assets.precompile += %w( caminio.js caminio.css )
+      Rails.application.config.assets.precompile += %w( caminio.js 
+                                                        caminio.css
+                                                        mailer.css
+                                                        bootstrap/dist/fonts/glyphicons-halflings-regular.eot
+                                                        bootstrap/dist/fonts/glyphicons-halflings-regular.woff
+                                                        bootstrap/dist/fonts/glyphicons-halflings-regular.ttf)
     end
+
     #   Rails.application.config.assets.precompile << %w(
     #     caminio/index.js
     #     caminio/index.css

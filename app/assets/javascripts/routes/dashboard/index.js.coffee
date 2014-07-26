@@ -1,3 +1,3 @@
 App.DashboardIndexRoute = App.AuthRoute.extend
   model: ->
-    console.log "index"
+    1 == 1

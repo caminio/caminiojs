@@ -6,6 +6,19 @@ module Caminio
         Grape::API.logger
       end
 
+      def authenticate!
+        error!('Unauthorized. Invalid or expired token.', 401) unless current_user
+      end
+
+      def current_user
+        return false unless headers.has_key?('Authorization')
+        if api_key = ApiKey.where("access_token = ? AND expires_at > ?", headers['Authorization'].split(' ').last, 8.hours.ago).first
+          return @current_user = api_key.user
+        end
+        false
+      end
+
     end
+
   end
 end

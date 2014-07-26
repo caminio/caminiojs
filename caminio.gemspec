@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Caminio::VERSION
   spec.authors       = ["quaqua"]
   spec.email         = ["quaqua@tastenwerk.com"]
-  spec.summary       = %q{rails cms}
-  spec.description   = %q{caminio is a rails restful cms}
+  spec.summary       = %q{web cms}
+  spec.description   = %q{caminio web cms}
   spec.homepage      = "https://github.com/caminio/caminio"
   spec.license       = "MIT"
 
@@ -22,6 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "grape", "0.8.0"
   spec.add_dependency "bcrypt", "3.1.7"
   spec.add_dependency "rack-oauth2", "1.0.8"
+  spec.add_dependency "roadie-rails"
+  # spec.add_dependency "nokogiri"
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "sqlite3"
