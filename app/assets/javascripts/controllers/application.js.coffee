@@ -21,3 +21,4 @@ App.ApplicationController = Ember.Controller.extend
         Ember.$.getJSON "/caminio/users/#{currentUser.id}/apps"
           .then (response)->
             controller.set('apps',response)
+

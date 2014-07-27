@@ -1,4 +1,4 @@
-App.SessionsNewView = Ember.View.extend
+App.SessionsForgotPasswordView = Ember.View.extend
   layoutName: 'sessions/layout'
   didInsertElement: ->
     @.$('input[type=text]:first').focus()

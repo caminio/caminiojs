@@ -14,3 +14,8 @@ Em.I18n.translations =
   'cancel': 'Abbrechen'
   'send_email': 'Email senden'
   'error.email_unknown': 'The email address <em>{{email}}</em> is unknown'
+  'signup_for_free': 'kostenlos registrieren'
+  'signup_info_1': 'Ich erkläre mich mit den'
+  'signup_info_2': 'AGB von TASTENWERK e.U.'
+  'signup_info_3': 'einverstanden.'
+  'or': 'oder'

@@ -1,4 +1,4 @@
-App.AuthRoute = Ember.Route.extend
+App.AuthRoute = App.ApplicationRoute.extend
   beforeModel: ->
     return if @.isAuthenticated()
     route = @

@@ -19,7 +19,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 360px;
+  width: 460px;
 }
 
 .login-box .alert{
@@ -47,7 +47,7 @@
   left: 5px;
 }
 
-.login-box .form-group a{
+.login-box .form-group a.cancel{
   margin-right: 10px;
 }
 
@@ -61,4 +61,8 @@
   position: absolute;
   top: 9px;
   right: 10px;
+}
+
+.login-box .secondary-controls{
+  margin-top: 5px;
 }
