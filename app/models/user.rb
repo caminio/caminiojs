@@ -64,19 +64,26 @@ class User < ActiveRecord::Base
       end
     end
 
-
     def destroy_dependencies
       labels = Label.with_user(self).where( creator: self ).load()
       labels.each do |label|
         access_rules = AccessRule.where( row_id: label.id ).load()
         access_rules.each do |rule|
-          if access_rules.size === 1 && rule.user === self
+          if access_rules.size == 1 && is_owner(rule)
             label.destroy
-          elsif rule.user === self
-            rule.destroy
+          elsif rule.user == self
+            puts "DESTROYING"
+            puts AccessRule.count
+            puts rule.destroy
+            puts AccessRule.count
           end
         end  
       end
+    end
+
+    def is_owner(rule)
+      return true if rule.is_owner || rule.can_delete
+      return false
     end
 
 end
