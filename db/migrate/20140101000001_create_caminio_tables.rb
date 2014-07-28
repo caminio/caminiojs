@@ -93,7 +93,7 @@ class CreateCaminioTables < ActiveRecord::Migration
 
     create_table :apps do |t|
       t.string          :name
-      t.boolean         :is_public, default: true
+      t.boolean         :is_public, default: false
     end
     add_index :apps, :name, unique: true
 

@@ -59,7 +59,7 @@ describe 'user' do
       hash = {}
       hash[app.id] = true
       user = User.create( attributes_for(:user, choosen_apps: hash  ))
-      expect( user.app_model_user_roles.count ).to eq( AppModel.count )
+      expect( user.app_model_user_roles.count ).to eq( AppModel.where(app: app).count )
     end
 
     it "sets the access-level for the apps if passed" do
@@ -75,11 +75,9 @@ describe 'user' do
       expect( user.app_model_user_roles.first.access_level  ).to eq( Caminio::Access::READ.to_s )
     end
 
-    it "sets the access-level for the apps to no access by default"
+    it "assigns free plan for messenger app for organizional_unit" do 
 
-    it "activates messenger app to organizational_unit "
-
-    it "assigns free plan for messenger app for organizional_unit"
+    end
 
   end
 

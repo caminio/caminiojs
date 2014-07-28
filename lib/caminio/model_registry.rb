@@ -20,7 +20,6 @@ module Caminio
           app_model.update!( model[:options]
             .merge(hidden: !model[:options].has_key?(:icon) ) )
         end
-
       end
     end
       
