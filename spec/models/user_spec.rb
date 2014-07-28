@@ -95,7 +95,7 @@ describe 'user' do
   end
 
 
-  context "sharing" do
+  context "sharing" do 
 
     it "must have a plan for its actions"
 
@@ -119,9 +119,41 @@ describe 'user' do
 
   end
 
-  context "destroying" do
+  context "destroying" do 
 
-    it "is removed from all groups"
+    let!(:user) do
+      create(:user, password: "tesT123", email: "test@test.com") 
+      User.find_by( email: "test@test.com" )
+    end   
+
+    let!(:user2) do
+      create(:user ) 
+    end
+
+    let!(:label) do
+      create(:label, name: "a label", creator: user ) 
+      Label.find_by( name: "a label" )
+    end
+
+    let!(:label2) do
+      create(:label, name: "another label", creator: user2 ) 
+      Label.find_by( name: "another label" )
+    end 
+
+    it "destroys its own labels if not shared" do
+      before_destroy = Label.where({}).load().count
+      user.destroy
+      expect( Label.where({}).load().count ).to eq( before_destroy - 1 )
+    end
+
+    it "destroys its access_rules for labels" do
+      Label.with_user(user).find_by(id: label.id).share(user2)
+      user.destroy
+      labels_before_destroy = Label.count 
+      rules_before_destroy = AccessRule.count
+      expect( Label.count ).to eq( labels_before_destroy )
+      expect( AccessRule.count ).to eq( rules_before_destroy - 1 )
+    end
 
     it "is removed from all labels"
 
