@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
     current_organizational_unit ||= self.organizational_units.first
       apps.each_pair do |app_id, value|
         if value.is_a?(Hash)
-          find_by_id(value, unit)
+          find_by_id(value, current_organizational_unit)
         else
-          find_by_app(app_id, unit)
+          find_by_app(app_id, current_organizational_unit)
         end
       end
   end
