@@ -21,7 +21,7 @@ module Caminio
           "    config.i18n.available_locales = [:en, :de]\n"+
           "    #config.time_zone = 'Vienna'\n"+
           "\n"+
-          "    config.action_mailer.default_options = { from: 'no-reply@camin.io' }"
+          "    config.action_mailer.default_options = { from: 'no-reply@camin.io', host: 'camin.io' }"
         end
 
         application(nil, env: "production") do
@@ -47,13 +47,17 @@ module Caminio
 
       def setup_routes
         route "mount Caminio::Engine, at: \"/caminio\""
-        route 'root to: "main#index"'
       end
 
       def setup_doorkeeper
         gem 'doorkeeper'
         route 'use_doorkeeper'
         template "doorkeeper.rb", "config/initializers/doorkeeper.rb"
+      end
+
+      def setup_premailer
+        gem 'nokogiri'
+        gem 'premailer-rails'
       end
 
       desc "setup handlebars assets"

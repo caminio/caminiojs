@@ -1,5 +1,6 @@
 # 3rd
 require "grape"
+require "roadie-rails"
 # require "doorkeeper"
 
 require "caminio/version"

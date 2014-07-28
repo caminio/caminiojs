@@ -2,17 +2,23 @@
  *= require font-roboto
  *= require_tree ./caminio
  *= require font-awesome
- *= require bootstrap.min
+ *= require hint.css/hint
+ *= require bootstrap/dist/css/bootstrap.min
  *= require bootstrap_theme
  *= require authorization
  */
 body, html{
   height: 100%;
   font-family: 'Roboto', sans-serif;
+  background: #eee;
 }
 
 body > .ember-view{
   position: relative;
+  height: 100%;
+}
+
+.main-wrap{
   height: 100%;
 }
 
@@ -24,3 +30,5 @@ body > .ember-view{
 .align-right{
   text-align: right;
 }
+
+

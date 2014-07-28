@@ -7,20 +7,18 @@ App.ApplicationController = Ember.Controller.extend
   ).property('controllers.sessions.currentUser')
 
   isAuthenticated: (->
+    return false if @.store.all('api_key').get('length') < 1
     @.store.getById('api_key', Ember.$.cookie 'caminio-session')
   ).property('controllers.sessions.currentUser'),
 
   init: ->
     @._super()
-    @.loadApps()
+    sessionsController = @.get('controllers.sessions')
+    controller = @
+    return unless sessionsController.get('currentUser')
+    @.get('controllers.sessions.currentUser')
+      .then (currentUser)->
+        Ember.$.getJSON "/caminio/users/#{currentUser.id}/apps"
+          .then (response)->
+            controller.set('apps',response)
 
-  appsObserver: (->
-    @.loadApps()
-  ).observes('controllers.sessions.currentUser')
-
-  loadApps: ->
-    console.log "current user #{@.get('controllers.sessions.currentUser')}"
-    return unless @.get('controllers.sessions.currentUser')
-    Ember.$.getJSON "/users/#{@.get('controllers.sessions.currentUser.id')}/apps"
-      .then (response)->
-        @.set('apps',response)

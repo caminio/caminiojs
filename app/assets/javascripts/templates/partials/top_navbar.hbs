@@ -1,7 +1,39 @@
 <div class="top-nav">
-  <div class="all-apps-wrap">
-    {{#each app in apps}}
-      <div class="app"><i {{bind-attr class=":fa :appIcon"}}></i></div>
-    {{/each}}
+  <div class="apps-list pull-left dropdown">
+    <div class="apps-list-trigger hint--bottom" data-toggle="dropdown" {{translateAttr data-hint="my_apps"}}>
+      <i class="fa fa-th"></i>
+    </div>
+    <ul class="dropdown-menu" role="menu">
+      {{#each apps itemController="app"}}
+      <li class="app">
+      <a {{bind-attr href=appPath}}>
+        <i {{bind-attr class=":fa content.icon"}}></i>
+        <span>{{nameTranslation}}</span>
+      </a>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="account-info pull-right dropdown">
+    <img class="account-image pull-right" {{bind-attr src=currentUser.imgSrc}} data-toggle="dropdown">
+    <span class="account-name">{{currentUser.name}}</span>
+    <br>
+    <span class="current-ou">{{currentUser.organizational_unit.name}}</span>
+    <div class="dropdown-menu" role="menu">
+      <img class="account-image-big pull-left" {{bind-attr src="currentUser.imgSrc"}}>
+      <div class="account-info-details">
+        <span class="account-name-big">{{currentUser.name}}</span>
+        <br>
+        <span class="account-email">{{currentUser.email}}</span>
+        <br>
+        <br>
+        {{#link-to 'accounts.show' currentUser.id}}
+        {{t 'edit_account'}}
+        {{/link-to}} |
+        {{#link-to 'sessions.logout'}}
+        {{t 'logout'}}
+        {{/link-to}}
+      </div>
+    </div>
   </div>
 </div>

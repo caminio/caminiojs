@@ -1,4 +1,4 @@
-App.AuthRoute = Ember.Route.extend
+App.AuthRoute = App.ApplicationRoute.extend
   beforeModel: ->
     return if @.isAuthenticated()
     route = @
@@ -15,13 +15,12 @@ App.AuthRoute = Ember.Route.extend
   authenticate: ->
     api_key = Ember.$.cookie 'caminio-session'
     unless Ember.$.cookie 'caminio-session'
+      Ember.$.removeCookie 'caminio-session'
       return this.transitionTo('sessions.new')
     controller = @.controllerFor('sessions')
     controller.store
       .find('api_key', api_key)
       .then (api_key)->
-        console.log "here with api key "
-        console.log api_key.get('user')
+        App.setAuthenticationBearer( api_key.get('access_token') )
         controller.set 'currentUser', api_key.get('user')
-        App.setAuthenticationBearer( api_key )
 

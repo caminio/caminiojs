@@ -1,32 +1,26 @@
-<div class="login-box">
-  <div class="login-logo-wrap">
-    <div class="login-logo"></div>
+<form {{action 'login' on='submit'}}>
+
+  <div class="form-group">
+    {{input value=login class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="email_or_username"}}
   </div>
-  <form {{action 'login' on='submit'}}>
 
-    {{#if errorMessage}}
-    <div class="alert alert-danger">{{{errorMessage}}}</div>
-    {{else}}
-    <div class="alert"></div>
-    {{/if}}
+  <div class="form-group">
+    {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
+    {{#link-to 'sessions.forgot_password' class="forgot-password"}}
+    {{t 'forgot_password'}}?
+    {{/link-to}}
+  </div>
 
-    <div class="form-group">
-      {{input value=login class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="email_or_username"}}
+  <div class="form-group align-right">
+    <button class="btn btn-success" type="submit">
+      {{t 'login'}}
+    </button>
+    <div class="secondary-controls">
+      {{t 'or'}}
+      {{#link-to 'sessions.signup' class="sign-up"}}
+      {{t 'signup_for_free'}}
+      {{/link-to}}
     </div>
+  </div>
 
-    <div class="form-group">
-      {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
-    </div>
-
-    <div class="form-group align-right">
-      <button class="btn btn-success" type="submit">
-        {{t 'login'}}
-      </button>
-      <div class="controls">
-        {{#link-to 'sessions.forgot_password'}}
-          {{t 'forgot_password'}}
-        {{/link-to}}
-    </div>
-
-  </form>
-</div>
+</form>
