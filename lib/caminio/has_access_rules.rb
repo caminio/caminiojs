@@ -6,11 +6,8 @@ module HasAccessRules
   module ClassMethods
 
     def has_access_rules(options={})
-
-      app_name = File.basename( File.expand_path("../../../", __FILE__))
-      app = App.find_or_create_by( name: app_name )
-
-      Caminio::ModelRegistry.add self.name, app.id, options
+    
+      Caminio::ModelRegistry.add self.name, options
       
       include InstanceMethods
 

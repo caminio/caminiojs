@@ -55,16 +55,11 @@ describe 'user' do
 
     it "gets all apps which are passed via choosen_apps" do
       Caminio::ModelRegistry::init
-      app = AppModel.first
-      puts app.inspect
+      app = App.first
       hash = {}
       hash[app.id] = true
-      puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      puts hash
-      puts "THE HASH"
-      unit = OrganizationalUnit.create( name: "test" )
-      user = User.create( attributes_for(:user, organizational_units: [ unit ], choosen_apps: hash  ))
-      puts user.inspect
+      user = User.create( attributes_for(:user, choosen_apps: hash  ))
+      expect( user.app_model_user_roles.count ).to eq( AppModel.count )
     end
 
     it "sets the access-level for the apps if passed" do

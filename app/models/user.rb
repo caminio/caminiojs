@@ -1,5 +1,3 @@
-require 'securerandom'
-
 class User < ActiveRecord::Base
   
   serialize :settings, JSON
@@ -21,22 +19,7 @@ class User < ActiveRecord::Base
   after_create :init_dependencies
 
   attr_accessor :choosen_apps
-
-  # generates a new confirmation_key and returns
-  # it
-  def gen_confirmation_key
-    self.confirmation_key = SecureRandom.hex(64)
-    self.confirmation_key_expires_at = 1.hour.from_now
-    confirmation_key
-  end
-
-  # alias for `gen_confirmation_key` and invokes save!
-  # will fail, if anything is wrong with saving to db
-  def gen_confirmation_key!
-    gen_confirmation_key
-    self.save!
-    confirmation_key
-  end
+  attr_accessor :choosen_organizational_unit
 
   private
 
@@ -47,25 +30,26 @@ class User < ActiveRecord::Base
 
     def check_organizational_unit 
       return if self.organizational_units.size > 0
-      self.organizational_units.create( :name => "private" )
+      self.organizational_units.create( :name => "private", :owner => self )
     end
 
     def set_app_model_user_roles
       return unless choosen_apps
-      puts "INSIDEe"
+      unit = choosen_organizational_unit || self.organizational_units.first
       choosen_apps.each_pair do |app_id, value|
         if value.is_a?(Hash)
           value.each_pair do |model_id, access_level|
             self.app_model_user_roles.create( :app_model => model_id, :access_level => access_level, :app_id => app_id )
           end
         else
-          puts "there is yes"
-          puts AppModel.find_by(id: app_id)
-          
-          # models = App.find_by(id: app_id).app_plans
-          # models.each do |model|
-          #   self.app_model_user_roles.create( :app_model => model.id, :access_level => Caminio::access::FULL, :app_id => app_id)
-          # end
+          models = App.find_by(id: app_id).app_models  
+          models.each do |model|
+            self.app_model_user_roles.create( 
+              :app_model => model, 
+              :access_level => Caminio::Access::FULL, 
+              :organizational_unit => unit
+            )
+          end
         end
       end
     end

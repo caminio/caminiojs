@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   create_table "app_model_user_roles", force: true do |t|
     t.integer "user_id"
     t.integer "app_model_id"
+    t.integer "organizational_unit_id"
     t.string  "access_level"
   end
 
@@ -74,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
 
   create_table "apps", force: true do |t|
     t.string  "name"
-    t.boolean "is_public"
+    t.boolean "is_public", default: true
   end
 
   add_index "apps", ["name"], name: "index_apps_on_name", unique: true
