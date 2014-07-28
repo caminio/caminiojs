@@ -53,21 +53,44 @@ describe 'user' do
       expect( OrganizationalUnitMember.count ).to eq( cur_number + 1 )
     end
 
-    it "gets all apps where at least one model is set visible" do
+    it "gets all apps which are passed via choosen_apps" do
       Caminio::ModelRegistry::init
-      puts AppModel.first.inspect
-      puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      unit = OrganizationalUnit.create( name: "test" )
-      User.create( attributes_for(:user, organizational_units: [ unit ] ))
+      app = App.first
+      hash = {}
+      hash[app.id] = true
+      user = User.create( attributes_for(:user, choosen_apps: hash  ))
+      expect( user.app_model_user_roles.count ).to eq( AppModel.where(app: app).count )
     end
 
-    it "sets the access-level for the apps if passed"
+    it "sets the access-level for the apps if passed" do
+      Caminio::ModelRegistry::init
+      app = App.first
+      app_model = AppModel.first
+      hash = {}
+      model_hash = {}
+      model_hash[app_model.id] = Caminio::Access::READ
+      hash[app.id] = model_hash
+      user = User.create( attributes_for(:user, choosen_apps: hash  ))
+      expect( user.app_model_user_roles.count  ).to eq( 1 )
+      expect( user.app_model_user_roles.first.access_level  ).to eq( Caminio::Access::READ.to_s )
+    end
 
-    it "sets the access-level for the apps to no access by default"
 
-    it "activates messenger app to organizational_unit "
-
-    it "assigns free plan for messenger app for organizional_unit"
+    it "assigns free plan for messenger app for organizional_unit" do 
+      Caminio::ModelRegistry::init
+      app = App.first
+      AppModel.where( :name => "Message").first
+      plan = AppPlan.create( price: 0, users_amount: 2, app: app, visible: true )
+      expect( plan.errors[:app]).to eq([])
+      hash = {}
+      hash[app.id] = true
+      user = User.create( attributes_for(:user, choosen_apps: hash  ))
+      plan = OrganizationalUnitAppPlan.where( 
+        :organizational_unit => user.organizational_units.first,
+        :app_plan => plan
+      ).load().first
+     expect(plan).to be_a( OrganizationalUnitAppPlan )
+    end
 
   end
 

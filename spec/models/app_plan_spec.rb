@@ -6,7 +6,7 @@
 # @Date:   2014-07-24 16:58:50
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-25 09:40:24
+# @Last Modified time: 2014-07-28 15:27:19
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -25,7 +25,14 @@ describe 'app_plan' do
 
   context "creation" do
 
-    it "must have an existing app"
+    it "must have an existing app" do 
+
+      expect( AppPlan.create( price: 0, users_amount: 2 ).errors[:app]).to include("can't be blank")
+      Caminio::ModelRegistry::init
+      app = App.first
+      expect( AppPlan.create( price: 0, users_amount: 2, app: app ).errors[:app]).to eq([])
+
+    end
 
     it "can only be created by admin"
   
@@ -33,11 +40,18 @@ describe 'app_plan' do
 
   context "usage" do
 
-    it "can be choosen by user"
+    let(:user){ create(:user) }
 
-    it "must be confirmed if its not a free plan"
+    it "can be choosen by user" do
+      Caminio::ModelRegistry::init
+      app = App.first
+      expect( AppPlan.create( price: 0, users_amount: 2, app: app ).errors[:app]).to eq([])
+
+    end
 
     it "is bound to an organizational_unit"
+
+    it "must be confirmed if its not a free plan"
 
   end
 
