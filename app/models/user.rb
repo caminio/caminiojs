@@ -65,23 +65,36 @@ class User < ActiveRecord::Base
     end
 
     def destroy_dependencies
-      labels = Label.with_user(self).where( creator: self ).load()
-      labels.each do |label|
-        access_rules = AccessRule.where( row_id: label.id ).load()
-        access_rules.each do |rule|
-          if access_rules.size == 1 && is_owner(rule)
-            label.destroy
-          elsif rule.user == self
-            puts "DESTROYING"
-            puts AccessRule.count
-            puts rule.destroy
-            puts AccessRule.count
-          end
-        end  
+      rules = AccessRule.where( :user => self ).load()
+      rules.each do |rule|
+        other_rules = AccessRule.where( :row_id => rule.row_id ).load()
+        item = rule[:type].singularize.classify.constantize.find(rule[:row_id])
+
+        if other_rules.size == 0 && has_right(rule)
+          item.destroy
+        else
+          rule.destroy
+        end
       end
+
+
+      # labels = Label.with_user(self).where( creator: self ).load()
+      # labels.each do |label|
+      #   access_rules = AccessRule.where( row_id: label.id ).load()
+      #   access_rules.each do |rule|
+      #     if access_rules.size == 1 && is_owner(rule)
+      #       label.destroy
+      #     elsif rule.user == self
+      #       puts "DESTROYING"
+      #       puts AccessRule.count
+      #       puts rule.destroy
+      #       puts AccessRule.count
+      #     end
+      #   end  
+      # end
     end
 
-    def is_owner(rule)
+    def has_right(rule)
       return true if rule.is_owner || rule.can_delete
       return false
     end
