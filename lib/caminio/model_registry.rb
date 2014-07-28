@@ -19,7 +19,6 @@ module Caminio
           model[:options].delete(:app_name)
           app_model.update!( model[:options]
             .merge(hidden: !model[:options].has_key?(:icon) ) )
-          puts app_model.inspect
         end
 
       end

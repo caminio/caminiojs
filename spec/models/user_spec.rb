@@ -63,8 +63,16 @@ describe 'user' do
     end
 
     it "sets the access-level for the apps if passed" do
-
-
+      Caminio::ModelRegistry::init
+      app = App.first
+      app_model = AppModel.first
+      hash = {}
+      model_hash = {}
+      model_hash[app_model.id] = Caminio::Access::READ
+      hash[app.id] = model_hash
+      user = User.create( attributes_for(:user, choosen_apps: hash  ))
+      expect( user.app_model_user_roles.count  ).to eq( 1 )
+      expect( user.app_model_user_roles.first.access_level  ).to eq( Caminio::Access::READ.to_s )
     end
 
     it "sets the access-level for the apps to no access by default"

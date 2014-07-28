@@ -39,7 +39,12 @@ class User < ActiveRecord::Base
       choosen_apps.each_pair do |app_id, value|
         if value.is_a?(Hash)
           value.each_pair do |model_id, access_level|
-            self.app_model_user_roles.create( :app_model => model_id, :access_level => access_level, :app_id => app_id )
+            model = AppModel.where( :id => model_id ).load.first
+            self.app_model_user_roles.create( 
+              :app_model => model, 
+              :access_level => access_level, 
+              :organizational_unit => unit
+            )
           end
         else
           models = App.find_by(id: app_id).app_models  
