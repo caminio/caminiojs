@@ -156,11 +156,11 @@ describe 'user' do
 
     it "destroys its access_rules for labels" do
       Label.with_user(user).find_by(id: label.id).share(user2)
-      user.destroy
       labels_before_destroy = Label.count 
       rules_before_destroy = AccessRule.count
+      user.destroy
       expect( Label.count ).to eq( labels_before_destroy )
-      # expect( AccessRule.count ).to eq( rules_before_destroy - 1 )
+      expect( AccessRule.count ).to eq( rules_before_destroy - 1 )
     end
 
     it "is removed from all labels"
