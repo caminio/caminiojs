@@ -31,6 +31,14 @@ class User < ActiveRecord::Base
     def check_organizational_unit 
       return if self.organizational_units.size > 0
       self.organizational_units.create( :name => "private", :owner => self )
+      return unless choosen_apps
+      unit = choosen_organizational_unit || self.organizational_units.first
+      choosen_apps.each_pair do |app_id, value|
+        app_plan = AppPlan.where( :price => 0, :visible => true, :app_id => app_id ).first
+        if app_plan
+          OrganizationalUnitAppPlan.create( :app_plan => app_plan, :organizational_unit => unit )
+        end
+      end
     end
 
     def set_app_model_user_roles

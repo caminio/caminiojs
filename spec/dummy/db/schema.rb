@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
 
   create_table "apps", force: true do |t|
     t.string  "name"
-    t.boolean "is_public", default: true
+    t.boolean "is_public", default: false
   end
 
   add_index "apps", ["name"], name: "index_apps_on_name", unique: true

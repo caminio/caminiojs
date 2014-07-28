@@ -75,8 +75,21 @@ describe 'user' do
       expect( user.app_model_user_roles.first.access_level  ).to eq( Caminio::Access::READ.to_s )
     end
 
-    it "assigns free plan for messenger app for organizional_unit" do 
 
+    it "assigns free plan for messenger app for organizional_unit" do 
+      Caminio::ModelRegistry::init
+      app = App.first
+      AppModel.where( :name => "Message").first
+      plan = AppPlan.create( price: 0, users_amount: 2, app: app, visible: true )
+      expect( plan.errors[:app]).to eq([])
+      hash = {}
+      hash[app.id] = true
+      user = User.create( attributes_for(:user, choosen_apps: hash  ))
+      plan = OrganizationalUnitAppPlan.where( 
+        :organizational_unit => user.organizational_units.first,
+        :app_plan => plan
+      ).load().first
+     expect(plan).to be_a( OrganizationalUnitAppPlan )
     end
 
   end
