@@ -67,12 +67,13 @@ class User < ActiveRecord::Base
     def destroy_dependencies
       rules = AccessRule.where( :user => self ).load()
       rules.each do |rule|
-        other_rules = AccessRule.where( :row_id => rule.row_id ).load()
-        item = rule[:type].singularize.classify.constantize.find(rule[:row_id])
-
-        if other_rules.size == 0 && has_right(rule)
+        all_rules = AccessRule.where( :row_id => rule.row_id ).load()
+        item = rule[:row_type].singularize.classify.constantize.with_user(self).find(rule[:row_id])
+        
+        if all_rules.size == 1 && has_right(rule)
           item.destroy
         else
+          puts rule.user == self
           rule.destroy
         end
       end

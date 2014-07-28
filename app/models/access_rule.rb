@@ -11,7 +11,12 @@ class AccessRule < ActiveRecord::Base
   private
 
     def check_if_destroyer_has_rights
-      raise StandardError.new("Insufficient rights") unless is_owner || can_delete
+      raise StandardError.new("Insufficient rights") unless is_creator_or_user
+    end
+
+    def is_creator_or_user
+      puts "TODO"
+      return true 
     end
 
 end

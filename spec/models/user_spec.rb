@@ -167,9 +167,7 @@ describe 'user' do
       Label.with_user(user).find_by(id: label.id).share(user2)
       Label.with_user(user2).find_by(id: label2.id).share(user)
       rules_before_destroy = AccessRule.count
-      puts label2.access_rules.count
       user.destroy
-      puts label2.access_rules.count
       expect( label ).to be_a( Label )
       expect( label2 ).to be_a( Label )
       expect( AccessRule.count ).to eq( rules_before_destroy - 1 )
