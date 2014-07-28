@@ -53,15 +53,24 @@ describe 'user' do
       expect( OrganizationalUnitMember.count ).to eq( cur_number + 1 )
     end
 
-    it "gets all apps where at least one model is set visible" do
+    it "gets all apps which are passed via choosen_apps" do
       Caminio::ModelRegistry::init
-      puts AppModel.first.inspect
+      app = AppModel.first
+      puts app.inspect
+      hash = {}
+      hash[app.id] = true
       puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      puts hash
+      puts "THE HASH"
       unit = OrganizationalUnit.create( name: "test" )
-      User.create( attributes_for(:user, organizational_units: [ unit ] ))
+      user = User.create( attributes_for(:user, organizational_units: [ unit ], choosen_apps: hash  ))
+      puts user.inspect
     end
 
-    it "sets the access-level for the apps if passed"
+    it "sets the access-level for the apps if passed" do
+
+
+    end
 
     it "sets the access-level for the apps to no access by default"
 

@@ -34,12 +34,15 @@ class User < ActiveRecord::Base
 
     def set_app_model_user_roles
       return unless choosen_apps
+      puts "INSIDEe"
       choosen_apps.each_pair do |app_id, value|
         if value.is_a?(Hash)
           value.each_pair do |model_id, access_level|
             self.app_model_user_roles.create( :app_model => model_id, :access_level => access_level, :app_id => app_id )
           end
         else
+          puts "there is yes"
+          puts App.find_by(id: app_id)
           models = App.find_by(id: app_id).app_plans
           models.each do |model|
             self.app_model_user_roles.create( :app_model => model.id, :access_level => Caminio::access::FULL, :app_id => app_id)
