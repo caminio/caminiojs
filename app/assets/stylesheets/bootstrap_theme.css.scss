@@ -41,3 +41,20 @@ body textarea:focus{
   border-color: #48d;
 }
 
+body .modal-content{
+  border-radius: 0;
+}
+
+body .modal-header{
+  color: #777;
+}
+
+body .modal-content h1{
+  font-size: 22px;
+  color: #555;
+}
+
+body .modal-content h2{
+  font-size: 16px;
+  color: #555;
+}
