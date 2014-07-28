@@ -60,11 +60,12 @@ class User < ActiveRecord::Base
           end
         else
           puts "there is yes"
-          puts App.find_by(id: app_id)
-          models = App.find_by(id: app_id).app_plans
-          models.each do |model|
-            self.app_model_user_roles.create( :app_model => model.id, :access_level => Caminio::access::FULL, :app_id => app_id)
-          end
+          puts AppModel.find_by(id: app_id)
+          
+          # models = App.find_by(id: app_id).app_plans
+          # models.each do |model|
+          #   self.app_model_user_roles.create( :app_model => model.id, :access_level => Caminio::access::FULL, :app_id => app_id)
+          # end
         end
       end
     end
