@@ -3,13 +3,8 @@
     <div class="login-logo"></div>
   </div>
 
-  {{#if errorMessage}}
-  <div class="alert alert-danger">{{{errorMessage}}}</div>
-  {{/if}}
   {{#if message}}
-  <div class="alert alert-info">{{{message}}}</div>
-  {{else}}
-  <div class="alert"></div>
+  <div {{bind-attr class=":alert valid:alert-info:alert-danger"}}>{{{message}}}</div>
   {{/if}}
   {{yield}}
 </div>

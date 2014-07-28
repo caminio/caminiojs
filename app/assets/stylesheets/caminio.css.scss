@@ -31,4 +31,39 @@ body > .ember-view{
   text-align: right;
 }
 
+.checkbox-box{
+  border: 1px solid #aaa;
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin: 3px 5px 0 0;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(128, 128, 128, 0.2);
+  background: #fafafa;
+  cursor: pointer;
+}
 
+.checkbox-box .fa-check{
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+
+.field-with-errors,
+.field-with-errors input{
+  color: #a94442;
+}
+.field-with-errors .checkbox-box,
+.field-with-errors input{
+  background: #f2dede;
+  border-color: #a94442;
+}
+.field-with-errors input::-webkit-input-placeholder{
+  color: #e98482;
+}
+.field-with-errors input::-moz-placeholder{
+  color: #e98482;
+}
+.field-with-errors input:-ms-input-placeholder{
+  color: #e98482;
+}

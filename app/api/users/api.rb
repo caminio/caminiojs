@@ -22,12 +22,16 @@ class Users::API < Grape::API
     {}
   end
 
+  post '/signup' do
+  end
+
   get '/:id' do
     authenticate!
     { user: User.find_by_id(params[:id]) }
   end
 
   get '/:id/profile_picture' do
+    authenticate!
     filename = File::expand_path("../../../assets/images/missing_bot_128x128.png",__FILE__)
     content_type MIME::Types.type_for(filename)[0].to_s
     env['api.format'] = :binary

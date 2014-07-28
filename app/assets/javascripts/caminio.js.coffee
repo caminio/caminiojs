@@ -11,6 +11,7 @@
 #= require ./router
 #= require_tree ./locales
 #= require_tree ./routes
+#= require_tree ./mixins
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./controllers

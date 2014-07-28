@@ -10,15 +10,13 @@
 
 .login-box{
   background: none repeat scroll 0 0 #eee;
-  bottom: 0;
   box-shadow: 2px 2px 3px #333;
-  height: 400px;
   left: 0;
   margin: auto;
   padding: 110px 40px 20px;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 10%;
   width: 460px;
 }
 
@@ -65,4 +63,16 @@
 
 .login-box .secondary-controls{
   margin-top: 5px;
+}
+
+.pw-group{
+  position: relative;
+}
+.pw-progress{
+  border-radius: 0;
+  height: 12px;
+  position: absolute;
+  right: 5px;
+  top: 12px;
+  width: 50px;
 }
