@@ -45,5 +45,9 @@ module Caminio
       end
     end
 
+    initializer :init_caminio_apps, after: :finisher_hook do |app|
+      # Caminio::ModelRegistry::init
+    end
+
   end
 end

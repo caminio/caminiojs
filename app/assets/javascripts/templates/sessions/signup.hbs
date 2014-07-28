@@ -1,16 +1,37 @@
 <form {{action 'signupNow' on='submit'}}>
 
   <div class="form-group">
+    <div class="btn-group">
+      <button type="button" {{bind-attr class=":btn :btn-default isCompany:btn-default:btn-primary"}} {{action 'toggleCompany' false}}>{{t 'private_person'}}</button>
+      <button type="button" {{bind-attr class=":btn :btn-default isCompany:btn-primary:btn-default"}} {{action 'toggleCompany' true}}>{{t 'company_or_organization'}}</button>
+    </div>
+  </div>
+
+  {{#if isCompany}}
+  <div {{bind-attr class=":form-group errors.companyName:field-with-errors"}}>
+    {{input value=companyName class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="company_name"}}
+  </div>
+  {{/if}}
+
+  <div {{bind-attr class=":form-group errors.email:field-with-errors"}}>
     {{input value=email class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="email_address"}}
   </div>
 
-  <div class="form-group">
+  <div {{bind-attr class=":form-group errors.password:field-with-errors :pw-group"}}>
     {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
+    <div class="progress pw-progress">
+      <div {{bind-attr class=":progress-bar pwStrengthColor"}} role="progressbar" {{bind-attr style=pwStrength}}></div>
+    </div>
   </div>
 
-  <div class="form-group">
+  <div {{bind-attr class=":form-group errors.termsAccepted:field-with-errors"}}>
+    <div class="checkbox-box" {{action 'toggleTermsAccepted'}}>
+      {{#if termsAccepted}}
+        <i class="fa fa-check"></i>
+      {{/if}}
+    </div>
     {{t 'signup_info_1'}}
-    <a href="#" {{action 'openModal' 'sessions/policies'}}>{{t 'signup_info_2'}}</a>
+    <a href="#" {{action 'openModal' 'sessions/terms'}}>{{t 'signup_info_2'}}</a>
     {{t 'signup_info_3'}}
   </div>
 
@@ -22,6 +43,5 @@
       {{t 'signup_for_free'}}
     </button>
   </div>
-
 
 </form>
