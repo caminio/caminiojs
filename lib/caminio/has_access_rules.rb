@@ -64,7 +64,7 @@ module HasAccessRules
       rule = access_rules.find_by( user: updater )
       return errors.add( :updater, "insufficient rights") unless rule 
       return if rule.is_owner
-      return errors.add( :updater, "insufficient rights") unless rule.can_write
+      return errors.add( :updater, "insufficient rights") unless rule.can_write 
     end
 
     def check_if_updater_is_set 
