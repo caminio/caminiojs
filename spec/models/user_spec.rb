@@ -140,18 +140,18 @@ describe 'user' do
 
     let!(:label) do
       create(:label, name: "a label", creator: user ) 
-      Label.find_by( name: "a label" )
+      Label.with_user(user).find_by( name: "a label" )
     end
 
     let!(:label2) do
       create(:label, name: "another label", creator: user2 ) 
-      Label.find_by( name: "another label" )
+      Label.with_user(user).find_by( name: "another label" )
     end 
 
     it "destroys its own labels if not shared" do
-      before_destroy = Label.where({}).load().count
+      before_destroy = Label.count
       user.destroy
-      expect( Label.where({}).load().count ).to eq( before_destroy - 1 )
+      expect( Label.count ).to eq( before_destroy - 1 )
     end
 
     it "destroys its access_rules for labels" do
