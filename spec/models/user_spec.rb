@@ -170,7 +170,7 @@ describe 'user' do
       user.destroy
       expect( label ).to be_a( Label )
       expect( label2 ).to be_a( Label )
-      expect( AccessRule.count ).to eq( rules_before_destroy - 1 )
+      expect( AccessRule.count ).to eq( rules_before_destroy - 2 )
     end
 
     it "every access rule with it is destroyed"
