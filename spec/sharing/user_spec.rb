@@ -19,7 +19,6 @@ describe 'user' do
 
   context "sharing" do 
 
-
     before(:each) do
       Caminio::ModelRegistry::init
       app = App.first
@@ -98,8 +97,6 @@ describe 'user' do
       expect( rule.can_delete ).to eq(true)
       expect( rule.is_owner ).to eq(false)
     end
-
-    it "can share a document with a label"
 
     it "can have read access to shared documents of other users"do
       user2 = User.create( attributes_for(:user) )
