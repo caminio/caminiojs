@@ -190,10 +190,6 @@ describe 'user' do
 
     it "its owned organizional_unit is destroyed" do
       expect( OrganizationalUnit.where( :owner => user ).load.count ).to eq(1)
-      # puts OrganizationalUnit.where( :owner => user ).first.inspect
-      # puts OrganizationalUnitMember.where({}).load.inspect
-      puts "BEFORE DESTROY IS CALLED"
-      puts user.organizational_units.inspect
       user.destroy
       expect( OrganizationalUnit.where( :owner => user ).load.count ).to eq(0)
     end

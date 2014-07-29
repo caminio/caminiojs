@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :on => :create
   validates_format_of :email, :with => /@/
 
-  after_create :find_or_create_organizational_unit 
+  after_create :check_existing_units, :find_or_create_organizational_unit 
   before_destroy :destroy_dependencies
 
   attr_accessor :current_organizational_unit
@@ -35,6 +35,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+    def check_existing_units
+      self.organizational_units.each do |unit|
+        raise StandardError.new("Private organizational_unit can only have 1 member") if unit.name == "private"
+      end
+    end
 
     def find_or_create_organizational_unit 
       return if self.organizational_units.size > 0     

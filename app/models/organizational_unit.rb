@@ -8,6 +8,8 @@ class OrganizationalUnit < ActiveRecord::Base
   has_many :app_model_user_roles
   belongs_to  :owner, class_name: 'User'
 
+  # before_save :check_private_for_more_users
+
   def link_apps(apps)
     apps.each_pair do |app_id|
       app_plan = AppPlan.where(:app_id => app_id ).first
@@ -19,4 +21,16 @@ class OrganizationalUnit < ActiveRecord::Base
       end
     end
   end
+
+  private 
+
+    # def check_private_for_more_users
+    #   puts "WE ARE HERE"
+    #   puts  self.name
+    #   puts self.users.size
+    #   if self.name == "private" && self.users.size > 1
+    #     raise StandardError.new("Private organizational_unit can only have 1 member")
+    #   end
+    # end
+
 end
