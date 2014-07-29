@@ -101,6 +101,7 @@ class CreateCaminioTables < ActiveRecord::Migration
 
       t.string        :name
       t.integer       :owner_id
+      t.boolean       :suspended
       t.string        :color
       t.text          :settings
       t.integer       :created_by

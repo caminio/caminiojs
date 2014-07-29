@@ -8,11 +8,12 @@ class Users::API < Grape::API
 
   get '/' do
     authenticate!
-    { users: User.where(organizational_units: headers['ou']) }
+    { users: User.where({}).load }
   end
 
   get '/:id/apps' do
     authenticate!
+    # App.wher.....
     [{ id: 1, name: 'messages', path: '/messages', icon: 'fa-envelope-o' }]
   end
 

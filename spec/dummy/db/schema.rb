@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   create_table "organizational_units", force: true do |t|
     t.string   "name"
     t.integer  "owner_id"
+    t.boolean  "suspended"
     t.string   "color"
     t.text     "settings"
     t.integer  "created_by"

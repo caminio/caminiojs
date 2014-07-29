@@ -53,7 +53,7 @@ module HasAccessRules
       can_share = rule && ( rule.can_share? || rule.is_owner? ) 
       return false unless can_share 
       if existing_rule = access_rules.find_by( user: user )      
-        existing_rule.with_user(user).update(rights)
+        existing_rule.with_user(updater).update(rights)
       else
         access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
       end
@@ -64,7 +64,7 @@ module HasAccessRules
       rule = access_rules.find_by( user: updater )
       return errors.add( :updater, "insufficient rights") unless rule 
       return if rule.is_owner
-      return errors.add( :updater, "insufficient rights") unless rule.can_write
+      return errors.add( :updater, "insufficient rights") unless rule.can_write 
     end
 
     def check_if_updater_is_set 

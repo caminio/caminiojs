@@ -110,31 +110,6 @@ describe 'user' do
 
   end
 
-
-  context "sharing" do 
-
-    it "must have a plan for its actions"
-
-    it "can invite other users to its organizional_unit"
-
-    it "can share a document with read only access"
-
-    it "can share a document with edit access"
-
-    it "can share a document with full access"
-
-    it "can share a document with a group"
-
-    it "can share a document with a label"
-
-    it "can have read access to shared documents of other users"
-
-    it "can have write access to shared documents of other users"
-
-    it "can have full access to shared documents of other users"
-
-  end
-
   context "destroying" do 
 
     let!(:user) do
@@ -153,7 +128,7 @@ describe 'user' do
 
     let!(:label2) do
       create(:label, name: "another label", creator: user2 ) 
-      Label.with_user(user).find_by( name: "another label" )
+      Label.with_user(user2).find_by( name: "another label" )
     end 
 
     it "destroys its own labels if not shared" do
@@ -181,9 +156,18 @@ describe 'user' do
       expect( AccessRule.count ).to eq( rules_before_destroy - 2 )
     end
 
-    it "every access rule with it is destroyed"
+    it "every access rule with it is destroyed"do 
+      Label.with_user(user).find_by(id: label.id).share(user2)
+      Label.with_user(user2).find_by(id: label2.id).share(user)
+      user.destroy
+      expect( AccessRule.where( :user => user ).count ).to eq( 0 )
+    end
 
-    it "its owned organizional_unit is destroyed"
+    it "its owned organizional_unit is destroyed" do
+      expect( OrganizationalUnit.where( :owner => user ).load.count ).to eq(1)
+      user.destroy
+      expect( OrganizationalUnit.where( :owner => user ).load.count ).to eq(0)
+    end
 
   end
 
