@@ -33,7 +33,7 @@ module HasAccessRules
     end
 
     def with_user(user)
-      Thread.current.thread_variable_set(:curren_user, user)
+      Thread.current.thread_variable_set(:current_user, user)
       self.includes(:access_rules).where( access_rules: { user_id: user.id })
     end
 
@@ -45,7 +45,7 @@ module HasAccessRules
       rule = access_rules.find_by( user: updater )
       can_destroy = rule && ( rule.can_delete? || rule.is_owner? ) 
       return false unless can_destroy 
-      access_rules.delete_all
+      access_rules.with_user(self).delete_all
     end
 
     def share(user, rights={can_delete: false, can_write: false, can_share: false})
@@ -83,8 +83,8 @@ module HasAccessRules
     end
 
     def set_temporary_updater
-      with_user( Thread.current.thread_variable_get(:curren_user) )
-      Thread.current.thread_variable_set(:curren_user, nil)
+      with_user( Thread.current.thread_variable_get(:current_user) )
+      Thread.current.thread_variable_set(:current_user, nil)
     end
 
     def set_updater

@@ -75,25 +75,10 @@ class User < ActiveRecord::Base
           item.destroy
         else
           puts rule.user == self
-          rule.destroy
+          rule.with_user(self).destroy
         end
       end
 
-
-      # labels = Label.with_user(self).where( creator: self ).load()
-      # labels.each do |label|
-      #   access_rules = AccessRule.where( row_id: label.id ).load()
-      #   access_rules.each do |rule|
-      #     if access_rules.size == 1 && is_owner(rule)
-      #       label.destroy
-      #     elsif rule.user == self
-      #       puts "DESTROYING"
-      #       puts AccessRule.count
-      #       puts rule.destroy
-      #       puts AccessRule.count
-      #     end
-      #   end  
-      # end
     end
 
     def has_right(rule)

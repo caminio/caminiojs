@@ -6,17 +6,27 @@ class AccessRule < ActiveRecord::Base
   belongs_to :user
   belongs_to :label
 
-  before_destroy :check_if_destroyer_has_rights
+  before_destroy :check_rights
+  # before_update :check_rights
+
+  def with_user(user)
+    puts "IS CALLED"
+    @current_user = user
+  end
 
   private
 
-    def check_if_destroyer_has_rights
-      raise StandardError.new("Insufficient rights") unless is_creator_or_user
+    def check_rights
+      puts "checking"
+      puts @current_user.inspect
+      raise err unless @current_user
+      return if @current_user.id == creator_id 
+      return if @current_user.id == updater_id
+      raise err unless @current_user.id == organizational_unit.owner_id
     end
 
-    def is_creator_or_user
-      puts "TODO"
-      return true 
+    def err
+      StandardError.new("Insufficient rights")
     end
 
 end
