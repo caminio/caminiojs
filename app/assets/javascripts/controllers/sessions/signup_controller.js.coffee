@@ -16,7 +16,7 @@ App.SessionsSignupController = Ember.Controller.extend App.Validations,
         message: Em.I18n.t('errors.accept_terms')
     companyName:
       required: ->
-        return unless @.get('isCompany') || !Em.isEmpty(@.get('companyName'))
+        return if !@.get('isCompany') || !Em.isEmpty(@.get('companyName'))
         Em.I18n.t('errors.required.company_name')
     email:
       required:
@@ -60,7 +60,7 @@ App.SessionsSignupController = Ember.Controller.extend App.Validations,
         data:
           email: @.get('email')
           password: @.get('password')
-          company_name: @.get('company_name')
+          company_name: @.get('companyName')
       ).then (response)->
         controller.get('controllers.sessions').authenticate(response.api_key)
       .fail (response)->

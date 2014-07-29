@@ -1,8 +1,8 @@
-<div class="med-container">
+<div class="med-container margin-top">
 
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-3 md-4-nav">
       <ul class="nav">
         <li>
         {{#link-to 'accounts'}}
@@ -12,7 +12,7 @@
         </li>
         <li>
         {{#link-to 'accounts.prices'}}
-          <i class="fa fa-dollar"></i>
+          <i class="fa fa-money"></i>
           {{t 'accounts.plans_and_prices'}}
         {{/link-to}}
         </li>
@@ -24,7 +24,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9 nav-content">
       {{yield}}
     </div>
 

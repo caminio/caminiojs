@@ -11,7 +11,7 @@ App.SessionsNewRoute = Ember.Route.extend
       .then ->
         route.transitionTo "dashboard.index"
       .catch ->
-        console.log "not authenticated"
+        console.error "not authenticated"
 
   setupController: (controller, model)->
     controller.reset()

@@ -1,1 +1,29 @@
-<h1>common</h1>
+<section>
+  <form class="row form-horizontal" {{action 'save' on='submit'}}>
+    <div class="col-md-3 mini-header">{{t 'accounts.personal_data'}}</div>
+    <div class="col-md-9">
+      <div class="form-group">
+        <div class="col-md-6">
+          {{input value=content.firstname class="form-control" placeholderTranslation='firstname'}}
+        </div>
+        <div class="col-md-6">
+          {{input value=content.lastname class="form-control" placeholderTranslation='lastname'}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-12">
+          {{input value=content.email class="form-control" placeholderTranslation='email'}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-2 control-label">
+          {{t 'language'}}
+        </div>
+        <div class="col-md-2">
+          {{view App.Select2SelectView value=settings.lang content=availableLangs noSearch=true prompt=false}}
+        </div>
+        {{view App.Select2CountryView value=settings.country class="col-md-8"}}
+      </div>
+    </div>
+  </form>
+</section>

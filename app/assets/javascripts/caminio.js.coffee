@@ -2,6 +2,9 @@
 #= require pace
 #= require jquery.cookie
 #= require bootstrap
+#= require typeahead.js/dist/typeahead.bundle
+#= require codemirror
+#= require select2
 #= require handlebars
 #= require ember
 #= require ember-data
@@ -11,6 +14,7 @@
 #= require_self
 #= require ./router
 #= require_tree ./locales
+#= require_tree ./util
 #= require_tree ./routes
 #= require_tree ./mixins
 #= require_tree ./models
@@ -52,16 +56,17 @@ Ember.View.reopen Em.I18n.TranslateableAttributes
 #       )
 #     else
 #       return []
-#
-# DS.ObjectTransform = DS.Transform.extend
-#   deserialize: (serialized)->
-#     return {} if Em.isNone(serialized)
-#     serialized
-#
-#   serialize: (deserialized)->
-#     return {} if Em.isNone(serialized)
-#     deserialized
-#
-#
+
 # App.register("transform:array", DS.ArrayTransform)
-# App.register("transform:object", DS.ObjectTransform)
+#
+DS.ObjectTransform = DS.Transform.extend
+  deserialize: (serialized)->
+    return {} if Em.isNone(serialized)
+    serialized
+
+  serialize: (deserialized)->
+    return {} if Em.isNone(serialized)
+    deserialized
+
+
+App.register("transform:object", DS.ObjectTransform)
