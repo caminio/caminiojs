@@ -162,7 +162,7 @@ describe 'user' do
       expect( Label.count ).to eq( before_destroy - 1 )
     end
 
-    it "destroys its access_rules for labels" do
+    it "destroys its access_rules for labels", type:"special" do
       Label.with_user(user).find_by(id: label.id).share(user2)
       labels_before_destroy = Label.count 
       rules_before_destroy = AccessRule.count

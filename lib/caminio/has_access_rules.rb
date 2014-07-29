@@ -45,7 +45,7 @@ module HasAccessRules
       rule = access_rules.find_by( user: updater )
       can_destroy = rule && ( rule.can_delete? || rule.is_owner? ) 
       return false unless can_destroy 
-      access_rules.with_user(self).delete_all
+      access_rules.delete_all
     end
 
     def share(user, rights={can_delete: false, can_write: false, can_share: false})
@@ -53,7 +53,7 @@ module HasAccessRules
       can_share = rule && ( rule.can_share? || rule.is_owner? ) 
       return false unless can_share 
       if existing_rule = access_rules.find_by( user: user )      
-        existing_rule.update(rights)
+        existing_rule.with_user(user).update(rights)
       else
         access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
       end

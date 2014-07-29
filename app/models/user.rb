@@ -17,10 +17,11 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :on => :create
   validates_format_of :email, :with => /@/
 
-  after_create :check_organizational_unit 
+  after_create :find_or_create_organizational_unit 
   before_destroy :destroy_dependencies
 
   attr_accessor :current_organizational_unit
+  attr_accessor :organizational_unit_name
 
   def link_app_models(apps)
     current_organizational_unit ||= self.organizational_units.first
@@ -35,10 +36,10 @@ class User < ActiveRecord::Base
 
   private
 
-    def check_organizational_unit 
+    def find_or_create_organizational_unit 
       return if self.organizational_units.size > 0     
       self.organizational_units.create( 
-        :name => current_organizational_unit || "private", 
+        :name => organizational_unit_name || "private", 
         :owner => self 
       )
     end
@@ -71,10 +72,9 @@ class User < ActiveRecord::Base
         all_rules = AccessRule.where( :row_id => rule.row_id ).load()
         item = rule[:row_type].singularize.classify.constantize.with_user(self).find(rule[:row_id])
         
-        if all_rules.size == 1 && has_right(rule)
+        if all_rules.size == 1 && has_right(rule) 
           item.destroy
         else
-          puts rule.user == self
           rule.with_user(self).destroy
         end
       end
