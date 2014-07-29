@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  
+
+  include ActiveModel::Serialization
+
   serialize :settings, JSON
   has_many :domains, through: :users_domains
   has_many :subscriptions
@@ -15,6 +17,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :password, :on => :create  
   validates_presence_of :email, :on => :create
+  validates_uniqueness_of :email
   validates_format_of :email, :with => /@/
 
   after_create :find_or_create_organizational_unit 
@@ -32,6 +35,15 @@ class User < ActiveRecord::Base
           find_by_app(app_id, current_organizational_unit)
         end
       end
+  end
+
+  def attributes
+    { firstname: firstname, 
+      lastname: lastname,
+      email: email,
+      organizational_unit_ids: organizational_units.map(&:id),
+      id: id
+    }
   end
 
   private

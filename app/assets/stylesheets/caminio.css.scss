@@ -1,8 +1,9 @@
 /*
  *= require font-roboto
  *= require_tree ./caminio
- *= require font-awesome
+ *= require font-awesome/css/font-awesome.min
  *= require hint.css/hint
+ *= require pace.css
  *= require bootstrap/dist/css/bootstrap.min
  *= require bootstrap_theme
  *= require authorization
@@ -66,4 +67,9 @@ body > .ember-view{
 }
 .field-with-errors input:-ms-input-placeholder{
   color: #e98482;
+}
+
+.med-container{
+  width: 960px;
+  margin: 60px auto 0;
 }

@@ -61,16 +61,13 @@
   color: #ddd;
 }
 
-.account-name{
-  padding: 8px;
-}
-
 .account-image{
   background-color: #fff;
   border-radius: 16px;
   height: 32px;
   margin: 3px 20px 3px 5px;
   width: 32px;
+  cursor: pointer;
 }
 
 .account-image-big{
@@ -113,3 +110,12 @@
 .account-info-details{
   margin: 20px;
 }
+
+.account-name{
+  font-size: 10px;
+  float: left;
+  padding: 5px 10px;
+  text-align: right;
+  color: #777;
+}
+

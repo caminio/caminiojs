@@ -6,5 +6,7 @@ App.Router.map ->
     @route 'forgot_password'
     @route 'signup'
   @resource 'accounts', ->
-    @route 'show', path: '/accounts/:id/show'
+    @route 'index'
+    @route 'prices'
+    @route 'organizations'
 

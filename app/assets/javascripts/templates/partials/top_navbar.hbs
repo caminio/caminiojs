@@ -16,9 +16,11 @@
   </div>
   <div class="account-info pull-right dropdown">
     <img class="account-image pull-right" {{bind-attr src=currentUser.imgSrc}} data-toggle="dropdown">
-    <span class="account-name">{{currentUser.name}}</span>
+    <div class="account-name">
+    <span>{{currentUser.name_or_email}}</span>
     <br>
-    <span class="current-ou">{{currentUser.organizational_unit.name}}</span>
+    <span>{{currentUser.current_organizational_unit.name}}</span>
+  </div>
     <div class="dropdown-menu" role="menu">
       <img class="account-image-big pull-left" {{bind-attr src="currentUser.imgSrc"}}>
       <div class="account-info-details">
@@ -27,7 +29,7 @@
         <span class="account-email">{{currentUser.email}}</span>
         <br>
         <br>
-        {{#link-to 'accounts.show' currentUser.id}}
+        {{#link-to 'accounts'}}
         {{t 'edit_account'}}
         {{/link-to}} |
         {{#link-to 'sessions.logout'}}

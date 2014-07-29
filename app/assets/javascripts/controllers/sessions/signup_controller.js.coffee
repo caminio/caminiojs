@@ -1,5 +1,7 @@
 App.SessionsSignupController = Ember.Controller.extend App.Validations,
 
+  needs: ['sessions']
+
   email: ''
   password: ''
   companyName: ''
@@ -57,7 +59,10 @@ App.SessionsSignupController = Ember.Controller.extend App.Validations,
         type: 'post',
         data:
           email: @.get('email')
+          password: @.get('password')
+          company_name: @.get('company_name')
       ).then (response)->
-        controller.set('message', response.message)
+        controller.get('controllers.sessions').authenticate(response.api_key)
       .fail (response)->
-        controller.set('errorMessage', Em.I18n.t('error.email_unknown', { email: controller.get('email') }))
+        controller.set('valid', false)
+        controller.set('message', Em.I18n.t('error.email_unknown', { email: controller.get('email') }))

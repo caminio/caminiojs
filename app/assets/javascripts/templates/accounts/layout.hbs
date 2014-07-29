@@ -1,0 +1,33 @@
+<div class="med-container">
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <ul class="nav">
+        <li>
+        {{#link-to 'accounts'}}
+          <i class="fa fa-file-text-o"></i>
+          {{t 'accounts.overview'}}
+        {{/link-to}}
+        </li>
+        <li>
+        {{#link-to 'accounts.prices'}}
+          <i class="fa fa-dollar"></i>
+          {{t 'accounts.plans_and_prices'}}
+        {{/link-to}}
+        </li>
+        <li>
+        {{#link-to 'accounts.organizations'}}
+          <i class="fa fa-building-o"></i>
+          {{t 'accounts.organizations'}}
+        {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      {{yield}}
+    </div>
+
+  </div>
+
+</div>

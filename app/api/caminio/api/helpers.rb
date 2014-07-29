@@ -18,6 +18,11 @@ module Caminio
         false
       end
 
+      def host_url
+        request.host_with_port
+      end
+
+
     end
 
   end

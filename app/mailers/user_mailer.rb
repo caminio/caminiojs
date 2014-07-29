@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
 
   end
 
-  def send_welcome(user, link)
+  def welcome(user, link)
     @user = user
     @link = link
     mail to: user.email, subject: I18n.t('caminio_welcome')

@@ -24,37 +24,37 @@ class Users::API < Grape::API
 
   post '/signup' do
     error! 'Email exists', 409 if User.find_by_email params[:email]
-    if user = User.create( email: params[:email],
+    user = User.new( email: params[:email],
       password: params[:password],
-      organizational_unit: params[:company_name])
-      if UserMailer.send_welcome( user, "#{host_url}/caminio#/account").deliver
-        {}
+      organizational_unit_name: params[:company_name])
+    if user.save
+      if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
+        { api_key: user.api_keys.create }
       else
         error! 'Mailer errror', 500
       end
     else
-      error! 'Internal Error', 500
+      Rails.logger.error user.errors.inspect
+      if user.errors.messages[:email]
+        error! 'Invalid email', 422
+      elsif user.errors.messages[:password]
+        error! 'Invalid password', 422
+      end
     end
   end
 
   get '/:id' do
     authenticate!
-    { user: User.find_by_id(params[:id]) }
+    user = User.find_by_id(params[:id])
+    { user: user, organizational_units: user.organizational_units }
   end
 
   get '/:id/profile_picture' do
-    authenticate!
     filename = File::expand_path("../../../assets/images/missing_bot_128x128.png",__FILE__)
     content_type MIME::Types.type_for(filename)[0].to_s
     env['api.format'] = :binary
     header "Content-Disposition", "attachment; filename*=UTF-8''#{URI.escape(filename)}"
     body( (File::open filename).read )
-  end
-
-  private
-
-  def host_url
-    "#{request.protocol}#{request.host}#{(!(/80|443/).match(request.port) ? '' : request.port)}"
   end
 
 end
