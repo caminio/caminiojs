@@ -20,6 +20,7 @@ class AccessRule < ActiveRecord::Base
       raise err unless @current_user
       return if @current_user.id == created_by 
       return if @current_user.id == updated_by
+      return if @current_user.id == user_id
       raise err unless organizational_unit && @current_user.id == organizational_unit.owner_id
     end
 

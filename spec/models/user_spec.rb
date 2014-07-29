@@ -153,7 +153,7 @@ describe 'user' do
 
     let!(:label2) do
       create(:label, name: "another label", creator: user2 ) 
-      Label.with_user(user).find_by( name: "another label" )
+      Label.with_user(user2).find_by( name: "another label" )
     end 
 
     it "destroys its own labels if not shared" do
