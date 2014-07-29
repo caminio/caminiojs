@@ -181,9 +181,22 @@ describe 'user' do
       expect( AccessRule.count ).to eq( rules_before_destroy - 2 )
     end
 
-    it "every access rule with it is destroyed"
+    it "every access rule with it is destroyed"do 
+      Label.with_user(user).find_by(id: label.id).share(user2)
+      Label.with_user(user2).find_by(id: label2.id).share(user)
+      user.destroy
+      expect( AccessRule.where( :user => user ).count ).to eq( 0 )
+    end
 
-    it "its owned organizional_unit is destroyed"
+    it "its owned organizional_unit is destroyed" do
+      expect( OrganizationalUnit.where( :owner => user ).load.count ).to eq(1)
+      # puts OrganizationalUnit.where( :owner => user ).first.inspect
+      # puts OrganizationalUnitMember.where({}).load.inspect
+      puts "BEFORE DESTROY IS CALLED"
+      puts user.organizational_units.inspect
+      user.destroy
+      expect( OrganizationalUnit.where( :owner => user ).load.count ).to eq(0)
+    end
 
   end
 

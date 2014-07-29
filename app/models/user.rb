@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :api_keys
   has_many :organizational_units, through: :organizational_unit_members
-  has_many :organizational_unit_members, dependent: :delete_all
+  has_many :organizational_unit_members
   has_many :app_model_user_roles, dependent: :delete_all
   has_many :app_models, through: :app_model_user_roles
 
@@ -67,6 +67,11 @@ class User < ActiveRecord::Base
     end
 
     def destroy_dependencies
+      destroy_access_rule_items
+      destroy_organizational_units
+    end
+
+    def destroy_access_rule_items
       rules = AccessRule.where( :user => self ).load()
       rules.each do |rule|
         all_rules = AccessRule.where( :row_id => rule.row_id ).load()
@@ -78,7 +83,17 @@ class User < ActiveRecord::Base
           rule.with_user(self).destroy
         end
       end
+    end
 
+    def destroy_organizational_units 
+      units = self.organizational_units
+      units.each do |unit|
+        if unit.users.size == 1
+          unit.destroy
+        elsif unit.owner_id == self.id
+          unit.update(:suspended => true)
+        end
+      end
     end
 
     def has_right(rule)
