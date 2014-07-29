@@ -27,6 +27,14 @@ describe 'user' do
         expect( User.create(attributes_for(:user, email: nil) ).errors[:email]).to include("can't be blank")
       end
 
+      it "fails with email address without @ (AT)" do
+        expect( User.create(attributes_for(:user, email: 'bla')).errors[:email]).to include("is invalid")
+      end
+
+      it "passes with email address including @ (AT)" do
+        expect( User.create(attributes_for(:user, email: 'bla@example.com')) ).to be_a(User)
+      end
+
     end
 
     it{ expect( User.find_by_email(user.email).authenticate("wrong")).to eq(false) }

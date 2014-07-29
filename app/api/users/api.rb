@@ -18,11 +18,23 @@ class Users::API < Grape::API
 
   post '/reset_password' do
     error!('Email unknown',403) unless user = User.find_by_email( params[:email] )
-    error!('Mail error',500) unless UserMailer.reset_password( user, "#{request.protocol}#{request.host}#{(!(/80|443/).match(request.port) ? '' : request.port)}/caminio#/sessions/reset_password?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key!}" ).deliver
+    error!('Mailer error',500) unless UserMailer.reset_password( user, "#{host_url}/caminio#/sessions/reset_password?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key!}" ).deliver
     {}
   end
 
   post '/signup' do
+    error! 'Email exists', 409 if User.find_by_email params[:email]
+    if user = User.create( email: params[:email],
+      password: params[:password],
+      organizational_unit: params[:company_name])
+      if UserMailer.send_welcome( user, "#{host_url}/caminio#/account").deliver
+        {}
+      else
+        error! 'Mailer errror', 500
+      end
+    else
+      error! 'Internal Error', 500
+    end
   end
 
   get '/:id' do
@@ -37,6 +49,12 @@ class Users::API < Grape::API
     env['api.format'] = :binary
     header "Content-Disposition", "attachment; filename*=UTF-8''#{URI.escape(filename)}"
     body( (File::open filename).read )
+  end
+
+  private
+
+  def host_url
+    "#{request.protocol}#{request.host}#{(!(/80|443/).match(request.port) ? '' : request.port)}"
   end
 
 end

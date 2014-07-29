@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :password, :on => :create  
   validates_presence_of :email, :on => :create
+  validates_format_of :email, :with => /@/
 
   after_create :check_organizational_unit 
   before_destroy :destroy_dependencies
