@@ -1,6 +1,8 @@
 # 3rd
 require "grape"
 require "roadie-rails"
+require "paperclip"
+require "caminio/paperclip_grape_ext"
 # require "doorkeeper"
 #
 

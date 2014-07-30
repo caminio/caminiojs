@@ -1,5 +1,9 @@
 #= require jquery
 #= require pace
+#= require 3rd/nicescroll.min
+#= require blueimp-file-upload/js/vendor/jquery.ui.widget
+#= require blueimp-file-upload/js/jquery.iframe-transport
+#= require blueimp-file-upload/js/jquery.fileupload
 #= require jquery.cookie
 #= require bootstrap
 #= require typeahead.js/dist/typeahead.bundle

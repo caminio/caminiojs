@@ -6,4 +6,6 @@ Em.merge( Em.I18n.translations, {
     'plans_and_prices': "Pläne und Preise"
     'organizations': "Organisationen"
     'personal_data': "Persönliche Angaben"
+    'address': 'Adresse'
+    'avatar': 'Avatar'
 })

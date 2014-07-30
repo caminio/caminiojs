@@ -1,9 +1,13 @@
-<div {{bind-attr class=":main-wrap isAuthenticated::unauthenticated"}}>
-  <div class="outlet-wrap">
+<div {{bind-attr class=":main-wrap isAuthenticated::unauthenticated :fill-height"}}>
+  <div class="outlet-wrap fill-height">
     {{#if isAuthenticated}}
     {{partial 'partials/top_navbar'}}
     {{/if}}
-    {{outlet}}
+    <div class="outlet-content-wrap fill-height">
+      <div class="fill-height">
+      {{outlet}}
+    </div>
+    </div>
   </div>
   <div class="footer-wrap">
     <div class="left">

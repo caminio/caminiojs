@@ -2,6 +2,12 @@ class User < ActiveRecord::Base
 
   include ActiveModel::Serialization
 
+  has_attached_file :avatar,
+    :styles => { :thumb => "128x128", :original => "500x500>" }
+    # :default_url => "/images/:style/missing.png",
+    # :path => ":rails_root/public/#{Rails.env}/avatars/:id/:style/:filename"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   serialize :settings, JSON
   has_many :domains, through: :users_domains
   has_many :subscriptions

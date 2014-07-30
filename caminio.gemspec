@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "bcrypt", "3.1.7"
   spec.add_dependency "rack-oauth2", "1.0.8"
   spec.add_dependency "roadie-rails"
+  spec.add_dependency "paperclip", "~> 4.1"
   # spec.add_dependency "nokogiri"
 
   spec.add_development_dependency "bundler", "~> 1.6"

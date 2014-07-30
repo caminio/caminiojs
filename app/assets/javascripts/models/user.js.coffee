@@ -1,7 +1,10 @@
 App.User = DS.Model.extend
   firstname:                      DS.attr "string"
+  username:                       DS.attr "string"
   lastname:                       DS.attr "string"
   email:                          DS.attr "string"
+  phone:                          DS.attr "string"
+  description:                    DS.attr "string"
   password:                       DS.attr "string"
   password_confirmation:          DS.attr "string"
   username:                       DS.attr "string"
