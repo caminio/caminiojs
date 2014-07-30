@@ -1,0 +1,37 @@
+.nav-content{
+  border-left: 1px solid #ddd;
+  min-height: 300px;
+}
+.md-4-nav a{
+  color: #888;
+}
+
+.md-4-nav a .fa{
+  color: #aaa;
+  float: left;
+  margin: 3px 12px 0 0;
+  width: 20px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.md-4-nav a.active .fa,
+.md-4-nav a:hover .fa{
+  color: #e60;
+}
+.md-4-nav a:hover,
+.md-4-nav a.active{
+  color: #555;
+}
+
+.md-4-nav a.active,
+.md-4-nav a:hover{
+  background: #dfdfdf;
+}
+
+.nav-content .mini-header{
+  font-size: 0.9em;
+  color: #555;
+  text-transform: uppercase;
+  padding-top: 8px;
+}

@@ -5,11 +5,10 @@ App.User = DS.Model.extend
   password:                       DS.attr "string"
   password_confirmation:          DS.attr "string"
   username:                       DS.attr "string"
-  # settings:                       DS.attr "object"
+  settings:                       DS.attr "object"
   organizational_units:           DS.hasMany "organizational_unit"
 
   current_organizational_unit:      (->
-    console.log "here"
     @get('organizational_units.firstObject')
   ).property 'organizational_units'
   imgSrc: (->

@@ -1,12 +1,12 @@
 /*
  *= require font-roboto
- *= require_tree ./caminio
  *= require font-awesome/css/font-awesome.min
  *= require hint.css/hint
  *= require pace.css
  *= require bootstrap/dist/css/bootstrap.min
  *= require bootstrap_theme
  *= require authorization
+ *= require_tree ./caminio
  */
 body, html{
   height: 100%;
@@ -71,5 +71,10 @@ body > .ember-view{
 
 .med-container{
   width: 960px;
-  margin: 60px auto 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-top{
+  padding-top: 80px;
 }

@@ -4,6 +4,13 @@ Em.merge( Em.I18n.translations, {
   'email_or_username': 'Email oder Kontoname'
   'email_address': 'Email Address'
   'password': 'Passwort'
+  'firstname': 'Vorname'
+  'lastname': 'Nachname'
+  'email': 'Email'
+  'phone': 'Telefon'
+  'please_select': 'Bitte wählen'
+  'select_country': 'Land wählen'
+  'language': "Sprache"
   'invalid_username_or_password': 'Ungültige Login-Informationen. Überprüfe Email (oder Kontoname) und Passwort. Passwort vergessen? <a class="alert-link" href="#/sessions/forgot_password">Hier klicken</a>.'
   'login': 'Anmelden'
   'forgot_password': 'vergessen'
