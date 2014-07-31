@@ -6,7 +6,7 @@ module HasAccessRules
   module ClassMethods
 
     def has_access_rules(options={})
-    
+
       Caminio::ModelRegistry.add self.name, options
       
       include InstanceMethods

@@ -6,11 +6,12 @@ module Caminio
 
       @@models ||= []
       @@models << { name: name, options: options }
+      Rails.logger.info "adding model #{name} to registry"
 
     end
 
     def self.init
-      
+      @@models ||= []      
       @@models.each do |model|
         name = model[:options][:app_name]
         app = App.find_or_create_by( name: name )

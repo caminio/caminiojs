@@ -1,0 +1,16 @@
+<section>
+  <form class="form-horizontal" {{action 'save' on='submit'}}>
+    <div class="row">
+      {{#each organizational_units}}
+      <div class="col-md-3 mini-header">{{name}}</div>
+      <div class="col-md-9 overflow-auto">
+        <div class="form-group">
+          <div class="col-md-12">
+            {{input value=name class="form-control" placeholderTranslation='firstname'}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </form>
+</section>

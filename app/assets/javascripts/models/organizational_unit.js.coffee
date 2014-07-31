@@ -1,4 +1,5 @@
 App.OrganizationalUnit = DS.Model.extend
   name:               DS.attr "string"
-  organizational_unit_members:              DS.hasMany "organizational_unit_member"
-
+  users:              DS.hasMany "user"
+  owner:              DS.belongsTo "user" 
+  app_plans:          DS.hasMany "app_plan"

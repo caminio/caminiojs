@@ -20,3 +20,4 @@ require "caminio/engine"
 # Access rights
 require "caminio/access"
 require "caminio/model_registry"
+

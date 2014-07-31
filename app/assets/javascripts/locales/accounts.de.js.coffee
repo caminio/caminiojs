@@ -8,4 +8,11 @@ Em.merge( Em.I18n.translations, {
     'personal_data': "Persönliche Angaben"
     'address': 'Adresse'
     'avatar': 'Avatar'
+    'click_img_left_to_update': 'Klick auf das Bild um deinen persönlichen Avatar hochzuladen'
+    plan:
+      'app_name': 'App'
+      'name': 'Bezeichnung'
+      'collaborators': 'Mitarbeiter'
+      'price': 'Preis'
+      'access': 'Zugriffsrechte'
 })
