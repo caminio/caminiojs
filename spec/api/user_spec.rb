@@ -2,9 +2,10 @@
 # @Author: David Reinisch
 # @Date:   2014-07-29 18:29:18
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-31 17:42:01
+# @Last Modified time: 2014-07-31 18:15:05
 
 require "spec_helper"
+  
 
 describe "user api integration" do
 
@@ -15,6 +16,7 @@ describe "user api integration" do
   end
 
   before(:all) do
+    
     Caminio::ModelRegistry::init
     app = App.first
     AppPlan.create( price: 0, users_amount: 2, app: app, visible: true )
