@@ -7,4 +7,5 @@ App.AccountsIndexView = Ember.View.extend
       paramName: 'avatar'
       dataType: 'json'
       done: (e, data)->
-        alert "done"
+        console.log data
+        App.User.store.pushPayload('user', data.result)

@@ -10,13 +10,11 @@ App.User = DS.Model.extend
   username:                       DS.attr "string"
   settings:                       DS.attr "object"
   organizational_units:           DS.hasMany "organizational_unit"
+  avatar_thumb:                   DS.attr "string"
 
   current_organizational_unit:      (->
     @get('organizational_units.firstObject')
   ).property 'organizational_units'
-  imgSrc: (->
-    return "/caminio/users/#{@.get('id')}/profile_picture"
-  ).property('img')
   name: (->
     return @.get('username') unless Em.isEmpty(@.get('username'))
     name = @.get('firstname')

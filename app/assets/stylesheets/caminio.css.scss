@@ -1,9 +1,9 @@
 /*
  *= require font-roboto
- *= require font-awesome/css/font-awesome.min
- *= require hint.css/hint
+ *= require 3rd/font-awesome
+ *= require 3rd/hint.min.css
  *= require pace.css
- *= require bootstrap/dist/css/bootstrap.min
+ *= require 3rd/bootstrap
  *= require bootstrap_theme
  *= require authorization
  *= require_tree ./caminio
@@ -93,4 +93,8 @@ img.avatar{
 
 .outlet-wrap .fill-height > .ember-view{
   height: 100%;
+}
+
+.desc{
+  color: #777;
 }

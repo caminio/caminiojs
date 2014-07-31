@@ -1,11 +1,11 @@
 class OrganizationalUnit < ActiveRecord::Base
 
-  serialize :settings, JSON
-  has_many :users, through: :organizational_unit_members
-  has_many :app_plans, through: :organizational_unit_app_plans
-  has_many :organizational_unit_members
-  has_many :organizational_unit_app_plans
-  has_many :app_model_user_roles
+  serialize   :settings, JSON
+  has_many    :users, through: :organizational_unit_members
+  has_many    :app_plans, through: :organizational_unit_app_plans
+  has_many    :organizational_unit_members
+  has_many    :organizational_unit_app_plans
+  has_many    :app_model_user_roles
   belongs_to  :owner, class_name: 'User'
   
   def link_apps(apps)
@@ -20,5 +20,14 @@ class OrganizationalUnit < ActiveRecord::Base
     end
   end
     
+  def attributes
+    {
+      id: nil,
+      name: nil,
+      owner_id: nil,
+      user_ids: nil,
+      app_plan_ids: nil
+    }
+  end
 
 end

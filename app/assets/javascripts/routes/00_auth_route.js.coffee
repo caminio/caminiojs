@@ -3,9 +3,11 @@ App.AuthRoute = App.ApplicationRoute.extend
     return if @.isAuthenticated()
     route = @
     @.authenticate()
-      .then (api_key)->
-        if( !api_key )
+      .then (user)->
+        if !user
           route.transitionTo('sessions.new')
+        if user.get('current_organizational_unit.app_plans.length') < 1
+          route.transitionTo('accounts.prices')
       .catch ()->
         route.transitionTo('sessions.new')
 
@@ -23,4 +25,5 @@ App.AuthRoute = App.ApplicationRoute.extend
       .then (api_key)->
         App.setAuthenticationBearer( api_key.get('access_token') )
         controller.set 'currentUser', api_key.get('user')
+        api_key.get('user')
 

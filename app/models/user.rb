@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include ActiveModel::Serialization
 
   has_attached_file :avatar,
-    :styles => { :thumb => "128x128", :original => "500x500>" }
+    :styles => { :thumb => "128x128!", :original => "500x500>" }
     # :default_url => "/images/:style/missing.png",
     # :path => ":rails_root/public/#{Rails.env}/avatars/:id/:style/:filename"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -44,15 +44,20 @@ class User < ActiveRecord::Base
   end
 
   def attributes
-    { firstname: firstname, 
-      lastname: lastname,
-      email: email,
-      organizational_unit_ids: organizational_units.map(&:id),
-      id: id
+    { firstname: nil,
+      lastname: nil,
+      email: nil,
+      organizational_unit_ids: nil,
+      avatar_thumb: nil,
+      id: nil
     }
   end
 
   private
+
+    def avatar_thumb
+      avatar.url(:thumb)
+    end
 
     def find_or_create_organizational_unit 
       return if self.organizational_units.size > 0     

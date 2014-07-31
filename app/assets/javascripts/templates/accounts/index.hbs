@@ -65,9 +65,12 @@
     <div class="row row-group">
       <div class="col-md-3 mini-header">{{t 'accounts.avatar'}}</div>
       <div class="col-md-9">
-        <div class="avatar-upload">
-          <img {{bind-attr src=imgSrc}} class="img-circle avatar" {{bind-attr alt=name}}>
+        <div class="avatar-upload col-md-4">
+          <img {{bind-attr src=avatar_thumb}} class="img-circle avatar" {{bind-attr alt=name}}>
           <input id="avatar-upload" type="file">
+        </div>
+        <div class="col-md-5">
+          <div class="desc" style="padding-top: 40px;">{{t 'accounts.click_img_left_to_update'}}</div>
         </div>
       </div>
     </div>
