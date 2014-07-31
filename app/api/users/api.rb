@@ -73,7 +73,14 @@ class Users::API < Grape::API
   get '/:id' do
     authenticate!
     user = User.find_by_id(params[:id])
-    { user: user, organizational_units: user.organizational_units, app_plans: app_plans(user), apps: AppPlan.where( "organizational_unit_app_plans.organizational_unit_id IN (?,0) OR apps.is_public = ?", user.organizational_units.map(&:id), true).includes(:app,:organizational_unit_app_plans).references(:app,:organizational_unit_app_plans).map(&:app) }
+    { user: user, 
+      organizational_units: user.organizational_units, 
+      app_plans: app_plans(user), 
+      # apps: AppPlan.where( 
+      #   "organizational_unit_app_plans.organizational_unit_id IN (?,0) OR apps.is_public = ?", 
+      #   user.organizational_units.map(&:id), true)
+      # .includes(:app,:organizational_unit_app_plans).references(:app,:organizational_unit_app_plans).map(&:app) 
+    }
   end
 
   get '/:id/profile_picture' do
