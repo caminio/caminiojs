@@ -11,6 +11,7 @@ module Caminio
       def setup_and_create
 
         copy_file "favicon.ico", "public/favicon.ico"
+        copy_file "missing.png", "public/avatars/thumb/missing.png"
 
         application do
           "\n"+
