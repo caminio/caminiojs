@@ -63,7 +63,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.boolean       :visible, default: false
       t.timestamps
     end
-    add_index :app_plans, :app_id, unique: true
+    add_index :app_plans, :app_id #, unique: true
 
     create_table :translations do |t|
       t.string          :locale
