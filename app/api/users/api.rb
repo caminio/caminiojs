@@ -8,16 +8,26 @@ class Users::API < Grape::API
 
   get '/' do
     authenticate!
-    puts @current_user.organizational_units.inspect
-    puts headers['Authorization'].split(' ').last
-    { users: User.where({}).load }
+    { users: User.includes(:organizational_units).where(
+      'organizational_units.id=?', 
+      headers['Ou']).references(:organizational_units).load 
+    }
   end
 
   get '/:id/apps' do
     authenticate!
-    puts params.inspect
-    puts "after"
-    puts params[:id]
+    # unit = headers['Ou']
+    # id = params['id']
+    # roles = AppModelUserRole.where( 
+    #   :organizational_unit_id => unit, 
+    #   :user_id =>  id )
+    # puts "we got"
+    # puts roles.inspect
+    # roles.each do |role|
+    #   puts role.app_model.inspect
+
+    # end
+
     [{ id: 1, name: 'messages', path: '/messages', icon: 'fa-envelope-o' }]
   end
 
@@ -31,8 +41,11 @@ class Users::API < Grape::API
   end
 
   post '/reset_password' do
-    error!('Email unknown',403) unless user = User.find_by_email( params[:email] )
-    error!('Mailer error',500) unless UserMailer.reset_password( user, "#{host_url}/caminio#/sessions/reset_password?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key!}" ).deliver
+    error!('Email unknown',403) unless user = 
+      User.find_by_email( params[:email] )
+    error!('Mailer error',500) unless UserMailer.reset_password( 
+      user, 
+      "#{host_url}/caminio#/sessions/reset_password?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key!}" ).deliver
     {}
   end
 

@@ -21,3 +21,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+Dir.glob( File.expand_path("../../app/models", __FILE__)+'/**/*.rb' ).each do |file|
+  require file
+end

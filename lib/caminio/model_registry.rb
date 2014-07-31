@@ -11,7 +11,7 @@ module Caminio
     end
 
     def self.init
-      @@models ||= []      
+      @@models ||= []     
       @@models.each do |model|
         name = model[:options][:app_name]
         app = App.find_or_create_by( name: name )

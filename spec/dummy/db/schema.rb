@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
 
   create_table "apps", force: true do |t|
     t.string  "name"
+    t.integer "position"
     t.boolean "is_public", default: false
   end
 

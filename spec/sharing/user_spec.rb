@@ -6,7 +6,7 @@
 # @Date:   2014-07-29 14:14:57
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-31 11:32:26
+# @Last Modified time: 2014-07-31 18:17:45
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -19,7 +19,7 @@ describe 'user' do
 
   context "sharing" do 
 
-    before(:each) do
+    before(:all) do
       Caminio::ModelRegistry::init
       app = App.first
       AppModel.where( :name => "Message").first

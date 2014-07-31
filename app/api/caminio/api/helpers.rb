@@ -11,7 +11,6 @@ module Caminio
       end
 
       def current_user
-        puts headers.inspect
         return false unless headers.has_key?('Authorization')
         if api_key = ApiKey.where("access_token = ? AND expires_at > ?", headers['Authorization'].split(' ').last, 8.hours.ago).first
           return @current_user = api_key.user
