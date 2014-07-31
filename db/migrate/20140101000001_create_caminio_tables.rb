@@ -133,6 +133,16 @@ class CreateCaminioTables < ActiveRecord::Migration
     add_index :messages, :followup_id
     add_index :messages, :created_by
 
+    create_table :user_messages do |t|
+
+      t.integer         :user_id
+      t.integer         :message_id
+      t.boolean         :read
+
+    end
+    add_index :user_message, :user_id
+    add_index :user_message, :message_id
+
     create_table :api_keys do |t|
       t.references    :user
       t.string        :access_token
