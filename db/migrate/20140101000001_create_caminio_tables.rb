@@ -22,11 +22,18 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.string        :public_key
       t.string        :private_key
 
+      t.string        :street
+      t.string        :zip
+      t.string        :country
+      t.string        :county
+      t.string        :city
+
       t.boolean       :api_user, default: false
       t.text          :settings
 
       t.datetime      :expires_at
-
+  
+      t.attachment    :avatar
       t.timestamps
     end
     add_index :users, :email, unique: true

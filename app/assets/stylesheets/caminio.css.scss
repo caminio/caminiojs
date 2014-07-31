@@ -11,7 +11,7 @@
 body, html{
   height: 100%;
   font-family: 'Roboto', sans-serif;
-  background: #eee;
+  background: #f0f0f0;
 }
 
 body > .ember-view{
@@ -19,17 +19,24 @@ body > .ember-view{
   height: 100%;
 }
 
-.main-wrap{
-  height: 100%;
+.outlet-wrap{
+  padding-bottom: 30px;
 }
 
-.outlet-wrap{
-  height: 100%;
-  padding-bottom: 30px;
+.outlet-content-wrap{
+  padding-top: 60px;
+}
+
+.overflow-auto{
+  overflow: auto;
 }
 
 .align-right{
   text-align: right;
+}
+
+.fill-height{
+  height: 100%;
 }
 
 .checkbox-box{
@@ -75,6 +82,15 @@ body > .ember-view{
   margin-right: auto;
 }
 
-.margin-top{
-  padding-top: 80px;
+form .row-group{
+  margin-top: 20px;
+}
+
+img.avatar{
+  background: #fff;
+  border: 3px solid #ddd;
+}
+
+.outlet-wrap .fill-height > .ember-view{
+  height: 100%;
 }

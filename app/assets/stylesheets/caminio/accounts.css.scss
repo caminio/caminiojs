@@ -9,7 +9,7 @@
 .md-4-nav a .fa{
   color: #aaa;
   float: left;
-  margin: 3px 12px 0 0;
+  margin: 2px 12px 0 0;
   width: 20px;
   font-size: 1.2em;
   text-align: center;
@@ -26,7 +26,7 @@
 
 .md-4-nav a.active,
 .md-4-nav a:hover{
-  background: #dfdfdf;
+  background: #e5e5e5;
 }
 
 .nav-content .mini-header{
@@ -34,4 +34,18 @@
   color: #555;
   text-transform: uppercase;
   padding-top: 8px;
+}
+
+.avatar-upload{
+  position: relative;
+}
+
+.avatar-upload input[type=file]{
+  height: 134px;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 134px;
+  cursor: pointer;
 }

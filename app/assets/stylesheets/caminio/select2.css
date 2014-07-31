@@ -697,6 +697,9 @@ body .select2-search-choice-close:after{
   color: #999;
 }
 
+body .select2-hidden-accessible{
+  display: none;
+}
 /* Retina-ize icons */
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)  {
