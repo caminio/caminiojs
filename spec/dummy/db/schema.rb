@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.datetime "updated_at"
   end
 
-  add_index "app_plans", ["app_id"], name: "index_app_plans_on_app_id", unique: true
+  add_index "app_plans", ["app_id"], name: "index_app_plans_on_app_id"
 
   create_table "apps", force: true do |t|
     t.string  "name"
@@ -217,9 +217,18 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.datetime "confirmation_key_expires_at"
     t.string   "public_key"
     t.string   "private_key"
+    t.string   "street"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "county"
+    t.string   "city"
     t.boolean  "api_user",                    default: false
     t.text     "settings"
     t.datetime "expires_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

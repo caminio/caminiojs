@@ -8,12 +8,16 @@ class Users::API < Grape::API
 
   get '/' do
     authenticate!
+    puts @current_user.organizational_units.inspect
+    puts headers['Authorization'].split(' ').last
     { users: User.where({}).load }
   end
 
   get '/:id/apps' do
     authenticate!
-    # App.wher.....
+    puts params.inspect
+    puts "after"
+    puts params[:id]
     [{ id: 1, name: 'messages', path: '/messages', icon: 'fa-envelope-o' }]
   end
 

@@ -6,7 +6,7 @@
 # @Date:   2014-07-29 14:14:57
 #
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-29 17:46:17
+# @Last Modified time: 2014-07-31 11:32:26
 #
 # This source code is not part of the public domain
 # If server side nodejs, it is intendet to be read by
@@ -23,12 +23,13 @@ describe 'user' do
       Caminio::ModelRegistry::init
       app = App.first
       AppModel.where( :name => "Message").first
-      @unit = OrganizationalUnit.create( name: "work" )
+      @user = User.create( attributes_for(:user))
+      @unit = OrganizationalUnit.create( name: "work", owner: @user )
       plan = AppPlan.create( price: 0, users_amount: 2, app: app, visible: true )
       expect( plan.errors[:app]).to eq([])
       @hash = {}
       @hash[app.id] = true
-      @user = User.create( attributes_for(:user, organizational_units: [ @unit ] ))
+      @user.update( organizational_units: [ @unit ] )
       @unit.link_apps(@hash)
       @user.link_app_models(@hash)
       @user.save
@@ -44,9 +45,9 @@ describe 'user' do
     end
 
     it "can invite other users to its organizional_unit" do
-      count_before = OrganizationalUnit.find_by( :name => "work").users.count
+      count_before = @unit.users.count
       User.create( attributes_for(:user, organizational_units: [ @unit ] ) )
-      expect( OrganizationalUnit.find_by( :name => "work").users.count ).to eq( count_before + 1 )
+      expect( @unit.users.count ).to eq( count_before + 1 )
     end
 
     let!(:message) do
