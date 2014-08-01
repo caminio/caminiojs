@@ -138,7 +138,7 @@ class CreateCaminioTables < ActiveRecord::Migration
 
       t.integer         :user_id
       t.integer         :message_id
-      t.boolean         :read
+      t.boolean         :read, default: false
 
     end
     add_index :user_messages, :user_id

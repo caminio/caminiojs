@@ -14,7 +14,12 @@ class Messages::API < Grape::API
 
   get '/' do
     authenticate!
-    { messages: Message.where({}).load }
+    user_messages = UserMessage.where( user: current_user, read: false ).load
+    messages = []
+    user_messages.each do |user_message|
+      messages.push( user_message.message )
+    end
+    { messages: messages }
   end
 
 end
