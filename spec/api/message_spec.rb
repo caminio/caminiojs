@@ -69,14 +69,20 @@ describe "user api integration" do
 
   end
 
+  context "POST /" do
+
+    it "returns an error if no valid token is passed" do
+      put "/"+@user.id.to_s
+      expect( last_response.body ).to eq( unauthorized_error )
+    end
+
+  end
+
   context "GET /:id" do
 
     it "returns the message of the current user" do
-      puts AccessRule.where( :row_id => @message.id ).load.inspect
       get "/"+@message.id.to_s, nil, @auth
-      # expect( JSON.parse( last_response.body )['messages'].first['id'] ).to eq( @message.id )
-      # get "/"+@message.id.to_s, nil, @auth2
-      # expect( JSON.parse( last_response.body )['messages'].first['id'] ).to eq( @message.id )
+      expect( JSON.parse( last_response.body )['message']['id'] ).to eq( @message.id )
     end
 
     it "returns an error if no valid token is passed" do
@@ -86,17 +92,24 @@ describe "user api integration" do
 
   end
 
-  # context "PUT /:id" do 
+  context "PUT /:id" do 
 
 
-  #   it "returns an error if no valid token is passed" do
-  #     put "/"+@user.id.to_s
-  #     expect( last_response.body ).to eq( unauthorized_error )
-  #   end
+    it "returns an error if no valid token is passed" do
+      put "/"+@user.id.to_s
+      expect( last_response.body ).to eq( unauthorized_error )
+    end
 
-  # end
+  end
 
-  # context "DELETE /:id"
+  context "DELETE /:id" do
+
+    it "returns an error if no valid token is passed" do
+      put "/"+@user.id.to_s
+      expect( last_response.body ).to eq( unauthorized_error )
+    end
+
+  end
 
   def unauthorized_error
      "{\"error\":\"Unauthorized. Invalid or expired token.\"}"

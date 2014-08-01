@@ -24,20 +24,17 @@ class Messages::API < Grape::API
     { messages: messages }
   end
 
+  post '/' do
+    authenticate!
+
+  end
+
   get '/:id' do
     authenticate!
-    user_message = UserMessage.find_by( id: params['id'], user: current_user ) 
-    message = user_message ? user_message.message : {}
-    puts message.inspect
+    message = Message.find_by( id: params['id'] )
+    user_message = UserMessage.where( message: message, user: current_user ) 
+    message = user_message ? message : {}
     { message: message }
-
-    # user_messages = UserMessage.where( user: current_user ).load
-    # messages = []
-    # user_messages.each do |user_message|
-    #   messages.push( user_message.message )
-    # end
-    # { messages: messages }
-
   end
 
   put '/:id' do
@@ -45,6 +42,11 @@ class Messages::API < Grape::API
     # data = params['message']
 
     { message: {} }
+  end
+
+  delete '/:id' do
+    authenticate!
+
   end
 
 end 
