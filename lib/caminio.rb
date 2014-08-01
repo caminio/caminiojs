@@ -7,7 +7,7 @@ require "caminio/paperclip_grape_ext"
 #
 
 require "caminio/version"
-require "caminio/schemas/web_object"
+require "caminio/schemas/row"
 
 # setup caminio namespace for use in config/application.rb
 require "caminio/config_namespace"
