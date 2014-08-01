@@ -46,6 +46,11 @@ describe "user api integration" do
       expect( JSON.parse( last_response.body )['messages'].first['id'] ).to eq( @message.id )
     end
 
+    it "returns an error if no valid token is passed" do
+      get "/"
+      expect( last_response.body ).to eq( unauthorized_error )
+    end
+
   end
 
 end
