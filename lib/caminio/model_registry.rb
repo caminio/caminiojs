@@ -13,7 +13,8 @@ module Caminio
     def self.init
       @@models ||= []     
       @@models.each do |model|
-        app = App.find_or_create_by( name: model[:options].delete(:app_name), is_public: model[:options].delete(:app_is_public) )
+        app = App.find_or_create_by( name: model[:options].delete(:app_name) )
+        app.update( is_public: model[:options].delete(:app_is_public) )
         if model[:options].size > 0
           app_model = AppModel.find_or_create_by( name: model[:name], app_id: app.id ) 
           app_model.update!( model[:options]

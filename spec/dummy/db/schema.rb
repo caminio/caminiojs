@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   create_table "user_messages", force: true do |t|
     t.integer "user_id"
     t.integer "message_id"
-    t.boolean "read"
+    t.boolean "read",       default: false
   end
 
   add_index "user_messages", ["message_id"], name: "index_user_messages_on_message_id"

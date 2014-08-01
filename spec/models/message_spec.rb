@@ -68,6 +68,7 @@ describe 'messages' do
 
     it "gets an user_message for its creator" do
       expect( UserMessage.where( message: message, user: user ).first ).to be_a( UserMessage )
+      expect( UserMessage.where( message: message, user: user ).first.read ).to eq( true )
     end
 
     it "gets an user_message for each user in users" do
@@ -81,6 +82,10 @@ describe 'messages' do
       message3 = Message.create( attributes_for(:message, creator: user, organizational_unit: unit ) )
       expect( UserMessage.where( message: message3, user: user3 ).first ).to be_a( UserMessage )
       expect( UserMessage.where( message: message3, user: user4 ).first ).to be_a( UserMessage )
+    end
+
+    it "marks the user_messages as unread" do
+      expect( UserMessage.where( message: message, user: user2 ).first.read ).to eq( false )
     end
 
   end

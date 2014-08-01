@@ -15,7 +15,10 @@ class Message < ActiveRecord::Base
   def attributes
     { title: nil,
       content: nil,
-      followup_id: nil,
+      parent_id: nil,
+      type: nil,
+      row_id: nil,
+      row_type: nil,
       id: nil
     }
   end
@@ -23,8 +26,8 @@ class Message < ActiveRecord::Base
   private
 
     def create_user_messages
+      UserMessage.create( :user => self.creator, :message => self, :read => true )
       all_users = self.users
-      all_users.push( self.creator )
       if self.organizational_unit
         self.organizational_unit.users.each do |unit_user|
           all_users.push( unit_user ) unless all_users.include?( unit_user )
@@ -35,4 +38,5 @@ class Message < ActiveRecord::Base
         UserMessage.create( :user => user, :message => self )
       end
     end
+
 end
