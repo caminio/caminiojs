@@ -122,7 +122,12 @@ class CreateCaminioTables < ActiveRecord::Migration
 
       t.string          :title
       t.text            :content
-      t.integer         :followup_id
+      t.integer         :parent_id
+      t.integer         :row_id
+      t.string          :row_type
+      t.string          :type 
+      t.boolean         :important
+      t.integer         :organizational_unit_id
       t.integer         :created_by
       t.integer         :updated_by
       t.datetime        :deleted_at
@@ -130,7 +135,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.timestamps
 
     end
-    add_index :messages, :followup_id
+    add_index :messages, :parent_id
     add_index :messages, :created_by
 
     create_table :user_messages do |t|
@@ -140,8 +145,17 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.boolean         :read
 
     end
-    add_index :user_message, :user_id
-    add_index :user_message, :message_id
+    add_index :user_messages, :user_id
+    add_index :user_messages, :message_id
+
+    create_table :message_labels do |t|
+
+      t.integer         :message_id
+      t.integer         :label_id
+
+    end
+    add_index :message_labels, :label_id
+    add_index :message_labels, :message_id
 
     create_table :api_keys do |t|
       t.references    :user

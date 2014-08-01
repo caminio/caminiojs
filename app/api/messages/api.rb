@@ -2,9 +2,9 @@
 # @Author: David Reinisch
 # @Date:   2014-07-31 18:32:22
 # @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-07-31 18:38:27
+# @Last Modified time: 2014-08-01 09:38:38
 
-class Users::API < Grape::API
+class Messages::API < Grape::API
 
   version 'v1', using: :header, vendor: 'caminio', cascade: false
   format :json
@@ -14,7 +14,7 @@ class Users::API < Grape::API
 
   get '/' do
     authenticate!
-    { messages: Messages.where().load }
+    { messages: Message.where({}).load }
   end
 
 end

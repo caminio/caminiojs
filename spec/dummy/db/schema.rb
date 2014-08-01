@@ -94,10 +94,23 @@ ActiveRecord::Schema.define(version: 20140712151957) do
 
   add_index "labels", ["name"], name: "index_labels_on_name"
 
+  create_table "message_labels", force: true do |t|
+    t.integer "message_id"
+    t.integer "label_id"
+  end
+
+  add_index "message_labels", ["label_id"], name: "index_message_labels_on_label_id"
+  add_index "message_labels", ["message_id"], name: "index_message_labels_on_message_id"
+
   create_table "messages", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "followup_id"
+    t.integer  "parent_id"
+    t.integer  "row_id"
+    t.string   "row_type"
+    t.string   "type"
+    t.boolean  "important"
+    t.integer  "organizational_unit_id"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.datetime "deleted_at"
@@ -107,7 +120,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   end
 
   add_index "messages", ["created_by"], name: "index_messages_on_created_by"
-  add_index "messages", ["followup_id"], name: "index_messages_on_followup_id"
+  add_index "messages", ["parent_id"], name: "index_messages_on_parent_id"
 
   create_table "oauth_access_grants", force: true do |t|
     t.integer  "resource_owner_id", null: false
@@ -202,6 +215,15 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "user_messages", force: true do |t|
+    t.integer "user_id"
+    t.integer "message_id"
+    t.boolean "read"
+  end
+
+  add_index "user_messages", ["message_id"], name: "index_user_messages_on_message_id"
+  add_index "user_messages", ["user_id"], name: "index_user_messages_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "username"
