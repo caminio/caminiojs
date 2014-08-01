@@ -14,7 +14,9 @@ class Messages::API < Grape::API
 
   get '/' do
     authenticate!
-    user_messages = UserMessage.where( user: current_user, read: false ).load
+    query = UserMessage.where( user: current_user )
+    query = query.where( read: !!/t|1|true/.match(params['read']) ) if params['read']
+    user_messages = query.load
     messages = []
     user_messages.each do |user_message|
       messages.push( user_message.message )
@@ -22,4 +24,29 @@ class Messages::API < Grape::API
     { messages: messages }
   end
 
-end
+  post '/' do
+    authenticate!
+
+  end
+
+  get '/:id' do
+    authenticate!
+    message = Message.find_by( id: params['id'] )
+    user_message = UserMessage.where( message: message, user: current_user ) 
+    message = user_message ? message : {}
+    { message: message }
+  end
+
+  put '/:id' do
+    authenticate!
+    # data = params['message']
+
+    { message: {} }
+  end
+
+  delete '/:id' do
+    authenticate!
+
+  end
+
+end 
