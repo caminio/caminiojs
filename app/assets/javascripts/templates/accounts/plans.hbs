@@ -6,28 +6,26 @@
           <th>{{t 'accounts.plan.app_name'}}</th>
           <th>{{t 'accounts.plan.name'}}</th>
           <th>{{t 'accounts.plan.collaborators'}}</th>
+          <th>{{t 'accounts.plan.quota'}}</th>
           <th>{{t 'accounts.plan.access'}}</th>
           <th>{{t 'accounts.plan.price'}}</th>
         </tr>
       </thead>
       <tbody>
-      {{#each current_organizational_unit.app_plans}}
-      <td>{{app.name}}</td>
-      <td>{{name}}</td>
-      <td>
-        <div class="progress">
-          <div class="progress-bar" {{bind-attr style=usersQuota}}>
-            {{collaborators}} / {{users_amount}}
+      {{#each apps}}
+      <tr>
+        <td>{{name}}</td>
+        <td>plans</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar" {{bind-attr style=usersQuota}}>
+              {{collaborators}} / {{users_amount}}
+            </div>
           </div>
-        </div>
-      </td>
-      <div class="col-md-9 overflow-auto">
-        <div class="form-group">
-          <div class="col-md-12">
-            {{input value=name class="form-control" placeholderTranslation='firstname'}}
-          </div>
-        </div>
-      </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
       {{/each}}
       </tbody>
     </table>

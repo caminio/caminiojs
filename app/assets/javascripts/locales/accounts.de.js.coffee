@@ -15,4 +15,5 @@ Em.merge( Em.I18n.translations, {
       'collaborators': 'Mitarbeiter'
       'price': 'Preis'
       'access': 'Zugriffsrechte'
+      'quota': 'Quota'
 })

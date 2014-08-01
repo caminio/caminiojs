@@ -40,7 +40,7 @@ module Caminio
     # end
 
     if defined?( ActiveRecord )
-      ActiveRecord::Base.send( :include, Caminio::Schemas::WebObject )
+      ActiveRecord::Base.send( :include, Caminio::Schemas::Row )
     end
 
     initializer :append_migrations do |app|
