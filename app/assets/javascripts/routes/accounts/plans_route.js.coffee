@@ -1,3 +1,3 @@
-App.AccountsPricesRoute = App.AuthRoute.extend
+App.AccountsPlansRoute = App.AuthRoute.extend
   model: ->
     @.controllerFor('sessions').get('currentUser')

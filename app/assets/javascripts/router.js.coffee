@@ -7,6 +7,6 @@ App.Router.map ->
     @route 'signup'
   @resource 'accounts', ->
     @route 'index'
-    @route 'prices'
+    @route 'plans'
     @route 'organizations'
 

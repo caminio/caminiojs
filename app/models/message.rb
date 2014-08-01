@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
 
-  has_access_rules(icon: "fa-envelop-o", path: "/messages", app_name: "caminio")
+  has_access_rules(icon: "fa-envelop-o", path: "/messages", app_name: "caminio", app_is_public: true)
 
 
   def attributes

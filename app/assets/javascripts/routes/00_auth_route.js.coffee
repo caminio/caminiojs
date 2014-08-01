@@ -7,7 +7,7 @@ App.AuthRoute = App.ApplicationRoute.extend
         if !user
           route.transitionTo('sessions.new')
         if user.get('current_organizational_unit.app_plans.length') < 1
-          route.transitionTo('accounts.prices')
+          route.transitionTo('accounts.plans')
       .catch ()->
         route.transitionTo('sessions.new')
 

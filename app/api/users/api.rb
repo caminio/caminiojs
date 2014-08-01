@@ -76,6 +76,7 @@ class Users::API < Grape::API
     { user: user, 
       organizational_units: user.organizational_units, 
       app_plans: app_plans(user), 
+      apps: App.where( is_public: true )
       # apps: AppPlan.where( 
       #   "organizational_unit_app_plans.organizational_unit_id IN (?,0) OR apps.is_public = ?", 
       #   user.organizational_units.map(&:id), true)
