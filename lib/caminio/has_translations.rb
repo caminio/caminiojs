@@ -6,8 +6,6 @@ module HasTranslations
   module ClassMethods
 
     def has_translations(options={})
-
-      Caminio::ModelRegistry.add self.name, options
       
       include InstanceMethods
 

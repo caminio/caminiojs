@@ -26,6 +26,9 @@ class AppModelUserRole < ActiveRecord::Base
       user_roles = AppModelUserRole.where( :organizational_unit => self.organizational_unit, :app_model => self.app_model ).load
       unit_plans = OrganizationalUnitAppPlan.where( :organizational_unit => self.organizational_unit )
       unit_plan = unit_plans.where(app_plans: { app_id: self.app_model.app_id}).includes(:app_plan).references(:app_plan).first
+      puts "we are checking!!"
+      puts unit_plans.inspect
+      puts unit_plan.inspect
       if unit_plan && unit_plan.app_plan.users_amount <= user_roles.size
         raise StandardError.new("User amount does not allow more users")
       end

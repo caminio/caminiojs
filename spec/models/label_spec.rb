@@ -69,7 +69,7 @@ describe 'labels' do
     end
 
     it "user gets a access_role" do
-      expect( AccessRule.find_by( row_id: label.id ).user_id ).to eq( user.id )
+      expect( AccessRule.find_by( row_id: label.id, user_id: user.id ).user_id ).to eq( user.id )
     end
 
     it "user can edit labels if owner" do

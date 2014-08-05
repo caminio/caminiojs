@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
     def destroy_access_rule_items
       rules = AccessRule.where( :user => self ).load()
       rules.each do |rule|
-        all_rules = AccessRule.where( :row_id => rule.row_id ).load()
+        all_rules = AccessRule.where( :row_id => rule.row_id, :row_type => rule[:row_type] ).load()
         item = rule[:row_type].singularize.classify.constantize.with_user(self).find(rule[:row_id])
         
         if all_rules.size == 1 && has_right(rule) 

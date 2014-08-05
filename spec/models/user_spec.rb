@@ -98,14 +98,15 @@ describe 'user' do
       hash[app.id] = true
       user = User.create( attributes_for(:user ))
       unit = user.organizational_units.first
+      OrganizationalUnitAppPlan.create( :organizational_unit => unit, :app_plan => plan )
       unit.link_apps(hash)
       user.link_app_models(hash)
       user.save
-      plan = OrganizationalUnitAppPlan.where( 
-        :organizational_unit => user.organizational_units.first,
+      unit_plan = OrganizationalUnitAppPlan.where( 
+        :organizational_unit => unit,
         :app_plan => plan
       ).load().first
-     expect(plan).to be_a( OrganizationalUnitAppPlan )
+     expect(unit_plan).to be_a( OrganizationalUnitAppPlan )
     end
 
   end
