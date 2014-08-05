@@ -7,7 +7,7 @@
 require "spec_helper"
   
 
-describe "user api integration" do
+describe "message api integration" do
 
   include Rack::Test::Methods
 
@@ -71,6 +71,8 @@ describe "user api integration" do
 
   context "POST /" do
 
+    it "creates a new message in the db"
+
     it "returns an error if no valid token is passed" do
       put "/"+@user.id.to_s
       expect( last_response.body ).to eq( unauthorized_error )
@@ -94,6 +96,7 @@ describe "user api integration" do
 
   context "PUT /:id" do 
 
+    it "updates the message with the given id in the db"
 
     it "returns an error if no valid token is passed" do
       put "/"+@user.id.to_s
@@ -103,6 +106,8 @@ describe "user api integration" do
   end
 
   context "DELETE /:id" do
+
+    it "removes the message with the given id from the db"
 
     it "returns an error if no valid token is passed" do
       put "/"+@user.id.to_s
