@@ -110,11 +110,13 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.string   "row_type"
     t.string   "type"
     t.boolean  "important"
-    t.integer  "organizational_unit_id"
-    t.integer  "created_by"
-    t.integer  "updated_by"
     t.datetime "deleted_at"
     t.integer  "deleted_by"
+    t.integer  "position",               default: 99999
+    t.integer  "updated_by"
+    t.integer  "created_by"
+    t.integer  "organizational_unit_id"
+    t.boolean  "status",                 default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
