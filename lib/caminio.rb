@@ -13,6 +13,7 @@ require "caminio/schemas/row"
 require "caminio/config_namespace"
 
 require "caminio/has_access_rules"
+require "caminio/has_translations"
 
 # Rails engine
 require "caminio/engine"
