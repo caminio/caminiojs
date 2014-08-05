@@ -22,8 +22,8 @@ module Caminio
         def add_caminio_row(table_name)
           COLUMNS.each_pair do |column_name, column_arr|
             add_column(table_name, "#{column_name}",
-                       Caminio::Row.get_column_type(column_arr),
-                       Caminio::Row.get_column_opts(column_arr) )
+                       Caminio::Schemas::Row.get_column_type(column_arr),
+                       Caminio::Schemas::Row.get_column_opts(column_arr) )
           end
         end
 
@@ -39,8 +39,8 @@ module Caminio
         def caminio_row
           COLUMNS.each_pair do |column_name, column_arr|
             column("#{column_name}",
-                   Caminio::Row.get_column_type(column_arr),
-                   Caminio::Row.get_column_opts(column_arr) )
+                   Caminio::Schemas::Row.get_column_type(column_arr),
+                   Caminio::Schemas::Row.get_column_opts(column_arr) )
           end
         end
       end
