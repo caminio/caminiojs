@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 4.1.0"
   spec.add_dependency "grape", "0.8.0"
+  spec.add_dependency "grape-rabl", "0.2.2"
   spec.add_dependency "bcrypt", "3.1.7"
   spec.add_dependency "rack-oauth2", "1.0.8"
   spec.add_dependency "roadie-rails"

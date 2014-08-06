@@ -57,13 +57,17 @@ class CreateCaminioTables < ActiveRecord::Migration
     add_index :organizational_unit_app_plans, :organizational_unit_id
 
     create_table :app_plans do |t|
+      t.string        :name
       t.integer       :price
       t.integer       :app_id
-      t.integer       :users_amount, default: 1
+      t.integer       :user_quota, default: 1
+      t.integer       :disk_quota, default: 0
+      t.integer       :content_quota, default: 0
       t.boolean       :visible, default: false
       t.timestamps
     end
     add_index :app_plans, :app_id #, unique: true
+    add_index :app_plans, :name, unique: true
 
     create_table :translations do |t|
       t.string          :locale
@@ -77,6 +81,8 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.string          :keywords
       t.integer         :created_by
       t.integer         :updated_by
+      t.string          :translatable_type
+      t.integer         :translatable_id
       t.timestamps
     end
 

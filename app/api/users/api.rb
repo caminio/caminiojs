@@ -74,13 +74,7 @@ class Users::API < Grape::API
     authenticate!
     user = User.find_by_id(params[:id])
     { user: user, 
-      organizational_units: user.organizational_units, 
-      app_plans: app_plans(user), 
-      apps: App.where( is_public: true )
-      # apps: AppPlan.where( 
-      #   "organizational_unit_app_plans.organizational_unit_id IN (?,0) OR apps.is_public = ?", 
-      #   user.organizational_units.map(&:id), true)
-      # .includes(:app,:organizational_unit_app_plans).references(:app,:organizational_unit_app_plans).map(&:app) 
+      organizational_units: user.organizational_units
     }
   end
 
@@ -90,26 +84,6 @@ class Users::API < Grape::API
     env['api.format'] = :binary
     header "Content-Disposition", "attachment; filename*=UTF-8''#{URI.escape(filename)}"
     body( (File::open filename).read )
-  end
-
-  helpers do
-    def app_plans(user)
-      app_plans = []
-      user.organizational_units.each do |ou|
-        app_plans.concat ou.app_plans
-      end
-      app_plans
-    end
-
-    def apps(user)
-      apps = []
-      user.organizational_units.each do |ou|
-        ou.app_plans.each do |app_plan|
-          apps << app_plan.app unless apps.any{ |app| app.id == app_plan.app_id }
-        end
-      end
-      apps
-    end
   end
 
 end

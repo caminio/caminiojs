@@ -4,9 +4,7 @@ module Caminio
     isolate_namespace Caminio
 
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    # config.paths.add File.join('app', 'serializers'), glob: File.join('*.rb')
     config.autoload_paths += Dir[File.join( File.expand_path('../../../',__FILE__), 'app', 'api', '*')]
-    # config.autoload_paths += Dir[File.join( File.expand_path('../../../',__FILE__), 'app', 'serializers', '*')]
 
     # rspec
     config.generators do |g|
@@ -14,6 +12,10 @@ module Caminio
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
       g.assets false
       g.helper false
+    end
+
+    config.middleware.use(Rack::Config) do |env|
+      env['api.tilt.root'] = File::expand_path("../../../app/views/api", __FILE__)
     end
 
     # initializer "assets_initializers.initialize_rails", :group => :assets do |app|
@@ -33,12 +35,6 @@ module Caminio
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.ttf)
     end
 
-    #   Rails.application.config.assets.precompile << %w(
-    #     caminio/index.js
-    #     caminio/index.css
-    #   )
-    # end
-
     if defined?( ActiveRecord )
       ActiveRecord::Base.send( :include, Caminio::Schemas::Row )
     end
@@ -49,10 +45,6 @@ module Caminio
           app.config.paths["db/migrate"] << expanded_path
         end
       end
-    end
-
-    initializer :init_caminio_apps, after: :finisher_hook do |app|
-      # Caminio::ModelRegistry::init
     end
 
   end
