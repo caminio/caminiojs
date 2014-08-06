@@ -20,8 +20,18 @@ class Messages::API < Grape::API
     messages
   end
 
+  params do
+    requires :message, type: Hash do
+      requires :title
+      optional :content
+    end
+  end
+
+  before { authenticate! }
+
   post '/' do
     authenticate!
+    Message.with_user(current_user).create( declared( params )[:message] ) 
   end
 
   get '/:id' do
@@ -54,14 +64,6 @@ class Messages::API < Grape::API
         error!(e.message, 500)
       end
     end
-
-
-
-    # if Message.with_user(current_user).find_by( id: params['id'] ).update( declared( params )[:message] ) 
-    #   { message: Message.find_by( :id => params['id']) }
-    # else
-    #   error!("Update failed!")
-    # end
   end
 
 
@@ -73,7 +75,11 @@ class Messages::API < Grape::API
       message.destroy!
       message
     rescue => e
-      error!(e.message, 500)
+      if e.message == "Validation failed: Updater insufficient rights"
+        error!(e.message, 403)
+      else
+        error!(e.message, 500)
+      end
     end
   end
 

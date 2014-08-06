@@ -72,7 +72,10 @@ describe "message api integration" do
 
   context "POST /" do
 
-    it "creates a new message in the db"
+    it "creates a new message in the db" do
+      post "/", { message: { content: 'new content', title: 'test' } }, @auth
+      puts last_response.body
+    end
 
     it "returns an error if no valid token is passed" do
       post "/"
@@ -128,7 +131,11 @@ describe "message api integration" do
 
     it "returns not found if user has no access or read access" do
       delete "/"+@message.id.to_s, nil, @auth2
-      puts last_response.body.inspect
+      expect( Message.find_by( :id => @message.id ) ).to be_a( Message )
+      Message.with_user(@user).find_by(@message.id).share(@user2)
+      put "/"+@message.id.to_s, { message: { content: 'new content' } }, @auth2
+      expect( Message.find_by( :id => @message.id ) ).to be_a( Message )
+      expect( last_response.body ).to eq( unsufficient_rights_error )
     end
 
     it "returns an error if no valid token is passed" do
