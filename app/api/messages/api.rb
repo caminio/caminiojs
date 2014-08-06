@@ -66,7 +66,14 @@ class Messages::API < Grape::API
 
   delete '/:id' do
     authenticate!
-    Message.with_user(current_user).find(params[:id]).destroy
+    begin
+      message = Message.with_user(current_user).find(params[:id])
+      error!("Not found", 404) unless message
+      message.destroy!
+      message
+    rescue
+      error!(e.message, 500)
+    end
   end
 
 

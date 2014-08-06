@@ -125,6 +125,11 @@ describe "message api integration" do
       expect( Message.find_by( :id => @message.id ) ).to eq( nil )
     end
 
+    it "returns not found if user has no access or read access" do
+      delete "/"+@message.id.to_s, nil, @auth2
+      puts last_response.body.inspect
+    end
+
     it "returns an error if no valid token is passed" do
       delete "/"+@message.id.to_s
       expect( last_response.body ).to eq( unauthorized_error )
