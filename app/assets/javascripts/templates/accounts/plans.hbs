@@ -14,8 +14,10 @@
       <tbody>
       {{#each apps}}
       <tr>
-        <td>{{current_translation.title}}</td>
-        <td>plans</td>
+        <td>{{name}}</td>
+        <td>
+          {{view Ember.Select value=selectedPlan content=app_plans optionValuePath='content.id' optionLabelPath='content.name' noSearch=true prompt=false}}
+        </td>
         <td>
           <div class="progress">
             <div class="progress-bar" {{bind-attr style=usersQuota}}>
