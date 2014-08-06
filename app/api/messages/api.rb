@@ -4,10 +4,11 @@ class Messages::API < Grape::API
   version 'v1', using: :header, vendor: 'caminio', cascade: false
   format :json
   default_format :json
+  formatter :json, Grape::Formatter::ActiveModelSerializers
 
   helpers Caminio::API::Helpers
 
-  get '/' do
+  get '/', root: 'messages' do
     authenticate!
     query = UserMessage.where( user: current_user )
     query = query.where( read: !!/t|1|true/.match(params['read']) ) if params['read']
@@ -16,7 +17,7 @@ class Messages::API < Grape::API
     user_messages.each do |user_message|
       messages.push( user_message.message )
     end
-    { messages: messages }
+    messages
   end
 
   post '/' do
@@ -28,7 +29,7 @@ class Messages::API < Grape::API
     message = Message.find_by( id: params['id'] )
     user_message = UserMessage.where( message: message, user: current_user ) 
     message = user_message ? message : {}
-    { message: message }
+    message 
   end
 
   params do
@@ -45,7 +46,7 @@ class Messages::API < Grape::API
       message = Message.with_user(current_user).find_by( id: params['id'] )
       error!("Not found", 404) unless message
       message.update!( declared( params )[:message] ) 
-      { message: Message.find_by( :id => params['id']) }
+      Message.find_by( :id => params['id']) 
     rescue => e
       if e.message == "Validation failed: Updater insufficient rights"
         error!(e.message, 403)
@@ -71,7 +72,7 @@ class Messages::API < Grape::API
       error!("Not found", 404) unless message
       message.destroy!
       message
-    rescue
+    rescue => e
       error!(e.message, 500)
     end
   end

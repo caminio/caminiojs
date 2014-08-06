@@ -48,6 +48,7 @@ describe "message api integration" do
 
     it "returns all unread messages of the user" do
       get "/", nil, @auth2
+      puts last_response.body
       expect( JSON.parse( last_response.body )['messages'].first['id'] ).to eq( @message.id )
       get "/", nil, @auth
       expect( JSON.parse( last_response.body )['messages'].first['id'] ).to eq( @message.id )
