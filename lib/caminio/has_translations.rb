@@ -5,12 +5,11 @@ module HasTranslations
 
   module ClassMethods
 
-
-    attr_accessor :current_lang
-      
-    cattr_accessor  :options
-
     def has_translations(options={})
+
+      attr_accessor :current_lang
+        
+      cattr_accessor  :options
 
       self.options = options
 
@@ -22,9 +21,7 @@ module HasTranslations
 
       has_many :translations, as: :row
 
-
-      before_create :check_for_default_translation
-      # validate :check_if_updater_has_rights
+      after_create :check_for_default_translation
 
       default_scope { where(deleted_at: nil) }
 
@@ -35,9 +32,7 @@ module HasTranslations
   module InstanceMethods
 
     def current_translation
-      locale = current_lang || I18n.default_locale
-      curTranslation = Translation.where( :row_id => self.id, :locale => locale  )
-      puts curTranslation
+      self.translations.where( :locale => current_lang || I18n.default_locale  ).first
     end
 
     def delete
@@ -56,45 +51,10 @@ module HasTranslations
     private 
 
       def check_for_default_translation
-        
         unless self.class.options[:defaults]
-
+          self.translations.create( :locale => I18n.default_locale, :title => self.class.name )
         end
-
       end
-
-    # def create_slug( name=name )
-    #   #strip the string
-    #   ret = name.strip
-
-    #   #blow away apostrophes
-    #   ret.gsub! /['`]/,""
-
-    #   # @ --> at, and & --> and
-    #   ret.gsub! /\s*@\s*/, " at "
-    #   ret.gsub! /\s*&\s*/, " and "
-
-    #   ret.gsub!(/[äöüß]/) do |match|
-    #     case match
-    #     when "ä" then 'ae'
-    #     when "ö" then 'oe'
-    #     when "ü" then 'ue'
-    #     when "ß" then 'ss'
-    #     end
-    #   end
-
-    #   #replace all non alphanumeric, underscore or periods with underscore
-    #   ret.gsub! /\s*[^A-Za-z0-9\.\-]\s*/, '_'
-
-    #   #convert double underscores to single
-    #   ret.gsub! /_+/,"_"
-
-    #   #strip off leading/trailing underscore
-    #   ret.gsub! /\A[_\.]+|[_\.]+\z/,""
-
-    #   self.slug = ret.downcase
-
-    # end
 
   end
 
