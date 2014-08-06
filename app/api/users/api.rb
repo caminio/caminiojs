@@ -8,11 +8,11 @@ class Users::API < Grape::API
   formatter :json, Grape::Formatter::ActiveModelSerializers
 
   params do
-    requires :ou, type: :integer
+    # requires :ou, type: :integer
   end
-  get '/' do
+  get '/', root: "users" do
     authenticate!
-    User.includes(:organizational_units).where("organizational_units.id=?", current_user.current_organizational_unit.id).references(:organizational_units)
+    User.includes(:organizational_units).where("organizational_units.id=?", headers['Ou'] ).references(:organizational_units)
   end
 
   get '/:id/apps' do
