@@ -85,8 +85,6 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.string          :keywords
       t.integer         :created_by
       t.integer         :updated_by
-      t.string          :translatable_type
-      t.integer         :translatable_id
       t.timestamps
     end
 

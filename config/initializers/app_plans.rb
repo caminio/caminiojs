@@ -1,9 +1,11 @@
 unless ( File.basename($0) == 'rake')
+
   app = App.find_or_create_by name: "caminio" do |a|
     a.position = 0
     a.is_public = true
   end
 
+  puts "here app plan"
   AppPlan.find_or_create_by name: "caminio Basic" do |app_plan|
     app_plan.price = 0
     app_plan.visible = true
@@ -14,4 +16,5 @@ unless ( File.basename($0) == 'rake')
     app_plan.translations.build title: "caminio Basic", locale: 'de'
     app_plan.translations.build title: "caminio Basic", locale: 'en'
   end
+
 end
