@@ -12,6 +12,4 @@ describe "has_translations" do
   
   it "can get defaults" 
 
-  context "allows only one translation per locale and row"
-
 end
