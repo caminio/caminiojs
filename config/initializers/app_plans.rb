@@ -5,7 +5,7 @@ unless ( File.basename($0) == 'rake')
     a.is_public = true
   end
 
-  puts "here app plan"
+  puts "here app plan #{app.name}"
   AppPlan.find_or_create_by name: "caminio Basic" do |app_plan|
     app_plan.price = 0
     app_plan.visible = true
@@ -13,8 +13,8 @@ unless ( File.basename($0) == 'rake')
     app_plan.user_quota = 0
     app_plan.disk_quota = 0
     app_plan.content_quota = 0
-    app_plan.translations.build title: "caminio Basic", locale: 'de'
-    app_plan.translations.build title: "caminio Basic", locale: 'en'
   end
+
+  puts "app plans #{AppPlan.count}"
 
 end

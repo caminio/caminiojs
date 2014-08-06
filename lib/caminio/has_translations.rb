@@ -30,14 +30,17 @@ module HasTranslations
   module InstanceMethods
 
     def current_translation
-      self.translations.where( :locale => current_lang || I18n.default_locale  ).first
+      tr = self.translations.where( :locale => current_lang || I18n.default_locale  ).first
+      tr = self.translations.where( :locale => I18n.default_locale  ).first unless tr
+      tr = self.translations.first unless tr
+      tr
     end
 
     private 
 
       def check_for_default_translation
         unless self.class.options[:defaults]
-          self.translations.create( :locale => I18n.default_locale, :title => self.class.name )
+          self.translations.create( :locale => I18n.default_locale, :title => self.name )
         end
       end
 
