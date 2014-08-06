@@ -9,11 +9,10 @@ class OrganizationalUnit < ActiveRecord::Base
   belongs_to  :owner, class_name: 'User'
   
   def link_apps(apps)
-    apps.each_pair do |app_id|
-      app_plan = AppPlan.where(:app_id => app_id ).first
-      if app_plan
+    apps.each_pair do |app_plan, value|
+      if value
         OrganizationalUnitAppPlan.create( 
-          :app_plan => app_plan, 
+          :app_plan_id => app_plan, 
           :organizational_unit => self 
         )
       end

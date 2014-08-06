@@ -32,11 +32,11 @@ class User < ActiveRecord::Base
 
   def link_app_models(apps)
     current_organizational_unit ||= self.organizational_units.first
-      apps.each_pair do |app_id, value|
+      apps.each_pair do |app_plan_id, value|
         if value.is_a?(Hash)
           find_by_id(value, current_organizational_unit)
         else
-          find_by_app(app_id, current_organizational_unit)
+          find_by_app_plan(app_plan_id, current_organizational_unit)
         end
       end
   end
@@ -70,7 +70,8 @@ class User < ActiveRecord::Base
       end
     end
 
-    def find_by_app(app_id, unit) 
+    def find_by_app_plan(app_plan_id, unit) 
+      app_id = AppPlan.find_by( id: app_plan_id ).app_id
       models = App.find_by(id: app_id).app_models  
       models.each do |model|
         self.app_model_user_roles.create( 
