@@ -64,12 +64,16 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.integer       :disk_quota, default: 0
       t.integer       :content_quota, default: 0
       t.boolean       :visible, default: false
+      t.datetime        :deleted_at
+      t.integer         :deleted_by
       t.timestamps
     end
     add_index :app_plans, :app_id #, unique: true
     add_index :app_plans, :name, unique: true
 
     create_table :translations do |t|
+      t.integer         :row_id
+      t.string          :row_type
       t.string          :locale
       t.string          :title
       t.string          :subtitle

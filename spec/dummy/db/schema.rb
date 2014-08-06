@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.integer  "app_id"
     t.integer  "users_amount", default: 1
     t.boolean  "visible",      default: false
+    t.datetime "deleted_at"
+    t.integer  "deleted_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -203,6 +205,8 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   add_index "row_labels", ["row_type"], name: "index_row_labels_on_row_type"
 
   create_table "translations", force: true do |t|
+    t.integer  "row_id"
+    t.string   "row_type"
     t.string   "locale"
     t.string   "title"
     t.string   "subtitle"
