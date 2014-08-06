@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  include ActiveModel::Serialization
-
   has_attached_file :avatar,
     :styles => { :thumb => "128x128!", :original => "500x500>" }
     # :default_url => "/images/:style/missing.png",
@@ -45,16 +43,6 @@ class User < ActiveRecord::Base
 
   def is_superuser?
     false
-  end
-
-  def attributes
-    { firstname: nil,
-      lastname: nil,
-      email: nil,
-      organizational_unit_ids: nil,
-      avatar_thumb: nil,
-      id: nil
-    }
   end
 
   private

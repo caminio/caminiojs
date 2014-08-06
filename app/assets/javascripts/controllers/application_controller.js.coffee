@@ -18,7 +18,7 @@ App.ApplicationController = Ember.Controller.extend
     return unless sessionsController.get('currentUser')
     @.get('controllers.sessions.currentUser')
       .then (currentUser)->
-        Ember.$.getJSON "/caminio/users/#{currentUser.id}/apps"
-          .then (response)->
-            controller.set('apps',response)
+        controller.store.find('app_plan', user_id: currentUser.id)
+          .then ->
+            controller.set('apps',controller.store.all('app'))
 

@@ -14,14 +14,6 @@ module Caminio
       g.helper false
     end
 
-    config.middleware.use(Rack::Config) do |env|
-      env['api.tilt.root'] = File::expand_path("../../../app/views/api", __FILE__)
-    end
-
-    # initializer "assets_initializers.initialize_rails", :group => :assets do |app|
-    #   require "#{Rails.root}/config/initializers/load_config.rb"
-    # end
-
     initializer :assets do |config|
       Rails.application.config.assets.precompile += %w( caminio.js 
                                                         caminio.css

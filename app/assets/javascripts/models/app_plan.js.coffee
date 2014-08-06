@@ -1,7 +1,8 @@
 App.AppPlan = DS.Model.extend
   name:                 DS.attr 'string'
   app:                  DS.belongsTo 'app'
-  user_quota:         DS.attr 'number'
+  translations:         DS.hasMany 'translation', embedded: 'always'
+  user_quota:           DS.attr 'number'
   price:                DS.attr 'number'
   organizational_unit:  DS.belongsTo 'organizational_unit'
   usersQuota: (->
