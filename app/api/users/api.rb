@@ -5,13 +5,14 @@ class Users::API < Grape::API
   default_format :json
 
   helpers Caminio::API::Helpers
+  formatter :json, Grape::Formatter::ActiveModelSerializers
 
+  params do
+    requires :ou, type: :integer
+  end
   get '/' do
     authenticate!
-    { users: User.includes(:organizational_units).where(
-      'organizational_units.id=?', 
-      headers['Ou']).references(:organizational_units).load 
-    }
+    User.includes(:organizational_units).where("organizational_units.id=?", current_user.current_organizational_unit.id).references(:organizational_units)
   end
 
   get '/:id/apps' do
@@ -70,12 +71,9 @@ class Users::API < Grape::API
     end
   end
 
-  get '/:id' do
+  get '/:id', root: 'user' do
     authenticate!
-    user = User.find_by_id(params[:id])
-    { user: user, 
-      organizational_units: user.organizational_units
-    }
+    User.find_by_id(params[:id])
   end
 
   get '/:id/profile_picture' do

@@ -7,7 +7,6 @@ App.User = DS.Model.extend
   description:                    DS.attr "string"
   password:                       DS.attr "string"
   password_confirmation:          DS.attr "string"
-  username:                       DS.attr "string"
   settings:                       DS.attr "object"
   organizational_units:           DS.hasMany "organizational_unit"
   avatar_thumb:                   DS.attr "string"

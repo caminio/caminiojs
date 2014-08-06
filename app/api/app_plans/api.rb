@@ -3,14 +3,20 @@ class AppPlans::API < Grape::API
   version 'v1', using: :header, vendor: 'caminio', cascade: false
   format :json
   default_format :json
-  formatter :json, Grape::Formatter::Rabl
+  # formatter :json, Grape::Formatter::Rabl
+  formatter :json, Grape::Formatter::ActiveModelSerializers
 
   helpers Caminio::API::Helpers
 
-  get '/:user_id', rabl: 'app_plans' do
+  desc "returns available app plans for this user"
+  params do 
+    requires :user_id, type: Integer, desc: "user id"
+  end
+  get '/', root: 'app_plans' do
     authenticate!
     @user = User.find_by_id params[:user_id]
-    error!("Not allowed",403) unless ( @user.id == current_user.id || current_user.is_superuser? )
+    error!("Forbidden",403) unless ( @user || @user.id == current_user.id || current_user.is_superuser? )
+    app_plans(@user)
     #` apps: AppPlan.where( 
     #   "organizational_unit_app_plans.organizational_unit_id IN (?,0) OR apps.is_public = ?", 
     #   user.organizational_units.map(&:id), true)
