@@ -5,8 +5,15 @@ module HasTranslations
 
   module ClassMethods
 
-    def has_translations(options={})
+
+    attr_accessor :current_lang
       
+    cattr_accessor  :options
+
+    def has_translations(options={})
+
+      self.options = options
+
       include InstanceMethods
 
       belongs_to :creator, class_name: 'User', foreign_key: :created_by
@@ -15,46 +22,22 @@ module HasTranslations
 
       has_many :translations, as: :row
 
-      # before_validation :set_updater, on: :create
-      # before_validation :check_if_updater_is_set, on: :save
-      # before_destroy :check_if_user_can_destroy
-      # validate :check_if_updater_has_rights
-      # after_create :create_default_rule
-      # after_find :set_temporary_updater
 
-      validates_presence_of :creator, :updater
+      before_create :check_for_default_translation
+      # validate :check_if_updater_has_rights
 
       default_scope { where(deleted_at: nil) }
 
-    end
-
-    def with_user(user)
-      Thread.current.thread_variable_set(:current_user, user)
-      self.includes(:access_rules).where( access_rules: { user_id: user.id })
     end
 
   end
 
   module InstanceMethods
 
-    # def create_default_rule
-    #   self.access_rules.create(
-    #     row_id: self.id,
-    #     row_type: self.class.name,
-    #     user_id: self.created_by,
-    #     is_owner: true,
-    #     created_by: self.created_by,
-    #     updated_by: self.created_by
-    #   )
-    # end
-
-    def set_temporary_updater
-      with_user( Thread.current.thread_variable_get(:current_user) )
-      Thread.current.thread_variable_set(:current_user, nil)
-    end
-
-    def set_updater
-      self.updated_by = self.created_by
+    def current_translation
+      locale = current_lang || I18n.default_locale
+      curTranslation = Translation.where( :row_id => self.id, :locale => locale  )
+      puts curTranslation
     end
 
     def delete
@@ -70,12 +53,14 @@ module HasTranslations
       self.save
     end
 
-    private
+    private 
 
-      def with_user( user )
-        self.updater = user 
-        @updater_has_been_set = true
-        self
+      def check_for_default_translation
+        
+        unless self.class.options[:defaults]
+
+        end
+
       end
 
     # def create_slug( name=name )

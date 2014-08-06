@@ -61,11 +61,15 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.integer       :app_id
       t.integer       :users_amount, default: 1
       t.boolean       :visible, default: false
+      t.datetime        :deleted_at
+      t.integer         :deleted_by
       t.timestamps
     end
     add_index :app_plans, :app_id #, unique: true
 
     create_table :translations do |t|
+      t.integer         :row_id
+      t.string          :row_type
       t.string          :locale
       t.string          :title
       t.string          :subtitle
