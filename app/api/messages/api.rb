@@ -1,8 +1,3 @@
-#!/usr/bin/ruby
-# @Author: David Reinisch
-# @Date:   2014-07-31 18:32:22
-# @Last Modified by:   David Reinisch
-# @Last Modified time: 2014-08-01 09:38:38
 
 class Messages::API < Grape::API
 
@@ -26,7 +21,6 @@ class Messages::API < Grape::API
 
   post '/' do
     authenticate!
-
   end
 
   get '/:id' do
@@ -37,16 +31,43 @@ class Messages::API < Grape::API
     { message: message }
   end
 
-  put '/:id' do
-    authenticate!
-    # data = params['message']
-
-    { message: {} }
+  params do
+    requires :message, type: Hash do
+      optional :content
+    end
   end
+
+  before { authenticate! }
+
+  put '/:id' do
+
+    begin
+      message = Message.with_user(current_user).find_by( id: params['id'] )
+      error!("Not found", 404) unless message
+      message.update!( declared( params )[:message] ) 
+      { message: Message.find_by( :id => params['id']) }
+    rescue => e
+      if e.message == "Validation failed: Updater insufficient rights"
+        error!(e.message, 403)
+      else
+        error!(e.message, 500)
+      end
+    end
+
+
+
+    # if Message.with_user(current_user).find_by( id: params['id'] ).update( declared( params )[:message] ) 
+    #   { message: Message.find_by( :id => params['id']) }
+    # else
+    #   error!("Update failed!")
+    # end
+  end
+
 
   delete '/:id' do
     authenticate!
-
+    Message.with_user(current_user).find(params[:id]).destroy
   end
+
 
 end 
