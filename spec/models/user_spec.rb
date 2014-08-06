@@ -64,8 +64,9 @@ describe 'user' do
     it "gets all apps which are passed to link_app_models" do
       Caminio::ModelRegistry::init
       app = App.first
+      plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
       hash = {}
-      hash[app.id] = true
+      hash[plan.id] = true
       user = User.create( attributes_for(:user ))
       user.link_app_models(hash)
       user.save
@@ -75,11 +76,12 @@ describe 'user' do
     it "sets the access-level for the apps if passed" do
       Caminio::ModelRegistry::init
       app = App.first
+      plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
       app_model = AppModel.first
       hash = {}
       model_hash = {}
       model_hash[app_model.id] = Caminio::Access::READ
-      hash[app.id] = model_hash
+      hash[plan.id] = model_hash
       user = User.create( attributes_for(:user ))
       user.link_app_models(hash)
       user.save

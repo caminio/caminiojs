@@ -28,7 +28,7 @@ describe 'user' do
       plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
       expect( plan.errors[:app]).to eq([])
       @hash = {}
-      @hash[app.id] = true
+      @hash[plan.id] = true
       @user.update( organizational_units: [ @unit ] )
       @unit.link_apps(@hash)
       @user.link_app_models(@hash)

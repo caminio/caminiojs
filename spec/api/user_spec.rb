@@ -19,7 +19,7 @@ describe "user api integration" do
     
     Caminio::ModelRegistry::init
     app = App.first
-    AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
+    plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
 
     User.where({}).load.delete_all
     @user = User.create(attributes_for(:user))
@@ -28,7 +28,7 @@ describe "user api integration" do
     @auth = {'HTTP_AUTHORIZATION' => "Bearer #{api_key.access_token}", 'HTTP_OU' => @unit.id }
 
     @hash = {}
-    @hash[app.id] = true
+    @hash[plan.id] = true
     @user.update( organizational_units: [ @unit ] )
     @unit.link_apps(@hash)
     @user.link_app_models(@hash)
