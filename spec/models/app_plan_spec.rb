@@ -27,10 +27,10 @@ describe 'app_plan' do
 
     it "must have an existing app" do 
 
-      expect( AppPlan.create( price: 0, users_amount: 2 ).errors[:app]).to include("can't be blank")
+      expect( AppPlan.create( price: 0, user_quota: 2 ).errors[:app]).to include("can't be blank")
       Caminio::ModelRegistry::init
       app = App.first
-      expect( AppPlan.create( price: 0, users_amount: 2, app: app ).errors[:app]).to eq([])
+      expect( AppPlan.create( price: 0, user_quota: 2, app: app ).errors[:app]).to eq([])
 
     end
 
@@ -45,7 +45,7 @@ describe 'app_plan' do
     it "can be choosen by user" do
       Caminio::ModelRegistry::init
       app = App.first
-      expect( AppPlan.create( price: 0, users_amount: 2, app: app ).errors[:app]).to eq([])
+      expect( AppPlan.create( price: 0, user_quota: 2, app: app ).errors[:app]).to eq([])
 
     end
 

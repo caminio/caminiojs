@@ -63,10 +63,13 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   end
 
   create_table "app_plans", force: true do |t|
+    t.string   "name"
     t.integer  "price"
     t.integer  "app_id"
-    t.integer  "users_amount", default: 1
-    t.boolean  "visible",      default: false
+    t.integer  "user_quota",    default: 1
+    t.integer  "disk_quota",    default: 0
+    t.integer  "content_quota", default: 0
+    t.boolean  "visible",       default: false
     t.datetime "deleted_at"
     t.integer  "deleted_by"
     t.datetime "created_at"
@@ -74,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   end
 
   add_index "app_plans", ["app_id"], name: "index_app_plans_on_app_id"
+  add_index "app_plans", ["name"], name: "index_app_plans_on_name", unique: true
 
   create_table "apps", force: true do |t|
     t.string  "name"

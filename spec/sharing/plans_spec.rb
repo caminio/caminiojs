@@ -9,7 +9,7 @@ describe 'free plan' do
       app = App.first
       AppModel.where( :name => "Message").first
       @unit = OrganizationalUnit.create( name: "work" )
-      plan = AppPlan.create( price: 0, users_amount: 2, app: app, visible: true )
+      plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
       expect( plan.errors[:app]).to eq([])
       @hash = {}
       @hash[app.id] = true
@@ -19,7 +19,7 @@ describe 'free plan' do
       @user.save
     end
 
-    it "verifies if plan users_amount has enough users left" do 
+    it "verifies if plan user_quota has enough users left" do 
       user2 = User.create( attributes_for(:user, organizational_units: [ @unit ] ) )
       expect( user2 ).to be_a( User )
       user2.link_app_models(@hash)

@@ -7,7 +7,7 @@ describe 'translations' do
     let(:app){ create(:app) }
 
     before(:each) do
-      @app_plan = AppPlan.create( price: 0, users_amount: 2, app: app )
+      @app_plan = AppPlan.create( price: 0, user_quota: 2, app: app )
     end
 
     context "row_id" do
@@ -54,13 +54,13 @@ describe 'translations' do
     let(:app){ create(:app) }
 
     before(:each) do
-      @app_plan = AppPlan.create( price: 0, users_amount: 2, app: app )
-      @app_plan2 = AppPlan.create( price: 10, users_amount: 3, app: app )
+      @app_plan = AppPlan.create( price: 0, user_quota: 2, app: app )
+      @app_plan2 = AppPlan.create( price: 10, user_quota: 3, app: app )
     end
 
     it "each row object can only have one translation per locale" do
-      expect( Translation.create( title: 'test', locale:'en', row: @app_plan ) ).to be_a( Translation )
-      expect{ Translation.create( title: 'another test', locale:'en', row: @app_plan ) }.to raise_error( StandardError )
+      expect( Translation.create( title: 'test', locale:'de', row: @app_plan ) ).to be_a( Translation )
+      expect{ Translation.create( title: 'another test', locale:'de', row: @app_plan ) }.to raise_error( StandardError )
     end
 
   end

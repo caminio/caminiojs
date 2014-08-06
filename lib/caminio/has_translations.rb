@@ -23,8 +23,6 @@ module HasTranslations
 
       after_create :check_for_default_translation
 
-      default_scope { where(deleted_at: nil) }
-
     end
 
   end
@@ -33,19 +31,6 @@ module HasTranslations
 
     def current_translation
       self.translations.where( :locale => current_lang || I18n.default_locale  ).first
-    end
-
-    def delete
-      self.deleted_at = Time.now
-      if defined?(children)
-        children.each{ |child| child.delete }
-      end
-      self.save
-    end
-
-    def restore
-      self.deleted_at = nil
-      self.save
     end
 
     private 

@@ -9,7 +9,7 @@ class AppPlan < ActiveRecord::Base
   def attributes
     {
       id: nil,
-      users_amount: nil,
+      user_quota: nil,
       app_id: nil,
       translations: nil
     }

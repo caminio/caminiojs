@@ -19,7 +19,7 @@ describe "message api integration" do
     
     Caminio::ModelRegistry::init
     app = App.first
-    AppPlan.create( price: 0, users_amount: 2, app: app, visible: true )
+    AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
 
     User.where({}).load.delete_all
     @user = User.create(attributes_for(:user))

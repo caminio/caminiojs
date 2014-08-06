@@ -92,7 +92,7 @@ describe 'user' do
       Caminio::ModelRegistry::init
       app = App.first
       AppModel.where( :name => "Message").first
-      plan = AppPlan.create( price: 0, users_amount: 2, app: app, visible: true )
+      plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
       expect( plan.errors[:app]).to eq([])
       hash = {}
       hash[app.id] = true
