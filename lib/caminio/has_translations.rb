@@ -11,7 +11,7 @@ module HasTranslations
         
       cattr_accessor  :options
 
-      self.options = options
+      self.default_values = options[:defaults]
 
       include InstanceMethods
 
@@ -39,7 +39,7 @@ module HasTranslations
     private 
 
       def check_for_default_translation
-        unless self.class.options[:defaults]
+        unless self.class.default_values
           self.translations.create( :locale => I18n.default_locale, :title => self.name )
         end
       end

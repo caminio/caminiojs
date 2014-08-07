@@ -23,7 +23,11 @@ class Messages::API < Grape::API
   params do
     requires :message, type: Hash do
       requires :title
-      optional :content
+      requires :content
+      optional :parent
+      optional :type
+      optional :row
+      optional :important
     end
   end
 
@@ -44,7 +48,9 @@ class Messages::API < Grape::API
 
   params do
     requires :message, type: Hash do
+      optional :title
       optional :content
+      optional :important
     end
   end
 
