@@ -53,3 +53,18 @@
 .accounts-container table .progress{
   margin-bottom: 0;
 }
+
+.accounts-modal table.table td{
+  vertical-align: middle;
+}
+
+.accounts-container h1{
+  font-size: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.accounts-container .add-plan{
+  margin: -5px 5px 0 0;
+}

@@ -28,7 +28,7 @@ class AppPlans::API < Grape::API
     def app_plans(user)
       app_plans = []
       App.where( is_public: true ).each do |app| 
-        app_plans += app.app_plans
+        app_plans += app.app_plans.where(visible: true)
       end
       user.organizational_units.each do |ou|
         app_plans += ou.app_plans

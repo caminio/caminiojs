@@ -1,0 +1,44 @@
+{{#caminio-modal title='accounts.plan.select_your' close='closeModal' width='800px'}}
+<div class="modal-body accounts-modal">
+  
+  <div class="alert alert-info">
+  {{{t 'accounts.plan.select_first_then_apply'}}}
+  </div>
+
+  <form class="form-horizontal" {{action 'save' on='submit'}}>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{t 'accounts.plan.app_name'}}</th>
+          <th>{{t 'accounts.plan.name'}}</th>
+          <th>{{t 'accounts.plan.collaborators'}}</th>
+          <th>{{t 'accounts.plan.disk'}}</th>
+          <th>{{t 'accounts.plan.items'}}</th>
+          <th>{{t 'accounts.plan.price'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each availableApps}}
+      <tr>
+        <td>{{name}}</td>
+        <td>
+          {{view Ember.Select valueBinding='current_plan_id' content=app_plans optionValuePath='content.id' optionLabelPath='content.name' noSearch=true prompt=false}}
+        </td>
+        <td>{{{current_plan.formattedUserQuota}}}</td>
+        <td>{{{current_plan.formattedDiskQuota}}}</td>
+        <td>{{{content_quota}}}</td>
+        <td>{{current_plan.formattedPrice}}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" {{action 'addPlan' current_plan}}>
+            <i class="fa fa-plus"></i>
+          </button>
+        </td>
+      </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </form>
+
+</div>
+{{/caminio-modal}}
