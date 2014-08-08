@@ -7,7 +7,8 @@ class MessageNotificationMailer < ActionMailer::Base
     @user = user
     @creator = User.find_by(item.created_by)
     @link = "dummy"
-    # mail to: user.email
+    puts @user.email
+    mail to: @user.email, subject: @message.title
   end
 
 end
