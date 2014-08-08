@@ -1,3 +1,4 @@
+# encoding: utf-8
 module CanNotify
 
   extend ActiveSupport::Concern
@@ -8,7 +9,9 @@ module CanNotify
 
       include InstanceMethods
 
-      self.notify_hooks = options
+      cattr_accessor :notification_mailer
+
+      self.notification_mailer = options[:notification_mailer]  || NotificationMailer
 
     end
 
@@ -17,15 +20,16 @@ module CanNotify
   module InstanceMethods
 
     def notify_on_create
-      self.class.notify_hooks[:on_create] 
+      puts "in there"
+      self.notification_mailer.create_notification( self )
     end
 
     def notify_on_update
-      self.class.notify_hooks[:on_update] 
+      self.notification_mailer.update_notification( self )
     end
 
     def notify_on_destroy
-      self.class.notify_hooks[:on_destroy] 
+      self.notification_mailer.destroy_notification( self )
     end
 
   end
@@ -33,4 +37,4 @@ module CanNotify
     
 end
 
-ActiveRecord::Base.send :include, HasAccessRules
+ActiveRecord::Base.send :include, CanNotify

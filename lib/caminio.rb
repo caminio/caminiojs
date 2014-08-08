@@ -16,6 +16,8 @@ require "caminio/config_namespace"
 
 require "caminio/has_access_rules"
 require "caminio/has_translations"
+require "caminio/can_notify"
+
 
 # Rails engine
 require "caminio/engine"

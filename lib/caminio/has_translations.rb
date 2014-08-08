@@ -9,7 +9,7 @@ module HasTranslations
 
       attr_accessor :current_lang
         
-      cattr_accessor  :options
+      cattr_accessor  :default_values
 
       self.default_values = options[:defaults]
 

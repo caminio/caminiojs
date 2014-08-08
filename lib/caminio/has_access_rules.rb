@@ -32,6 +32,18 @@ module HasAccessRules
 
     end
 
+    def new_with_user(user, attributes)
+      row = self.new( attributes )
+      row.creator = user 
+      row.updater = user
+      row
+    end
+
+    def create_with_user(user, attributes)
+      row = new_with_user(user, attributes)
+      row if row.save
+    end
+
     def with_user(user)
       Thread.current.thread_variable_set(:current_user, user)
       self.includes(:access_rules).where( access_rules: { user_id: user.id })
@@ -150,3 +162,4 @@ module HasAccessRules
 end
 
 ActiveRecord::Base.send :include, HasAccessRules
+

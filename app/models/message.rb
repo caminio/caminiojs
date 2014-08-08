@@ -1,6 +1,8 @@
 class Message < ActiveRecord::Base
 
+
   has_access_rules(icon: "fa-envelop-o", path: "/messages", app_name: "caminio", app_is_public: true)
+  can_notify
 
   belongs_to :row, polymorphic: true
   belongs_to :organizational_unit
@@ -10,7 +12,7 @@ class Message < ActiveRecord::Base
   has_many :user_messages
   has_many :children, class_name: 'Message', foreign_key: :parent_id
 
-  after_create :create_user_messages
+  after_create :create_user_messages, :notify_on_create
 
   def attributes
     { title: nil,

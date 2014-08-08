@@ -48,7 +48,6 @@ describe "message api integration" do
 
     it "returns all unread messages of the user" do
       get "/", nil, @auth2
-      puts last_response.body
       expect( JSON.parse( last_response.body )['messages'].first['id'] ).to eq( @message.id )
       get "/", nil, @auth
       expect( JSON.parse( last_response.body )['messages'].first['id'] ).to eq( @message.id )
@@ -73,8 +72,9 @@ describe "message api integration" do
   context "POST /" do
 
     it "creates a new message in the db" do
+      before_post = Message.count
       post "/", { message: { content: 'new content', title: 'test' } }, @auth
-      puts last_response.body
+      expect( Message.count ).to eq( before_post + 1 )
     end
 
     it "returns an error if no valid token is passed" do

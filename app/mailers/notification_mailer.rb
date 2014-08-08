@@ -2,18 +2,17 @@ class NotificationMailer < ActionMailer::Base
 
   include Roadie::Rails::Automatic
 
-  def on_create(item)
+  def create_notification(item)
 
     @users =[]
-    puts item.row_type
-    case item.row_type 
+    case item.class.name 
     when 'Message'
       puts "Its a message"
     else  
       puts "Its another thing"
+      # TODO
     end
 
-    # TODO
     # @user = user
     # @link = link
     
@@ -23,11 +22,17 @@ class NotificationMailer < ActionMailer::Base
 
   end
 
-  def welcome(user, link)
-    # TODO
-    # @user = user
-    # @link = link
-    # mail to: user.email, subject: I18n.t('caminio_welcome')
+  def get_users(item)
+    rules = AccessRule.find_by( :row => item )
+
+  end
+
+  def update_notification(item)
+
+  end
+
+  def destroy_notification(item)
+    
   end
 
   private 

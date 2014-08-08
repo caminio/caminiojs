@@ -35,7 +35,9 @@ class Messages::API < Grape::API
 
   post '/' do
     authenticate!
-    Message.with_user(current_user).create( declared( params )[:message] ) 
+    Message.create_with_user(
+      current_user,
+      declared( params )[:message] ) 
   end
 
   get '/:id' do
