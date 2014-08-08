@@ -1,6 +1,8 @@
 #= require jquery
 #= require pace
 #= require 3rd/nicescroll.min
+#= require 3rd/filesize.min
+#= require 3rd/accounting.min
 #= require blueimp-file-upload/js/vendor/jquery.ui.widget
 #= require blueimp-file-upload/js/jquery.iframe-transport
 #= require blueimp-file-upload/js/jquery.fileupload
@@ -38,10 +40,11 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend
 App.ApplicationStore = DS.Store.extend
   adapter: DS.RESTAdapter.extend
 
-App.setAuthenticationBearer = (access_token)->
+App.setAuthenticationBearer = (access_token, user)->
   Ember.$.ajaxSetup
     headers:
       'Authorization': 'Bearer ' + access_token
+      'Ou': user && user.get('current_organizational_unit.id') || null
 
 # ember i18n
 Ember.View.reopen Em.I18n.TranslateableAttributes

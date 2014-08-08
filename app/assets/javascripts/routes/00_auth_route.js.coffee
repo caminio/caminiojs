@@ -25,5 +25,7 @@ App.AuthRoute = App.ApplicationRoute.extend
       .then (api_key)->
         App.setAuthenticationBearer( api_key.get('access_token') )
         controller.set 'currentUser', api_key.get('user')
-        api_key.get('user')
+        api_key.get('user').then (user)->
+          App.setAuthenticationBearer( api_key.get('access_token'), user )
+          user
 

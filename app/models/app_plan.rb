@@ -6,12 +6,4 @@ class AppPlan < ActiveRecord::Base
 
   has_translations
 
-  def attributes
-    {
-      id: nil,
-      user_quota: nil,
-      app_id: nil,
-      translations: nil
-    }
-  end
 end

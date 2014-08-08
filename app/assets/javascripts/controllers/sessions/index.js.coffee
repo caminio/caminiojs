@@ -24,7 +24,8 @@ App.SessionsController = Ember.Controller.extend
     App.setAuthenticationBearer( api_key.access_token )
     @.store.find('organizational_unit')
     @.set 'currentUser', @.store.find('user',
-      api_key.user_id)
+      api_key.user_id).then (user)->
+        App.setAuthenticationBearer( api_key.access_token, user )
     @.transitionToRoute('dashboard.index')
     # logout: ->
     #   controller = @
