@@ -9,6 +9,24 @@ describe 'user' do
       User.find_by( email: "test@test.com" )
     end
 
+    context "name" do
+
+      it "returns firstname + lastname if both are set" do
+        expect( user.name ).to eq( user.firstname  + ' ' + user.lastname )
+      end 
+
+      it "returns lastname if no firstname is set" do
+        user[:firstname] = nil
+        expect( user.name ).to eq( user.lastname )
+      end
+
+      it "returns email if no lastname is set" do
+        user[:lastname] = nil
+        expect( user.name ).to eq( user.email )
+      end
+
+    end
+
     context "password" do
       
       it("is required") { expect( User.find_by_email(user.email).authenticate("tesT123")).to be_a(User)  }

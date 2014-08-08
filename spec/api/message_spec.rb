@@ -22,7 +22,7 @@ describe "message api integration" do
     plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
 
     User.where({}).load.delete_all
-    @user = User.create(attributes_for(:user))
+    @user = User.create(attributes_for(:user, settings: { notify: true } ))
     @user2 = User.create( attributes_for(:user, email: "test2@example.com" ) )
     @message = Message.create( attributes_for(:message, creator: @user, users: [ @user2 ] ) )
     api_key = @user.api_keys.create
@@ -76,6 +76,12 @@ describe "message api integration" do
       post "/", { message: { content: 'new content', title: 'test' } }, @auth
       expect( Message.count ).to eq( before_post + 1 )
     end
+
+    # it "creates a new notification mail for the user" do
+    #   before_post = Message.count
+    #   post "/", { message: { content: 'new content', title: 'test' } }, @auth2
+    #   expect( Message.count ).to eq( before_post + 1 )
+    # end
 
     it "returns an error if no valid token is passed" do
       post "/"

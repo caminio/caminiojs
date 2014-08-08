@@ -1,2 +1,5 @@
 en:
   caminio_password_reset: "caminio password reset request"
+  reply: "Reply"
+  show_history: "Show history"
+

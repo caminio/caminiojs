@@ -45,6 +45,12 @@ class User < ActiveRecord::Base
     false
   end
 
+  def name
+    return self.email unless self.lastname
+    return self.lastname unless self.firstname
+    return self.firstname + ' ' + self.lastname
+  end
+
   private
 
     def avatar_thumb
