@@ -20,16 +20,15 @@ module CanNotify
   module InstanceMethods
 
     def notify_on_create
-      puts "in there"
-      self.notification_mailer.create_notification( self )
+      self.notification_mailer.create_notification( self ).deliver
     end
 
     def notify_on_update
-      self.notification_mailer.update_notification( self )
+      self.notification_mailer.update_notification( self ).deliver
     end
 
     def notify_on_destroy
-      self.notification_mailer.destroy_notification( self )
+      self.notification_mailer.destroy_notification( self ).deliver
     end
 
   end

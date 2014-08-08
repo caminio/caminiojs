@@ -4,30 +4,24 @@ class NotificationMailer < ActionMailer::Base
 
   def create_notification(item)
 
-    @users =[]
+    users = get_users(item,'create')
+
     case item.class.name 
     when 'Message'
-      puts "Its a message"
+      create_message_notification(item)
     else  
-      puts "Its another thing"
-      # TODO
+      puts "not implemented yet"
+      # TODO 
     end
 
     # @user = user
     # @link = link
     
-    @users.each do |user|
-      mail to: user.email, subject: I18n.t(@subject||'Something was created')
+    users.each do |user|
+      puts user.email
+      mail to: user.email
     end
 
-  end
-
-  def get_users(item)
-    rules = AccessRule.find_by( :row => item )
-    rules.each do |rule|
-
-
-    end
   end
 
   def update_notification(item)
@@ -39,5 +33,39 @@ class NotificationMailer < ActionMailer::Base
   end
 
   private 
+
+    def create_message_notification(item)
+      puts item.creator.firstname
+      puts item.creator.lastname
+
+    end
+
+    def get_users(item, type)
+      model = AppModel.find_by( :name => item.class.name )
+      rules = AccessRule.where( :row => item ).load
+      user_list = []
+      rules.each do |rule|
+        user = User.find_by( :id => rule.user_id )
+        role = AppModelUserRole.where( :app_model => model, :user => user ).first 
+        user_list.push(user) if notify_user(user, role, model, type)
+      end
+      user_list
+    end
+
+    def notify_user(user, role, model, type)
+      notify = user.settings['notify']
+      return false unless role && notify
+
+      if notify.is_a?(Hash)
+        model = notify[model.name]
+        return false unless model
+        if model.is_a?(Hash)
+          return false unless model[type]
+        end
+      end
+      
+      return true
+        
+    end
 
 end
