@@ -24,7 +24,10 @@ class NotificationMailer < ActionMailer::Base
 
   def get_users(item)
     rules = AccessRule.find_by( :row => item )
+    rules.each do |rule|
 
+
+    end
   end
 
   def update_notification(item)
