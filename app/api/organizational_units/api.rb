@@ -18,7 +18,13 @@ class OrganizationalUnits::API < Grape::API
     authenticate!
     ou = current_user.current_organizational_unit = current_user.organizational_units.find( headers['Ou'] )
     params[:plan_ids].each do |plan_id|
-      ou.app_plans << AppPlan.find(plan_id)
+      app_plan = AppPlan.find(plan_id)
+      app_plan.app.app_models.each do |app_model|
+        ou.app_model_user_roles << AppModelUserRole.new(
+          app_model: app_model, access_level: Caminio::Access::FULL, user: current_user
+        )
+      end
+      ou.app_plans << app_plan
     end
     error!('failed to save',500) unless ou.save
     {}
