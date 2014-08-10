@@ -55,11 +55,27 @@ describe 'user' do
 
     end
 
+    context "locale" do
+
+      it "is required" do
+          expect( User.create(attributes_for(:user, locale: 'de')).locale ).to eq('de')
+      end
+
+      it "is set do the I18n locale by default" do
+        expect( user.locale ).to eq( I18n.locale.to_s )
+      end
+
+    end
+
     it{ expect( User.find_by_email(user.email).authenticate("wrong")).to eq(false) }
 
   end
 
   context "creation" do
+
+    before(:all) do
+      Caminio::ModelRegistry::init
+    end
 
     it "creates an organization_unit along with a new user" do
       create(:user, password: "tesT123", email: "test@test.com") 
@@ -80,7 +96,6 @@ describe 'user' do
     end
 
     it "gets all apps which are passed to link_app_models" do
-      Caminio::ModelRegistry::init
       app = App.first
       plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
       hash = {}
@@ -92,7 +107,6 @@ describe 'user' do
     end
 
     it "sets the access-level for the apps if passed" do
-      Caminio::ModelRegistry::init
       app = App.first
       plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
       app_model = AppModel.first
@@ -109,7 +123,6 @@ describe 'user' do
 
 
     it "assigns free plan for messenger app for organizional_unit" do 
-      Caminio::ModelRegistry::init
       app = App.first
       AppModel.where( :name => "Message").first
       plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )

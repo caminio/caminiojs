@@ -21,7 +21,7 @@ describe "message_notification_mailer"  do
   end
 
   it 'renders the receiver email' do
-    puts ActionMailer::Base.deliveries.first.inspect
+    ActionMailer::Base.deliveries.first.inspect
     expect( ActionMailer::Base.deliveries.first.to.first ).to eq( @user2.email )
   end
   

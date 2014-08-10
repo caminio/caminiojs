@@ -21,8 +21,6 @@ module CanNotify
 
     def notify_on_create
       get_users('create').each do |user|
-        puts "WE GOT SOMETHING: "
-        puts user.inspect
         self.notification_mailer.create_notification( user, self ).deliver
       end
     end
@@ -50,6 +48,9 @@ module CanNotify
       user_list = []
       rules.each do |rule|
         user = User.find_by( :id => rule.user_id )
+      puts I18n.locale
+      puts ">>>>>>>>>>>>>>>>>>>>>>>>>"
+      puts user
         user_list.push(user) if notify_user(user, model, type)
         if rule.is_owner && !user_list.include?(user)
           user_list.push(user) if notify_user(user, model, 'owner') 

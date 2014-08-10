@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /@/
 
   after_create :find_or_create_organizational_unit 
+  before_create :check_locale
   before_destroy :destroy_dependencies
 
   attr_accessor :current_organizational_unit
@@ -52,6 +53,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+    def check_locale
+      self.locale = I18n.locale unless self.locale
+    end
 
     def avatar_thumb
       avatar.url(:thumb)

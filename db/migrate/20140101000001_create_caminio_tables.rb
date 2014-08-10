@@ -9,6 +9,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.string        :email, required: true
       t.string        :phone
       t.string        :categories
+      t.string        :locale, required: true
 
       t.datetime      :last_login_at
       t.datetime      :last_request_at

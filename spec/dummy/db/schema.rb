@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.string   "email"
     t.string   "phone"
     t.string   "categories"
+    t.string   "locale"
     t.datetime "last_login_at"
     t.datetime "last_request_at"
     t.string   "last_login_ip"
