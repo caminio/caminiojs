@@ -15,23 +15,6 @@ class Users::API < Grape::API
     User.includes(:organizational_units).where("organizational_units.id=?", headers['Ou'] ).references(:organizational_units)
   end
 
-  get '/:id/apps' do
-    authenticate!
-    # unit = headers['Ou']
-    # id = params['id']
-    # roles = AppModelUserRole.where( 
-    #   :organizational_unit_id => unit, 
-    #   :user_id =>  id )
-    # puts "we got"
-    # puts roles.inspect
-    # roles.each do |role|
-    #   puts role.app_model.inspect
-
-    # end
-
-    [{ id: 1, name: 'messages', path: '/messages', icon: 'fa-envelope-o' }]
-  end
-
   post '/avatar' do
     authenticate!
     if current_user.update( avatar: params[:avatar] )

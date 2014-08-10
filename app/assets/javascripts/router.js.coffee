@@ -10,3 +10,4 @@ App.Router.map ->
     @route 'plans'
     @route 'organizations'
 
+  @resource 'contacts.index', path: '/contacts'

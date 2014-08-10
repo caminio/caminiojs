@@ -94,6 +94,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.integer         :app_id
       t.string          :icon
       t.string          :path
+      t.string          :add_js
       t.boolean         :hidden, default: false
       t.boolean         :always, default: false 
     end

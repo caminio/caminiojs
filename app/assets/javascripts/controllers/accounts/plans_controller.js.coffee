@@ -23,4 +23,10 @@ App.AccountsPlansController = Em.ObjectController.extend
         data:
           plan_ids: plan_ids
       }
-      
+
+    removePlan: (app_plan)->
+      app_plan.destroyRecord()
+        .then ->
+          alert('done')
+        .catch ->
+          alert('failed')

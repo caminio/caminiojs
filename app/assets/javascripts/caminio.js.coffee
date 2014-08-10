@@ -7,7 +7,7 @@
 #= require blueimp-file-upload/js/jquery.iframe-transport
 #= require blueimp-file-upload/js/jquery.fileupload
 #= require jquery.cookie
-#= require bootstrap
+#= require bootstrap/dist/js/bootstrap.min
 #= require typeahead.js/dist/typeahead.bundle
 #= require codemirror
 #= require select2
@@ -18,8 +18,8 @@
 #= require ember-i18n
 #
 #= require_self
-#= require ./router
 #= require_tree ./locales
+#= require ./router
 #= require_tree ./util
 #= require_tree ./routes
 #= require_tree ./mixins
