@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.integer "app_id"
     t.string  "icon"
     t.string  "path"
+    t.string  "add_js"
     t.boolean "hidden", default: false
     t.boolean "always", default: false
   end
