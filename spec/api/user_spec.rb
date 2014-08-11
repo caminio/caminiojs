@@ -63,22 +63,6 @@ describe "user api integration" do
 
   end
 
-  context "GET /:id/apps" do
-
-
-    it "resturns a json of the users allowed apps in the current organizational unit" do
-      get "/"+@user.id.to_s+"/apps", nil, @auth
-    # expect( last_response.body ).to eq( { :ping => "pong" }.to_json )
-    end
-
-    it "returns an error if no valid token is passed"do
-      get "/"+@user.id.to_s+"/apps"
-      expect( last_response.body ).to eq( unauthorized_error )
-    end
-
-  end
-
-
   context "/:id/profile_picture" do
 
     it "returns the profile picture of the user" do

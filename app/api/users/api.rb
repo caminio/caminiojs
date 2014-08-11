@@ -67,8 +67,4 @@ class Users::API < Grape::API
     body( (File::open filename).read )
   end
 
-  get '/:id/apps' do
-    authenticate!
-  end
-
 end

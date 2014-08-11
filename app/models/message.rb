@@ -12,7 +12,7 @@ class Message < ActiveRecord::Base
   has_many :user_messages
   has_many :children, class_name: 'Message', foreign_key: :parent_id
 
-  after_create :create_user_messages, :notify_on_create
+  after_create :create_user_messages, :set_notification_users, :notify_on_create
 
   def attributes
     { title: nil,
@@ -41,13 +41,9 @@ class Message < ActiveRecord::Base
       end
     end
 
-    def notify_on_create
-      self.users.each do |user|
-        reset = I18n.locale
-        I18n.locale = user.locale
-        self.notification_mailer.create_notification( user, self ).deliver
-        I18n.locale = reset
-      end
+    def set_notification_users
+      puts "there"
+      @notify_users = self.users
     end
 
 end
