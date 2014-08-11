@@ -23,10 +23,15 @@ describe 'user_mailer' do
 
     it 'should send an email' do
       expect( ActionMailer::Base.deliveries.count ).to eq(1)
+      UserMailer.reset_password( @user2, 'other link' ).deliver
+      expect( ActionMailer::Base.deliveries.count ).to eq(2)
     end
 
     it 'renders the receiver email' do
       expect( ActionMailer::Base.deliveries.first.to.first ).to eq( @user.email )
+      ActionMailer::Base.deliveries.clear
+      UserMailer.reset_password( @user2, 'other link' ).deliver
+      expect( ActionMailer::Base.deliveries.first.to.first ).to eq( @user2.email )
     end
 
     it 'renders the sender email' do
@@ -37,6 +42,9 @@ describe 'user_mailer' do
       reset = I18n.locale
       I18n.locale = @user.locale
       expect( ActionMailer::Base.deliveries.first.subject ).to eq( I18n.t('caminio_password_reset') )
+      ActionMailer::Base.deliveries.clear
+      UserMailer.reset_password( @user2, 'other link' ).deliver
+      expect( ActionMailer::Base.deliveries.first.subject ).not_to eq( I18n.t('caminio_password_reset') )
       I18n.locale = reset
     end
   
