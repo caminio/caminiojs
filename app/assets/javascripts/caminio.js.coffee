@@ -1,5 +1,6 @@
 #= require jquery
 #= require pace
+#= require toastr
 #= require 3rd/nicescroll.min
 #= require 3rd/filesize.min
 #= require 3rd/accounting.min
