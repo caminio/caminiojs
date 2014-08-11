@@ -18,11 +18,6 @@ module Caminio
           next
         end
         app = App.find_or_create_by( name: model[:options].delete(:app_name) )
-        # app.update( hidden: !model[:options].has_key?(:icon), 
-        #            icon: model[:options].delete(:icon), 
-        #            path: model[:options].delete(:path),
-        #            add_js: model[:options].delete(:add_js) )
-        
         app_model = AppModel.find_or_create_by( name: model[:name], app_id: app.id ) 
         app_model.update! model[:options]
         

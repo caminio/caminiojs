@@ -21,7 +21,4 @@ App.ApplicationController = Ember.Controller.extend
         controller.store.find('app_plan', user_id: currentUser.id)
           .then ->
             controller.set('availableApps',controller.store.all('app'))
-            controller.get('availableApps').forEach (app)->
-              unless Em.isEmpty(app.get('add_js'))
-                Em.$.getScript("/assets/#{app.get('add_js')}")
 
