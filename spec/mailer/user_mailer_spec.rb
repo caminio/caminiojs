@@ -28,6 +28,17 @@ describe 'user_mailer' do
     it 'renders the receiver email' do
       expect( ActionMailer::Base.deliveries.first.to.first ).to eq( @user.email )
     end
+
+    it 'renders the sender email' do
+      expect( ActionMailer::Base.deliveries.first.from ).to eq( ["no-reply@camin.io"] )
+    end
+
+    it 'has the title of the message as subject' do
+      reset = I18n.locale
+      I18n.locale = @user.locale
+      expect( ActionMailer::Base.deliveries.first.subject ).to eq( I18n.t('caminio_password_reset') )
+      I18n.locale = reset
+    end
   
   end
 
