@@ -1,8 +1,11 @@
 class Message < ActiveRecord::Base
 
 
-  has_access_rules(icon: "fa-envelope-o", path: "/messages", app_name: "caminio", app_is_public: true)
-  can_notify( :notification_mailer => MessageNotificationMailer )
+  has_access_rules icon: "fa-envelope-o", 
+    path: "/messages", 
+    app_name: "caminio"
+
+  can_notify notification_mailer: MessageNotificationMailer
 
   belongs_to :row, polymorphic: true
   belongs_to :organizational_unit

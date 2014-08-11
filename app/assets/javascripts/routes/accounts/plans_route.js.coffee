@@ -3,7 +3,7 @@ App.AccountsPlansRoute = App.AuthRoute.extend
     @.controllerFor('sessions').get('currentUser')
   setupController: (controller,model)->
     route = @
-    controller.store.find('app_plan', user_id: model.id, visible: true)
+    controller.store.find('app_plan', user_id: model.id)
       .then (app_plans)->
         controller.set('availableApps',  controller.store.all('app'))
         controller.set('myPlans', model.get('current_organizational_unit.app_plans'))

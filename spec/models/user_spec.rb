@@ -97,7 +97,7 @@ describe 'user' do
 
     it "gets all apps which are passed to link_app_models" do
       app = App.first
-      plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
+      plan = AppPlan.create( price: 0, user_quota: 2, app: app, hidden: false )
       hash = {}
       hash[plan.id] = true
       user = User.create( attributes_for(:user ))
@@ -108,7 +108,7 @@ describe 'user' do
 
     it "sets the access-level for the apps if passed" do
       app = App.first
-      plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
+      plan = AppPlan.create( price: 0, user_quota: 2, app: app, hidden: false )
       app_model = AppModel.first
       hash = {}
       model_hash = {}
@@ -125,7 +125,7 @@ describe 'user' do
     it "assigns free plan for messenger app for organizional_unit" do 
       app = App.first
       AppModel.where( :name => "Message").first
-      plan = AppPlan.create( price: 0, user_quota: 2, app: app, visible: true )
+      plan = AppPlan.create( price: 0, user_quota: 2, app: app, hidden: false )
       expect( plan.errors[:app]).to eq([])
       hash = {}
       hash[app.id] = true

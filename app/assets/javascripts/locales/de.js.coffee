@@ -1,6 +1,7 @@
 return if window.LANG != 'de'
 Em.I18n.translations ||= {}
 Em.merge( Em.I18n.translations, {
+  'apps.caminio': 'Blackboard'
   'email_or_username': 'Email oder Kontoname'
   'email_address': 'Email Address'
   'username': 'Pseudonym'
