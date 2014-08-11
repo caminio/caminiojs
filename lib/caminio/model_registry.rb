@@ -22,10 +22,10 @@ module Caminio
                    icon: model[:options].delete(:icon), 
                    path: model[:options].delete(:path),
                    add_js: model[:options].delete(:add_js) )
-        if model[:options].size > 0
-          app_model = AppModel.find_or_create_by( name: model[:name], app_id: app.id ) 
-          app_model.update! model[:options]
-        end
+        
+        app_model = AppModel.find_or_create_by( name: model[:name], app_id: app.id ) 
+        app_model.update! model[:options]
+        
       end
     end
       

@@ -73,6 +73,9 @@ class User < ActiveRecord::Base
     def find_by_id(value, unit)
       value.each_pair do |model_id, access_level|
         model = AppModel.where( :id => model_id ).load.first
+        puts model.inspect
+        puts model_id
+        puts AppModel.where({}).load.inspect
         self.app_model_user_roles.create( 
           :app_model => model, 
           :access_level => access_level, 
