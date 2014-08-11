@@ -18,17 +18,30 @@ class AppModelUserRole < ActiveRecord::Base
   belongs_to :app_model
   belongs_to :organizational_unit
 
-  before_create :check_user_limitation
+  before_create :check_for_clone, :check_user_limitation
 
   private
 
-   def check_user_limitation
+    def check_for_clone
+      if AppModelUserRole.where( 
+        :user => self.user, 
+        :app_model => self.app_model, 
+        :organizational_unit => self.organizational_unit 
+        ).first
+        Rails::Logger::Warn("Clone not created: " + self.inspect )
+        return false
+      end
+      true
+    end
+
+    def check_user_limitation
       user_roles = AppModelUserRole.where( :organizational_unit => self.organizational_unit, :app_model => self.app_model ).load
+      return true if user_roles.size == 0
       unit_plans = OrganizationalUnitAppPlan.where( :organizational_unit => self.organizational_unit )
       unit_plan = unit_plans.where(app_plans: { app_id: self.app_model.app_id}).includes(:app_plan).references(:app_plan).first
 
-      if unit_plan && !unit_plan.app_plan.user_quota.between?(1,user_roles.size)
+      if unit_plan && !user_roles.size.between?(1,unit_plan.app_plan.user_quota-1)
         raise StandardError.new("User amount does not allow more users")
       end
-   end
+    end
 end
