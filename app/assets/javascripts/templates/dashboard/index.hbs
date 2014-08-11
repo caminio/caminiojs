@@ -1,2 +1,42 @@
-<br>
-<h1>dashboard</h1>
+<div class="top-info-box wide-box clearfix box" id="dashboard-info-container">
+  <div class="col col-md-4">
+    {{t 'hi'}},
+    <br>
+    <strong>{{currentUser.name_or_email}}</strong>
+  </div>
+  <div class="col col-md-4">
+    <label>
+      <i class="fa fa-clock-o"></i>
+      {{t 'last_login'}}
+    </label>
+    <br>
+    {{!-- {{timeAgo App._currentUser.lastSessionAt}} --}}
+  </div>
+  <div class="col col-md-4">
+
+    <div class="today-box" onclick="location.href = '/caminio/calendar';" {{translateAttr title='go_to_calendar'}}>
+      <div class="dayname">
+        {{!-- {{formatDate '' format='dd.'}} | 
+        {{formatDate '' format='MMM'}} --}}
+      </div>
+      {{!-- <div class="day">{{formatDate '' format='DD'}}</div> --}}
+    </div>
+
+    {{!-- <ul class="appointments">
+      {{#each appointments itemController='appointments_item'}}
+      <li>
+        <a href='/caminio/calendar' {{bind-attr title='content.title'}}>
+          <div class="title">{{content.title}}</div>
+          <time {{bind-attr datetime=content.start}}>{{smartDate content.start}}</time>
+        </a>
+      </li>
+      {{else}}
+      <li class="no-appointments">
+        <i class="fa fa-smile-o"></i>
+        {{t 'dashboard.no_upcoming_appointments'}}
+      </li>
+      {{/each}}
+    </ul> --}}
+
+  </div>
+</div>
