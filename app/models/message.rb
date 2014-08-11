@@ -1,9 +1,7 @@
 class Message < ActiveRecord::Base
 
 
-  has_access_rules icon: "fa-envelope-o", 
-    path: "/messages", 
-    app_name: "caminio"
+  has_access_rules app_name: "caminio"
 
   can_notify notification_mailer: MessageNotificationMailer
 

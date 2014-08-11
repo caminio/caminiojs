@@ -1,11 +1,12 @@
 unless ( File.basename($0) == 'rake')
 
-  app = App.find_or_create_by name: "caminio" do |a|
-    a.position = 0
-    a.hidden = false
-    a.path = '/messages'
-    a.icon = 'fa-envelope-o'
-  end
+  app = App.find_or_create_by name: "caminio" 
+  app.update(
+    position: 0,
+    hidden: false,
+    path: '/',
+    icon: 'fa-home'
+  )
 
   AppPlan.find_or_create_by name: "caminio Basic" do |app_plan|
     app_plan.price          = 0

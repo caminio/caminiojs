@@ -27,7 +27,7 @@ class AppModelUserRole < ActiveRecord::Base
       unit_plans = OrganizationalUnitAppPlan.where( :organizational_unit => self.organizational_unit )
       unit_plan = unit_plans.where(app_plans: { app_id: self.app_model.app_id}).includes(:app_plan).references(:app_plan).first
 
-      if unit_plan && unit_plan.app_plan.user_quota <= user_roles.size
+      if unit_plan && !unit_plan.app_plan.user_quota.between?(1,user_roles.size)
         raise StandardError.new("User amount does not allow more users")
       end
    end
