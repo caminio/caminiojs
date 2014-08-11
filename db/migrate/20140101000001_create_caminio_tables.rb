@@ -64,7 +64,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.integer       :user_quota, default: 1
       t.integer       :disk_quota, default: 0
       t.integer       :content_quota, default: 0
-      t.boolean       :visible, default: false
+      t.boolean         :hidden, default: true
       t.datetime        :deleted_at
       t.integer         :deleted_by
       t.timestamps
@@ -92,11 +92,7 @@ class CreateCaminioTables < ActiveRecord::Migration
     create_table :app_models do |t|
       t.string          :name
       t.integer         :app_id
-      t.string          :icon
-      t.string          :path
-      t.string          :add_js
-      t.boolean         :hidden, default: false
-      t.boolean         :always, default: false 
+      # t.boolean         :always, default: false 
     end
 
     create_table :app_model_user_roles do |t|
@@ -111,7 +107,10 @@ class CreateCaminioTables < ActiveRecord::Migration
     create_table :apps do |t|
       t.string          :name
       t.integer         :position
-      t.boolean         :is_public, default: false
+      t.string          :add_js
+      t.string          :path
+      t.string          :icon
+      t.boolean         :hidden, default: true
     end
     add_index :apps, :name, unique: true
 

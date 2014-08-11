@@ -4,7 +4,7 @@
       <i class="fa fa-th"></i>
     </div>
     <ul class="dropdown-menu" role="menu">
-      {{#each appModels itemController="app"}}
+      {{#each availableApps itemController="app"}}
       <li class="app">
       <a {{bind-attr href=appPath}}>
         <i {{bind-attr class=":fa content.icon"}}></i>

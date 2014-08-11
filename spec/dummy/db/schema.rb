@@ -56,11 +56,6 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   create_table "app_models", force: true do |t|
     t.string  "name"
     t.integer "app_id"
-    t.string  "icon"
-    t.string  "path"
-    t.string  "add_js"
-    t.boolean "hidden", default: false
-    t.boolean "always", default: false
   end
 
   create_table "app_plans", force: true do |t|
@@ -70,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.integer  "user_quota",    default: 1
     t.integer  "disk_quota",    default: 0
     t.integer  "content_quota", default: 0
-    t.boolean  "visible",       default: false
+    t.boolean  "hidden",        default: true
     t.datetime "deleted_at"
     t.integer  "deleted_by"
     t.datetime "created_at"
@@ -83,7 +78,10 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   create_table "apps", force: true do |t|
     t.string  "name"
     t.integer "position"
-    t.boolean "is_public", default: false
+    t.string  "add_js"
+    t.string  "path"
+    t.string  "icon"
+    t.boolean "hidden",   default: true
   end
 
   add_index "apps", ["name"], name: "index_apps_on_name", unique: true

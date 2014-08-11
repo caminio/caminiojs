@@ -18,12 +18,13 @@ module Caminio
           next
         end
         app = App.find_or_create_by( name: model[:options].delete(:app_name) )
-        app.update( is_public: model[:options].delete(:app_is_public) )
+        app.update( hidden: !model[:options].has_key?(:icon), 
+                   icon: model[:options].delete(:icon), 
+                   path: model[:options].delete(:path),
+                   add_js: model[:options].delete(:add_js) )
         if model[:options].size > 0
           app_model = AppModel.find_or_create_by( name: model[:name], app_id: app.id ) 
-          puts "model name #{app_model.name} #{model[:options]} #{app_model.new_record?} appid: #{app.name}"
-          app_model.update!( model[:options]
-            .merge(hidden: !model[:options].has_key?(:icon) ) )
+          app_model.update! model[:options]
         end
       end
     end
