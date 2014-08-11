@@ -41,4 +41,13 @@ class Message < ActiveRecord::Base
       end
     end
 
+    def notify_on_create
+      self.users.each do |user|
+        reset = I18n.locale
+        I18n.locale = user.locale
+        self.notification_mailer.create_notification( user, self ).deliver
+        I18n.locale = reset
+      end
+    end
+
 end

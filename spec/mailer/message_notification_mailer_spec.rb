@@ -7,9 +7,12 @@ describe "message_notification_mailer"  do
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
     @user = create(:user)
+    @user.locale = 'de'
+    @user.save
     @user2 = create(:user)
-    @message = Message.create_with_user(@user, { :content => 'Testcontent', :title => 'test' } )
-    MessageNotificationMailer.create_notification( @user2, @message ).deliver
+    @user2.locale = 'de'
+    @user2.save
+    @message = Message.create_with_user(@user, { :content => 'Testcontent', :title => 'test', :users => [@user2] } )
   end
 
   after(:each) do
@@ -21,18 +24,16 @@ describe "message_notification_mailer"  do
   end
 
   it 'renders the receiver email' do
-    ActionMailer::Base.deliveries.first.inspect
     expect( ActionMailer::Base.deliveries.first.to.first ).to eq( @user2.email )
   end
-  
-  context "gets:" do
 
-    it "user" do
-      puts "TODO"
-    end
-
-    it "item"
-
+  it 'renders the sender email' do
+    expect( ActionMailer::Base.deliveries.first.from ).to eq( ["no-reply@camin.io"] )
   end
+
+  it 'has the title of the message as subject' do
+    expect( ActionMailer::Base.deliveries.first.subject ).to eq( @message.title )
+  end
+  
 
 end
