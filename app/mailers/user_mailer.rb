@@ -5,19 +5,17 @@ class UserMailer < ActionMailer::Base
   def reset_password(user, link)
     @user = user
     @link = link
-    reset = I18n.locale
-    I18n.locale = @user.locale
-    mail to: user.email, subject: I18n.t('caminio_password_reset')
-    I18n.locale = reset
+    I18n.with_locale(@user.locale) do
+      mail to: user.email, subject: I18n.t('caminio_password_reset')
+    end
   end
 
   def welcome(user, link)
     @user = user
     @link = link
-    reset = I18n.locale
-    I18n.locale = @user.locale
-    mail to: user.email, subject: I18n.t('caminio_welcome')
-    I18n.locale = reset
+    I18n.with_locale(@user.locale) do
+      mail to: user.email, subject: I18n.t('caminio_welcome')
+    end
   end
 
 end
