@@ -1,0 +1,7 @@
+.toast-top-right{
+  top: 50px;
+}
+
+#toast-container > div{
+  border-radius: 0;
+}

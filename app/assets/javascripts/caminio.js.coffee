@@ -11,6 +11,7 @@
 #= require bootstrap/dist/js/bootstrap.min
 #= require typeahead.js/dist/typeahead.bundle
 #= require codemirror
+#= require moment
 #= require select2
 #= require handlebars
 #= require ember

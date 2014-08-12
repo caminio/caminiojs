@@ -5,9 +5,11 @@ App.AuthRoute = App.ApplicationRoute.extend
     @.authenticate()
       .then (user)->
         if !user
-          route.transitionTo('sessions.new')
+          return route.transitionTo('sessions.new')
         if user.get('current_organizational_unit.app_plans.length') < 1
-          route.transitionTo('accounts.plans')
+          return route.transitionTo('accounts.plans')
+        if route.get('lazyLoadUrl')
+          Em.$.getScript(route.get('lazyLoadUrl'))
       .catch ()->
         route.transitionTo('sessions.new')
 
@@ -28,4 +30,3 @@ App.AuthRoute = App.ApplicationRoute.extend
         api_key.get('user').then (user)->
           App.setAuthenticationBearer( api_key.get('access_token'), user )
           user
-
