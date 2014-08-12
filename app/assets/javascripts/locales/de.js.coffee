@@ -50,4 +50,10 @@ Em.merge( Em.I18n.translations, {
   'terms.title': 'Allgemeine Geschäftsbedingungen für die Nutzung von camin.io'
   'terms.text': '<h2>1. Gegenstand und Geltungsbereich dieser AGB</h2><p>Diese AGB regeln die Rechte und Pflichten im Zusammenhang mit der Nutyung der Dienstleistungen des Anbieters TASTENWERK e.U. / Österreich, Graz, Lendkai 83/1 (nachfolgend: Dienstanbieter) und des Nutzers im Zusammenhang mit der Inanspruchnahme des Dienstes, der unter der Internetadresse http://camin.io zugänglich gemacht ist.</p><p>Es gelten ausschließlich die AGB des Dienstanbieters. Entgegenstehende oder von diesen AGB abweichende Bedingungen des Nutzers werden vom Dienstanbieter nicht anerkannt, es sei denn, dass ihrer Geltung ausdrücklich schriftlich zugestimmt wurde. Diese AGB gelten auch dann, wenn der Dienstanbieter in Kenntnis entgegenstehdner oder von diesen AGB abweichenden Bedingungen des Nutzers seine Leistungen an ihn vorbehaltlos erbringt.</p><p>Sofern nachfolgend der Begriff der "Internetseite des Dienstanbieters" verwendet wird, ist die Internetseite bzw. die Internetseiten des Dienstanbieters gemeint, unter denen der Dienst i.S.d Absates 1 vom Dienstanbieter im Internet allgemein zugänglich gemacht wird.</p><h2>Vertragsschluss</h2><p>Ein Vertrag kommt - soweit nicht anders ausdrücklich individuell vereinbart - erst mit erfolgreichem Abschluss des Registrierungsvorgangs durch eine Bestätigung des Diensteanbieters gegenüber dem Nutzer in Textform (E-Mail) zustande.</p>'
   'hi': 'Hallo'
+  'last_login': 'Letztes Mal online'
+  'dashboard.no_upcoming_appointments': 'Keine anstehenden Termine'
+  'search.label': 'Label'
+  'search.type': 'Typ'
+  'search.date_range': 'Zeitraum'
+  'search.term': 'Suchbegriff'
 })
