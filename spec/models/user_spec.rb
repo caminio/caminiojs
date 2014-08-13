@@ -92,7 +92,7 @@ describe 'user' do
       unit = OrganizationalUnit.create( name: "test" )
       cur_number = OrganizationalUnitMember.count;
       User.create( attributes_for(:user, organizational_units: [ unit ] ))
-      expect( OrganizationalUnitMember.count ).to eq( cur_number + 1 )
+      expect( OrganizationalUnitMember.count ).to eq( cur_number + 2 )
     end
 
     it "gets all apps which are passed to link_app_models" do

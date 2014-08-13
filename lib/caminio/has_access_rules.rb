@@ -1,3 +1,4 @@
+
 # encoding: utf-8
 module HasAccessRules
 
@@ -61,6 +62,7 @@ module HasAccessRules
     end
 
     def share(user, rights={can_delete: false, can_write: false, can_share: false})
+      puts user.current_organizational_unit.inspect
       rule = access_rules.find_by( user: updater )
       can_share = rule && ( rule.can_share? || rule.is_owner? ) 
       return false unless can_share 
@@ -84,10 +86,13 @@ module HasAccessRules
     end
 
     def create_default_rule
+      user = User.find_by( :id => self.created_by )
+      unit = user.current_organizational_unit || user.organizational_units.first
       self.access_rules.create(
         row_id: self.id,
         row_type: self.class.name,
         user_id: self.created_by,
+        organizational_unit: unit,
         is_owner: true,
         created_by: self.created_by,
         updated_by: self.created_by
