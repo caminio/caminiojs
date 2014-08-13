@@ -18,17 +18,17 @@ class AppModelUserRole < ActiveRecord::Base
   belongs_to :app_model
   belongs_to :organizational_unit
 
-  before_create :check_for_clone, :check_user_limitation
+  before_create :check_user_limitation
 
   private
 
-    def check_for_clone
+    def check_for_duplicate
       if AppModelUserRole.where( 
         :user => self.user, 
         :app_model => self.app_model, 
         :organizational_unit => self.organizational_unit 
         ).first
-        Rails::Logger::Warn("Clone not created: " + self.inspect )
+        Rails.logger.warn("Clone not created: " + self.inspect )
         return false
       end
       true

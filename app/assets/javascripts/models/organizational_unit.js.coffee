@@ -3,3 +3,4 @@ App.OrganizationalUnit = DS.Model.extend
   users:              DS.hasMany "user"
   owner:              DS.belongsTo "user" 
   app_plans:          DS.hasMany "app_plan"
+  invoices:           DS.hasMany "invoice"

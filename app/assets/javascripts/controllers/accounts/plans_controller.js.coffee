@@ -12,7 +12,6 @@ App.AccountsPlansController = Em.ObjectController.extend
     addPlan: (app_plan)->
       currentUser = @get('controllers.sessions.currentUser')
       currentUser.get('current_organizational_unit.app_plans').pushObject( app_plan )
-      console.log currentUser.get('current_organizational_unit.app_plans')
 
     savePlans: ->
       currentUser = @get('controllers.sessions.currentUser')
@@ -25,8 +24,5 @@ App.AccountsPlansController = Em.ObjectController.extend
       }
 
     removePlan: (app_plan)->
-      app_plan.destroyRecord()
-        .then ->
-          alert('done')
-        .catch ->
-          alert('failed')
+      currentUser = @get('controllers.sessions.currentUser')
+      currentUser.get('current_organizational_unit.app_plans').removeObject( app_plan )

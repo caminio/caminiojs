@@ -5,6 +5,13 @@ Em.merge( Em.I18n.translations, {
     'overview': "Überblick"
     'plans_and_prices': "Pläne und Preise"
     'organizations': "Organisationen"
+    'invoices': 
+      'title': "Rechnungen"
+      'my': 'Meine Rechnungen'
+      'date': 'Datum'
+      'no': 'Nr.'
+      'amount': 'Betrag'
+      'none_yet': 'Es wurden noch keine Rechnungen ausgestellt'
     'personal_data': "Persönliche Angaben"
     'address': 'Adresse'
     'avatar': 'Avatar'

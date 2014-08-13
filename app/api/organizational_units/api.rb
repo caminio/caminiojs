@@ -17,6 +17,7 @@ class OrganizationalUnits::API < Grape::API
   put '/:id/app_plans' do
     authenticate!
     ou = current_user.current_organizational_unit = current_user.organizational_units.find( headers['Ou'] )
+    ou.app_plans.where("app_plans.id NOT IN (?)", params[:plan_ids]).map(&:destroy)
     params[:plan_ids].each do |plan_id|
       app_plan = AppPlan.find(plan_id)
       app_plan.app.app_models.each do |app_model|

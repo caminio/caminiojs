@@ -1,0 +1,23 @@
+<section>
+
+  <h1>{{t 'accounts.invoices.my'}}</h1>
+
+  {{#if currentUser.current_organizational_unit.invoices.length}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{t 'accounts.invoices.no'}}</th>
+          <th>{{t 'accounts.invoices.date'}}</th>
+          <th>{{t 'accounts.invoices.amount'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+    </table>
+    {{else}}
+      <div class="well">
+        {{t 'accounts.invoices.none_yet'}}
+      </div>
+    {{/if}}
+
+</section>

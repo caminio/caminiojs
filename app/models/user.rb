@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :organizational_units, through: :organizational_unit_members
   has_many :organizational_unit_members
   has_many :app_model_user_roles, dependent: :delete_all
-  has_many :app_models, through: :app_model_user_roles
+  has_many :app_models, -> { distinct }, through: :app_model_user_roles
 
   has_secure_password
 
