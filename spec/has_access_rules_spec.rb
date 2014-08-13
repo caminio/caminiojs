@@ -36,7 +36,7 @@ describe 'has_access_rules (example: Message)' do
 
     let!(:user){ create(:user) }
     let!(:user2){ create(:user) }
-    let!(:message){ create(:message, creator: user) }
+    let!(:message){ create(:message, creator: user, updater: user) }
 
     it "owner can delete" do
       expect( message.destroy ).to eq(message)
