@@ -1,4 +1,10 @@
 <section>
+  <button class="btn add-plan pull-right btn-sm btn-primary hint--left" {{translateAttr data-hint='accounts.organizations.add'}} {{action 'openModal' 'accounts/new_organization'}}>
+    <i class="fa fa-plus"></i>
+  </button>
+
+  <h1>{{t 'accounts.organizations.title'}}</h1>
+
   <form class="form-horizontal" {{action 'save' on='submit'}}>
     <div class="row">
       {{#each organizational_units}}
@@ -6,7 +12,7 @@
       <div class="col-md-9 overflow-auto">
         <div class="form-group">
           <div class="col-md-12">
-            {{input value=name class="form-control" placeholderTranslation='firstname'}}
+            {{input value=name class="form-control" placeholderTranslation='accounts.organizations.name'}}
           </div>
         </div>
       </div>

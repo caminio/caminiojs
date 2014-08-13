@@ -19,14 +19,4 @@ class OrganizationalUnit < ActiveRecord::Base
     end
   end
     
-  def attributes
-    {
-      id: nil,
-      name: nil,
-      owner_id: nil,
-      user_ids: nil,
-      app_plan_ids: nil
-    }
-  end
-
 end

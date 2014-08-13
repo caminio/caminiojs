@@ -37,7 +37,7 @@ class Users::API < Grape::API
     error! 'Email exists', 409 if User.find_by_email params[:email]
     user = User.new( email: params[:email],
       password: params[:password],
-      organizational_unit_name: params[:company_name])
+      organizational_unit_name: params[:company_name].blank? ? "private" : params[:company_name])
     if user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
         { api_key: user.api_keys.create }

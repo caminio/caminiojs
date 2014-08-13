@@ -29,6 +29,8 @@ Em.merge( Em.I18n.translations, {
   'edit_account': 'Konto bearbeiten'
   'logout': 'Abmelden'
   'cancel': 'Abbrechen'
+  'save': 'Speichern'
+  'proceed_and_dismiss': 'Fortfahren und Verwerfen'
   'send_email': 'Email senden'
   'error.email_unknown': 'The email address <em>{{email}}</em> is unknown'
   'signup_for_free': 'kostenlos registrieren'
@@ -56,4 +58,6 @@ Em.merge( Em.I18n.translations, {
   'search.type': 'Typ'
   'search.date_range': 'Zeitraum'
   'search.term': 'Suchbegriff'
+  'unsaved_content': 'Fortfahren und Verwerfen?'
+  'unsaved_content_desc': 'Nicht alle Elemente auf dieser Webseite wurden gespeichert. Möchtest du diese verwerfen und fortfahren oder vorher speichern?'
 })

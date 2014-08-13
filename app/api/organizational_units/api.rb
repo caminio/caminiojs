@@ -23,7 +23,7 @@ class OrganizationalUnits::API < Grape::API
       app_plan.app.app_models.each do |app_model|
         ou.app_model_user_roles << AppModelUserRole.new(
           app_model: app_model, access_level: Caminio::Access::FULL, user: current_user
-        )
+        ) unless ou.app_model_user_roles.where( user: current_user, app_model: app_model ).first
       end
       ou.app_plans << app_plan
     end
