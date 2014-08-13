@@ -67,6 +67,14 @@ describe 'user' do
 
     end
 
+    context "organizational_units" do
+
+      it "always got a private unit" do
+        expect( user.organizational_units.first.name ).to eq("private")
+      end
+
+    end
+
     it{ expect( User.find_by_email(user.email).authenticate("wrong")).to eq(false) }
 
   end
@@ -92,7 +100,7 @@ describe 'user' do
       unit = OrganizationalUnit.create( name: "test" )
       cur_number = OrganizationalUnitMember.count;
       User.create( attributes_for(:user, organizational_units: [ unit ] ))
-      expect( OrganizationalUnitMember.count ).to eq( cur_number + 1 )
+      expect( OrganizationalUnitMember.count ).to eq( cur_number + 2 )
     end
 
     it "gets all apps which are passed to link_app_models" do
@@ -148,7 +156,6 @@ describe 'user' do
 
     let!(:user) do
       create(:user, password: "tesT123", email: "test@test.com") 
-      User.find_by( email: "test@test.com" )
     end   
 
     let!(:user2) do
@@ -172,6 +179,7 @@ describe 'user' do
     end
 
     it "destroys its access_rules for labels", type:"special" do
+      puts user.current_organizational_unit.inspect
       Label.with_user(user).find_by(id: label.id).share(user2)
       labels_before_destroy = Label.count 
       rules_before_destroy = AccessRule.count

@@ -189,12 +189,12 @@ class CreateCaminioTables < ActiveRecord::Migration
     add_index :row_labels, :row_type
 
     create_table :access_rules do |t|
-      t.integer       :row_id
-      t.string        :row_type
+      t.integer       :row_id, required: true
+      t.string        :row_type, required: true
       t.integer       :group_id
-      t.integer       :organizational_unit_id
+      t.integer       :organizational_unit_id, required: true
       t.references    :label
-      t.references    :user
+      t.references    :user, required: true
       t.boolean       :can_write, default: false
       t.boolean       :can_share, default: false
       t.boolean       :can_delete, default: false

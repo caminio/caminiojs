@@ -21,8 +21,7 @@ module CanNotify
 
     def notify_on_create
       users = @notify_users || get_users('create')
-      puts "we got"
-      puts users.inspect
+      
       users.each do |user|
         self.notification_mailer.create_notification( user, self ).deliver
       end

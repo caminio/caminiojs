@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   after_create :find_or_create_organizational_unit 
   before_create :check_locale
   before_destroy :destroy_dependencies
+  after_create :check_current_organizational_unit
 
   attr_accessor :current_organizational_unit
   attr_accessor :organizational_unit_name
@@ -54,6 +55,12 @@ class User < ActiveRecord::Base
 
   private
 
+    def check_current_organizational_unit
+      self.current_organizational_unit = organizational_units.first unless self.current_organizational_unit
+      self.save
+      self
+    end
+
     def check_locale
       self.locale = I18n.locale unless self.locale
     end
@@ -63,7 +70,7 @@ class User < ActiveRecord::Base
     end
 
     def find_or_create_organizational_unit 
-      return if self.organizational_units.size > 0     
+      return if self.organizational_units.where( :name => "private" ).first
       self.organizational_units.create( 
         :name => organizational_unit_name || "private", 
         :owner => self 
@@ -73,9 +80,6 @@ class User < ActiveRecord::Base
     def find_by_id(value, unit)
       value.each_pair do |model_id, access_level|
         model = AppModel.where( :id => model_id ).load.first
-        puts model.inspect
-        puts model_id
-        puts AppModel.where({}).load.inspect
         self.app_model_user_roles.create( 
           :app_model => model, 
           :access_level => access_level, 

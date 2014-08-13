@@ -46,7 +46,6 @@ describe 'labels' do
 
     let!(:user) do
       create(:user, password: "tesT123", email: "test@test.com") 
-      User.find_by( email: "test@test.com" )
     end   
 
     let!(:user2) do

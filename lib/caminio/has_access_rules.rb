@@ -1,3 +1,4 @@
+
 # encoding: utf-8
 module HasAccessRules
 
@@ -61,14 +62,27 @@ module HasAccessRules
     end
 
     def share(user, rights={can_delete: false, can_write: false, can_share: false})
+      unit = get_organizational_unit_of_target( user, updater )
       rule = access_rules.find_by( user: updater )
       can_share = rule && ( rule.can_share? || rule.is_owner? ) 
       return false unless can_share 
       if existing_rule = access_rules.find_by( user: user )      
         existing_rule.with_user(updater).update(rights)
       else
-        access_rules.create({ user: user, creator: updater, updater: updater }.merge(rights))
+        access_rules.create({ 
+          user: user, 
+          creator: updater, 
+          updater: updater,
+          organizational_unit: unit 
+        }.merge(rights))
       end
+    end
+
+    def get_organizational_unit_of_target user, updater
+      raise StandardError.new("No current_organizational_unit set for user: " + user.id.to_s ) unless updater.current_organizational_unit
+      unit = user.organizational_units.where( :name => updater.current_organizational_unit .name ).first
+      raise StandardError.new("User is not member of passed current_organizational_unit: " + user.id.to_s ) unless unit
+      return unit
     end
 
     def check_if_updater_has_rights
@@ -84,10 +98,13 @@ module HasAccessRules
     end
 
     def create_default_rule
+      user = User.find_by( :id => self.created_by )
+      unit = user.current_organizational_unit || user.organizational_units.first
       self.access_rules.create(
         row_id: self.id,
         row_type: self.class.name,
         user_id: self.created_by,
+        organizational_unit: unit,
         is_owner: true,
         created_by: self.created_by,
         updated_by: self.created_by

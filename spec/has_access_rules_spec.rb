@@ -36,7 +36,7 @@ describe 'has_access_rules (example: Message)' do
 
     let!(:user){ create(:user) }
     let!(:user2){ create(:user) }
-    let!(:message){ create(:message, creator: user) }
+    let!(:message){ create(:message, creator: user, updater: user) }
 
     it "owner can delete" do
       expect( message.destroy ).to eq(message)
@@ -54,6 +54,11 @@ describe 'has_access_rules (example: Message)' do
       expect( Message.with_user(user2).find_by(id: message.id).destroy ).to be(false)
       expect( Message.find_by( id: message.id ) ).to be_a(Message)
     end
+
+
+  end
+
+  context 'sharing' do
 
 
   end

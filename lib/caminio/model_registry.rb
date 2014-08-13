@@ -17,9 +17,10 @@ module Caminio
           Rails.logger.info "skipping: #{model[:name]}, caminio model registry #{model.inspect} missing key: app_name"
           next
         end
+
         app = App.find_or_create_by( name: model[:options].delete(:app_name) )
         app_model = AppModel.find_or_create_by( name: model[:name], app_id: app.id ) 
-        app_model.update! model[:options]
+        app_model.update! model[:options] if model[:options].size > 0
         
       end
     end
