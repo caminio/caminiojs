@@ -15,17 +15,6 @@ class Message < ActiveRecord::Base
 
   after_create :create_user_messages, :set_notification_users, :notify_on_create
 
-  def attributes
-    { title: nil,
-      content: nil,
-      parent_id: nil,
-      type: nil,
-      row_id: nil,
-      row_type: nil,
-      id: nil
-    }
-  end
-
   private
 
     def create_user_messages

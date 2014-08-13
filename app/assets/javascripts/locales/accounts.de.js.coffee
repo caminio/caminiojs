@@ -39,4 +39,7 @@ Em.merge( Em.I18n.translations, {
       'name': 'Firma / Verein / Arbeitsgruppe'
       'owner': 'Eigentümer'
       'collaborators': 'Mitarbeiter'
+      'create': 'Organisation erstellen'
+      'create_title': 'Neue Organisation'
+      'created': 'Organisation {{name}} wurde erfolgreich gespeichert'
 })

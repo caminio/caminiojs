@@ -5,10 +5,23 @@ class OrganizationalUnits::API < Grape::API
   default_format :json
 
   helpers Caminio::API::Helpers
+  formatter :json, Grape::Formatter::ActiveModelSerializers
 
   get '/' do
     authenticate!
     { organizational_units: current_user.organizational_units, organizational_unit_members: current_user.organizational_unit_members }
+  end
+
+  params do
+    requires :organizational_unit, type: Hash do
+      requires :name
+    end
+  end
+  post '/' do
+    authenticate!
+    ou = current_user.organizational_units.create declared( params )[:organizational_unit]
+    return error!(ou.errors.full_messages, 422) unless ou
+    ou
   end
 
   params do

@@ -6,6 +6,9 @@ App.CaminioModalComponent = Ember.Component.extend
     @.$('.modal').modal().on('hidden.bs.modal', (->
       @.sendAction('close')
     ).bind(@))
+      .on('shown.bs.modal', (->
+        @.$('.modal-dialog .js-get-focus:first').focus()
+      ).bind(@))
     if @get('width')
       @.$('.modal-dialog').css('width', @get('width'))
   ).on('didInsertElement')
