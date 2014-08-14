@@ -33,14 +33,14 @@ module HasAccessRules
 
     end
 
-    def new_with_user(user, attributes)
+    def new_with_user(user, attributes={})
       row = self.new( attributes )
       row.creator = user 
       row.updater = user
       row
     end
 
-    def create_with_user(user, attributes)
+    def create_with_user(user, attributes={})
       row = new_with_user(user, attributes)
       row if row.save
     end
