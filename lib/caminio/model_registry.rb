@@ -13,6 +13,7 @@ module Caminio
     def self.init
       @@models ||= []     
       @@models.each do |model|
+
         if !model[:options][:app_name]
           Rails.logger.info "skipping: #{model[:name]}, caminio model registry #{model.inspect} missing key: app_name"
           next

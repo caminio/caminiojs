@@ -59,8 +59,8 @@ describe 'has_access_rules (example: Message)' do
   end
 
   context 'sharing' do
-
-
+    
+    
   end
 
 end
