@@ -1,25 +1,38 @@
 <section>
-  <button class="btn add-plan pull-right btn-sm btn-primary hint--left" {{translateAttr data-hint='accounts.organizations.add'}} {{action 'openModal' 'accounts/new_organization'}}>
-    <i class="fa fa-plus"></i>
-  </button>
 
   <h1>{{t 'accounts.organizations.title'}}</h1>
 
+  <div class="align-right control-wrap">
+
+   {{view App.Select2SelectView
+          class="select-ou"
+          prompt=false
+          contentBinding="organizational_units"
+          optionValuePath="content.id"
+          optionLabelPath="content.name"
+          selectionBinding="App.currentOu"}}
+
+    <button class="btn add-ou pull-right btn-sm btn-primary hint--left" {{translateAttr data-hint='accounts.organizations.add'}} {{action 'openModal' 'accounts/new_organization'}}>
+      <i class="fa fa-plus"></i>
+    </button>
+
+  </div>
+
   <form class="form-horizontal" {{action 'save' on='submit'}}>
+    {{#if currentOrganizationalUnit}}
     <div class="row">
-      {{#each organizational_units}}
-        {{#equal name 'private'}}
-        {{else}}
-        <div class="col-md-3 mini-header">{{name}}</div>
-        <div class="col-md-9 overflow-auto">
-          <div class="form-group">
-            <div class="col-md-12">
-              {{input value=name class="form-control" placeholderTranslation='accounts.organizations.name'}}
-            </div>
+      <h2>{{t 'accounts.organizations.settings'}}</h2>
+      <div class="col-md-3">{{t 'accounts.organizations.name'}}</div>
+      <div class="col-md-9 overflow-auto">
+        <div class="form-group">
+          <div class="col-md-12">
+            {{input value=name class="form-control" placeholderTranslation='accounts.organizations.name'}}
           </div>
         </div>
-        {{/equal}}
-      {{/each}}
+      </div>
     </div>
+    {{else}}
+    <div class="well">{{t 'accounts.organizations.select'}}</div>
+    {{/if}}
   </form>
 </section>

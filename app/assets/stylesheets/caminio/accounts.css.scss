@@ -58,13 +58,33 @@
   vertical-align: middle;
 }
 
-.accounts-container h1{
+.accounts-container h1,
+.accounts-container h2{
   font-size: 20px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
   margin-bottom: 15px;
 }
 
+.accounts-container h2{
+  font-size: 16px;
+  border-bottom: none;
+}
+
 .accounts-container .add-plan{
   margin: -5px 5px 0 0;
+}
+
+.accounts-container .select-ou{
+  width: 500px;
+  margin: -5px 10px 0 0;
+}
+
+.accounts-container .add-ou{
+  padding: 7px 12px;
+  margin-top: -5px;
+}
+
+.accounts-container .control-wrap{
+  padding: 10px 0;
 }

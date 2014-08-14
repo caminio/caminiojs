@@ -6,7 +6,7 @@ App.AuthController = Ember.Controller.extend
     @get 'controllers.sessions.currentUser'
   ).property('controllers.sessions.currentUser')
 
-  currentOU: (->
+  currentOu: (->
     @get 'controllers.sessions.currentOU' || @get 'controllers.sessions.currentUser.organizational_units.firstObject' 
   ).property('controllers.sessions.currentUser.organizational_unit')
 

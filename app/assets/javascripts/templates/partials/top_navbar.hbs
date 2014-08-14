@@ -19,7 +19,7 @@
     <div class="account-name">
     <span class="account-name-small">{{currentUser.name_or_email}}</span>
     <br>
-    <span>{{currentUser.current_organizational_unit.name}}</span>
+    <span>{{currentOu.name}}</span>
   </div>
     <div class="dropdown-menu" role="menu">
       <img class="account-image-big pull-left" {{bind-attr src="currentUser.avatar_thumb"}}>

@@ -12,7 +12,11 @@
 #= require typeahead.js/dist/typeahead.bundle
 #= require codemirror
 #= require moment
+#
+# REMOVE THIS !!!!
 #= require select2
+#
+#= require selectize/dist/js/selectize.min
 #= require handlebars
 #= require ember
 #= require ember-data
@@ -46,7 +50,12 @@ App.setAuthenticationBearer = (access_token, user)->
   Ember.$.ajaxSetup
     headers:
       'Authorization': 'Bearer ' + access_token
-      'Ou': user && user.get('current_organizational_unit.id') || null
+  return unless user
+  App.set 'currentUser', user
+  App.set 'currentOu', user.get('organizational_units.firstObject')
+  Ember.$.ajaxSetup
+    headers:
+      'Ou': App.get('currentOu')
 
 # ember i18n
 Ember.View.reopen Em.I18n.TranslateableAttributes

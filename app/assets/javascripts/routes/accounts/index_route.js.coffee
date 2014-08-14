@@ -1,3 +1,4 @@
-App.AccountsIndexRoute = App.AuthRoute.extend
+App.AccountsIndexRoute = App.ApplicationRoute.extend
+  auth: true
   model: ->
-    @.controllerFor('sessions').get('currentUser')
+    App.get 'currentUser'

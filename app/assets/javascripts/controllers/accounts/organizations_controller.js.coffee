@@ -1,6 +1,7 @@
 App.AccountsOrganizationsController = Em.ObjectController.extend
   availableLangs: ['de','en']
   newOu: null
+  currentOrganizationalUnit: null
 
   actions:
 

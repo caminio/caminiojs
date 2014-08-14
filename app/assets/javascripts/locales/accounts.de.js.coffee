@@ -42,4 +42,6 @@ Em.merge( Em.I18n.translations, {
       'create': 'Organisation erstellen'
       'create_title': 'Neue Organisation'
       'created': 'Organisation {{name}} wurde erfolgreich gespeichert'
+      'select': 'Wähle eine Organisation aus der Liste, um sie zu bearbeiten'
+      'settings': 'Einstellungen'
 })
