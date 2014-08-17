@@ -6,7 +6,7 @@ body textarea{
   border: none;
   box-shadow: 0 1px 3px rgba(128, 128, 128, 0.2);
   border-radius: 0;
-  transition: all 0.8s;
+  // transition: all 0.8s;
 }
 
 body input[type=text]:hover,
@@ -68,3 +68,20 @@ table.table thead th{
   font-weight: 500;
 }
 
+body label{
+  font-weight: 500;
+  color: #555;
+}
+
+body .twitter-typeahead{
+  width: 100%;
+}
+
+body .bootbox.modal button.close{
+  margin: -3px 5px !important;
+}
+
+body .bootbox.modal .modal-footer,
+body .bootbox.modal .modal-header{
+  border: none;
+}

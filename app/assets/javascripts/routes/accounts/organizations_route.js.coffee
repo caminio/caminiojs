@@ -6,3 +6,4 @@ App.AccountsOrganizationsRoute = App.ApplicationRoute.extend
     @_super(controller,model)
     controller.set 'newOu', @store.createRecord('organizational_unit')
     controller.set 'currentOrganizationalUnit', (if App.get('currentOu.name') == 'private' then null else App.get('currentOu') )
+    controller.set 'ownerEmail', App.get('currentUser.email')

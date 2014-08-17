@@ -4,7 +4,7 @@
   </div>
 
   {{#if message}}
-  <div {{bind-attr class=":alert valid:alert-info:alert-danger"}}>{{{message}}}</div>
+  <div {{bind-attr class=":alert valid:alert-info:alert-danger error:alert-danger"}}>{{{message}}}</div>
   {{/if}}
   {{yield}}
 </div>

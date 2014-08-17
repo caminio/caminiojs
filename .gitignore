@@ -20,6 +20,7 @@ tmp
 *.o
 *.a
 mkmf.log
+.DS_Store
 spec/dummy/log/*
 node_modules
 spec/dummy/db/*

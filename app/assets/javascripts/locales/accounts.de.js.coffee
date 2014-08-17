@@ -35,8 +35,9 @@ Em.merge( Em.I18n.translations, {
       'select_at_least_one': 'Es muss mindestens ein Tarif aktiv sein. Es gibt auch kostenlose Tarife. Bitte wähle einen.'
     organizations:
       'title': 'Organisationen'
-      'add': 'Organisation hinzufügen'
-      'name': 'Firma / Verein / Arbeitsgruppe'
+      'add': 'Neue Organisationen hinzufügen'
+      'name': 'Firma / Arbeitsgruppe'
+      'default_lang': 'Bevorzugte Sprache'
       'owner': 'Eigentümer'
       'collaborators': 'Mitarbeiter'
       'create': 'Organisation erstellen'
@@ -44,4 +45,11 @@ Em.merge( Em.I18n.translations, {
       'created': 'Organisation {{name}} wurde erfolgreich gespeichert'
       'select': 'Wähle eine Organisation aus der Liste, um sie zu bearbeiten'
       'settings': 'Einstellungen'
+      'change_ownership_desc': 'Du kannst die Eigentümerschaft dieser Organisation an eine andere Person übertragen. Die angegebene Person muss Mitglied in der Organistaion sein. Um den Eigentümerwechsel abzuschließen, muss der neue Eigentümer zustimmen und falls kommerzielle Produkte verwendet werden, die erforderlichen Bankdaten bekannt gegeben haben.'
+      'delete': 'Organisation löschen'
+      'really_delete': 'Möchtest du die Organisation <strong>{{name}}</strong> wirklich löschen? Alle Mitglieder werden aus der Organisation ausgetragen und zugehörige Daten werden gelöscht. Diese Aktion kann nicht rückgängig gemacht werden. Falls du fortfahren möchtest, schreib bitte den Namen der Organisation (<strong>{{name}}</strong>)'
+      'deleted': 'Organisation <strong>{{name}}</strong> wurde gelöscht'
+      'yes': 'ja'
+    users:
+      'title': 'Mitarbeiter'
 })

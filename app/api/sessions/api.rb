@@ -9,7 +9,7 @@ class Sessions::API < Grape::API
   post '/' do
     error!('401 Unauthorized', 401) unless @user = User.where( "email = ? OR username = ?", params[:login], params[:login] ).first.try(:authenticate, params[:password])
     #invalidate other logins:
-    @user.api_keys.delete_all
+    @user.api_keys.map(&:destroy)
     { api_key: @user.api_keys.create }
   end
 

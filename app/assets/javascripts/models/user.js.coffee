@@ -8,12 +8,9 @@ App.User = DS.Model.extend
   password:                       DS.attr "string"
   password_confirmation:          DS.attr "string"
   settings:                       DS.attr "object"
-  organizational_units:           DS.hasMany "organizational_unit"
+  organizational_units:           DS.hasMany "organizational_unit", inverse: 'users'
   avatar_thumb:                   DS.attr "string"
 
-  current_organizational_unit:      (->
-    @get('organizational_units.firstObject')
-  ).property 'organizational_units'
   name: (->
     return @.get('username') unless Em.isEmpty(@.get('username'))
     name = @.get('firstname')

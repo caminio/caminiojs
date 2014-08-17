@@ -31,10 +31,11 @@
    * @param obj {JQuery} jquery object of this select2 instance
    * 
    */
-  App.Select2SelectView = Ember.Select.extend({
+  Ember.Select2 = Ember.Select.extend({
 
     prompt: Em.I18n.t('please_select'),
     classNames: ['input-xlarge'],
+    search: true,
 
     willInsertElement: function(){
       if( this.get('noPrompt') )
@@ -51,7 +52,7 @@
       var self = this;
       var options = {};
 
-      if( this.get('noSearch') )
+      if( !this.get('search') )
         options.minimumResultsForSearch = -1;
 
       this.$().select2( options ).on('select2-open', function(){
@@ -95,46 +96,7 @@
 
   });
 
-  App.Select2TagView = Ember.TextField.extend({
-
-    didInsertElement: function() {
-      Ember.run.scheduleOnce('afterRender', this, 'processChildElements');
-    },
-
-    processChildElements: function() {
-      var options = {};
-      options.placeholder   = Em.I18n.t('please_select');
-      options.allowClear    = true;
-      options.closeOnSelect = true;
-      options.tokenSeparators = [','];
-      options.width         = '100%';
-      options.tags          = this.get('tags') || [];
-
-      var $elem = this.$().select2(options);
-
-      $elem.prev('div').find('ul.select2-choices').sortable({
-        containment: 'parent',
-        start: function() { $elem.select2('onSortStart'); },
-        update: function() { $elem.select2('onSortEnd'); }
-      });
-
-    },
-
-    willDestroyElement: function () {
-      this.$().select2("destroy");
-    },
-
-    selectedDidChange : function(){
-      var val = this.get('value');
-      if( typeof(val) === 'string' )
-        val = val.split(',');
-      this.$().select2('val', val);
-    }.observes('value')
-
-  });
-
-
-  App.Select2CountryView = Ember.Select.extend({
+  Ember.Countries = Ember.Select.extend({
 
     prompt: Em.I18n.t('select_country'),
     classNames: ['input-xlarge'],
@@ -191,7 +153,7 @@
    * TypeaheadTextFieldView
    * example:
    * {{view App.Select2AjaxTextFieldView
-        contentUrl="/caminio/get/data.json"
+        source="/caminio/get/data.json?q=%QUERY"
         optionValuePath="content.id"
         optionLabelPath="content.label"
         valueBinding="controller.selectedId"}}
@@ -218,7 +180,7 @@
    * and should return a select2 compatible result array
    *
    */
-  App.TypeaheadTextFieldView = Ember.TextField.extend({
+  Ember.Typeahead = Ember.TextField.extend({
 
     classNames: ['input-xlarge'],
 
@@ -229,15 +191,15 @@
     processChildElements: function() {
       var self = this;
       var sources;
-      if( this.get('contentUrl') )
+      if( this.get('source') )
         sources = new Bloodhound({
-          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace( self.get('optionValuePath') ),
           queryTokenizer: Bloodhound.tokenizers.whitespace,
-          remote:  this.get('contentUrl')
+          remote:  this.get('source')
         });
       else if( this.get('localContent') )
         sources = new Bloodhound({
-          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace( self.get('optionValuePath')),
           queryTokenizer: Bloodhound.tokenizers.whitespace,
           local: $.map( this.get('localContent'), function(c){ return { value: c }; })
         });
@@ -247,7 +209,7 @@
       sources.initialize();
 
       this.$().typeahead( null, {
-        displayKey: 'value',
+        displayKey: self.get('optionValuePath'),
         source: sources.ttAdapter()
       });
     },

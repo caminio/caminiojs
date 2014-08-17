@@ -6,6 +6,8 @@
  *= require toastr
  *= require toastr_theme
  *= require bootstrap/dist/css/bootstrap
+ *= require ember-table
+ *= require selectize_theme
  *= require bootstrap_theme
  *= require authorization
  *= require_tree ./caminio
@@ -26,7 +28,7 @@ body > .ember-view{
 }
 
 .outlet-content-wrap{
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
 .overflow-auto{

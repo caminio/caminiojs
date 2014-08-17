@@ -6,7 +6,8 @@ App.SessionsController = Ember.Controller.extend
     @setProperties
       login: ''
       password: ''
-      errorMessage: ''
+      message: ''
+      error: false
 
   actions:
     login: ->
@@ -17,7 +18,7 @@ App.SessionsController = Ember.Controller.extend
           controller.authenticate(response.api_key)
         .fail (error)->
           if error.status == 401
-            controller.set 'errorMessage', Em.I18n.t('invalid_username_or_password')
+            controller.set 'message', Em.I18n.t('invalid_username_or_password')
 
   authenticate: (api_key)->
     Ember.$.cookie 'caminio-session', api_key.access_token
@@ -27,15 +28,3 @@ App.SessionsController = Ember.Controller.extend
       api_key.user_id).then (user)->
         App.setAuthenticationBearer( api_key.access_token, user )
     @.transitionToRoute('dashboard.index')
-    # logout: ->
-    #   controller = @
-    #   Ember.$.ajax url: "/caminio/sessions/#{@get('currentApiKey.id')}",
-    #     type: 'delete'
-    #     .then (response)->
-    #       Ember.$.removeCookie 'caminio-session'
-    #       Ember.$.ajaxSetup
-    #         headers:
-    #           'Authorization': 'Bearer none'
-    #       controller.set 'currentApiKey', null
-    #       controller.set 'currentUser', null
-    #

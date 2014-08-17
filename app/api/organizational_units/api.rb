@@ -44,4 +44,14 @@ class OrganizationalUnits::API < Grape::API
     {}
   end
 
+  desc "deletes an organizational unit"
+  delete '/:id' do
+    authenticate!
+    ou = OrganizationalUnit.find params[:id]
+    return error!('not_found',404) unless ou
+    return error!('cannot_delete_private_ou',409) if ou.name == 'private'
+    return ou if ou.destroy
+    error!('failed_to_delete',500)
+  end
+
 end

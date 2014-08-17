@@ -29,7 +29,7 @@
             {{t 'language'}}
           </div>
           <div class="col-md-2">
-            {{view App.Select2SelectView value=settings.lang content=availableLangs noSearch=true prompt=false}}
+            {{view Ember.Select2 value=settings.lang content=availableLangs search=false prompt=false}}
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="form-group">
-          {{view App.Select2CountryView value=settings.country class="col-md-12"}}
+          {{view Ember.Countries value=settings.country class="col-md-12"}}
         </div>
       </div>
     </div>

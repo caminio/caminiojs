@@ -1,7 +1,8 @@
-App.SessionsForgotPasswordController = Ember.Controller.extend
+App.SessionsForgotPasswordController = App.SessionsController.extend
 
   email: ''
   message: Ember.I18n.t('forgot_info')
+  valid: true
 
   actions:
 
@@ -16,4 +17,5 @@ App.SessionsForgotPasswordController = Ember.Controller.extend
       ).then (response)->
         controller.set('message', response.message)
       .fail (response)->
-        controller.set('errorMessage', Em.I18n.t('error.email_unknown', { email: controller.get('email') }))
+        controller.set('error',true)
+        controller.set('message', Em.I18n.t('error.email_unknown', { email: controller.get('email') }))

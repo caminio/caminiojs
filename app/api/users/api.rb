@@ -8,11 +8,15 @@ class Users::API < Grape::API
   formatter :json, Grape::Formatter::ActiveModelSerializers
 
   params do
-    # requires :ou, type: :integer
+    optional :simple_list, default: false
+    optional :q
   end
-  get '/', root: "users" do
+  get '/', root: 'users' do
     authenticate!
-    User.includes(:organizational_units).where("organizational_units.id=?", headers['Ou'] ).references(:organizational_units)
+    users = User.includes(:organizational_units).where("organizational_units.id=?", headers['Ou'] ).references(:organizational_units)
+    users = users.where(["users.firstname LIKE ? OR users.lastname LIKE ? OR users.email LIKE ?"] + 3.times.collect{ "%#{params[:q]}%" }) unless params[:q].blank?
+    return users.map{ |u| { name: u.name, email: u.email, formattedName: "<strong>#{u.name}</strong> #{u.email}" } } if params[:simple_list]
+    users
   end
 
   post '/avatar' do

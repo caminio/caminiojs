@@ -15,12 +15,12 @@
     </ul>
   </div>
   <div class="account-info pull-right dropdown">
-    <img class="account-image pull-right" {{bind-attr src=currentUser.avatar_thumb}} data-toggle="dropdown">
+    <img class="account-image pull-right hint--bottom" {{translateAttr data-hint="account_settings"}} {{bind-attr src=currentUser.avatar_thumb}} data-toggle="dropdown">
     <div class="account-name">
-    <span class="account-name-small">{{currentUser.name_or_email}}</span>
-    <br>
-    <span>{{currentOu.name}}</span>
-  </div>
+      <span class="account-name-small">{{currentUser.name_or_email}}</span>
+      <br>
+      <span>{{currentOu.name}}</span>
+    </div>
     <div class="dropdown-menu" role="menu">
       <img class="account-image-big pull-left" {{bind-attr src="currentUser.avatar_thumb"}}>
       <div class="account-info-details">

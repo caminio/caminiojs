@@ -1,4 +1,5 @@
 #= require jquery
+#= require pace_options
 #= require pace
 #= require toastr
 #= require 3rd/nicescroll.min
@@ -13,15 +14,22 @@
 #= require codemirror
 #= require moment
 #
-# REMOVE THIS !!!!
 #= require select2
+#= require selectize/dist/js/standalone/selectize.min
 #
-#= require selectize/dist/js/selectize.min
+#= require bootbox
+#
 #= require handlebars
 #= require ember
 #= require ember-data
 #= require cldr-plurals
 #= require ember-i18n
+#
+# EMBER TABLE
+#= require 3rd/jquery-ui.min
+#= require 3rd/jquery.mousewheel.min
+#= require 3rd/antiscroll
+#= require ember-table
 #
 #= require_self
 #= require_tree ./locales
@@ -52,10 +60,15 @@ App.setAuthenticationBearer = (access_token, user)->
       'Authorization': 'Bearer ' + access_token
   return unless user
   App.set 'currentUser', user
-  App.set 'currentOu', user.get('organizational_units.firstObject')
+  currentOuCookie = Ember.$.cookie 'caminio-session-ou'
+  ou = user.get('organizational_units').findBy('id', currentOuCookie )
+  if ou
+    App.set 'currentOu', ou
+  else
+    App.set 'currentOu', user.get('organizational_units.firstObject')
   Ember.$.ajaxSetup
     headers:
-      'Ou': App.get('currentOu')
+      'Ou': App.get('currentOu.id')
 
 # ember i18n
 Ember.View.reopen Em.I18n.TranslateableAttributes

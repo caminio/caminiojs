@@ -3,19 +3,23 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 50px;
   background: #333;
   color: #fff;
   z-index: 999;
 }
 
+.top-nav-content-wrap{
+  margin-top: 5px;
+}
+
 .apps-list-trigger{
-  width: 40px;
-  height: 40px;
   color: #aaa;
-  font-size: 20px;
-  padding: 5px 10px;
   cursor: pointer;
+  font-size: 22px;
+  height: 50px;
+  padding: 9px 15px;
+  width: 50px;
 }
 
 .apps-list-trigger:hover{
@@ -60,6 +64,7 @@
 
 .account-info{
   color: #ddd;
+  margin-top: 5px;
 }
 
 .account-image{
@@ -111,6 +116,7 @@
   background: #eee;
   border-radius: 0;
   width: 400px;
+  margin-top: 7px;
 }
 
 .account-info-details{
@@ -118,7 +124,8 @@
 }
 
 .account-name{
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 14px;
   float: left;
   padding: 5px 10px;
   text-align: right;
