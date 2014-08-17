@@ -7,10 +7,11 @@ class Sessions::API < Grape::API
   helpers Caminio::API::Helpers
 
   post '/' do
-    error!('401 Unauthorized', 401) unless @user = User.where( "email = ? OR username = ?", params[:login], params[:login] ).first.try(:authenticate, params[:password])
+    error!('401 Unauthorized', 401) unless user = User.where( "email = ? OR username = ?", params[:login], params[:login] ).first.try(:authenticate, params[:password])
     #invalidate other logins:
-    @user.api_keys.map(&:destroy)
-    { api_key: @user.api_keys.create }
+    user.api_keys.map(&:destroy)
+    user.update! last_login_at: Time.now
+    { api_key: user.api_keys.create }
   end
 
   delete '/' do

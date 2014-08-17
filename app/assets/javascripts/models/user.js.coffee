@@ -18,7 +18,12 @@ App.User = DS.Model.extend
     name << @.get('lastname')
     name
   ).property('username','firstname','lastname')
+
   name_or_email: (->
     return @.get('name') unless Em.isEmpty @.get('name')
     @.get('email')
   ).property('username','firstname','lastname','email')
+
+  formattedLastLoginAt: (->
+    return moment(@get('last_login_at')).fromNow()
+  ).property 'last_login_at'

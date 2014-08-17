@@ -30,6 +30,8 @@ Em.merge( Em.I18n.translations, {
   'account_settings': 'Kontoeinstellungen'
   'messages': 'Nachrichten'
   'edit_account': 'Konto bearbeiten'
+  'edit': 'Bearbeiten'
+  'delete': 'Löschen'
   'logout': 'Abmelden'
   'cancel': 'Abbrechen'
   'cancelled': 'Abgebrochen'

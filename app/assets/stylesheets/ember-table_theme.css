@@ -1,0 +1,104 @@
+body .ember-table-tables-container{
+  background: none;
+  border: none;
+}
+
+body .ember-table-add-column-bottom{
+  border: none;
+  background: none;
+}
+
+body .ember-table-table-row{
+  border: none;
+  background: none;
+}
+
+body .ember-table-cell{
+  border: none;
+  padding: 5px 0;
+}
+
+body .ember-table-header-container .ember-table-cell .ember-table-content{
+  padding: 12px 5px;
+}
+
+body .ember-table-header-container{
+  color: #777;
+  box-shadow: none;
+  border: none;
+  border-bottom: 4px solid #dfdfdf;
+}
+
+body .ember-table-header-cell{
+  background: none;
+}
+
+body .ember-table-header-row,
+body .ember-table-fixed-table-container.ember-table-header-container,
+body .ember-table-header-container .ember-table-table-fixed-wrapper{
+  background: none;
+}
+
+body .ember-table-body-container .ember-table-table-row.ember-table-hover{
+  background: none;
+}
+
+body .ember-table-body-container .ember-table-table-row.ember-table-selected{
+  background-color: inherit;
+  color: inherit;
+}
+
+body .ember-table-body-container .ember-table-table-row.ember-table-selected .ember-table-cell{
+  border: none;
+}
+
+.ember-table-row-checkbox{
+  margin-top: -1px;
+  float: left;
+}
+.ember-table-cell .row-checkbox{
+  border: 1px solid #bbb;
+  background: #fafafa;
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+.ember-table-cell .row-checkbox .fa-check{
+  font-size: 16px;
+  position: absolute;
+  top: 2px; 
+  left: 2px;
+}
+
+.ember-table-row-checkbox .fa-angle-down{
+  font-size: 16px;
+  float: right;
+  margin: -4px 0;
+  padding: 5px;
+  display: none;
+}
+
+.ember-table-row-checkbox .dropdown-toggle-wrap{
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+.ember-table-row-checkbox .dropdown-toggle-wrap:hover{
+  border-color: #cfcfcf;
+  background: #e9e9e9;
+}
+
+.ember-table-row-checkbox .dropdown-toggle-wrap:hover .fa-angle-down{
+  display: block;
+}
+
+.ember-table-row-checkbox .dropdown-menu.fixed{
+  position: fixed;
+  margin-top: -3px;
+  border-radius: 0;
+  background: #e9e9e9;
+  border-color: #cfcfcf;
+  z-index: 1000;
+}
+

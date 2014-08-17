@@ -12,7 +12,7 @@ class ApiKey < ActiveRecord::Base
   end
 
   def setup_expires_at
-    self.expires_at = 2.hours.from_now
+    self.expires_at = 8.hours.from_now
   end
 
 end

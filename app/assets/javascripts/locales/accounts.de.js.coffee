@@ -52,4 +52,9 @@ Em.merge( Em.I18n.translations, {
       'yes': 'ja'
     users:
       'title': 'Mitarbeiter'
+      'id': 'ID'
+      'email': 'Email'
+      'firstname': 'Vorname'
+      'lastname': 'Nachname'
+      'formattedLastLoginAt': 'Login'
 })

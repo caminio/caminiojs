@@ -13,6 +13,7 @@
 #= require typeahead.js/dist/typeahead.bundle
 #= require codemirror
 #= require moment
+#= require moment/locale/de
 #
 #= require select2
 #= require selectize/dist/js/standalone/selectize.min
@@ -101,3 +102,5 @@ DS.ObjectTransform = DS.Transform.extend
 
 
 App.register("transform:object", DS.ObjectTransform)
+
+moment.lang($('html').attr('lang'))
