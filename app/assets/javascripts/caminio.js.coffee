@@ -103,5 +103,5 @@ DS.ObjectTransform = DS.Transform.extend
 
 App.register("transform:object", DS.ObjectTransform)
 
-moment.lang($('html').attr('lang'))
-CLDR.defaultLanguage = moment.lang()
+moment.locale($('html').attr('lang'))
+CLDR.defaultLanguage = moment.locale()

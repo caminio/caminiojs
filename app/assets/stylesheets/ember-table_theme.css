@@ -62,6 +62,7 @@ body .ember-table-body-container .ember-table-table-row.ember-table-selected .em
   width: 18px;
   height: 18px;
   position: relative;
+  margin-left: -4px;
 }
 
 .ember-table-cell .row-checkbox .fa-check{
@@ -74,13 +75,13 @@ body .ember-table-body-container .ember-table-table-row.ember-table-selected .em
 .ember-table-row-checkbox .fa-angle-down{
   font-size: 16px;
   float: right;
-  margin: -4px 0;
+  margin: -4px -4px 0 0;
   padding: 5px;
   display: none;
 }
 
 .ember-table-row-checkbox .dropdown-toggle-wrap{
-  padding: 5px;
+  padding: 6px 8px;
   border: 1px solid transparent;
 }
 

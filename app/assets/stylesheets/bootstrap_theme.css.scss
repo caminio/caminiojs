@@ -41,6 +41,11 @@ body textarea:focus{
   border-color: #48d;
 }
 
+.btn.icon-text .fa{
+  float: left;
+  margin: 3px 10px 0 0;
+}
+
 body .modal-content{
   border-radius: 0;
 }

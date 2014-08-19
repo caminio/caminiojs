@@ -1,6 +1,10 @@
 <section>
 
-  <h1>{{t 'accounts.users.title'}}</h1>
+  <div class="view-actions align-right">
+    <button class="btn btn-primary" {{action 'addUser'}} {{translateAttr title='accounts.users.add'}}>
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
 
   {{table-component
   hasFooter=false

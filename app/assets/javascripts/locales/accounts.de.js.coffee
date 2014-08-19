@@ -57,4 +57,5 @@ Em.merge( Em.I18n.translations, {
       'firstname': 'Vorname'
       'lastname': 'Nachname'
       'formattedLastLoginAt': 'Login'
+      'add': 'Mitarbeiter hinzufügen / einladen'
 })

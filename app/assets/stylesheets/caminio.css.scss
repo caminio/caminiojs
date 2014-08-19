@@ -33,7 +33,7 @@ body > .ember-view{
 }
 
 .overflow-auto{
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .align-right{
@@ -102,4 +102,8 @@ img.avatar{
 
 .desc{
   color: #777;
+}
+
+.view-actions{
+  margin-bottom: 20px;  
 }

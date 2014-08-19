@@ -1,4 +1,4 @@
-App.AccountsUsersController = Em.ArrayController.extend
+App.AccountsUsersController = Em.ObjectController.extend
   numRows: 10
 
   columns: Ember.computed ->
@@ -26,6 +26,9 @@ App.AccountsUsersController = Em.ArrayController.extend
 
     editRecord: (record)->
       console.log "record", record
+
+    addUser: ->
+      @transitionToRoute('accounts.users.new')
 
 App.EmberTableCheckboxTableCell = Ember.Table.CheckboxCell.extend
   templateName: 'accounts/users_checkbox_cell'

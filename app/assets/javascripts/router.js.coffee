@@ -11,6 +11,7 @@ App.Router.map ->
     @route 'organizations'
     @route 'invoices'
     @route 'users'
+    @route 'users.new', path: '/users/new'
 
   @resource 'crm.index', path: '/crm'
 
