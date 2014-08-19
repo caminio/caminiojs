@@ -17,6 +17,8 @@ Em.merge( Em.I18n.translations, {
   'state': 'Bundesland'
   'email': 'Email'
   'phone': 'Telefon'
+  'action_for': 'Aktion für'
+  'records': 'Einträge'
   'please_select': 'Bitte wählen'
   'enter_text_to_add': 'Zum anlegen neuer Einträge, schreib den Text und [Eingabetaste]'
   'add_item': '<strong>{{name}}</strong> anlegen'

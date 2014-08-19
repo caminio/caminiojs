@@ -4,8 +4,6 @@
   left: 0;
   right: 0;
   height: 50px;
-  background: #333;
-  color: #fff;
   z-index: 999;
 }
 
@@ -69,11 +67,12 @@
 
 .account-image{
   background-color: #fff;
-  border-radius: 16px;
-  height: 32px;
-  margin: 3px 20px 3px 5px;
-  width: 32px;
+  border-radius: 20px;
+  height: 40px;
+  margin: 0px 20px 3px 5px;
+  width: 40px;
   cursor: pointer;
+  border: 1px solid #ddd;
 }
 
 .account-image-big{

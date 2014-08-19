@@ -65,10 +65,10 @@ body .ember-table-body-container .ember-table-table-row.ember-table-selected .em
 }
 
 .ember-table-cell .row-checkbox .fa-check{
-  font-size: 16px;
+  font-size: 12px;
   position: absolute;
   top: 2px; 
-  left: 2px;
+  left: 3px;
 }
 
 .ember-table-row-checkbox .fa-angle-down{
@@ -102,3 +102,10 @@ body .ember-table-body-container .ember-table-table-row.ember-table-selected .em
   z-index: 1000;
 }
 
+body .ember-table-header-row .header-actions-title{
+  font-size: 0.8em;
+  padding: 5px;
+}
+body .ember-table-header-row .row-checkbox .fa-check:not(.all-selected){
+  color: #ddd;
+}

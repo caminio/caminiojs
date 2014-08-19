@@ -1,6 +1,5 @@
 App.AccountsUsersController = Em.ArrayController.extend
   numRows: 10
-  itemController: 'accounts_user_table_item'
 
   columns: Ember.computed ->
     checkbox = Ember.Table.ColumnDefinition.create
@@ -23,33 +22,14 @@ App.AccountsUsersController = Em.ArrayController.extend
     columns
   .property()
 
-fixDropdown = ->
-  @$('.dropdown-toggle').on 'click', ->
-    $dropdownMenu = $(@).closest('.dropdown').find('.dropdown-menu')
-    return if $dropdownMenu.data('fixed')
-    $dropdownMenu.data('fixed',true)
-    Ember.run.later (->
-      $dropdownMenu.css
-        left: $dropdownMenu.offset().left
-        top: $dropdownMenu.offset().top
-      .addClass('fixed')
-    ), 50
-
-App.EmberTableCheckboxTableCell = Ember.Table.TableCell.extend
-  templateName: 'common/ember-table/checkbox_cell'
-  classNames: 'ember-table-row-checkbox'
-  didInsertElement: fixDropdown
-
-App.EmberTableCheckboxHeaderCell = Ember.Table.HeaderCell.extend
-  templateName: 'common/ember-table/checkbox_cell'
-  classNames: 'ember-table-row-checkbox ember-table-header-row-checkbox'
-  didInsertElement: fixDropdown
-
-App.AccountsUserTableItemController = Em.ObjectController.extend
   actions:
-    removeRecord: (record)->
-      console.log "removing", record
 
     editRecord: (record)->
-      console.log "eid"
+      console.log "record", record
+
+App.EmberTableCheckboxTableCell = Ember.Table.CheckboxCell.extend
+  templateName: 'accounts/users_checkbox_cell'
+
+App.EmberTableCheckboxHeaderCell = Ember.Table.CheckboxHeaderCell.extend
+  templateName: 'accounts/users_checkbox_cell'
 

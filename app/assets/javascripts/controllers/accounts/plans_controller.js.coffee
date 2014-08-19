@@ -24,6 +24,7 @@ App.AccountsPlansController = Em.ObjectController.extend
         data:
           plan_ids: plan_ids
       ).then ->
+        App.get('currentUser').save()
         toastr.info( Em.I18n.t('accounts.plans.updated' ) )
 
     removePlan: (app_plan)->
