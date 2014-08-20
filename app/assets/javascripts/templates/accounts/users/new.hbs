@@ -1,11 +1,16 @@
 <section>
 
   <form class="form form-horizontal" {{action 'create' on='submit'}}>
-    
+
     <div class="view-actions align-right">
       <button class="btn btn-primary icon-text" {{action 'create'}}>
         <i class="fa fa-envelope"></i> {{t 'invite'}}
       </button>
+    </div>
+
+    <div class="alert alert-info">
+      <i class="fa fa-question"></i>
+      {{t 'accounts.users.invite_desc'}}
     </div>
 
     {{partial 'accounts/users/form'}}

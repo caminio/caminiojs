@@ -1,39 +1,22 @@
 UserDummy = Ember.Object.extend
-  email: ''
   password: ''
-  companyName: ''
-  lang: LANG
-  termsAccepted: false
-  isCompany: true
 
-
-App.SessionsSignupController = Ember.ObjectController.extend App.Validations,
+App.SessionsResetPasswordController = Ember.ObjectController.extend App.Validations,
 
   needs: ['sessions']
-  availableLangs: AVAILABLE_LANGS
+  user_id: null
+  confirmation_key: null
+
   content: UserDummy.create()
 
   pwConstraint: new RegExp("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}")
 
   validate:
-    termsAccepted:
-      required:
-        message: Em.I18n.t('errors.accept_terms')
-    companyName:
-      required: ->
-        return if !@.get('isCompany') || !Em.isEmpty(@.get('companyName'))
-        Em.I18n.t('errors.required.company_name')
-    email:
-      required:
-        message: Em.I18n.t('errors.required.email')
-      match:
-        regexp: /[@]{1}/
-        message: Em.I18n.t('errors.not_an_email_address')
     password:
       required:
         message: Em.I18n.t('errors.required.password')
       custom: ->
-        return if @.get('pwConstraint').test(@.get('password'))
+        return if @.get('pwConstraint').test(@.get('content.password'))
         Em.I18n.t('errors.password_policies_not_fulfilled')
 
   pwStrength: (->
@@ -49,28 +32,23 @@ App.SessionsSignupController = Ember.ObjectController.extend App.Validations,
     return "progress-bar-warning" if @.get('content.password').match(/(?=.*\d)(?=.*[a-z]).{6,}/)
     "progress-bar-danger"
   ).property('content.password')
-  actions:
 
-    toggleTermsAccepted: ->
-      @.set('termsAccepted', !@.get('termsAccepted'))
-    toggleCompany: (company)->
-      @.set('isCompany', company)
-    signupNow: ->
+  actions:
+    save: ->
       return unless @.isValid()
       controller = @
       Ember.$.ajax(
-        url: '/caminio/users/signup',
+        url: '/caminio/users/'+@get('user_id')+'/reset_password',
         type: 'post',
         data:
-          email: @get('content.email')
           password: @get('content.password')
-          company_name: @get('content.companyName')
-          settings:
-            lang: @get('content.lang')
+          confirmation_key: @get('confirmation_key')
       ).then (response)->
         controller.get('controllers.sessions').authenticate(response.api_key)
+        toastr.info Em.I18n.t('accounts.users.password_saved')
       .fail (error)->
         controller.set('valid', false)
         if error.responseJSON.error && error.responseJSON.error.indexOf('exists') >= 0
           return controller.set('message', Em.I18n.t('error.email_exists', { email: controller.get('content.email') }))
         controller.set('message', Em.I18n.t('error.email_error', { email: controller.get('content.email') }))
+

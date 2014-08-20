@@ -93,11 +93,13 @@ Ember.View.reopen Em.I18n.TranslateableAttributes
 #
 DS.ObjectTransform = DS.Transform.extend
   deserialize: (serialized)->
-    return {} if !serialized || Em.isNone(serialized)
+    return {} if Em.isNone(serialized)
+    # return {} if !serialized || Em.isNone(serialized)
     serialized
 
   serialize: (deserialized)->
-    return {} if !deserialized || Em.isNone(serialized)
+    return {} if Em.isNone(deserialized)
+    # return {} if !deserialized || Em.isNone(deserialized)
     deserialized
 
 
@@ -105,3 +107,4 @@ App.register("transform:object", DS.ObjectTransform)
 
 moment.locale($('html').attr('lang'))
 CLDR.defaultLanguage = moment.locale()
+window.AVAILABLE_LANGS = ['de','en']

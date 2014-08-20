@@ -7,15 +7,15 @@ App.SessionsForgotPasswordController = App.SessionsController.extend
   actions:
 
     send_email: ->
-      @.set('errorMessage',null)
       controller = @
       Ember.$.ajax(
-        url: '/caminio/users/reset_password',
+        url: '/caminio/users/send_password_link',
         type: 'post',
         data:
           email: @.get('email')
       ).then (response)->
-        controller.set('message', response.message)
+        controller.set('valid',true)
+        controller.set('message', Em.I18n.t('check_inbox', {email: controller.get('email')}))
       .fail (response)->
-        controller.set('error',true)
+        controller.set('valid',false)
         controller.set('message', Em.I18n.t('error.email_unknown', { email: controller.get('email') }))

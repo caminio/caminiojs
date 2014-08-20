@@ -58,4 +58,7 @@ Em.merge( Em.I18n.translations, {
       'lastname': 'Nachname'
       'formattedLastLoginAt': 'Login'
       'add': 'Mitarbeiter hinzufügen / einladen'
+      'invite_desc': 'Du kannst Mitarbeiter in deine Organisation einladen und ihnen Rechte für Anwendungen zuteilen.'
+      'lang_help': 'Sprache der Einladungsemail und voreingestellte Systemsprache'
+      'password_saved': 'Das neue Passwort wurde gespeichert'
 })

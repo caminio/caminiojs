@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class User < ActiveRecord::Base
 
   has_attached_file :avatar,
@@ -45,6 +47,17 @@ class User < ActiveRecord::Base
 
   def is_superuser?
     false
+  end
+
+  def gen_confirmation_key
+    self.confirmation_key = SecureRandom.hex 
+    self.confirmation_key_expires_at = 7.days.from_now
+    confirmation_key
+  end
+
+  def gen_confirmation_key!
+    gen_confirmation_key
+    save!
   end
 
   def name

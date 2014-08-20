@@ -4,6 +4,7 @@ App.Router.map ->
     @route 'new'
     @route 'logout'
     @route 'forgot_password'
+    @route 'reset_password'
     @route 'signup'
   @resource 'accounts', ->
     @route 'index'

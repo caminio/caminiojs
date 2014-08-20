@@ -81,6 +81,15 @@ body > .ember-view{
   color: #e98482;
 }
 
+.field-with-errors label{
+  color: #d55;
+  font-weight: 600;
+}
+
+.field-with-errors .help-block{
+  color: #d55;
+}
+
 .med-container{
   width: 960px;
   margin-left: auto;

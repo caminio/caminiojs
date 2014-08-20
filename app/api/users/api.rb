@@ -28,19 +28,38 @@ class Users::API < Grape::API
     end
   end
 
-  post '/reset_password' do
+  params do
+    requires :email, type: String
+  end
+  post '/send_password_link' do
     error!('Email unknown',403) unless user = 
       User.find_by_email( params[:email] )
+    error!(error.messages.full_messages,500) unless user.gen_confirmation_key!
     error!('Mailer error',500) unless UserMailer.reset_password( 
       user, 
-      "#{host_url}/caminio#/sessions/reset_password?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key!}" ).deliver
+      "#{host_url}/caminio#/sessions/reset_password?id=#{user.id}&confirmation_key=#{user.confirmation_key}" ).deliver
     {}
+  end
+
+  params do
+    requires :password, type: String
+    requires :confirmation_key, type: String
+  end
+  post '/:id/reset_password' do
+    error!('Confirmation key error',409) unless user = User.find_by( id: params[:id], confirmation_key: params[:confirmation_key] )
+    error!('Confirmation key has expired',419) if user.confirmation_key_expires_at < Time.now
+    user.password = params[:password]
+    user.confirmation_key = nil
+    user.confirmation_key_expires_at = nil
+    error!(user.errors.full_messages,500) unless user.save
+    { api_key: user.api_keys.create }
   end
 
   post '/signup' do
     error! 'Email exists', 409 if User.find_by_email params[:email]
     user = User.new( email: params[:email],
       password: params[:password],
+      settings: { lang: params[:settings][:lang] },
       organizational_unit_name: params[:company_name].blank? ? "private" : params[:company_name])
     if user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
@@ -55,6 +74,18 @@ class Users::API < Grape::API
       elsif user.errors.messages[:password]
         error! 'Invalid password', 422
       end
+    end
+  end
+
+  desc "invites a user to the organizational unit. sends email if does not exist"
+  params do
+    requires :email, type: String
+    requires :settings, type: Hash
+  end
+  post '/invite' do
+    unless user = User.first( email: params[:email] )
+      user = User.new( email: params[:email], settings: params[:settings] )
+      UserMailer.invite( user, "#{host_url}/caminio#/sessions/initial_setup?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key}").deliver
     end
   end
 

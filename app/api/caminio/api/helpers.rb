@@ -20,7 +20,8 @@ module Caminio
       end
 
       def host_url
-        request.host_with_port
+        protocol = "http#{"s" if request.scheme == 'https'}://"
+        protocol+request.host_with_port
       end
 
     end

@@ -1,4 +1,4 @@
-<form {{action 'signupNow' on='submit'}}>
+<form {{action 'signupNow' on='submit'}} class="form form-horizontal">
 
   <div class="form-group">
     <div class="btn-group">
@@ -21,6 +21,15 @@
     {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
     <div class="progress pw-progress">
       <div {{bind-attr class=":progress-bar pwStrengthColor"}} role="progressbar" {{bind-attr style=pwStrength}}></div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <label class="col-md-9 control-label">{{t 'language'}}</label>
+      <div class="col-md-3 align-right">
+        {{view Ember.Select2 value=lang content=availableLangs search=false prompt=false}}
+      </div>
     </div>
   </div>
 

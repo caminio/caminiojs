@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   mount OrganizationalUnits::API => "/caminio/organizational_units"
   mount ApiKeys::API => "/caminio/api_keys"
   mount Sessions::API => "/caminio/sessions"
-  get "/caminio" => "main#index"
+  get "/caminio" => "caminio/main#index"
 end
