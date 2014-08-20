@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Users::API < Grape::API
 
   version 'v1', using: :header, vendor: 'caminio', cascade: false
@@ -17,6 +19,31 @@ class Users::API < Grape::API
     users = users.where(["users.firstname LIKE ? OR users.lastname LIKE ? OR users.email LIKE ?"] + 3.times.collect{ "%#{params[:q]}%" }) unless params[:q].blank?
     return users.map{ |u| { name: u.name, email: u.email, formattedName: "<strong>#{u.name}</strong> #{u.email}" } } if params[:simple_list]
     users
+  end
+
+  desc "invites a user to the organizational unit. sends email if does not exist"
+  params do
+    requires :user, type: Hash do
+      requires :email, type: String
+      requires :locale, type: String
+      optional :app_models, type: Hash
+    end
+  end
+  post '/' do
+    unless user = User.find_by( email: params[:user][:email] )
+      user = User.new( email: params[:user][:email], locale: params[:user][:locale] )
+      user.gen_confirmation_key
+      user.password = SecureRandom.hex
+      params[:app_models].each do |app_model|
+        user.app_model_user_roles.build app_model: app_model[:id], organizational_unit_id:  headers[:Ou], access_level: app_model[:access_level]
+      end
+      return error!(user.errors.full_messages,500) unless user.save
+      if UserMailer.invite( user, current_user, "#{host_url}/caminio#/sessions/initial_setup?email=#{user.email}&confirmation_key=#{user.confirmation_key}").deliver
+        return user
+      else
+        error!('failed to send email', 500)
+      end
+    end
   end
 
   post '/avatar' do
@@ -59,7 +86,7 @@ class Users::API < Grape::API
     error! 'Email exists', 409 if User.find_by_email params[:email]
     user = User.new( email: params[:email],
       password: params[:password],
-      settings: { lang: params[:settings][:lang] },
+      locale: params[:locale],
       organizational_unit_name: params[:company_name].blank? ? "private" : params[:company_name])
     if user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
@@ -74,18 +101,6 @@ class Users::API < Grape::API
       elsif user.errors.messages[:password]
         error! 'Invalid password', 422
       end
-    end
-  end
-
-  desc "invites a user to the organizational unit. sends email if does not exist"
-  params do
-    requires :email, type: String
-    requires :settings, type: Hash
-  end
-  post '/invite' do
-    unless user = User.first( email: params[:email] )
-      user = User.new( email: params[:email], settings: params[:settings] )
-      UserMailer.invite( user, "#{host_url}/caminio#/sessions/initial_setup?email=#{user.email}&confirmation_key=#{user.gen_confirmation_key}").deliver
     end
   end
 

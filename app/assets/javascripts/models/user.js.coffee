@@ -1,4 +1,5 @@
 App.User = DS.Model.extend
+  locale:                         DS.attr "string"
   firstname:                      DS.attr "string"
   username:                       DS.attr "string"
   lastname:                       DS.attr "string"

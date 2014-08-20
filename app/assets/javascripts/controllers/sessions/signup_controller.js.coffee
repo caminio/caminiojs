@@ -2,7 +2,7 @@ UserDummy = Ember.Object.extend
   email: ''
   password: ''
   companyName: ''
-  lang: LANG
+  locale: LANG
   termsAccepted: false
   isCompany: true
 
@@ -65,8 +65,7 @@ App.SessionsSignupController = Ember.ObjectController.extend App.Validations,
           email: @get('content.email')
           password: @get('content.password')
           company_name: @get('content.companyName')
-          settings:
-            lang: @get('content.lang')
+          locale: @get('content.locale')
       ).then (response)->
         controller.get('controllers.sessions').authenticate(response.api_key)
       .fail (error)->

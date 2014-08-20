@@ -24,6 +24,10 @@ body textarea:focus{
   border-radius: 0;
 }
 
+body .btn.btn-transparent{
+  background: none;
+}
+
 .btn.btn-default{
   color: #555;
   background-color: #dfdfdf;

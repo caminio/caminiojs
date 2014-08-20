@@ -1,6 +1,6 @@
-return if window.LANG != 'de'
-Em.I18n.translations ||= {}
-Em.merge( Em.I18n.translations, {
+Em.I18n.availableTranslations ||= {}
+Em.I18n.availableTranslations.de ||= {}
+Em.merge Em.I18n.availableTranslations.de,
   accounts:
     'overview': "Überblick"
     'plans_and_prices': "Tarife und Preise"
@@ -61,4 +61,4 @@ Em.merge( Em.I18n.translations, {
       'invite_desc': 'Du kannst Mitarbeiter in deine Organisation einladen und ihnen Rechte für Anwendungen zuteilen.'
       'lang_help': 'Sprache der Einladungsemail und voreingestellte Systemsprache'
       'password_saved': 'Das neue Passwort wurde gespeichert'
-})
+      'model_access': 'Du kannst hier Zugriffsrechte für dieses Konto einstellen'

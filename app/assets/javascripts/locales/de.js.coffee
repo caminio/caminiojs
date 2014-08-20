@@ -1,9 +1,11 @@
-return if window.LANG != 'de'
-Em.I18n.translations ||= {}
-Em.merge( Em.I18n.translations, {
+Em.I18n.availableTranslations ||= {}
+Em.I18n.availableTranslations.de ||= {}
+
+Em.merge Em.I18n.availableTranslations.de,
   apps:
     'caminio': 'Dashboard'
     'crm': 'CRM'
+  'back': 'zurück'
   'email_or_username': 'Email oder Kontoname'
   'email_address': 'Email Address'
   'username': 'Pseudonym'
@@ -79,4 +81,3 @@ Em.merge( Em.I18n.translations, {
   'search.term': 'Suchbegriff'
   'unsaved_content': 'Fortfahren und Verwerfen?'
   'unsaved_content_desc': 'Nicht alle Elemente auf dieser Webseite wurden gespeichert. Möchtest du diese verwerfen und fortfahren oder vorher speichern?'
-})

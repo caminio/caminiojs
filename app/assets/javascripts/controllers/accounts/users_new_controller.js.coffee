@@ -8,6 +8,8 @@ App.AccountsUsersNewController = Em.ObjectController.extend App.Validations,
         message: Em.I18n.t('errors.not_an_email_address')
 
   availableLangs: AVAILABLE_LANGS
+  plans: null
+
   actions:
     create: ->
       return unless @.isValid()

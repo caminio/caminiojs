@@ -8,6 +8,7 @@
 #= require blueimp-file-upload/js/vendor/jquery.ui.widget
 #= require blueimp-file-upload/js/jquery.iframe-transport
 #= require blueimp-file-upload/js/jquery.fileupload
+#= require seiyria-bootstrap-slider
 #= require jquery.cookie
 #= require bootstrap/dist/js/bootstrap.min
 #= require typeahead.js/dist/typeahead.bundle
@@ -32,8 +33,8 @@
 #= require 3rd/antiscroll
 #= require ember-table
 #
-#= require_self
 #= require_tree ./locales
+#= require_self
 #= require ./router
 #= require_tree ./util
 #= require_tree ./routes
@@ -61,6 +62,7 @@ App.setAuthenticationBearer = (access_token, user)->
       'Authorization': 'Bearer ' + access_token
   return unless user
   App.set 'currentUser', user
+  App.setLang( user.get('locale') )
   currentOuCookie = Ember.$.cookie 'caminio-session-ou'
   ou = user.get('organizational_units').findBy('id', currentOuCookie )
   if ou
@@ -105,6 +107,11 @@ DS.ObjectTransform = DS.Transform.extend
 
 App.register("transform:object", DS.ObjectTransform)
 
-moment.locale($('html').attr('lang'))
-CLDR.defaultLanguage = moment.locale()
+App.setLang = (lang)->
+  moment.locale(lang)
+  CLDR.defaultLanguage = lang
+  Em.I18n.translations = Em.I18n.availableTranslations[lang]
+
+App.setLang( $('html').attr('lang') )
+
 window.AVAILABLE_LANGS = ['de','en']
