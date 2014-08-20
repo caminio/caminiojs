@@ -1,0 +1,26 @@
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' data-roadie-ignore>
+<%= stylesheet_link_tag :mailer %>
+<div class="main">
+  <div class="logo-wrap">
+    <%= link_to image_tag('logo_128x128.png', class: 'logo', alt: 'caminio'), 'https://camin.io' %>
+  </div>
+  <div class="content">
+    <h1>Hello!</h1>
+    <p><%= @inviter.name %> hat dich auf <b>caminio</b> eingeladen. caminio ist eine Team Kollaborationsplattform zum Verwalten von Projektdaten und Webseiten.</p>
+
+    <p class="align-center">
+    <a href="<%= @link %>" class="btn btn-primary">Klick hier</a>
+    um dich auf caminio anzumelden
+    </p>
+
+    <p>
+    Falls du Hilfe bei der Anwendung brauchst, kannst du dich gerne mit unserem live-chat verbinden. Du erreichst uns zwischen 09:00 und 17:00 Uhr auf http://camin.io/support/chat
+    </p>
+
+    <p>
+    Wir freuen uns auf die Zusammenarbeit<br>
+    &nbsp;&nbsp;Das TASTENWERK Support Team
+    </p>
+
+  </div>
+</div>

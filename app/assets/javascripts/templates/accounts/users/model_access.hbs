@@ -1,0 +1,11 @@
+<div class="alert alert-info">
+  <i class="fa fa-question"></i>
+  {{t 'accounts.users.model_access'}}
+</div>
+
+{{#each plans itemController='accounts_users_model_access_item'}}
+<div class="row">
+  <div class="col-md-4">{{name}}</div>
+  <div class="col-md-8">{{view 'accounts_user_model_access_slider'}}</div>
+</div>
+{{/each}}
