@@ -21,7 +21,7 @@ Em.merge Em.I18n.availableTranslations.de,
       'save': 'Pläne speichern'
       'add': 'Tarif hinzufügen'
       'select_your': 'Wähle deine Tarife'
-      'select_first_then_apply': 'Wähle zuerst die Pläne und Apps aus, die du verwenden möchtest. Um einen Tarif hinzuzufügen, klick auf das <button class="btn btn-primary btn-xs"><i class="fa fa-plus"></i></button>.<br> Um den Tarif wieder zu entfernen, wechsle in deine Profileinstellungen -> "Pläne und Preise". Deine Auswahl wird erst gespeichert, wenn du in dieser Übersicht auf "Pläne speichern" geklickt hast'
+      'select_first_then_apply': 'Wähle zuerst die Pläne und Apps aus, die du verwenden möchtest. Um den Tarif wieder zu entfernen, wechsle in deine Profileinstellungen -> "Pläne und Preise". Deine Auswahl wird erst gespeichert, wenn du auf "Pläne speichern" geklickt hast.'
       'disk': 'Speicherplatz'
       'items': 'max Einträge'
       'app_name': 'App'

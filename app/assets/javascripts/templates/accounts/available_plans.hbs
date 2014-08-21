@@ -38,7 +38,17 @@
       {{/each}}
       </tbody>
     </table>
+    
   </form>
 
 </div>
+
+<div class="modal-footer">
+
+  <button class="btn add-plan pull-right btn-sm btn-success" {{action 'savePlans'}}>
+    {{t 'accounts.plan.save'}}
+  </button>
+</div>
+
+
 {{/caminio-modal}}

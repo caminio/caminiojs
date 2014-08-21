@@ -3,9 +3,9 @@
   {{t 'accounts.users.model_access'}}
 </div>
 
-{{#each plans itemController='accounts_users_model_access_item'}}
+{{#each app_model_user_roles itemController='accounts_users_model_access_item'}}
 <div class="row">
-  <div class="col-md-4">{{name}}</div>
+  <div class="col-md-4">{{app.name}} ({{access_level}})</div>
   <div class="col-md-8">{{view 'accounts_user_model_access_slider'}}</div>
 </div>
 {{/each}}

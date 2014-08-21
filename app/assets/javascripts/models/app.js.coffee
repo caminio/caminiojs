@@ -1,6 +1,7 @@
 App.App = DS.Model.extend
   name:                 DS.attr 'string'
   app_plans:            DS.hasMany 'app_plan'
+  app_models:           DS.hasMany 'app_model'
   current_plan:         null
   add_js:               DS.attr 'string'
   icon:                 DS.attr 'string'

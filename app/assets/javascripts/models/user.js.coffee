@@ -11,6 +11,7 @@ App.User = DS.Model.extend
   settings:                       DS.attr "object"
   organizational_units:           DS.hasMany "organizational_unit", inverse: 'users'
   avatar_thumb:                   DS.attr "string"
+  app_model_user_roles:           DS.hasMany "app_model_user_roles"
 
   name: (->
     return @.get('username') unless Em.isEmpty(@.get('username'))

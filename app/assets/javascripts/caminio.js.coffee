@@ -115,3 +115,10 @@ App.setLang = (lang)->
 App.setLang( $('html').attr('lang') )
 
 window.AVAILABLE_LANGS = ['de','en']
+
+window.ACCESS =
+  NONE: 0
+  READ: 1
+  WRITE: 2
+  SHARE: 3
+  FULL: 4
