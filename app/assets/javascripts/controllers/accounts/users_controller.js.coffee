@@ -25,7 +25,17 @@ App.AccountsUsersController = Em.ObjectController.extend
   actions:
 
     editRecord: (record)->
-      console.log "record", record
+      @transitionToRoute('accounts.users.edit', record.get('id'))
+
+    uninviteRecord: (record)->
+      bootbox.confirm Em.I18n.t('accounts.users.really_uninvite'), (result)->
+        if result
+          record
+            .destroyRecord()
+            .then (user)->
+              toastr.info Em.I18n.t('accounts.users.uninvited', name: record.get('name'))
+            .catch (error)->
+              toastr.error error.responseJSON
 
     addUser: ->
       @transitionToRoute('accounts.users.new')

@@ -29,9 +29,11 @@
         <span class="account-email">{{currentUser.email}}</span>
         <br>
         <br>
-        {{#link-to 'accounts'}}
+        {{#link-to 'accounts' class='btn btn-primary'}}
         {{t 'edit_account'}}
-        {{/link-to}} |
+        {{/link-to}}
+        <br><br>
+        {{#link-to 'accounts.users.change_password' currentUser.id}}{{t 'accounts.users.change_password'}}{{/link-to}} |
         {{#link-to 'sessions.logout'}}
         {{t 'logout'}}
         {{/link-to}}

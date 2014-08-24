@@ -1,21 +1,14 @@
-App.AccountsUsersNewController = Em.ObjectController.extend App.Validations,
-  validate:
-    email:
-      required:
-        message: Em.I18n.t('errors.required.email')
-      match:
-        regexp: /[@]{1}/
-        message: Em.I18n.t('errors.not_an_email_address')
-
-  availableLangs: AVAILABLE_LANGS
-  plans: null
-
+App.AccountsUsersNewController = App.AccountsUsersEditController.extend
   actions:
     create: ->
       return unless @.isValid()
       controller = @
-      @get('content')
-        .save()
-        .then (user)->
-          toastr.info Em.I18n.t('accounts.users.created', name: user.get('name'))
-          controller.transitionToRoute 'accounts/users/edit', user.id
+      $.ajax
+        url: '/caminio/users'
+        type: 'post'
+        data: 
+          user: @get('content').toJSON()
+          app_model_user_roles: @get('content.app_model_user_roles').map( (ur)-> { app_model_id: ur.get('app_model.id'), access_level: ur.get('access_level') } )
+      .then (user)->
+        toastr.info Em.I18n.t('accounts.users.created', name: controller.get('content.name'))
+        controller.transitionToRoute 'accounts.users'

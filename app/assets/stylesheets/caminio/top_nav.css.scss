@@ -41,6 +41,11 @@
   cursor: pointer;
 }
 
+.account-info .dropdown-menu a.btn{
+  color: #fff;
+  padding: 3px 5px;
+}
+
 .apps-list .dropdown-menu > li > a:hover{
   background: none;
   opacity: 1;

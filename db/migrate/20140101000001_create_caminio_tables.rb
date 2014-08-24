@@ -10,6 +10,7 @@ class CreateCaminioTables < ActiveRecord::Migration
       t.string        :phone
       t.string        :categories
       t.string        :locale, required: true
+      t.text          :description
 
       t.datetime      :last_login_at
       t.datetime      :last_request_at
@@ -92,6 +93,7 @@ class CreateCaminioTables < ActiveRecord::Migration
     create_table :app_models do |t|
       t.string          :name
       t.integer         :app_id
+      t.boolean         :hidden, default: false
       # t.boolean         :always, default: false 
     end
 

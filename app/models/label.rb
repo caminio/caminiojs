@@ -4,6 +4,6 @@ class Label < ActiveRecord::Base
   has_many :row_labels, as: :row
 
 
-  has_access_rules( app_name: "caminio" )
+  has_access_rules app_name: "caminio", hidden: true
 
 end

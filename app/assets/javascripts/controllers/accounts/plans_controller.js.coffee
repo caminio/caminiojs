@@ -13,6 +13,7 @@ App.AccountsPlansController = Em.ObjectController.extend
       @store.getById('user', currentUser.id).send('becomeDirty')
 
     savePlans: ->
+      controller = @
       currentUser = @get('controllers.sessions.currentUser')
       plan_ids = App.get('currentOu.app_plans').mapBy('id')
       if plan_ids.length < 1
@@ -25,7 +26,7 @@ App.AccountsPlansController = Em.ObjectController.extend
           plan_ids: plan_ids
       ).then ->
         App.get('currentUser').save()
-        @send('closeModal')
+        $('.modal .close').click();
         toastr.info( Em.I18n.t('accounts.plans.updated' ) )
 
     removePlan: (app_plan)->

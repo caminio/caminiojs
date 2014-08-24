@@ -88,3 +88,24 @@
 .accounts-container .control-wrap{
   padding: 10px 0;
 }
+
+.slider.slider-horizontal {
+  width: 465px;
+  margin: 0;
+  height: 10px;
+}
+
+.slider-handle {
+  background-color: #39a;
+  background-image: linear-gradient(to bottom, #179, #39a);
+  background-repeat: repeat-x;
+}
+.slider-selection {
+  background-color: #39a;
+  background-image: linear-gradient(to bottom, #179, #39a);
+  background-repeat: repeat-x;
+}
+
+.access-rights-header{
+  font-size: 10px;
+}

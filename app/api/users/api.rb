@@ -26,7 +26,10 @@ class Users::API < Grape::API
     requires :user, type: Hash do
       requires :email, type: String
       requires :locale, type: String
-      optional :app_models, type: Hash
+    end
+    optional :app_model_user_roles, type: Hash do
+      optional :app_model_id, type: Integer
+      optional :access_level, type: Integer
     end
   end
   post '/' do
@@ -34,16 +37,53 @@ class Users::API < Grape::API
       user = User.new( email: params[:user][:email], locale: params[:user][:locale] )
       user.gen_confirmation_key
       user.password = SecureRandom.hex
-      params[:app_models].each do |app_model|
-        user.app_model_user_roles.build app_model: app_model[:id], organizational_unit_id:  headers[:Ou], access_level: app_model[:access_level]
+      user.organizational_unit_members.build organizational_unit: current_organizational_unit
+      params[:app_model_user_roles].each_pair do |key,app_model_ur|
+        next if app_model_ur[:access_level] == "0"
+        user.app_model_user_roles.build app_model_id: app_model_ur[:app_model_id], organizational_unit_id:  headers['Ou'], access_level: app_model_ur[:access_level]
       end
       return error!(user.errors.full_messages,500) unless user.save
-      if UserMailer.invite( user, current_user, "#{host_url}/caminio#/sessions/initial_setup?email=#{user.email}&confirmation_key=#{user.confirmation_key}").deliver
-        return user
-      else
-        error!('failed to send email', 500)
-      end
+
+      return user
+      # if UserMailer.invite( user, current_user, "#{host_url}/caminio#/sessions/initial_setup?email=#{user.email}&confirmation_key=#{user.confirmation_key}").deliver
+      #   return user
+      # else
+      #   error!('failed to send email', 500)
+      # end
     end
+  end
+
+  desc "deletese a user (from organizational unit or entirely)"
+  delete '/:id' do
+    error!('not found', 404) unless user = User.find( params[:id] )
+    error!('insufficient rights', 403) unless ( current_user.id == user.id || current_user.id == current_organizational_unit.owner_id )
+    unless user.organizational_unit_members.where( organizational_unit_id: current_organizational_unit.id ).destroy_all
+      error!('failed destroying organizational_unit_members',500)
+    end
+    unless user.app_model_user_roles.where( organizational_unit_id: current_organizational_unit.id ).destroy_all
+      error!('failed destroying app_plan_user_roles',500)
+    end
+    user
+  end
+
+  desc "updates a user's attributes"
+  params do
+    requires :user, type: Hash do
+      requires :email, type: String
+      optional :firstname, type: String
+      optional :lastname, type: String
+      optional :description, type: String
+      optional :locale, type: String
+      optional :phone, type: String
+      optional :username, type: String
+    end
+  end
+  put '/:id' do
+    authenticate!
+    error!('not found',404) unless user = User.find( params[:id] )
+    error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.owner_id)
+    error!('failed',500) unless user.update declared(params)[:user]
+    user
   end
 
   post '/avatar' do

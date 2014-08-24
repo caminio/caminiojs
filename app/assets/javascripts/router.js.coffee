@@ -14,6 +14,7 @@ App.Router.map ->
     @route 'users'
     @route 'users.new', path: '/users/new'
     @route 'users.edit', path: '/users/edit/:id'
+    @route 'users.change_password', path: '/users/change_password/:id'
 
   @resource 'crm.index', path: '/crm'
 

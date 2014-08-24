@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
 
 
-  has_access_rules app_name: "caminio"
+  has_access_rules app_name: "caminio", hidden: true
 
   can_notify notification_mailer: MessageNotificationMailer
 

@@ -19,6 +19,13 @@ module Caminio
         false
       end
 
+      def current_organizational_unit
+        return nil unless headers['Ou']
+        ou = OrganizationalUnit.find(headers['Ou'])
+        return unless current_user.organizational_units.include?(ou)
+        return ou
+      end
+
       def host_url
         protocol = "http#{"s" if request.scheme == 'https'}://"
         protocol+request.host_with_port
