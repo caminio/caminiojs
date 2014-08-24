@@ -69,6 +69,7 @@ App.setAuthenticationBearer = (access_token, user)->
     App.set 'currentOu', ou
   else
     App.set 'currentOu', user.get('organizational_units.firstObject')
+  $('body').removeClass('authorization-required')
   Ember.$.ajaxSetup
     headers:
       'Ou': App.get('currentOu.id')

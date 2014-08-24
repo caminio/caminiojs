@@ -14,10 +14,27 @@
 .apps-list-trigger{
   color: #aaa;
   cursor: pointer;
-  font-size: 22px;
-  height: 50px;
-  padding: 9px 15px;
-  width: 50px;
+  height: 32px;
+  width: 232px;
+  margin: 5px 0 5px 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.apps-list-trigger:after{
+  width: 100%;
+  font-size: 24px;
+  content: 'Apps';
+  font-weight: 900;
+  position: absolute;
+  top: 5px;
+  left: 30px;
+  overflow: hidden;
+}
+
+.apps-list-trigger:after:hover{
+  transition: width 3s;
+  width: 100%;
 }
 
 .apps-list-trigger:hover{
