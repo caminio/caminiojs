@@ -21,5 +21,5 @@ App.AccountsUsersEditController = Em.ObjectController.extend App.Validations,
           user: @get('content').toJSON()
           app_model_user_roles: @get('content.app_model_user_roles').map( (ur)-> { app_model_id: ur.get('app_model.id'), access_level: ur.get('access_level') } )
       .then (user)->
-        toastr.info Em.I18n.t('accounts.users.saved', name: controller.get('content.name'))
+        toastr.info Em.I18n.t('accounts.users.rules_saved', name: controller.get('content.name'))
         controller.transitionToRoute 'accounts.users'

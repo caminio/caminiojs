@@ -71,10 +71,6 @@
   border-bottom: none;
 }
 
-.accounts-container .add-plan{
-  margin: -5px 5px 0 0;
-}
-
 .accounts-container .select-ou{
   width: 500px;
   margin: -5px 10px 0 0;
@@ -96,13 +92,12 @@
 }
 
 .slider-handle {
-  background-color: #39a;
-  background-image: linear-gradient(to bottom, #179, #39a);
+  background-image: linear-gradient(to bottom, #16c, #48d);
   background-repeat: repeat-x;
+  opacity: 1;
 }
 .slider-selection {
-  background-color: #39a;
-  background-image: linear-gradient(to bottom, #179, #39a);
+  background-image: linear-gradient(to bottom, #16c, #48d);
   background-repeat: repeat-x;
 }
 

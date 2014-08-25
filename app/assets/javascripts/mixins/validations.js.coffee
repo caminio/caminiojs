@@ -21,6 +21,7 @@ App.Validations = Em.Mixin.create
     valid = false
     for key, options of @get('validate')
       valid = validations.get(key).isValid()
+      $("input.#{key}_validation").focus()
       break unless valid
     valid
 

@@ -37,6 +37,9 @@
       </ul>
     </div>
     <div class="col-md-9 nav-content fill-height overflow-auto">
+      {{#if message}}
+      <div {{bind-attr class=":alert valid:alert-info:alert-danger error:alert-danger"}}>{{{message}}}</div>
+      {{/if}}
       {{yield}}
     </div>
 

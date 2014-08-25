@@ -1,10 +1,7 @@
+<section class="med-container">
+
 <div class="top-info-box wide-box clearfix box" id="dashboard-info-container">
-  <div class="col col-md-4">
-    {{t 'hi'}},
-    <br>
-    <strong>{{currentUser.name_or_email}}</strong>
-  </div>
-  <div class="col col-md-4">
+  <div class="col col-md-6">
     <label>
       <i class="fa fa-clock-o"></i>
       {{t 'last_login'}}
@@ -12,7 +9,7 @@
     <br>
     {{timeAgo App._currentUser.lastSessionAt}}
   </div>
-  <div class="col col-md-4">
+  <div class="col col-md-6">
 
     <div class="today-box" onclick="location.href = '/caminio/calendar';" {{translateAttr title='go_to_calendar'}}>
       <div class="dayname">

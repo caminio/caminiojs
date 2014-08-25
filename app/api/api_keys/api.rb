@@ -5,7 +5,7 @@ class ApiKeys::API < Grape::API
   default_format :json
 
   get '/:access_token' do
-    if apiKey = ApiKey.where("access_token = ? AND expires_at > ?", params[:access_token], 8.hours.ago.to_s(:db)).first
+    if apiKey = ApiKey.where("access_token = ? AND expires_at > ?", params[:access_token], Time.now).first
       return { api_key: apiKey }
     end
     error! 'Unauthorized', 401

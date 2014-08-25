@@ -6,3 +6,11 @@
 #toast-container > div{
   border-radius: 0;
 }
+
+.toast-info{
+  background-color: #48d;
+}
+
+.toast-success{
+  background-color: #5cb85c;
+}

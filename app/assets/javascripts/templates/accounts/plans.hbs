@@ -1,11 +1,14 @@
 <section>
 
-  <button class="btn add-plan pull-right btn-sm btn-primary hint--left" {{translateAttr data-hint='accounts.plan.add'}} {{action 'openModal' 'accounts/available_plans'}}>
-    <i class="fa fa-plus"></i>
-  </button>
-  <button class="btn add-plan pull-right btn-sm btn-success" {{action 'savePlans'}}>
-    {{t 'accounts.plan.save'}}
-  </button>
+  <div class="btn-ctrl">
+    <button class="btn btn-primary" {{translateAttr title='accounts.plan.add'}} {{action 'openModal' 'accounts/available_plans'}}>
+      <i class="fa fa-plus"></i>
+    </button>
+    <button class="btn btn-success" {{action 'savePlans'}}>
+      {{t 'accounts.plan.save'}}
+    </button>
+  </div>
+  
   <h1>{{t 'accounts.plan.my'}}</h1>
   <form class="form-horizontal" {{action 'save' on='submit'}}>
     <table class="table">

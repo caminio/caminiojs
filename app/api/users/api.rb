@@ -76,13 +76,23 @@ class Users::API < Grape::API
       optional :locale, type: String
       optional :phone, type: String
       optional :username, type: String
+      optional :password, type: String, default: nil
+      optional :password_confirmation, type: String, default: nil
+      optional :cur_password, type: String, default: nil
     end
   end
   put '/:id' do
     authenticate!
     error!('not found',404) unless user = User.find( params[:id] )
     error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.owner_id)
-    error!('failed',500) unless user.update declared(params)[:user]
+    if current_user.id.to_s == params[:id] && !params[:user][:password].blank?
+      error!('cur_password_wrong',403) unless user.authenticate( params[:user][:cur_password] )
+      error!('password_mismatch',409) unless user.update( password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
+    else
+      user_params = declared(params)[:user].reject{ |k| k.to_s =~ /password/ }
+      puts "declared #{user_params}"
+      error!('failed',500) unless user.update user_params
+    end
     user
   end
 

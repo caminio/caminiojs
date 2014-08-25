@@ -1,18 +1,16 @@
 <div class="top-nav">
   <div class="apps-list pull-left dropdown">
-    <div class="apps-list-trigger hint--bottom" data-toggle="dropdown" {{translateAttr data-hint="my_apps"}}>
+    <div class="apps-list-trigger" data-toggle="dropdown">
       <img src='/assets/logo_32x32.png' />
     </div>
-    <ul class="dropdown-menu" role="menu">
+    <div class="dropdown-menu" role="menu">
       {{#each availableApps itemController="app"}}
-      <li class="app">
       <a {{bind-attr href=appPath}}>
         <i {{bind-attr class=":fa content.icon"}}></i>
         <span>{{nameTranslation}}</span>
       </a>
-      </li>
       {{/each}}
-    </ul>
+    </div>
   </div>
   <div class="account-info pull-right dropdown">
     <img class="account-image pull-right hint--bottom" {{translateAttr data-hint="account_settings"}} {{bind-attr src=currentUser.avatar_thumb}} data-toggle="dropdown">

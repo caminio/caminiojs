@@ -1,5 +1,12 @@
 <section>
   <form class="form-horizontal" {{action 'save' on='submit'}}>
+
+    <div class="btn-ctrl">
+      <button class="btn btn-success">{{t 'save'}}</button>
+    </div>
+
+    <h1>{{t 'accounts.users.edit_account'}}</h1>
+
     <div class="row">
       <div class="col-md-3 mini-header">{{t 'accounts.personal_data'}}</div>
       <div class="col-md-9 overflow-auto">
@@ -73,6 +80,10 @@
           <div class="desc" style="padding-top: 40px;">{{t 'accounts.click_img_left_to_update'}}</div>
         </div>
       </div>
+    </div>
+
+    <div class="align-right">
+      <button class="btn btn-success">{{t 'save'}}</button>
     </div>
 
   </form>

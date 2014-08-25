@@ -1,5 +1,5 @@
 .authorization-required{
-  background: linear-gradient(to bottom, #48d 0px, #15a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)
+  background: linear-gradient(to bottom, #48d 0px, #15a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
   // background: -moz-linear-gradient(top,  #e60 0%, #b30 100%); /* FF3.6+ */
   // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e60), color-stop(100%,#b30)); /* Chrome,Safari4+ */
   // background: -webkit-linear-gradient(top,  #e60 0%,#b30 100%); /* Chrome10+,Safari5.1+ */
@@ -13,7 +13,7 @@
   box-shadow: 2px 2px 3px #333;
   left: 0;
   margin: auto;
-  padding: 110px 40px 20px;
+  padding: 150px 40px 20px;
   position: absolute;
   right: 0;
   top: 10%;
@@ -29,9 +29,9 @@
   top: -4px;
   left: 40px;
   width: 84px;
-  height: 100px;
+  height: 110px;
   // background: #e60;
-  background: #48d;
+  background: linear-gradient(to bottom, #26a 0px, #48d 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -76,4 +76,7 @@
   right: 5px;
   top: 14px;
   width: 50px;
+}
+.pw-change{
+  right: 25px;
 }

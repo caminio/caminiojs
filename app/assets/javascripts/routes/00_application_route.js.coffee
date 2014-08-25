@@ -10,8 +10,8 @@ App.ApplicationRoute = Ember.Route.extend
           return route.transitionTo('sessions.new')
         if App.get('currentOu.app_plans.length') < 1
           return route.transitionTo('accounts.plans')
-        if route.get('lazyLoadUrl')
-          Em.$.getScript(route.get('lazyLoadUrl'))
+        # if route.get('lazyLoadUrl')
+        #   Em.$.getScript(route.get('lazyLoadUrl'))
       .catch ()->
         route.transitionTo('sessions.new')
 

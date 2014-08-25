@@ -15,26 +15,41 @@
   color: #aaa;
   cursor: pointer;
   height: 32px;
-  width: 232px;
   margin: 5px 0 5px 15px;
   position: relative;
   overflow: hidden;
+  width: 32px;
+  transition: width 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.apps-list-trigger:before{
+  color: #48d;
+  content: "Apps";
+  font-size: 16px;
+  font-weight: 900;
+  left: 71px;
+  position: absolute;
+  top: 4px;
 }
 
 .apps-list-trigger:after{
-  width: 100%;
-  font-size: 24px;
-  content: 'Apps';
-  font-weight: 900;
+  -moz-osx-font-smoothing: grayscale;
+  color: #48d;
+  content: "";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
   position: absolute;
-  top: 5px;
-  left: 30px;
-  overflow: hidden;
+  left: 47px;
+  top: 7px;
 }
 
-.apps-list-trigger:after:hover{
-  transition: width 3s;
-  width: 100%;
+.apps-list-trigger:hover{
+  transition: width 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  width: 150px;
 }
 
 .apps-list-trigger:hover{
@@ -42,49 +57,47 @@
   color: #fff;
 }
 
-.apps-list ul{
+.apps-list > .dropdown-menu{
   background: #eee;
   border-radius: 0;
   max-width: 40%;
+  left: 5px;
+  padding: 10px 0;
 }
 
-.apps-list .dropdown-menu > li > a{
-  width: 130px;
-  height: 80px;
-  text-align: center;
-  padding: 10px;
-  opacity: 0.7;
-  margin: 20px;
+.apps-list > .dropdown-menu a{
+  display: block;
+  padding: 5px 20px;
   cursor: pointer;
+  text-decoration: none;
+  color: #777;
 }
 
-.account-info .dropdown-menu a.btn{
-  color: #fff;
-  padding: 3px 5px;
-}
-
-.apps-list .dropdown-menu > li > a:hover{
-  background: none;
+.apps-list .dropdown-menu a:hover{
+  color: #333;
+  font-weight: 600;
   opacity: 1;
 }
 
-.apps-list .dropdown-menu > li > a > .fa{
-  font-size: 40px;
-  display: block;
-  color: #555
+.apps-list .dropdown-menu a > .fa{
+  font-size: 20px;
 }
 
 .apps-list a span{
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 12px;
-  color: #333;
-  margin-top: 10px;
+  font-size: 14px;
+  margin-left: 5px;
 }
 
 .account-info{
   color: #ddd;
   margin-top: 5px;
+}
+
+.account-info .dropdown-menu a.btn{
+  color: #fff;
+  padding: 3px 5px;
 }
 
 .account-image{

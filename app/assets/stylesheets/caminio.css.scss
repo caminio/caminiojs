@@ -49,6 +49,10 @@ body > .ember-view{
   height: 100%;
 }
 
+.fill-width{
+  width: 100%;
+}
+
 .checkbox-box{
   border: 1px solid #aaa;
   width: 16px;
@@ -121,3 +125,9 @@ img.avatar{
 .view-actions{
   margin-bottom: 20px;  
 }
+
+.btn-ctrl{
+  text-align: right;
+  margin-bottom: 5px;
+}
+
