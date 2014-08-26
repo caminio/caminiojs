@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
   create_table "app_models", force: true do |t|
     t.string  "name"
     t.integer "app_id"
+    t.boolean "hidden", default: false
   end
 
   create_table "app_plans", force: true do |t|
@@ -242,6 +243,7 @@ ActiveRecord::Schema.define(version: 20140712151957) do
     t.string   "phone"
     t.string   "categories"
     t.string   "locale"
+    t.text     "description"
     t.datetime "last_login_at"
     t.datetime "last_request_at"
     t.string   "last_login_ip"
