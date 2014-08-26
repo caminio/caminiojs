@@ -16,9 +16,10 @@ App.User = DS.Model.extend
 
   name: (->
     return @.get('username') unless Em.isEmpty(@.get('username'))
-    name = @.get('firstname')
-    name += ' ' unless Em.isEmpty(name)
-    name += @.get('lastname')
+    name = @.get('firstname') unless Em.isEmpty(@get('firstname'))
+    name += ' ' unless (Em.isEmpty(name) && Em.isEmpty(@get('lastname')))
+    name += @.get('lastname') unless Em.isEmpty('lastname')
+    name = @get('email') if Em.isEmpty(name)
     name
   ).property('username','firstname','lastname')
 

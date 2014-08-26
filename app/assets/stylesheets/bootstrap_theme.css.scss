@@ -28,6 +28,16 @@ body .btn.btn-transparent{
   background: none;
 }
 
+.btn.btn-pale{
+  background: none;
+}
+
+.btn.btn-pale:hover,
+.btn.btn-pale:focus,
+.btn.btn-pale:active{
+  background: none;
+  box-shadow: none;
+}
 .btn.btn-default{
   color: #555;
   background-color: #dfdfdf;
