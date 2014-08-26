@@ -24,3 +24,4 @@ mkmf.log
 spec/dummy/log/*
 node_modules
 spec/dummy/db/*
+spec/dummy/db/schema.rb
