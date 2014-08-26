@@ -30,6 +30,20 @@ body .btn.btn-transparent{
 
 .btn.btn-pale{
   background: none;
+  color: #777;
+}
+
+.btn.btn-danger-text{
+  color: #d55;
+}
+
+.btn.btn-success-text{
+  color: #5cb85c;
+}
+
+.btn.btn-large-fa{
+  padding: 0 4px;
+  font-size: 24px;
 }
 
 .btn.btn-pale:hover,
