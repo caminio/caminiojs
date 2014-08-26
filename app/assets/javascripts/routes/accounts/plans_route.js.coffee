@@ -3,18 +3,15 @@ App.AccountsPlansRoute = App.ApplicationRoute.extend
   model: ->
     @.controllerFor('sessions').get('currentUser')
   setupController: (controller,model)->
-    route = @
-    controller.store.find('app_plan', user_id: model.id)
-      .then (app_plans)->
-        controller.set('availableApps',  controller.store.all('app'))
-        controller.set('myPlans', App.get('currentOu.app_plans'))
+    controller.set('myPlans', App.get('currentOu.app_plans'))
 
-        if App.get('currentOu.app_plans.length') < 1
-          route.render 'accounts/available_plans', into: 'application', outlet: 'modal'
-        
-        controller.get('availableApps').forEach (app)->
-          app.set('current_plan', app.get('app_plans.firstObject'))
+    if App.get('currentOu.app_plans.length') < 1
+      @render 'accounts/available_plans', into: 'application', outlet: 'modal'
 
+    controller.set('apps',  @store.all('app'))
+    controller.get('apps').forEach (app)->
+      app.set('current_plan', app.get('app_plans.firstObject'))
+    
   actions:
 
     willTransition: (transition)->

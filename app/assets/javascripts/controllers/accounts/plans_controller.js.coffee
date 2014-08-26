@@ -2,6 +2,7 @@ App.AccountsPlansController = Em.ObjectController.extend
   needs: ['sessions']
   myPlans: null
   availableApps: null
+  apps: null
   availableLangs: ['de','en']
 
   actions:
