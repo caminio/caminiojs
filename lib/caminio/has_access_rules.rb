@@ -26,6 +26,7 @@ module HasAccessRules
       validate :check_if_updater_has_rights
       after_create :create_default_rule
       after_find :set_temporary_updater
+      after_destroy :remove_access_rules
 
       validates_presence_of :creator, :updater
 
@@ -58,7 +59,6 @@ module HasAccessRules
       rule = access_rules.find_by( user: updater )
       can_destroy = rule && ( rule.can_delete? || rule.is_owner? ) 
       return false unless can_destroy 
-      access_rules.delete_all
     end
 
     def share(user, rights={can_delete: false, can_write: false, can_share: false})
@@ -134,6 +134,10 @@ module HasAccessRules
     end
 
     private
+
+      def remove_access_rules
+        AccessRule.where(row_id: id).delete_all
+      end
 
       def with_user( user )
         self.updater = user 

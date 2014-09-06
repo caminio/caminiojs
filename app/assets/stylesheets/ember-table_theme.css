@@ -18,6 +18,10 @@ body .ember-table-cell{
   padding: 5px 0;
 }
 
+body .ember-table-cell > .fa{
+  padding: 8px 0;
+}
+
 body .ember-table-header-container .ember-table-cell .ember-table-content{
   padding: 12px 5px;
 }

@@ -39,6 +39,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'edit_account': 'Konto bearbeiten'
   'edit': 'Bearbeiten'
   'delete': 'Löschen'
+  'really_delete': '{{name}} wirklich löschen?'
   'logout': 'Abmelden'
   'cancel': 'Abbrechen'
   'cancelled': 'Abgebrochen'
