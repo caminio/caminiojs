@@ -10,3 +10,5 @@ App.Translation = DS.Model.extend
   aside3:           DS.attr "string"
   created_by:       DS.belongsTo "user"
   updated_by:       DS.belongsTo "user"
+  row_id:           DS.attr "number"
+  row_type:         DS.attr 'string'

@@ -19,7 +19,7 @@ module HasTranslations
       belongs_to :updater, class_name: 'User', foreign_key: :updated_by
       belongs_to :deleter, class_name: 'User', foreign_key: :deleted_by
 
-      has_many :translations, as: :row
+      has_many :translations, as: :row, dependent: :delete_all
 
       after_create :check_for_default_translation
 
@@ -40,7 +40,9 @@ module HasTranslations
 
       def check_for_default_translation
         unless self.class.default_values
-          self.translations.create( :locale => I18n.default_locale, :title => self.name )
+          self.translations.find_or_create_by(:locale => I18n.default_locale) do |tr|
+            self.title = self.name
+          end
         end
       end
 
