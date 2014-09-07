@@ -41,7 +41,7 @@ module HasTranslations
       def check_for_default_translation
         unless self.class.default_values
           self.translations.find_or_create_by(:locale => I18n.default_locale) do |tr|
-            self.title = self.name
+            tr.title = self.name
           end
         end
       end
