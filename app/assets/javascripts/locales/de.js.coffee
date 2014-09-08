@@ -6,6 +6,7 @@ Em.merge Em.I18n.availableTranslations.de,
     'caminio': 'Dashboard'
     'crm': 'CRM'
   'back': 'zurück'
+  'search': 'Suchen'
   'email_or_username': 'Email oder Kontoname'
   'email_address': 'Email Address'
   'username': 'Pseudonym'

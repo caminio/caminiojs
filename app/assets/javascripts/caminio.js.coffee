@@ -123,3 +123,8 @@ window.ACCESS =
   WRITE: 2
   SHARE: 3
   FULL: 4
+
+$('body').on('mouseover', '[rel=tooltip]', (e)->
+  return if $(@).hasClass('tooltip')
+  $(@).tooltip()
+)
