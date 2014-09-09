@@ -55,9 +55,9 @@
 .apps-list > .dropdown-menu{
   background: #eee;
   border-radius: 0;
-  max-width: 40%;
   left: 5px;
   padding: 10px 0;
+  min-width: 350px;
 }
 
 .apps-list > .dropdown-menu a{

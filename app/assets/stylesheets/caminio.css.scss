@@ -183,3 +183,17 @@ img.avatar{
   color: #fff;
   padding-top: 2px;
 }
+
+section h1,
+section h2{
+  font-size: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+section h2{
+  font-size: 16px;
+  border-bottom: none;
+}
+

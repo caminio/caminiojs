@@ -2,9 +2,8 @@ Em.I18n.availableTranslations ||= {}
 Em.I18n.availableTranslations.de ||= {}
 
 Em.merge Em.I18n.availableTranslations.de,
-  apps:
-    'caminio': 'Dashboard'
-    'crm': 'CRM'
+  'caminio':
+    app_title: 'Dashboard'
   'back': 'zurück'
   'search': 'Suchen'
   'email_or_username': 'Email oder Kontoname'
