@@ -28,7 +28,6 @@ App.AccountsOrganizationsController = Em.ObjectController.extend
       controller = @
       bootbox.prompt Em.I18n.t('accounts.organizations.really_delete', name: ou.get('name')), (result)->
         if result && result.toLowerCase() == ou.get('name').toLowerCase()
-          console.log ou
           ou
             .destroyRecord()
             .then ->

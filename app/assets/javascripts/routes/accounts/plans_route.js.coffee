@@ -26,7 +26,6 @@ App.AccountsPlansRoute = App.ApplicationRoute.extend
     confirmTransition: (proceed)->
       if proceed
         currentUser = @store.getById('user', @.controllerFor('sessions').get('currentUser.id'))
-        console.log currentUser
         currentUser.reload()
         @set('forceTransition', true)
         @get('previousTransition').retry()
