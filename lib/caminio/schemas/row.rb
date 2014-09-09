@@ -8,7 +8,7 @@ module Caminio
         updated_by: :integer,
         created_by: :integer,
         organizational_unit_id: :integer,
-        status: [ :boolean, { default: 'draft' } ]
+        status: [ :string, { default: 'draft' } ]
       }
 
       def self.included(base)
