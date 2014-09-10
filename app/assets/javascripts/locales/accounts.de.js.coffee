@@ -85,3 +85,4 @@ Em.merge Em.I18n.availableTranslations.de,
         'confirmation_mismatch': 'Passwörter stimmen nicht überein'
         'current_missing': 'Bitte gib dein altes Passwort ein'
         'new_missing': 'Bitte gib ein neues Passwort ein'
+        'amount_exceeded': 'Der aktuelle Tarif erlaubt keine weiteren Mitarbeiter'

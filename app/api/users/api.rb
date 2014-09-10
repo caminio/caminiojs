@@ -42,7 +42,11 @@ class Users::API < Grape::API
         next if app_model_ur[:access_level] == "0"
         user.app_model_user_roles.build app_model_id: app_model_ur[:app_model_id], organizational_unit_id:  headers['Ou'], access_level: app_model_ur[:access_level]
       end
-      return error!(user.errors.full_messages,500) unless user.save
+      begin
+        return error!(user.errors.full_messages,500) unless user.save
+      rescue
+        return error!('user amount exceeded',509)
+      end
 
       return user
       # if UserMailer.invite( user, current_user, "#{host_url}/caminio#/sessions/initial_setup?email=#{user.email}&confirmation_key=#{user.confirmation_key}").deliver
