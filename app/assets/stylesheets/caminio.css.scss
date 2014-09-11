@@ -109,6 +109,34 @@ body > .ember-view{
   margin-right: auto;
 }
 
+.side-panel{
+  width: 200px;
+  float: left;
+}
+
+.content-panel{
+  margin-left: 200px;
+  margin-right: 50px;
+  max-width: 1200px
+}
+
+.content-panel.content-panel-full-width{
+  max-width: 100%;
+}
+
+.max-width-1200{
+  max-width: 1200px;
+}
+
+.max-width-960{
+  max-width: 960px;
+}
+
+
+.content-panel-section{
+  margin: 20px 0 0 40px;
+}
+
 form .row-group{
   margin-top: 20px;
 }

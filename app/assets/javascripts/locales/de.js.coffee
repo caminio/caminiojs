@@ -15,6 +15,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'street': 'Straße'
   'city': 'Stadt'
   'zip': 'PLZ'
+  'by': 'von'
   'country': 'Land'
   'state': 'Bundesland'
   'email': 'Email'
@@ -82,3 +83,5 @@ Em.merge Em.I18n.availableTranslations.de,
   'search.term': 'Suchbegriff'
   'unsaved_content': 'Fortfahren und Verwerfen?'
   'unsaved_content_desc': 'Nicht alle Elemente auf dieser Webseite wurden gespeichert. Möchtest du diese verwerfen und fortfahren oder vorher speichern?'
+
+  'edited_on': 'Bearbeitet am {{date}}'

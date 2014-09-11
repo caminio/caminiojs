@@ -1,0 +1,25 @@
+.form .checkbox{
+  background: none repeat scroll 0 0 #f9f9f9;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  float: left;
+  height: 27px;
+  margin-right: 10px;
+  position: relative;
+  width: 28px;
+  margin-top: 1px;
+  margin-bottom: 0;
+}
+
+.form .checkbox .fa{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 16px;
+  color: #666;
+}
+
+.form .checkbox-label{
+  padding-top: 4px;
+}
+
