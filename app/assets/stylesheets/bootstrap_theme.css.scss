@@ -20,6 +20,10 @@ body textarea:focus{
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(100, 100, 100, 0.6)
 }
 
+body a{
+  color: #1b8fc3;
+}
+
 .btn{
   border-radius: 0;
 }
@@ -55,18 +59,30 @@ body .btn.btn-transparent{
 .btn.btn-default{
   color: #555;
   background-color: #dfdfdf;
+  border-color: #dfdfdf;
+}
+
+.btn.btn-black{
+  color: #eee;
+  background-color: #666;
+  border-color: #555;
+}
+
+.btn.btn-black:hover{
+  background: #333;
+  color: #fff;
 }
 
 .btn.btn-primary{
-  background: #59e;
-  border-color: #59e;
+  background: #1b8fc3;
+  border-color: #1b8fc3;
   color: #fff;
 }
 
 .btn.btn-primary:focus,
 .btn.btn-primary:hover{
-  background: #48d;
-  border-color: #48d;
+  background: #1b8fc3;
+  border-color: #1b8fc3;
 }
 
 .btn.icon-text .fa{
@@ -128,7 +144,7 @@ body .dropdown-menu{
 }
 
 body .dropdown-menu > li > a:hover{
-  background: #59e;
+  background: #1b8fc3;
   color: #fff;
 }
 

@@ -1,7 +1,6 @@
 /*
  *= require opensans
  *= require 3rd/font-awesome
- *= require 3rd/hint.min.css
  *= require pace.css
  *= require toastr
  *= require toastr_theme
@@ -120,6 +119,15 @@ body > .ember-view{
   max-width: 1200px
 }
 
+.content-panel-with-activity{
+  margin-right: 350px;
+}
+
+.activity-panel{
+  width: 350px;
+  float: right;
+}
+
 .content-panel.content-panel-full-width{
   max-width: 100%;
 }
@@ -233,3 +241,7 @@ section h2{
   border-bottom: none;
 }
 
+.container{
+  background: #fff;
+  padding: 20px;
+}

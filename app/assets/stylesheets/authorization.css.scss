@@ -1,5 +1,6 @@
 .authorization-required{
-  background: linear-gradient(to bottom, #48d 0px, #15a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background: #1b8fc3;
+  // background: linear-gradient(to bottom, #48d 0px, #15a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
   // background: -moz-linear-gradient(top,  #e60 0%, #b30 100%); /* FF3.6+ */
   // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e60), color-stop(100%,#b30)); /* Chrome,Safari4+ */
   // background: -webkit-linear-gradient(top,  #e60 0%,#b30 100%); /* Chrome10+,Safari5.1+ */
@@ -25,15 +26,17 @@
 }
 
 .login-logo-wrap{
-  position: absolute;
-  top: -4px;
-  left: 40px;
-  width: 84px;
-  height: 110px;
-  // background: #e60;
-  background: linear-gradient(to bottom, #26a 0px, #48d 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background: none repeat scroll 0 0 #ddd;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  height: 106px;
+  left: 40px;
+  position: absolute;
+  top: 0;
+  width: 84px;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 
 .login-logo{

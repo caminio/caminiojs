@@ -305,8 +305,8 @@ form.search .search-opt .fa{
 
 form.search button[type=submit]{
   float: right;
-  background: #59e;
-  border-color: #59e;
+  background: #1b8fc3;
+  border-color: #1b8fc3;
   font-size: 19px;
   color: #fff;
   padding: 11px 30px;

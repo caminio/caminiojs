@@ -30,7 +30,7 @@ body .ember-table-header-container{
   color: #777;
   box-shadow: none;
   border: none;
-  border-bottom: 4px solid #dfdfdf;
+  border-bottom: 1px solid #ddd;
 }
 
 body .ember-table-header-cell{
@@ -44,7 +44,7 @@ body .ember-table-header-container .ember-table-table-fixed-wrapper{
 }
 
 body .ember-table-body-container .ember-table-table-row.ember-table-hover{
-  background: #ddd;
+  background: #dfefff;
 }
 
 body .ember-table-body-container .ember-table-table-row.ember-table-selected{
