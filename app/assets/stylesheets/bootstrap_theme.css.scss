@@ -122,3 +122,23 @@ body .bootbox.modal .modal-header{
 body .alert .fa{
   margin-right: 10px;
 }
+
+body .dropdown-menu{
+  border-radius: 0;
+}
+
+body .dropdown-menu > li > a:hover{
+  background: #59e;
+  color: #fff;
+}
+
+body .dropdown-menu > li > a{
+  padding: 10px 20px;
+}
+
+body .dropdown-menu > li > a.disabled:hover,
+body .dropdown-menu > li > a.disabled{
+  color: #999;
+  cursor: default;
+  background: none;
+}

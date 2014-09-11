@@ -42,10 +42,15 @@ fixDropdown = ->
         left: $dropdownMenu.offset().left
         top: $dropdownMenu.offset().top
       .addClass('fixed')
-    )
+      )
 
 Ember.Table.EmberTableComponent.reopen
   selectedRecords: Em.A()
+
+  selectedRecordsSync: (->
+    @get('parentController').set('selectedRecords', @get('selectedRecords'))
+    @get('parentController').set('areRecordsSelected', if @get('selectedRecords.length') > 0 then true else false)
+  ).observes 'selectedRecords.length'
 
 Ember.Table.CheckboxCell = Ember.Table.TableCell.extend
   classNames: 'ember-table-row-checkbox'
