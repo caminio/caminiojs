@@ -4,6 +4,9 @@ Em.I18n.availableTranslations.de ||= {}
 Em.merge Em.I18n.availableTranslations.de,
   'caminio':
     app_title: 'Dashboard'
+  'yes': 'Ja'
+  'no': 'Nein'
+  'archive': 'archivieren'
   'back': 'zurück'
   'search': 'Suchen'
   'email_or_username': 'Email oder Kontoname'

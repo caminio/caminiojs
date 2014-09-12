@@ -33,6 +33,8 @@
 #= require 3rd/antiscroll
 #= require ember-table
 #
+#= require 3rd/nested_sortable.jquery.min
+#
 #= require_tree ./locales
 #= require_self
 #= require ./router

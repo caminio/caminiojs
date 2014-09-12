@@ -23,3 +23,40 @@
   padding-top: 4px;
 }
 
+.form-group-row{
+  display: flex;
+}
+
+.form-group-row .label-col{
+  background: #fafafa;
+  border-right: 1px solid #ddd;
+  padding: 15px 30px 20px 0;
+  text-align: right;
+  font-weight: 600;
+  color: #444;
+  position: relative;
+}
+
+.form-group-row .label-col.label-col-with-text-field{
+  padding-top: 27px;
+}
+
+.form-group-row .label-col .fa{
+  margin-right: 5px;
+}
+
+.form-group-row .content-col{
+  background: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+.form-group .content-col.highlight-hover:hover{
+  background: #ffe;
+}
+
+.form-group-row input:not(:hover){
+  border: none;
+  box-shadow: none;
+  background: none;
+}

@@ -41,6 +41,11 @@ body .btn.btn-transparent{
   color: #d55;
 }
 
+.btn.btn-highlight-danger:hover{
+  background-color: #d55 !important;
+  color: #fff !important;
+}
+
 .btn.btn-success-text{
   color: #5cb85c;
 }
