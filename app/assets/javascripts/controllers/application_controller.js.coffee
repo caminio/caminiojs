@@ -16,10 +16,11 @@ App.ApplicationController = Ember.Controller.extend
   ).property('controllers.sessions.currentUser')
 
   availableApps: (->
+    return [] unless App.get('currentOu')
     App.get('currentOu.app_plans').map (app_plan)->
       app = app_plan.get('app')
       app.set('current_plan', app_plan)
-  ).property 'App.currentUser.app_plans'
+  ).property 'App.currentUser.app_plans.@each', 'App.currentOu.app_plans.@each'
 
 #  init: ->
 #    @_super()

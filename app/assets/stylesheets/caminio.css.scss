@@ -166,6 +166,27 @@ img.avatar{
   margin-bottom: 20px;  
 }
 
+.page-ctrl{
+  background: #fff;
+  text-align: right;
+}
+
+.page-ctrl .btn{
+  padding: 15px 20px;
+}
+
+.page-ctrl .btn-close:hover{
+  background: #444;
+  color: #fff;
+}
+
+.page-ctrl .title{
+  float: left;
+  margin: 15px 40px 14px;
+  font-size: 16px;
+  color: #777;
+}
+
 .btn-ctrl{
   text-align: right;
   margin-bottom: 5px;
@@ -179,7 +200,7 @@ img.avatar{
   display: inline-block;
   position: relative;
   opacity: 0.75;
-  margin-right: 5px;
+  float: left;
 }
 
 .search-query-wrap:focus,
@@ -188,31 +209,28 @@ img.avatar{
 }
 
 .search-query-wrap .search-query{
-  padding: 7px 5px 9px;
-  width: 300px;
+  padding: 17px 5px 15px;
+  width: 350px;
+  box-shadow: none !important;
+  border: none;
 }
 
-.search-query-wrap button{
-  position: absolute;
-  top: 0;
+.search-query-wrap .search-query:focus{
+  background: #fafafa;
+}
+
+.includes-adv-search .fa-gears,
+.includes-adv-search .fa-search{
   color: #777;
-  padding: 6px 8px;
 }
 
-.search-query-wrap button.search{
-  right: 0;
-}
-
-.search-query-wrap button.adv{
-  right: 25px;
-  color: #bbb;
-}
-
-.search-query-wrap button.adv:hover{
+.btn.search-btn:hover,
+.btn.adv-search-btn:hover{
   color: #555;
+  background: #eee;
 }
 
-.search-query-wrap button.adv .active-filters{
+.btn.adv-search-btn .active-filters{
   border-radius: 20px;
   background-color: #a101c1;
   font-size: 10px;
@@ -244,4 +262,23 @@ section h2{
 .container{
   background: #fff;
   padding: 20px;
+}
+
+.loading-wrap{
+  width: 100%;
+  padding: 150px;
+  text-align: center;
+  background: #eee;
+}
+
+.loading-loader{
+  background: url(asset-path('loader.gif'));
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 128px;
+  height: 128px;
+  margin: auto;
 }

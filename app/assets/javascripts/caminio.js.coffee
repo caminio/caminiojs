@@ -126,7 +126,9 @@ window.ACCESS =
   SHARE: 3
   FULL: 4
 
-$('body').on('mouseover', '[rel=tooltip]', (e)->
+$('body').on('mouseenter', '[title]', (e)->
   return if $(@).hasClass('tooltip')
-  $(@).tooltip()
+  $(@).tooltip
+    placement: 'bottom'
+  .tooltip('show')
 )

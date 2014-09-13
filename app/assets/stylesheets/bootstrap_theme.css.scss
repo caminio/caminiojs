@@ -140,6 +140,12 @@ body .bootbox.modal .modal-header{
   border: none;
 }
 
+body .modal-settings{
+  background: #eee;
+  padding: 20px;
+  margin: 20px;
+}
+
 body .alert .fa{
   margin-right: 10px;
 }
@@ -162,4 +168,25 @@ body .dropdown-menu > li > a.disabled{
   color: #999;
   cursor: default;
   background: none;
+}
+
+body .popover.bottom > .arrow:after {
+  border-bottom-color: #444;
+  border-top-width: 0;
+  content: " ";
+  margin-left: -9px;
+  top: 2px;
+}
+
+body .popover.bottom > .arrow{
+  border: none;
+}
+
+body .popover{
+  background: #444;
+  color: #fff;
+}
+
+body .tooltip.top .tooltip-arrow{
+  bottom: 1px;
 }
