@@ -15,12 +15,11 @@ App.ApplicationController = Ember.Controller.extend
     @store.getById('api_key', Ember.$.cookie 'caminio-session')
   ).property('controllers.sessions.currentUser')
 
-  init: ->
-    @_super()
-    @set('availableApps',  @store.all('app'))
-    @get('availableApps').forEach (app)->
-      app.set('current_plan', app.get('app_plans.firstObject'))
-
+  availableApps: (->
+    App.get('currentOu.app_plans').map (app_plan)->
+      app = app_plan.get('app')
+      app.set('current_plan', app_plan)
+  ).property 'App.currentUser.app_plans'
 
 #  init: ->
 #    @_super()
