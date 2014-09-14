@@ -8,6 +8,8 @@
  *= require seiyria-bootstrap-slider/dist/css/bootstrap-slider.min
  *= require ember-table
  *= require ember-table_theme
+ *= require datatables
+ *= require datatable_theme
  *= require selectize_theme
  *= require bootstrap_theme
  *= require authorization
@@ -143,6 +145,7 @@ body > .ember-view{
 
 .content-panel-section{
   margin: 20px 0 0 40px;
+  position: relative;
 }
 
 form .row-group{

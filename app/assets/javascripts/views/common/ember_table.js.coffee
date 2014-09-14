@@ -1,7 +1,7 @@
 App.EmberTableActionView = Ember.View.extend
   tagName: 'a'
   click: (e)->
-    content = @_parentView._parentView.get('row.content')
+    content = @_parentView._parentView._parentView.get('row.content')
     controller = @nearestWithProperty('hasHeader')._parentView.controller
     controller.send(@get('actionName'), content)
 
@@ -75,4 +75,3 @@ Ember.Table.CheckboxHeaderCell = Ember.Table.HeaderCell.extend
     @get('controller.content').forEach (record)->
       selectedRecords.pushObject record
 
-      
