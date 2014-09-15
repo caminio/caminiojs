@@ -48,6 +48,9 @@
 #= require_tree ./components
 #= require_tree ./templates
 
+Ember.FEATURES.I18N_TRANSLATE_HELPER_SPAN = false
+Ember.ENV.I18N_COMPILE_WITHOUT_HANDLEBARS = true
+
 window.App = Ember.Application.create
   LOG_TRANSITIONS: true
 
