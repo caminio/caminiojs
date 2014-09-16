@@ -51,9 +51,8 @@ module HasAccessRules
       self.includes(:access_rules).where( access_rules: { user_id: user.id })
     end
 
-    def with_user_and_ou(user,ou)
-      Thread.current.thread_variable_set(:current_user, user)
-      self.includes(:access_rules).where( access_rules: { user_id: user.id, organizational_unit_id: (ou.is_a?(String) ? ou : ou.id) })
+    def with_ou(ou)
+      self.includes(:access_rules).where( access_rules: { organizational_unit_id: (ou.is_a?(String) ? ou : ou.id) })
     end
 
   end

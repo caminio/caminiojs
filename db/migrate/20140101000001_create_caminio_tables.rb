@@ -173,6 +173,7 @@ class CreateCaminioTables < ActiveRecord::Migration
 
     create_table :labels do |t|
       t.string          :name
+      t.string          :category
       t.string          :color
       t.integer         :created_by
       t.integer         :updated_by
