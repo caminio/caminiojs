@@ -59,3 +59,17 @@ table thead .row-checkbox .fa-check:not(.all-selected){
 table thead th.row-checkbox-header{
   padding: 0;
 }
+
+table tbody tr:hover{
+  background: #ffc;
+}
+
+table tbody tr{
+  transition: all 0.3s;
+}
+
+table tbody tr.selected{
+  background: #ffc;
+  transition: all 0.3s;
+}
+

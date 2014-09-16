@@ -32,7 +32,6 @@
 #= require 3rd/jquery.mousewheel.min
 #= require 3rd/antiscroll
 #= require ember-table
-#= require datatables
 #
 #= require 3rd/nested_sortable.jquery.min
 #
