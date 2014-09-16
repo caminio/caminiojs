@@ -1,4 +1,5 @@
-.form .checkbox{
+.form .checkbox,
+.form .table-checkbox{
   background: none repeat scroll 0 0 #f9f9f9;
   border: 1px solid #ddd;
   cursor: pointer;
@@ -11,7 +12,8 @@
   margin-bottom: 0;
 }
 
-.form .checkbox .fa{
+.form .checkbox .fa,
+.table-checkbox .fa{
   position: absolute;
   top: 5px;
   left: 5px;
