@@ -1,0 +1,32 @@
+{{#caminio-modal title='labels.edit' close='closeModal' width='400px'}}
+<div class="modal-body accounts-modal">
+  
+  <div class="alert alert-info">
+  {{{t 'accounts.plan.select_first_then_apply'}}}
+  </div>
+
+  <form class="form" {{action 'save' on='submit'}}>
+    
+    <div class="form-group">
+      <label>{{t 'label.name'}}</label>
+      {{input value=newLabel.name}}
+    </div>
+
+    <div class="form-group">
+      <label>{{t 'label.color'}}</label>
+      {{input value=newLabel.color}}
+    </div>
+
+  </form>
+
+</div>
+
+<div class="modal-footer">
+
+  <button class="btn add-plan pull-right btn-sm btn-success" {{action 'saveLabel'}}>
+    {{t 'labels.save'}}
+  </button>
+</div>
+
+
+{{/caminio-modal}}

@@ -1,0 +1,16 @@
+<div class="labels">
+
+  <div class="title">
+    <button class="btn btn-pale" {{action 'newLabelModal'}} {{translateAttr title='labels.new_modal'}}>
+      <i class="fa fa-plus"></i>
+    </button>
+    <div class="text">{{t 'labels.title'}}</div>
+  </div>
+
+  <ul>
+    {{#each labels}}
+    <li {{action 'toggleLabel' this}}>{{name}}</li>
+    {{/each}}
+  </ul>
+
+</div>

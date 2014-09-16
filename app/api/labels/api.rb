@@ -8,11 +8,11 @@ class Labels::API < Grape::API
   helpers Caminio::API::Helpers
 
   params do
-    optional :type
+    optional :category
   end
   before { authenticate! }
   get '/', root: 'labels' do
-    Label.joins(:row_labels).where(row_labels: { row_type: params.type })
+    Label.where category: params.category
   end
 
 end
