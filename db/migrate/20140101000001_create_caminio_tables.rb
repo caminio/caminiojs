@@ -174,7 +174,9 @@ class CreateCaminioTables < ActiveRecord::Migration
     create_table :labels do |t|
       t.string          :name
       t.string          :category
-      t.string          :color
+      t.string          :fgcolor
+      t.string          :bgcolor
+      t.string          :bdcolor
       t.integer         :created_by
       t.integer         :updated_by
       t.datetime        :deleted_at

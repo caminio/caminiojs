@@ -1,6 +1,7 @@
 /*
  *= require opensans
  *= require 3rd/font-awesome
+ *= require 3rd/bs.colorselector
  *= require pace.css
  *= require toastr
  *= require toastr_theme
@@ -227,6 +228,11 @@ img.avatar{
 .includes-adv-search .fa-gears,
 .includes-adv-search .fa-search{
   color: #777;
+}
+
+.includes-adv-search form{
+  display: inline-block;
+  float: left;
 }
 
 .btn.search-btn:hover,

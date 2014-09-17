@@ -18,9 +18,9 @@ module Caminio
       Rails.application.config.assets.precompile += %w( caminio.js 
                                                         caminio.css
                                                         mailer.css
+                                                        3rd/font-awesome/*
                                                         3rd/bootstrap.min.css
                                                         3rd/font-awesome.css
-                                                        3rd/hint.min.css
                                                         3rd/fonts/*
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.eot
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.woff

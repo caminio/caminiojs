@@ -37,7 +37,9 @@ App.ApplicationRoute = Ember.Route.extend
 
   actions:
 
-    openModal: (modalName)->
+    openModal: (modalName, controller)->
+      if controller
+        return @.render modalName, into: 'application', outlet: 'modal', controller: controller
       @.render modalName, into: 'application', outlet: 'modal'
 
     closeModal: ->

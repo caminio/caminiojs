@@ -5,6 +5,7 @@
 #= require 3rd/nicescroll.min
 #= require 3rd/filesize.min
 #= require 3rd/accounting.min
+#= require 3rd/bs.colorselector
 #= require blueimp-file-upload/js/vendor/jquery.ui.widget
 #= require blueimp-file-upload/js/jquery.iframe-transport
 #= require blueimp-file-upload/js/jquery.fileupload

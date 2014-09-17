@@ -31,3 +31,13 @@
 .labels > ul > li.active{
   border-color: #ffc;
 }
+
+.labels li .btn-group{
+  float: right;
+  visibility: hidden;
+  color: #666;
+}
+
+.labels li:hover .btn{
+  visibility: visible;
+}

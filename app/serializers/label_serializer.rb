@@ -1,3 +1,3 @@
 class LabelSerializer < ActiveModel::Serializer
-  attributes :id, :name, :color
+  attributes :id, :name, :fgcolor, :bgcolor, :bdcolor, :category
 end

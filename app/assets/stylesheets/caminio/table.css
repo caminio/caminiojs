@@ -73,3 +73,8 @@ table tbody tr.selected{
   transition: all 0.3s;
 }
 
+table tbody tr.saving{
+  opacity: 0.5;
+  transition: all 0.8s;
+}
+
