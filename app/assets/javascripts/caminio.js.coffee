@@ -130,6 +130,7 @@ window.ACCESS =
   FULL: 4
 
 $('body').on('mouseenter', '[title]', (e)->
+  return if $(@).closest('.cke')
   return if $(@).hasClass('tooltip')
   $(@).tooltip
     placement: 'bottom'

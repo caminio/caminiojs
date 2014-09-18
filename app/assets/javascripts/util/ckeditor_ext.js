@@ -4,37 +4,64 @@
 
   window.App.CkeditorView = Ember.TextArea.extend({
 
-    classNames: ['ckeditor-wrap'],
+    // template: Em.Handlebars.compile('<div class="ckeditor-wrap"><div class="ckeditor-toolbar"></div><div {{bind-attr class=":ckeditor-content-wrap classNames"}} contenteditable="true"></div></div>'),
 
     didInsertElement: function() {
-      this._editor = CKEDITOR.replace( this.$().attr('id') )
+      
+      CKEDITOR.disableAutoInline = true;
+      CKEDITOR.config.allowedContent = true;
+      if( this.get('styles') )
+        CKEDITOR.addCss( this.get('styles') )
+
       var view = this;
+      this._editor = CKEDITOR.replace( this.$().get(0),{
+        bodyClass: 'nlc',
+        height: $(window).height()-400
+      });
+      // this._editor = CKEDITOR.inline( this.$('.ckeditor-content-wrap').get(0),{
+      //   // extraPlugins: 'sharedspace',
+      //   // removePlugins: 'floatingspace,resize',
+      //   // sharedSpaces: {
+      //   //   top: 'top'
+      //   // }
+      // });
+
+      // this._editor.setData( view.get('value') );
+
+      // CKEDITOR.appendTo( this.$('.ckeditor-toolbar').get(0), {
+      //   extraPlugins: 'sharedspace',
+      //   removePlugins: 'resize',
+      //   sharedSpaces: {
+      //     top: 'top'
+      //   }
+      // }, this.$('.ckeditor-content-wrap').get(0).innerHTML );
+
       this._editor.on('change', function(){
-        view.set('value', view._editor.getValue());
+        view.set('value', view._editor.getData());
       });
     },
 
     willDestroyElement: function () {
-      // this._editor.();
+      this._editor.destroy();
     },
 
-    selectedDidChange : function(){
-      var self = this;
-      if( self._preventLoop ){
-        self._preventLoop = false;
-        return;
-      }
-      if( self.get('value') )
-        self._editor.setValue(self.get('value'));
-    }.observes('value'),
+    // selectedDidChange : function(){
+    //   var self = this;
+    //   if( self._preventLoop ){
+    //     self._preventLoop = false;
+    //     return;
+    //   }
+    //   if( self.get('value') )
+    //     self._editor.setData(self.get('value'));
+    // }.observes('value'),
 
-    swapVal: function(value){
-      value = value || '';
-      this.set('value',value);
-      this._editor.setValue(this.get('value'));
-      this._editor.refresh();
-    }
-
+    // swapVal: function(value){
+    //   value = value || '';
+    //   this.set('value',value);
+    //   this._editor.setData(this.get('value'));
+    //   this._editor.refresh();
+    // }
+    //
   });
 
   })( App );
