@@ -1,24 +1,40 @@
 require 'securerandom'
 
-class User < ActiveRecord::Base
+class User
 
-  has_attached_file :avatar,
-    :styles => { :thumb => "128x128!", :original => "500x500>" }
-    # :default_url => "/images/:style/missing.png",
-    # :path => ":rails_root/public/#{Rails.env}/avatars/:id/:style/:filename"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  include Mongoid::Document
+  include Mongoid::Userstamp
+  include Mongoid::Timestamps
 
-  serialize :settings, JSON
-  has_many :domains, through: :users_domains
-  has_many :subscriptions
-  has_many :circles
+  field :username, type: String
+  field :firstname, type: String
+  field :lastname, type: String
+  field :email, type: String
+  field :phone, type: String
+  field :locale, type: String
+  field :description, type: String
+  field :last_login_at, type: DateTime
+  field :last_request_at, type: DateTime
+  field :last_login_ip, type: String
 
-  has_many :api_keys
-  has_many :organizational_units, through: :organizational_unit_members
-  has_many :organizational_unit_members
-  has_many :app_model_user_roles, -> { distinct }, dependent: :delete_all
-  has_many :app_models, -> { distinct }, through: :app_model_user_roles
+  field :password_digest, type: String
 
+  field :confirmation_key, type: String
+  field :confirmation_key_expires_at, type: DateTime
+
+  field :public_key, type: String
+  field :private_key, type: String
+
+  field :street, type: String
+  field :zip, type: String
+  field :country, type: String
+  field :county, type: String
+  field :city, type: String
+
+  field :api_user, type: Boolean
+  field :expires_at, type: DateTime
+
+  has_many :organizational_units
   has_secure_password
 
   validates_presence_of :password, :on => :create  
@@ -83,10 +99,10 @@ class User < ActiveRecord::Base
     end
 
     def find_or_create_organizational_unit 
-      return if self.organizational_units.where( :name => "private" ).first
-      self.organizational_units.create( 
+      return if organizational_units.where( :name => "private" ).first
+      organizational_units.create( 
         :name => organizational_unit_name || "private", 
-        :owner => self 
+        :owner => self
       )
     end
 

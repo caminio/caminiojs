@@ -50,4 +50,4 @@ module HasTranslations
 
 end
 
-ActiveRecord::Base.send :include, HasTranslations
+# ActiveRecord::Base.send :include, HasTranslations

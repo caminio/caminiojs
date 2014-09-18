@@ -184,5 +184,5 @@ module HasAccessRules
 
 end
 
-ActiveRecord::Base.send :include, HasAccessRules
+# ActiveRecord::Base.send :include, HasAccessRules
 

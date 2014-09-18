@@ -19,6 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rails", "~> 4.1.0"
+  spec.add_dependency "mongoid", "~> 4.0.0"
+  spec.add_dependency "mongoid_userstamp", "~> 0.4.0"
+  spec.add_dependency "request_store", "~> 1.1.0"
   spec.add_dependency "grape", "0.8.0"
   spec.add_dependency "grape-rabl", "0.2.2"
   spec.add_dependency "bcrypt", "3.1.7"

@@ -23,5 +23,5 @@ module HasLabels
 
 end
 
-ActiveRecord::Base.send :include, HasLabels
+# ActiveRecord::Base.send :include, HasLabels
 
