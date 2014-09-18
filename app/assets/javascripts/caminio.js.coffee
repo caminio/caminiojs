@@ -13,7 +13,6 @@
 #= require jquery.cookie
 #= require bootstrap/dist/js/bootstrap.min
 #= require typeahead.js/dist/typeahead.bundle
-#= require codemirror
 #= require moment
 #= require moment/locale/de
 #
