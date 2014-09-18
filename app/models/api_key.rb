@@ -1,7 +1,10 @@
 class ApiKey < ActiveRecord::Base
-  
-  belongs_to :user
 
+  field :access_token, type: String
+  field :expires_at, type: DateTime
+
+  embedded_in :user
+  
   before_create :setup_access_token, :setup_expires_at
 
   private

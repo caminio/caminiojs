@@ -1,8 +1,18 @@
-class Label < ActiveRecord::Base
+class Label
+  include Mongoid::Document
+  include Mongoid::Userstamp
+  include Mongoid::Timestamps
+  include Mongoid::Versioning
+  include Mongoid::Paranoia
 
-  has_many :children, through: :row_labels
-  has_many :row_labels, as: :row, dependent: :delete_all
+  field :name, type: String
+  field :description, type: String
+  field :fgcolor, type: String
+  field :bgcolor, type: String
+  field :bdcolor, type: String
 
-  has_access_rules app_name: "caminio", hidden: true
+  embeds_many :activities
+
+  has_access_rules
 
 end

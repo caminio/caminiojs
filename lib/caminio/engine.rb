@@ -27,17 +27,17 @@ module Caminio
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.ttf)
     end
 
-    if defined?( ActiveRecord )
-      ActiveRecord::Base.send( :include, Caminio::Schemas::Row )
-    end
-
-    initializer :append_migrations do |app|
-      unless app.root.to_s.match root.to_s
-        config.paths["db/migrate"].expanded.each do |expanded_path|
-          app.config.paths["db/migrate"] << expanded_path
-        end
-      end
-    end
+    # if defined?( ActiveRecord )
+    #   ActiveRecord::Base.send( :include, Caminio::Schemas::Row )
+    # end
+    #
+    # initializer :append_migrations do |app|
+    #   unless app.root.to_s.match root.to_s
+    #     config.paths["db/migrate"].expanded.each do |expanded_path|
+    #       app.config.paths["db/migrate"] << expanded_path
+    #     end
+    #   end
+    # end
 
   end
 end

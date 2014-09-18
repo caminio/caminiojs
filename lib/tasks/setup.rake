@@ -2,27 +2,41 @@ require File::expand_path '../rake_colors', __FILE__
 
 namespace :caminio do
 
-  desc "setup admin account"
-  task :setup => :environment do
+  desc "setup app plans"
+  task setup: :environment do
 
     include Colors
-
-    email = "manager@camin.io"
-    password = "mgr"
-    puts "[caminio] email #{green email} pass #{green password}"
-
-    @user = User.new username: 'manager', firstname: 'caminio', lastname: 'superuser', email: email, access_level: 1, password: password, password_confirmation: password
-    if @user.valid? && @user.save
-      puts "[caminio] successfully created user #{email}"
-    else
-      puts "[caminio]#{red " ERROR"} user #{red @user.email} already exists"
+    app = App.new
+    %w(en de).each do |locale|
+      I18n.with_locale(locale) do
+        app.write_attributes name: I18n.t('app.core.title'), 
+          description: I18n.t('app.core.description'), 
+          position: 0
+      end
+    end
+    app_plan = app.app_plans.build
+    %w(en de).each do |locale|
+      I18n.with_locale(locale) do
+        app_plan.write_attributes name: I18n.t('app.core.plan.free.title'), 
+          users_quota: 2,
+          content_quota: 1000,
+          disk_quota: 10
+      end
+    end
+    app_plan = app.app_plans.build
+    %w(en de).each do |locale|
+      I18n.with_locale(locale) do
+        app_plan.write_attributes name: I18n.t('app.core.plan.collaboration.title'), 
+          users_quota: 5,
+          content_quota: 10000,
+          disk_quota: 100
+      end
     end
 
-  end
+    app.save
 
-  desc "run initial install script"
-  task :install do
-    system 'rails g caminio:install'
+    puts "[caminio] #{green app.name} created"
+
   end
 
 end

@@ -1,11 +1,9 @@
-class AppPlan < ActiveRecord::Base
-  belongs_to :app
-  has_many :organizational_unit_app_plans
-  has_many :organizational_units, through: :organizational_unit_app_plans
-  validates_presence_of :app, :on => :create
+class AppPlan
+  include Mongoid::Document
 
-  default_scope { where(hidden: false) }
-
-  has_translations
-
+  field :name, type: String
+  field :price, type: Integer # price in cent. 5.00 EUR is saved as 500
+  field :content_quota, type: Integer
+  field :users_quota, type: Integer
+  field :disk_quota, type: Integer
 end
