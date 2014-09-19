@@ -5,6 +5,8 @@ class Label
   include Mongoid::Versioning
   include Mongoid::Paranoia
 
+  include Caminio::AccessRulesMethods
+
   field :name, type: String
   field :description, type: String
   field :fgcolor, type: String
@@ -12,7 +14,7 @@ class Label
   field :bdcolor, type: String
 
   embeds_many :activities
+  embeds_many :access_rules
 
-  has_access_rules
 
 end

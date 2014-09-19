@@ -8,17 +8,25 @@ class OrganizationalUnit
   field :suspended, type: Boolean, default: false
   field :name, type: String
   
-  belongs_to :owner, class_name: 'User'
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :app_plans
 
-  # def link_apps(apps)
-  #   apps.each_pair do |app_plan, value|
-  #     if value
-  #       OrganizationalUnitAppPlan.create( 
-  #         :app_plan_id => app_plan, 
-  #         :organizational_unit => self 
-  #       )
-  #     end
-  #   end
-  # end
-    
+  embeds_many :access_rules
+
+  after_save :check_owner_has_full_access
+
+  def access_for_user( user )
+    return unless users.find(user.id)
+    access_rules.where(user: user).first
+  end
+
+  private
+
+  def check_owner_has_full_access
+    return unless owner = users.first
+    app_plans.each do |plan|
+      access_rules.find_or_create_by( user: owner, can_write: true, can_share: true, can_delete: true, app: plan.app )
+    end
+  end
+
 end

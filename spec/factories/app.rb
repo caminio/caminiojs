@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :app do
-    name "an app"
+    name "Empty Application"
   end
 
 end

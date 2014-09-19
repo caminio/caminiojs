@@ -1,4 +1,5 @@
-class ApiKey < ActiveRecord::Base
+class ApiKey
+  include Mongoid::Document
 
   field :access_token, type: String
   field :expires_at, type: DateTime

@@ -9,5 +9,6 @@ class App
   field :url, type: String
   field :hidden, type: Boolean
 
-  embeds_many :app_plans
+  has_many :app_plans
+
 end

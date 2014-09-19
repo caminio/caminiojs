@@ -4,13 +4,14 @@ class User
   include Mongoid::Document
   include Mongoid::Userstamp
   include Mongoid::Timestamps
+  include ActiveModel::SecurePassword
 
   field :username, type: String
   field :firstname, type: String
   field :lastname, type: String
   field :email, type: String
   field :phone, type: String
-  field :locale, type: String
+  field :locale, type: String, default: I18n.locale
   field :description, type: String
   field :last_login_at, type: DateTime
   field :last_request_at, type: DateTime
@@ -33,7 +34,7 @@ class User
   field :api_user, type: Boolean
   field :expires_at, type: DateTime
 
-  has_many :organizational_units
+  has_and_belongs_to_many :organizational_units
   has_secure_password
 
   validates_presence_of :password, :on => :create  
@@ -70,11 +71,10 @@ class User
   end
 
   def find_or_create_organizational_unit 
-    return if organizational_units.where( :name => "private" ).first
-    organizational_units.create( 
-                                :name => organizational_unit_name || "private", 
-                                :owner => self
-                               )
+    return organizational_units.first if organizational_units.first
+    ou = OrganizationalUnit.create name: 'private'
+    organizational_units << ou
+    ou
   end
 
 end
