@@ -5,6 +5,7 @@ class User
   include Mongoid::Userstamp
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
+  include Mongoid::Paperclip
 
   field :username, type: String
   field :firstname, type: String
@@ -35,7 +36,10 @@ class User
   field :expires_at, type: DateTime
 
   has_and_belongs_to_many :organizational_units
+  has_many :api_keys
+
   has_secure_password
+  has_mongoid_attached_file :avatar
 
   validates_presence_of :password, :on => :create  
   validates_presence_of :email, :on => :create

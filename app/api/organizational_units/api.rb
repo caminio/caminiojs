@@ -9,7 +9,7 @@ class OrganizationalUnits::API < Grape::API
 
   get '/' do
     authenticate!
-    { organizational_units: current_user.organizational_units, organizational_unit_members: current_user.organizational_unit_members }
+    current_user.organizational_units
   end
 
   params do

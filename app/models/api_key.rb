@@ -4,7 +4,7 @@ class ApiKey
   field :access_token, type: String
   field :expires_at, type: DateTime
 
-  embedded_in :user
+  belongs_to :user
   
   before_create :setup_access_token, :setup_expires_at
 

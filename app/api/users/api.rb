@@ -136,12 +136,19 @@ class Users::API < Grape::API
     { api_key: user.api_keys.create }
   end
 
+  params do
+    requires :email
+    requires :password
+    requires :locale
+    optional :company_name
+  end
   post '/signup' do
-    error! 'Email exists', 409 if User.find_by_email params[:email]
-    user = User.new( email: params[:email],
+    error! 'Email exists', 409 if User.where(email: params.email).first
+    user = User.new( 
+      email: params[:email],
       password: params[:password],
-      locale: params[:locale],
-      organizational_unit_name: params[:company_name].blank? ? "private" : params[:company_name])
+      locale: params[:locale])
+    user.organizational_units.build name: params.company_name || 'private'
     if user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
         { api_key: user.api_keys.create }
@@ -160,7 +167,7 @@ class Users::API < Grape::API
 
   get '/:id', root: 'user' do
     authenticate!
-    User.find_by_id(params[:id])
+    User.find(params[:id])
   end
 
   get '/:id/profile_picture' do

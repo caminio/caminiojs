@@ -61,6 +61,9 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend
 App.ApplicationStore = DS.Store.extend
   adapter: DS.RESTAdapter.extend
 
+App.ApplicationSerializer = DS.ActiveModelSerializer.extend
+  primaryKey: '_id'
+
 App.setAuthenticationBearer = (access_token, user)->
   Ember.$.ajaxSetup
     headers:
