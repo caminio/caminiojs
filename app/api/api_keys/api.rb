@@ -10,7 +10,7 @@ class ApiKeys::API < Grape::API
   end
   get '/:access_token' do
     if api_key = ApiKey.where(access_token: params.access_token).gt(expires_at: Time.now).first
-      return { api_key: api_key }
+      return api_key
     end
     error! 'Unauthorized', 401
   end

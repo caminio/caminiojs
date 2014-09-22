@@ -61,8 +61,8 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend
 App.ApplicationStore = DS.Store.extend
   adapter: DS.RESTAdapter.extend
 
-App.ApplicationSerializer = DS.ActiveModelSerializer.extend
-  primaryKey: '_id'
+# App.ApplicationSerializer = DS.ActiveModelSerializer.extend
+#   primaryKey: '_id'
 
 App.setAuthenticationBearer = (access_token, user)->
   Ember.$.ajaxSetup
@@ -78,6 +78,7 @@ App.setAuthenticationBearer = (access_token, user)->
   else
     App.set 'currentOu', user.get('organizational_units.firstObject')
   $('body').removeClass('authorization-required')
+  console.log "app is", App.get('currentOu')
   Ember.$.ajaxSetup
     headers:
       'Ou': App.get('currentOu.id')

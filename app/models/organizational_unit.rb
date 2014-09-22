@@ -20,6 +20,10 @@ class OrganizationalUnit
     access_rules.where(user: user).first
   end
 
+  def apps
+    app_plans.map(&:app)
+  end
+
   private
 
   def check_owner_has_full_access

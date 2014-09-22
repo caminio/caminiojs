@@ -59,6 +59,7 @@ class Users::API < Grape::API
 
   desc "deletese a user (from organizational unit or entirely)"
   delete '/:id' do
+    authenticate!
     error!('not found', 404) unless user = User.find( params[:id] )
     error!('insufficient rights', 403) unless ( current_user.id == user.id || current_user.id == current_organizational_unit.owner_id )
     unless user.organizational_unit_members.where( organizational_unit_id: current_organizational_unit.id ).destroy_all
@@ -148,8 +149,9 @@ class Users::API < Grape::API
       email: params[:email],
       password: params[:password],
       locale: params[:locale])
-    user.organizational_units.build name: params.company_name || 'private'
-    if user.save
+    ou = OrganizationalUnit.create name: params.company_name || 'private'
+    ou.users << user
+    if ou.save && user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
         { api_key: user.api_keys.create }
       else
@@ -171,6 +173,7 @@ class Users::API < Grape::API
   end
 
   get '/:id/profile_picture' do
+    authenticate!
     filename = File::expand_path("../../../assets/images/missing_bot_128x128.png",__FILE__)
     content_type MIME::Types.type_for(filename)[0].to_s
     env['api.format'] = :binary

@@ -3,7 +3,7 @@ class AppPlan
   include Mongoid::Userstamp
   include Mongoid::Timestamps
 
-  field :name, type: String
+  field :name, type: String, localize: true
   field :price, type: Integer # price in cent. 5.00 EUR is saved as 500
   field :content_quota, type: Integer
   field :user_quota, type: Integer

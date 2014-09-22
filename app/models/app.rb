@@ -3,6 +3,7 @@ class App
   include Mongoid::Userstamp
   include Mongoid::Timestamps
   field :name, type: String, localize: true
+  field :icon, type: String
   field :description, type: String, localize: true
   field :position, type: Integer
   field :additional_javascript, type: String
@@ -10,5 +11,7 @@ class App
   field :hidden, type: Boolean
 
   has_many :app_plans
+
+  validates_uniqueness_of :name
 
 end

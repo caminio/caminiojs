@@ -75,9 +75,10 @@ class User
   end
 
   def find_or_create_organizational_unit 
-    return organizational_units.first if organizational_units.first
+    return organizational_units.first if organizational_units.where(name: 'private').first
     ou = OrganizationalUnit.create name: 'private'
-    organizational_units << ou
+    ou.users << self
+    ou.save
     ou
   end
 

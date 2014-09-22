@@ -1,16 +1,15 @@
 App.AccountsPlansRoute = App.ApplicationRoute.extend
   auth: true
   model: ->
-    @.controllerFor('sessions').get('currentUser')
+    @store.find('app')
+
   setupController: (controller,model)->
     controller.set('myPlans', App.get('currentOu.app_plans'))
 
     if App.get('currentOu.app_plans.length') < 1
       @render 'accounts/available_plans', into: 'application', outlet: 'modal'
 
-    controller.set('apps',  @store.all('app'))
-    controller.get('apps').forEach (app)->
-      app.set('current_plan', app.get('app_plans.firstObject'))
+    controller.set('apps',  model)
     
   actions:
 

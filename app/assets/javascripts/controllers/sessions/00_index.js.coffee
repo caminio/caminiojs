@@ -23,8 +23,8 @@ App.SessionsController = Ember.Controller.extend
   authenticate: (api_key)->
     Ember.$.cookie 'caminio-session', api_key.access_token
     App.setAuthenticationBearer( api_key.access_token )
-    @.store.find('organizational_unit')
-    @.set 'currentUser', @.store.find('user',
+    @store.find('organizational_unit')
+    @set 'currentUser', @store.find('user',
       api_key.user_id).then (user)->
         App.setAuthenticationBearer( api_key.access_token, user )
-    @.transitionToRoute('dashboard.index')
+    @transitionToRoute('dashboard.index')

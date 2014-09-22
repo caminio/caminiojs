@@ -5,7 +5,7 @@ en:
   show_history: "Show history"
   app:
     core: 
-      title: 'Core'
+      title: 'caminio'
       description: 'Core collabaration features'
       plan:
         free:

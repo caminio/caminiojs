@@ -31,10 +31,8 @@ App.ApplicationRoute = Ember.Route.extend
         controller.set 'currentUser', api_key.get('user')
         console.log api_key._data.user_id
         api_key.get('user').then (user)->
-          controller.store.find('app_plan', user_id: user.id)
-            .then ->
-              App.setAuthenticationBearer( api_key.get('access_token'), user )
-              user
+          App.setAuthenticationBearer( api_key.get('access_token'), user )
+          user
 
   actions:
 

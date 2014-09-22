@@ -3,5 +3,5 @@ App.AppController = Ember.ObjectController.extend
     Ember.I18n.t("#{@.get('content.name').toLowerCase()}.app_title")
   ).property('content.name'),
   appPath: (->
-    "##{@.get('content.path')}"
-  ).property('content.path')
+    "#{@.get('content.url')}"
+  ).property('content.url')

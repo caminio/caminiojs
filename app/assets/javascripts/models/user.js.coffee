@@ -9,9 +9,8 @@ App.User = DS.Model.extend
   password:                       DS.attr "string"
   password_confirmation:          DS.attr "string"
   settings:                       DS.attr "object"
-  organizational_units:           DS.hasMany "organizational_unit", inverse: 'users'
+  organizational_units:           DS.hasMany "organizational_unit"
   avatar_thumb:                   DS.attr "string"
-  app_model_user_roles:           DS.hasMany "app_model_user_roles"
   cur_password:                   DS.attr "string"
 
   name: (->

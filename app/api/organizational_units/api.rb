@@ -30,16 +30,12 @@ class OrganizationalUnits::API < Grape::API
   put '/:id/app_plans' do
     authenticate!
     ou = current_user.current_organizational_unit = current_user.organizational_units.find( headers['Ou'] )
-    ou.app_plans.where("app_plans.id NOT IN (?)", params[:plan_ids]).map(&:destroy)
+    ou.app_plans.map(&:destroy)
     params[:plan_ids].each do |plan_id|
       app_plan = AppPlan.find(plan_id)
-      app_plan.app.app_models.each do |app_model|
-        ou.app_model_user_roles << AppModelUserRole.new(
-          app_model: app_model, access_level: Caminio::Access::FULL, user: current_user
-        ) unless ou.app_model_user_roles.where( user: current_user, app_model: app_model ).first
-      end
       ou.app_plans << app_plan
     end
+    ou.save
     error!('failed to save',500) unless ou.save
     {}
   end
