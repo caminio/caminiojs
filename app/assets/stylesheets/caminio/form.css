@@ -58,7 +58,4 @@
 }
 
 .form-group-row input:not(:hover){
-  border: none;
-  box-shadow: none;
-  background: none;
 }

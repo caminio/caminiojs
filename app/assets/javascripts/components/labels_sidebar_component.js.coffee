@@ -37,6 +37,5 @@ App.LabelsSidebarComponent = Em.Component.extend
           comp.get('labels').pushObject(label) if wasNew
 
     closeModal: ->
-      console.log "here"
       $('.modal .close').click()
       @get('parentController').send('closeModal')

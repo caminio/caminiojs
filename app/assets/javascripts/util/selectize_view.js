@@ -51,10 +51,6 @@
     create:false,
     createAction:'create',
 
-    click: function() {
-      console.log( $(e.target) )
-    },
-
     didInsertElement : function() {
       var allowCreate = get(this, 'create');
       var createAction = get(this, 'createAction');

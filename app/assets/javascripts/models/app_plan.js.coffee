@@ -1,5 +1,6 @@
 App.AppPlan = DS.Model.extend
   name:                 DS.attr 'string'
+  title:                DS.attr 'string'
   app:                  DS.belongsTo 'app'
   translations:         DS.hasMany 'translation', embedded: 'always'
   user_quota:           DS.attr 'number'

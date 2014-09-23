@@ -15,8 +15,8 @@ class Users::API < Grape::API
   end
   get '/', root: 'users' do
     authenticate!
-    users = User.includes(:organizational_units).where("organizational_units.id=?", headers['Ou'] ).references(:organizational_units)
-    users = users.where(["users.firstname LIKE ? OR users.lastname LIKE ? OR users.email LIKE ?"] + 3.times.collect{ "%#{params[:q]}%" }) unless params[:q].blank?
+    users = User.where organizational_units: headers['Ou']
+    users = users.any_of firstname: /#{params.q}/, lastname: /#{params.q}/, email: /#{params.q}/
     return users.map{ |u| { name: u.name, email: u.email, formattedName: "<strong>#{u.name}</strong> #{u.email}" } } if params[:simple_list]
     users
   end

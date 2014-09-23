@@ -5,7 +5,7 @@ de:
   show_history: "Verlauf anzeigen"
   app:
     core: 
-      title: 'caminio'
+      title: 'Dashboard'
       description: 'Die wichtigsten Tools zum Zusammenarbeiten'
       plan:
         free:

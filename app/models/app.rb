@@ -2,7 +2,8 @@ class App
   include Mongoid::Document
   include Mongoid::Userstamp
   include Mongoid::Timestamps
-  field :name, type: String, localize: true
+  field :name, type: String
+  field :title, type: String, localize: true
   field :icon, type: String
   field :description, type: String, localize: true
   field :position, type: Integer

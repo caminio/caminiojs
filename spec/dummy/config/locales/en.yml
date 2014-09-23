@@ -1,7 +1,7 @@
 en:
   app:
     core: 
-      title: 'Core'
+      title: 'Dashboard'
       description: 'Core collabaration features'
       plan:
         free:

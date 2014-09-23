@@ -15,7 +15,7 @@ require "caminio/schemas/row"
 # setup caminio namespace for use in config/application.rb
 require "caminio/config_namespace"
 
-require "caminio/has_access_rules"
+require "caminio/access_rules"
 # require "caminio/has_translations"
 # require "caminio/has_labels"
 # require "caminio/can_notify"

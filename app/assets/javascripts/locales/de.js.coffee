@@ -2,8 +2,6 @@ Em.I18n.availableTranslations ||= {}
 Em.I18n.availableTranslations.de ||= {}
 
 Em.merge Em.I18n.availableTranslations.de,
-  'caminio':
-    app_title: 'Dashboard'
   'name': 'Name'
   'yes': 'Ja'
   'no': 'Nein'
