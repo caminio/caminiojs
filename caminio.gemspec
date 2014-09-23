@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "colorize"
   spec.add_dependency "rails", "~> 4.1.0"
   spec.add_dependency "mongoid", "~> 4.0.0"
   spec.add_dependency "mongoid_userstamp", "~> 0.4.0"

@@ -1,11 +1,10 @@
-require File::expand_path '../rake_colors', __FILE__
+require 'colorize'
 
 namespace :caminio do
 
   desc "setup app plans"
   task setup: :environment do
 
-    include Colors
     app = App.new
     %w(en de).each do |locale|
       I18n.with_locale(locale) do
@@ -16,8 +15,10 @@ namespace :caminio do
           url: '/'
       end
     end
-    return puts "[caminio] #{red app.name} aborted. due: #{app.errors.full_messages.inspect}" unless app.save
-
+    unless app.save
+      puts "[caminio] #{app.name.red} aborted. due: #{app.errors.full_messages.inspect}" 
+      next
+    end
 
     app_plan = app.app_plans.create user_quota: 2,
       content_quota: 1000,
@@ -42,7 +43,7 @@ namespace :caminio do
     end
     app_plan.save
 
-    puts "[caminio] #{green app.name} created"
+    puts "[caminio] #{app.name.green} created"
 
   end
 
