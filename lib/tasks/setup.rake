@@ -37,7 +37,8 @@ namespace :caminio do
       content_quota: 10000,
       disk_quota: 100,
       hidden: false,
-      name: 'collaboration'
+      name: 'collaboration',
+      price: 500
     %w(en de).each do |locale|
       I18n.with_locale(locale) do
         app_plan.write_attributes title: I18n.t('app.core.plan.collaboration.title')

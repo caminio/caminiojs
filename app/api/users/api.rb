@@ -61,7 +61,7 @@ class Users::API < Grape::API
   delete '/:id' do
     authenticate!
     error!('not found', 404) unless user = User.find( params[:id] )
-    error!('insufficient rights', 403) unless ( current_user.id == user.id || current_user.id == current_organizational_unit.owner_id )
+    error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.users.first.id)
     unless user.organizational_unit_members.where( organizational_unit_id: current_organizational_unit.id ).destroy_all
       error!('failed destroying organizational_unit_members',500)
     end
@@ -89,7 +89,7 @@ class Users::API < Grape::API
   put '/:id' do
     authenticate!
     error!('not found',404) unless user = User.find( params[:id] )
-    error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.owner_id)
+    error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.users.first.id)
     if current_user.id.to_s == params[:id] && !params[:user][:password].blank?
       error!('cur_password_wrong',403) unless user.authenticate( params[:user][:cur_password] )
       error!('password_mismatch',409) unless user.update( password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])

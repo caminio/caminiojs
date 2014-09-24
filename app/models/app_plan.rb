@@ -5,6 +5,7 @@ class AppPlan
 
   field :name, type: String
   field :title, type: String, localize: true
+  field :description, type: String, localize: true
   field :price, type: Integer # price in cent. 5.00 EUR is saved as 500
   field :content_quota, type: Integer
   field :user_quota, type: Integer

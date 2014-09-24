@@ -2,7 +2,6 @@ require 'securerandom'
 
 class User
   include Mongoid::Document
-  include Mongoid::Userstamp
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
   include Mongoid::Paperclip
@@ -39,7 +38,13 @@ class User
   has_many :api_keys
 
   has_secure_password
-  has_mongoid_attached_file :avatar
+  has_mongoid_attached_file :avatar,
+    styles: {
+      original: ['500x500>'],
+      thumb: ['100x100#']
+    }
+
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
 
   validates_presence_of :password, :on => :create  
   validates_presence_of :email, :on => :create

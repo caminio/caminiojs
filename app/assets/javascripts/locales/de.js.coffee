@@ -6,6 +6,8 @@ Em.merge Em.I18n.availableTranslations.de,
   'yes': 'Ja'
   'no': 'Nein'
   'all': 'Alle'
+  'today': 'heute'
+  'yesterday': 'gestern'
   'close': 'Schließen'
   'close_and_back_to_list': 'Schließen und zurück zur Übersicht'
   'start_search': 'Suche starten'
@@ -22,6 +24,8 @@ Em.merge Em.I18n.availableTranslations.de,
   'city': 'Stadt'
   'zip': 'PLZ'
   'by': 'von'
+  'in': 'in'
+  'o_clock': 'Uhr'
   'country': 'Land'
   'state': 'Bundesland'
   'email': 'Email'
@@ -92,3 +96,5 @@ Em.merge Em.I18n.availableTranslations.de,
   'unsaved_content_desc': 'Nicht alle Elemente auf dieser Webseite wurden gespeichert. Möchtest du diese verwerfen und fortfahren oder vorher speichern?'
 
   'edited_on': 'Bearbeitet am {{date}}'
+  image_gallery:
+    upload: 'Neues Bild hochladen'

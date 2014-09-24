@@ -16,9 +16,7 @@ require "caminio/schemas/row"
 require "caminio/config_namespace"
 
 require "caminio/access_rules"
-# require "caminio/has_translations"
-# require "caminio/has_labels"
-# require "caminio/can_notify"
+require "caminio/user_stamps"
 
 
 # Rails engine

@@ -1,0 +1,42 @@
+.image-gallery > .image-gallery-item{
+  width: 108px;
+  height: 108px;
+  padding: 3px;
+  border: 1px solid #ddd;
+  background: #fff;
+  margin-top: 40px;
+  margin-left: 20px;
+  position: relative;
+  float: left;
+  cursor: pointer;
+}
+
+.image-gallery > .image-gallery-item > .fa{
+  font-size: 40px;
+  color: #bbb;
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.image-gallery > .image-gallery-item > .title{
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+}
+
+.image-gallery > .image-gallery-item > input[type=file]{
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.image-gallery > .image-gallery-item.selected{
+  background: #5af;
+}
