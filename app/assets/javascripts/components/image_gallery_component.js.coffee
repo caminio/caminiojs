@@ -11,10 +11,10 @@ App.ImageGalleryComponent = Em.Component.extend
       done: (e, data)->
         console.log "DONE", data
 
-    controller = @get('parentController')
+    comp = @
     $('.image-gallery-item').on 'click', (e)->
       if $(@).hasClass('selected')
         return $(@).removeClass('selected')
       $('.image-gallery .image-gallery-item').removeClass('selected')
       $(@).addClass('selected')
-      controller.set('curImageUrl', $(@).attr('data-url'))
+      comp.set('curImageUrl', $(@).attr('data-url'))

@@ -98,3 +98,4 @@ Em.merge Em.I18n.availableTranslations.de,
   'edited_on': 'Bearbeitet am {{date}}'
   image_gallery:
     upload: 'Neues Bild hochladen'
+    mark_image: 'Klick auf ein Bild und kopiere die hier angezeigte URL. Dann füg den Link im Editor ein'

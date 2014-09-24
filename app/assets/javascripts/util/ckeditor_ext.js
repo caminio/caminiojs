@@ -6,6 +6,13 @@
 
     // template: Em.Handlebars.compile('<div class="ckeditor-wrap"><div class="ckeditor-toolbar"></div><div {{bind-attr class=":ckeditor-content-wrap classNames"}} contenteditable="true"></div></div>'),
 
+    image: null,
+
+    onImageChange: function(){
+      this._editor.body.insertHtml('<img src="'+App.get('curImageUrl')+'">');
+    }.observes('App.curImageUrl'),
+
+
     didInsertElement: function() {
       
       CKEDITOR.disableAutoInline = true;
