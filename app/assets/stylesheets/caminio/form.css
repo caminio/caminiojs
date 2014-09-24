@@ -1,4 +1,5 @@
-.form .checkbox{
+.form .checkbox,
+.form .table-checkbox{
   background: none repeat scroll 0 0 #f9f9f9;
   border: 1px solid #ddd;
   cursor: pointer;
@@ -11,7 +12,8 @@
   margin-bottom: 0;
 }
 
-.form .checkbox .fa{
+.form .checkbox .fa,
+.table-checkbox .fa{
   position: absolute;
   top: 5px;
   left: 5px;
@@ -23,3 +25,37 @@
   padding-top: 4px;
 }
 
+.form-group-row{
+  display: flex;
+}
+
+.form-group-row .label-col{
+  background: #fafafa;
+  border-right: 1px solid #ddd;
+  padding: 15px 30px 20px 0;
+  text-align: right;
+  font-weight: 600;
+  color: #444;
+  position: relative;
+}
+
+.form-group-row .label-col.label-col-with-text-field{
+  padding-top: 27px;
+}
+
+.form-group-row .label-col .fa{
+  margin-right: 5px;
+}
+
+.form-group-row .content-col{
+  background: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+.form-group .content-col.highlight-hover:hover{
+  background: #ffe;
+}
+
+.form-group-row input:not(:hover){
+}

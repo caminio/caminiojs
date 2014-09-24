@@ -3,3 +3,12 @@ de:
   caminio_welcome: "Willkommen auf caminio!"
   reply: "Antworten"
   show_history: "Verlauf anzeigen"
+  app:
+    core: 
+      title: 'Dashboard'
+      description: 'Die wichtigsten Tools zum Zusammenarbeiten'
+      plan:
+        free:
+          title: 'Basic'
+        collaboration:
+          title: 'Teamarbeit'

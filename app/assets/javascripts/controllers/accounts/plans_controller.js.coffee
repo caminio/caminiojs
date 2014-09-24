@@ -26,7 +26,6 @@ App.AccountsPlansController = Em.ObjectController.extend
         data:
           plan_ids: plan_ids
       ).then ->
-        App.get('currentUser').save()
         $('.modal .close').click();
         toastr.info( Em.I18n.t('accounts.plans.updated' ) )
 

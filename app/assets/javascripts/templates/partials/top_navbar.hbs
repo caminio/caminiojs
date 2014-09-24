@@ -1,13 +1,13 @@
 <div class="top-nav">
   <div class="apps-list pull-left dropdown">
     <div class="apps-list-trigger" data-toggle="dropdown">
-      <img src='/assets/logo_32x32.png' />
+      <div class="caminio-img"></div>
     </div>
     <div class="dropdown-menu" role="menu">
       {{#each availableApps itemController="app"}}
       <a {{bind-attr href=appPath}}>
         <i {{bind-attr class=":fa content.icon"}}></i>
-        <span>{{nameTranslation}}</span>
+        <span>{{title}}</span>
       </a>
       {{/each}}
     </div>

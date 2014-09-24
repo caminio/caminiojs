@@ -5,6 +5,7 @@
 #= require 3rd/nicescroll.min
 #= require 3rd/filesize.min
 #= require 3rd/accounting.min
+#= require 3rd/bs.colorselector
 #= require blueimp-file-upload/js/vendor/jquery.ui.widget
 #= require blueimp-file-upload/js/jquery.iframe-transport
 #= require blueimp-file-upload/js/jquery.fileupload
@@ -12,7 +13,6 @@
 #= require jquery.cookie
 #= require bootstrap/dist/js/bootstrap.min
 #= require typeahead.js/dist/typeahead.bundle
-#= require codemirror
 #= require moment
 #= require moment/locale/de
 #
@@ -33,6 +33,8 @@
 #= require 3rd/antiscroll
 #= require ember-table
 #
+#= require 3rd/nested_sortable.jquery.min
+#
 #= require_tree ./locales
 #= require_self
 #= require ./router
@@ -45,6 +47,9 @@
 #= require_tree ./components
 #= require_tree ./templates
 
+Ember.FEATURES.I18N_TRANSLATE_HELPER_SPAN = false
+Ember.ENV.I18N_COMPILE_WITHOUT_HANDLEBARS = true
+
 window.App = Ember.Application.create
   LOG_TRANSITIONS: true
 
@@ -55,6 +60,9 @@ App.ApplicationAdapter = DS.ActiveModelAdapter.extend
 
 App.ApplicationStore = DS.Store.extend
   adapter: DS.RESTAdapter.extend
+
+# App.ApplicationSerializer = DS.ActiveModelSerializer.extend
+#   primaryKey: '_id'
 
 App.setAuthenticationBearer = (access_token, user)->
   Ember.$.ajaxSetup
@@ -77,23 +85,23 @@ App.setAuthenticationBearer = (access_token, user)->
 # ember i18n
 Ember.View.reopen Em.I18n.TranslateableAttributes
 
-# DS.ArrayTransform = DS.Transform.extend
-#   deserialize: (serialized)->
-#     Ember.typeOf(serialized) == "array" ? serialized : []
-#
-#   serialize: (deserialized)->
-#     type = Ember.typeOf(deserialized)
-#     if type == 'array'
-#       return deserialized
-#     else if type == 'string'
-#       return deserialized.split(',').map( (item)->
-#         Em.$.trim(item)
-#       )
-#     else
-#       return []
+DS.ArrayTransform = DS.Transform.extend
+  deserialize: (serialized)->
+    Ember.typeOf(serialized) == "array" ? serialized : []
 
-# App.register("transform:array", DS.ArrayTransform)
-#
+  serialize: (deserialized)->
+    type = Ember.typeOf(deserialized)
+    if type == 'array'
+      return deserialized
+    else if type == 'string'
+      return deserialized.split(',').map( (item)->
+        Em.$.trim(item)
+      )
+    else
+      return []
+
+App.register("transform:array", DS.ArrayTransform)
+
 DS.ObjectTransform = DS.Transform.extend
   deserialize: (serialized)->
     return {} if Em.isNone(serialized)
@@ -124,7 +132,10 @@ window.ACCESS =
   SHARE: 3
   FULL: 4
 
-$('body').on('mouseover', '[rel=tooltip]', (e)->
+$('body').on('mouseenter', '[title]', (e)->
+  return if $(@).closest('.cke')
   return if $(@).hasClass('tooltip')
-  $(@).tooltip()
+  $(@).tooltip
+    placement: 'bottom'
+  .tooltip('show')
 )

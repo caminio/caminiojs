@@ -14,42 +14,22 @@
 .apps-list-trigger{
   color: #aaa;
   cursor: pointer;
-  height: 32px;
-  margin: 5px 0 5px 15px;
-  position: relative;
+  margin: 0;
   overflow: hidden;
-  width: 32px;
-  transition: width 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000);
-}
-
-.apps-list-trigger:before{
-  color: #1b8fc3;
-  content: "Apps";
-  font-size: 16px;
-  font-weight: 900;
-  left: 71px;
-  position: absolute;
-  top: 4px;
-}
-
-.apps-list-trigger:after{
-  -moz-osx-font-smoothing: grayscale;
-  color: #1b8fc3;
-  content: "";
-  display: inline-block;
-  font-family: FontAwesome;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  position: absolute;
-  left: 47px;
-  top: 7px;
+  position: relative;
+  padding: 5px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
 }
 
 .apps-list-trigger:hover{
-  transition: width 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000);
-  width: 150px;
+  // transition: width 0.5s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  // width: 150px;
+  background: #ddd;
+}
+
+.apps-list-trigger:hover .caminio-img{
+  transform: rotate(50deg);
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
 }
 
 .apps-list > .dropdown-menu{
@@ -161,3 +141,9 @@
   color: #777;
 }
 
+.caminio-img{
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  background: url(asset-path('logo_32x32.png'));
+}

@@ -1,28 +1,53 @@
-require File::expand_path '../rake_colors', __FILE__
+require 'colorize'
 
 namespace :caminio do
 
-  desc "setup admin account"
-  task :setup => :environment do
+  desc "setup app plans"
+  task setup: :environment do
 
-    include Colors
-
-    email = "manager@camin.io"
-    password = "mgr"
-    puts "[caminio] email #{green email} pass #{green password}"
-
-    @user = User.new username: 'manager', firstname: 'caminio', lastname: 'superuser', email: email, access_level: 1, password: password, password_confirmation: password
-    if @user.valid? && @user.save
-      puts "[caminio] successfully created user #{email}"
-    else
-      puts "[caminio]#{red " ERROR"} user #{red @user.email} already exists"
+    app = App.new name: 'core'
+    %w(en de).each do |locale|
+      I18n.with_locale(locale) do
+        app.write_attributes title: I18n.t('app.core.title'), 
+          description: I18n.t('app.core.description'),
+          position: 0,
+          icon: 'fa-home',
+          url: '/caminio'
+      end
+    end
+    unless app.save
+      puts "[caminio] #{app.name.red} aborted. due: #{app.errors.full_messages.inspect}" 
+      next
     end
 
-  end
+    app_plan = app.app_plans.create user_quota: 2,
+      content_quota: 1000,
+      disk_quota: 10,
+      hidden: false,
+      name: 'free'
+    %w(en de).each do |locale|
+      I18n.with_locale(locale) do
+        app_plan.write_attributes title: I18n.t('app.core.plan.free.title')
+      end
+    end
+    app_plan.save
 
-  desc "run initial install script"
-  task :install do
-    system 'rails g caminio:install'
+
+    app_plan = app.app_plans.create user_quota: 5,
+      content_quota: 10000,
+      disk_quota: 100,
+      hidden: false,
+      name: 'collaboration',
+      price: 500
+    %w(en de).each do |locale|
+      I18n.with_locale(locale) do
+        app_plan.write_attributes title: I18n.t('app.core.plan.collaboration.title')
+      end
+    end
+    app_plan.save
+
+    puts "[caminio] #{app.name.green} created"
+
   end
 
 end

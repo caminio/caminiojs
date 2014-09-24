@@ -15,8 +15,8 @@ class Users::API < Grape::API
   end
   get '/', root: 'users' do
     authenticate!
-    users = User.includes(:organizational_units).where("organizational_units.id=?", headers['Ou'] ).references(:organizational_units)
-    users = users.where(["users.firstname LIKE ? OR users.lastname LIKE ? OR users.email LIKE ?"] + 3.times.collect{ "%#{params[:q]}%" }) unless params[:q].blank?
+    users = User.where organizational_units: headers['Ou']
+    users = users.any_of firstname: /#{params.q}/, lastname: /#{params.q}/, email: /#{params.q}/
     return users.map{ |u| { name: u.name, email: u.email, formattedName: "<strong>#{u.name}</strong> #{u.email}" } } if params[:simple_list]
     users
   end
@@ -59,8 +59,9 @@ class Users::API < Grape::API
 
   desc "deletese a user (from organizational unit or entirely)"
   delete '/:id' do
+    authenticate!
     error!('not found', 404) unless user = User.find( params[:id] )
-    error!('insufficient rights', 403) unless ( current_user.id == user.id || current_user.id == current_organizational_unit.owner_id )
+    error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.users.first.id)
     unless user.organizational_unit_members.where( organizational_unit_id: current_organizational_unit.id ).destroy_all
       error!('failed destroying organizational_unit_members',500)
     end
@@ -88,7 +89,7 @@ class Users::API < Grape::API
   put '/:id' do
     authenticate!
     error!('not found',404) unless user = User.find( params[:id] )
-    error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.owner_id)
+    error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.users.first.id)
     if current_user.id.to_s == params[:id] && !params[:user][:password].blank?
       error!('cur_password_wrong',403) unless user.authenticate( params[:user][:cur_password] )
       error!('password_mismatch',409) unless user.update( password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
@@ -136,13 +137,21 @@ class Users::API < Grape::API
     { api_key: user.api_keys.create }
   end
 
+  params do
+    requires :email
+    requires :password
+    requires :locale
+    optional :company_name
+  end
   post '/signup' do
-    error! 'Email exists', 409 if User.find_by_email params[:email]
-    user = User.new( email: params[:email],
+    error! 'Email exists', 409 if User.where(email: params.email).first
+    user = User.new( 
+      email: params[:email],
       password: params[:password],
-      locale: params[:locale],
-      organizational_unit_name: params[:company_name].blank? ? "private" : params[:company_name])
-    if user.save
+      locale: params[:locale])
+    ou = OrganizationalUnit.create name: params.company_name || 'private'
+    ou.users << user
+    if ou.save && user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
         { api_key: user.api_keys.create }
       else
@@ -160,10 +169,11 @@ class Users::API < Grape::API
 
   get '/:id', root: 'user' do
     authenticate!
-    User.find_by_id(params[:id])
+    User.find(params[:id])
   end
 
   get '/:id/profile_picture' do
+    authenticate!
     filename = File::expand_path("../../../assets/images/missing_bot_128x128.png",__FILE__)
     content_type MIME::Types.type_for(filename)[0].to_s
     env['api.format'] = :binary

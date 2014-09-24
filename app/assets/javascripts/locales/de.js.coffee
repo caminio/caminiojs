@@ -2,8 +2,16 @@ Em.I18n.availableTranslations ||= {}
 Em.I18n.availableTranslations.de ||= {}
 
 Em.merge Em.I18n.availableTranslations.de,
-  'caminio':
-    app_title: 'Dashboard'
+  'name': 'Name'
+  'yes': 'Ja'
+  'no': 'Nein'
+  'all': 'Alle'
+  'today': 'heute'
+  'yesterday': 'gestern'
+  'close': 'Schließen'
+  'close_and_back_to_list': 'Schließen und zurück zur Übersicht'
+  'start_search': 'Suche starten'
+  'archive': 'archivieren'
   'back': 'zurück'
   'search': 'Suchen'
   'email_or_username': 'Email oder Kontoname'
@@ -16,6 +24,8 @@ Em.merge Em.I18n.availableTranslations.de,
   'city': 'Stadt'
   'zip': 'PLZ'
   'by': 'von'
+  'in': 'in'
+  'o_clock': 'Uhr'
   'country': 'Land'
   'state': 'Bundesland'
   'email': 'Email'
@@ -41,6 +51,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'edit': 'Bearbeiten'
   'delete': 'Löschen'
   'really_delete': '{{name}} wirklich löschen?'
+  'delete_selected': 'Ausgewählte Einträge wirklich löschen?'
   'logout': 'Abmelden'
   'cancel': 'Abbrechen'
   'cancelled': 'Abgebrochen'
@@ -85,3 +96,6 @@ Em.merge Em.I18n.availableTranslations.de,
   'unsaved_content_desc': 'Nicht alle Elemente auf dieser Webseite wurden gespeichert. Möchtest du diese verwerfen und fortfahren oder vorher speichern?'
 
   'edited_on': 'Bearbeitet am {{date}}'
+  image_gallery:
+    upload: 'Neues Bild hochladen'
+    mark_image: 'Klick auf ein Bild und kopiere die hier angezeigte URL. Dann füg den Link im Editor ein'

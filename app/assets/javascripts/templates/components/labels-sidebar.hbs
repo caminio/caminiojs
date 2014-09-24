@@ -1,0 +1,29 @@
+<div class="labels">
+
+  <div class="title">
+    <button class="btn btn-pale" {{action 'newLabel'}} {{translateAttr title='labels.new_modal'}}>
+      <i class="fa fa-plus"></i>
+    </button>
+    <div class="text">{{t 'labels.title'}}</div>
+  </div>
+
+  <ul>
+    {{#each labels}}
+    <li {{bind-attr style=styles}}>
+    <div class="btn-group">
+      <button class="btn btn-xs" {{action 'editLabel' this}}>
+        <i class="fa fa-pencil"></i>
+      </button>
+      <button class="btn btn-xs" {{action 'searchLabel' this}}>
+        <i class="fa fa-search"></i>
+      </button>
+      <button class="btn btn-xs" {{action 'toggleLabel' this}}>
+        <i class="fa fa-bookmark"></i>
+      </button>
+    </div>
+      <span {{action 'toggleLabel' this}}>{{name}}</span>
+    </li>
+    {{/each}}
+  </ul>
+
+</div>

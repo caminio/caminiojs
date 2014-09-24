@@ -21,9 +21,9 @@
       <tbody>
       {{#each apps}}
       <tr>
-        <td>{{name}}</td>
+        <td>{{title}}</td>
         <td>
-          {{view Ember.Select valueBinding='current_plan_id' content=app_plans optionValuePath='content.id' optionLabelPath='content.name' noSearch=true prompt=false}}
+          {{view Ember.Select valueBinding='current_plan_id' content=app_plans optionValuePath='content.id' optionLabelPath='content.title' noSearch=true prompt=false}}
         </td>
         <td>{{{current_plan.formattedUserQuota}}}</td>
         <td>{{{current_plan.formattedDiskQuota}}}</td>

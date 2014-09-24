@@ -15,6 +15,10 @@
     placeholder: Ember.computed.alias('prompt'),
     tagName : 'select',
 
+    promptTranslationObserver: function(){
+      this.set('prompt', Em.I18n.t( this.get('promptTranslation')));
+    }.observes('promptTranslation'),
+
     /**
      * overrideable object paths for value and label paths
      */

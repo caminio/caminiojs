@@ -1,0 +1,43 @@
+.labels > .title{
+  background: #fafafa;
+  margin: 3px;
+}
+
+.labels > .title > .btn{
+  float: right;
+  margin: 0;
+}
+
+.labels > .title > .text{
+  padding: 8px;
+}
+
+.labels > ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.labels > ul > li{
+  margin: 5px;
+  border: 3px solid transparent;
+  background: #ddd;
+  padding: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.labels > ul > li.active{
+  border-color: #ffc;
+}
+
+.labels li .btn-group{
+  float: right;
+  visibility: hidden;
+  color: #666;
+}
+
+.labels li:hover .btn{
+  visibility: visible;
+}

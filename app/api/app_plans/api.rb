@@ -10,11 +10,11 @@ class AppPlans::API < Grape::API
 
   desc "returns available app plans for this user"
   params do 
-    requires :user_id, type: Integer, desc: "user id"
+    requires :user_id, desc: "user id"
   end
+  before { authenticate! }
   get '/', root: 'app_plans' do
-    authenticate!
-    @user = User.find_by_id params[:user_id]
+    @user = User.find params[:user_id]
     error!("Forbidden",403) unless ( @user || @user.id == current_user.id || current_user.is_superuser? )
     app_plans(@user)
     #` apps: AppPlan.where( 

@@ -5,13 +5,17 @@ class Sessions::API < Grape::API
   default_format :json
 
   helpers Caminio::API::Helpers
+  formatter :json, Grape::Formatter::ActiveModelSerializers
 
+  params do
+    requires :login
+    requires :password
+  end
   post '/' do
-    error!('401 Unauthorized', 401) unless user = User.where( "email = ? OR username = ?", params[:login], params[:login] ).first.try(:authenticate, params[:password])
-    #invalidate other logins:
+    error!('401 Unauthorized', 401) unless user = User.any_of( { email: params.login }, { username: params.login } ).first.try(:authenticate, params[:password])
     user.api_keys.map(&:destroy)
-    user.update! last_login_at: Time.now
-    { api_key: user.api_keys.create }
+    user.update_attributes last_login_at: Time.now, last_login_ip: env['REMOTE_ADDR']
+    user.api_keys.create
   end
 
   delete '/' do

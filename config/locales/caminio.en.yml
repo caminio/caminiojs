@@ -3,4 +3,13 @@ en:
   caminio_welcome: "Welcome on caminio!"
   reply: "Reply"
   show_history: "Show history"
+  app:
+    core: 
+      title: 'caminio'
+      description: 'Core collabaration features'
+      plan:
+        free:
+          title: 'Basic'
+        collaboration:
+          title: 'Collaboration'
 

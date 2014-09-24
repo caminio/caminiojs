@@ -5,10 +5,11 @@
   window.App.CodeMirrorView = Ember.TextArea.extend({
 
     classNames: ['CodeMirror'],
+    mode: 'markdown',
 
     didInsertElement: function() {
       this._codeMirror = CodeMirror.fromTextArea( this.$()[0], {
-          mode: 'markdown',
+          mode: this.get('mode'),
           tabMode: 'indent',
           lineWrapping: true
       });

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="<%= locale %>">
 <head>
-  <title>caminio</title>
-  <%= stylesheet_link_tag    'caminio', media: 'all' %>
-  <%= csrf_meta_tags %>
-  <link rel="shortcut icon" href="/favicon.ico" />
+<title>caminio</title>
+<%= stylesheet_link_tag    'caminio', media: 'all' %>
+<%= csrf_meta_tags %>
+<%= yield :app_styles %>
+<link rel="shortcut icon" href="/favicon.ico" />
 </head>
 <body class="authorization-required">
 
 <%= yield %>
 
 <script type="text/javascript">
-  window.CAMINIO_ENGINE_VERSION = '<%= Caminio::VERSION %>';
-  window.LANG = '<%= locale %>';
+window.CAMINIO_ENGINE_VERSION = '<%= Caminio::VERSION %>';
+window.LANG = '<%= locale %>';
 </script>
 <%= javascript_include_tag 'caminio' %>
+<%= yield :app_scripts %>
 </body>
 </html>
