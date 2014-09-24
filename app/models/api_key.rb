@@ -1,8 +1,11 @@
 class ApiKey
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :access_token, type: String
   field :expires_at, type: DateTime
+  field :permanent, type: Boolean
+  field :name, type: String
 
   belongs_to :user
   
@@ -16,7 +19,7 @@ class ApiKey
   end
 
   def setup_expires_at
-    self.expires_at = 8.hours.from_now
+    self.expires_at = 8.hours.from_now unless permanent
   end
 
 end

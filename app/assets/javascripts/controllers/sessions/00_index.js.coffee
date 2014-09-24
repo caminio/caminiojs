@@ -13,7 +13,7 @@ App.SessionsController = Ember.Controller.extend
     login: ->
       data = @getProperties 'login', 'password'
       controller = @
-      Ember.$.post '/caminio/sessions', data
+      Ember.$.post '/caminio/auth', data
         .then (response)->
           controller.authenticate(response.api_key)
         .fail (error)->

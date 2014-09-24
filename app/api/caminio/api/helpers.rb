@@ -7,7 +7,23 @@ module Caminio
       end
 
       def authenticate!
+        header['Access-Control-Allow-Origin'] = '*'
+        header['Access-Control-Request-Method'] = '*'
         error!('Unauthorized. Invalid or expired token.', 401) unless current_user
+      end
+
+      def current_token
+        return unless api_key = ApiKey.where(access_token: headers['Authorization'].split(' ').last).gt(expires_at: Time.now).first
+        api_key.access_token
+      end
+
+      def token_authenticate!
+        header['Access-Control-Allow-Origin'] = '*'
+        header['Access-Control-Request-Method'] = '*'
+        access = Doorkeeper::AccessToken.authenticate(headers['Authorization'])
+        return false unless access && access.valid?
+        @user = User.find(access.resource_owner_id)
+        @application = access.application.name
       end
 
       def current_user

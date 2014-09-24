@@ -61,6 +61,8 @@ Em.merge Em.I18n.availableTranslations.de,
   'invitation_failed': '{{email}} konnte keine Einladung versendet werden'
   'create': 'Erstellen'
   'created': '<strong>{{name}}</strong> wurde erfolgreich erstellt'
+  'created_at': 'erstellt'
+  'updated_at': 'aktualisiert'
   'creation_failed': '<strong>{{name}}</strong> konnte nicht erstellt werden'
   'proceed_and_dismiss': 'Fortfahren und Verwerfen'
   'send_email': 'Email senden'
