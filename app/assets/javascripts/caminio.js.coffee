@@ -85,23 +85,23 @@ App.setAuthenticationBearer = (access_token, user)->
 # ember i18n
 Ember.View.reopen Em.I18n.TranslateableAttributes
 
-# DS.ArrayTransform = DS.Transform.extend
-#   deserialize: (serialized)->
-#     Ember.typeOf(serialized) == "array" ? serialized : []
-#
-#   serialize: (deserialized)->
-#     type = Ember.typeOf(deserialized)
-#     if type == 'array'
-#       return deserialized
-#     else if type == 'string'
-#       return deserialized.split(',').map( (item)->
-#         Em.$.trim(item)
-#       )
-#     else
-#       return []
+DS.ArrayTransform = DS.Transform.extend
+  deserialize: (serialized)->
+    Ember.typeOf(serialized) == "array" ? serialized : []
 
-# App.register("transform:array", DS.ArrayTransform)
-#
+  serialize: (deserialized)->
+    type = Ember.typeOf(deserialized)
+    if type == 'array'
+      return deserialized
+    else if type == 'string'
+      return deserialized.split(',').map( (item)->
+        Em.$.trim(item)
+      )
+    else
+      return []
+
+App.register("transform:array", DS.ArrayTransform)
+
 DS.ObjectTransform = DS.Transform.extend
   deserialize: (serialized)->
     return {} if Em.isNone(serialized)

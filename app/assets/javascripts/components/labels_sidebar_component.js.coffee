@@ -13,6 +13,9 @@ App.LabelsSidebarComponent = Em.Component.extend
     toggleLabel: (label)->
       @get('parentController').send('toggleLabel', label)
 
+    searchLabel: (label)->
+      @get('parentController').send('searchLabel', label)
+
     deleteLabel: ->
       comp = @
       bootbox.confirm Em.I18n.t('really_delete', name: @get('label.name')), (result)->
