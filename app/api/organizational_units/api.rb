@@ -7,7 +7,7 @@ class OrganizationalUnits::API < Grape::API
   helpers Caminio::API::Helpers
   formatter :json, Grape::Formatter::ActiveModelSerializers
 
-  get '/' do
+  get '/', root: 'organizational_units' do
     authenticate!
     current_user.organizational_units
   end

@@ -1,3 +1,3 @@
 {{#each view.row.labels}}
-  <span class="label" {{bind-attr style=styles}}>{{name}}</span>
+<span {{action 'unlabel' view.row this}} class="label-point" {{bind-attr style=styles}} {{bind-attr title=name}}></span>
 {{/each}}

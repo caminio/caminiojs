@@ -8,20 +8,15 @@
   </div>
 
   <ul>
-    {{#each labels}}
-    <li {{bind-attr style=styles}}>
+    {{#each labels itemController='labels_sidebar_label_item'}}
+    <li {{bind-attr class="isActive:active"}}>
     <div class="btn-group">
       <button class="btn btn-xs" {{action 'editLabel' this}}>
         <i class="fa fa-pencil"></i>
       </button>
-      <button class="btn btn-xs" {{action 'searchLabel' this}}>
-        <i class="fa fa-search"></i>
-      </button>
-      <button class="btn btn-xs" {{action 'toggleLabel' this}}>
-        <i class="fa fa-bookmark"></i>
-      </button>
     </div>
-      <span {{action 'toggleLabel' this}}>{{name}}</span>
+    <div class="point" {{action 'toggleLabel' this}} {{bind-attr style=styles}}></div>
+    <span class="title" {{action 'toggleLabel' this}}>{{name}}</span>
     </li>
     {{/each}}
   </ul>

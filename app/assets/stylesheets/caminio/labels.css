@@ -1,6 +1,19 @@
-.labels > .title{
-  background: #fafafa;
+.labels .title{
   margin: 3px;
+  color: #777;
+  cursor: pointer;
+}
+
+.labels-indicator .point,
+.label-point,
+.labels .point{
+  background: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin: 2px 5px 0 0;
+  cursor: pointer;
 }
 
 .labels > .title > .btn{
@@ -20,16 +33,17 @@
 
 .labels > ul > li{
   margin: 5px;
-  border: 3px solid transparent;
-  background: #ddd;
-  padding: 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .labels > ul > li.active{
-  border-color: #ffc;
+  font-weight: 600;
+}
+
+.labels > ul > li.active .title{
+  color: #222;
 }
 
 .labels li .btn-group{
