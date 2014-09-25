@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   mount Apps::API => "/caminio/apps"
   mount OrganizationalUnits::API => "/caminio/organizational_units"
   mount ApiKeys::API => "/caminio/api_keys"
-  mount Sessions::API => "/caminio/sessions"
+  mount Sessions::API => "/caminio/auth"
   get "/caminio" => "caminio/main#index"
 end

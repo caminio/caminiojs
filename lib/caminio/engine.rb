@@ -22,6 +22,8 @@ module Caminio
                                                         3rd/bootstrap.min.css
                                                         3rd/font-awesome.css
                                                         3rd/fonts/*
+                                                        logo_32x32.png
+                                                        logo_64x64.png
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.eot
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.woff
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.ttf)

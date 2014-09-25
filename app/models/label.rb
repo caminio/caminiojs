@@ -16,5 +16,12 @@ class Label
 
   embeds_many :activities
 
+  after_destroy :delete_dependencies
+
+  private
+
+  def delete_dependencies
+    Contact.where(label_ids: id).each{ |c| c.labels.delete(self) }
+  end
 
 end

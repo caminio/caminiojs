@@ -114,8 +114,7 @@ class Users::API < Grape::API
     requires :email, type: String
   end
   post '/send_password_link' do
-    error!('Email unknown',403) unless user = 
-      User.find_by_email( params[:email] )
+    error!('Email unknown',403) unless user = User.where( email: params[:email] ).first
     error!(error.messages.full_messages,500) unless user.gen_confirmation_key!
     error!('Mailer error',500) unless UserMailer.reset_password( 
       user, 
@@ -128,7 +127,7 @@ class Users::API < Grape::API
     requires :confirmation_key, type: String
   end
   post '/:id/reset_password' do
-    error!('Confirmation key error',409) unless user = User.find_by( id: params[:id], confirmation_key: params[:confirmation_key] )
+    error!('Confirmation key error',409) unless user = User.where( id: params[:id], confirmation_key: params[:confirmation_key] ).first
     error!('Confirmation key has expired',419) if user.confirmation_key_expires_at < Time.now
     user.password = params[:password]
     user.confirmation_key = nil

@@ -41,6 +41,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'language': "Sprache"
   'invalid_username_or_password': 'Ungültige Login-Informationen. Überprüfe Email (oder Kontoname) und Passwort. Passwort vergessen? <a class="alert-link" href="#/sessions/forgot_password">Hier klicken</a>.'
   'login': 'Anmelden'
+  'enter_new_password': 'Neues Passwort festlegen'
   'reset_password_and_login': 'Passwort speichern und anmelden'
   'forgot_password': 'vergessen'
   'forgot_info': 'Passwort vergessen? &mdash; Wenn du die Email Adresse noch kennst, mit der du registriert bist, kannst du dir einn Link zusenden lassen, mit dem du dein Passwort neu setzen kannst'
@@ -61,6 +62,8 @@ Em.merge Em.I18n.availableTranslations.de,
   'invitation_failed': '{{email}} konnte keine Einladung versendet werden'
   'create': 'Erstellen'
   'created': '<strong>{{name}}</strong> wurde erfolgreich erstellt'
+  'created_at': 'erstellt'
+  'updated_at': 'aktualisiert'
   'creation_failed': '<strong>{{name}}</strong> konnte nicht erstellt werden'
   'proceed_and_dismiss': 'Fortfahren und Verwerfen'
   'send_email': 'Email senden'
@@ -96,6 +99,9 @@ Em.merge Em.I18n.availableTranslations.de,
   'unsaved_content_desc': 'Nicht alle Elemente auf dieser Webseite wurden gespeichert. Möchtest du diese verwerfen und fortfahren oder vorher speichern?'
 
   'edited_on': 'Bearbeitet am {{date}}'
+  'remove_label_from': 'Label {{label}} von {{from}} entfernen?'
+  unlabeled: 'Label {{label}} wurde von {{from}} entfernt'
+  unlabeling_failed: 'Label konnte nicht entfernt werden'
   image_gallery:
     upload: 'Neues Bild hochladen'
     mark_image: 'Klick auf ein Bild und kopiere die hier angezeigte URL. Dann füg den Link im Editor ein'

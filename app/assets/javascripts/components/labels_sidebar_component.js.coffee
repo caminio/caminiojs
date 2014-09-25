@@ -42,3 +42,10 @@ App.LabelsSidebarComponent = Em.Component.extend
     closeModal: ->
       $('.modal .close').click()
       @get('parentController').send('closeModal')
+
+App.LabelsSidebarLabelItemController = Em.ObjectController.extend
+
+  isActive: ( ->
+    @get('parentController.parentController.selected_labels').findBy('id', @get('content.id'))
+  ).property 'parentController.parentController.selected_labels.[]'
+
