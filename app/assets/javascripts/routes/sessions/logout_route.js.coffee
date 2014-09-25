@@ -1,7 +1,7 @@
 App.SessionsLogoutRoute = Ember.Route.extend
 
   setupController: (controller)->
-    Ember.$.ajax url: "/caminio/sessions", type: 'delete'
+    Ember.$.ajax url: "/caminio/auth", type: 'delete'
     .done (response)->
       Ember.$.removeCookie 'caminio-session'
       controller.get('controllers.sessions').set('currentUser',null)

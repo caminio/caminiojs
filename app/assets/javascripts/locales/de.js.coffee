@@ -53,6 +53,8 @@ Em.merge Em.I18n.availableTranslations.de,
   'delete': 'Löschen'
   'really_delete': '{{name}} wirklich löschen?'
   'delete_selected': 'Ausgewählte Einträge wirklich löschen?'
+  'deleted': '{{name}} wurde gelöscht'
+  'deletion_failed': '{{name}} konnte nicht gelöscht werden'
   'logout': 'Abmelden'
   'cancel': 'Abbrechen'
   'cancelled': 'Abgebrochen'

@@ -1,13 +1,13 @@
 .footer-wrap{
-  // background: none repeat scroll 0 0 #eee;
-  // box-shadow: 0 2px 3px #444 inset;
-  color: #999;
+  background: none repeat scroll 0 0 #f0f0f0;
+  border-top: 1px solid #ddd;
   bottom: 0;
-  height: 30px;
-  left: 0;
-  position: absolute;
-  right: 0;
+  color: #999;
   font-size: 12px;
+  height: 32px;
+  left: 0;
+  position: fixed;
+  right: 0;
 }
 
 .unauthenticated .footer-wrap{

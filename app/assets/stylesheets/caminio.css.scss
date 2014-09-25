@@ -46,10 +46,6 @@ body > .ember-view{
   text-align: center;
 }
 
-.fill-height{
-  height: 100%;
-}
-
 .fill-width{
   width: 100%;
 }
@@ -118,15 +114,20 @@ body > .ember-view{
   margin-right: auto;
 }
 
-.side-panel{
+.side-panel {
+  position: fixed;
   width: 200px;
-  float: left;
+  top: 90px;
+  bottom: 40px;
+  border-right: 1px solid #ddd;
 }
 
 .content-panel{
   margin-left: 200px;
   margin-right: 50px;
-  max-width: 1200px
+  max-width: 1200px;
+  overflow: auto;
+  margin-bottom: 20px;
 }
 
 .content-panel-full-width{

@@ -1,14 +1,12 @@
 App.TableRowItemController = Em.ObjectController.extend
 
-  isSelected: (->
-    !!@get('parentController.selectedRows').findBy 'id', @get('content.id')
-  ).property 'parentController.selectedRows.[]'
-
   actions:
 
     selectRow: ->
-      if @get('isSelected')
+      if @get('content.isSelected')
         @get('parentController.selectedRows').removeObject @get('content')
+        @get('content').set('isSelected',false)
       else
         @get('parentController.selectedRows').pushObject @get('content')
+        @get('content').set('isSelected',true)
 

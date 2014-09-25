@@ -24,6 +24,7 @@ App.LabelsSidebarComponent = Em.Component.extend
           .destroyRecord()
           .then ->
             toastr.success Em.I18n.t('label.deleted', name: comp.get('label.name'))
+            $('.modal .close').click()
           .catch (err)->
             console.error err.responseJSON
             toastr.error Em.I18n.t('label.deletion_failed', name: comp.get('label.name'))
