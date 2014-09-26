@@ -47,8 +47,13 @@ module Caminio
       end
 
       def host_url
-        protocol = "http#{"s" if request.scheme == 'https'}://"
-        protocol+request.host_with_port
+        "#{request.prototol}#{request.host_with_port}"
+        # protocol = "http#{"s" if request.scheme == 'https'}://"
+        # protocol+request.host_with_port
+      end
+
+      def logo_url
+        "#{host_url}#{asset_path('logo_128x128.png')}"
       end
 
     end

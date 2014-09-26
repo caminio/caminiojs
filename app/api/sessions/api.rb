@@ -20,7 +20,8 @@ class Sessions::API < Grape::API
   end
 
   delete '/' do
-    if apiKey = ApiKey.find_by(access_token: headers['Authorization'].split(' ').last)
+    token = headers['Authorization'] ? headers['Authorization'].split(' ').last : 'ERROR'
+    if apiKey = ApiKey.where(access_token: token).first
       return { api_key: apiKey } if apiKey.destroy
       error! 'Server Error', 500
     end

@@ -7,6 +7,7 @@ class Users::API < Grape::API
   default_format :json
 
   helpers Caminio::API::Helpers
+
   formatter :json, Grape::Formatter::ActiveModelSerializers
 
   params do
@@ -118,7 +119,7 @@ class Users::API < Grape::API
     error!(error.messages.full_messages,500) unless user.gen_confirmation_key!
     error!('Mailer error',500) unless UserMailer.reset_password( 
       user, 
-      "#{host_url}/caminio#/sessions/reset_password?id=#{user.id}&confirmation_key=#{user.confirmation_key}" ).deliver
+      "#{host_url}/caminio#/sessions/reset_password?id=#{user.id}&confirmation_key=#{user.confirmation_key}", host_url, logo_url ).deliver
     {}
   end
 
@@ -151,7 +152,7 @@ class Users::API < Grape::API
     ou = OrganizationalUnit.create name: params.company_name || 'private'
     ou.users << user
     if ou.save && user.save
-      if UserMailer.welcome( user, "#{host_url}/caminio#/account").deliver
+      if UserMailer.welcome( user, "#{host_url}/caminio#/account", host_url, logo_url ).deliver
         { api_key: user.api_keys.create }
       else
         error! 'Mailer errror', 500

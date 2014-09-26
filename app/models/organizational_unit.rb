@@ -6,7 +6,6 @@ class OrganizationalUnit
 
   field :name, type: String
   field :suspended, type: Boolean, default: false
-  field :name, type: String
   
   has_and_belongs_to_many :users
   has_and_belongs_to_many :app_plans

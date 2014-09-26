@@ -2,11 +2,16 @@
 <%= stylesheet_link_tag :mailer %>
 <div class="main">
   <div class="logo-wrap">
-    <%= link_to image_tag('logo_128x128.png', class: 'logo', alt: 'caminio'), 'https://camin.io' %>
+    <a href="<%= host_url %>"><img src="<%= logo_url %>"></a>
   </div>
   <div class="content">
     <h1>Hallo!</h1>
     <p>Dein Konto auf caminio wurde soeben eröffnet. Vielleicht hast du bereits begonnen, dich umzusehen, vielleicht hast du auch ein paar Fragen. Anbei ein paar Tipps und Hinweise zur Verwendung von caminio.</p>
+    <h2>Konto Einstellungen</h2>
+    <ul>
+      <li><a href="<%= host_url %>/#accounts/index">Allgemeine Kontoeinstellungen</a></li>
+      <li><a href="<%= host_url %>/#sessions/forgot_password">Passwort zurücksetzen</a></li>
+    </ul>
     <h2>Einführungsvideos</h2>
     <ul>
     <li><a href="http://camin.io/de/videos#getting_started">Starthilfe</a></li>
