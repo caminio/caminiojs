@@ -17,6 +17,15 @@
       
       CKEDITOR.disableAutoInline = true;
       CKEDITOR.config.allowedContent = true;
+      CKEDITOR.config.language = "de"
+      CKEDITOR.config.uiColor = "#AADC6E"
+      CKEDITOR.config.toolbar = [
+        [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ],
+        [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+        '/',
+        [ 'Bold', 'Italic' ]
+      ]
+
       if( this.get('styles') )
         CKEDITOR.addCss( this.get('styles') )
 

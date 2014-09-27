@@ -60,20 +60,20 @@ table thead th.row-checkbox-header{
   padding: 0;
 }
 
-table tbody tr:hover{
+.table tbody tr:hover{
   background: #ffc;
 }
 
-table tbody tr{
+.table tbody tr{
   transition: all 0.3s;
 }
 
-table tbody tr.selected{
+.table tbody tr.selected{
   background: #ffc;
   transition: all 0.3s;
 }
 
-table tbody tr.saving{
+.table tbody tr.saving{
   opacity: 0.5;
   transition: all 0.8s;
 }
