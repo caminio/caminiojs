@@ -14,26 +14,20 @@
 
 
     didInsertElement: function() {
-      
-      CKEDITOR.disableAutoInline = true;
-      CKEDITOR.config.allowedContent = true;
-      CKEDITOR.config.language = "de"
-      CKEDITOR.config.uiColor = "#AADC6E"
-      CKEDITOR.config.toolbar = [
-        [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ],
-        [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
-        '/',
-        [ 'Bold', 'Italic' ]
-      ]
 
-      if( this.get('styles') )
-        CKEDITOR.addCss( this.get('styles') )
+      // if( this.get('styles') )
+      //   CKEDITOR.addCss( this.get('styles') )
 
-      var view = this;
-      this._editor = CKEDITOR.replace( this.$().get(0),{
-        bodyClass: 'nlc',
-        height: $(window).height()-400
+      // var view = this;
+      // this._editor = CKEDITOR.replace( this.$().get(0),{
+      //   bodyClass: 'nlc',
+      //   height: $(window).height()-400
+      // });
+
+      tinyMCE.init({
+        selector: '#'+this.$().attr('id')
       });
+
       // this._editor = CKEDITOR.inline( this.$('.ckeditor-content-wrap').get(0),{
       //   // extraPlugins: 'sharedspace',
       //   // removePlugins: 'floatingspace,resize',
@@ -52,9 +46,9 @@
       //   }
       // }, this.$('.ckeditor-content-wrap').get(0).innerHTML );
 
-      this._editor.on('change', function(){
-        view.set('value', view._editor.getData());
-      });
+      // this._editor.on('change', function(){
+      //   view.set('value', view._editor.getData());
+      // });
     },
 
     willDestroyElement: function () {
