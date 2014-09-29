@@ -17,4 +17,4 @@ App.ImageGalleryComponent = Em.Component.extend
         return $(@).removeClass('selected')
       $('.image-gallery .image-gallery-item').removeClass('selected')
       $(@).addClass('selected')
-      comp.set('curImageUrl', $(@).attr('data-url'))
+      comp.set('curImageUrl', "#{location.protocol}//#{location.host}#{$(@).attr('data-url')}")
