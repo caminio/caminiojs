@@ -1,5 +1,7 @@
 .cards-list{
   margin: 20px 0;
+  list-style: none;
+  padding: 0;
 }
 
 .cards-list > .card{
@@ -11,6 +13,7 @@
   margin-bottom: 20px;
   float: left;
   position: relative;
+  border: 3px solid transparent;
 }
 
 .cards-list > .card > .title{
@@ -27,4 +30,9 @@
 
 .cards-list > .card:hover > .card-ctrl{
   display: block;
+}
+
+.cards-list > .card.selected{
+  background: #ffc;
+  border-color: #58d;
 }

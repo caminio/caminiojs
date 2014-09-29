@@ -65,6 +65,7 @@ App.ApplicationStore = DS.Store.extend
 #   primaryKey: '_id'
 
 App.setAuthenticationBearer = (access_token, user)->
+  App.set 'access_token', access_token
   Ember.$.ajaxSetup
     headers:
       'Authorization': 'Bearer ' + access_token

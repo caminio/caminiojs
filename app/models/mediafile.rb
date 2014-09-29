@@ -22,6 +22,7 @@ class Mediafile
 
   field :parent_id, type: BSON::ObjectId
   field :parent_type, type: String
+  field :is_public, type: Boolean, default: true
 
   def file_thumb
     file.url(:thumb)

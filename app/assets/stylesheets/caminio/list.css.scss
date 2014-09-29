@@ -13,11 +13,16 @@
   border-bottom: 1px solid #ddd;
 }
 
+.list > li.selected{
+  background: #ffc;
+  border-bottom-color: #58d;
+}
+
 .list > li.all-click{
   cursor: pointer;
 }
 
-.list > li:hover{
+.list > li:not(.selected):hover{
   background: #fff;
 }
 

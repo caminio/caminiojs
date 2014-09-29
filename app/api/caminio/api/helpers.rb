@@ -13,7 +13,9 @@ module Caminio
       end
 
       def current_token
-        return unless api_key = ApiKey.where(access_token: headers['Authorization'].split(' ').last).gt(expires_at: Time.now).first
+        token = params.access_token
+        token = headers['Authorization'].split(' ').last unless token
+        return unless api_key = ApiKey.where(access_token: token).gt(expires_at: Time.now).first
         api_key.access_token
       end
 
@@ -27,20 +29,24 @@ module Caminio
       end
 
       def current_user
-        return false unless headers.has_key?('Authorization')
-        if api_key = ApiKey.where(access_token: headers['Authorization'].split(' ').last).gt(expires_at: Time.now).first
+        token = params.access_token
+        token = headers['Authorization'].split(' ').last if !token && headers.has_key?('Authorization')
+        return false unless token
+        if api_key = ApiKey.where(access_token: token).gt(expires_at: Time.now).first
           api_key.update! expires_at: 1.hour.from_now if api_key.expires_at < 1.hour.from_now
           I18n.locale = api_key.user.locale || I18n.locale
           RequestStore.store[:current_user] = api_key.user
-          RequestStore.store[:current_ou_id] = headers['Ou']
+          RequestStore.store[:current_ou_id] = params.ou || headers['Ou']
           return @current_user = api_key.user
         end
         false
       end
 
       def current_organizational_unit
-        return nil unless headers['Ou']
-        ou = OrganizationalUnit.find(headers['Ou'])
+        ou = params.ou
+        ou = headers['Ou'] if !ou && headers.has_key?('Ou')
+        return nil unless ou
+        ou = OrganizationalUnit.find(ou)
         return unless current_user.organizational_units.include?(ou)
         RequestStore.store[:current_ou] = ou
         return ou
