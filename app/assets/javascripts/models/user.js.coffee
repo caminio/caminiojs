@@ -12,6 +12,7 @@ App.User = DS.Model.extend
   organizational_units:           DS.hasMany "organizational_unit"
   avatar_thumb:                   DS.attr "string"
   cur_password:                   DS.attr "string"
+  last_login_at:                  DS.attr 'date'
 
   name: (->
     return @get('username') unless Em.isEmpty(@get('username'))
@@ -29,6 +30,3 @@ App.User = DS.Model.extend
     @.get('email')
   ).property('username','firstname','lastname','email')
 
-  formattedLastLoginAt: (->
-    return moment(@get('last_login_at')).fromNow()
-  ).property 'last_login_at'

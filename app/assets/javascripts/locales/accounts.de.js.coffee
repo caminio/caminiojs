@@ -77,6 +77,7 @@ Em.merge Em.I18n.availableTranslations.de,
       'saving_failed': 'Konto {{name}} konnte nicht gespeichert werden'
       'uninvite': 'aus Organisation entfernen'
       'really_uninvite': 'Soll das Konto {{name}} aus dieser Organisation gelöscht werden?'
+      'cannot_remove_yourself': 'Du kannst dich selbst nicht aus einer Organisation entfernen, die du besitzt'
       'uninvited': 'Konto {{name}} wurde aus der Organisation entfernt'
       'cur_password': 'Aktuelles Passwort'
       'new_password': 'Neues Passwort'

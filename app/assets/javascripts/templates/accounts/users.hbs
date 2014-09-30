@@ -6,14 +6,28 @@
     </button>
   </div>
 
-  {{table-component
-  hasFooter=false
-  hasHeader=true
-  minHeaderHeight=32
-  rowHeight=40
-  selectionMode='none'
-  parentController=controller
-  columnsBinding="columns"
-  contentBinding="content"}}
+  <ul class="list">
+    {{#each content}}
+    <li>
+      <div class="desc pull-right">
+        {{smartDate last_login_at}}
+      </div>
+      <div>
+        <img class="account-image pull-left" {{bind-attr src=avatar_thumb}}>
+        <strong>{{email}}</strong>
+      </div>
+      <div class="btn-group pull-right">
+        <button class="btn btn-default btn-xs btn-highlight-danger" {{action 'uninviteUser' this}} {{translateAttr title='accounts.users.uninvite'}}>
+          <i class="fa fa-trash-o"></i>
+        </button>
+      </div>
+      <div class="desc">
+        {{firstname}} {{lastname}}
+        {{#if nickname}}({{nickname}}){{/if}}
+        &nbsp;
+      </div>
+    </li>
+    {{/each}}
+  </ul>
 
 </section>

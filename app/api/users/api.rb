@@ -16,8 +16,8 @@ class Users::API < Grape::API
   end
   get '/', root: 'users' do
     authenticate!
-    users = User.where organizational_units: headers['Ou']
-    users = users.any_of firstname: /#{params.q}/, lastname: /#{params.q}/, email: /#{params.q}/
+    users = User.where organizational_unit_ids: headers['Ou']
+    users = users.any_of(firstname: /#{params.q}/, lastname: /#{params.q}/, email: /#{params.q}/) if params.q
     return users.map{ |u| { name: u.name, email: u.email, formattedName: "<strong>#{u.name}</strong> #{u.email}" } } if params[:simple_list]
     users
   end
@@ -28,33 +28,24 @@ class Users::API < Grape::API
       requires :email, type: String
       requires :locale, type: String
     end
-    optional :app_model_user_roles, type: Hash do
-      optional :app_model_id, type: Integer
-      optional :access_level, type: Integer
-    end
   end
   post '/' do
-    unless user = User.find_by( email: params[:user][:email] )
+    unless user = User.where( email: params[:user][:email] ).first
       user = User.new( email: params[:user][:email], locale: params[:user][:locale] )
       user.gen_confirmation_key
       user.password = SecureRandom.hex
-      user.organizational_unit_members.build organizational_unit: current_organizational_unit
-      params[:app_model_user_roles].each_pair do |key,app_model_ur|
-        next if app_model_ur[:access_level] == "0"
-        user.app_model_user_roles.build app_model_id: app_model_ur[:app_model_id], organizational_unit_id:  headers['Ou'], access_level: app_model_ur[:access_level]
-      end
+      user.organizational_units << current_organizational_unit
+      current_organizational_unit.users << user
       begin
         return error!(user.errors.full_messages,500) unless user.save
       rescue
         return error!('user amount exceeded',509)
       end
-
-      return user
-      # if UserMailer.invite( user, current_user, "#{host_url}/caminio#/sessions/initial_setup?email=#{user.email}&confirmation_key=#{user.confirmation_key}").deliver
-      #   return user
-      # else
-      #   error!('failed to send email', 500)
-      # end
+      error!('Mailer error',500) unless UserMailer.invite( 
+                                                          user,
+                                                          current_user,
+                                                          "#{host_url}/caminio#/sessions/reset_password?id=#{user.id}&confirmation_key=#{user.confirmation_key}", host_url, logo_url ).deliver
+      user
     end
   end
 
@@ -63,12 +54,8 @@ class Users::API < Grape::API
     authenticate!
     error!('not found', 404) unless user = User.find( params[:id] )
     error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.users.first.id)
-    unless user.organizational_unit_members.where( organizational_unit_id: current_organizational_unit.id ).destroy_all
-      error!('failed destroying organizational_unit_members',500)
-    end
-    unless user.app_model_user_roles.where( organizational_unit_id: current_organizational_unit.id ).destroy_all
-      error!('failed destroying app_plan_user_roles',500)
-    end
+    current_organizational_unit.user_ids.delete user.id
+    user.organizational_unit_ids.delete current_organizational_unit.id
     user
   end
 
