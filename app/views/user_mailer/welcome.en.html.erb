@@ -2,30 +2,24 @@
 <%= stylesheet_link_tag :mailer %>
 <div class="main">
   <div class="logo-wrap">
-    <a href="<%= host_url %>"><img src="<%= logo_url %>"></a>
+    <a href="<%= @host_url %>"><img src="<%= @logo_url %>"></a>
   </div>
   <div class="content">
     <h1>Hello!</h1>
     <p>Your Account on caminio was created.</p>
     <h2>Account settings</h2>
     <ul>
-      <li><a href="<%= host_url %>/#accounts/index">General settings</a></li>
-      <li><a href="<%= host_url %>/#sessions/forgot_password">Reset your password</a></li>
-    </ul>
-    <h2>Einführungsvideos</h2>
-    <ul>
-    <li><a href="http://camin.io/de/videos#getting_started">Starthilfe</a></li>
-    <li><a href="http://camin.io/de/videos#collaboration">Arbeiten im Team</a></li>
-    <li><a href="http://camin.io/de/videos#apps">Überblick der Anwendungen</a></li>
+      <li><a href="<%= @host_url %>/#accounts/index">General settings</a></li>
+      <li><a href="<%= @host_url %>/#sessions/forgot_password">Reset your password</a></li>
     </ul>
 
     <p>
-    Falls du Hilfe bei der Anwendung brauchst, kannst du dich gerne mit unserem live-chat verbinden. Du erreichst uns zwischen 09:00 und 17:00 Uhr auf http://camin.io/support/chat
+    If you need any help with the application, please get in touch with us. You can reach us at support@tastenwerk.com
     </p>
 
     <p>
-    Wir freuen uns, dass du jetzt auf caminio arbeitest<br>
-    &nbsp;&nbsp;Das TASTENWERK Support Team
+    We are glad you decided to test caminio
+    &nbsp;&nbsp;the TASTENWERK Support Team
     </p>
 
   </div>

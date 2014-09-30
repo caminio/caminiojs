@@ -2,6 +2,8 @@ module Caminio
   module API
     module Helpers
 
+      include ActionView::Helpers::AssetUrlHelper
+
       def logger
         Grape::API.logger
       end
@@ -53,9 +55,10 @@ module Caminio
       end
 
       def host_url
-        "#{request.prototol}#{request.host_with_port}"
-        # protocol = "http#{"s" if request.scheme == 'https'}://"
-        # protocol+request.host_with_port
+        # "#{request.prototol}#{request.host_with_port}"
+        protocol = "http#{"s" if request.scheme == 'https'}://"
+        protocol+request.host_with_port
+        # request.env['HTTP_REFERER']
       end
 
       def logo_url
