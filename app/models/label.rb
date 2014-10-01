@@ -8,8 +8,8 @@ class Label
   include Caminio::AccessRules
 
   field :name, type: String
-  field :description, type: String
-  field :category, type: String
+  field :title, type: String, localize: true
+  field :description, type: String, localize: true
   field :fgcolor, type: String
   field :bgcolor, type: String
   field :bdcolor, type: String

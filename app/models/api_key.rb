@@ -19,7 +19,7 @@ class ApiKey
   end
 
   def setup_expires_at
-    self.expires_at = 8.hours.from_now unless permanent
+    self.expires_at = permanent ? 1.year.from_now : 8.hours.from_now
   end
 
 end
