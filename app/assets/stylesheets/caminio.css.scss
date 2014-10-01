@@ -203,6 +203,21 @@ img.avatar{
   color: #777;
 }
 
+.page-filters{
+  margin: 10px 0 20px;
+  text-align: right
+}
+
+.page-filters .filter{
+  width: 300px;
+}
+
+.page-filters .filter .select2-choice .select2-arrow,
+.page-filters .filter .select2-choice{
+  background: none;
+  box-shadow: none;
+}
+
 .btn-ctrl{
   text-align: right;
   margin-bottom: 5px;
