@@ -10,6 +10,7 @@ class Label
   field :name, type: String
   field :title, type: String, localize: true
   field :description, type: String, localize: true
+  field :category, type: String
   field :fgcolor, type: String
   field :bgcolor, type: String
   field :bdcolor, type: String

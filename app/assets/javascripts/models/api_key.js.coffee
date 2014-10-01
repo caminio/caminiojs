@@ -4,3 +4,4 @@ App.ApiKey = DS.Model.extend
   user:                 DS.belongsTo "user", async: true
   permanent:            DS.attr 'boolean'
   name:                 DS.attr 'string'
+  created_at:           DS.attr 'date'
