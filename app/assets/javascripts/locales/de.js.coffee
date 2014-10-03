@@ -65,6 +65,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'create': 'Erstellen'
   'created': '<strong>{{name}}</strong> wurde erfolgreich erstellt'
   'created_at': 'erstellt'
+  'expires_at': 'gültig bis'
   'updated_at': 'aktualisiert'
   'creation_failed': '<strong>{{name}}</strong> konnte nicht erstellt werden'
   'proceed_and_dismiss': 'Fortfahren und Verwerfen'

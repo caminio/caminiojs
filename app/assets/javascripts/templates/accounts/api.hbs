@@ -19,9 +19,10 @@
     {{/unless}}
     <ul class="list">
       {{#each content}}
-      <li {{action 'openModal' 'accounts/edit_api' controller this}} class="all-click">
+      <li {{action 'openModal' 'accounts/edit_api' controller this}} {{bind-attr class=":all-click expired:alert-danger"}}>
       <div class="title">{{name}}</div>
       <div class="desc" style="font-size: 8px"><tt>{{access_token}}</tt></div>
+      <small class="pull-right desc">{{t 'expires_at'}}: {{formatDate expires_at}}</small>
       <small class="desc">{{t 'created_at'}}: {{formatDate created_at}}</small>
       </li>
       {{/each}}

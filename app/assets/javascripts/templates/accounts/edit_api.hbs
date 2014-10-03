@@ -8,7 +8,11 @@
     </div>
     <div class="form-group">
       <label>{{t 'accounts.api.key'}}</label>
-      {{input value=modalContent.access_token class="form-control" disabled=true}}
+      <div class="form-control">{{modalContent.access_token}}</div>
+    </div>
+    <div class="form-group">
+      <label>{{t 'expires_at'}}</label>
+      <div class="form-control">{{formatDate modalContent.expires_at}}</div>
     </div>
   </form>
 </div>
