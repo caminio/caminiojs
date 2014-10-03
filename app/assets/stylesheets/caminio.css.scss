@@ -126,7 +126,6 @@ body > .ember-view{
   margin-left: 200px;
   margin-right: 50px;
   max-width: 1200px;
-  overflow: auto;
   margin-bottom: 20px;
 }
 
@@ -317,4 +316,9 @@ section h2{
   width: 128px;
   height: 128px;
   margin: auto;
+}
+
+.md-title-box{
+  background: #fafafa;
+  padding: 5px;
 }

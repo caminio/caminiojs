@@ -11,7 +11,7 @@ class ApiKeys::API < Grape::API
   end
   get '/', root: 'api_keys' do
     authenticate!
-    ApiKey.where(permanent: params.permanent)
+    ApiKey.where(permanent: params.permanent, user: current_user)
   end
 
   params do

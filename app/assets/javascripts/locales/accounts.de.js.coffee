@@ -90,7 +90,8 @@ Em.merge Em.I18n.availableTranslations.de,
     api:
       title: 'API'
       generate_new: 'Generate a new API key'
-      key: 'Key'
+      key: 'Schlüssel'
+      desc: 'Du hast derzeit keine API Schlüssel angelegt. API Schlüssel dienen der Verbindung von caminio mit anderen Systemen'
       edit: 'API Schlüssel bearbeiten'
       delete: 'API Schlüssel löschen'
       deleted: 'API Schlüssel {{name}} wurde gelöscht'

@@ -14,6 +14,9 @@
   </div>
 
   <div class="default-margin-top">
+    {{#unless content}}
+    <div class="alert alert-info">{{t 'accounts.api.desc'}}</div>
+    {{/unless}}
     <ul class="list">
       {{#each content}}
       <li {{action 'openModal' 'accounts/edit_api' controller this}} class="all-click">

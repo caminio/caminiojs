@@ -6,6 +6,10 @@
       <label>{{t 'accounts.api.name'}}</label>
       {{input value=modalContent.name class="form-control"}}
     </div>
+    <div class="form-group">
+      <label>{{t 'accounts.api.key'}}</label>
+      {{input value=modalContent.access_token class="form-control" disabled=true}}
+    </div>
   </form>
 </div>
 <div class="modal-footer align-right">
