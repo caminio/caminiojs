@@ -27,12 +27,8 @@ module Caminio
       end
 
       def current_user
-        puts "HEADERS"
-        puts headers['Authorization']
         token = params.access_token
         token = headers['Authorization'].split(' ').last if !token && headers.has_key?('Authorization')
-        puts "token"
-        puts token.inspect
         return false unless token
         if api_key = ApiKey.where(access_token: token).gt(expires_at: Time.now).first
           api_key.update! expires_at: 1.hour.from_now if api_key.expires_at < 1.hour.from_now
