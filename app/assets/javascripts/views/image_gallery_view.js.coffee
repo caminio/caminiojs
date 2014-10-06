@@ -1,15 +1,16 @@
-App.ImageGalleryComponent = Em.Component.extend
+App.ImageGalleryView = Em.View.extend
 
   didInsertElement: ->
+    view = @
     $('#image-gallery-upload').fileupload
       url: '/caminio/mediafiles'
       paramName: 'file'
       formData:
-        parent_id: @get('parent.id')
-        parent_type: @get('parent.constructor.typeKey')
+        parent_id: @get('content.id')
+        parent_type: @get('content.constructor.typeKey')
       dataType: 'json'
       done: (e, data)->
-        console.log "DONE", data
+        view.get('content').reload()
 
     comp = @
     $('.image-gallery-item').on 'click', (e)->
