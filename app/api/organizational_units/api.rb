@@ -30,7 +30,9 @@ class OrganizationalUnits::API < Grape::API
   put '/:id/app_plans' do
     authenticate!
     ou = current_user.current_organizational_unit = current_user.organizational_units.find( headers['Ou'] )
-    ou.app_plans.map(&:destroy)
+    ou.app_plans.each do |plan|
+      ou.app_plans.delete(plan)
+    end
     params[:plan_ids].each do |plan_id|
       app_plan = AppPlan.find(plan_id)
       ou.app_plans << app_plan
