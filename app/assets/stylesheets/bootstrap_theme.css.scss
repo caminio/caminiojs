@@ -131,6 +131,10 @@ body .twitter-typeahead{
   width: 100%;
 }
 
+body .modal-header .close{
+  margin: 2px 5px 0 0;
+}
+
 body .bootbox.modal button.close{
   margin: -3px 5px !important;
 }

@@ -107,5 +107,6 @@ Em.merge Em.I18n.availableTranslations.de,
   unlabeling_failed: 'Label konnte nicht entfernt werden'
   image_gallery:
     title: 'Bildergalerie'
+    remove: 'Bild löschen'
     upload: 'Neues Bild hochladen'
     mark_image: 'Klick auf ein Bild und kopiere die hier angezeigte URL. Dann füg den Link im Editor ein'
