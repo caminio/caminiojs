@@ -6,3 +6,7 @@ App.Mediafile = DS.Model.extend
   parent_type: DS.attr('string')
   file_thumb: DS.attr('string')
   file_original: DS.attr('string')
+  copyright: DS.attr('string')
+  description: DS.attr('string')
+  humanFileSize: Em.computed ->
+    filesize( @get('file_file_size') )

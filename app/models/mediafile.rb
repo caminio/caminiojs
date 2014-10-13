@@ -19,6 +19,8 @@ class Mediafile
   validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
 
   field :category, type: String
+  field :description, type: String
+  field :copyright, type: String
 
   field :parent_id, type: BSON::ObjectId
   field :parent_type, type: String

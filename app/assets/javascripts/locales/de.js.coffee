@@ -108,5 +108,12 @@ Em.merge Em.I18n.availableTranslations.de,
   image_gallery:
     title: 'Bildergalerie'
     remove: 'Bild löschen'
+    edit: 'Bild bearbeiten'
+    filename: 'Bildname'
+    dimensions: 'Abmessungen'
+    size: 'Dateigröße'
+    content_type: 'Dateityp'
+    copyright: 'Copyright'
+    description: 'Beschreibung'
     upload: 'Neues Bild hochladen'
     mark_image: 'Klick auf ein Bild und kopiere die hier angezeigte URL. Dann füg den Link im Editor ein'

@@ -1,4 +1,4 @@
-App.ImageGalleryView = Em.View.extend
+App.ImageGalleryComponent = Em.Component.extend
 
   didInsertElement: ->
     view = @
@@ -27,7 +27,18 @@ App.ImageGalleryView = Em.View.extend
       view.$('.bitrate').text(filesize(data.bitrate, bits: true)+'/s')
     )
 
-    $('.image-gallery-item').on 'click', (e)->
-      imgHtml = "<img src=\"#{location.protocol}//#{location.host}#{$(@).attr('data-url')}\">"
-      controller.get('editor').insertHtml imgHtml
-      $('.modal .close').click()
+  actions:
+
+    toggleEdit: ->
+      @set('curEditingImg',null)
+      $('.modal-title').text Em.I18n.t('image_gallery.title')
+
+    save: ->
+      comp = @
+      @get('curEditingImg')
+        .save()
+        .then ->
+          comp.set 'curEditingImg', null
+        .catch (e)->
+          console.log('error', e)
+

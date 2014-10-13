@@ -1,0 +1,34 @@
+{{#if uploadError}}
+<div {{bind-attr class=":alert uploadError:hide alert-danger"}}>{{uploadError}}</div>
+{{/if}}
+
+{{#if curEditingImg}}
+{{partial 'image_gallery_edit'}}
+{{else}}
+
+<div class="image-gallery clearfix">
+
+  <div class="image-gallery-item upload-container">
+    <i class="fa fa-cloud-upload"></i>
+    <div class="title">{{t 'image_gallery.upload'}}</div>
+    <input type="file" id="image-gallery-upload">
+    <div class="progress-bar" style="width: 0%"></div>
+    <div class="bitrate"></div>
+  </div>
+
+  {{#each controller.content.mediafiles itemController='image_gallery_item'}}
+
+  <div class="image-gallery-item" {{bind-attr data-url='file_original'}}>
+    <img {{bind-attr src='file_thumb'}} {{action 'insert'}}>
+    <button class="btn edit-btn" {{action 'edit'}} {{translateAttr title='image_gallery.edit'}}>
+      <i class="fa fa-pencil"></i>
+    </button>
+    <button class="btn btn-highlight-danger remove-btn" {{action 'remove'}} {{translateAttr title='image_gallery.remove'}}>
+      <i class="fa fa-trash-o"></i>
+    </button>
+  </div>
+
+  {{/each}}
+
+</div>
+{{/if}}

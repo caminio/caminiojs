@@ -1,31 +1,5 @@
 {{#caminio-modal title='image_gallery.title' close='closeModal'}}
 <div class="modal-body">
- 
-  {{#if uploadError}}
-  <div {{bind-attr class=":alert uploadError:hide alert-danger"}}>{{uploadError}}</div>
-  {{/if}}
-
-  <div class="image-gallery clearfix">
-
-    <div class="image-gallery-item upload-container">
-      <i class="fa fa-cloud-upload"></i>
-      <div class="title">{{t 'image_gallery.upload'}}</div>
-      <input type="file" id="image-gallery-upload">
-      <div class="progress-bar" style="width: 0%"></div>
-      <div class="bitrate"></div>
-    </div>
-
-    {{#each controller.content.mediafiles itemController='image_gallery_item'}}
-
-    <div class="image-gallery-item" {{bind-attr data-url='file_original'}}>
-      <img {{bind-attr src='file_thumb'}}>
-      <button class="btn btn-highlight-danger remove-btn" {{action 'remove'}} {{translateAttr title='image_gallery.remove'}}>
-        <i class="fa fa-trash-o"></i>
-      </button>
-    </div>
-
-    {{/each}}
-
-  </div>
+  {{image-gallery content=content parentController=controller}}
 </div>
 {{/caminio-modal}}

@@ -61,3 +61,62 @@
 .image-gallery > .image-gallery-item:not(.upload-container).selected{
   background: #5af;
 }
+
+.image-gallery-item .edit-btn,
+.image-gallery-item .remove-btn{
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  display: none;
+  opacity: 0.3;
+}
+
+.image-gallery-item .remove-btn{
+  right: 5px;
+  left: auto;
+}
+.image-gallery-item:hover .edit-btn,
+.image-gallery-item:hover .remove-btn{
+  display: block;
+}
+
+.image-gallery-item .edit-btn:hover,
+.image-gallery-item .remove-btn:hover{
+  opacity: 0.8;
+}
+
+.image-gallery-info-pane{
+  background: #eee;
+  padding: 20px;
+  font-size: 10px;
+}
+
+.image-gallery-override-close.btn.btn-pale{
+  position: absolute;
+  right: 6px;
+  top: -56px;
+  background: #fff;
+  font-size: 26px;
+}
+
+.image-gallery-info-pane textarea,
+.image-gallery-info-pane input[type=text]{
+  width: 100%;
+  padding: 2px 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.image-gallery-info-pane label{
+  font-size: 12px;
+  margin: 5px 0 0 0;
+}
+
+.image-gallery-content-pane img.main{
+  width: 100%;
+}
+
+.image-gallery-info-pane input[type=text]:focus{
+  background: #fff;
+}

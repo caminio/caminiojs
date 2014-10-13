@@ -46,4 +46,25 @@ class Mediafiles::API < Grape::API
     mediafile.destroy
   end
 
+  params do
+    requires :mediafile, type: Hash do
+      optional :file_file_name
+      optional :copyright
+      optional :description
+    end
+  end
+  put '/:id' do
+    authenticate!
+    error!('not_found', 404) unless mediafile = Mediafile.where(id: params.id).first
+    error!('failed', 500) unless mediafile.update declared(params)[:mediafile]
+    mediafile.reload
+  end
+
+  delete '/:id' do
+    authenticate!
+    error!('not_found', 404) unless mediafile = Mediafile.where(id: params.id).first
+    error!('failed', 500) unless mediafile.destroy
+    {}
+  end
+
 end
