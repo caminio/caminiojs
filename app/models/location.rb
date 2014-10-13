@@ -17,6 +17,13 @@ class Location
   field :country_code, type: String
   field :state, type: String
 
+  field :building, type: String
+  field :stair, type: String
+  field :floor, type: String
+  field :room, type: String
+  field :gkz, type: String
+  field :addition, type: String
+
   field :lat, type: Float
   field :lng, type: Float
 
