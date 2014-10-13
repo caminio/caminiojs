@@ -36,6 +36,7 @@ class User
 
   has_and_belongs_to_many :organizational_units
   has_many :api_keys
+  has_many :access_rules, dependent: :destroy
 
   has_secure_password
   has_mongoid_attached_file :avatar,

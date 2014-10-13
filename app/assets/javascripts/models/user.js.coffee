@@ -13,6 +13,7 @@ App.User = DS.Model.extend
   avatar_thumb:                   DS.attr "string"
   cur_password:                   DS.attr "string"
   last_login_at:                  DS.attr 'date'
+  access_rules:                   DS.hasMany 'access_rule'
 
   name: (->
     return @get('username') unless Em.isEmpty(@get('username'))

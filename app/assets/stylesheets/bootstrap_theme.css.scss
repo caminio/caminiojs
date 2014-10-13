@@ -9,6 +9,10 @@ body textarea{
   // transition: all 0.8s;
 }
 
+body input[disabled]{
+  background: #f9f9f9;
+}
+
 body input[type=text]:hover,
 body input[type=password]:hover,
 body textarea:hover{

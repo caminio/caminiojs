@@ -87,6 +87,12 @@ Em.merge Em.I18n.availableTranslations.de,
         'current_missing': 'Bitte gib dein altes Passwort ein'
         'new_missing': 'Bitte gib ein neues Passwort ein'
         'amount_exceeded': 'Der aktuelle Tarif erlaubt keine weiteren Mitarbeiter'
+    user:
+      access:
+        none: '{{user_name}} kann jetzt nicht mehr auf {{app_name}} zugreifen'
+        read: '{{user_name}} kann jetzt {{app_name}} lesen (aber nicht ändern)'
+        write: '{{user_name}} kann jetzt {{app_name}} schreiben (und nur eigene Inhalte löschen)'
+        delete: '{{user_name}} hat jetzt Administratorrechte auf {{app_name}}'
     api:
       title: 'API'
       generate_new: 'Generate a new API key'

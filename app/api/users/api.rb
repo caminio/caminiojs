@@ -34,19 +34,16 @@ class Users::API < Grape::API
       user = User.new( email: params[:user][:email], locale: params[:user][:locale] )
       user.gen_confirmation_key
       user.password = SecureRandom.hex
-      user.organizational_units << current_organizational_unit
-      current_organizational_unit.users << user
-      begin
-        return error!(user.errors.full_messages,500) unless user.save
-      rescue
-        return error!('user amount exceeded',509)
-      end
-      error!('Mailer error',500) unless UserMailer.invite( 
-                                                          user,
-                                                          current_user,
-                                                          "#{host_url}/caminio#/sessions/reset_password?id=#{user.id}&confirmation_key=#{user.confirmation_key}", host_url, logo_url ).deliver
-      user
     end
+    user.organizational_units << current_organizational_unit
+    current_organizational_unit.users << user
+    return error!(user.errors.full_messages,500) unless user.save
+    # return error!('user amount exceeded',509)
+    error!('Mailer error',500) unless UserMailer.invite( 
+                                                        user,
+                                                        current_user,
+                                                        "#{host_url}/caminio#/sessions/reset_password?id=#{user.id}&confirmation_key=#{user.confirmation_key}", host_url, logo_url ).deliver
+    user
   end
 
   desc "deletese a user (from organizational unit or entirely)"

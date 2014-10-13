@@ -78,6 +78,7 @@ App.setAuthenticationBearer = (access_token, user)->
     App.set 'currentOu', ou
   else
     App.set 'currentOu', user.get('organizational_units.firstObject')
+  Ember.$.cookie 'caminio-session-ou', App.get('currentOu.id')
   $('body').removeClass('authorization-required')
   Ember.$.ajaxSetup
     headers:

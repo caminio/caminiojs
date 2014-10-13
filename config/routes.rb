@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount Users::API => "/caminio/users"
+  mount AccessRules::API => "/caminio/access_rules"
   mount Translations::API => "/caminio/translations"
   mount Labels::API => "/caminio/labels"
   mount AppPlans::API => "/caminio/app_plans"
