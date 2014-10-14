@@ -35,8 +35,10 @@ class Users::API < Grape::API
       user.gen_confirmation_key
       user.password = SecureRandom.hex
     end
-    user.organizational_units << current_organizational_unit
-    current_organizational_unit.users << user
+    unless user.organizational_units.where(id: current_organizational_unit.id)
+      user.organizational_units << current_organizational_unit
+      current_organizational_unit.users << user
+    end
     return error!(user.errors.full_messages,500) unless user.save
     # return error!('user amount exceeded',509)
     error!('Mailer error',500) unless UserMailer.invite( 

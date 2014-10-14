@@ -31,3 +31,10 @@ App.User = DS.Model.extend
     @.get('email')
   ).property('username','firstname','lastname','email')
 
+  canShare: (app)->
+    @get('access_rules').find (rule)->
+      rule.get('app.id') == app.get('id') && rule.get('can_share') == true
+
+  isOwner: (->
+    App.get('currentOu.owner') == @
+  ).property 'App.currentOu','App.currentOu.owner'
