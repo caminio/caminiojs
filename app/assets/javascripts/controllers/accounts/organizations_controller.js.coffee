@@ -6,6 +6,11 @@ App.AccountsOrganizationsController = Em.ObjectController.extend
 
   currentOuObserver: (->
     return if App.get('currentOu.name') == 'private'
+    Ember.$.removeCookie 'caminio-session-ou', path: '/caminio/'
+    Ember.$.cookie 'caminio-session-ou', App.get('currentOu.id')
+    Ember.$.ajaxSetup
+      headers:
+        'Ou': App.get('currentOu.id')
     @set('currentOrganizationalUnit', App.get('currentOu'))
   ).observes 'App.currentOu'
 

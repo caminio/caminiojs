@@ -7,7 +7,7 @@
   </div>
 
   <ul class="list">
-    {{#each user in content}}
+    {{#each user in content itemController='user_item'}}
     <li>
       <div class="desc pull-right">
         {{smartDate user.last_login_at}}
@@ -26,9 +26,9 @@
         {{#if user.nickname}}({{user.nickname}}){{/if}}
         &nbsp;
       </div>
-      <div class="desc">
+      <div class="desc access-rules">
         {{#each app_plan in App.currentOu.app_plans itemController='user_app_access_item'}}
-        <button {{bind-attr class=":btn :btn-xs appAccessColor"}} {{action 'toggleAppAccess' user app_plan.app}} {{bind-attr title=app_plan.app.name}}>
+        <button {{bind-attr class=":btn :btn-xs controller.appAccessColor"}} {{action 'toggleAppAccess' user app_plan.app}} {{bind-attr title=app_plan.app.name}}>
           <i {{bind-attr class=":fa app_plan.app.icon"}}></i>
         </button>
         {{/each}}

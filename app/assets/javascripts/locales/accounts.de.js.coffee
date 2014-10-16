@@ -93,6 +93,8 @@ Em.merge Em.I18n.availableTranslations.de,
         read: '{{user_name}} kann jetzt {{app_name}} lesen (aber nicht ändern)'
         write: '{{user_name}} kann jetzt {{app_name}} schreiben (und nur eigene Inhalte löschen)'
         delete: '{{user_name}} hat jetzt Administratorrechte auf {{app_name}}'
+        repair_rules: 'Eigentümerrechte reparieren'
+        rules_repaired: 'Eigentümerrechte wurden erfolgreich repariert'
     api:
       title: 'API'
       generate_new: 'Generate a new API key'

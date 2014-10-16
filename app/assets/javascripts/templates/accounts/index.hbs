@@ -82,7 +82,10 @@
       </div>
     </div>
 
-    <div class="align-right">
+    <div class="align-right default-margin-top">
+      {{#if isOwner}}
+      <button {{action 'repairRules'}} class="btn btn-pale">{{t 'accounts.user.access.repair_rules'}}</button>
+      {{/if}}
       <button class="btn btn-success">{{t 'save'}}</button>
     </div>
 
