@@ -4,6 +4,7 @@ Em.merge Em.I18n.availableTranslations.de,
   accounts:
     'overview': "Überblick"
     'plans_and_prices': "Tarife und Preise"
+    'legend': 'Legende'
     'invoices': 
       'title': "Rechnungen"
       'my': 'Meine Rechnungen'
@@ -17,11 +18,12 @@ Em.merge Em.I18n.availableTranslations.de,
     'click_img_left_to_update': 'Klick auf das Bild um deinen persönlichen Avatar hochzuladen'
     'plans': 'Tarife'
     access:
-      'none': 'Kein'
-      'read': 'Lesen'
-      'write_create': 'Schreiben / Erstellen'
-      'share': 'Teilen'
-      'full': 'Vollzugrif'
+      'none': 'Kein Zugriff'
+      'read': 'Lesezugriff'
+      'write': 'Inhalte schreiben und erstellen'
+      'write_create': 'Inhalte schreiben und erstellen'
+      'share': 'Inhalte teilen'
+      'delete': 'Administrator'
     plan:
       'my': 'Meine Tarife'
       'save': 'Pläne speichern'

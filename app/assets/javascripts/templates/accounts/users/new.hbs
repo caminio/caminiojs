@@ -20,7 +20,7 @@
     <div {{bind-attr class=":form-group errors.email:field-with-errors"}}>
       <label class="col-md-4 control-label">{{t 'email'}}</label>
       <div class="col-md-8">
-        {{input value=email class="form-control"}}
+        {{input value=email class="form-control js-get-focus"}}
         <div {{bind-attr class=":help-block errors.email::hide"}}>{{errors.email}}</div>
       </div>
     </div>

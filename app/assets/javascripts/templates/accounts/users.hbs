@@ -6,6 +6,18 @@
     </button>
   </div>
 
+  <div class="access-legend">
+    <span class="desc">{{t 'accounts.legend'}}: </span>
+    <button class="btn btn-pale"><i class="fa fa-home"></i></button>
+    <span class="desc">{{t 'accounts.access.none'}}</span>
+    <button class="btn btn-default"><i class="fa fa-home"></i></button>
+    <span class="desc">{{t 'accounts.access.read'}}</span>
+    <button class="btn btn-black"><i class="fa fa-home"></i></button>
+    <span class="desc">{{t 'accounts.access.write'}}</span>
+    <button class="btn btn-danger"><i class="fa fa-home"></i></button>
+    <span class="desc">{{t 'accounts.access.delete'}}</span>
+  </div>
+
   <ul class="list">
     {{#each user in content itemController='user_item'}}
     <li>

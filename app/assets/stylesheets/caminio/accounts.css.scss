@@ -94,3 +94,22 @@
 .access-rules .btn-pale{
   opacity: 0.3;
 }
+
+.access-legend{
+  margin: 20px 0;
+}
+
+.access-legend .btn{
+  margin-left: 15px;
+  margin-right: 0px;
+  padding: 0px 2px;
+  font-size: 10px;
+}
+
+.access-legend .btn.btn-pale{
+  opacity: 0.5;
+}
+
+.access-legend .desc{
+  font-size: 10px;
+}
