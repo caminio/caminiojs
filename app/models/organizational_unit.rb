@@ -12,7 +12,7 @@ class OrganizationalUnit
 
   embeds_many :access_rules
 
-  after_save :check_owner_has_full_access
+  # after_save :check_owner_has_full_access
 
   def access_for_user( user )
     return unless users.find(user.id)

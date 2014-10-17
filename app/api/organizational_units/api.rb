@@ -30,15 +30,18 @@ class OrganizationalUnits::API < Grape::API
   put '/:id/app_plans' do
     authenticate!
     ou = current_user.current_organizational_unit = current_user.organizational_units.find( headers['Ou'] )
+    return error!('organizational unit not found', 404) unless ou
     ou.app_plans.each do |plan|
       ou.app_plans.delete(plan)
+      current_user.user_access_rules.map(&:destroy)
     end
     params[:plan_ids].each do |plan_id|
       app_plan = AppPlan.find(plan_id)
       ou.app_plans << app_plan
+      current_user.user_access_rules.create organizational_unit: ou, app: app_plan.app, can_write: true, can_share: true, can_delete: true
+      puts "\n\ncurret_user #{current_user.user_access_rules.inspect} #{current_user.errors.full_messages}\n\n\n"
     end
-    ou.save
-    error!('failed to save',500) unless ou.save
+    error!('failed to save organizational unit',500) unless ou.save
     {}
   end
 

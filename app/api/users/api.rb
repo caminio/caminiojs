@@ -39,9 +39,9 @@ class Users::API < Grape::API
       user.organizational_units << current_organizational_unit
       current_organizational_unit.users << user
     end
-    current_user.access_rules.each do |rule|
+    current_user.user_access_rules.each do |rule|
       next unless rule.can_share
-      user.access_rules.create organizational_unit: current_organizational_unit, can_write: true, app_id: rule.app_id
+      user.user_access_rules.create organizational_unit: current_organizational_unit, can_write: true, app_id: rule.app_id
     end
     return error!(user.errors.full_messages,500) unless user.save
     # return error!('user amount exceeded',509)
@@ -59,7 +59,7 @@ class Users::API < Grape::API
     error!('security transgression',403) unless (current_user.id == params[:id] || current_user.id == current_organizational_unit.users.first.id)
     current_organizational_unit.user_ids.delete user.id
     user.organizational_unit_ids.delete current_organizational_unit.id
-    error!('failed to delete access rules',500) unless user.access_rules.where(organizational_unit: current_organizational_unit).destroy
+    error!('failed to delete access rules',500) unless user.user_access_rules.where(organizational_unit: current_organizational_unit).destroy
     error!('failed to delete',500) unless user.save
     {}
   end

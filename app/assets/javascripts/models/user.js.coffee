@@ -13,7 +13,7 @@ App.User = DS.Model.extend
   avatar_thumb:                   DS.attr "string"
   cur_password:                   DS.attr "string"
   last_login_at:                  DS.attr 'date'
-  access_rules:                   DS.hasMany 'access_rule'
+  user_access_rules:              DS.hasMany 'user_access_rule'
 
   name: (->
     return @get('username') unless Em.isEmpty(@get('username'))
@@ -32,7 +32,7 @@ App.User = DS.Model.extend
   ).property('username','firstname','lastname','email')
 
   canShare: (app)->
-    @get('access_rules').find (rule)->
+    @get('user_access_rules').find (rule)->
       rule.get('app.id') == app.get('id') && rule.get('can_share') == true
 
   isOwner: (->
