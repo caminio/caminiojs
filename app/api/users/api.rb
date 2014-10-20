@@ -36,8 +36,8 @@ class Users::API < Grape::API
       user.password = SecureRandom.hex
     end
     unless user.organizational_units.where(id: current_organizational_unit.id).first
-      user.organizational_units << current_organizational_unit
-      current_organizational_unit.users << user
+      user.organizational_unit_ids << current_organizational_unit.id
+      current_organizational_unit.user_ids << user.id
     end
     current_user.user_access_rules.each do |rule|
       next unless rule.can_share
@@ -141,8 +141,7 @@ class Users::API < Grape::API
       email: params[:email],
       password: params[:password],
       locale: params[:locale])
-    ou = OrganizationalUnit.create name: params.company_name || 'private'
-    ou.users << user
+    ou = OrganizationalUnit.create owner_id: user.id, name: (params.company_name || 'private'), user_ids: [ user.id ]
     if ou.save && user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account", host_url, logo_url ).deliver
         { api_key: user.api_keys.create }
