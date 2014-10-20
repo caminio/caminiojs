@@ -82,6 +82,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'error.email_unknown': 'Die angegebene Email Adresse <em>{{email}}</em> ist uns nicht bekannt'
   'error.email_error': 'Die angegebene Email Adresse <em>{{email}}</em> kann von uns nicht verifiziert werden. Bitte kontaktiere den Support'
   'error.email_exists': 'Die angegebene Email Adresse <em>{{email}}</em> existiert bereits'
+  'error.organizational_name_taken': 'Der Organisationsname {{name}} ist bereits vergeben'
   'errors.accept_terms': 'AGBs müssen akzeptiert werden'
   'errors.required.company_name': 'Firmenname erforderlich, wenn als Firma registriert werden soll'
   'errors.required.email': 'Email Adresse erforderlich'

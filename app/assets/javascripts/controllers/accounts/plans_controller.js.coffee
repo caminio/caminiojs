@@ -15,7 +15,7 @@ App.AccountsPlansController = Em.ObjectController.extend
 
     savePlans: ->
       controller = @
-      currentUser = @get('controllers.sessions.currentUser')
+      currentUser = App.get('currentUser')
       plan_ids = App.get('currentOu.app_plans').mapBy('id')
       if plan_ids.length < 1
         @send('openModal', 'accounts/available_plans')
@@ -26,6 +26,7 @@ App.AccountsPlansController = Em.ObjectController.extend
         data:
           plan_ids: plan_ids
       ).then ->
+        currentUser.save()
         $('.modal .close').click();
         toastr.info( Em.I18n.t('accounts.plans.updated' ) )
 

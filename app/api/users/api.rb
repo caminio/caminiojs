@@ -137,12 +137,14 @@ class Users::API < Grape::API
   end
   post '/signup' do
     error! 'Email exists', 409 if User.where(email: params.email).first
+    return error!('organization name taken',403) if params.company_name && OrganizationalUnit.where( name: /#{params.company_name}/i ).first
     user = User.new( 
       email: params[:email],
       password: params[:password],
       locale: params[:locale])
     ou = OrganizationalUnit.create owner_id: user.id, name: (params.company_name || 'private'), user_ids: [ user.id ]
-    if ou.save && user.save
+    user.organizational_unit_ids << ou.id
+    if user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account", host_url, logo_url ).deliver
         { api_key: user.api_keys.create }
       else

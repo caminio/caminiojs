@@ -70,6 +70,8 @@ App.SessionsSignupController = Ember.ObjectController.extend App.Validations,
         controller.get('controllers.sessions').authenticate(response.api_key)
       .fail (error)->
         controller.set('valid', false)
+        if error.responseJSON.error && error.responseJSON.error.indexOf('taken') >= 0
+          return controller.set('message', Em.I18n.t('error.organizational_name_taken', { name: controller.get('content.company<F4>Name') }))
         if error.responseJSON.error && error.responseJSON.error.indexOf('exists') >= 0
           return controller.set('message', Em.I18n.t('error.email_exists', { email: controller.get('content.email') }))
         controller.set('message', Em.I18n.t('error.email_error', { email: controller.get('content.email') }))
