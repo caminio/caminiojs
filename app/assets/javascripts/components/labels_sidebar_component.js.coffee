@@ -1,5 +1,9 @@
 App.LabelsSidebarComponent = Em.Component.extend
 
+  labelsTitle: (->
+    Em.I18n.t( @get('titleTranslation') || 'labels.title')
+  ).property ''
+
   actions:
 
     newLabel: ->
