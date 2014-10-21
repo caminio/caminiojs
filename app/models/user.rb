@@ -34,7 +34,7 @@ class User
   field :api_user, type: Boolean
   field :expires_at, type: DateTime
 
-  has_and_belongs_to_many :organizational_units
+  has_and_belongs_to_many :organizational_units, inverse_of: :users
   has_many :api_keys
   embeds_many :user_access_rules
 

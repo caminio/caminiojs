@@ -19,6 +19,8 @@ body, html{
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   background: #f0f0f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body > .ember-view{

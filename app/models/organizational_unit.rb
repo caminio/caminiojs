@@ -7,7 +7,7 @@ class OrganizationalUnit
   field :name, type: String
   field :suspended, type: Boolean, default: false
   
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :users, inverse_of: :organizational_units
   belongs_to :owner, class_name: 'User'
   has_and_belongs_to_many :app_plans
 

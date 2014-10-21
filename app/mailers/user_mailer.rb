@@ -27,6 +27,7 @@ class UserMailer < ActionMailer::Base
     @inviter = inviter
     @host_url = host_url
     @logo_url = logo_url
+    @link = link
     I18n.with_locale(@user.locale || I18n.locale) do
       mail to: user.email, subject: I18n.t('caminio_welcome')
     end

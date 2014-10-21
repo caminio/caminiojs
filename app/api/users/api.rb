@@ -34,6 +34,7 @@ class Users::API < Grape::API
       user = User.new( email: params[:user][:email], locale: params[:user][:locale] )
       user.gen_confirmation_key
       user.password = SecureRandom.hex
+      user.save
     end
     unless user.organizational_units.where(id: current_organizational_unit.id).first
       user.organizational_unit_ids << current_organizational_unit.id
