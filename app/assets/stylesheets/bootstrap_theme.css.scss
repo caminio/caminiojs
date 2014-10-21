@@ -1,6 +1,7 @@
 body input[type=text],
 body input[type=password],
-body textarea{
+body textarea,
+body textarea.form-control{
   padding: 6px;
   /*border: 1px solid #ccc;*/
   border: none;
