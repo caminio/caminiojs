@@ -25,6 +25,22 @@ class OrganizationalUnits::API < Grape::API
   end
 
   params do
+    requires :organizational_unit, type: Hash do
+      requires :name
+      optional :fqdn
+      optional :settings
+      optional :owner_id
+    end
+  end
+  put '/:id' do
+    authenticate!
+    error!('not found',404) unless ou = OrganizationalUnit.where( id: params.id ).first
+    error!('insufficient rights',403) unless ou.owner_id = current_user.id
+    error!('general error',500) unless ou.update(declared( params )[:organizational_unit])
+    ou.reload
+  end
+
+  params do
     requires :plan_ids, type: Array
   end
   put '/:id/app_plans' do

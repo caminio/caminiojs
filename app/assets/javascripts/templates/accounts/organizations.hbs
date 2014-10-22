@@ -23,6 +23,12 @@
       </div>
     </div>
     <div class="form-group">
+      <label class="control-label col-md-4">{{t 'accounts.organizations.fqdn'}}</label>
+      <div class="col-md-8">
+        {{input value=currentOrganizationalUnit.fqdn class="form-control" placeholderTranslation='accounts.organizations.fqdn_desc'}}
+      </div>
+    </div>
+    <div class="form-group">
       <label class="control-label col-md-4">{{t 'accounts.organizations.default_lang'}}</label>
       <div class="col-md-8">
         {{view Ember.Select2
@@ -48,6 +54,9 @@
     </div>
     <div class="form-group">
       <div class="col-md-8 col-md-offset-4">
+        <button class="btn btn-primary" {{action 'saveOrganizationalUnit' currentOrganizationalUnit}}>
+          {{t 'save'}}
+        </button>
         <button class="btn btn-danger" {{action 'removeOrganizationalUnit' currentOrganizationalUnit}}>
           {{t 'accounts.organizations.delete'}}
         </button>

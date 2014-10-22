@@ -41,3 +41,12 @@ App.AccountsOrganizationsController = Em.ObjectController.extend
               toastr.error Em.I18n.t('accounts.organizations.deletion_failed', name: ou.get('name'))
         else
           toastr.warning Em.I18n.t('cancelled')
+
+    saveOrganizationalUnit: (ou)->
+      controller = @
+      ou
+        .save()
+        .then ->
+          toastr.success Em.I18n.t('saved', name: ou.get('name'))
+        .catch ->
+          toastr.error Em.I18n.t('saving_failed', name: ou.get('name'))

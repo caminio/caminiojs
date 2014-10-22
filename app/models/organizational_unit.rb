@@ -5,6 +5,8 @@ class OrganizationalUnit
   include Mongoid::Timestamps
 
   field :name, type: String
+  field :fqdn, type: String
+  field :settings, type: Object
   field :suspended, type: Boolean, default: false
   
   has_and_belongs_to_many :users, inverse_of: :organizational_units
@@ -14,6 +16,7 @@ class OrganizationalUnit
   embeds_many :access_rules
 
   # after_save :check_owner_has_full_access
+  before_create :setup_fqdn
 
   def access_for_user( user )
     return unless users.find(user.id)
@@ -25,6 +28,11 @@ class OrganizationalUnit
   end
 
   private
+
+  def setup_fqdn
+    return unless fqdn.blank?
+    self.fqdn = "#{name.gsub(' ','_').underscore}.camin.io"
+  end
 
   def check_owner_has_full_access
     return unless owner = users.first

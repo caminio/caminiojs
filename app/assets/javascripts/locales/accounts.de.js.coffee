@@ -45,6 +45,8 @@ Em.merge Em.I18n.availableTranslations.de,
       'title': 'Organisationen'
       'add': 'Neue Organisationen hinzufügen'
       'name': 'Firma / Arbeitsgruppe'
+      'fqdn': 'Voller Name der Domäne'
+      'fqdn_desc': 'example.com'
       'default_lang': 'Bevorzugte Sprache'
       'owner': 'Eigentümer'
       'collaborators': 'Mitarbeiter'

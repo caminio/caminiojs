@@ -59,6 +59,8 @@ Em.merge Em.I18n.availableTranslations.de,
   'cancel': 'Abbrechen'
   'cancelled': 'Abgebrochen'
   'save': 'Speichern'
+  'saved': '{{name}} wurde gespeichert'
+  'saving_failed': '{{name}} konnte nicht gespeichert werden'
   'invite': 'Einladen'
   'invited': '{{email}} wurde eine Einladung zur {{organisation}} gesendet'
   'invitation_failed': '{{email}} konnte keine Einladung versendet werden'
