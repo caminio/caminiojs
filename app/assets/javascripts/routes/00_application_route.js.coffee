@@ -44,3 +44,6 @@ App.ApplicationRoute = Ember.Route.extend
 
     closeModal: ->
       @.disconnectOutlet outlet: 'modal', parentView: 'application'
+
+    transitionTo: (route)->
+      @transitionTo route

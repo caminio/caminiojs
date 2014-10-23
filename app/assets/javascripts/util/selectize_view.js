@@ -384,4 +384,82 @@
     },'disabled')
   });
 
+  Ember.SelectizeTags = Ember.View.extend({
+    attributeBindings : ['multiple', 'placeholder','autocomplete'],
+    classNames : ['ember-selectize'],
+
+    autocomplete: 'off',
+    type: 'text',
+    // Allows to use prompt (like in Ember.Select) or placeholder property
+    placeholder: Ember.computed.alias('prompt') || Em.I18n.t('enter_value'),
+    tagName : 'input',
+
+    promptTranslationObserver: function(){
+      this.set('prompt', Em.I18n.t( this.get('promptTranslation')));
+    }.observes('promptTranslation'),
+
+    /**
+     * Pass true to 'create' property to enable tag creation mode.
+     * When active, ember-selectize will send a 'create' action to its controller when a tag is created.
+     * Alternatively, you can pass a string to 'createAction' property and 
+     * ember-selectize will activate tag creation mode send an action with that name to its controller.
+     */
+    create: true,
+
+    inDom: false,
+
+    didInsertElement : function() {
+      //View is now in DOM
+      this.inDOM = true;
+
+      //Create Selectize's instance
+      //We proxy callbacks through jQuery's 'proxy' to have the callbacks context set to 'this'
+      
+      var view = this;
+
+      var options = {
+        persist: false,
+        delimiter: ',',
+        create: this.get('create')
+      };
+
+      this.$().selectize( options );
+
+      //Save the created selectize instance
+      this.selectize = this.$()[0].selectize;
+
+    },
+    willDestroyElement : function() {
+
+      //Unbind observers
+      this._contentWillChange();
+
+      //Invoke Selectize's destroy
+      this.selectize.destroy();
+
+      //We are no longer in DOM
+      this.inDOM = false;
+    },
+
+    /**
+     * Event callback that is triggered when user creates a tag
+     */
+    _create:function(input,callback){
+      // Delete user entered text
+      this.selectize.setTextboxValue('');
+      // Send action to controller
+      get(this,'controller').send(get(this,'createAction'),input);
+      // We cancel the creation here, so it's up to you to include the created element
+      // in the content and selection property
+      callback(null);
+    },
+
+    /**
+     * Event callback that is triggered when user types in the input element
+     */
+    _onType:function(str){
+      set(this,'filter',str);
+    }
+
+  });
 })();

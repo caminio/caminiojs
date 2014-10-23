@@ -35,6 +35,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'action_for': 'Aktion für'
   'records': 'Einträge'
   'please_select': 'Bitte wählen'
+  'enter_value': 'Einen Wert eingeben'
   'enter_text_to_add': 'Zum anlegen neuer Einträge, schreib den Text und [Eingabetaste]'
   'add_item': '<strong>{{name}}</strong> anlegen'
   'select_country': 'Land wählen'

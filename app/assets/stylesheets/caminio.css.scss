@@ -131,6 +131,22 @@ body > .ember-view{
   margin-bottom: 20px;
 }
 
+.side-panel .side-panel-title{
+  background: #fff;
+  height: 30px;
+}
+
+.side-panel .side-panel-title .btn-group{
+  float: right;
+}
+
+.side-panel .side-panel-title-text{
+  padding: 8px;
+  text-transform: uppercase;
+  color: #777;
+  font-size: 12px;
+}
+
 .content-panel-full-width{
   max-width: auto;
 }
