@@ -5,7 +5,7 @@ App.AccountsOrganizationsController = Em.ObjectController.extend
   ownerEmail: null
 
   currentOuObserver: (->
-    return if App.get('currentOu.name') == 'private'
+    # return if App.get('currentOu.name') == 'private'
     Ember.$.removeCookie 'caminio-session-ou', path: '/caminio/'
     Ember.$.cookie 'caminio-session-ou', App.get('currentOu.id')
     Ember.$.ajaxSetup
