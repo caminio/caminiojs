@@ -11,9 +11,22 @@ class Labels::API < Grape::API
 
   params do
     optional :category
+    optional :organizational_unit_ids
   end
   get '/', root: 'labels' do
-    Label.where category: params.category
+    q = Label.where category: params.category
+    if params.organizational_unit_ids
+      q = q.unscoped.where(
+        access_rules: { 
+          "$elemMatch" => { 
+            organizational_unit_id: { 
+              "$in" => params.organizational_unit_ids.map{ |ou_id| BSON::ObjectId.from_string(ou_id) }
+            }
+          }
+        }
+      )
+    end
+    q
   end
 
   # POST
