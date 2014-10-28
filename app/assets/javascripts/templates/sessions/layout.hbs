@@ -1,0 +1,10 @@
+<div class="login-box">
+  <div class="login-logo-wrap">
+    <div class="login-logo"></div>
+  </div>
+
+  {{#if message}}
+  <div {{bind-attr class=":alert valid:alert-info:alert-danger error:alert-danger"}}>{{{message}}}</div>
+  {{/if}}
+  {{yield}}
+</div>

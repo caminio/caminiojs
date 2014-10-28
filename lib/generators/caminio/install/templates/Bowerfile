@@ -1,0 +1,15 @@
+# A sample Bowerfile
+# Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
+
+asset 'jquery', '2.1.0'
+asset 'bootstrap'
+asset 'ember', '1.6.1'
+asset 'ember-data', '1.0.0-beta.8'
+asset 'ember-i18n'
+asset 'hint.css'
+asset 'pace'
+asset 'typeahead.js'
+asset 'codemirror'
+asset 'selectize'
+asset 'blueimp-file-upload'
+asset 'alertifyjs'

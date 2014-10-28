@@ -1,0 +1,7 @@
+{{#view 'ember_table_checkbox'}}
+{{view 'ember_table_checkbox_header_info'}}
+{{#unless view.parentView.isHeaderCell}}
+<li>{{#view 'ember_table_action' actionName='editRecord'}}{{t 'edit'}}{{/view}}</li>
+{{/unless}}
+<li>{{#view 'ember_table_action' actionName='deleteRecord'}}{{t 'delete'}}{{/view}}</li>
+{{/view}}

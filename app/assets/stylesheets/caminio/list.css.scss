@@ -1,0 +1,33 @@
+.list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list.margin-top{
+  margin-top: 40px;
+}
+
+.list > li{
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.list > li.selected{
+  background: #ffc;
+  border-bottom-color: #58d;
+}
+
+.list > li.all-click{
+  cursor: pointer;
+}
+
+.list > li:not(.selected):hover{
+  background: #fff;
+}
+
+.list > li .title{
+  font-size: 20px;
+  font-weight: 600;
+  color: #666;
+}

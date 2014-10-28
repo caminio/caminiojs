@@ -1,0 +1,26 @@
+<form {{action 'login' on='submit'}}>
+
+  <div class="form-group">
+    {{input value=login class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="email_or_username"}}
+  </div>
+
+  <div class="form-group">
+    {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
+    {{#link-to 'sessions.forgot_password' class="forgot-password"}}
+    {{t 'forgot_password'}}?
+    {{/link-to}}
+  </div>
+
+  <div class="form-group align-right">
+    <button class="btn btn-success" type="submit">
+      {{t 'login'}}
+    </button>
+    <div class="secondary-controls">
+      {{t 'or'}}
+      {{#link-to 'sessions.signup' class="sign-up"}}
+      {{t 'signup_for_free'}}
+      {{/link-to}}
+    </div>
+  </div>
+
+</form>

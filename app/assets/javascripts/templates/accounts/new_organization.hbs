@@ -1,0 +1,16 @@
+{{#caminio-modal title='accounts.organizations.create_title' close='closeModal'}}
+
+<div class="modal-body grey-bg">
+  <form {{action 'createOrganizationalUnit' on='submit'}} class="form">
+    <div class="form-group">
+      <label>{{t 'accounts.organizations.name'}}</label>
+      {{input valueBinding='newOu.name' class="form-control js-get-focus"}}
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" data-dismiss="modal">{{t 'cancel'}}</button>
+  <button class="btn btn-default" {{action 'createOrganizationalUnit'}} data-dismiss="modal">{{t 'accounts.organizations.create'}}</button>
+</div>
+
+{{/caminio-modal}}

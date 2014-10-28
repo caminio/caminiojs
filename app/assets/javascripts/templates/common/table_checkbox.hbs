@@ -1,0 +1,20 @@
+<div class="dropdown">
+  <div class="dropdown-toggle-wrap">
+    <span class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></span>
+    <ul class="dropdown-menu">
+      <li><a href="#" {{action 'editRow' row}}>{{t 'edit'}}</a></li>
+      <li><a href="#" {{action 'deleteRow' row}}>{{t 'delete'}}</a></li>
+    </ul>
+    <div class="row-checkbox" {{action 'selectRow' row}}>
+      {{#if view.header}}
+        {{#if view.oneSelected}}
+        <i {{bind-attr class=':fa :fa-check view.allSelected:all-selected'}}></i>
+        {{/if}}
+      {{else}}
+      {{#if controller.isSelected}}
+      <i class="fa fa-check"></i>
+      {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>

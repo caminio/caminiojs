@@ -1,0 +1,54 @@
+<div class="med-container fill-height accounts-container">
+
+  <div class="row fill-height">
+
+    <div class="col-md-3 md-4-nav fill-height">
+      <ul class="nav">
+        <li>
+        {{#link-to 'accounts.index'}}
+          <i class="fa fa-file-text-o"></i>
+          {{t 'accounts.overview'}}
+        {{/link-to}}
+        </li>
+        <li>
+        {{#link-to 'accounts.plans'}}
+          <i class="fa fa-money"></i>
+          {{t 'accounts.plans_and_prices'}}
+        {{/link-to}}
+        </li>
+        <li>
+        {{#link-to 'accounts.invoices'}}
+          <i class="fa fa-file-text-o"></i>
+          {{t 'accounts.invoices.title'}}
+        {{/link-to}}
+        </li>
+        <li>
+        {{#link-to 'accounts.organizations'}}
+          <i class="fa fa-building-o"></i>
+          {{t 'accounts.organizations.title'}}
+        {{/link-to}}
+        </li>
+        <li>
+        {{#link-to 'accounts.users'}}
+          <i class="fa fa-users"></i>
+          {{t 'accounts.users.title'}}
+        {{/link-to}}
+        </li>
+        <li>
+        {{#link-to 'accounts.api'}}
+          <i class="fa fa-code"></i>
+          {{t 'accounts.api.title'}}
+        {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9 nav-content fill-height overflow-auto">
+      {{#if message}}
+      <div {{bind-attr class=":alert valid:alert-info:alert-danger error:alert-danger"}}>{{{message}}}</div>
+      {{/if}}
+      {{yield}}
+    </div>
+
+  </div>
+
+</div>
