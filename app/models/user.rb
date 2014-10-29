@@ -82,7 +82,12 @@ class User
 
   def find_or_create_organizational_unit 
     return organizational_units.first if organizational_units.where(name: 'private').first
-    OrganizationalUnit.create name: 'private', owner_id: id, user_ids: [id]
+    blank = organizational_units.where(name: '').first
+    if blank
+      blank.update name: 'private'
+    else
+      OrganizationalUnit.create name: 'private', owner_id: id, user_ids: [id]
+    end
   end
 
 end
