@@ -146,7 +146,9 @@ class Users::API < Grape::API
       email: params[:email],
       password: params[:password],
       locale: params[:locale])
-    ou = OrganizationalUnit.create owner_id: user.id, name: (params.company_name || 'private'), user_ids: [ user.id ]
+
+    ou_name = params.company_name.blank? 'private' : params.company_name
+    ou = OrganizationalUnit.create owner_id: user.id, name: ou_name, user_ids: [ user.id ]
     user.organizational_unit_ids << ou.id
     if user.save
       if UserMailer.welcome( user, "#{host_url}/caminio#/account", host_url, logo_url ).deliver
