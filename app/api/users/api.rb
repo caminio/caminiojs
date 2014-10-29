@@ -138,7 +138,10 @@ class Users::API < Grape::API
   end
   post '/signup' do
     error! 'Email exists', 409 if User.where(email: params.email).first
-    return error!('organization name taken',403) if params.company_name && OrganizationalUnit.where( name: /#{params.company_name}/i ).first
+    name_taken = OrganizationalUnit.where( name: /#{params.company_name}/i ).first
+    is_private = params.company_name.match(/^private$/) 
+    puts '#is_private'
+    return error!('organization name taken',403) if params.company_name.length > 0 && name_taken && !is_private
     user = User.new( 
       email: params[:email],
       password: params[:password],
