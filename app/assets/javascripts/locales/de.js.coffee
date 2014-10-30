@@ -6,6 +6,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'yes': 'Ja'
   'no': 'Nein'
   'all': 'Alle'
+  'error': 'Fehler'
   'today': 'heute'
   'yesterday': 'gestern'
   'close': 'Schließen'
