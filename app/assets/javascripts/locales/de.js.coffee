@@ -7,6 +7,7 @@ Em.merge Em.I18n.availableTranslations.de,
   'no': 'Nein'
   'all': 'Alle'
   'error': 'Fehler'
+  'user_aborted': 'Abbruch auf Benutzerwunsch'
   'today': 'heute'
   'yesterday': 'gestern'
   'close': 'Schließen'

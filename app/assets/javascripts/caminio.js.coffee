@@ -120,6 +120,8 @@ App.register("transform:object", DS.ObjectTransform)
 
 App.setLang = (lang)->
   moment.locale(lang)
+  bootbox.setDefaults
+    locale: lang
   CLDR.defaultLanguage = lang
   Em.I18n.translations = Em.I18n.availableTranslations[lang]
 
