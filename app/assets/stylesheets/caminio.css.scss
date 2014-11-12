@@ -140,6 +140,22 @@ body > .ember-view{
   float: right;
 }
 
+.side-panel-title .btn{
+  padding: 4px 12px;
+}
+
+.side-panel-title .btn .fa{
+  margin: 2px;
+}
+
+.side-panel-title .btn-sm{
+  padding: 4px;
+}
+
+.side-panel .margin-right{
+  margin-right: 9px;
+}
+
 .side-panel .side-panel-title-text{
   font-size: 12px;
   color: #777;
@@ -149,6 +165,10 @@ body > .ember-view{
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.side-panel .side-panel-title-light{
+  background: none;
 }
 
 .content-panel-full-width{
@@ -222,6 +242,23 @@ img.avatar{
   margin: 15px 40px 14px;
   font-size: 16px;
   color: #777;
+}
+
+.page-ctrl-sub{
+  text-align: right;
+  margin: 10px 0;
+}
+
+.page-ctrl-sub a{
+  color: #777;
+}
+
+.page-ctrl-sub a:hover{
+  text-decoration: none;
+}
+
+.page-ctrl-sub a .fa{
+  margin-right: 5px;
 }
 
 .page-filters{

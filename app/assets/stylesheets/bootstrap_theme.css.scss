@@ -1,6 +1,7 @@
 body input[type=text],
 body input[type=password],
 body textarea,
+body .input-group-addon,
 body textarea.form-control{
   padding: 6px;
   /*border: 1px solid #ccc;*/
@@ -207,5 +208,17 @@ body hr{
 body .alert{
   border: none;
   margin: 0 0 20px 40px;
+  border-radius: 0;
+}
+
+body .input-group-addon input[type=text]{
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: none;
+  font-size: 14px;
+}
+
+body .input-group-addon{
   border-radius: 0;
 }
