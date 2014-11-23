@@ -9,7 +9,7 @@ App.AceView = Ember.View.extend
     view = @
     @$().css('height',$(window).height()-200)
     editor = ace.edit(@$().attr('id'))
-    editor.setTheme("ace/theme/dawn")
+    editor.setTheme("ace/theme/ambiance")
     editor.getSession().setMode("ace/mode/#{@get('mode')}")
     editor.setShowPrintMargin false
     editor.session.setTabSize 2
@@ -26,7 +26,19 @@ App.AceView = Ember.View.extend
         exec: ->
           view.get('controller').send('save')
 
-    editor.setValue @get('value')
-
     @get('controller').set('ace', editor)
+    @set('ace', editor)
+    @get('ace').setValue @get('value'), -1
+    
+  willDestroy: ->
+    @get('ace').destroy()
 
+  valueObserver: (->
+    return if @get('ace').getValue() == @get('value')
+    @get('ace').setValue @get('value'), -1
+  ).observes 'value'
+
+  modeObserver: (->
+    return if Em.isEmpty(@get('mode'))
+    @get('ace').getSession().setMode("ace/mode/#{@get('mode')}")
+  ).observes 'mode'

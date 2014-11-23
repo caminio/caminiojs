@@ -9,7 +9,11 @@ module Caminio
       end
 
       def authenticate!
-        error!('Unauthorized. Invalid or expired token.', 401) unless current_user
+        error!('Unauthorized. Invalid or expired token.', 401) if current_user.is_anybody?
+      end
+
+      def authenticate_or_anybody
+        current_user 
       end
 
       def current_token
@@ -29,15 +33,18 @@ module Caminio
       def current_user
         token = params.access_token
         token = headers['Authorization'].split(' ').last if !token && headers.has_key?('Authorization')
-        return false unless token
+        RequestStore.store[:current_ou_id] = params.ou || headers['Ou']
+        unless token
+          RequestStore.store[:current_user] = anybody
+          return anybody
+        end
         if api_key = ApiKey.where(access_token: token).gt(expires_at: Time.now).first
           api_key.update! expires_at: 1.hour.from_now if api_key.expires_at < 1.hour.from_now
           I18n.locale = api_key.user.locale || I18n.locale
           RequestStore.store[:current_user] = api_key.user
-          RequestStore.store[:current_ou_id] = params.ou || headers['Ou']
           return @current_user = api_key.user
         end
-        false
+        anybody
       end
 
       def current_organizational_unit
@@ -59,6 +66,10 @@ module Caminio
 
       def logo_url
         "#{host_url}#{asset_path('logo_128x128.png')}"
+      end
+
+      def anybody
+        User.find_or_create_by email: 'anybody@camin.io'
       end
 
     end

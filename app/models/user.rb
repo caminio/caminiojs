@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'openssl'
 
 class User
   include Mongoid::Document
@@ -68,10 +69,20 @@ class User
     save!
   end
 
+  def gen_keys
+    rsa_key = OpenSSL::PKey::RSA.new 2048
+    self.public_key = rsa_key.public_key.to_pem
+    self.private_key = rsa_key.to_pem
+  end
+
   def name
     return self.email unless self.lastname
     return self.lastname unless self.firstname
     return self.firstname + ' ' + self.lastname
+  end
+
+  def is_anybody?
+    email == 'anybody@camin.io'
   end
 
   private
