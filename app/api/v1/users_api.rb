@@ -1,8 +1,6 @@
 module V1
 
   class UsersApi < Grape::API
-
-    include V1
     
     helpers AuthHelper
     helpers do

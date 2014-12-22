@@ -1,4 +1,4 @@
-# require 'grape-swagger'
+require 'grape-swagger'
 
 module V1
 

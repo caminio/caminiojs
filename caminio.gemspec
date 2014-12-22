@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'grape-swagger', '0.7.2'
   spec.add_dependency 'active_model_serializers', '~>0.9.1'
   spec.add_dependency 'grape-active_model_serializers', '~> 1.3.1'
+  spec.add_dependency 'handlebars_assets'
   spec.add_dependency "bcrypt", "3.1.7"
   spec.add_dependency "roadie-rails"
   spec.add_dependency "paperclip", "~> 4.1"
