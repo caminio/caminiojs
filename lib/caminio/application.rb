@@ -12,9 +12,12 @@ class Caminio::Application
   def self.init_config
     @@config = Hashie::Mash.new
     db_config_file = Caminio::Root.join( 'config', 'database.yml' )
+    
+    if File::exists? Caminio::Root.join( 'config', 'mailer.rb' )
+      require Caminio::Root.join( 'config', 'mailer' )
+      ActionMailer::Base.append_view_path Caminio::Root.join( 'views', 'mailer' )
+    end
    
-    self.init_mail_config
-
     @@config.db = Hashie::Mash.new YAML::load_file( db_config_file )[Caminio::env]
     @@config
   end
@@ -34,14 +37,6 @@ class Caminio::Application
     @@config.migration_paths ||= []
     migration_path = File::expand_path('../../../db/migrate',__FILE__)
     @@config.migration_paths << migration_path unless @@config.migration_paths.include?(migration_path)
-  end
-
-  def self.init_mail_config
-    mail_config_file = Caminio::Root.join( 'config', 'mail.yml' )
-    return unless File::exists? mail_config_file
-    mconf = Hashie::Mash.new YAML::load_file( mail_config_file )[Caminio::env]
-    Pony.options = { :from => mconf.from, :via => :smtp, :via_options => mconf.options }
-    Pony.subject_prefix mconf.subject_prefix || '[caminio]'
   end
 
   def initialize
