@@ -1,0 +1,214 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+body{ 
+  height: 100%; 
+  background: #e5e5e5; 
+  font-family: 'PT Sans', sans-serif; 
+}
+
+.main-wrap{ 
+  position: relative; 
+  left: 10px; 
+  right: 10px; 
+  top: 10px; 
+  bottom: 10px; 
+  margin: auto; 
+  width: 1150px; 
+}
+
+.overview-wrap{
+  position: relative;
+  height: 100%;
+}
+
+.overview-sidepane{
+  width: 350px;
+  float: left;
+}
+
+.overview-main{
+  margin-left: 370px;
+}
+
+.card{
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.account-wrap{
+  text-align: center;
+}
+
+.account-wrap-header{
+  background: url('/assets/hill_sky_500x375.jpg');
+  background-size: cover;
+  height: 150px;
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.account-wrap-header-tint{
+  background: rgba(255,255,255,0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.account-wrap-header-content{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.account-wrap-header h1,
+.account-wrap-header h2{
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.account-wrap-header h2{
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.avatar-wrap{
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 106px;
+  height: 106px;
+  background: #fff;
+  padding: 3px;
+  border-radius: 53px;
+}
+
+.avatar-wrap img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+.account-wrap .username{
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.account-wrap .description{
+  text-align: center;
+  padding: 0 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 100;
+  color: #555;
+}
+
+.label-primary,
+.btn-primary{
+  background: #1b8fc3;
+}
+
+.label-rounded,
+.btn-rounded{
+  border-radius: 10px;
+}
+
+.account-wrap .location{
+  padding: 3px 18px;
+}
+
+.account-wrap .location .fa{
+  margin-right: 5px;
+}
+
+.account-wrap a.url{
+  color: #777
+}
+
+.account-wrap .social-icons{
+  padding: 10px 0 20px;
+}
+
+.account-wrap .social-icons .btn{
+  width: 31px;
+  height: 29px;
+  padding: 3px;
+  border-radius: 16px;
+}
+
+.top-pane{
+  height: 50px;
+  background: #fff;
+}
+
+.menu-pane{
+  background: #f5f5f5;
+  text-align: center;
+}
+
+.menu-pane a{
+  font-size: 16px;
+  color: #555;
+  display: inline-block;
+  font-size: 15px;
+  padding: 14px 15px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.menu-pane a:hover,
+.menu-pane a.active{
+  color: #000;
+  border-bottom-color: #1b8fc3;
+}
+
+.menu-pane a.active{
+  font-weight: 900;
+}
+
+.top-pane .logo{
+  display: inline-block;
+  padding: 8px;
+}
+
+.top-pane .logo:hover{
+  text-decoration: none;
+}
+
+.top-pane .logo .logo-img{
+  width: 32px;
+  margin-right: 5px;
+}
+.top-pane .logo .logo-text{
+  height: 18px;
+  margin-top: -3px;
+  display: inline-block;
+}
+
+.top-pane .close{
+  font-size: 34px;
+  font-weight: 100;
+  padding: 6px 16px 9px;
+  background: none;
+}
+
+.settings h1{
+  color: #1b8fc3;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 5px 20px;
+}
