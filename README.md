@@ -1,4 +1,4 @@
-# Caminio
+# Caminio::Accounts
 
 TODO: Write a gem description
 
@@ -6,7 +6,9 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'caminio'
+```ruby
+gem 'caminio-Accounts'
+```
 
 And then execute:
 
@@ -14,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install caminio
+    $ gem install caminio-Accounts
 
 ## Usage
 
@@ -22,7 +24,7 @@ TODO: Write usage instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/caminio/fork )
+1. Fork it ( https://github.com/[my-github-username]/caminio-Accounts/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

@@ -1,25 +1,22 @@
-class ApiKey
-  include Mongoid::Document
-  include Mongoid::Timestamps
+require 'securerandom'
 
-  field :access_token, type: String
-  field :expires_at, type: DateTime
-  field :permanent, type: Boolean
-  field :name, type: String
+module Caminio
 
-  belongs_to :user
-  
-  before_create :setup_access_token, :setup_expires_at
+  class ApiKey < ActiveRecord::Base
 
-  private
+    belongs_to :user
 
-  def setup_access_token
-    self.access_token = SecureRandom.hex(64)
-    setup_access_token if self.class.where( access_token: self.access_token ).first
-  end
+    before_create :generate_token, :generate_expiration_date
 
-  def setup_expires_at
-    self.expires_at = permanent ? 1.year.from_now : 8.hours.from_now
+    private
+
+    def generate_expiration_date
+      self.expires_at = 8.hours.from_now
+    end
+
+    def generate_token
+      self.token = SecureRandom.hex.to_s
+    end
   end
 
 end

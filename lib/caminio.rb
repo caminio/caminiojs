@@ -1,30 +1,34 @@
-# 3rd
 require "grape"
-# require "grape/rabl"
+require "active_record"
+require "active_model_serializers"
 require 'grape-active_model_serializers'
-require "roadie-rails"
-require "paperclip"
-require "mongoid_paperclip"
-require "caminio/paperclip_grape_ext"
-# require "doorkeeper"
-#
 
 require "caminio/version"
-require "caminio/schemas/row"
+require "caminio/mailer"
+require "caminio/env"
+require "caminio/root"
+require "caminio/application"
 
-# setup caminio namespace for use in config/application.rb
-require "caminio/config_namespace"
+# disable annoying active record message
+I18n.enforce_available_locales = false
 
-require 'caminio/controller_commons'
+module Caminio
 
-require "caminio/access_rules"
-require "caminio/user_stamps"
+  # define API for app/api files to be loaded in load_app_files
+  module API
+  end
 
+  def self.init
+    @@app = Application.new
+    self.load_app_files
+  end
 
-# Rails engine
-require "caminio/engine"
+  def self.load_app_files
+    dir = File::expand_path '../../app', __FILE__
+    Dir.glob( "#{dir}/{helpers,api,models,serializers}/**/*.rb" ).each do |file|
+      require file
+    end
+    require "#{dir}/api"
+  end
 
-# Access rights
-require "caminio/access"
-require "caminio/model_registry"
-
+end

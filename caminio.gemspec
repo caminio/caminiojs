@@ -6,11 +6,10 @@ require 'caminio/version'
 Gem::Specification.new do |spec|
   spec.name          = "caminio"
   spec.version       = Caminio::VERSION
-  spec.authors       = ["quaqua"]
-  spec.email         = ["quaqua@tastenwerk.com"]
-  spec.summary       = %q{web cms}
-  spec.description   = %q{caminio web cms}
-  spec.homepage      = "https://github.com/caminio/caminio"
+  spec.authors       = ["thorsten zerha"]
+  spec.email         = ["thorsten.zerha@tastenwerk.com"]
+  spec.summary       = %q{core API for user authentication and license management}
+  spec.homepage      = ""
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,29 +17,28 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "colorize"
-  spec.add_dependency "json"
-  spec.add_dependency "rails", "~> 4.1.0"
-  spec.add_dependency "mongoid", "~> 4.0.0"
-  spec.add_dependency "mongoid_userstamp", "~> 0.4.0"
-  spec.add_dependency "mongoid-versioning", "~> 1.0.0"
-  spec.add_dependency "mongoid_paranoia", "~> 0.1.2"
-  spec.add_dependency "request_store", "~> 1.1.0"
-  spec.add_dependency "grape", "0.8.0"
-  spec.add_dependency "grape-rabl", "0.2.2"
-  spec.add_dependency "bcrypt", "3.1.7"
-  spec.add_dependency "rack-oauth2", "1.0.8"
-  spec.add_dependency "roadie-rails"
-  spec.add_dependency "paperclip", "~> 4.1"
-  # spec.add_dependency "doorkeeper"
-  spec.add_dependency "mongoid-paperclip", "~> 0.0.9"
-  # spec.add_dependency "nokogiri"
+  spec.add_dependency 'sqlite3', '~> 1.3.10'
+  spec.add_dependency 'activerecord', '~> 4.1.8'
+  spec.add_dependency 'grape', '~> 0.9.0'
+  spec.add_dependency 'grape-swagger', '0.7.2'
+  spec.add_dependency 'request_store', '~> 1.1.0'
+  spec.add_dependency 'hashie', '~> 3.3.2'
+  spec.add_dependency 'puma', '~> 2.10.2'
+  spec.add_dependency 'bcrypt', '~> 3.1.9'
+  spec.add_dependency 'rack-cors', '~> 0.2.9'
+  spec.add_dependency 'active_model_serializers', '~>0.9.0'
+  spec.add_dependency 'grape-active_model_serializers', '~> 1.3.1'
+  spec.add_dependency 'i18n', '~> 0.6.11'
+  spec.add_dependency 'actionmailer', '~> 4.1.8'
+  
+  spec.add_development_dependency 'guard-puma', '~> 0.3.1'
+  spec.add_development_dependency 'rack-test', '~> 0.6.2'
+  spec.add_development_dependency 'factory_girl', '~> 4.5.0'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'database_cleaner', '~> 1.3.0'
 
-  spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "sqlite3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "capybara"
-  spec.add_development_dependency "factory_girl_rails"
+  spec.add_development_dependency "bundler", "~> 1.7"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec"
 
 end
