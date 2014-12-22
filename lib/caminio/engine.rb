@@ -29,6 +29,10 @@ module Caminio
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.ttf)
     end
 
+    initializer :handlebars_assets do
+      HandlebarsAssets::Config.ember = true
+    end
+
     # if defined?( ActiveRecord )
     #   ActiveRecord::Base.send( :include, Caminio::Schemas::Row )
     # end
