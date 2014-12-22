@@ -1,14 +1,21 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-# Specify your gem's dependencies in caminio.gemspec
+# Declare your gem's dependencies in caminio.gemspec.
+# Bundler will treat runtime dependencies like base dependencies, and
+# development dependencies will be added by default to the :development group.
 gemspec
 
+# Declare any dependencies that are still in development here instead of in
+# your gemspec. These might include edge Rails or gems from your path or
+# Git. Remember to move these dependencies to your gemspec before releasing
+# your gem to rubygems.org.
+
+# To use debugger
+# gem 'debugger'
 group :test do 
-  gem "active_model_serializers","0.9.0" # git: "https://github.com/rails-api/active_model_serializers.git"
+  gem "active_model_serializers","0.9.1" # git: "https://github.com/rails-api/active_model_serializers.git"
   gem "grape-active_model_serializers"
-  gem 'mongoid'
-  gem 'mongoid_userstamp'
-  gem "mongoid-versioning"
-  gem "mongoid_paranoia"
+  gem "rspec-rails"
+  gem "request_store"
   gem 'database_cleaner'
 end
