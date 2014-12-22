@@ -1,0 +1,21 @@
+<div {{bind-attr class=":main-wrap isAuthenticated::unauthenticated :fill-height"}}>
+  <div class="outlet-wrap fill-height">
+    {{#if isAuthenticated}}
+    {{partial 'partials/top_navbar'}}
+    {{/if}}
+    <div class="outlet-content-wrap fill-height">
+      <div class="fill-height">
+      {{outlet}}
+    </div>
+    </div>
+  </div>
+  <div class="footer-wrap">
+    <div class="left">
+      &copy; TASTENWERK, Graz, Austria
+    </div>
+    <div class="right">
+      caminio version {{CAMINIO_ENGINE_VERSION}}
+    </div>
+  </div>
+</div>
+{{outlet modal}}

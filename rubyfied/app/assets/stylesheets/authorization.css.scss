@@ -1,0 +1,85 @@
+.authorization-required{
+  background: #1b8fc3;
+  // background: linear-gradient(to bottom, #48d 0px, #15a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  // background: -moz-linear-gradient(top,  #e60 0%, #b30 100%); /* FF3.6+ */
+  // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e60), color-stop(100%,#b30)); /* Chrome,Safari4+ */
+  // background: -webkit-linear-gradient(top,  #e60 0%,#b30 100%); /* Chrome10+,Safari5.1+ */
+  // background: -ms-linear-gradient(top,  #e60 0%,#b30 100%); /* IE10+ */
+  // background: linear-gradient(to bottom,  #e60 0%,#b30 100%); /* W3C */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e60', endColorstr='#b30',GradientType=0 ); /* IE6-9 */
+}
+
+.login-box{
+  background: none repeat scroll 0 0 #eee;
+  box-shadow: 2px 2px 3px #333;
+  left: 0;
+  margin: auto;
+  padding: 150px 40px 20px;
+  position: absolute;
+  right: 0;
+  top: 10%;
+  width: 460px;
+}
+
+.login-box .alert{
+  min-height: 50px;
+}
+
+.login-logo-wrap{
+  background: none repeat scroll 0 0 #ddd;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 106px;
+  left: 40px;
+  position: absolute;
+  top: 0;
+  width: 84px;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.login-logo{
+  background: image-url('logo_64x64.png');
+  background-size: cover;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.login-box .form-group a.cancel{
+  margin-right: 10px;
+}
+
+.login-box .form-group{
+  position: relative;
+}
+
+.forgot-password{
+  color: #999;
+  font-size: 12px;
+  position: absolute;
+  top: 9px;
+  right: 10px;
+}
+
+.login-box .secondary-controls{
+  margin-top: 5px;
+}
+
+.pw-group{
+  position: relative;
+}
+.pw-progress{
+  border-radius: 0;
+  height: 8px;
+  position: absolute;
+  right: 5px;
+  top: 14px;
+  width: 50px;
+}
+.pw-change{
+  right: 25px;
+}

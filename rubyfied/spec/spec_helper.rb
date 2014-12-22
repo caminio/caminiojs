@@ -1,0 +1,38 @@
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path("../dummy/config/environment.rb", __FILE__)
+require 'rspec/rails'
+require 'factory_girl_rails'
+
+Rails.backtrace_cleaner.remove_silencers!
+
+# Load support files
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+RSpec.configure do |config|
+  config.mock_with :rspec
+  config.use_transactional_fixtures = true
+  config.infer_base_class_for_anonymous_controllers = false
+  config.include FactoryGirl::Syntax::Methods
+  config.color = true
+  config.tty = true
+  config.fail_fast = true
+  config.formatter = :documentation # :progress, :html, :textmate
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+  config.before(:suite) do
+    DatabaseCleaner[:mongoid].strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner[:mongoid].start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner[:mongoid].clean
+  end
+end
+
+Dir.glob( File.expand_path("../../app/models", __FILE__)+'/**/*.rb' ).each do |file|
+  require file
+end

@@ -1,0 +1,31 @@
+<div class="login-wrap">
+
+  <form {{action 'loginUser' on='submit'}} class="card">
+    <input type="submit" class="hide">
+
+    <div class="logo">
+      <img src="/favicon.png" class="logo-img">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" {{bind-attr value='login'}} {{translateAttr placeholder='username_or_email'}}>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" {{bind-attr value='password'}} {{translateAttr placeholder='password'}}>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary form-control" {{translateAttr value='login'}}>
+    </div>
+
+    <div class="form-group center">
+      {{#link-to 'sessions.forgot_password'}}{{t 'forgot_your_password'}}{{/link-to}}
+      <div class="help-block">
+        {{t 'no_account_yet'}}
+        {{#link-to 'sessions.signup'}}{{t 'signup'}}{{/link-to}}
+      </div>
+    </div>
+
+  </form>
+</div>

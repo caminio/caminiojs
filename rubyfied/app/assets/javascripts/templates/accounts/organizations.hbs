@@ -1,0 +1,69 @@
+<section>
+
+  <h1>{{t 'accounts.organizations.title'}}</h1>
+
+  <div class="control-wrap">
+
+   {{view Ember.Selectize
+          title="accounts.organizations.add" 
+          contentBinding="organizational_units"
+          optionValuePath="content.id"
+          optionLabelPath="content.name"
+          selectionBinding="App.currentOu"}}
+
+  </div>
+
+  <form class="form-horizontal" {{action 'save' on='submit'}}>
+    {{#if currentOrganizationalUnit}}
+    <h2>{{t 'accounts.organizations.settings'}}</h2>
+    <div class="form-group">
+      <label class="control-label col-md-4">{{t 'accounts.organizations.name'}}</label>
+      <div class="col-md-8">
+        {{input value=currentOrganizationalUnit.name class="form-control" placeholderTranslation='accounts.organizations.name'}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-4">{{t 'accounts.organizations.fqdn'}}</label>
+      <div class="col-md-8">
+        {{input value=currentOrganizationalUnit.fqdn class="form-control" placeholderTranslation='accounts.organizations.fqdn_desc'}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-4">{{t 'accounts.organizations.default_lang'}}</label>
+      <div class="col-md-8">
+        {{view Ember.Select2
+          search=false
+          prompt=false
+          class="form-control"
+          title="accounts.organizations.add" 
+          contentBinding="availableLangs"
+          selectionBinding="currentOrganizationalUnit.settings.default_lang"}}
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-4">{{t 'accounts.organizations.owner'}}</label>
+      <div class="col-md-8">
+        {{view Ember.Typeahead
+                class="form-control"
+                source="/caminio/users?simple_list=1&q=%QUERY"
+                optionValuePath="email"
+                valueBinding="ownerEmail"}}
+        <div class="help-block">{{t 'accounts.organizations.change_ownership_desc'}}</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-8 col-md-offset-4">
+        <button class="btn btn-primary" {{action 'saveOrganizationalUnit' currentOrganizationalUnit}}>
+          {{t 'save'}}
+        </button>
+        <button class="btn btn-danger" {{action 'removeOrganizationalUnit' currentOrganizationalUnit}}>
+          {{t 'accounts.organizations.delete'}}
+        </button>
+      </div>
+    </div>
+    {{else}}
+    <div class="well">{{t 'accounts.organizations.select'}}</div>
+    {{/if}}
+  </form>
+</section>

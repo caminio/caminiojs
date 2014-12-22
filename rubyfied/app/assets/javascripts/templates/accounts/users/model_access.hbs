@@ -1,0 +1,34 @@
+<div class="alert alert-info">
+  <i class="fa fa-question"></i>
+  {{t 'accounts.users.model_access'}}
+</div>
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-8 access-rights-header">
+    <div class="row">
+      <div class="col-md-2">{{t 'accounts.access.none'}}</div>
+      <div class="col-md-2">{{t 'accounts.access.read'}}</div>
+      <div class="col-md-4 align-center">{{t 'accounts.access.write_create'}}</div>
+      <div class="col-md-2 align-right">{{t 'accounts.access.share'}}</div>
+      <div class="col-md-2 align-right">{{t 'accounts.access.full'}}</div>
+    </div>
+  </div>
+</div>
+{{#each app_model_user_roles itemController='accounts_users_model_access_item'}}
+
+{{#unless app_model.hidden}}
+
+  {{#if newModelName}}
+  <div class="row">
+    <div class="col-md-12"><h4>{{app_model.app.name}}</h4></div>
+  </div>
+  {{/if}}
+  
+  <div class="row">
+    <div class="col-md-4">{{app_model.name}} ({{access_level}})</div>
+    <div class="col-md-8">{{view 'accounts_user_model_access_slider'}}</div>
+  </div>
+{{/unless}}
+
+{{/each}}

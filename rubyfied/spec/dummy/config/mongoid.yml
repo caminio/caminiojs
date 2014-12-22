@@ -1,0 +1,6 @@
+test:
+  sessions:
+    default:
+      database: caminio_test
+      hosts:
+        - localhost:27017

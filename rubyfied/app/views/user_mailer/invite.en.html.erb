@@ -1,0 +1,17 @@
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' data-roadie-ignore>
+<%= stylesheet_link_tag :mailer %>
+<div class="main">
+  <div class="logo-wrap">
+    <a href="<%= @host_url %>"><img src="<%= @logo_url %>" class="logo" alt='caminio'></a>
+  </div>
+  <div class="content">
+    <h1>Hello!</h1>
+    <p><%= @inviter.name %> has created an account on <b>caminio</b> for you. caminio is a software to collaborate in a team, manage projects, contacts and more</p>
+
+    <p class="align-center">
+    <a href="<%= @link %>" class="btn btn-lg btn-primary">Klick hier</a>
+    to set a password and get started!
+    </p>
+
+  </div>
+</div>

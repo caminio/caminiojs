@@ -1,0 +1,14 @@
+App.Translation = DS.Model.extend
+  title:            DS.attr "string"
+  subtitle:         DS.attr "string"
+  locale:           DS.attr "string"
+  content:          DS.attr "string"
+  description:      DS.attr "string"
+  keywords:         DS.attr "string"
+  aside:            DS.attr "string"
+  aside2:           DS.attr "string"
+  aside3:           DS.attr "string"
+  created_by:       DS.belongsTo "user"
+  updated_by:       DS.belongsTo "user"
+  row_id:           DS.attr "number"
+  row_type:         DS.attr 'string'

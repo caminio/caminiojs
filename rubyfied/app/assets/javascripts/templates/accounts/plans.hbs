@@ -1,0 +1,48 @@
+<section>
+
+  <div class="btn-ctrl">
+    <button class="btn btn-primary" {{translateAttr title='accounts.plan.add'}} {{action 'openModal' 'accounts/available_plans'}}>
+      <i class="fa fa-plus"></i>
+    </button>
+    <button class="btn btn-success" {{action 'savePlans'}}>
+      {{t 'accounts.plan.save'}}
+    </button>
+  </div>
+  
+  <h1>{{t 'accounts.plan.my'}}</h1>
+  <form class="form-horizontal" {{action 'save' on='submit'}}>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{t 'accounts.plan.app_name'}}</th>
+          <th>{{t 'accounts.plan.name'}}</th>
+          <th>{{t 'accounts.plan.collaborators'}}</th>
+          <th>{{t 'accounts.plan.disk'}}</th>
+          <th>{{t 'accounts.plan.items'}}</th>
+          <th>{{t 'accounts.plan.access'}}</th>
+          <th>{{t 'accounts.plan.price'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each myPlans}}
+      <tr>
+        <td>{{app.title}}</td>
+        <td>{{title}}</td>
+        <td>{{{formattedUserQuota}}}</td>
+        <td>{{{formattedDiskQuota}}}</td>
+        <td>{{{content_quota}}}</td>
+        <td></td>
+        <td>{{formattedPrice}}</td>
+        <td>
+          <button class="btn btn-xs btn-danger" {{action 'removePlan' this}}>
+            <i class="fa fa-times"></i>
+          </button>
+        </td>
+      </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </form>
+
+</section>

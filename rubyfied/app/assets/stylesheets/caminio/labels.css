@@ -1,0 +1,57 @@
+.labels .title{
+  margin: 3px;
+  color: #777;
+  cursor: pointer;
+}
+
+.labels-indicator .point,
+.label-point,
+.labels .point{
+  background: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin: 2px 5px 0 0;
+  cursor: pointer;
+}
+
+.labels > .title > .btn{
+  float: right;
+  margin: 0;
+}
+
+.labels > .title > .text{
+  padding: 8px;
+}
+
+.labels > ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.labels > ul > li{
+  margin: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.labels > ul > li.active{
+  font-weight: 600;
+}
+
+.labels > ul > li.active .title{
+  color: #222;
+}
+
+.labels li .btn-group{
+  float: right;
+  visibility: hidden;
+  color: #666;
+}
+
+.labels li:hover .btn{
+  visibility: visible;
+}
