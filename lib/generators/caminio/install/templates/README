@@ -1,6 +1,0 @@
-IMPORTANT NOTE:
-
-Please tidy up your Gemfile. The following rails gems are contra-productive:
-
-  jquery-rails
-  turbolinks

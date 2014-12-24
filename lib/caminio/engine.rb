@@ -17,7 +17,6 @@ module Caminio
     initializer :assets do |config|
       Rails.application.config.assets.precompile += %w( caminio.js 
                                                         caminio.css
-                                                        mailer.css
                                                         3rd/font-awesome/*
                                                         3rd/bootstrap.min.css
                                                         3rd/font-awesome.css
@@ -28,6 +27,10 @@ module Caminio
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.eot
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.woff
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.ttf)
+    end
+
+    initializer :handlebars_assets do
+      HandlebarsAssets::Config.ember = true
     end
 
     # if defined?( ActiveRecord )

@@ -1,21 +1,10 @@
-App.Router.map ->
-  @resource 'dashboard.index', path: '/'
+# For more information see: http://emberjs.com/guides/routing/
+
+Caminio.Router.map ->
+  @route 'index', path: '/'
   @resource 'sessions', ->
-    @route 'new'
+    @route 'login'
     @route 'logout'
     @route 'forgot_password'
-    @route 'reset_password'
     @route 'signup'
-  @resource 'accounts', ->
-    @route 'index'
-    @route 'plans'
-    @route 'organizations'
-    @route 'invoices'
-    @route 'users'
-    @route 'api'
-    @route 'users.new', path: '/users/new'
-    @route 'users.edit', path: '/users/edit/:id'
-    @route 'users.change_password', path: '/users/change_password/:id'
-
-  @resource 'crm.index', path: '/crm'
-
+    @route 'enter_confirmation_key'

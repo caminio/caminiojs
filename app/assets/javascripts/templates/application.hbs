@@ -1,21 +1,19 @@
-<div {{bind-attr class=":main-wrap isAuthenticated::unauthenticated :fill-height"}}>
-  <div class="outlet-wrap fill-height">
-    {{#if isAuthenticated}}
-    {{partial 'partials/top_navbar'}}
-    {{/if}}
-    <div class="outlet-content-wrap fill-height">
-      <div class="fill-height">
-      {{outlet}}
-    </div>
-    </div>
+{{#if isAuthenticated}}
+  <div class="top-pane">
+    <a href="#" class="logo pull-left">
+      <img src="/favicon.png" class="logo-img">
+      <img class="logo-text" src="/assets/caminio-text_140x37.png">
+    </a>
+    <div class="close pull-right">&times;</div>
   </div>
-  <div class="footer-wrap">
-    <div class="left">
-      &copy; TASTENWERK, Graz, Austria
-    </div>
-    <div class="right">
-      caminio version {{CAMINIO_ENGINE_VERSION}}
-    </div>
+  <div class="menu-pane">
+    <a href="#">Allgemein</a>
+    <a href="#">Privatsphaere</a>
+    <a href="#">Benachrichtigungen</a>
   </div>
-</div>
-{{outlet modal}}
+  <div class="main-wrap">
+    {{outlet}}
+  </div>
+{{else}}
+  {{outlet}}
+{{/if}}

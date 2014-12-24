@@ -1,0 +1,55 @@
+.login-wrap{
+  width: 360px;
+  margin: 100px auto 0;
+  text-align: center;
+}
+
+.login-wrap .card{
+  background-color: #f5f5f5;
+  padding: 40px;
+}
+
+.login-wrap .logo{
+  margin: 0 0 40px;
+}
+
+.login-wrap .logo img{
+  width: 64px;
+}
+
+.login-wrap img.logo-text{
+  display: inline-block;
+  margin-top: -5px;
+}
+
+.login-wrap input.form-control{
+  padding: 10px 6px;
+  height: auto;
+}
+
+.login-wrap input[type=submit]{
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px 6px;
+}
+
+.login-wrap .agree-policies{
+  text-align: left;
+}
+
+.login-wrap .alert{
+  margin: 0;
+}
+
+.login-wrap .password-group{
+  position: relative;
+}
+
+.login-wrap .pw-progress{
+  border-radius: 0;
+  height: 13px;
+  position: absolute;
+  right: 5px;
+  top: 14px;
+  width: 50px;
+}
