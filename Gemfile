@@ -19,4 +19,10 @@ group :test do
   gem "request_store"
   gem 'database_cleaner'
   gem 'handlebars_assets'
+  gem 'simplecov'
+  gem 'rack-test'
+  gem 'bundler'
+  gem 'sqlite3'
+  # gem 'factory_girl_rails'
+  gem 'rake'
 end
