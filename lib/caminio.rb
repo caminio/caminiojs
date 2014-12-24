@@ -4,6 +4,7 @@ require "grape"
 require 'grape-active_model_serializers'
 require "roadie-rails"
 require "paperclip"
+require "handlebars_assets"
 # require "mongoid_paperclip"
 # require "caminio/paperclip_grape_ext"
 # require "doorkeeper"

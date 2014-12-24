@@ -18,4 +18,5 @@ group :test do
   gem "rspec-rails"
   gem "request_store"
   gem 'database_cleaner'
+  gem 'handlebars_assets'
 end
