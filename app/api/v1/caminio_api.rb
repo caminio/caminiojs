@@ -15,9 +15,7 @@ module V1
     mount AuthApi
     mount InitialApi
 
-    if Rails.env != 'test'
-      add_swagger_documentation mount_path: '/doc', hide_documentation_path: true
-    end
+    add_swagger_documentation mount_path: '/doc', hide_documentation_path: true
 
   end
 
