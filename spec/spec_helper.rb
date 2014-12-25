@@ -15,7 +15,7 @@ module RspecHelper
     def app
       Rack::Builder.new do
         use RequestStore::Middleware
-        run V1::RootApi
+        run V1::CaminioApi
       end
     end
 

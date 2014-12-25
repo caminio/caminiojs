@@ -1,3 +1,4 @@
+#= require pace_options
 #= require 3rd/pace.min
 #= require 3rd/jquery-2.1.1.debug
 #= require handlebars
@@ -13,7 +14,16 @@
 #= require_tree ./locales
 #= require_self
 #= require caminio-ui
-#= require caminio-accounts
+
+#= require ./store
+#= require_tree ./templates
+#= require_tree ./helpers
+#= require_tree ./models
+#= require_tree ./controllers
+#= require_tree ./views
+#= require_tree ./components
+#= require_tree ./routes
+#= require ./router
 
 window.Caminio = Ember.Application.create
   LOG_TRANSITIONS: true

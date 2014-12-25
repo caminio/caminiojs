@@ -220,4 +220,20 @@ describe V1::UsersApi do
 
   end
 
+  describe :signup do
+
+    before :all do
+      post "v1/users/signup", email: 'test@example.com', password: 'Test1234'
+    end
+
+    it { expect(last_response.status).to be == 201 }
+
+    it { expect(json).to have_key(:key) }
+
+    it "sends an email" do
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+    end
+
+  end
+
 end

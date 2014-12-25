@@ -2,6 +2,7 @@ module V1
 
   class UsersApi < Grape::API
     
+    formatter :custom_json, Grape::Formatter::Json
     helpers AuthHelper
     helpers do
 
@@ -98,7 +99,7 @@ module V1
           optional :organization
           optional :username
         end
-        post '/signup' do
+        post '/signup', root: false do
           if Organization.where( name: params.organization ).count > 0
             return error!('OrganizationExists',409)
           end
@@ -106,7 +107,10 @@ module V1
             return error!('EmailExists',409)
           end
           user = User.create( email: params.email, password: params.password, username: params.username )
-          user.create_api_key
+          return error!(user.errors.full_messages,422) unless user
+          env['api.format'] = :custom_json
+          return error!(UserMailerError,500) unless UserMailer.signup( user, base_url ).deliver
+          { key: user.confirmation_key }
         end
 
         #

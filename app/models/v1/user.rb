@@ -5,7 +5,7 @@ module V1
     has_and_belongs_to_many :organizations
 
     before_create :create_membership_for_organization
-    before_validation :set_password_if_blank
+    before_validation :set_password_if_blank, :set_confirmation_code
 
     attr_accessor :organization_id
 
@@ -37,6 +37,12 @@ module V1
     def set_password_if_blank
       return unless password_digest.blank? || password.blank?
       self.password = SecureRandom.hex(8).to_s
+    end
+
+    def set_confirmation_code
+      self.confirmation_code = SecureRandom.random_number(10000).to_s
+      self.confirmation_code_expires_at = 10.minutes.from_now
+      self.confirmation_key = SecureRandom.hex
     end
 
   end

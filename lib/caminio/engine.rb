@@ -1,3 +1,5 @@
+require 'rack/cors'
+
 module Caminio
   class Engine < ::Rails::Engine
 
@@ -5,6 +7,13 @@ module Caminio
 
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[File.join( File.expand_path('../../../',__FILE__), 'app', 'api', '*')]
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [ :get, :post, :put, :delete, :options ]
+      end
+    end
 
     # rspec
     config.generators do |g|

@@ -1,13 +1,3 @@
 en:
-  app:
-    core: 
-      title: 'Dashboard'
-      description: 'Core collabaration features'
-      plan:
-        free:
-          title: 'Basic'
-        collaboration:
-          title: 'Collaboration'
-  caminio_password_reset: "caminio password reset request"
-  caminio_welcome: "Welcome on caminio!"
-  something_was_created: "TEST!"
+  signup:
+    welcome: "Welcome!"
