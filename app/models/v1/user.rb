@@ -1,3 +1,5 @@
+require 'request_store'
+
 module V1
   class User < ActiveRecord::Base
     has_secure_password
@@ -29,7 +31,7 @@ module V1
       if organization = Organization.find_by( id: organization_id )
         organizations << organization
         return
-      elsif org_id = RequestStore.store[:organization_id]
+      elsif RequestStore.store[:organization_id] && org_id = RequestStore.store[:organization_id]
         organizations << Organization.find( org_id )
       end
     end

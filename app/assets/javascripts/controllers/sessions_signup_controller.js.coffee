@@ -51,6 +51,15 @@ Caminio.SessionsSignupController = Ember.ObjectController.extend Caminio.Validat
       return unless @isValid()
       Ember.$.post("#{Caminio.get('apiHost')}/users/signup", @getProperties('email','organization','password'))
         .then (res)=>
-          @redirectToRoute 'sessions.enter_confirmation_key'
-        .fail (err)->
-          console.log err
+          @transitionToRoute 'sessions.enter_confirmation_key'
+        .fail (err)=>
+          json = err.responseJSON
+          if( err.status == 409 )
+            @set 'valid', false
+            if( json.error == 'EmailExists' )
+              @set 'message', Em.I18n.t('errors.email_exists', @get('content.email'))
+              @set 'errors.email', true
+            else if( json.error == 'OrganizationExists')
+              @set 'message', Em.I18n.t('errors.organization_exists', @get('content.organization'))
+              @set 'errors.organization', true
+

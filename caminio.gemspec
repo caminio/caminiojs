@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "~> 4.1.6"
   spec.add_dependency "request_store", "~> 1.1.0"
   spec.add_dependency "grape", "0.8.0"
-  spec.add_dependency 'grape-swagger', '0.9.0'
+  spec.add_dependency 'grape-swagger', '0.9.0' # last working version was 0.7.2
   spec.add_dependency 'active_model_serializers', '~>0.9.1'
   spec.add_dependency 'grape-active_model_serializers', '~> 1.3.1'
   spec.add_dependency 'handlebars_assets', '~> 0.18'

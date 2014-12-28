@@ -18,6 +18,8 @@ Em.merge Em.I18n.availableTranslations.de,
   agree_policies: 'Ich bin mit den Allgemeinen Geschäftsbedingungen einverstanden'
   errors:
     email_required: 'Email Adresse erforderlich'
+    email_exists: 'Die Email Adresse {{email}} ist schon registriert'
+    organization_exists: 'Diese Organisation ist bereits registriert'
     not_an_email_address: 'Die angegebene Email Adresse ist ungültig'
     organization_required: 'Wenn du dich als Organisation registrieren möchtest, musst du auch einen Organisationsnamen angeben. Ansonsten wähle "Privat"'
     password_required: 'Bitte wähle ein Passwort'

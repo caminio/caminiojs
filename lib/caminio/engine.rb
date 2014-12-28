@@ -26,6 +26,7 @@ module Caminio
     initializer :assets do |config|
       Rails.application.config.assets.precompile += %w( caminio.js 
                                                         caminio.css
+                                                        mailer.css
                                                         3rd/font-awesome/*
                                                         3rd/bootstrap.min.css
                                                         3rd/font-awesome.css
@@ -46,13 +47,13 @@ module Caminio
     #   ActiveRecord::Base.send( :include, Caminio::Schemas::Row )
     # end
     #
-    # initializer :append_migrations do |app|
-    #   unless app.root.to_s.match root.to_s
-    #     config.paths["db/migrate"].expanded.each do |expanded_path|
-    #       app.config.paths["db/migrate"] << expanded_path
-    #     end
-    #   end
-    # end
+    initializer :append_migrations do |app|
+      unless app.root.to_s.match root.to_s
+        config.paths["db/migrate"].expanded.each do |expanded_path|
+          app.config.paths["db/migrate"] << expanded_path
+        end
+      end
+    end
 
   end
 end
