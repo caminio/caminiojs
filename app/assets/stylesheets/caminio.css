@@ -1,5 +1,6 @@
 /*
- *= require_tree .
+ *= require_tree ./3rd
+ *= require_tree ./caminio
  *= require_self
  */
 

@@ -1,6 +1,6 @@
 <div class="login-wrap">
 
-  <form {{action 'signupUser' on='submit'}} class="card">
+  <form {{action 'checkCode' on='submit'}} class="card">
 
     <div class="logo">
       <img src="/favicon.png" class="logo-img">
@@ -11,7 +11,7 @@
     {{/if}}
 
     <div {{bind-attr class=":password-group :form-group errors.password:field-with-errors"}}>
-      {{input value=confirmation_key class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation='confirmation_key'}}
+      {{input value=confirmation_key class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation='confirmation_code'}}
     </div>
 
     <div class="form-group">

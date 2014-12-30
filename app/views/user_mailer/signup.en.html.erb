@@ -2,13 +2,17 @@
 <%= stylesheet_link_tag :mailer %>
 <div class="main">
   <div class="logo-wrap">
-    <a href="<%= @host_url %>"><img src="<%= @logo_url %>"></a>
+    <a href="<%= @base_url %>"><img src="<%= @base_url %>/favicon.png"></a>
   </div>
   <div class="content">
     <h1>Hello!</h1>
-    <p>Your Account on caminio is almost ready to use!</p>
-    <P>Please enter the following code in the according window</p>
-    <div class="code-box"><%= @code %></div>
+    <p>You have successfully created an account on caminio, the best project management platform around.</p>
+    <P>To complete your set up please enter the code below in the according field from the registration form</p>
+
+    <p>
+    <span class="btn btn-primary"><%= @user.confirmation_code %></span>
+    </p>
+
 
     <p>
     We are glad you have chosen caminio

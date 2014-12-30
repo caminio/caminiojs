@@ -1,8 +1,9 @@
 module V1
 
   class UsersApi < Grape::API
-    
+   
     formatter :custom_json, Grape::Formatter::Json
+
     helpers AuthHelper
     helpers do
 
@@ -108,9 +109,22 @@ module V1
           end
           user = User.create( email: params.email, password: params.password, username: params.username )
           return error!(user.errors.full_messages,422) unless user
-          env['api.format'] = :custom_json
           return error!(UserMailerError,500) unless UserMailer.signup( user, base_url ).deliver
+          env['api.format'] = :custom_json
           { key: user.confirmation_key }
+        end
+
+        #
+        # POST /check_code
+        #
+        desc "checks the code for the given user"
+        params do
+          requires :confirmation_key
+          requires :confirmation_code
+        end
+        post ':id/check_code' do
+          user = User.where( id: params.id, confirmation_key: params.confirmation_key, confirmation_code: params.confirmation_code ).first
+          return error!('InvalidKey',409) unless user
         end
 
         #

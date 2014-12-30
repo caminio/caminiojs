@@ -2,6 +2,10 @@ Caminio.SessionsSignupController = Ember.ObjectController.extend Caminio.Validat
 
   pwConstraint: new RegExp("(?=.*[\w0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}")
 
+  availableLocales: [{ label: 'Deutsch', value: 'de'}, { label: 'English', value: 'en' }]
+
+  selectedLocale: Em.I18n.locale
+
   validate:
     email:
       required:

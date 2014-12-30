@@ -7,7 +7,8 @@ module V1
     end
 
     def base_url
-      request.host_with_port
+      protocol ||= request.ssl? ? 'https://' : 'http://'
+      "#{protocol}#{request.host_with_port}"
     end
 
   end
