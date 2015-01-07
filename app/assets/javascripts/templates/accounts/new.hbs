@@ -1,0 +1,16 @@
+<section class="card settings">
+  <h1>{{t 'account.personal'}}</h1>
+  <div class="click-form">
+    {{click-edit-form value=username label='alias' parentController=controller}}
+    {{click-edit-form value=firstname label='firstname' parentController=controller}}
+    {{click-edit-form value=lastname label='lastname' parentController=controller}}
+  </div>
+</section>
+
+<section class="card card-margin-top settings">
+  <h1>{{t 'account.contact_info'}}</h2>
+  <form class="click-form form-horizontal">
+    {{click-edit-form value=email label='email' parentController=controller}}
+    {{click-edit-form value=phone label='phone' parentController=controller}}
+  </form>
+</section>

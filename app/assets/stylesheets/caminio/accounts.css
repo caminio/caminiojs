@@ -1,0 +1,19 @@
+.account-admin .dropdown{
+  margin: -17px 0 0;
+}
+
+.account-admin .dropdown .btn{
+  background: none;
+}
+
+.account-admin .heading h1{
+  color: #1b8fc3;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.account-admin .dropdown-menu.dropdown-menu-grey li{
+  min-width: 230px;
+}
+
