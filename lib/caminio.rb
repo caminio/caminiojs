@@ -1,7 +1,7 @@
 # 3rd
 require "grape"
 # require "grape/rabl"
-require 'grape-active_model_serializers'
+# require 'grape-active_model_serializers'
 require "roadie-rails"
 require "paperclip"
 require "handlebars_assets"
@@ -11,7 +11,7 @@ require "handlebars_assets"
 #
 
 require "caminio/version"
-require "caminio/schemas/row"
+# require "caminio/schemas/row"
 
 # setup caminio namespace for use in config/application.rb
 require "caminio/config_namespace"

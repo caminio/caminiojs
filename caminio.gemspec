@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sprockets-helpers", "~> 1.1"
   spec.add_dependency "handlebars_assets", "~> 0.18"
   spec.add_dependency "coffee-script", "~> 2.3"
+  spec.add_dependency "paperclip", "~> 4.2.1"
 
   spec.add_dependency "request_store", "~> 1.1"
   spec.add_dependency "rack-cors", "~> 0.2"
