@@ -1,17 +1,10 @@
 de:
-  caminio_password_reset: "caminio Passwort zurücksetzen"
-  caminio_welcome: "Willkommen auf caminio!"
-  reply: "Antworten"
-  show_history: "Verlauf anzeigen"
-  app:
-    core: 
-      title: 'Dashboard'
-      description: 'Die wichtigsten Tools zum Zusammenarbeiten'
-      plan:
-        free:
-          title: 'Basic'
-        collaboration:
-          title: 'Teamarbeit'
+
+  user_mailer:
+    signup: 
+      subject: "Dein Konto auf %{site_name}"
+    reset_pwd:
+      subject: "Passwort zurücksetzen auf %{site_name}"
 
   mongoid:
     errors:

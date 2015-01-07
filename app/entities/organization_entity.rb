@@ -1,17 +1,9 @@
-module Caminio
-  module API
-    module Entities
+class OrganizationEntity < Grape::Entity
+  
+  root :organizations, :organization
 
-      class Organization < Grape::Entity
-        
-        root :organizations, :organization
+  expose :id
+  expose :name
+  expose :user_ids
 
-        expose :id
-        expose :name
-        expose :user_ids
-
-      end
-
-    end
-  end
 end

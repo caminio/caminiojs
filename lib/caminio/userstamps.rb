@@ -1,6 +1,7 @@
+# require 'active_support/concern'
 module Caminio
 
-  module UserStamps
+  module Userstamps
     
     extend ActiveSupport::Concern
 

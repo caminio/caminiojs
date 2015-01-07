@@ -17,16 +17,17 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rails", "~> 4.0.0"
+  spec.add_dependency "rails", "~> 4.2.0"
   spec.add_dependency "grape", "~> 0.10"
+  spec.add_dependency "hashie_rails", "0.0.1"
   spec.add_dependency "grape-entity", "~> 0.4"
   spec.add_dependency "i18n", "~> 0.7"
   spec.add_dependency "mongoid", "~> 4.0"
   spec.add_dependency "roadie", "~> 3.0"
   spec.add_dependency "roadie-rails", "~> 1.0.4"
-  spec.add_dependency "sprockets", "~> 2.12"
-  spec.add_dependency "sprockets-helpers", "~> 1.1"
-  spec.add_dependency "handlebars_assets", "~> 0.18"
+  spec.add_dependency "ember-rails", "~> 0.16.1"
+  spec.add_dependency "font-awesome-rails", "~> 4.2.0"
+  spec.add_dependency "jquery-rails", "~> 4.0.3"
   spec.add_dependency "coffee-script", "~> 2.3"
   spec.add_dependency "paperclip", "~> 4.2.1"
 

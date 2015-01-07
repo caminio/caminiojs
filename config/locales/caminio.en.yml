@@ -1,8 +1,7 @@
 en:
-  caminio_password_reset: "caminio password reset request"
-  caminio_welcome: "Welcome on caminio!"
-  reply: "Reply"
-  show_history: "Show history"
+  user_mailer:
+    signup: 
+      subject: "Your account on %{site_name}"
   app:
     core: 
       title: 'caminio'

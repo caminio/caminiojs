@@ -1,10 +1,10 @@
 #= require pace_options
 #= require 3rd/pace.min
-#= require 3rd/jquery-2.1.1.debug
+#= require jquery2
 #= require handlebars
+#= require ember
+#= require ember-data
 #= require 3rd/bootstrap.min
-#= require 3rd/ember.debug
-#= require 3rd/ember-data.debug
 #= require 3rd/ember-animate
 #= require 3rd/i18n
 #= require 3rd/i18n-plurals

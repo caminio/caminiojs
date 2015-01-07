@@ -1,25 +1,13 @@
-module Caminio
+class ApiKeyEntity < Grape::Entity
 
-  module API
+  root :api_keys, :api_key
 
-    module Entities
-
-      class ApiKey < Grape::Entity
-
-        root :api_keys, :api_key
-
-        expose :id
-        expose :name
-        expose :token
-        expose :expires_at
-        expose :permanent
-        expose :user_id
-        expose :organization_id
-        
-      end
-
-    end
-
-  end
-
+  expose :id
+  expose :name
+  expose :token
+  expose :expires_at
+  expose :permanent
+  expose :user_id
+  expose :organization_id
+  
 end

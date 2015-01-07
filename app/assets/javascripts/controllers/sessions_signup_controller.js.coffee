@@ -1,10 +1,10 @@
 Caminio.SessionsSignupController = Ember.ObjectController.extend Caminio.Validations,
 
+  needs: ['sessions']
+
+  locale: (-> @get('controllers.sessions.selectedLocale') ).property('controllers.sessions.selectedLocale')
+  
   pwConstraint: new RegExp("(?=.*[\w0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}")
-
-  availableLocales: [{ label: 'Deutsch', value: 'de'}, { label: 'English', value: 'en' }]
-
-  selectedLocale: Em.I18n.locale
 
   validate:
     email:
@@ -53,7 +53,7 @@ Caminio.SessionsSignupController = Ember.ObjectController.extend Caminio.Validat
 
     signupUser: ->
       return unless @isValid()
-      Ember.$.post("#{Caminio.get('apiHost')}/users/signup", @getProperties('email','organization','password'))
+      Ember.$.post("#{Caminio.get('apiHost')}/users/signup", @getProperties('email','organization','password', 'locale'))
         .then (res)=>
           @transitionToRoute 'sessions.confirm', 
             Ember.Object.create

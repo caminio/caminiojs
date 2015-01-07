@@ -1,10 +1,19 @@
 # 3rd
 require "grape"
-# require "grape/rabl"
-# require 'grape-active_model_serializers'
+require "mongoid"
+require "grape-entity"
+
 require "roadie-rails"
 require "paperclip"
-require "handlebars_assets"
+
+require 'rack/cors'
+
+require 'jquery-rails'
+require 'ember-rails'
+require 'font-awesome-rails'
+
+require 'request_store'
+
 # require "mongoid_paperclip"
 # require "caminio/paperclip_grape_ext"
 # require "doorkeeper"
@@ -16,12 +25,16 @@ require "caminio/version"
 # setup caminio namespace for use in config/application.rb
 require "caminio/config_namespace"
 
-require 'caminio/controller_commons'
-
 # require "caminio/access_rules"
-require "caminio/user_stamps"
-
+require "caminio/userstamps"
+require "caminio/timestamps"
 
 # Rails engine
 require "caminio/engine"
 
+module BSON
+  class ObjectId
+    alias :to_json :to_s
+    alias :as_json :to_s
+  end
+end
