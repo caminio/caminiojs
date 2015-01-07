@@ -4,8 +4,9 @@ require "grape"
 require 'grape-active_model_serializers'
 require "roadie-rails"
 require "paperclip"
-require "mongoid_paperclip"
-require "caminio/paperclip_grape_ext"
+require "handlebars_assets"
+# require "mongoid_paperclip"
+# require "caminio/paperclip_grape_ext"
 # require "doorkeeper"
 #
 
@@ -17,14 +18,10 @@ require "caminio/config_namespace"
 
 require 'caminio/controller_commons'
 
-require "caminio/access_rules"
+# require "caminio/access_rules"
 require "caminio/user_stamps"
 
 
 # Rails engine
 require "caminio/engine"
-
-# Access rights
-require "caminio/access"
-require "caminio/model_registry"
 

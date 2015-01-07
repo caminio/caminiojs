@@ -1,21 +1,27 @@
 class ApiKey
   include Mongoid::Document
-  include Mongoid::Timestamps
+  include Caminio::Timestamps
 
-  field :access_token, type: String
+  field :token, type: String
   field :expires_at, type: DateTime
   field :permanent, type: Boolean
   field :name, type: String
+  field :organization_id, type: String
 
   belongs_to :user
   
-  before_create :setup_access_token, :setup_expires_at
+  before_create :setup_token, :setup_expires_at, :setup_organization
 
   private
 
-  def setup_access_token
-    self.access_token = SecureRandom.hex(64)
-    setup_access_token if self.class.where( access_token: self.access_token ).first
+  def setup_organization
+    return if organization_id
+    self.organization_id = RequestStore.store['organization_id']
+  end
+
+  def setup_token
+    self.token = SecureRandom.hex
+    setup_token if self.class.where( token: self.token ).first
   end
 
   def setup_expires_at

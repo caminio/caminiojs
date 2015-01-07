@@ -1,56 +1,63 @@
-<form {{action 'signupNow' on='submit'}} class="form form-horizontal">
+<div class="login-wrap">
 
-  <div class="form-group">
-    <div class="btn-group">
-      <button type="button" {{bind-attr class=":btn :btn-default isCompany:btn-default:btn-primary"}} {{action 'toggleCompany' false}}>{{t 'private_person'}}</button>
-      <button type="button" {{bind-attr class=":btn :btn-default isCompany:btn-primary:btn-default"}} {{action 'toggleCompany' true}}>{{t 'company_or_organization'}}</button>
+  <form {{action 'signupUser' on='submit'}} class="card">
+
+    <div class="logo">
+      <img src="/favicon.png" class="logo-img">
     </div>
-  </div>
 
-  {{#if isCompany}}
-  <div {{bind-attr class=":form-group errors.companyName:field-with-errors"}}>
-    {{input value=companyName class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="company_name"}}
-  </div>
-  {{/if}}
+    {{#if message}}
+    <div {{bind-attr class=":alert valid:alert-info:alert-danger error:alert-danger"}}>{{{message}}}</div>
+    {{/if}}
 
-  <div {{bind-attr class=":form-group errors.email:field-with-errors"}}>
-    {{input value=email class="form-control" autocapitalize="off" autocorrect="off" placeholderTranslation="email_address"}}
-  </div>
-
-  <div {{bind-attr class=":form-group errors.password:field-with-errors :pw-group"}}>
-    {{input value=password class="form-control" type="password" placeholderTranslation="password"}}
-    <div class="progress pw-progress">
-      <div {{bind-attr class=":progress-bar pwStrengthColor"}} role="progressbar" {{bind-attr style=pwStrength}}></div>
+    <div class="radio radio-success inline">
+      {{radio-button id='isOrganization'  name='isOrganization' value='yes' groupValue=isOrganization}}
+      <label for="isOrganization">{{t 'organization'}}</label>
+      {{radio-button id='isPrivate' name='isOrganization' value='no' groupValue=isOrganization}}
+      <label for="isPrivate">{{t 'private'}}</label>
     </div>
-  </div>
 
-  <div class="form-group">
-    <div class="row">
-      <label class="col-md-9 control-label">{{t 'language'}}</label>
-      <div class="col-md-3 align-right">
-        {{view Ember.Select2 value=locale content=availableLangs search=false prompt=false}}
+    <div {{bind-attr class=":form-group errors.email:field-with-errors"}}>
+      {{input value=email class="form-control" autocapitalize="off" autocorrect="off" autocomplete="off" placeholderTranslation='email'}}
+    </div>
+
+    {{#if organizationEnabled}}
+    <div {{bind-attr class=":form-group errors.organzation:field-with-errors"}}>
+      {{input value=organization class="form-control" autocapitalize="off" autocorrect="off" autocomplete="off" placeholderTranslation='organization'}}
+    </div>
+    {{/if}}
+
+    <div {{bind-attr class=":password-group :form-group errors.password:field-with-errors"}}>
+      {{input type="password" value=password class="form-control" autocapitalize="off" autocorrect="off" autocomplete="off" placeholderTranslation='password'}}
+      <div class="progress pw-progress">
+        <div {{bind-attr class=":progress-bar pwStrengthColor"}} role="progressbar" {{bind-attr style=pwStrength}}></div>
       </div>
     </div>
-  </div>
 
-  <div {{bind-attr class=":form-group errors.termsAccepted:field-with-errors"}}>
-    <div class="checkbox-box" {{action 'toggleTermsAccepted'}}>
-      {{#if termsAccepted}}
-        <i class="fa fa-check"></i>
-      {{/if}}
+    <div class="form-group">
+      {{view 'selectize-simple-array'
+            classes="form-control"
+            promptTranslation="select_language"
+            contentBinding="controller.availableLocales"
+            optionLabelPath='content.label'
+            optionValuePath='content.value'
+            valueBinding='controller.selectedLocale'}}
     </div>
-    {{t 'signup_info_1'}}
-    <a href="#" {{action 'openModal' 'sessions/terms'}}>{{t 'signup_info_2'}}</a>
-    {{t 'signup_info_3'}}
-  </div>
 
-  <div class="form-group align-right">
-    {{#link-to 'sessions.new' class="cancel"}}
-    {{t 'cancel'}}
-    {{/link-to}}
-    <button class="btn btn-success" type="submit">
-      {{t 'signup_for_free'}}
-    </button>
-  </div>
+    <div {{bind-attr class=":form-group errors.termsAccepted:field-with-errors :agree-policies"}}>
+      <div class="checkbox check-success">
+        {{input type="checkbox" checked=termsAccepted id="agree-policies"}}
+        <label for="agree-policies">{{t 'agree_policies'}}</label>
+      </div>
+    </div>
 
-</form>
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary form-control" {{translateAttr value='register'}}>
+    </div>
+
+    <div class="form-group center">
+      {{#link-to 'sessions.index'}}{{t 'back_to_login'}}{{/link-to}}
+    </div>
+
+  </form>
+</div>
