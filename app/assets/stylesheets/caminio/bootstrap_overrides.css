@@ -84,9 +84,9 @@ body .btn.btn-transparent{
   box-shadow: none;
 }
 .btn.btn-default{
-  color: #555;
-  background-color: #dfdfdf;
-  border-color: #dfdfdf;
+  color: #1b8fc3;
+  background: none;
+  border-color: #1b8fc3;
 }
 
 .btn.btn-black{

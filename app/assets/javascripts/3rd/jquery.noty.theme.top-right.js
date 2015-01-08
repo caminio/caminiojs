@@ -8,7 +8,7 @@ $.noty.layouts.topRight = {
         selector: 'ul#noty_topRight_layout_container',
         style   : function() {
             $(this).css({
-                top          : 20,
+                top          : 80,
                 right        : 20,
                 position     : 'fixed',
                 width        : '310px',
@@ -155,23 +155,23 @@ $.noty.themes.relax = {
         switch(this.options.type) {
             case 'alert':
             case 'notification':
-                this.$bar.css({backgroundColor: '#FFF', borderColor: '#dedede', color: '#444'});
+                this.$bar.css({backgroundColor: '#1b8fc3', borderColor: '#1b8fc3', color: '#fff'});
                 break;
             case 'warning':
-                this.$bar.css({backgroundColor: '#FFEAA8', borderColor: '#FFC237', color: '#826200'});
+                this.$bar.css({backgroundColor: '#fcf8e3', borderColor: '#fcf8e3', color: '#fff'});
                 this.$buttons.css({borderTop: '1px solid #FFC237'});
                 break;
             case 'error':
-                this.$bar.css({backgroundColor: '#FF8181', borderColor: '#e25353', color: '#FFF'});
+                this.$bar.css({backgroundColor: '#d55', borderColor: '#d55', color: '#FFF'});
                 this.$message.css({fontWeight: 'bold'});
                 this.$buttons.css({borderTop: '1px solid darkred'});
                 break;
             case 'information':
-                this.$bar.css({backgroundColor: '#78C5E7', borderColor: '#3badd6', color: '#FFF'});
+                this.$bar.css({backgroundColor: '#1b8fc3', borderColor: '#1b8fc3', color: '#FFF'});
                 this.$buttons.css({borderTop: '1px solid #0B90C4'});
                 break;
             case 'success':
-                this.$bar.css({backgroundColor: '#BCF5BC', borderColor: '#7cdd77', color: 'darkgreen'});
+                this.$bar.css({backgroundColor: '#5cb85c', borderColor: '#5cb85c', color: '#fff'});
                 this.$buttons.css({borderTop: '1px solid #50C24E'});
                 break;
             default:

@@ -5,6 +5,10 @@ Caminio.ClickEditFormComponent = Ember.Component.extend
     @set('origValue', '')
     @set('origValue', @get('value')) unless Em.isEmpty(@get('value'))
     @set('value','') if Em.isEmpty(@get('value'))
+    if @get('focus')
+      @set('editValue', true)
+      Caminio.set('currentClickEdit', @)
+      Em.run.later (-> @$('input:first').focus()), 500
 
   editValue: false
 

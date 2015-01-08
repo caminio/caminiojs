@@ -26,7 +26,11 @@ Em.merge Em.I18n.availableTranslations.de,
   private: 'Privat'
   agree_policies: 'Ich bin mit den Allgemeinen Geschäftsbedingungen einverstanden'
   select_language: 'Sprache wählen'
+  
   save: 'Speichern'
+  cancel: 'Abbrechen'
+  saved: '{{name}} wurde gespeichert'
+
   cancel_edit_entry: 'Bearbeiten abbrechen'
   edit_entry: 'Eintrag bearbeiten'
   entry_saved: 'Eintrag gespeichert'

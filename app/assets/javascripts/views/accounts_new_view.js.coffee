@@ -1,0 +1,1 @@
+Caminio.AccountsNewView = Caminio.FadedView.extend()

@@ -6,6 +6,10 @@
   overflow: hidden;
 }
 
+.click-form .form-horizontal .control-label{
+  text-align: left;
+}
+
 .click-form > .ember-view:first-child{
   border-top: none;
 }

@@ -222,3 +222,11 @@ Caminio.ApplicationController = Ember.Controller.extend
       @get('controllers.sessions').reset()
       @transitionToRoute 'sessions'
 
+
+Caminio.DestroyOnCancelMixin = Ember.Mixin.create
+
+  actions:
+    willTransition: (transition)->
+      if @get('controller.content.isNew')
+        @get('controller.content').destroyRecord()
+      true

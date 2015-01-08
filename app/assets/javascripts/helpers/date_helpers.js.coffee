@@ -4,7 +4,6 @@ Ember.Handlebars.registerBoundHelper 'timeAgo', (date)->
 
 
 Ember.Handlebars.registerBoundHelper 'formatDate', (date,options)->
-  console.log arguments
   formatter = if options.hash.format then options.hash.format else 'LLL'
   parsedDate = if date then moment(date) else moment()
   formattedDate = parsedDate.format(formatter)

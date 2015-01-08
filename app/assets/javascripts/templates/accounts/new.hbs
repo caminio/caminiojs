@@ -1,16 +1,44 @@
-<section class="card settings">
-  <h1>{{t 'account.personal'}}</h1>
-  <div class="click-form">
-    {{click-edit-form value=username label='alias' parentController=controller}}
-    {{click-edit-form value=firstname label='firstname' parentController=controller}}
-    {{click-edit-form value=lastname label='lastname' parentController=controller}}
+<div class="menu-pane">
+  <div class="inside-wrap">
+    {{#link-to 'accounts.admin' class="btn btn-back"}}
+      <i class="fa fa-arrow-left"></i>
+    {{/link-to}}
+    <h1>{{t 'account.create_account'}}</h1>
   </div>
-</section>
+</div>
+<div class="main-wrap">
+  <div class="overview-wrap">
+    <div class="overview-main overview-main-centered">
 
-<section class="card card-margin-top settings">
-  <h1>{{t 'account.contact_info'}}</h2>
-  <form class="click-form form-horizontal">
-    {{click-edit-form value=email label='email' parentController=controller}}
-    {{click-edit-form value=phone label='phone' parentController=controller}}
-  </form>
-</section>
+      <section class="card settings card-padding">
+
+        <form class="form-horizontal" {{action 'create' on='submit'}}>
+          <div class="form-group">
+            <label class="control-label col-md-4">{{t 'firstname'}}</label>
+            <div class="col-md-8">
+              {{input value=firstname class="form-control"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-4">{{t 'lastname'}}</label>
+            <div class="col-md-8">
+              {{input value=lastname class="form-control"}}
+            </div>
+          </div>
+          <div {{bind-attr class=":form-group errors.email:field-with-errors"}}>
+            <label class="control-label col-md-4">{{t 'email'}}</label>
+            <div class="col-md-8">
+              {{input value=email class="form-control"}}
+            </div>
+          </div>
+
+          <div class="form-actions">
+            {{#link-to 'accounts.admin' class="btn btn-default"}}{{t 'cancel'}}{{/link-to}}
+            <button class="btn btn-primary" {{action 'create'}}>{{t 'save'}}</button>
+          </div>
+        </form>
+
+      </section>
+    </div>
+  </div>
+</div>

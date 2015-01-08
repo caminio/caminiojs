@@ -7,7 +7,15 @@
 #       message: Em.I18n.t('message')
 #
 Caminio.Validations = Em.Mixin.create
+
   errors: Em.Object.create()
+
+  messageObserver: (->
+    return unless @get('notyMessages')
+    return if Em.isEmpty( @get('message') )
+    noty( type: 'error', text: @get('message') )
+  ).observes('message')
+
   isValid: (key)->
 
     return true unless @.get('validate')

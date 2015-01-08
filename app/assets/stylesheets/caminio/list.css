@@ -12,6 +12,11 @@ ul.list li{
   display: table;
   table-layout: fixed;
   width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+ul.list li:last-child{
+  border:none;
 }
 
 ul.list li > div{
@@ -44,6 +49,14 @@ ul.list li > .list-icon{
 
 ul.list li > .list-icon i{
   color: #fff;
+}
+
+ul.list li > .list-icon .label-default{
+  background: #eee;
+}
+
+ul.list li > .list-icon .label-default i{
+  color: #aaa;
 }
 
 ul.list li > .list-title{
