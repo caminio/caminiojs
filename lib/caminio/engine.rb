@@ -9,13 +9,6 @@ module Caminio
     config.paths.add File.join('app', 'entities'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[File.join( File.expand_path('../../../',__FILE__), 'app', 'entities')]
 
-    config.middleware.use Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: [ :get, :post, :put, :delete, :options ]
-      end
-    end
-
     # rspec
     config.generators do |g|
       g.test_framework :rspec, :fixture => false

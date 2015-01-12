@@ -7,11 +7,11 @@ module Caminio
       default_format :json
       format :json
       helpers Caminio::UsersHelper
-      before{ set_organization_id }
-
-
       helpers Caminio::ApplicationHelper
       helpers Caminio::AuthHelper
+
+      before{ set_organization_id }
+
 
       #
       # GET /

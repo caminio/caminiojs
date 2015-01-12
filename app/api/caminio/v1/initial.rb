@@ -6,6 +6,7 @@ module Caminio
 
       default_format :json
       format :json
+      helpers Caminio::ApplicationHelper
       helpers Caminio::UsersHelper
 
       #

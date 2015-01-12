@@ -6,7 +6,7 @@
   </div>
   <div class="content">
     <h1>Hallo!</h1>
-    <p>Du hast dich erfolgreich auf <%= Caminio.config.site.name %> registriert. Um dein Konto zu aktivieren, musst du noch folgenden Code in das Registrationsformular eintragen:</p>
+    <p>Du hast dich erfolgreich auf <%= Rails.configuration.site.name %> registriert. Um dein Konto zu aktivieren, musst du noch folgenden Code in das Registrationsformular eintragen:</p>
 
     <div style="text-align: center">
       <span class="btn btn-primary"><%= @user.confirmation_code %></span>
