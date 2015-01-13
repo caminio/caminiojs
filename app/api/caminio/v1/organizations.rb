@@ -19,7 +19,7 @@ module Caminio
       desc "lists all organizations for current_user"
       get do
         authenticate!
-        present current_user.oganizations, with: OrganizationEntity
+        present :organizations, current_user.oganizations, with: OrganizationEntity
       end
 
       #
@@ -30,7 +30,7 @@ module Caminio
         authenticate!
         error("InsufficientRights",403) unless current_user.organizations.find( params.id )
         org = Organization.find params.id
-        present org, with: OrganizationEntity
+        present :organization, org, with: OrganizationEntity
       end
 
     end

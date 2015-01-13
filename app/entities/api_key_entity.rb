@@ -1,7 +1,5 @@
 class ApiKeyEntity < Grape::Entity
 
-  root :api_keys, :api_key
-
   expose :id
   expose :name
   expose :token

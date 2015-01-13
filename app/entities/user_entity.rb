@@ -1,7 +1,5 @@
 class UserEntity < Grape::Entity
         
-  root :users, :user
-
   expose :id
   expose :username
   expose :email

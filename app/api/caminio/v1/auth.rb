@@ -18,7 +18,7 @@ module Caminio
       end
 
       post do
-        present authenticate_user, with: ApiKeyEntity
+        present :api_key, authenticate_user, with: ApiKeyEntity
       end
         
     end

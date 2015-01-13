@@ -20,7 +20,7 @@ module Caminio
       get do
         authenticate!
         users = User.all
-        present users, with: UserEntity
+        present :users, users, with: UserEntity
       end
 
       #
@@ -30,7 +30,7 @@ module Caminio
       get '/current' do
         authenticate!
         user = User.find( @token.user_id )
-        present user, with: UserEntity
+        present :user, user, with: UserEntity
       end
 
       #
@@ -42,7 +42,7 @@ module Caminio
         error!('InsufficientRights', 403) unless params.id == @token.user_id.to_s || @token.user.is_admin?
         user = User.where(id: params.id, organization_ids: headers['Organization-Id']).first
         error!('NotFound',404) unless user
-        present user, with: UserEntity
+        present :user, user, with: UserEntity
       end
 
       #
@@ -75,7 +75,7 @@ module Caminio
             editor: /editor|admin/.match(params.role)
           error!('SavingOrganizationFailed',500) unless user.save
         end
-        present user, with: UserEntity
+        present :user, user, with: UserEntity
       end
 
       desc "send the user a link to reset their password"
@@ -106,7 +106,7 @@ module Caminio
         user.confirmation_code = nil
         error!({ error: 'SavingUserFailed', details: user.errors.full_messages.inspect},500) unless user.save
         api_key = user.api_keys.create organization_id: user.organizations.first.id.to_s
-        present api_key, with: ApiKeyEntity
+        present :api_key, api_key, with: ApiKeyEntity
       end
 
       #
@@ -124,7 +124,7 @@ module Caminio
         user.password = params.new
         return error("failed to save", 422) unless user.save
         user = User.find( @token.user_id )
-        present user, with: UserEntity
+        present :user, user, with: UserEntity
       end
 
       #
@@ -174,7 +174,7 @@ module Caminio
         error!({ error: 'SavingFailed', details: user.errors.full_messages},500) if user.errors.size > 0
         status 200
         api_key = user.api_keys.create organization_id: user.organizations.first.id.to_s
-        present api_key, with: ApiKeyEntity
+        present :api_key, api_key, with: ApiKeyEntity
       end
 
       #
@@ -201,7 +201,7 @@ module Caminio
           user_org_role.update_attributes admin: params.role == 'admin',
             editor: /editor|admin/.match(params.role)
         end
-        present user.reload, with: UserEntity
+        present :user, user.reload, with: UserEntity
       end
 
       #
