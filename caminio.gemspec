@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "colorize"
   spec.add_dependency "json"
-  spec.add_dependency "rails", "~> 4.1.0"
+  spec.add_dependency "rails", "4.1.5"
   spec.add_dependency "mongoid", "~> 4.0.0"
   spec.add_dependency "mongoid_userstamp", "~> 0.4.0"
   spec.add_dependency "mongoid-versioning", "~> 1.0.0"
