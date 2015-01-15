@@ -32,6 +32,8 @@ class User
   field :county, type: String
   field :city, type: String
 
+  field :settings, type: Hash
+
   field :api_user, type: Boolean
   field :expires_at, type: DateTime
 
