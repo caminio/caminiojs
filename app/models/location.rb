@@ -1,10 +1,9 @@
 class Location
+
   include Mongoid::Document
-
+  include Caminio::Timestamps
   include Caminio::Userstamps
-  # include Caminio::AccessRules
-
-  field :name, type: String
+  
   field :title, type: String, localize: true
   field :description, type: String, localize: true
 

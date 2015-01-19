@@ -9,8 +9,22 @@ module Caminio
 
       before { authenticate! }
 
+      #
+      # GET /
+      #
       get '/', root: 'locations' do
-        Location.where
+        locations = Location.all
+        present :locations, locations, with: LocationEntity
+      end
+
+      #
+      # GET /:id
+      #
+      desc "returns lineup_ensemble with :id"
+      get ':id' do
+        location = Location.where(id: params.id).first
+        error!('NotFound',404) unless location
+        present :location, location, with: LocationEntity
       end
 
       # POST
@@ -37,7 +51,9 @@ module Caminio
         end
       end
       post '/' do
-        Location.create( params[:location] )
+        location = Location.new( declared( params )[:location] )
+        error!({ error: 'SavingFailed', details: location.errors.full_messages}, 422) unless location.save
+        present :location, location, with: LocationEntity
       end
 
       # PUT
@@ -64,17 +80,20 @@ module Caminio
         end
       end
       put '/:id' do
-        location = Location.find(params.id)
-        if location.update( declared(params)[:location] )
-          location.reload
-        end
+        location = Location.find params.id 
+        error! "LocationNotFound", 404 unless location
+        location.update_attributes( declared(params)[:location] )
+        present :location, location, with: LocationEntity
       end
 
-      # DELETE
+      #
+      # DELETE /:id
+      #
+      formatter :json, lambda{ |o,env| "{}" }
       delete '/:id' do
-        return error!('not found',404) unless location = Location.find(params.id)
-        return error!('failed',500) unless location.destroy
-        {}
+        location = Location.find params.id 
+        error! "LocationNotFound", 404 unless location
+        error!("DeletionFailed",500) unless location.destroy
       end
 
     end
