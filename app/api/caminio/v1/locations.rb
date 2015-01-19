@@ -2,7 +2,7 @@ module Caminio
 
   module V1
 
-    class Locations::API < Grape::API
+    class Locations < Grape::API
 
       default_format :json
       helpers Caminio::AuthHelper

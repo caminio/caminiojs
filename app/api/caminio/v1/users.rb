@@ -31,6 +31,7 @@ module Caminio
         authenticate!
         user = User.find( @token.user_id )
         present :user, user, with: UserEntity
+        present :organizations, user.organizations if user.organizations.size > 0
       end
 
       #
