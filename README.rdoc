@@ -1,0 +1,5 @@
+= Caminio
+
+[![Build Status](https://travis-ci.org/caminio/caminio.svg?branch=rubyfied)](https://travis-ci.org/caminio/caminio)
+
+caminio is a web api platform working with authentication and user base out of the box.

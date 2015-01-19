@@ -1,1 +1,0 @@
-App.SessionsNewController = App.SessionsController

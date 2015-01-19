@@ -1,0 +1,23 @@
+<link href='http://fonts.googleapis.com/css?family=PTSans' rel='stylesheet' type='text/css' data-roadie-ignore>
+<%= stylesheet_link_tag :mailer %>
+<div class="main">
+  <div class="logo-wrap">
+    <a href="<%= @base_url %>"><img src="<%= @base_url %>/favicon.png"></a>
+  </div>
+  <div class="content">
+    <h1>Hello!</h1>
+    <p>You have successfully created an account on caminio, the best project management platform around.</p>
+    <P>To complete your set up please enter the code below in the according field from the registration form</p>
+
+    <p>
+    <span class="btn btn-primary"><%= @user.confirmation_code %></span>
+    </p>
+
+
+    <p>
+    We are glad you have chosen caminio
+    &nbsp;&nbsp;the TASTENWERK Support Team
+    </p>
+
+  </div>
+</div>

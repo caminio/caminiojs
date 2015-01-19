@@ -1,0 +1,4 @@
+de:
+  user_mailer:
+    signup:
+      welcome: "Willkommen!"

@@ -1,3 +1,5 @@
+require 'rack/cors'
+
 module Caminio
   class Engine < ::Rails::Engine
 
@@ -5,6 +7,13 @@ module Caminio
 
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[File.join( File.expand_path('../../../',__FILE__), 'app', 'api', '*')]
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [ :get, :post, :put, :delete, :options ]
+      end
+    end
 
     # rspec
     config.generators do |g|
@@ -30,17 +39,21 @@ module Caminio
                                                         bootstrap/dist/fonts/glyphicons-halflings-regular.ttf)
     end
 
+    initializer :handlebars_assets do
+      HandlebarsAssets::Config.ember = true
+    end
+
     # if defined?( ActiveRecord )
     #   ActiveRecord::Base.send( :include, Caminio::Schemas::Row )
     # end
     #
-    # initializer :append_migrations do |app|
-    #   unless app.root.to_s.match root.to_s
-    #     config.paths["db/migrate"].expanded.each do |expanded_path|
-    #       app.config.paths["db/migrate"] << expanded_path
-    #     end
-    #   end
-    # end
+    initializer :append_migrations do |app|
+      unless app.root.to_s.match root.to_s
+        config.paths["db/migrate"].expanded.each do |expanded_path|
+          app.config.paths["db/migrate"] << expanded_path
+        end
+      end
+    end
 
   end
 end

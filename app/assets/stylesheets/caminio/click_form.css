@@ -1,0 +1,73 @@
+.click-form{
+  margin: 0;
+}
+
+.click-form-group{
+  padding: 12px 0;
+  font-size: 16px;
+  border-bottom: 1px solid transparent;
+}
+
+.click-form-group:hover{
+  background: #f5f5f5;
+  border-bottom-color: #ddd;
+}
+
+.click-form-group:after{
+  background: none repeat scroll 0 0 #ddd;
+  content: " ";
+  height: 1px;
+  position: absolute;
+  width: 759px;
+  margin-top: 36px;
+  margin-left: -652px;
+}
+
+.click-form-group:after:last-child,
+.click-form-group:before,
+.click-form-group:after,{
+  background: none;
+}
+
+.click-form-group:hover input[type=text],
+.click-form-group:hover input[type=password]{
+  background: #fff;
+}
+
+.click-form-group:first-child{
+  border-top: 1px solid transparent;
+  content: ' ';
+}
+
+.click-form-group:first-child:before{
+  background: none repeat scroll 0 0 #ddd;
+  content: " ";
+  height: 1px;
+  position: absolute;
+  width: 759px;
+  margin-top: -13px;
+  margin-left: -251px;
+}
+
+.click-form-group:hover:first-child:before{
+  border-top: none;
+}
+
+.click-form-group:hover:first-child{
+  border-top-color: #ddd;
+}
+
+.click-form-group label{
+  color: #222;
+  float: left;
+  width: 250px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.click-form-group input[type=text],
+.click-form-group input[type=password]{
+  background: none;
+  border: none;
+  width: 400px;
+}

@@ -10,9 +10,9 @@
   vertical-align: middle;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -34,7 +34,7 @@
   background-image: none;
   outline: 0;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 .btn.disabled,
 .btn[disabled],
@@ -43,7 +43,7 @@ fieldset[disabled] .btn {
   cursor: not-allowed;
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   opacity: .65;
 }
 .btn-default {
@@ -304,7 +304,7 @@ fieldset[disabled] .btn-danger.active {
 fieldset[disabled] .btn-link {
   background-color: transparent;
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 .btn-link,
 .btn-link:hover,
@@ -358,7 +358,7 @@ fieldset[disabled] .btn-link:focus {
 body{
   background: #eee;
   color: #333;
-  font-family: 'Roboto', 'Verdana', sans-serif;
+  font-family: 'PT Sans', 'Verdana', sans-serif;
 }
 
 .main{
@@ -381,3 +381,4 @@ body{
 .align-center{
   text-align: center;
 }
+

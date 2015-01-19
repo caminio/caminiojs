@@ -1,12 +1,30 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path("../dummy/config/environment.rb", __FILE__)
 require 'rspec/rails'
+require 'rack/test'
 require 'factory_girl_rails'
 
 Rails.backtrace_cleaner.remove_silencers!
 
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+module RspecHelper
+  module CaminioAccountsHelper
+
+    def app
+      Rack::Builder.new do
+        use RequestStore::Middleware
+        run V1::CaminioApi
+      end
+    end
+
+    def json
+      Hashie::Mash.new( JSON.parse last_response.body )
+    end
+
+  end
+end
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -21,18 +39,30 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
   config.before(:suite) do
-    DatabaseCleaner[:mongoid].strategy = :truncation
+    ActiveRecord::Migrator.up "db/migrate"
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
-    DatabaseCleaner[:mongoid].start
+    DatabaseCleaner.start
   end
 
   config.after(:each) do
-    DatabaseCleaner[:mongoid].clean
+    DatabaseCleaner.clean
   end
+  
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
+  config.include RspecHelper::CaminioAccountsHelper
+  config.include Rack::Test::Methods
+  config.include FactoryGirl::Syntax::Methods
+
 end
 
-Dir.glob( File.expand_path("../../app/models", __FILE__)+'/**/*.rb' ).each do |file|
+Dir.glob( File.expand_path("../../app/{models,serializers}", __FILE__)+'/**/*.rb' ).each do |file|
   require file
 end
