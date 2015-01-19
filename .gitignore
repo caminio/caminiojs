@@ -10,3 +10,4 @@ _site
 images
 coverage
 spec/dummy/tmp
+:file
