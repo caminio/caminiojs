@@ -38,6 +38,8 @@ class User
 
   has_and_belongs_to_many :organizations
 
+  has_many :mediafiles, as: :parent
+
   has_many :api_keys
   embeds_many :organization_roles
   # embeds_many :user_access_rules

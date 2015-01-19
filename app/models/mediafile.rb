@@ -5,12 +5,17 @@ class Mediafile
 
   include Mongoid::Paperclip
 
+  @@default_thumb_sizes = { 
+    original: ['1920x1680>']
+  }
+
   has_mongoid_attached_file :file,
-    # path:         ':file/:id/:style.:extension',
-    styles: {
-      original: ['1920x1680>'],
-      thumb: ['100x100#']
+    path:         ':file/:id/:style.:extension',
+    :styles => lambda { |attachment| 
+      organization = Organization.find RequestStore.store['organization_id']
+      { :thumb => ["100x100#"] }.merge organization.thumb_sizes || @@default_thumb_sizes 
     }
+
 
   validates_attachment_content_type :file, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
 

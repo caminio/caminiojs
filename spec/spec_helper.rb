@@ -10,6 +10,8 @@ require File.expand_path("../dummy/config/environment.rb", __FILE__)
 # require 'rspec/rails'
 require 'rack/test'
 
+require 'paperclip/rack'
+
 require 'simplecov'
 require 'hashie'
 SimpleCov.start

@@ -8,6 +8,7 @@ class Organization
   field :fqdn, type: String
   field :settings, type: Object
   field :suspended, type: Boolean, default: false
+  field :thumb_sizes, type: Hash, default: {}
   
   has_and_belongs_to_many :users
   # has_and_belongs_to_many :app_plans

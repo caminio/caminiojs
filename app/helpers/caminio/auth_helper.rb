@@ -29,6 +29,10 @@ module Caminio
       end
       error!('MissingTokenOrApiKey', 401) unless token
       return false unless @token = ApiKey.find_by( token: token )
+      RequestStore.store['current_user_id'] = @token.user.id.to_s
+      if @token.user.organizations.first
+        RequestStore.store['organization_id'] ||= @token.user.organizations.first.id.to_s
+      end
       @token.expires_at > Time.now
     end
 
