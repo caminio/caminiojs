@@ -5,6 +5,7 @@ require "grape-entity"
 
 require "roadie-rails"
 require "paperclip"
+require "mongoid_paperclip"
 
 require 'rack/cors'
 

@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "jquery-rails", "~> 4.0.3"
   spec.add_dependency "coffee-script", "~> 2.3"
   spec.add_dependency "paperclip", "~> 4.2.1"
+  spec.add_dependency "mongoid-paperclip", "~> 0.0.9"
 
   spec.add_dependency "request_store", "~> 1.1"
   spec.add_dependency "rack-cors", "~> 0.2"
