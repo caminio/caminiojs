@@ -33,6 +33,7 @@ module Caminio
         puts "org"
         puts user.organizations.inspect
         present :user, user, with: UserEntity
+        present :groups, user.groups, with: GroupEntity
         present :organizations, user.organizations, with: OrganizationEntity if user.organizations.size > 0
       end
 

@@ -37,6 +37,7 @@ class User
   field :expires_at, type: DateTime
 
   has_and_belongs_to_many :organizations
+  has_and_belongs_to_many :groups
 
   has_many :mediafiles, as: :parent
 

@@ -2,4 +2,4 @@
 
 caminio template:
 
-    rails new blog -m https://github.com/caminio/caminio/template.rb
+    rails new blog -m https://raw.githubusercontent.com/caminio/caminio/v2/template.rb

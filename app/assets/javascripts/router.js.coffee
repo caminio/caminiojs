@@ -13,5 +13,6 @@ Caminio.Router.map ->
     @route 'mine'
     @route 'privacy'
     @route 'admin'
+    @route 'groups', path: ':id'
     @route 'new'
     @route 'edit', path: ':id'

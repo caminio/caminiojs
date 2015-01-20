@@ -8,6 +8,7 @@ class UserEntity < Grape::Entity
   expose :admin
   expose :editor
   expose :organization_ids
+  expose :group_ids
 
   expose :created_at
   expose :updated_at

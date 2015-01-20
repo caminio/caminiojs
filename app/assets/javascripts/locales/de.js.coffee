@@ -46,6 +46,7 @@ Em.merge Em.I18n.availableTranslations.de,
     general: 'Allgemein'
     privacy: 'Privatsphäre'
     administration: 'Administration'
+    groups: 'Gruppen'
     create_account: 'Konto erstellen'
     edit: 'Konto bearbeiten'
     suspend_login: 'Suspendieren (Login verbieten)'

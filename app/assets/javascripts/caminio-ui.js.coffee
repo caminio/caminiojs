@@ -47,12 +47,15 @@ Caminio.User = DS.Model.extend
   api_keys:         DS.hasMany 'api_key'
   organization:     DS.belongsTo 'organization'
   organizations:    DS.hasMany 'organizations'
+  groups:           DS.hasMany 'groups'
   admin:            DS.attr 'boolean', default: false
   editor:           DS.attr 'boolean', default: false
   created_at:       DS.attr 'date'
   updated_at:       DS.attr 'date'
   last_login_at:    DS.attr 'date'
 
+Caminio.Group = DS.Model.extend
+  name:       DS.attr 'string'
 
 #
 # ApiKey

@@ -19,7 +19,7 @@ module Caminio
       desc "lists all organizations for current_user"
       get do
         authenticate!
-        present :organizations, current_user.oganizations, with: OrganizationEntity
+        present :organizations, current_user.organizations, with: OrganizationEntity
       end
 
       #
