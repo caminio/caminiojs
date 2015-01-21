@@ -81,7 +81,7 @@ class User
   end
 
   def aquire_api_key
-    ApiKey.where( user_id: id ).delete_all
+    ApiKey.where( user_id: id, permanent: false ).delete_all
     api_keys.create
   end
 

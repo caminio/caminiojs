@@ -4,11 +4,12 @@ class ApiKey
 
   field :token, type: String
   field :expires_at, type: DateTime
-  field :permanent, type: Boolean
+  field :permanent, type: Boolean, default: false
   field :name, type: String
   field :organization_id, type: String
 
   belongs_to :user
+  has_many :request_tokens
   
   before_create :setup_token, :setup_expires_at, :setup_organization
 

@@ -30,8 +30,6 @@ module Caminio
       get '/current' do
         authenticate!
         user = User.find( @token.user_id )
-        puts "org"
-        puts user.organizations.inspect
         present :user, user, with: UserEntity
         present :organizations, user.organizations, with: OrganizationEntity if user.organizations.size > 0
       end
