@@ -74,36 +74,33 @@ describe Caminio::V1::ApiKeys do
 
   end
 
-  # describe "PUT /lineup_events/:id" do
+  describe "PUT /lineup_events/:id" do
 
-  #   before :each do
-  #     @user = create(:user)
-  #     @lineup_entry = create(:lineup_entry)
-  #     @lineup_event = @lineup_entry.events.create(starts: Date.new())      
-  #     header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
-  #     header 'Organization-id', @user.organizations.first
-  #   end
+    before :each do
+      @user = create(:user)
+      @user.organizations.create name: 'test-org'
+      @api_key = create(:api_key, permanent: true, user_id: @user.id, organization_id: @user.organizations.first.id )  
+      header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
+      header 'Organization-id', @user.organizations.first
+    end
 
-  #   describe "update" do
+    describe "update" do
 
-  #     describe "title" do
+      describe "name" do
 
-  #       before :each do
-  #         @new_starts = Date.new() 
-  #         put "v1/lineup_events/#{@lineup_event.id}", { lineup_event: { starts: @new_starts }, lineup_entry_id: @lineup_entry.id  }
-  #       end
+        before :each do
+          @new_starts = Date.new() 
+          put "v1/api_keys/#{@api_key.id}", { api_key: { name: "a new name" }  }
+        end
 
-  #       it { expect( last_response.status ).to eq(200) }
-  #       it { expect( DateTime.parse( json.lineup_event.starts ) ).to eq( @new_starts ) }
-  #       it { expect( json ).to have_key :lineup_entry }
-  #       it { expect( json ).to have_key :lineup_venue }
-  #       it { expect( json ).to have_key :lineup_ensembles }
+        it { expect( last_response.status ).to eq(200) }
+        it { expect( json.api_key.name ).to eq( "a new name" ) }
 
-  #     end
+      end
 
-  #   end
+    end
 
-  # end
+  end
 
   # describe "DELETE /lineup_events/:id" do
 
