@@ -19,7 +19,7 @@ module Caminio
       desc "lists all groups for current_user"
       get do
         authenticate!
-        groups = Group.find_by organization: current_organization
+        groups = Group.where organization: current_organization
         present :groups, groups, with: GroupEntity
       end
 

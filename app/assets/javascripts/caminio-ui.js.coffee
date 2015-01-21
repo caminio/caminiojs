@@ -56,6 +56,7 @@ Caminio.User = DS.Model.extend
 
 Caminio.Group = DS.Model.extend
   name:       DS.attr 'string'
+Caminio.GroupAdapter = Caminio.ApplicationAdapter.extend()
 
 #
 # ApiKey

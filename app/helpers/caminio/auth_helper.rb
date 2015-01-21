@@ -21,6 +21,10 @@ module Caminio
       @token.user if @token
     end
 
+    def current_organization
+      Organization.find RequestStore.store['organization_id']
+    end
+
     def try_authorize_token
       if token = headers['Authorization']
         token = token.split(' ').last

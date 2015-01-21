@@ -38,10 +38,10 @@
       {{view 'selectize-simple-array'
             classes="form-control"
             promptTranslation="select_language"
-            contentBinding="controller.availableLocales"
+            contentBinding="controller.controllers.sessions.availableLocales"
             optionLabelPath='content.label'
             optionValuePath='content.value'
-            valueBinding='controller.selectedLocale'}}
+            valueBinding='controller.controllers.sessions.selectedLocale'}}
     </div>
 
     <div {{bind-attr class=":form-group errors.termsAccepted:field-with-errors :agree-policies"}}>
