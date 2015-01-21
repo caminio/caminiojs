@@ -66,4 +66,32 @@ describe Caminio::V1::Auth do
 
   end
 
+  describe "/auth/request_token" do
+
+    before :each do
+      @user = create(:user)
+      @user.organizations.create name: 'test-org'
+      header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
+      header 'Organization-id', @user.organizations.first.id
+    end
+
+    it "returns lineup_events json" do
+      @request_tokens_size =  @user.api_keys.first.request_tokens.size
+      expect( @request_tokens_size ).to be == 0
+      get "v1/auth/request_token"
+      expect( last_response.status ).to be == 200
+      expect( json ).to have_key(:request_token)
+      expect( json[:request_token] ).to have_key(:token)
+      expect( @user.api_keys.first.request_tokens.size ).to be == @request_tokens_size + 1
+    end
+
+    it "removes old tokens" do      
+      @user.api_keys.first.request_tokens.create( expires_at: Time.now - 10 )
+      @request_tokens_size =  @user.api_keys.first.request_tokens.size
+      get "v1/auth/request_token"
+      # expect( @user.api_keys.first.request_tokens.size ).to be == @request_tokens_size
+    end
+
+  end
+
 end

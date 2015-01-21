@@ -9,7 +9,7 @@ class ApiKey
   field :organization_id, type: String
 
   belongs_to :user
-  has_many :request_tokens
+  has_many :request_tokens, dependent: :destroy
   
   before_create :setup_token, :setup_expires_at, :setup_organization
 
