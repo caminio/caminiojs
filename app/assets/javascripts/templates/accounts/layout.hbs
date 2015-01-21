@@ -1,7 +1,7 @@
 <div class="menu-pane">
   {{#link-to 'accounts.mine'}}{{t 'account.general'}}{{/link-to}}
-  {{#link-to 'accounts.privacy'}}{{t 'account.privacy'}}{{/link-to}}
   {{#if controllers.application.currentUser.admin}}
+  {{#link-to 'accounts.groups' controllers.application.currentUser.id}}{{t 'account.groups'}}{{/link-to}}
   {{#link-to 'accounts.admin'}}{{t 'account.administration'}}{{/link-to}}
   {{/if}}
 </div>
