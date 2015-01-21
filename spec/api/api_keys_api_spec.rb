@@ -32,53 +32,47 @@ describe Caminio::V1::ApiKeys do
 
   end
 
-  # describe "POST /lineup_events", focus: true do
+  describe "POST /api_keys", focus: true do
 
-  #   before :each do
-  #     @user = create(:user)
-  #     @lineup_entry = create(:lineup_entry)  
-  #     @lineup_venue = create(:lineup_venue)
-  #     @lineup_ensemble = create(:lineup_ensemble)
-  #     header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
-  #   end
+    before :each do
+      @user = create(:user)
+      @user.organizations.create name: 'test-org'
+      header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
+    end
 
-  #   let(:url){ 'v1/lineup_events' }
-  #   let(:error_400){ 'lineup_event is missing' }
-  #   let(:post_attr){ { 
-  #     lineup_event: { 
-  #       starts: Date.new(), 
-  #       lineup_venue_id: @lineup_venue.id, 
-  #       lineup_ensemble_ids: [ @lineup_ensemble.id ] }, 
-  #     lineup_entry_id: @lineup_entry.id } 
-  #   }
+    let(:url){ 'v1/api_keys' }
+    let(:error_400){ 'api_key is missing' }
+    let(:post_attr){ { 
+      api_key: { 
+        user_id: @user.id,
+        name: "an api_key"
+      }
+    }}
 
-  #   describe "requires" do
+    describe "requires" do
 
-  #     it { post(url); expect( last_response.status ).to be == 400 }
+      it { post(url); expect( last_response.status ).to be == 400 }
 
-  #     it { post(url); expect( json.error ).to be == error_400 }
+      it { post(url); expect( json.error ).to be == error_400 }
 
-  #     it { post(url, { lineup_event: { } } ); expect( json.error ).to be == error_400 }
+      it { post(url, { api_key: { } } ); expect( json.error ).to be == error_400 }
 
-  #   end
+    end
 
-  #   describe "returns lineup_event" do
+    describe "returns api_key" do
       
-  #     before :each do
-  #       post url, post_attr 
-  #     end
+      before :each do
+        post url, post_attr 
+      end
 
-  #     it{ expect( last_response.status ).to be == 201 }
-  #     it{ expect( json ).to have_key :lineup_event }
-  #     it{ expect( json.lineup_event ).to have_key :lineup_venue_id }
-  #     it{ expect( json.lineup_event ).to have_key :lineup_ensemble_ids }
-  #     it{ expect( json ).to have_key :lineup_entry }
-  #     it{ expect( json ).to have_key :lineup_venue }
-  #     it{ expect( json ).to have_key :lineup_ensembles }
+      it{ expect( last_response.status ).to be == 201 }
+      it{ expect( json ).to have_key :api_key }
+      it{ expect( json.api_key ).to have_key(:name) }
+      it{ expect( json.api_key ).to have_key(:token) }
 
-  #   end
+    end
 
-  # end
+  end
 
   # describe "PUT /lineup_events/:id" do
 

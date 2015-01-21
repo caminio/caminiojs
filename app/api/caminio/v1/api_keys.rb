@@ -47,7 +47,7 @@ module Caminio
         authenticate!
         require_admin!
         key = ApiKey.new( declared( params )[:api_key] )
-        error!({ error: 'SavingFailed', details: user.errors.full_messages}, 422) unless user.save
+        error!({ error: 'SavingFailed', details: key.errors.full_messages}, 422) unless key.save
         present :api_key, key, with: ApiKeyEntity
       end
 
