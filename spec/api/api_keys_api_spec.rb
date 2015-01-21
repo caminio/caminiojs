@@ -74,7 +74,7 @@ describe Caminio::V1::ApiKeys do
 
   end
 
-  describe "PUT /lineup_events/:id" do
+  describe "PUT /api_keys/:id" do
 
     before :each do
       @user = create(:user)
@@ -102,21 +102,21 @@ describe Caminio::V1::ApiKeys do
 
   end
 
-  # describe "DELETE /lineup_events/:id" do
+  describe "DELETE /api_keys/:id" do
 
-  #   before :each do
-  #     @user = create(:user)
-  #     @lineup_entry = create(:lineup_entry)
-  #     @lineup_event = @lineup_entry.events.create(starts: Date.new())      
-  #     header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
-  #     header 'Organization-id', @user.organizations.first
-  #     delete "v1/lineup_events/#{@lineup_event.id}", { lineup_entry_id: @lineup_entry.id  }
-  #   end
+    before :each do
+      @user = create(:user)
+      @user.organizations.create name: 'test-org'
+      @api_key = create(:api_key, permanent: true, user_id: @user.id, organization_id: @user.organizations.first.id )      
+      header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
+      header 'Organization-id', @user.organizations.first
+      delete "v1/api_keys/#{@api_key.id}"
+    end
 
-  #   it{ expect( last_response.status ).to be == 200 }
-  #   it{ expect( json ).to eq({}) }
+    it{ expect( last_response.status ).to be == 200 }
+    it{ expect( json ).to eq({}) }
 
-  # end
+  end
 
 end
 
