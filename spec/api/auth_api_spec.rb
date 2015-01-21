@@ -86,10 +86,13 @@ describe Caminio::V1::Auth do
     end
 
     it "removes old tokens" do      
-      @user.api_keys.first.request_tokens.create( expires_at: Time.now - 10 )
+      @user.api_keys.first.request_tokens.create
+      old_token = @user.api_keys.first.request_tokens.first
+      old_token.expires_at = ( Date.today - 1 ).to_datetime
+      old_token.save
       @request_tokens_size =  @user.api_keys.first.request_tokens.size
       get "v1/auth/request_token"
-      # expect( @user.api_keys.first.request_tokens.size ).to be == @request_tokens_size
+      expect( @user.api_keys.first.request_tokens.size ).to be == @request_tokens_size
     end
 
   end
