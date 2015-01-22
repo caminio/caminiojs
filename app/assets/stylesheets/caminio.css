@@ -5,10 +5,12 @@
  *= require_self
  */
 
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic,900);
+
 body{ 
   height: 100%; 
   background: #e5e5e5; 
-  font-family: 'PT Sans', sans-serif; 
+  font-family: 'Roboto', sans-serif; 
 }
 
 .main-wrap{ 
@@ -283,5 +285,9 @@ body{
 }
 
 .form-actions{
+  text-align: right;
+}
+
+.align-right{
   text-align: right;
 }

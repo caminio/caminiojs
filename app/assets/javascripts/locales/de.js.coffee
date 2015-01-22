@@ -35,10 +35,14 @@ Em.merge Em.I18n.availableTranslations.de,
   edit_entry: 'Eintrag bearbeiten'
   entry_saved: 'Eintrag gespeichert'
 
+  new: 'Neu'
   name: 'Name'
   created_at: 'Erstellt am'
   email: 'Email'
   organization: 'Organisation'
+
+  users:
+    title: 'Benutzerkonten'
 
   account:
     personal: 'Angaben zur Person'

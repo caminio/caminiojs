@@ -180,6 +180,11 @@ body .dropdown-menu{
   border-radius: 0;
 }
 
+body .dropdown .btn:active,
+body .dropdown .btn.active{
+  box-shadow: none;
+}
+
 body .dropdown-menu > li > a:hover{
   background: #1b8fc3;
   color: #fff;
