@@ -18,6 +18,7 @@ module Caminio
       Rails.application.config.assets.precompile += %w( caminio.js 
                                                         caminio.css
                                                         mailer.css
+                                                        loader.gif
                                                         3rd/font-awesome/*
                                                         3rd/bootstrap.min.css
                                                         3rd/font-awesome.css
