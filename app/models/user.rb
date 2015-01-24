@@ -35,6 +35,8 @@ class User
   field :api_user, type: Boolean
   field :expires_at, type: DateTime
 
+  field :suspended, type: Boolean, default: false
+
   has_and_belongs_to_many :organizations
   has_and_belongs_to_many :groups
 
@@ -97,6 +99,10 @@ class User
     organization_roles.where( organization_id: current_organization_id ).first
   end
   alias_method :role, :current_organization_role
+
+  def role_name
+    current_organization_role && current_organization_role.name
+  end
 
   def is_superuser?
     superusers = Rails.configuration.caminio.superusers

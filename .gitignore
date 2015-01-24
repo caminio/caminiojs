@@ -7,7 +7,6 @@ doc
 .tmp
 test.log
 _site
-images
 coverage
 spec/dummy/tmp
 :file

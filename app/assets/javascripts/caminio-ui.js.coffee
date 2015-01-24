@@ -40,8 +40,11 @@ Caminio.User = DS.Model.extend
       str += @get('email')
     str
   ).property 'firstname', 'lastname', 'username', 'email'
+  role_name:        DS.attr 'string', default: 'user'
+  locale:           DS.attr 'string', default: Em.I18n.locale
   username:         DS.attr 'string'
   superuser:        DS.attr 'boolean'
+  suspended:        DS.attr 'boolean'
   firstname:        DS.attr 'string'
   lastname:         DS.attr 'string'
   email:            DS.attr 'string'
@@ -94,11 +97,16 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
     @store.find 'user', userId
       .then (user)=>
         @redirectToLogin(transition) unless user
+        @checkAdmin(user) if @get('requireAdmin')
         @store.find 'organization', orgId
       .catch (error)=>
         console.log 'error caught', error
         @controllerFor('sessions').reset()
         @transitionTo 'sessions'
+
+  checkAdmin: (user)->
+    return if user.get('admin')
+    @transitionTo 'accounts.mine'
 
   redirectToLogin: (transition)->
     @controllerFor('sessions').set('attemptedTransition', transition)
@@ -131,6 +139,11 @@ Caminio.SessionsController = Ember.Controller.extend
   password: ''
 
   availableLocales: [{ label: 'Deutsch', value: 'de'}, { label: 'English', value: 'en' }]
+  availableRoles: [
+    { label: Em.I18n.t('roles.user'), value: 'user' }
+    { label: Em.I18n.t('roles.editor'), value: 'editor' }
+    { label: Em.I18n.t('roles.admin'), value: 'admin' }
+  ]
   selectedLocale: Ember.I18n.locale
   observeSelectedLocale: (->
     return unless @get('selectedLocale')
@@ -239,3 +252,10 @@ Caminio.DestroyOnCancelMixin = Ember.Mixin.create
       if @get('controller.content.isNew')
         @get('controller.content').destroyRecord()
       true
+
+Caminio.NotyUnknownError = (err)->
+  console.log 'error', err
+  noty
+    type: 'error'
+    text: Em.I18n.t('errors.unknown')
+    timeout: false

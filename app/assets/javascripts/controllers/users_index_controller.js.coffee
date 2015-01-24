@@ -1,2 +1,1 @@
-Caminio.UsersIndexController = Ember.ObjectController.extend
-  needs: ['application']
+Caminio.UsersIndexController = Caminio.UsersEditController.extend()

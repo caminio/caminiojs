@@ -4,7 +4,14 @@ class OrganizationRole
   embedded_in :user
   belongs_to :organization
 
-  field :admin, type: Boolean, default: false
-  field :editor, type: Boolean, default: false
+  field :name, type: String, default: 'default'
+
+  def admin?
+    name == 'admin'
+  end
+
+  def editor?
+    %w(editor admin).include? name
+  end
 
 end

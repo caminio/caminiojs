@@ -6,6 +6,10 @@
   overflow: hidden;
 }
 
+.click-form > .ember-view.visible-overflow{
+  overflow: initial;
+}
+
 .click-form .form-horizontal .control-label{
   text-align: left;
 }
@@ -26,8 +30,23 @@
   border-top-color: #fff;
 }
 
+
+.click-form .form-control.btn-danger.btn-delete{
+  color: #777;
+  text-align: left;
+}
+
+.click-form .form-control.btn-danger.btn-delete:hover{
+  color: #fff;
+  text-align: center;
+}
+
 .click-form .form-group{
   margin: 0;
+}
+
+.click-form .form-control.btn-group{
+  padding: 0;
 }
 
 .click-form .value-saved{

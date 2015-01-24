@@ -8,6 +8,7 @@
 #= require 3rd/ember-animate
 #= require 3rd/i18n
 #= require 3rd/i18n-plurals
+#= require 3rd/bootbox.min
 #= require 3rd/moment
 #= require 3rd/moment.de
 #= require 3rd/jquery.cookie

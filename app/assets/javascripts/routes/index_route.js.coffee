@@ -1,1 +1,3 @@
-Caminio.IndexRoute = Caminio.AuthenticatedRoute.extend()
+Caminio.IndexRoute = Ember.Route.extend
+   beforeModel: ->
+    @transitionTo 'accounts.mine'

@@ -73,8 +73,7 @@ module Caminio
         if organization_id && organization = Organization.find(organization_id)
           user.organizations << organization
           user.organization_roles.create organization: organization, 
-            admin: params.role == 'admin',
-            editor: /editor|admin/.match(params.role)
+            name: params.role
           error!('SavingOrganizationFailed',500) unless user.save
         end
         present :user, user, with: UserEntity
@@ -189,6 +188,8 @@ module Caminio
           optional :username
           optional :firstname
           optional :lastname
+          optional :suspended
+          optional :locale
         end
         optional :role, values: ['user','admin','editor']
         optional :organization_id
@@ -197,11 +198,12 @@ module Caminio
         authenticate!
         user = get_user!
         require_admin_or_current_user!
+        params.user.suspended = false if params.id == current_user._id.to_s
+        params.role = params.user.role_name if current_user.is_admin?
         user.update_attributes( declared(params)[:user] )
-        if current_user.is_admin? && params.role
+        if current_user.is_admin? && current_user._id.to_s != params.id && params.role
           user_org_role = user.organization_roles.find_or_create_by organization_id: (headers['Organization-Id'] || params.organization_id)
-          user_org_role.update_attributes admin: params.role == 'admin',
-            editor: /editor|admin/.match(params.role)
+          user_org_role.update_attributes name: params.role
         end
         present :user, user.reload, with: UserEntity
       end

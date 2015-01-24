@@ -9,6 +9,7 @@ Em.merge Em.I18n.availableTranslations.de,
   password: 'Passwort'
   login: 'Anmelden'
   logout: 'Abmelden'
+  aborted: 'Abgebrochen'
   no_account_yet: 'Noch kein Konto?'
   back_to_login: 'Zurück zum Login'
   signup: 'Kostenlos Registrieren'
@@ -42,7 +43,6 @@ Em.merge Em.I18n.availableTranslations.de,
   created_at: 'Erstellt am'
   email: 'Email'
   phone: 'Mobiltelefon'
-  organization: 'Organisation'
   current_organization: 'Aktuelle Organisation'
 
   users:
@@ -52,6 +52,30 @@ Em.merge Em.I18n.availableTranslations.de,
     allowed: 'Max. Benutzer (Quota)'
     new_0: 'Neuer'
     new_1: 'Benutzer'
+
+  roles:
+    admin: 'Administrator'
+    editor: 'Redakteur'
+    user: 'Standard'
+
+  user:
+    role: 'Rolle'
+    role_changed: 'Benutzerkonto <tt>{{name}}</tt> ist jetzt <strong>{{role}}</strong>'
+    locale_changed: 'Sprache für das Benutzerkonto wurde auf <strog>{{locale}}</strong> gesetzt'
+    language: 'Sprache'
+    general: 'Allgemein'
+    edit: 'Benutzerkonto bearbeiten'
+    select_role: 'Rolle wählen'
+    suspended: 'Suspendiert'
+    activity_status: 'Aktivitätsstatus'
+    active: 'Aktiv'
+    really_suspend: 'Möchtest du dieses Benutzerkonto wirklich suspenieren?'
+    has_been_suspended: 'Das Benutzerkonto wurde suspendiert. Login ist nicht mehr möglich'
+    back_active: 'Das Benutzerkonto ist jetzt aktiv und kann wieder verwendet werden'
+    really_delete: 'Um das Benutzerkonto <tt>{{email}}</tt> <strong>unwiderruflich</strong> zu löschen, gib bitte noch einmal die Email Adresse zur Bestätigung ein'
+    has_been_deleted: 'Das Benutzerkonto <strong>{{name}}</strong> wurde gelöscht'
+    delete: 'Löschen'
+    delete_permanently: 'Permanent löschen'
 
   groups:
     title: 'Gruppen'
@@ -64,6 +88,7 @@ Em.merge Em.I18n.availableTranslations.de,
     show_all: 'Alle Organisationen anzeigen'
 
   organization:
+    title: 'Organisation'
     edit: 'Organisation bearbeiten'
     name: 'Name der Organisation'
     create_new: 'Neue Organisation erstellen'
@@ -100,3 +125,6 @@ Em.merge Em.I18n.availableTranslations.de,
     key_invalid_or_expired: 'Der Schlüssel ist falsch oder abgelaufen. Bitte wiederhole den Vorgang'
     code_required: 'Bitte gib den Code ein, der dir in der Email zugesandt wurde'
     unkown: 'Unbekannter Fehler! Bitte kontaktiere den Support'
+    cannot_suspend_yourself: 'Du kannst dich nicht selbst suspendieren'
+    cannot_delete_until_new_admin: 'Du kannst dein Konto nicht löschen, bevor nicht ein neuer Administrator bestimmt wurde'
+    please_remove_yourself_in_your_account_settings: 'Bitte lösche dein eigenes Konto ausschließlich in deinen Kontoeinstellungen'

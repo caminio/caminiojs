@@ -64,6 +64,7 @@ $.noty.themes.relax = {
         this.$message.css({
             fontSize  : '14px',
             lineHeight: '16px',
+            fontWeight : '600',
             textAlign : 'center',
             padding   : '10px',
             width     : 'auto',
@@ -158,7 +159,7 @@ $.noty.themes.relax = {
                 this.$bar.css({backgroundColor: '#1b8fc3', borderColor: '#1b8fc3', color: '#fff'});
                 break;
             case 'warning':
-                this.$bar.css({backgroundColor: '#fcf8e3', borderColor: '#fcf8e3', color: '#fff'});
+                this.$bar.css({backgroundColor: '#FFEB3C', borderColor: '#FFEB3C', color: '#444'});
                 this.$buttons.css({borderTop: '1px solid #FFC237'});
                 break;
             case 'error':

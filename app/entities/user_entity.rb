@@ -10,6 +10,9 @@ class UserEntity < Grape::Entity
   expose :organization_ids
   expose :group_ids
   expose :superuser
+  expose :suspended
+  expose :role_name
+  expose :locale
 
   expose :created_at
   expose :updated_at

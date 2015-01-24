@@ -17,6 +17,7 @@ describe Caminio::V1::Users do
 
     it "passes with valid api_key" do
       header 'Authorization', "Bearer #{@api_key.token}"
+      header 'Organization-id', @user.organizations.create(name: 'test').id
       get @url
       expect(last_response).to be_ok
       expect(json).to have_key('users')

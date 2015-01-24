@@ -45,7 +45,7 @@ class Organization
 
   def set_user_organization_role
     owner = users.first
-    owner.organization_roles.create organization: self, admin: true, editor: true
+    owner.organization_roles.create organization: self, name: 'admin'
     owner.save
   end
 

@@ -50,19 +50,15 @@ Caminio.AccountsAdminController = Ember.ObjectController.extend
         headers: { 'Organization_id': org.id }
       @set 'loadingUsers', true
       @set 'loadingGroups', true
-      @get('users').clear()
-      @get('groups').clear()
       @store.find('user', { clearCache: new Date() })
         .then (users)=>
-          console.log 'users', arguments
-          users.forEach (user)=>
-            @get('users').pushObject(user)
+          @set 'users', users
           @set 'loadingUsers', false
           @store.find('group', { clearCache: new Date() })
           .then (groups)=>
-            groups.forEach (group)=>
-              @get('groups').pushObject(group)
+            @set 'groups', groups
             @set 'loadingGroups', false
+            @set 'showOrgItems', false
 
 Caminio.OrganizationItemController = Ember.ObjectController.extend
 

@@ -10,7 +10,7 @@ $.noty.defaults =
     close: 'animated bounceOutRight'
     easing: 'swing'
     speed: 500
-  timeout: false
+  timeout: 3000
   force: false
   modal: false
   maxVisible: 5

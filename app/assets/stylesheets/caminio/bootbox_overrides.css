@@ -1,0 +1,12 @@
+body .bootbox .modal-header,
+body .bootbox .modal-body{
+  background: #eee;
+}
+
+body .bootbox .modal-header+.modal-body{
+  background: none;
+}
+
+body .bootbox .bootbox-close-button{
+  font-size: 28px;
+}
