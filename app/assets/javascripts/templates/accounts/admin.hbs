@@ -1,19 +1,82 @@
 <section class="account-admin">
 
-  <div class="row">
-
-    <div class="col-md-4 card">
-      <div class="big-num-wrap">
-        <span class="big-num">{{users.length}}</span>
-        <span class="big-num-subtext">{{t 'users.title'}}</span>
+  <div {{bind-attr class=":row :org-card-wrap showOrgItems:open"}}>
+    <div class="col-md-12 card org-card">
+      <div class="med-text-wrap">
+        <div class="med-text">{{controllers.application.currentOrganization.name}}</div>
+        <div class="med-text-subtext">
+          {{#if otherOrganizationsAmount}}
+            {{t 'organizations.further' count=otherOrganizationsAmount}}
+          {{else}}
+            {{t 'current_organization'}}
+          {{/if}}
+        </div>
       </div>
-      {{#link-to 'accounts.new' class='big-action'}}{{t 'new'}}{{/link-to}}
+      <div class="med-action org-items-toggle" {{translateAttr title='organizations.show_all'}}
+          {{action 'toggleOrgItems'}}>
+        <i class="fa fa-angle-down"></i>
+      </div>
+      {{#link-to 'organizations.new' class="new-org"}}
+        <div class="new-org-large">{{t 'organization.new_0'}}</div>
+        <div class="new-org-small">{{t 'organization.new_1'}}</div>
+      {{/link-to}}
+    </div>
+    <div class="card org-card org-items">
+      {{#each organization in organizations itemController='organization_item'}}
+      <div {{bind-attr class=":org-item controller.isCurrentOrganization:current"}}
+          {{action 'switchOrganization' organization}}>
+        <span class="org-check fa fa-check"></span>
+        {{#link-to 'organizations.edit' organization bubbles=false class="org-action" titleTranslation='organization.edit'}}
+          <i class="fa fa-pencil"></i>
+        {{/link-to}}
+        <div class="org-title">{{organization.name}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="row col-cards-row">
+
+    <div class="col-md-6">
+      <div class="card col-card blue-col">
+        {{#if loadingUsers}}
+          <div class="card-refreshing"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+        {{/if}}
+        <div class="big-num-wrap" {{action 'goTo' 'users.index'}}>
+          <span class="big-num">{{users.length}}</span>
+          <div class="big-num-subtext">{{t 'users.title'}}</div>
+          <div class="bottom-bar row">
+            <div class="col-md-6">{{onlineUsersNum}} {{t 'users.online'}}</div>
+            <div class="col-md-6">
+              {{t 'users.quota'}}: {{users.length}} / {{controllers.application.currentOrganization.user_quota}}
+            </div>
+          </div>
+        </div>
+        {{#link-to 'users.new' class='big-action'}}
+          {{t 'users.new_0'}}
+          <span class="small-text">{{t 'users.new_1'}}</span>
+        {{/link-to}}
+      </div>
     </div>
 
-    <div class="col-md-4">
-    </div>
-
-    <div class="col-md-4">
+    <div class="col-md-6">
+      <div class="card col-card purple-col">
+        {{#if loadingGroups}}
+          <div class="card-refreshing"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+        {{/if}}
+        <div class="big-num-wrap">
+          <span class="big-num">{{groups.length}}</span>
+          <div class="big-num-subtext">{{t 'groups.title'}}</div>
+          <div class="bottom-bar">
+            {{t 'groups.largest'}}: 
+            {{largestGroup.name}} <span class="desc">{{largestGroup.users.length}}</span>
+          </div>
+        </div>
+        {{#link-to 'groups.new' class='big-action'}}
+          {{t 'groups.new_0'}}
+          <span class="small-text">{{t 'groups.new_1'}}</span>
+        {{/link-to}}
+      </div>
     </div>
 
   </div>

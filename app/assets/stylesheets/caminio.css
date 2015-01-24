@@ -13,6 +13,10 @@ body{
   font-family: 'Roboto', sans-serif; 
 }
 
+.desc{
+  color: #888;
+}
+
 .main-wrap{ 
   position: relative; 
   left: 10px; 
@@ -48,8 +52,29 @@ body{
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 }
 
+.card > .card-refreshing{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(255,255,255,0.9);
+  text-align: center;
+}
+
+.card > .card-refreshing > .fa{
+  font-size: 40px;
+  color: #999;
+  margin: 27px 0;
+}
+
 .card.card-margin-top{
   margin-top: 20px;
+}
+
+.card.card-margin-bottom{
+  margin-bottom: 20px;
 }
 
 .card input[type=text]{

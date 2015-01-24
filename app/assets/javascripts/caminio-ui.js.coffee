@@ -22,6 +22,8 @@ Caminio.ApplicationStore = DS.Store.extend()
 
 Caminio.Organization = DS.Model.extend
   name:             DS.attr 'string'
+  fqdn:             DS.attr 'string'
+  user_quota:       DS.attr 'number'
   users:            DS.hasMany 'users', inverse: 'organizations'
   
 Caminio.OrganizationAdapter = Caminio.ApplicationAdapter.extend()
@@ -39,6 +41,7 @@ Caminio.User = DS.Model.extend
     str
   ).property 'firstname', 'lastname', 'username', 'email'
   username:         DS.attr 'string'
+  superuser:        DS.attr 'boolean'
   firstname:        DS.attr 'string'
   lastname:         DS.attr 'string'
   email:            DS.attr 'string'
@@ -53,6 +56,7 @@ Caminio.User = DS.Model.extend
   created_at:       DS.attr 'date'
   updated_at:       DS.attr 'date'
   last_login_at:    DS.attr 'date'
+  last_request_at:  DS.attr 'date'
 
 Caminio.Group = DS.Model.extend
   name:       DS.attr 'string'
@@ -92,6 +96,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         @redirectToLogin(transition) unless user
         @store.find 'organization', orgId
       .catch (error)=>
+        console.log 'error caught', error
         @controllerFor('sessions').reset()
         @transitionTo 'sessions'
 

@@ -1,0 +1,1 @@
+Caminio.UsersNewView = Caminio.FadedView.extend()

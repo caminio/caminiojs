@@ -35,14 +35,42 @@ Em.merge Em.I18n.availableTranslations.de,
   edit_entry: 'Eintrag bearbeiten'
   entry_saved: 'Eintrag gespeichert'
 
+  superuser_actions: 'Superuser Aktionen'
+
   new: 'Neu'
   name: 'Name'
   created_at: 'Erstellt am'
   email: 'Email'
+  phone: 'Mobiltelefon'
   organization: 'Organisation'
+  current_organization: 'Aktuelle Organisation'
 
   users:
     title: 'Benutzerkonten'
+    online: 'Benutzer online'
+    quota: 'Quota'
+    allowed: 'Max. Benutzer (Quota)'
+    new_0: 'Neuer'
+    new_1: 'Benutzer'
+
+  groups:
+    title: 'Gruppen'
+    largest: 'Größte Gruppe'
+    new_0: 'Neue'
+    new_1: 'Gruppe'
+
+  organizations:
+    further: '{{count}} weitere Organisationen'
+    show_all: 'Alle Organisationen anzeigen'
+
+  organization:
+    edit: 'Organisation bearbeiten'
+    name: 'Name der Organisation'
+    create_new: 'Neue Organisation erstellen'
+    new_0: 'Neue'
+    new_1: 'Organisation'
+    general: 'Allgemein'
+    fqdn: 'Domäne (FQDN)'
 
   account:
     personal: 'Angaben zur Person'
@@ -62,6 +90,7 @@ Em.merge Em.I18n.availableTranslations.de,
     email_exists: 'Die Email Adresse {{email}} ist schon registriert'
     email_unknown: 'Die Email Adresse {{email}} ist uns nicht bekannt'
     organization_exists: 'Diese Organisation ist bereits registriert'
+    organization_name_required: 'Organisationsname muss vergeben werden'
     not_an_email_address: 'Die angegebene Email Adresse ist ungültig'
     organization_required: 'Wenn du dich als Organisation registrieren möchtest, musst du auch einen Organisationsnamen angeben. Ansonsten wähle "Privat"'
     password_required: 'Bitte wähle ein Passwort'

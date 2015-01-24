@@ -37,7 +37,9 @@ module Caminio
       if @token.user.organizations.first
         RequestStore.store['organization_id'] ||= @token.user.organizations.first.id.to_s
       end
-      @token.expires_at > Time.now
+      return false if @token.expires_at < Time.now
+      @token.update_attributes(last_request_at: Time.now, expires_at: 8.hours.from_now)
+      true
     end
 
   end

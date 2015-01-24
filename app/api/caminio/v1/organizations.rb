@@ -23,6 +23,52 @@ module Caminio
       end
 
       #
+      # POST /
+      #
+      params do
+        requires :organization, type: Hash do
+          requires :name
+        end
+      end
+      desc "create a new organization with current_user as owner"
+      post do
+        authenticate!
+        if Organization.where( name: params.organization.name ).count > 0
+          return error!({ error: 'OrganizationExists', details: params.organization.name },409)
+        end
+        unless org = current_user.organizations.create(declared(params)[:organization])
+          return error!({ error: 'ValidationError', details: org.errors.full_messages }, 422)
+        end
+        present :organization, org, with: OrganizationEntity
+      end
+
+      #
+      # PUT /
+      #
+      params do
+        requires :organization, type: Hash do
+          requires :name
+          optional :fqdn
+          optional :user_quota
+        end
+      end
+      desc "create a new organization with current_user as owner"
+      put ':id' do
+        authenticate!
+        if Organization.where( name: params.organization.name, _id: { '$ne': BSON::ObjectId.from_string(params.id)}).count > 0
+          return error!({ error: 'OrganizationExists', details: params.organization.name },409)
+        end
+        org = current_user.organizations.find params.id
+        return error!('NotFound',404) unless org
+        params.organization.user_quota = org.user_quota unless current_user.is_superuser?
+        org.update_attributes( declared(params)[:organization] )
+        unless org.save
+          return error!({ error: 'ValidationError', details: org.errors.full_messages }, 422)
+        end
+        present :organization, org, with: OrganizationEntity
+      end
+
+      #
       # GET /:id
       #
       desc "returns the organization for given id"

@@ -1,0 +1,1 @@
+Caminio.OrganizationsEditView = Caminio.FadedView.extend()

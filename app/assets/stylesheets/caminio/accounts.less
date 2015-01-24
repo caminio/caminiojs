@@ -1,0 +1,291 @@
+@import '../_caminio-material-colors';
+
+.account-admin .heading{
+  margin: 40px 0 20px;
+  height: 30px;
+}
+
+.account-admin .heading .dropdown{
+  margin: -6px 0 0;
+  width: 40%;
+  display: inline-block;
+}
+
+.account-admin .dropdown .btn{
+  background: none;
+}
+
+.account-admin .heading label{
+  color: #999;
+  font-size: 16px;
+}
+
+.account-admin .dropdown-menu.dropdown-menu-grey li{
+  min-width: 230px;
+}
+
+.account-admin .col-cards-row{
+  margin-top: 20px;
+}
+
+.account-admin .col-cards-row .col-md-6:first-child{
+  padding-left: 0;
+}
+
+.account-admin .col-cards-row .col-md-6:last-child{
+  padding-right: 0;
+}
+
+.account-admin .col-card{
+  position: relative;
+  height: 100px;
+}
+
+.big-num-wrap{
+  float: left;
+  text-align: center;
+  padding: 14px 23px;
+  position: relative;
+  width: 289px;
+  height: 100px;
+}
+
+.big-num{
+  float: left;
+  font-size: 50px;
+  font-weight: 700;
+  width: 100%;
+  line-height: 0.8em;
+  cursor: pointer;
+}
+
+.purple-col .big-num,
+.purple-col .big-num-subtext{
+  color: @deep-purple;
+}
+
+.blue-col .big-num,
+.blue-col .big-num-subtext{
+  color: @blue-grey;
+}
+
+.big-num-subtext{
+  font-size: 11px;
+}
+
+.big-action,
+.med-action{
+  background: none repeat scroll 0 0 #eee;
+  color: #999;
+  display: inline-block;
+  float: right;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 34px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100px;
+  line-height: 0.8em;
+  border-left: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.purple-col .big-action:hover{
+  background-color: @deep-purple;
+}
+
+.blue-col .big-action:hover{
+  background-color: @blue-grey;
+}
+
+.big-action:hover{
+  color: #fff;
+  text-decoration: none;
+  border-color: transparent;
+  transition: all 0.3s;
+}
+
+.big-action .small-text{
+  font-size: 12px;
+}
+
+.med-text-wrap{
+  padding: 10px 40px;
+  float: left;
+}
+
+.med-text{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1em;
+  margin-top: 5px;
+}
+
+.med-action{
+  height: 60px;
+  width: 60px;
+  padding: 20px;
+  margin-right: -15px;
+}
+
+.med-text-subtext{
+  font-size: 12px;
+  color: #999;
+}
+
+.big-num-wrap .bottom-bar{
+  bottom: 5px;
+  color: #fff;
+  font-size: 12px;
+  height: 22px;
+  left: 3px;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  padding: 2px;
+}
+
+
+
+.blue-col .big-num-wrap .bottom-bar{
+  background-color: @blue-grey;
+}
+
+.purple-col .big-num-wrap .bottom-bar{
+  background-color: @deep-purple;
+}
+
+.org-card .med-text,
+.org-card .med-text-subtext{
+  color: @indigo;
+}
+
+.org-card .med-action:hover{
+  background-color: @indigo;
+  color: #fff;
+  cursor: pointer;
+}
+
+.org-item .org-action{
+  color: #777;
+  float: right;
+  padding: 15px 39px 15px 23px;
+  margin-right: -15px;
+  border-left: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.org-item{
+  position: relative;
+  border-bottom: 1px solid #ddd;
+}
+
+.org-item:last-child{
+  border: none;
+}
+
+.org-item .org-check{
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  font-size: 18px;
+  color: #666;
+  display: none;
+}
+
+.org-item .org-action:hover{
+  background: #eee;
+  cursor: pointer;
+  border-color: #ddd;
+  transition: all 0.3s;
+}
+
+.org-item:not(.current):hover .org-action:hover .fa{
+  color: #333;
+}
+
+.org-item:not(.current):hover{
+  background: @indigo;
+  color: #fff;
+  cursor: pointer;
+}
+
+.org-item:not(.current):hover .fa{
+  color: #fff;
+}
+
+.org-item .org-title{
+  padding: 15px 55px;
+}
+
+.org-item.current .org-title{
+  font-weight: 600;
+}
+
+.org-item.current .org-check{
+  display: block;
+}
+
+.org-card-wrap{
+  margin-top: 20px;
+}
+
+.org-card-wrap .org-items{
+  max-height: 0;
+  overflow: hidden;
+  box-shadow: none;
+  transition: max-height 0.5s;
+}
+
+.org-card-wrap.open .org-items{
+  max-height: 1000px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  transition: max-height 1.9s;
+}
+
+.org-card-wrap .org-items-toggle .fa{
+  transition: transform 0.5s;
+}
+
+.org-card-wrap.open .org-items-toggle .fa{
+  transform: rotate(180deg);
+  transition: transform 0.5s;
+}
+
+.org-card-wrap .new-org{
+  max-width: 0;
+  transition: max-width,padding 0.4s;
+  overflow: hidden;
+  border-left: 1px solid #ddd;
+  background: #eee;
+  color: #777;
+  display: inline-block;
+  float: right;
+  font-weight: 600;
+  padding: 16px 0px;
+  line-height: 1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.org-card-wrap .new-org:hover{
+  background: @indigo;
+  color: #fff;
+  border-color: transparent;
+}
+
+.org-card-wrap.open .new-org{
+  max-width: 300px;
+  padding: 16px 30px;
+  cursor: pointer;
+  transition: padding,max-width 0.5s;
+}
+
+.org-card-wrap .new-org .new-org-large{
+  font-size: 18px;
+}
+
+.org-card-wrap .new-org .new-org-small{
+  font-size: 12px;
+  opacity: 0.8;
+}

@@ -1,0 +1,33 @@
+<div class="menu-pane">
+  <div class="inside-wrap">
+    {{#link-to 'accounts.admin' class="btn btn-back"}}
+      <i class="fa fa-arrow-left"></i>
+    {{/link-to}}
+    <h1>{{t 'organization.edit'}}</h1>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="overview-wrap">
+    <div class="overview-main overview-main-centered">
+
+      <section class="card settings">
+        <h1>{{t 'organization.general'}}</h1>
+        <div class="click-form">
+          {{click-edit-form value=name label='organization.name' parentController=controller}}
+          {{click-edit-form value=fqdn label='organization.fqdn' parentController=controller}}
+        </div>
+      </section>
+
+      {{#if controllers.application.currentUser.superuser}}
+      <section class="card card-margin-top settings">
+        <h1>{{t 'superuser_actions'}}</h2>
+        <form class="click-form form-horizontal">
+          {{click-edit-form value=user_quota label='users.allowed' parentController=controller}}
+        </form>
+      </section>
+      {{/if}}
+      
+    </div>
+  </div>
+</div>

@@ -8,6 +8,6 @@ Caminio.AccountsAdminRoute = Caminio.AuthenticatedRoute.extend
         controller.set('groups',groups)
         @store.find('organization')
         .then (organizations)=>
-          controller.set('organization')
+          controller.set('organizations',organizations)
 
 

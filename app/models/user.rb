@@ -13,7 +13,6 @@ class User
   field :locale, type: String, default: I18n.locale
   field :description, type: String
   field :last_login_at, type: DateTime
-  field :last_request_at, type: DateTime
   field :last_login_ip, type: String
   field :valid_until, type: DateTime
 
@@ -99,6 +98,13 @@ class User
   end
   alias_method :role, :current_organization_role
 
+  def is_superuser?
+    superusers = Rails.configuration.caminio.superusers
+    return false unless superusers
+    superusers.include?(email)
+  end
+  alias_method :superuser, :is_superuser?
+
   def is_admin?
     current_organization_role && current_organization_role.admin?
   end
@@ -111,6 +117,11 @@ class User
 
   def confirmed?
     self.confirmation_code.nil?
+  end
+
+  def last_request_at
+    return unless api_key = self.api_keys.gte( expires_at: Time.now ).first
+    api_key.last_request_at
   end
 
   # def organization_id=(org_id)

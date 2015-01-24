@@ -4,6 +4,7 @@ class ApiKey
 
   field :token, type: String
   field :expires_at, type: DateTime
+  field :last_request_at, type: DateTime
   field :permanent, type: Boolean, default: false
   field :name, type: String
   field :organization_id, type: String

@@ -19,7 +19,7 @@ module Caminio
       desc "lists all users"
       get do
         authenticate!
-        users = User.all
+        users = User.where organization_ids: BSON::ObjectId.from_string(headers['Organization-Id'])
         present :users, users, with: UserEntity
       end
 

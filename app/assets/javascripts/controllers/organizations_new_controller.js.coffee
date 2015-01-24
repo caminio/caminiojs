@@ -1,15 +1,12 @@
-Caminio.AccountsNewController = Ember.ObjectController.extend Caminio.Validations,
+Caminio.OrganizationsNewController = Ember.ObjectController.extend Caminio.Validations,
   needs: ['application']
 
   notyMessages: true
 
   validate:
-    email:
+    name:
       required:
-        message: Em.I18n.t('errors.email_required')
-      match:
-        regexp: /.+@.+/
-        message: Em.I18n.t('errors.not_an_email_address')
+        message: Em.I18n.t('errors.organization_name_required')
 
   actions:
     create: ->
