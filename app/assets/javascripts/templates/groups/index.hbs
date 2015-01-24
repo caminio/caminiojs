@@ -1,0 +1,55 @@
+<div class="menu-pane">
+  <div class="inside-wrap">
+    {{#link-to 'accounts.admin' class="btn btn-back"}}
+      <i class="fa fa-arrow-left"></i>
+    {{/link-to}}
+    <h1>{{t 'groups.title'}}</h1>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="overview-wrap">
+    <div class="overview-main overview-main-centered">
+
+      <section class="account-admin groups">
+
+        <div class="heading">
+          {{#link-to 'groups.new' class="btn btn-primary btn-large new-btn" titleTranslation='account.create_account'}}
+            <span class="fa fa-plus"></span>
+          {{/link-to}}
+        </div>
+
+        <ul class="list list-header">
+          <li>
+          <div class="list-icon"></div>
+          <div class="list-title">{{t 'name'}}</div>
+          <div class="list-col">{{t 'group.members'}}</div>
+          <div class="list-date">{{t 'created_at'}}</div>
+          <div class="list-actions"></div>
+          </li>
+        </ul>
+        <ul class="list">
+          {{#each group in content}}
+          <li>
+          <div class="list-icon">
+            <label {{bind-attr style='group.groupColor'}}>
+              <i class="fa fa-group"></i>
+            </label>
+          </div>
+          <div class="list-title">{{group.name}}</div>
+          <div class="list-col">{{t 'group.num_members' countBinding='group.users.length'}}</div>
+          <div class="list-date">{{formatDate group.created_at}}</div>
+          <div class="list-actions dropdown">
+            <button class="btn btn-pale dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></button>
+            <ul class="dropdown-menu dropdown-menu-grey pull-right">
+              <li>{{#link-to 'groups.edit' group}}{{t 'group.edit'}}{{/link-to}}</li>
+              <li>{{#link-to 'groups.members' group}}{{t 'group.edit_members'}}{{/link-to}}</li>
+            </ul>
+          </div>
+          </li>
+          {{/each}}
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -64,7 +64,7 @@
         {{#if loadingGroups}}
           <div class="card-refreshing"><i class="fa fa-circle-o-notch fa-spin"></i></div>
         {{/if}}
-        <div class="big-num-wrap">
+        <div class="big-num-wrap" {{action 'goTo' 'groups.index'}}>
           <span class="big-num">{{groups.length}}</span>
           <div class="big-num-subtext">{{t 'groups.title'}}</div>
           <div class="bottom-bar">

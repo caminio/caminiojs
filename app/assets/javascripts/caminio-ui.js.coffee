@@ -63,6 +63,9 @@ Caminio.User = DS.Model.extend
 
 Caminio.Group = DS.Model.extend
   name:       DS.attr 'string'
+  created_at: DS.attr 'date'
+  users:      DS.hasMany 'users'
+  
 Caminio.GroupAdapter = Caminio.ApplicationAdapter.extend()
 
 #

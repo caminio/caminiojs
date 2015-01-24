@@ -1,0 +1,1 @@
+Caminio.GroupsIndexController = Caminio.GroupsEditController.extend()

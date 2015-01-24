@@ -83,6 +83,16 @@ Em.merge Em.I18n.availableTranslations.de,
     new_0: 'Neue'
     new_1: 'Gruppe'
 
+  group:
+    create_new: 'Neue Gruppe erstellen'
+    name: 'Name der Gruppe'
+    edit: 'Gruppe bearbeiten'
+    edit_members: 'Mitglieder bearbeiten'
+    members: 'Mitglieder'
+    num_members:
+      one: 'Ein Mitglied'
+      other: '{{count}} Mitglieder'
+
   organizations:
     further: '{{count}} weitere Organisationen'
     show_all: 'Alle Organisationen anzeigen'
@@ -116,6 +126,7 @@ Em.merge Em.I18n.availableTranslations.de,
     email_unknown: 'Die Email Adresse {{email}} ist uns nicht bekannt'
     organization_exists: 'Diese Organisation ist bereits registriert'
     organization_name_required: 'Organisationsname muss vergeben werden'
+    group_name_required: 'Gruppenname muss vergeben werden'
     not_an_email_address: 'Die angegebene Email Adresse ist ungültig'
     organization_required: 'Wenn du dich als Organisation registrieren möchtest, musst du auch einen Organisationsnamen angeben. Ansonsten wähle "Privat"'
     password_required: 'Bitte wähle ein Passwort'
