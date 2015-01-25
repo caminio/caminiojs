@@ -66,3 +66,7 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.click-form .dropdown-colorselector{
+  margin: 5px 0 5px 12px;
+}

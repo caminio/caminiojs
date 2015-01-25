@@ -11,11 +11,13 @@
 #= require 3rd/bootbox.min
 #= require 3rd/moment
 #= require 3rd/moment.de
+#= require 3rd/typeahead
 #= require 3rd/jquery.cookie
 #= require 3rd/ember-local-storage
 #= require 3rd/jquery.noty
 #= require 3rd/jquery.noty.theme.top-right
 #= require 3rd/selectize
+#= require 3rd/bootstrap-colorselector
 #= require noty_options
 #= require_tree ./locales
 #= require_self

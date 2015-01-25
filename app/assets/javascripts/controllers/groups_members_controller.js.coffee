@@ -1,7 +1,5 @@
-Caminio.GroupsEditController = Ember.ObjectController.extend Caminio.Validations,
+Caminio.GroupsMembersController = Ember.ObjectController.extend Caminio.Validations,
   needs: ['application']
-
-  notyMessages: true
 
   actions:
     save: (callback, scope)->

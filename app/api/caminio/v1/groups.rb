@@ -13,6 +13,14 @@ module Caminio
       helpers Caminio::ApplicationHelper
       helpers Caminio::AuthHelper
 
+      helpers do
+        def get_group
+          group = Group.find_by id: params.id
+          return error!('NotFound',404) unless group.users.include? current_user
+          group
+        end
+      end
+
       #
       # GET /
       #
@@ -39,7 +47,25 @@ module Caminio
                             organization: current_organization, 
                             users: [ current_user ]
         return error!({ error: 'FailedToCreate', details: group.errors.full_messages }) unless group.save
-        present :group, group
+        present :group, group, with: GroupEntity
+      end
+
+      #
+      # PUT /
+      #
+      desc "updates a group"
+      params do
+        requires :group, type: Hash do
+          requires :name
+          optional :color
+        end
+      end
+      put ':id' do
+        authenticate!
+        require_admin!
+        group = get_group
+        group.update_attributes declared(params)[:group]
+        present :group, group, with: GroupEntity
       end
 
       #
@@ -48,9 +74,7 @@ module Caminio
       desc "returns the group for given id"
       get ':id' do
         authenticate!
-        error("InsufficientRights",403) unless current_user.groups.find( params.id )
-        org = Group.find params.id
-        present :group, org, with: GroupEntity
+        present :group, get_group, with: GroupEntity
       end
 
     end

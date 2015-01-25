@@ -65,6 +65,7 @@ Caminio.Group = DS.Model.extend
   name:       DS.attr 'string'
   created_at: DS.attr 'date'
   users:      DS.hasMany 'users'
+  color:      DS.attr 'string'
   
 Caminio.GroupAdapter = Caminio.ApplicationAdapter.extend()
 
@@ -247,6 +248,27 @@ Caminio.ApplicationController = Ember.Controller.extend
       @get('controllers.sessions').reset()
       @transitionToRoute 'sessions'
 
+  availableColors: [
+    '#f44336'
+    '#e91e63'
+    '#9c27b0'
+    '#673ab7'
+    '#3f51b5'
+    '#2196f3'
+    '#03a9f4'
+    '#00bcd4'
+    '#009688'
+    '#4caf50'
+    '#8bc34a'
+    '#cddc39'
+    '#ffeb3b'
+    '#ffc107'
+    '#ff9800'
+    '#ff5722'
+    '#795548'
+    '#9e9e9e'
+    '#607d8b'
+  ]
 
 Caminio.DestroyOnCancelMixin = Ember.Mixin.create
 
@@ -262,3 +284,4 @@ Caminio.NotyUnknownError = (err)->
     type: 'error'
     text: Em.I18n.t('errors.unknown')
     timeout: false
+

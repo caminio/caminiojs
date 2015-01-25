@@ -21,6 +21,7 @@ Caminio.Router.map ->
     @route 'index'
     @route 'edit', path: ':id'
     @route 'members', path: 'members/:id'
+    @route 'add_member', path: 'add_member/:id'
   @resource 'organizations', ->
     @route 'new'
     @route 'edit', path: ':id'

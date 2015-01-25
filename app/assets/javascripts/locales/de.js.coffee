@@ -25,6 +25,7 @@ Em.merge Em.I18n.availableTranslations.de,
   register: 'Registrieren'
   username: 'Alias'
   private: 'Privat'
+  color: 'Farbe'
   agree_policies: 'Ich bin mit den Allgemeinen Geschäftsbedingungen einverstanden'
   select_language: 'Sprache wählen'
   
@@ -39,6 +40,7 @@ Em.merge Em.I18n.availableTranslations.de,
   superuser_actions: 'Superuser Aktionen'
 
   new: 'Neu'
+  settings_saved: 'Einstellungen gespeichert'
   name: 'Name'
   created_at: 'Erstellt am'
   email: 'Email'
@@ -60,6 +62,7 @@ Em.merge Em.I18n.availableTranslations.de,
 
   user:
     role: 'Rolle'
+    search: 'Benutzer suchen'
     role_changed: 'Benutzerkonto <tt>{{name}}</tt> ist jetzt <strong>{{role}}</strong>'
     locale_changed: 'Sprache für das Benutzerkonto wurde auf <strog>{{locale}}</strong> gesetzt'
     language: 'Sprache'
@@ -74,6 +77,7 @@ Em.merge Em.I18n.availableTranslations.de,
     back_active: 'Das Benutzerkonto ist jetzt aktiv und kann wieder verwendet werden'
     really_delete: 'Um das Benutzerkonto <tt>{{email}}</tt> <strong>unwiderruflich</strong> zu löschen, gib bitte noch einmal die Email Adresse zur Bestätigung ein'
     has_been_deleted: 'Das Benutzerkonto <strong>{{name}}</strong> wurde gelöscht'
+    unsubscribe_from_group: 'Aus Gruppe entfernen'
     delete: 'Löschen'
     delete_permanently: 'Permanent löschen'
 
@@ -88,7 +92,11 @@ Em.merge Em.I18n.availableTranslations.de,
     name: 'Name der Gruppe'
     edit: 'Gruppe bearbeiten'
     edit_members: 'Mitglieder bearbeiten'
+    general: 'Allgemein'
     members: 'Mitglieder'
+    members_of: 'Mitglieder von <strong>{{name}}</strong>'
+    add_user: 'Benutzer zur Gruppe hinzufügen'
+    add_member: 'Mitglied hinzufügen'
     num_members:
       one: 'Ein Mitglied'
       other: '{{count}} Mitglieder'

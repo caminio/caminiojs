@@ -1,0 +1,1 @@
+Caminio.GroupsMembersView = Caminio.FadedView.extend()
