@@ -55,7 +55,9 @@ module Caminio
       desc "create a new organization with current_user as owner"
       put ':id' do
         authenticate!
-        if Organization.where( name: params.organization.name, _id: { '$ne': BSON::ObjectId.from_string(params.id)}).count > 0
+        # org = Organization.where({ name: params.organization.name, _id: { '$ne': BSON::ObjectId.from_string(params.id) }})
+        org = Organization.where({ name: params.organization.name })
+        if org.id != params.organization.id && org.count > 0
           return error!({ error: 'OrganizationExists', details: params.organization.name },409)
         end
         org = current_user.organizations.find params.id
