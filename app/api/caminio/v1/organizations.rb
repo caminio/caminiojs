@@ -19,7 +19,9 @@ module Caminio
       desc "lists all organizations for current_user"
       get do
         authenticate!
-        present :organizations, current_user.organizations, with: OrganizationEntity
+        organizations = current_user.organizations
+        organizations = Organization.where({}) if current_user.is_superuser?
+        present :organizations, organizations, with: OrganizationEntity
       end
 
       #
@@ -52,10 +54,9 @@ module Caminio
           optional :user_quota
         end
       end
-      desc "create a new organization with current_user as owner"
+      desc "update organization attributes"
       put ':id' do
         authenticate!
-        # org = Organization.where({ name: params.organization.name, _id: { '$ne': BSON::ObjectId.from_string(params.id) }})
         org = Organization.where({ name: params.organization.name })
         if org.id != params.organization.id && org.count > 0
           return error!({ error: 'OrganizationExists', details: params.organization.name },409)

@@ -1,15 +1,17 @@
-Caminio.GroupsAddMemberController = Ember.ObjectController.extend Caminio.Validations,
+Caminio.GroupsAddMemberController = Ember.ObjectController.extend
   needs: ['application']
 
-  name: ''
+  email: null
 
   actions:
     add: ->
-      return unless @isValid()
-      @get('content')
-        .save()
-        .then =>
+      Ember.$.ajax
+        url: "#{Caminio.get('apiHost')}/groups/#{@get('content.id')}/add_member"
+        data:
+          email: @get 'email'
+        type: 'post'
+      .then (group)=>
           Em.$.noty.closeAll()
-          noty( type: 'success', text: Em.I18n.t('saved', name: @get('content.name')) )
-          @transitionToRoute 'groups.index'
-
+          @store.find('group', id: group.group.id, time: new Date())
+          noty( type: 'success', text: Em.I18n.t('group.member_added', name: @get('content.name'), email: @get('email')) )
+          @transitionToRoute 'groups.members', @get('content')

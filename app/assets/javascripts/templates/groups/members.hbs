@@ -42,7 +42,7 @@
             <ul class="dropdown-menu dropdown-menu-grey pull-right">
               <li>{{#link-to 'users.edit' user}}{{t 'account.edit'}}{{/link-to}}</li>
               <li>
-                <a href="#" class="hover-danger" {{action 'unsubscribe' user}}>{{t 'user.unsubscribe_from_group'}}</a>
+                <a href="#" class="hover-danger" {{action 'removeUser' user}}>{{t 'user.unsubscribe_from_group'}}</a>
               </li>
             </ul>
           </div>

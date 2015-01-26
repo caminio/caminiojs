@@ -298,3 +298,36 @@ ul.list li.suspended{
   text-decoration: line-through;
   background: #e5e5e5;
 }
+
+.search{
+  position: relative;
+  width: 50%;
+}
+.search input{
+  text-indent: 30px;
+  opacity: 0.3;
+  width: 100%;
+}
+
+.search.active input{
+  opacity: 1;
+}
+
+.search .fa{
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 14px;
+  color: #999;
+}
+
+.search .fa-times{
+  left: auto;
+  right: 12px;
+  cursor: pointer;
+}
+
+.search input:hover,
+.search input:focus{
+  opacity: 1;
+}

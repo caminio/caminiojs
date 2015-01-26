@@ -39,6 +39,8 @@ Em.merge Em.I18n.availableTranslations.de,
 
   superuser_actions: 'Superuser Aktionen'
 
+  no_matches_found: 'Keine Ergebnisse gefunden'
+
   new: 'Neu'
   settings_saved: 'Einstellungen gespeichert'
   name: 'Name'
@@ -89,6 +91,8 @@ Em.merge Em.I18n.availableTranslations.de,
 
   group:
     create_new: 'Neue Gruppe erstellen'
+    member_added: '{{email}} ist jetzt Mitglied in der Gruppe {{name}}'
+    member_removed: '{{email}} ist jetzt kein Mitglied der Gruppe {{name}} mehr'
     name: 'Name der Gruppe'
     edit: 'Gruppe bearbeiten'
     edit_members: 'Mitglieder bearbeiten'

@@ -13,17 +13,21 @@
 
       <section class="card settings card-padding">
 
-        <form class="form-horizontal" {{action 'create' on='submit'}}>
+        <form class="form-horizontal" {{action 'add' on='submit'}}>
           <div {{bind-attr class=":form-group errors.name:field-with-errors"}}>
             <label class="control-label col-md-4">{{t 'user.search'}}</label>
             <div class="col-md-8">
-              {{input value=name class="form-control js-get-focus"}}
+              {{view 'typeahead'
+                class="form-control js-get-focus"
+                source="/users?simple=1&q=%QUERY"
+                optionValuePath="email"
+                valueBinding="email"}}
             </div>
           </div>
 
           <div class="form-actions">
             {{#link-to 'groups.members' content class="btn btn-default"}}{{t 'cancel'}}{{/link-to}}
-            <button class="btn btn-primary" {{action 'create'}}>{{t 'group.add_user'}}</button>
+            <button class="btn btn-primary" {{action 'add'}}>{{t 'group.add_user'}}</button>
           </div>
         </form>
 

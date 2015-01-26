@@ -1,14 +1,17 @@
-Caminio.GroupsMembersController = Ember.ObjectController.extend Caminio.Validations,
+Caminio.GroupsMembersController = Ember.ObjectController.extend
   needs: ['application']
 
   actions:
-    save: (callback, scope)->
-      @get('content')
-        .save()
-        .then ->
-          if callback
-            return callback.call(scope)
-          noty
-            type: 'success'
-            text: Em.I18n.t('settings_saved')
+
+    removeUser: (user)->
+      Ember.$.ajax
+        url: "#{Caminio.get('apiHost')}/groups/#{@get('content.id')}/remove_member/#{user.get('id')}"
+        type: 'post'
+      .then (group)=>
+          Em.$.noty.closeAll()
+          noty( type: 'success', text: Em.I18n.t('group.member_removed', name: @get('content.name'), email: user.get('email')) )
+          @store.find('group', id: group.group.id, time: new Date())
+          @transitionToRoute 'groups.members', @get('content')
+
+
 

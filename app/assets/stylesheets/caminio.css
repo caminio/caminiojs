@@ -259,6 +259,17 @@ body{
   font-weight: 900;
 }
 
+.top-pane.superuser{
+  color: #fff;
+  background-color: #d55;
+}
+
+.top-pane .superuser{
+  color: #fff;
+  font-weight: 600;
+  margin: 15px 0;  
+}
+
 .top-pane .logo{
   display: inline-block;
   padding: 8px;

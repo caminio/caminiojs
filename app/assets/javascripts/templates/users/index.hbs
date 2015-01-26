@@ -14,9 +14,17 @@
       <section class="account-admin users">
 
         <div class="heading">
+
+          <div {{bind-attr class=":search filter:active"}}>
+            <i class="fa fa-search"></i>
+            {{#if filter}}<i class="fa fa-times" {{action 'clearFilter'}}></i>{{/if}}
+            {{input value=filter}}
+          </div>
+
           {{#link-to 'users.new' class="btn btn-primary btn-large new-btn" titleTranslation='account.create_account'}}
             <span class="fa fa-plus"></span>
           {{/link-to}}
+
         </div>
 
         <ul class="list list-header">
@@ -28,8 +36,8 @@
           </li>
         </ul>
         <ul class="list">
-          {{#each user in content}}
-          <li {{bind-attr class="user.suspended:suspended"}}>
+          {{#each user in filteredContent}}
+          <li {{bind-attr class="user.suspended:suspended"}} {{action 'editUser' user on='doubleClick'}}>
           <div class="list-icon">
             <label {{bind-attr class=':label user.admin:label-danger user.editor:label-warning:label-default'}}>
               <i class="fa fa-user"></i>
@@ -40,9 +48,9 @@
           <div class="list-actions dropdown">
             <button class="btn btn-pale dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></button>
             <ul class="dropdown-menu dropdown-menu-grey pull-right">
-              <li>{{#link-to 'users.edit' user}}{{t 'account.edit'}}{{/link-to}}</li>
+              <li>{{#link-to 'users.edit' user bubble=false}}{{t 'account.edit'}}{{/link-to}}</li>
               <li>
-                <a href="#" class="hover-danger" {{action 'toggleSuspended' user}}>{{t 'account.suspend_login'}}</a>
+                <a href="#" class="hover-danger" {{action 'toggleSuspended' user bubble=false}}>{{t 'account.suspend_login'}}</a>
               </li>
             </ul>
           </div>

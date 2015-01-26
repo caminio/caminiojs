@@ -17,10 +17,21 @@ module Caminio
       # GET /
       #
       desc "lists all users"
+      params do
+        optional :q
+        optional :simple
+      end
       get do
         authenticate!
         users = User.where organization_ids: BSON::ObjectId.from_string(headers['Organization-Id'])
-        present :users, users, with: UserEntity
+        if params.q
+          users = users.any_of([ {firstname: /#{params.q}/}, {lastname: /#{params.q}/}, {username: /#{params.q}/}, {email: /#{params.q}/} ])
+        end
+        if params.simple
+          users.map{ |u| { id: u._id.to_s, name: u.name, email: u.email } }
+        else
+          present :users, users, with: UserEntity
+        end
       end
 
       #

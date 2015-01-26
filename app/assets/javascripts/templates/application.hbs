@@ -1,9 +1,12 @@
 {{#if isAuthenticated}}
-  <div class="top-pane">
+  <div {{bind-attr class=":top-pane currentUser.superuser:superuser"}}>
     <a href="#" class="logo pull-left">
       <img src="/favicon.png" class="logo-img">
     </a>
     <div class="close pull-right" {{action 'logout'}} {{translateAttr title='logout'}}>&times;</div>
+    {{#if currentUser.superuser}}
+    <span class="superuser pull-right">SUPERUSER</span>
+    {{/if}}
   </div>
 {{/if}}
 {{outlet}}
