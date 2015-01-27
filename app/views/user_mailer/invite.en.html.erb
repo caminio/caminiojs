@@ -1,0 +1,24 @@
+<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css' data-roadie-ignore>
+<%= stylesheet_link_tag :mailer %>
+<div class="main">
+  <div class="logo-wrap">
+    <a href="<%= @base_url %>"><img src="<%= @base_url %>/favicon.png"></a>
+  </div>
+  <div class="content">
+    <h1>Hello1!</h1>
+    <p><%= @admin.name %> has invited you to <%= @organization.name %> at <strong><%= Rails.configuration.site.name %></strong>. Your password has not been set yet.</p>
+
+    <p>To log in for the first time and set your password please use the link below:</p>
+
+    <div style="text-align: center">
+      <a href="<%= @base_url %>/#/sessions/reset_password/<%= @user.id %>/<%= @user.confirmation_key %>" class="btn btn-primary">Click here to get started</span>
+    </div>
+
+    <p>
+    We are glad you have chosen caminio
+    &nbsp;&nbsp;the TASTENWERK Support Team
+    </p>
+
+
+  </div>
+</div>

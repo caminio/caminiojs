@@ -61,7 +61,7 @@ module Caminio
       #
       # POST /
       #
-      desc "create a new user within the new group"
+      desc "create a new user within the new organization"
       params do
         requires :user, type: Hash do
           requires :email
@@ -70,6 +70,7 @@ module Caminio
           optional :lastname
           optional :password
           optional :valid_until
+          optional :locale
         end
         optional :organization_id
         optional :role, values: ['editor','user','admin'], default: 'user'
@@ -86,6 +87,7 @@ module Caminio
           user.organization_roles.create organization: organization, 
             name: params.role
           error!('SavingOrganizationFailed',500) unless user.save
+          return error!(UserMailerError,500) unless UserMailer.invite( user, current_user, base_url ).deliver_now
         end
         present :user, user, with: UserEntity
       end

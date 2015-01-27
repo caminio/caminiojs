@@ -18,6 +18,17 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def invite(user, admin, base_url)
+    @user = user
+    @admin = admin
+    @organization = admin.current_organization
+    @base_url = base_url
+    puts "USEING LOCALE #{@user.locale} #{I18n.locale}"
+    I18n.with_locale(@user.locale || I18n.locale) do
+      mail(to: @user.email, subject: I18n.t('user_mailer.invite.subject', site_name: Rails.configuration.site.name))
+    end
+  end
+
   private
   
   def roadie_options

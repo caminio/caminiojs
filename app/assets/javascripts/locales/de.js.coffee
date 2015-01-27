@@ -145,6 +145,7 @@ Em.merge Em.I18n.availableTranslations.de,
       users: 'Konten verwalten'
       organizations: 'Organisationen'
   errors:
+    login_failed: 'Anmeldung fehlgeschlagen!'
     email_required: 'Email Adresse erforderlich'
     email_exists: 'Die Email Adresse {{email}} ist schon registriert'
     email_unknown: 'Die Email Adresse {{email}} ist uns nicht bekannt'

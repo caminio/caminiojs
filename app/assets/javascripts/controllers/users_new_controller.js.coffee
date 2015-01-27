@@ -1,5 +1,5 @@
 Caminio.UsersNewController = Ember.ObjectController.extend Caminio.Validations,
-  needs: ['application']
+  needs: ['application', 'sessions']
 
   notyMessages: true
 

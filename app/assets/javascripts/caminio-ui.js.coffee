@@ -198,8 +198,9 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
       attemptedTrans = @get('attemptedTransition')
 
       @setProperties
-        login: null,
+        login: null
         password: null
+        message: null
 
       Ember.$.post('/api/v1/auth', data)
         .then (response)=>
@@ -220,9 +221,10 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
                 @set('attemptedTransition', null)
               else
                 @transitionToRoute 'accounts.mine'
-        .fail (error)->
+        .fail (error)=>
           if error.status is 401
-            alert("wrong user or password, please try again")
+            @set('message', Em.I18n.t('errors.login_failed'))
+            $('input[type=text]:visible:first').focus()
 
   
 #

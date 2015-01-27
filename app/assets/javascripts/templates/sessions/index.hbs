@@ -7,6 +7,10 @@
       <img src="/favicon.png" class="logo-img">
     </div>
 
+    {{#if message}}
+    <div {{bind-attr class=":alert valid:alert-info:alert-danger error:alert-danger"}}>{{{message}}}</div>
+    {{/if}}
+
     <div class="form-group">
       {{input class="form-control" value=login placeholderTranslation='username_or_email'}}
     </div>

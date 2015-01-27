@@ -164,6 +164,7 @@ class User
   def set_confirmation_code
     self.confirmation_code =  1_000 + Random.rand(10_000 - 1_000)
     self.confirmation_code_expires_at = 10.minutes.from_now
+    self.confirmation_key_expires_at = 10.minutes.from_now
     self.confirmation_key = SecureRandom.hex
   end
 

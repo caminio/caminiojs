@@ -5,6 +5,8 @@ de:
       subject: "Dein Konto auf %{site_name}"
     reset_pwd:
       subject: "Passwort zurücksetzen auf %{site_name}"
+    invite:
+      subject: "Willkommen auf %{site_name}"
 
   mongoid:
     errors:

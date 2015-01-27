@@ -45,5 +45,10 @@ Caminio.SessionsResetPasswordController = Ember.ObjectController.extend Caminio.
                 userId: user.get('id')
               @transitionToRoute 'accounts.mine'
         .fail (err)=>
-          @set 'message', err.responseJSON.details
+          if err.status == 404
+            @set 'valid', false
+            @set 'message', Em.I18n.t('errors.key_invalid_or_expired')
+          else
+            console.log('err', err)
+            @set 'message', err.responseJSON.details
 
