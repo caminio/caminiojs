@@ -35,7 +35,7 @@ module Caminio
       return false unless @token = ApiKey.find_by( token: token )
       RequestStore.store['current_user_id'] = @token.user.id.to_s
       if @token.user.organizations.first
-        RequestStore.store['organization_id'] ||= @token.user.organizations.first.id.to_s
+        RequestStore.store['organization_id'] ||= headers['Organization-Id'] || @token.user.organizations.first.id.to_s
       end
       return false if @token.expires_at < Time.now
       @token.update_attributes(last_request_at: Time.now, expires_at: 8.hours.from_now)

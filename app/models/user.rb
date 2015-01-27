@@ -88,7 +88,7 @@ class User
   end
 
   def current_organization_id
-    RequestStore.store['organization_id'] || (organizations.size > 0 ? organizations.first.id : nil )
+    BSON::ObjectId.from_string(RequestStore.store['organization_id']) || (organizations.size > 0 ? organizations.first._id : nil )
   end
 
   def current_organization
@@ -101,6 +101,7 @@ class User
   alias_method :role, :current_organization_role
 
   def role_name
+    puts "cur org #{current_organization_role} #{Organization.find(RequestStore.store['organization_id']).name} #{organization_roles.inspect}"
     current_organization_role && current_organization_role.name
   end
 

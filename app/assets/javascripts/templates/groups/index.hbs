@@ -44,6 +44,7 @@
             <ul class="dropdown-menu dropdown-menu-grey pull-right">
               <li>{{#link-to 'groups.edit' group}}{{t 'group.edit'}}{{/link-to}}</li>
               <li>{{#link-to 'groups.members' group}}{{t 'group.edit_members'}}{{/link-to}}</li>
+              <li><a class="hover-danger" href="#" {{action 'deleteGroup' group}}>{{t 'group.delete'}}</a></li>
             </ul>
           </div>
           </li>

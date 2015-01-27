@@ -16,7 +16,8 @@ module Caminio
       helpers do
         def get_group
           group = Group.find_by id: params.id
-          return error!('NotFound',404) unless group.users.include? current_user
+          return error!('GroupNotFound',404) if !current_user.organization_ids.include?(group.organization_id) && !current_user.is_superuser?
+          return error!('NotMemberOfGroup',400) if !group.users.include?(current_user) && !current_user.is_admin?
           group
         end
       end
@@ -50,6 +51,8 @@ module Caminio
                             organization: current_organization, 
                             users: [ current_user ]
         return error!({ error: 'FailedToCreate', details: group.errors.full_messages }) unless group.save
+        current_user.groups << group
+        return error!('FailedToSaveUser', 500) unless current_user.save
         present :group, group, with: GroupEntity
       end
 
@@ -116,6 +119,19 @@ module Caminio
         group = get_group
         present :group, group, with: GroupEntity
         present :users, group.users, with: UserEntity
+      end
+
+      desc "delete a group"
+      delete ':id' do
+        authenticate!
+        require_admin!
+        group = get_group
+        group.users.each do |user|
+          user.groups.delete group
+          user.save
+        end
+        return error!('FailedToDelete',500) unless group.destroy
+        {}
       end
 
     end

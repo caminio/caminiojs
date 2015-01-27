@@ -51,6 +51,9 @@ Em.merge Em.I18n.availableTranslations.de,
 
   users:
     title: 'Benutzerkonten'
+    pl_title: 
+      one: 'Benutzerkonto'
+      other: 'Benutzerkonten'
     online: 'Benutzer online'
     quota: 'Quota'
     allowed: 'Max. Benutzer (Quota)'
@@ -85,6 +88,9 @@ Em.merge Em.I18n.availableTranslations.de,
 
   groups:
     title: 'Gruppen'
+    pl_title: 
+      one: 'Gruppe'
+      other: 'Gruppen'
     largest: 'Größte Gruppe'
     new_0: 'Neue'
     new_1: 'Gruppe'
@@ -99,6 +105,9 @@ Em.merge Em.I18n.availableTranslations.de,
     general: 'Allgemein'
     members: 'Mitglieder'
     members_of: 'Mitglieder von <strong>{{name}}</strong>'
+    really_delete: 'Gruppe <tt>{{name}}</tt> wirklich löschen?'
+    delete: 'Gruppe löschen'
+    deleted: 'Gruppe <strong>{{name}}</strong> wurde gelöscht'
     add_user: 'Benutzer zur Gruppe hinzufügen'
     add_member: 'Mitglied hinzufügen'
     num_members:

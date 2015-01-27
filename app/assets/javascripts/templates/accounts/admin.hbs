@@ -44,7 +44,7 @@
         {{/if}}
         <div class="big-num-wrap" {{action 'goTo' 'users.index'}}>
           <span class="big-num">{{users.length}}</span>
-          <div class="big-num-subtext">{{t 'users.title'}}</div>
+          <div class="big-num-subtext">{{t 'users.pl_title' countBinding='users.length'}}</div>
           <div class="bottom-bar row">
             <div class="col-md-6">{{onlineUsersNum}} {{t 'users.online'}}</div>
             <div class="col-md-6">
@@ -66,10 +66,10 @@
         {{/if}}
         <div class="big-num-wrap" {{action 'goTo' 'groups.index'}}>
           <span class="big-num">{{groups.length}}</span>
-          <div class="big-num-subtext">{{t 'groups.title'}}</div>
+          <div class="big-num-subtext">{{t 'groups.pl_title' countBinding='groups.length'}}</div>
           <div class="bottom-bar">
             {{t 'groups.largest'}}: 
-            {{largestGroup.name}}: ({{largestGroup.users.length}})
+            {{largestGroup.name}} ({{largestGroup.users.length}} {{t 'group.members'}})
           </div>
         </div>
         {{#link-to 'groups.new' class='big-action'}}
