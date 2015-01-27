@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "roadie", "~> 3.0"
   spec.add_dependency "roadie-rails", "~> 1.0.4"
   spec.add_dependency "ember-rails", "~> 0.16.1"
-  spec.add_dependency "font-awesome-rails", "~> 4.2.0"
+  # spec.add_dependency "font-awesome-rails", "~> 4.2.0"
   spec.add_dependency "jquery-rails", "~> 4.0.3"
   spec.add_dependency "coffee-script", "~> 2.3"
   spec.add_dependency "paperclip", "~> 4.2.1"

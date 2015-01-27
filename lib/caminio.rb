@@ -11,7 +11,6 @@ require 'rack/cors'
 
 require 'jquery-rails'
 require 'ember-rails'
-require 'font-awesome-rails'
 
 require 'request_store'
 
