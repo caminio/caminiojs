@@ -142,6 +142,8 @@ Caminio.SessionsController = Ember.Controller.extend
   login: ''
   password: ''
 
+  openRegistration: (if typeof(CAMINIO_SHOW_OPEN_REG_LINK) == 'boolean' then CAMINIO_SHOW_OPEN_REG_LINK else true)
+
   availableLocales: [{ label: 'Deutsch', value: 'de'}, { label: 'English', value: 'en' }]
   availableRoles: [
     { label: Em.I18n.t('roles.user'), value: 'user' }

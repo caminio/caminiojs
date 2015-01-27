@@ -33,6 +33,9 @@
 #= require_tree ./routes
 #= require ./router
 
+<% if Rails.env == 'production' %>
+window.Caminio = Ember.Application.create()
+<% else %>
 window.Caminio = Ember.Application.create
   LOG_TRANSITIONS: true
   LOG_BINDINGS: true
@@ -40,5 +43,6 @@ window.Caminio = Ember.Application.create
   LOG_STACKTRACE_ON_DEPRECATION: true
   LOG_VERSION: true
   debugMode: true
+<% end %>
 
 Caminio.set('apiHost', '/api/v1')

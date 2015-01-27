@@ -21,10 +21,12 @@
 
     <div class="form-group center">
       {{#link-to 'sessions.forgot_password'}}{{t 'forgot_your_password'}}{{/link-to}}
+      {{#if openRegistration}}
       <div class="help-block">
         {{t 'no_account_yet'}}
         {{#link-to 'sessions.signup'}}{{t 'signup'}}{{/link-to}}
       </div>
+      {{/if}}
     </div>
 
   </form>
