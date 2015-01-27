@@ -130,7 +130,10 @@ Em.merge Em.I18n.availableTranslations.de,
 
   account:
     personal: 'Angaben zur Person'
+    security: 'Sicherheit'
     contact_info: 'Kontaktinformationen'
+    enter_current_password: 'Zur Bestätigung gib bitte dein aktuelles Passwort an'
+    wrong_password: 'Das angegebene Passwort ist falsch'
     general: 'Allgemein'
     privacy: 'Privatsphäre'
     administration: 'Administration'

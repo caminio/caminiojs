@@ -10,6 +10,8 @@ Caminio.ClickEditFormComponent = Ember.Component.extend
       Caminio.set('currentClickEdit', @)
       Em.run.later (-> @$('input:first').focus()), 500
 
+  saveActionName: 'save'
+
   editValue: false
 
   labelTranslation: Em.computed ->
@@ -40,7 +42,7 @@ Caminio.ClickEditFormComponent = Ember.Component.extend
   actions:
 
     saveChanges: ->
-      @get('parentController').send('save', @saveCallback, @)
+      @get('parentController').send(@get('saveActionName'), @saveCallback, @)
 
     cancelEdit: ->
       @set('editValue',false)
@@ -49,8 +51,11 @@ Caminio.ClickEditFormComponent = Ember.Component.extend
     edit: ->
       return if @get('editValue')
       other = Caminio.get('currentClickEdit') 
-      if other && other != @
+      if other && !other.isDestroyed && other != @
         other.set('editValue',false)
       @set('editValue', true)
       Caminio.set('currentClickEdit', @)
+      Em.run.later =>
+        @$('input:first').focus()
+      , 300
 

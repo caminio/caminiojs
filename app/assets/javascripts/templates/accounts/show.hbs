@@ -4,6 +4,30 @@
     {{click-edit-form value=username label='alias' parentController=controller}}
     {{click-edit-form value=firstname label='firstname' parentController=controller}}
     {{click-edit-form value=lastname label='lastname' parentController=controller}}
+    <div class="ember-view visible-overflow">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-md-4">{{t 'user.language'}}</label>
+          <div class="col-md-8">
+            {{view 'selectize-simple-array'
+                classes="form-control"
+                promptTranslation="select_language"
+                contentBinding="controller.controllers.sessions.availableLocales"
+                optionLabelPath='content.label'
+                optionValuePath='content.value'
+                valueBinding='locale'}}
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<section class="card settings card-margin-top">
+  <h1>{{t 'account.security'}}</h1>
+  <div class="click-form">
+    {{click-edit-form value=password password=true label='password' saveActionName='savePassword' parentController=controller}}
   </div>
 </section>
 

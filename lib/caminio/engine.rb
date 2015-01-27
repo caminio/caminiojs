@@ -22,15 +22,13 @@ module Caminio
                                                         caminio.css
                                                         mailer.css
                                                         3rd/bootstrap.min.css
-                                                        logo_32x32.png
-                                                        logo_64x64.png
-                                                        logo_128x128.png
-                                                        fonts/FontAwesome.otf
-                                                        fonts/fontawesome-webfont.eot
-                                                        fonts/fontawesome-webfont.svg
-                                                        fonts/fontawesome-webfont.ttf
-                                                        fonts/fontawesome-webfont.woff
-                                                        fonts/fontawesome-webfont.woff2
+                                                        logo_*.png
+                                                        *.otf
+                                                        *.eot
+                                                        *.svg
+                                                        *.ttf
+                                                        *.woff
+                                                        .woff2
                                                         )
 
     end

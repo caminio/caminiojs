@@ -49,7 +49,6 @@ Caminio.User = DS.Model.extend
   lastname:         DS.attr 'string'
   email:            DS.attr 'string'
   password:         DS.attr 'string'
-  password_confirm: DS.attr 'string'
   api_keys:         DS.hasMany 'api_key'
   organization:     DS.belongsTo 'organization'
   organizations:    DS.hasMany 'organizations'

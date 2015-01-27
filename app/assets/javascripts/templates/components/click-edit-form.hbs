@@ -4,7 +4,11 @@
     <div class="col-md-8">
       {{#if editValue}}
       <div class="input-group">
+        {{#if password}}
+        {{input type='password' value=value class='form-control'}}
+        {{else}}
         {{input value=value class="form-control"}}
+        {{/if}}
         <div {{action 'saveChanges'}} {{bind-attr class=":input-group-addon :btn hasChanges:btn-primary:btn-default"}}>
           {{t 'save'}}
         </div>
