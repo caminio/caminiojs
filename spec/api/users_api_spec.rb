@@ -30,9 +30,10 @@ describe Caminio::V1::Users do
 
     before :each do
       @user = create(:user)
+      @user.organizations.create(name: 'test')
       @url = "v1/users/#{@user.id}"
       header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
-      header 'Organization-id', @user.organizations.first
+      header 'Organization-id', @user.organizations.first.id
     end
 
     it "returns a user json" do
@@ -64,6 +65,7 @@ describe Caminio::V1::Users do
 
     before :each do
       @user = create(:user)
+      @user.organizations.create(name: 'test').id
       header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
       get 'v1/users/current'
     end
@@ -167,6 +169,7 @@ describe Caminio::V1::Users do
 
       before :each do
         @user = create(:user, username: 'test', password: 'test-old')
+        @user.organizations.create(name: 'test').id
         header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
         post "v1/users/change_password", old: 'test-old', new: 'test-new'
       end

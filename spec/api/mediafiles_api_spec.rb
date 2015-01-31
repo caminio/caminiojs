@@ -15,7 +15,6 @@ describe Caminio::V1::Mediafiles do
     it "returns mediafiles json" do
       path = Rails.root + '../../spec/support/images/test.jpg'
       post @url, { file: Rack::Test::UploadedFile.new(path, "image/jpeg"), parent_id: @user.id, parent_type: "User" }
-      puts json.inspect
       expect( last_response.status ).to be == 201
       expect( json ).to have_key(:mediafile)
     end

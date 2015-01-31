@@ -81,7 +81,7 @@ describe Caminio::V1::ApiKeys do
       @user.organizations.create name: 'test-org'
       @api_key = create(:api_key, permanent: true, user_id: @user.id, organization_id: @user.organizations.first.id )  
       header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
-      header 'Organization-id', @user.organizations.first
+      header 'Organization-id', @user.organizations.first.id
     end
 
     describe "update" do
@@ -109,7 +109,7 @@ describe Caminio::V1::ApiKeys do
       @user.organizations.create name: 'test-org'
       @api_key = create(:api_key, permanent: true, user_id: @user.id, organization_id: @user.organizations.first.id )      
       header 'Authorization', "Bearer #{@user.aquire_api_key.token}"
-      header 'Organization-id', @user.organizations.first
+      header 'Organization-id', @user.organizations.first.id
       delete "v1/api_keys/#{@api_key.id}"
     end
 
