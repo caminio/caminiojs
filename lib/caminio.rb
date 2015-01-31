@@ -7,8 +7,6 @@ require "roadie-rails"
 require "paperclip"
 require "mongoid_paperclip"
 
-require 'rack/cors'
-
 require 'jquery-rails'
 require 'ember-rails'
 

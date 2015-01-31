@@ -35,7 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "less-rails", "~> 2.6.0"
 
   spec.add_dependency "request_store", "~> 1.1"
-  spec.add_dependency "rack-cors", "~> 0.2"
   spec.add_dependency "bcrypt", "~> 3.1"
 
   spec.add_development_dependency "factory_girl", "~> 4.5"
