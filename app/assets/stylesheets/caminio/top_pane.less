@@ -1,0 +1,163 @@
+/*
+ * top panel
+ */
+
+@import "_colors";
+
+.top-pane{
+  height: 42px;
+  position: fixed;
+  left: 65px;
+  right: 0;
+  top: 0;
+  padding: 5px;
+}
+
+.top-pane .superuser{
+  color: #d55;
+  font-weight: 600;
+  margin: 15px 0;  
+}
+
+.top-pane .logo{
+  display: inline-block;
+  padding: 3px 14px;
+  font-family: @caminio_pri_font_family;
+  font-size: 18px;
+  color: @caminio_dark_grey;
+}
+
+.top-pane .logo:hover{
+  text-decoration: none;
+}
+
+.top-pane .logo .logo-img{
+  width: 32px;
+  margin-right: 5px;
+}
+.top-pane .logo .logo-text{
+  height: 18px;
+  margin-top: -3px;
+  display: inline-block;
+}
+
+.top-pane .round-btn{
+  color: @grey-400;
+  cursor: pointer;
+  float: right;
+  width: 32px;
+  text-decoration: none;
+  border-radius: 50%;
+  height: 32px;
+  position: relative;
+  margin-left: 5px;
+}
+
+.top-pane .round-btn.account-btn{
+  border: 1px solid #ddd;
+}
+
+.top-pane .round-btn.new-btn{
+  border: none;
+  background: none;
+}
+
+.top-pane .round-btn.new-btn:hover{
+  background: @link_color;
+}
+
+.top-pane .round-btn.new-btn:hover .fa{
+  color: #fff;
+}
+
+.top-pane .round-btn img{
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.top-pane .round-btn.default-img{
+  background-color: #fff;
+}
+
+.top-pane .round-btn.default-img img{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  opacity: 0.5;
+}
+
+.top-pane .round-btn:hover{
+  color: @caminio_black;
+  background: @caminio_med_grey;
+}
+
+.top-pane .round-btn:hover img{
+  opacity: 1;
+}
+
+.top-pane .round-btn .fa{
+  color: @grey-400;
+  font-size: 18px;
+  left: 9px;
+  position: absolute;
+  top: 7px;
+}
+
+.top-pane .round-btn:hover .fa{
+  color: @grey-700;
+}
+
+.top-pane .search-btn .fa{
+  font-size: 15px;
+  left: auto;
+  right: 6px;
+  top: 8px;
+}
+
+.top-pane input[type=text]:hover,
+.top-pane input[type=text]:active,
+.top-pane input[type=text]:focus,
+.top-pane input[type=text]{
+  float: left;
+  background: none;
+  border: none;
+  margin-right: 10px;
+  box-shadow: none;
+}
+
+.top-pane .search-btn{
+  overflow: hidden;
+  transition: width 0.5s ease 0s;
+}
+
+.top-pane .search-btn:hover{
+  width: 250px;
+  transition: width 0.5s ease 0s;
+  border-radius: 5px;
+}
+
+.top-pane .search-btn input[type=text]{
+  margin-left: -300px;
+  transition: margin-left 0.5s;
+}
+
+.top-pane .search-btn:hover input[type=text]{
+  margin-left: 0;
+  transition: margin-left 0.5s;
+}
+
+.top-pane .route-title{
+  float: left;
+  margin: -3px 15px;
+  color: #9999a4;
+  font-weight: 100;
+  border-top: 1px solid #ddd;
+  padding-right: 50px;
+}

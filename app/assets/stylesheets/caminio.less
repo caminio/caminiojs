@@ -1,14 +1,18 @@
 /*
- *= require roboto_font
+ *= require fonts
  *= require_tree ./3rd
  *= require_tree ./caminio
  *= require_self
  */
 
+@import './caminio/_colors.less';
+
 body{ 
-  height: 100%; 
-  background: #e5e5e5; 
-  font-family: 'Roboto', sans-serif; 
+  height: 100%;
+  padding-top: 60px;
+  padding-left: 80px;
+  background: @caminio_light_grey;
+  font-family: 'Ubuntu', sans-serif; 
 }
 
 .desc{
@@ -16,13 +20,6 @@ body{
 }
 
 .main-wrap{ 
-  position: relative; 
-  left: 10px; 
-  right: 10px; 
-  top: 10px; 
-  bottom: 10px; 
-  margin: auto; 
-  width: 790px; 
 }
 
 .overview-wrap{
@@ -46,9 +43,9 @@ body{
 
 .card{
   background: #fff;
-  border: 1px solid #ddd;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 }
+
 
 .card > .card-refreshing{
   position: absolute;
@@ -170,12 +167,29 @@ body{
 
 .label-primary,
 .btn-primary{
-  background: #1b8fc3;
+  background: @link_color;
 }
 
 .label-rounded,
 .btn-rounded{
   border-radius: 10px;
+}
+
+.btn.btn-new{
+  border: medium none;
+  background: @caminio_green;
+  float: right;
+  font-size: 24px;
+  margin: 8px 15px;
+  padding: 5px 13px;
+  color:  #fff;
+  border-radius: 50%;
+}
+
+.btn.btn-new:hover{
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  background: @caminio_green;
+  color: #fff;
 }
 
 .account-wrap .location{
@@ -201,108 +215,98 @@ body{
   border-radius: 16px;
 }
 
-.top-pane{
-  height: 50px;
-  background: #fff;
+.side-pane{
+  left: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 57px;
+  padding-top: 1px;
+  padding-left: 8px;
+  background: @caminio_med_grey;
+  border-right: 1px solid @caminio_med_grey2;
 }
 
-.menu-pane{
-  background: #f5f5f5;
-  text-align: center;
-  height: 51px;
+.side-pane .toggle-sidebar{
+  margin-bottom: 20px;
+  padding: 6px 0;
+  height: 42px;
 }
 
-.menu-pane .inside-wrap{
+.side-pane .inside-wrap{
   width: 790px; 
   margin: auto;
 }
 
-.menu-pane .inside-wrap h1{
-  color: #1b8fc3;
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
-  text-align: left;
-  padding: 12px;
+.side-pane .btn-back{
+  margin: 8px 0 0;
 }
 
-.menu-pane .btn-back{
-  background: transparent;
+.side-pane .btn-back i{
+  color: @link_color;
+}
+
+.side-pane a,
+.side-pane button{
+  color: @grey-400;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: medium none;
+  border-radius: 50%;
+  display: inline-block;
+  float: left;
+  font-size: 18px;
+  height: 42px;
+  padding: 7px 13px;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+  width: 42px;
+  margin-left: 0px;
+}
+
+.side-pane a:hover,
+.side-pane a.active{
+  color: @caminio_black;
+}
+
+.side-pane a:hover{
+  background-color: @grey-300;
+  transition: background-color 0.5s ease;
+}
+
+.side-pane a.active{
+  font-weight: 900;
+}
+
+.form-actions{
+  text-align: right;
+}
+
+.align-right{
+  text-align: right;
+}
+
+.card-ctrl{
+  height: 4.5em;
+  margin-bottom: 2em;
+}
+
+.card-ctrl .main-back{
+  color: @caminio_green;
   float: left;
   font-size: 20px;
-  padding: 10px 20px;
+  margin: 6px 5px 0 10px;
+  padding: 11px 15px;
+  border-radius: 50%;
 }
 
-.menu-pane .btn-back i{
-  color: #1b8fc3;
-}
-
-.menu-pane a{
-  font-size: 16px;
-  color: #555;
-  display: inline-block;
-  font-size: 15px;
-  padding: 14px 15px;
+.card-ctrl a.main-back:hover{
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  background: #eee;
+  color: #333;
 }
 
-.menu-pane a:hover,
-.menu-pane a.active{
-  color: #000;
-  border-bottom-color: #1b8fc3;
-}
-
-.menu-pane a.active{
-  font-weight: 900;
-}
-
-.top-pane.superuser{
-  color: #fff;
-  background-color: #d55;
-}
-
-.top-pane .superuser{
-  color: #fff;
-  font-weight: 600;
-  margin: 15px 0;  
-}
-
-.top-pane .logo{
-  display: inline-block;
-  padding: 8px;
-}
-
-.top-pane .logo:hover{
-  text-decoration: none;
-}
-
-.top-pane .logo .logo-img{
-  width: 32px;
-  margin-right: 5px;
-}
-.top-pane .logo .logo-text{
-  height: 18px;
-  margin-top: -3px;
-  display: inline-block;
-}
-
-.top-pane .close{
-  font-size: 34px;
-  font-weight: 100;
-  padding: 6px 16px 9px;
-  background: none;
-}
-
-.settings h1{
-  color: #1b8fc3;
-  font-size: 22px;
-  font-weight: 900;
-  padding: 5px 20px;
-  margin-top: 15px;
-}
-
-.new-btn{
+.card-ctrl .new-btn{
   border-radius: 50%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 0, 0, 0.1);
   font-size: 18px;
@@ -313,15 +317,26 @@ body{
   transition: box-shadow 0.5s;
 }
 
-.new-btn:hover{
+.card-ctrl .new-btn:hover{
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4), 0 0 2px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.5s;
 }
 
-.form-actions{
-  text-align: right;
+.card-ctrl .btn-group{
+  float: right;
+  margin: 14px;
 }
 
-.align-right{
-  text-align: right;
+.card-ctrl .btn-group .btn{
+  border-color: @caminio_green;
+  color: @caminio_green;
+}
+
+.card-ctrl h1{
+  color: @h1_grey;
+  font-size: 22px;
+  font-weight: 900;
+  margin: 19px 0;
+  padding: ;
+  float: left;
 }

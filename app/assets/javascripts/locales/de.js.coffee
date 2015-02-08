@@ -36,6 +36,7 @@ Em.merge Em.I18n.availableTranslations.de,
   cancel_edit_entry: 'Bearbeiten abbrechen'
   edit_entry: 'Eintrag bearbeiten'
   entry_saved: 'Eintrag gespeichert'
+  search_for: 'Suche nach...'
 
   superuser_actions: 'Superuser Aktionen'
 
