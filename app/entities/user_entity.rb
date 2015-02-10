@@ -14,6 +14,8 @@ class UserEntity < Grape::Entity
   expose :role_name
   expose :locale
 
+  expose :settings
+
   expose :created_at
   expose :updated_at
   expose :last_login_at

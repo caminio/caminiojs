@@ -35,6 +35,8 @@ class User
   field :api_user, type: Boolean
   field :expires_at, type: DateTime
 
+  field :settings, type: Hash, default: {}
+
   field :suspended, type: Boolean, default: false
 
   has_and_belongs_to_many :organizations
