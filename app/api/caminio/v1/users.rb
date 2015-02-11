@@ -42,6 +42,7 @@ module Caminio
         authenticate!
         user = User.find( @token.user_id )
         present :user, user, with: UserEntity
+        present :app_roles, user.app_roles, with: AppRoleEntity
         present :groups, user.groups, with: GroupEntity
         present :organizations, user.organizations, with: OrganizationEntity
       end
@@ -55,6 +56,7 @@ module Caminio
         error!('InsufficientRights', 403) unless params.id == @token.user_id.to_s || @token.user.is_admin?
         user = User.where(id: params.id, organization_ids: headers['Organization-Id']).first
         error!('NotFound',404) unless user
+        present :app_roles, user.app_roles, with: AppRoleEntity
         present :user, user, with: UserEntity
       end
 
@@ -90,6 +92,7 @@ module Caminio
           return error!(UserMailerError,500) unless UserMailer.invite( user, current_user, base_url ).deliver_now
         end
         present :user, user, with: UserEntity
+        present :app_roles, user.app_roles, with: AppRoleEntity
       end
 
       desc "send the user a link to reset their password"

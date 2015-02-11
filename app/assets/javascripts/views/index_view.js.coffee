@@ -1,0 +1,1 @@
+Caminio.IndexView = Caminio.FadedView.extend()

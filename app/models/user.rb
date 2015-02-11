@@ -41,6 +41,7 @@ class User
 
   has_and_belongs_to_many :organizations
   has_and_belongs_to_many :groups
+  embeds_many :app_roles
 
   has_many :mediafiles, as: :parent
 

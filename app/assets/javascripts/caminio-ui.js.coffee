@@ -30,74 +30,6 @@ Caminio.ApplicationAdapter = DS.ActiveModelAdapter.extend
 
 Caminio.ApplicationStore = DS.Store.extend()
 
-Caminio.Organization = DS.Model.extend
-  name:             DS.attr 'string'
-  fqdn:             DS.attr 'string'
-  user_quota:       DS.attr 'number'
-  users:            DS.hasMany 'users', inverse: 'organizations'
-  
-Caminio.OrganizationAdapter = Caminio.ApplicationAdapter.extend()
-#
-# User
-#
-Caminio.User = DS.Model.extend
-  name:             (->
-    str = ''
-    str += @get('firstname') unless Em.isEmpty(@get('firstname'))
-    str += ' ' if str.length > 0 && !Em.isEmpty(@get('lastname'))
-    str += @get('lastname') unless Em.isEmpty(@get('lastname'))
-    if str.length < 1
-      str += @get('email')
-    str
-  ).property 'firstname', 'lastname', 'username', 'email'
-  role_name:        DS.attr 'string', default: 'user'
-  locale:           DS.attr 'string', default: Em.I18n.locale
-  username:         DS.attr 'string'
-  superuser:        DS.attr 'boolean'
-  suspended:        DS.attr 'boolean'
-  firstname:        DS.attr 'string'
-  lastname:         DS.attr 'string'
-  email:            DS.attr 'string'
-  password:         DS.attr 'string'
-  api_keys:         DS.hasMany 'api_key'
-  organization:     DS.belongsTo 'organization'
-  organizations:    DS.hasMany 'organizations'
-  groups:           DS.hasMany 'groups'
-  admin:            DS.attr 'boolean', default: false
-  editor:           DS.attr 'boolean', default: false
-  created_at:       DS.attr 'date'
-  updated_at:       DS.attr 'date'
-  last_login_at:    DS.attr 'date'
-  last_request_at:  DS.attr 'date'
-  settings:         DS.attr 'object'
-  settingsStr:      ((key,value,prevVal)->
-    if arguments.length > 1
-      @set 'settings', JSON.parse(value)
-
-    JSON.stringify @get('settings'), null, 2
-  ).property 'settings'
-
-Caminio.Group = DS.Model.extend
-  name:       DS.attr 'string'
-  created_at: DS.attr 'date'
-  users:      DS.hasMany 'users'
-  color:      DS.attr 'string'
-  
-Caminio.GroupAdapter = Caminio.ApplicationAdapter.extend()
-
-#
-# ApiKey
-#
-Caminio.ApiKey = DS.Model.extend
-  token:        DS.attr 'string'
-  expires_at:   DS.attr 'date'
-  user:         DS.belongsTo 'user', async: true
-#
-# Caminio.ApiKeyAdapter = DS.LSAdapter.extend
-#   namespace:    'caminio-auth-keys'
-
-Caminio.UserAdapter = Caminio.ApplicationAdapter.extend()
-
 #
 # AuthenticatedRoute
 #
@@ -126,7 +58,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
 
   checkAdmin: (user)->
     return if user.get('admin')
-    @transitionTo 'accounts.mine'
+    @transitionTo 'index'
 
   redirectToLogin: (transition)->
     @controllerFor('sessions').set('attemptedTransition', transition)
@@ -148,7 +80,7 @@ Caminio.SessionsRoute = Ember.Route.extend
 
   beforeModel: (transition)->
     return if Ember.isEmpty(@controllerFor('sessions').get('token'))
-    @transitionTo 'accounts.mine'
+    @transitionTo 'index'
 
 #
 # SessionsController
@@ -237,7 +169,7 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
                 attemptedTrans.retry()
                 @set('attemptedTransition', null)
               else
-                @transitionToRoute 'accounts.mine'
+                @transitionToRoute 'index'
         .fail (error)=>
           if error.status is 401
             @set('message', Em.I18n.t('errors.login_failed'))
@@ -251,7 +183,6 @@ Caminio.ApplicationController = Ember.Controller.extend
   needs:  ['sessions']
 
   appName: (window.APP_NAME || 'caminio')
-  backLink: 'accounts.mine'
 
   currentUser: Em.computed ->
     @store.getById 'user', @get('controllers.sessions.userId')

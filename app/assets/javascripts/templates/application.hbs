@@ -28,5 +28,33 @@
     </div>
 
   </div>
+
+  <div class="side-pane">
+    {{#if backLink}}
+      {{#link-to backLink class="btn-back"}}
+        <i class="fa fa-arrow-left"></i>
+      {{/link-to}}
+    {{else}}
+      <button class="toggle-sidebar hint--right hint--bounce" data-hint="toggle-sidebar">
+        <i class="fa fa-bars"></i>
+      </button>
+      {{#each app in currentUser.apps}}
+        {{#link-to app.link class="hint--right hint--bounce" hint=app.title}}
+          <i {{bind-attr class=':fa app.icon'}}></i>
+        {{/link-to}}
+      {{/each}}
+      {{#if currentUser.admin}}
+        {{#link-to 'accounts.admin' class='hint--right hin--bounce' hint='account.administration'}}
+          <i class="fa fa-cogs"></i>
+        {{/link-to}}
+      {{/if}}
+    {{/if}}
+  </div>
+  
 {{/if}}
-{{outlet}}
+
+<div class="main-wrap">
+    <div class="col-md-8">
+      {{outlet}}
+    </div>
+</div>
