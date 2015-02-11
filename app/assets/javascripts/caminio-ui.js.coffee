@@ -10,6 +10,16 @@ Ember.TextField.reopen(Ember.I18n.TranslateableAttributes)
 
 moment.locale(LANG)
 
+DS.ObjectTransform = DS.Transform.extend
+  deserialize: (serialized)->
+    return {} if Em.isNone(serialized)
+    serialized
+  serialize: (deserialized)->
+    return {} if Em.isNone(deserialized)
+    deserialized
+
+Caminio.register("transform:object", DS.ObjectTransform)
+
 $.cookie.json = true
 
 Caminio.ApplicationAdapter = DS.ActiveModelAdapter.extend
@@ -59,6 +69,13 @@ Caminio.User = DS.Model.extend
   updated_at:       DS.attr 'date'
   last_login_at:    DS.attr 'date'
   last_request_at:  DS.attr 'date'
+  settings:         DS.attr 'object'
+  settingsStr:      ((key,value,prevVal)->
+    if arguments.length > 1
+      @set 'settings', JSON.parse(value)
+
+    JSON.stringify @get('settings'), null, 2
+  ).property 'settings'
 
 Caminio.Group = DS.Model.extend
   name:       DS.attr 'string'
@@ -232,6 +249,9 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
 #
 Caminio.ApplicationController = Ember.Controller.extend
   needs:  ['sessions']
+
+  appName: (window.APP_NAME || 'caminio')
+  backLink: 'accounts.mine'
 
   currentUser: Em.computed ->
     @store.getById 'user', @get('controllers.sessions.userId')

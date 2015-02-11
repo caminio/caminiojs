@@ -1,1 +1,2 @@
-Caminio.GroupsIndexView = Caminio.FadedView.extend()
+Caminio.GroupsIndexView = Caminio.FadedView.extend
+  layoutName: 'accounts/layout'

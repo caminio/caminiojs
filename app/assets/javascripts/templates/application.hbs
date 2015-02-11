@@ -2,19 +2,16 @@
   <div {{bind-attr class=":top-pane currentUser.superuser:superuser"}}>
     <div class="clearfix">
       <a href="#" class="logo pull-left">
-        Ticketeer
+        {{appName}}
       </a>
       <div class="round-btn dropdown-toggle account-btn hint--left default-img" data-toggle="dropdown" 
           {{bind-attr data-hint='currentUser.name'}}>
         <img src="/images/user_default_32x32.png">
       </div>
       <ul class="dropdown-menu pull-right">
-        <li>{{#link-to 'accounts.mine'}}{{t 'logout'}}{{/link-to}}</li>
+        <li>{{#link-to 'accounts.mine'}}{{t 'account.mine'}}{{/link-to}}</li>
         <li><a href="#" {{action 'logout'}}>{{t 'logout'}}</a></li>
       </ul>
-      {{#if currentUser.superuser}}
-      <span class="superuser pull-right">SUPERUSER</span>
-      {{/if}}
       {{#if newBtnLink}}
         {{#link-to newBtnLink class='new-btn round-btn hint--left' hintBinding='newBtnLinkHint'}}
         <i class="fa fa-plus"></i>

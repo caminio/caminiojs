@@ -203,6 +203,7 @@ module Caminio
           optional :lastname
           optional :suspended
           optional :locale
+          optional :settings
         end
         optional :role, values: ['user','admin','editor']
         optional :organization_id

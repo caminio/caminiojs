@@ -1,55 +1,33 @@
-<div class="menu-pane">
-  <div class="inside-wrap">
-    {{#link-to 'groups.index' class="btn btn-back"}}
-      <i class="fa fa-arrow-left"></i>
-    {{/link-to}}
-    <h1>{{t 'group.members_of' nameBinding='name'}}</h1>
-  </div>
-</div>
+<section class="account-admin users">
 
-<div class="main-wrap">
-  <div class="overview-wrap">
-    <div class="overview-main overview-main-centered">
-
-      <section class="account-admin users">
-
-        <div class="heading">
-          {{#link-to 'groups.add_member' content class="btn btn-primary btn-large new-btn" titleTranslation='account.create_account'}}
-            <span class="fa fa-plus"></span>
-          {{/link-to}}
-        </div>
-
-        <ul class="list list-header">
-          <li>
-          <div class="list-icon"></div>
-          <div class="list-title">{{t 'name'}}</div>
-          <div class="list-date">{{t 'created_at'}}</div>
-          <div class="list-actions"></div>
-          </li>
-        </ul>
-        <ul class="list">
-          {{#each user in users}}
-          <li {{bind-attr class="user.suspended:suspended"}}>
-          <div class="list-icon">
-            <label {{bind-attr class=':label user.admin:label-danger user.editor:label-warning:label-default'}}>
-              <i class="fa fa-user"></i>
-            </label>
-          </div>
-          <div class="list-title">{{user.name}}</div>
-          <div class="list-date">{{formatDate user.created_at}}</div>
-          <div class="list-actions dropdown">
-            <button class="btn btn-pale dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></button>
-            <ul class="dropdown-menu dropdown-menu-grey pull-right">
-              <li>{{#link-to 'users.edit' user}}{{t 'account.edit'}}{{/link-to}}</li>
-              <li>
-                <a href="#" class="hover-danger" {{action 'removeUser' user}}>{{t 'user.unsubscribe_from_group'}}</a>
-              </li>
-            </ul>
-          </div>
-          </li>
-          {{/each}}
-        </div>
-      </section>
+  <ul class="list list-header">
+    <li>
+    <div class="list-icon"></div>
+    <div class="list-title">{{t 'name'}}</div>
+    <div class="list-date">{{t 'created_at'}}</div>
+    <div class="list-actions"></div>
+    </li>
+  </ul>
+  <ul class="list">
+    {{#each user in users}}
+    <li {{bind-attr class="user.suspended:suspended"}}>
+    <div class="list-icon">
+      <label {{bind-attr class=':label user.admin:label-danger user.editor:label-warning:label-default'}}>
+        <i class="fa fa-user"></i>
+      </label>
     </div>
+    <div class="list-title">{{user.name}}</div>
+    <div class="list-date">{{formatDate user.created_at}}</div>
+    <div class="list-actions dropdown">
+      <button class="btn btn-pale dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></button>
+      <ul class="dropdown-menu dropdown-menu-grey pull-right">
+        <li>{{#link-to 'users.edit' user}}{{t 'account.edit'}}{{/link-to}}</li>
+        <li>
+          <a href="#" class="hover-danger" {{action 'removeUser' user}}>{{t 'user.unsubscribe_from_group'}}</a>
+        </li>
+      </ul>
+    </div>
+    </li>
+    {{/each}}
   </div>
-</div>
+</section>

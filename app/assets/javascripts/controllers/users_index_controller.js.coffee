@@ -1,5 +1,7 @@
 Caminio.UsersIndexController = Ember.ArrayController.extend
 
+  needs: ['application']
+  
   sortProperties: ['name']
   sortAscending: true
 

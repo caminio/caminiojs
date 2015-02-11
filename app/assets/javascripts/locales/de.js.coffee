@@ -88,6 +88,7 @@ Em.merge Em.I18n.availableTranslations.de,
     delete_permanently: 'Permanent löschen'
 
   groups:
+    manage: 'Gruppen verwalten'
     title: 'Gruppen'
     pl_title: 
       one: 'Gruppe'
@@ -130,6 +131,9 @@ Em.merge Em.I18n.availableTranslations.de,
     fqdn: 'Domäne (FQDN)'
 
   account:
+    settings: 'Einstellungen (Experten)'
+    mine: 'Mein Konto'
+    manage: 'Konten verwalten'
     personal: 'Angaben zur Person'
     security: 'Sicherheit'
     contact_info: 'Kontaktinformationen'

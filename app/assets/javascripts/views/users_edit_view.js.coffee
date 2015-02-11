@@ -1,1 +1,2 @@
-Caminio.UsersEditView = Caminio.FadedView.extend()
+Caminio.UsersEditView = Caminio.FadedView.extend
+  layoutName: 'accounts/layout'

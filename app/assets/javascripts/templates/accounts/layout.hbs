@@ -1,13 +1,20 @@
-<div class="menu-pane">
-  {{#link-to 'accounts.mine'}}{{t 'account.general'}}{{/link-to}}
-  {{#if controllers.application.currentUser.admin}}
-  {{#link-to 'accounts.admin'}}{{t 'account.administration'}}{{/link-to}}
+<div class="side-pane">
+  {{#if controllers.application.rootLevel}}
+    <button class="toggle-sidebar hint--right hint--bounce" data-hint="toggle-sidebar">
+      <i class="fa fa-bars"></i>
+    </button>
+    {{!-- {{#link-to 'accounts.mine' titleTranslation='account.general'}}<i class="fa fa-user"></i>{{/link-to}} --}}
+    {{#if controllers.application.currentUser.admin}}
+    {{#link-to 'accounts.admin' class='hint--right hin--bounce' hint='account.administration'}}<i class="fa fa-cogs"></i>{{/link-to}}
+    {{/if}}
+  {{else}}
+    {{#link-to controllers.application.backLink class="btn-back"}}
+      <i class="fa fa-arrow-left"></i>
+    {{/link-to}}
   {{/if}}
 </div>
 <div class="main-wrap">
-  <div class="overview-wrap">
-    <div class="overview-main overview-main-centered">
+    <div class="col-md-8">
       {{yield}}
     </div>
-  </div>
 </div>

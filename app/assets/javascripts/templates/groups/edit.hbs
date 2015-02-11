@@ -1,40 +1,23 @@
-<div class="menu-pane">
-  <div class="inside-wrap">
-    {{#link-to 'groups.index' class="btn btn-back"}}
-      <i class="fa fa-arrow-left"></i>
-    {{/link-to}}
-    <h1>{{t 'group.edit'}}</h1>
-  </div>
-</div>
+<section class="card settings">
+  <h1>{{t 'group.general'}}</h1>
+  <div class="click-form">
+    {{click-edit-form value=name label='group.name' parentController=controller}}
 
-<div class="main-wrap">
-  <div class="overview-wrap">
-    <div class="overview-main overview-main-centered">
-
-      <section class="card settings">
-        <h1>{{t 'group.general'}}</h1>
-        <div class="click-form">
-          {{click-edit-form value=name label='group.name' parentController=controller}}
-
-          <div class="ember-view visible-overflow">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label class="control-label col-md-4">{{t 'color'}}</label>
-                <div class="col-md-8">
-                  {{view 'color-picker'
-                      classes="form-control"
-                      content=controllers.application.availableColors
-                      onChangeAction='save'
-                      value=color}}
-                </div>
-              </div>
-            </form>
+    <div class="ember-view visible-overflow">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-md-4">{{t 'color'}}</label>
+          <div class="col-md-8">
+            {{view 'color-picker'
+                classes="form-control"
+                content=controllers.application.availableColors
+                onChangeAction='save'
+                value=color}}
           </div>
-
-
         </div>
-      </section>
-      
+      </form>
     </div>
+
+
   </div>
-</div>
+</section>

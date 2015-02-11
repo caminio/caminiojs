@@ -50,7 +50,7 @@
   text-align: center;
   padding: 14px 23px;
   position: relative;
-  width: 289px;
+  width: 280px;
   height: 100px;
 }
 
@@ -180,8 +180,12 @@
 }
 
 .org-item{
-  position: relative;
   border-bottom: 1px solid #ddd;
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  background: #fff;
 }
 
 .org-item:last-child{
@@ -235,16 +239,15 @@
 }
 
 .org-card-wrap .org-items{
-  max-height: 0;
+  height: 0;
   overflow: hidden;
   box-shadow: none;
-  transition: max-height 0.5s;
 }
 
 .org-card-wrap.open .org-items{
-  max-height: 1000px;
+  height: auto;
+  overflow: visible;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  transition: max-height 1.9s;
 }
 
 .org-card-wrap .org-items-toggle .fa{
@@ -330,4 +333,8 @@ ul.list li.suspended{
 .search input:hover,
 .search input:focus{
   opacity: 1;
+}
+
+textarea.settings-area{
+  height: 20em;
 }

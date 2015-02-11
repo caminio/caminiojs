@@ -1,1 +1,2 @@
-Caminio.OrganizationsNewView = Caminio.FadedView.extend()
+Caminio.OrganizationsNewView = Caminio.FadedView.extend
+  layoutName: 'accounts/layout'

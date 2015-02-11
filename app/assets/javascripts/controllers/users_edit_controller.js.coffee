@@ -51,8 +51,12 @@ Caminio.UsersEditController = Ember.ObjectController.extend Caminio.Validations,
     save: (callback, scope)->
       @get('content')
         .save()
-        .then ->
-          callback.call(scope)
+        .then =>
+          if callback
+            return callback.call(scope)
+          noty
+            type: 'success'
+            text: Em.I18n.t('saved', name: @get('content.name'))
 
     toggleSuspended: (user)->
       user = user || @get('content')
