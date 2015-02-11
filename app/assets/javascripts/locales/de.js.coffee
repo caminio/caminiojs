@@ -3,6 +3,9 @@ Em.I18n.availableTranslations.de ||= {}
 
 Em.merge Em.I18n.availableTranslations.de,
   alias: 'Alias'
+  or: 'oder'
+  year: 'Jahr'
+  month: 'Monat'
   username_or_email: 'Benutzername oder Email'
   firstname: 'Vorname'
   lastname: 'Nachname'
@@ -149,6 +152,12 @@ Em.merge Em.I18n.availableTranslations.de,
     admin:
       users: 'Konten verwalten'
       organizations: 'Organisationen'
+
+  subscriptions:
+    title: 'Abonnements'
+    really_switch_to_plan: 'Möchten Sie wirklich auf den Plan <tt>{{title}}</tt> wechseln? Bestätigen Sie den Wechsel bitte mit Ihrem Password'
+    switched_to_plan: 'Sie haben nun in den Plan <tt>{{title}}</tt> gewechselt'
+
   errors:
     login_failed: 'Anmeldung fehlgeschlagen!'
     email_required: 'Email Adresse erforderlich'

@@ -44,6 +44,9 @@
         {{/link-to}}
       {{/each}}
       {{#if currentUser.admin}}
+        {{#link-to 'subscriptions.manage' class="hint--right hint--bounce" hint='subscriptions.title'}}
+          <i class="fa fa-money"></i>
+        {{/link-to}}
         {{#link-to 'accounts.admin' class='hint--right hin--bounce' hint='account.administration'}}
           <i class="fa fa-cogs"></i>
         {{/link-to}}
@@ -54,7 +57,5 @@
 {{/if}}
 
 <div class="main-wrap">
-    <div class="col-md-8">
-      {{outlet}}
-    </div>
+  {{outlet}}
 </div>

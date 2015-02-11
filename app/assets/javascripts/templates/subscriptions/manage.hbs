@@ -1,0 +1,26 @@
+<section>
+
+  <div class="row">
+
+    {{#each plan in availablePlans itemController='app_plan_item'}}
+      <div {{bind-attr class='controller.col'}}>
+        <div class="card app-plan" {{action 'selectPlan' plan}}>
+          <h1>{{plan.title}}</h1>
+          <div class="price">
+            {{{controller.price}}}
+            {{#if plan.price_year}}
+              <div class="price_year">{{{controller.price_year}}}</div>
+            {{/if}}
+          </div>
+          <ul>
+          {{#each feature in plan.features}}
+            <li>{{{feature}}}</li>
+          {{/each}}
+          </ul>
+        </div>
+      </div>
+    {{/each}}
+
+  </div>
+
+</section>

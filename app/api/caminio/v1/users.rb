@@ -48,6 +48,20 @@ module Caminio
       end
 
       #
+      # GET /check_password
+      #
+      desc "checks password for the current user"
+      params do
+        requires :password, desc: "the current password"
+      end
+      get '/check_password' do
+        authenticate!
+        user = User.find( @token.user_id )
+        return error!("WrongPassword",403) unless user.authenticate( params.old )
+        {}
+      end
+      
+      #
       # GET /:id
       #
       desc "returns user with :id"

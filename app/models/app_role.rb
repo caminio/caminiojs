@@ -6,7 +6,7 @@ class AppRole
 
   embedded_in :user
   
-  field :name, type: String
+  field :app_name, type: String
   field :rights, type: String, default: 'r'
 
 end

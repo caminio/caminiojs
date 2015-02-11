@@ -2,6 +2,9 @@
 
 Caminio.Router.map ->
   @route 'index', path: '/'
+  @resource 'subscriptions', ->
+    @route 'manage'
+    @route 'confirm_change', path: 'confirm_change/:plan_name'
   @resource 'sessions', ->
     @route 'login'
     @route 'logout'

@@ -1,3 +1,4 @@
+require 'yaml'
 
 module Caminio
 
@@ -22,6 +23,20 @@ module Caminio
         organizations = current_user.organizations
         organizations = Organization.where({}) if current_user.is_superuser?
         present :organizations, organizations, with: OrganizationEntity
+        present :app_plans, organizations.inject(Array.new){ |arr,o| arr.concat o.app_plans }, with: AppPlanEntity
+      end
+
+      #
+      # GET /available_app_plans
+      # 
+      desc "lists available_app_plans for this organization, if none are set, default app plans are returned"
+      get '/:id/app_plans' do
+        authenticate!
+        org = current_user.organizations.find params.id
+        return error!('NotFound',404) unless org
+        filename = Rails.root.join 'config', 'app_plans', "#{current_user.locale}.yml"
+        app_plans = YAML.load_file filename
+        app_plans
       end
 
       #
@@ -42,6 +57,7 @@ module Caminio
           return error!({ error: 'ValidationError', details: org.errors.full_messages }, 422)
         end
         present :organization, org, with: OrganizationEntity
+        present :app_plans, org.app_plans, with: AppPlanEntity
       end
 
       #
@@ -80,6 +96,7 @@ module Caminio
         error("InsufficientRights",403) unless current_user.organizations.find( params.id )
         org = Organization.find params.id
         present :organization, org, with: OrganizationEntity
+        present :app_plans, org.app_plans, with: AppPlanEntity
       end
 
     end

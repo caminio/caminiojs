@@ -8,6 +8,18 @@ Ember.I18n.translations = Ember.I18n.availableTranslations[Ember.I18n.locale]
 # inject <attr>Translation into {{input }} helper
 Ember.TextField.reopen(Ember.I18n.TranslateableAttributes)
 
+accounting.settings =
+  currency:
+    symbol : "€ "
+    format: "%s%v"
+    decimal : ","
+    thousand: " "
+    precision : 2
+  number:
+    precision : 0
+    thousand: ","
+    decimal : "."
+
 moment.locale(LANG)
 
 DS.ObjectTransform = DS.Transform.extend
@@ -19,6 +31,17 @@ DS.ObjectTransform = DS.Transform.extend
     deserialized
 
 Caminio.register("transform:object", DS.ObjectTransform)
+
+DS.ArrayTransform = DS.Transform.extend
+  deserialize: (serialized)->
+    return [] if Em.isNone(serialized)
+    serialized
+  serialize: (deserialized)->
+    return [] if Em.isNone(deserialized)
+    deserialized
+
+Caminio.register("transform:array", DS.ArrayTransform)
+
 
 $.cookie.json = true
 
