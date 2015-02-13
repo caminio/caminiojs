@@ -17,13 +17,6 @@ module Caminio
         authenticate!
         mf = Mediafile.new parent_id: params.parent_id, parent_type: params.parent_type.camelize
         mf.file = params.file
-        # DAVID, please review: if save fails, you are not returning anything
-        # tests fail!
-        # if mf.save
-        #   params.link_only ? { link: mf.file.url(:original) } : mf
-        # end
-        #
-        # MY SOLUTION HERE:
         return error!({error: 'SavingFailed', details: mf.errors.inspect}) unless mf.save
         params.link_only ? { link: mf.file.url(:original) } : mf
       end

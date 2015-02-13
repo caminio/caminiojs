@@ -34,7 +34,9 @@ Em.merge Em.I18n.availableTranslations.de,
   search_dots: 'Suche ...'
   select_language: 'Sprache wählen'
   apps: 'Applikationen'
-  dashboard: 'Dashboard'
+  dashboard:
+    title: 'Dashboard'
+    activity: 'Aktivitäten'
   administration: 'Administration'
   
   save: 'Speichern'

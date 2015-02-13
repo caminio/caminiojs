@@ -46,7 +46,7 @@
       <div class="results">
         {{#link-to 'index' class="side-pane-link"}}
           <i class="fa fa-home"></i>
-          {{t 'dashboard'}}
+          {{t 'dashboard.title'}}
         {{/link-to}}
         {{#each app in currentUser.apps}}
           {{#link-to app.link class="side-pane-link"}}
@@ -64,7 +64,7 @@
 
   {{/if}}
 
-  <div {{bind-attr class="isAuthorized:main-wrap"}}>
+  <div {{bind-attr class="isAuthenticated:main-wrap"}}>
     {{outlet}}
   </div>
 
