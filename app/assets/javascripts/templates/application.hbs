@@ -1,61 +1,71 @@
-{{#if isAuthenticated}}
-  <div {{bind-attr class=":top-pane currentUser.superuser:superuser"}}>
-    <div class="clearfix">
-      <a href="#" class="logo pull-left">
-        {{appName}}
-      </a>
-      <div class="round-btn dropdown-toggle account-btn hint--left default-img" data-toggle="dropdown" 
-          {{bind-attr data-hint='currentUser.name'}}>
-        <img src="/images/user_default_32x32.png">
+<div {{bind-attr class="sidePaneOpen:side-pane-open"}}>
+
+  {{#if isAuthenticated}}
+    <div {{bind-attr class=":top-pane currentUser.superuser:superuser accountInfoOpen:account-info-open"}}>
+
+      <div class="toggle-side-pane hint--bottom hint--bounce" 
+        {{translateAttr data-hint="search_app"}}
+        {{action 'toggleSidePane' bubbles=false}}>
+        {{#if controller.sidePaneOpen}}
+          <i class="fa fa-times"></i>
+        {{else}}
+          <i class="fa fa-bars"></i>
+        {{/if}}
+        {{input value=searchQuery id="search-query" placeholderTranslation='search_dots'}}
       </div>
-      <ul class="dropdown-menu pull-right">
-        <li>{{#link-to 'accounts.mine'}}{{t 'account.mine'}}{{/link-to}}</li>
-        <li><a href="#" {{action 'logout'}}>{{t 'logout'}}</a></li>
-      </ul>
-      {{#if newBtnLink}}
-        {{#link-to newBtnLink class='new-btn round-btn hint--left' hintBinding='newBtnLinkHint'}}
-        <i class="fa fa-plus"></i>
-        {{/link-to}}
-      {{/if}}
-      <form class="round-btn search-btn">
-        <i class="fa fa-search"></i>
-        {{input valueBinding='searchQuery' placeholderTranslation='search_for'}}
-      </form>
+
+      <div class="app-name-and-pricing">
+        <a {{bind-attr href=appLink}}>
+          <img src="/favicon.png">
+          {{appName}}
+        </a>
+      </div>
+
+      <div class="account-info-toggle" {{action 'toggleAccountInfo'}}>
+        <i class="glyphicon glyphicon-user"></i>
+        <i class="fa fa-angle-down"></i>
+      </div>
+      <div class="account-info">
+        <div class="section user-main-info">
+          <img src="/images/user_default_32x32.png">
+          {{currentUser.name}}
+        </div>
+        <div class="section">
+          {{#link-to 'accounts.mine' class='link-item'}}{{t 'account.edit_mine'}}{{/link-to}}
+          {{#link-to 'subscriptions.manage' class='link-item'}}{{t 'subscriptions.title'}}{{/link-to}}
+        </div>
+        <div class="section">
+          {{#link-to 'sessions.logout' class='link-item'}}{{t 'logout'}}{{/link-to}}
+        </div>
+      </div>
+
     </div>
 
-    <div class="route-title">
-      {{routeTitle}}
+    <div class="side-pane">
+      <h3>{{t 'apps'}}</h3>
+      <div class="results">
+        {{#link-to 'index' class="side-pane-link"}}
+          <i class="fa fa-home"></i>
+          {{t 'dashboard'}}
+        {{/link-to}}
+        {{#each app in currentUser.apps}}
+          {{#link-to app.link class="side-pane-link"}}
+            <i {{bind-attr class=':fa app.icon'}}></i>
+          {{/link-to}}
+        {{/each}}
+        {{#if currentUser.admin}}
+          {{#link-to 'accounts.admin' class='side-pane-link'}}
+            <i class="fa fa-cogs"></i>
+            {{t 'administration'}}
+          {{/link-to}}
+        {{/if}}
+      </div>
     </div>
 
+  {{/if}}
+
+  <div {{bind-attr class="isAuthorized:main-wrap"}}>
+    {{outlet}}
   </div>
 
-  <div class="side-pane">
-    {{#if backLink}}
-      {{#link-to backLink class="btn-back"}}
-        <i class="fa fa-arrow-left"></i>
-      {{/link-to}}
-    {{else}}
-      <button class="toggle-sidebar hint--right hint--bounce" data-hint="toggle-sidebar">
-        <i class="fa fa-bars"></i>
-      </button>
-      {{#each app in currentUser.apps}}
-        {{#link-to app.link class="hint--right hint--bounce" hint=app.title}}
-          <i {{bind-attr class=':fa app.icon'}}></i>
-        {{/link-to}}
-      {{/each}}
-      {{#if currentUser.admin}}
-        {{#link-to 'subscriptions.manage' class="hint--right hint--bounce" hint='subscriptions.title'}}
-          <i class="fa fa-money"></i>
-        {{/link-to}}
-        {{#link-to 'accounts.admin' class='hint--right hin--bounce' hint='account.administration'}}
-          <i class="fa fa-cogs"></i>
-        {{/link-to}}
-      {{/if}}
-    {{/if}}
-  </div>
-  
-{{/if}}
-
-<div class="main-wrap">
-  {{outlet}}
 </div>

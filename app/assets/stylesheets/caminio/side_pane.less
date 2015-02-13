@@ -1,0 +1,70 @@
+@import "_colors";
+
+.side-pane{
+  left: -250px;
+  position: fixed;
+  top: 42px;
+  bottom: 0;
+  width: 244px;
+  overflow: hidden;
+  background: @grey-100;
+  border-right: 1px solid @caminio_med_grey2;
+  transition: left 0.8s ease;
+  z-index: 10;
+  font-size: 12px;
+}
+
+.side-pane-open .side-pane{
+  left: 0;
+  transition: left 0.5s ease;
+}
+
+.side-pane h3{
+  font-size: 12px;
+  font-weight: 500;
+  color: @grey-700;
+  text-transform: uppercase;
+  margin: 2em 20px 1em;
+}
+
+.side-pane h3:before{
+  background: @grey-50;
+  border: 1px solid @grey-300;
+  border-radius: 25%;
+  content: "";
+  float: left;
+  height: 16px;
+  margin: -2px 6px 2px 0;
+  width: 16px;
+}
+
+.side-pane .side-pane-link{
+  padding: 3px 0 3px 20px;
+  display: block;
+  color: @grey-400;
+  text-decoration: none !important;
+}
+
+.side-pane .side-pane-link:hover{
+  background: @grey-200;
+  color: @grey-600;
+}
+
+.side-pane .side-pane-link.active{
+  color: @grey-700;
+}
+
+.side-pane .side-pane-link.active .fa{
+  color: @green-500;
+}
+
+.side-pane .side-pane-link .fa{
+  border-radius: 25%;
+  display: block;
+  float: left;
+  font-size: 12px;
+  height: 20px;
+  margin: -2px 3px 0 0;
+  padding: 5px 3px;
+  width: 20px;
+}
