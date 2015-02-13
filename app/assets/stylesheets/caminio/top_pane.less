@@ -7,10 +7,12 @@
 .top-pane{
   height: 42px;
   position: fixed;
-  left: 65px;
+  left: 0;
   right: 0;
   top: 0;
-  padding: 5px;
+  border-bottom: 1px solid @caminio-dark-blue;
+  background: @caminio-blue;
+  z-index: 10;
 }
 
 .top-pane .superuser{
@@ -19,149 +21,132 @@
   margin: 15px 0;  
 }
 
-.top-pane .logo{
+.top-pane .app-name-and-pricing{
+  float: left;
   display: inline-block;
-  padding: 3px 14px;
-  font-family: @caminio_pri_font_family;
-  font-size: 18px;
-  color: @caminio_dark_grey;
-}
-
-.top-pane .logo:hover{
-  text-decoration: none;
-}
-
-.top-pane .logo .logo-img{
-  width: 32px;
-  margin-right: 5px;
-}
-.top-pane .logo .logo-text{
-  height: 18px;
-  margin-top: -3px;
-  display: inline-block;
-}
-
-.top-pane .round-btn{
-  color: @grey-400;
-  cursor: pointer;
-  float: right;
-  width: 32px;
-  text-decoration: none;
-  border-radius: 50%;
-  height: 32px;
-  position: relative;
-  margin-left: 5px;
-}
-
-.top-pane .round-btn.account-btn{
-  border: 1px solid #ddd;
-}
-
-.top-pane.superuser .round-btn.account-btn{
-  border-color: #d55;
-}
-
-.top-pane .round-btn.new-btn{
-  border: none;
-  background: none;
-}
-
-.top-pane .round-btn.new-btn:hover{
-  background: @link_color;
-}
-
-.top-pane .round-btn.new-btn:hover .fa{
   color: #fff;
+  opacity: 0.5;
+  padding: 11px 10px 0;
+  font-family: 'Audiowide', sans-serif;
 }
 
-.top-pane .round-btn img{
-  width: 28px;
-  height: 28px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  opacity: 0.8;
+.top-pane .app-name-and-pricing img{
+  float: left;
+  height: 18px;
+  margin: 1px 5px 0;
+  width: 18px;
 }
 
-.top-pane .round-btn.default-img{
-  background-color: #fff;
+.top-pane .app-name-and-pricing a{
+  color: #fff;
+  padding: 10px 0;
+  text-decoration: none !important;
 }
 
-.top-pane .round-btn.default-img img{
+.top-pane .toggle-side-pane{
+  background: @caminio-dark-blue-2;
+  padding: 5px;
+  cursor: text;
+  float: left;
+}
+
+.top-pane .toggle-side-pane .fa{
+  float: left;
+  margin: 7px;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 18px;
+  cursor: pointer;
   width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 4px;
-  left: 4px;
+  display: block;
+}
+
+.top-pane .toggle-side-pane input{
+  width: 200px;
+  background: none;
+  border: none;
+  color: #fff;
   opacity: 0.5;
 }
 
-.top-pane .round-btn:hover{
-  color: @caminio_black;
-  background: @caminio_med_grey;
-}
-
-.top-pane .round-btn:hover img{
-  opacity: 1;
-}
-
-.top-pane .round-btn .fa{
-  color: @grey-400;
-  font-size: 18px;
-  left: 9px;
-  position: absolute;
-  top: 7px;
-}
-
-.top-pane .round-btn:hover .fa{
-  color: @grey-700;
-}
-
-.top-pane .search-btn .fa{
-  font-size: 15px;
-  left: auto;
-  right: 6px;
-  top: 8px;
-}
-
-.top-pane input[type=text]:hover,
-.top-pane input[type=text]:active,
-.top-pane input[type=text]:focus,
-.top-pane input[type=text]{
-  float: left;
-  background: none;
-  border: none;
-  margin-right: 10px;
+.top-pane .toggle-side-pane input:hover,
+.top-pane .toggle-side-pane input:focus{
   box-shadow: none;
 }
 
-.top-pane .search-btn{
-  overflow: hidden;
-  transition: width 0.5s ease 0s;
+.side-pane-open .top-pane .toggle-side-pane input,
+.side-pane-open .top-pane .toggle-side-pane .fa{
+  opacity: 1;
 }
 
-.top-pane .search-btn:hover{
-  width: 250px;
-  transition: width 0.5s ease 0s;
-  border-radius: 5px;
+.top-pane .account-info-toggle{
+  color: #000;
+  cursor: pointer;
+  float: right;
+  font-size: 14px;
+  opacity: 0.2;
+  padding: 11px;
 }
 
-.top-pane .search-btn input[type=text]{
-  margin-left: -300px;
-  transition: margin-left 0.5s;
+.top-pane .account-info-toggle:hover{
+  color: #fff;
+  opacity: 0.9;
+  background: rgba(0,0,0,0.2);
 }
 
-.top-pane .search-btn:hover input[type=text]{
-  margin-left: 0;
-  transition: margin-left 0.5s;
+.top-pane .account-info{
+  background: @grey-50;
+  border: 1px solid @grey-400;
+  border-top: none;
+  top: 43px;
+  position: absolute;
+  right: 3px;
+  display: none;
+  font-size: 12px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
 }
 
-.top-pane .route-title{
+.top-pane.account-info-open .account-info{
+  display: block;
+}
+
+.top-pane.account-info-open .account-info-toggle{
+  color: #fff;
+  opacity: 0.9;
+}
+
+.top-pane.account-info-open .account-info-toggle .fa-angle-down{
+  transform: rotate(180deg);
+}
+
+.top-pane .account-info .link-item{
+  padding: 4px 10px;
+  color: @grey-600;
+  text-decoration: none !important;
+  display: block;
+}
+
+.top-pane .account-info .section{
+  border-bottom: 1px solid @grey-300;
+  color: @grey-700;
+  padding: 10px 0;
+  text-align: right;
+}
+
+.top-pane .account-info .section:last-child{
+  border-bottom: none;
+}
+
+.top-pane .account-info .user-main-info{
+  color: @grey-900;
+  padding: 20px;
+  font-weight: 600;
+}
+
+.top-pane .account-info .user-main-info img{
+  width: 32px;
+  height: 32px;
   float: left;
-  margin: -3px 15px;
-  color: #9999a4;
-  font-weight: 100;
-  border-top: 1px solid #ddd;
-  padding-right: 50px;
+  margin: -6px 10px 0;
+  background: @grey-200;
 }

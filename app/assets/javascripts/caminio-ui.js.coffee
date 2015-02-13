@@ -74,6 +74,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         @redirectToLogin(transition) unless user
         @checkAdmin(user) if @get('requireAdmin')
         @store.find 'organization', orgId
+        $('body').removeClass('authorization-required')
       .catch (error)=>
         console.log 'error caught', error
         @controllerFor('sessions').reset()
@@ -198,7 +199,33 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
             @set('message', Em.I18n.t('errors.login_failed'))
             $('input[type=text]:visible:first').focus()
 
-  
+#
+# ApplicationView
+#
+Caminio.ApplicationView = Ember.View.extend
+
+  checkSidePane: (e)->
+    if ($(e.target).closest('.toggle-side-pane').length > 0 || $(e.target).hasClass('toggle-side-pane')) ||
+        ($(e.target).closest('.side-pane').length > 0 && 
+         !($(e.target).closest('.side-pane-link').length > 0 || $(e.target).hasClass('side-pane-link')))
+      return
+    if $('body > div > div').hasClass('side-pane-open')
+      @get('controller').set 'sidePaneOpen', false
+
+  checkAccountInfo: (e)->
+    if $(e.target).closest('.top-pane').length < 1 && $('.top-pane').hasClass('account-info-open')
+      @get('controller').set 'accountInfoOpen', false
+
+  didInsertElement: ->
+    @$(document)
+      .on 'click', (e)=>
+        @checkSidePane(e)
+        @checkAccountInfo(e)
+
+    @$('input#search-query')
+      .on 'focus', (e)=>
+        @get('controller').set 'sidePaneOpen', true 
+
 #
 # ApplicationController
 #
@@ -206,6 +233,11 @@ Caminio.ApplicationController = Ember.Controller.extend
   needs:  ['sessions']
 
   appName: (window.APP_NAME || 'caminio')
+
+  appLink: (window.APP_LINK || 'https://camin.io')
+
+  sidePaneOpen: false
+  accountInfoOpen: false
 
   currentUser: Em.computed ->
     @store.getById 'user', @get('controllers.sessions.userId')
@@ -221,6 +253,17 @@ Caminio.ApplicationController = Ember.Controller.extend
   .property 'controllers.sessions.token', 'controllers.sessions.userId'
 
   actions:
+
+    toggleAccountInfo: ->
+      @toggleProperty 'accountInfoOpen'
+
+    toggleSidePane: ->
+      return if $('input#search-query').is(':focus')
+      @toggleProperty 'sidePaneOpen'
+      if @get('sidePaneOpen')
+        $('input#search-query').focus()
+      return
+
     logout: ->
       @get('controllers.sessions').reset()
       @transitionToRoute 'sessions'
