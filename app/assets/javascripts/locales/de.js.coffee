@@ -37,6 +37,11 @@ Em.merge Em.I18n.availableTranslations.de,
   dashboard:
     title: 'Dashboard'
     activity: 'Aktivitäten'
+
+  activity:
+    logged_in: 'hat sich am System angemeldet'
+    logged_out: 'hat sich vom System abgemeldet'
+
   administration: 'Administration'
   
   save: 'Speichern'

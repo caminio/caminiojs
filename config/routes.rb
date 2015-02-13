@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   mount Caminio::V1::Auth => "/api/v1/auth"
+  mount Caminio::V1::Activities => "/api/v1/activities"
   mount Caminio::V1::Users => "/api/v1/users"
   mount Caminio::V1::ApiKeys => "/api/v1/api_keys"
   mount Caminio::V1::Groups => "/api/v1/groups"

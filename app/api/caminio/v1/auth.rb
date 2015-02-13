@@ -29,9 +29,17 @@ module Caminio
         requires :login, desc: "email address or username accepted"
         requires :password, desc: "the user's password"
       end
-
       post do
-        present :api_key, authenticate_user, with: ApiKeyEntity
+        api_key = authenticate_user
+        Activity.create name: 'activity.logged_in'
+        present :api_key, api_key, with: ApiKeyEntity
+      end
+
+      delete do
+        authenticate!
+        Activity.create name: 'activity.logged_out'
+        ApiKey.where( user_id: current_user.id, permanent: false ).delete_all
+        {}
       end
         
     end

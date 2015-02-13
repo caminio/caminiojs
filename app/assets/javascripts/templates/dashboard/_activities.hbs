@@ -1,8 +1,24 @@
 <div class="card">
-  <h2>placeholder</h2>
+
+  <h2>{{t 'dashboard.activity'}}</h2>
 
   <ul class="activities-list">
-
+    {{#each activity in sortedActivities}}
+      <li>
+        <div class="avatar">
+          <img src="/images/user_default_32x32.png">
+        </div>
+        <div class="info">
+          <h3>
+            <strong>{{activity.user.name}}</strong>
+            {{t activity.name}}
+          </h3>
+          <span class="desc">
+            <i {{bind-attr class=activity.appCssClass}}></i>
+            {{activity.item_type}} {{activity.ago}}
+        </div>
+      </li>
+    {{/each}}
   </ul>
 
 </div>

@@ -266,10 +266,15 @@ Caminio.ApplicationController = Ember.Controller.extend
       return
 
     logout: ->
+      console.log 'here logout'
       for cookie in $.cookie()
         $.removeCookie cookie
-      @get('controllers.sessions').reset()
-      @transitionToRoute 'sessions.index'
+      $.ajax
+        url: "#{Caminio.get('apiHost')}/auth"
+        type: 'delete'
+      .then =>
+        @get('controllers.sessions').reset()
+        @transitionToRoute 'sessions.index'
 
   availableColors: [
     '#f44336'

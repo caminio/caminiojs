@@ -15,7 +15,7 @@ module Caminio
       desc "lists all api keys"
       get do
         authenticate!
-        presetn current_organization.activities, with: ActivityEntity
+        present :activities, current_organization.activities.desc(:created_at).limit(10), with: ActivityEntity
       end
       
     end

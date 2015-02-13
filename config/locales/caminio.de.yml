@@ -8,9 +8,6 @@ de:
     invite:
       subject: "Willkommen auf %{site_name}"
 
-  activity:
-    logged_in: 'hat sich am System angemeldet'
-
   mongoid:
     errors:
       messages:
