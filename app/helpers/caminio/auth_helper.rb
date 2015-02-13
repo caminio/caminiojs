@@ -39,6 +39,7 @@ module Caminio
       end
       return false if @token.expires_at < Time.now
       @token.update_attributes(last_request_at: Time.now, expires_at: 8.hours.from_now)
+      Activity.create name: 'activity.logged_in'
       true
     end
 

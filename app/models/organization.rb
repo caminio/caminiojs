@@ -12,6 +12,7 @@ class Organization
   field :user_quota, type: Integer, default: 1
   
   has_and_belongs_to_many :users
+  has_many :activities
   embeds_many :app_plans
 
   before_create :setup_fqdn

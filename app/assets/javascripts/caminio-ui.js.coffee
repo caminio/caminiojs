@@ -256,6 +256,7 @@ Caminio.ApplicationController = Ember.Controller.extend
 
     toggleAccountInfo: ->
       @toggleProperty 'accountInfoOpen'
+      return
 
     toggleSidePane: ->
       return if $('input#search-query').is(':focus')
@@ -265,8 +266,10 @@ Caminio.ApplicationController = Ember.Controller.extend
       return
 
     logout: ->
+      for cookie in $.cookie()
+        $.removeCookie cookie
       @get('controllers.sessions').reset()
-      @transitionToRoute 'sessions'
+      @transitionToRoute 'sessions.index'
 
   availableColors: [
     '#f44336'
