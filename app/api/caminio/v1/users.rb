@@ -180,6 +180,7 @@ module Caminio
           password: params.password, 
           username: params.username,
           locale: params.locale || I18n.locale
+        RequestStore.store['current_user_id'] = user.id
         if params.organization.blank?
           user.organizations.create!( name: 'private' )
         else

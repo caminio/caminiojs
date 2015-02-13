@@ -12,14 +12,14 @@ class ApiKey
   belongs_to :user
   has_many :request_tokens, dependent: :destroy
   
-  before_create :setup_token, :setup_expires_at, :setup_organization
+  before_create :setup_token, :setup_expires_at #, :setup_organization
 
   private
 
-  def setup_organization
-    return if organization_id
-    self.organization_id = RequestStore.store['organization_id']
-  end
+  # def setup_organization
+  #   return if organization_id
+  #   self.organization_id = RequestStore.store['organization_id']
+  # end
 
   def setup_token
     self.token = SecureRandom.hex

@@ -8,5 +8,9 @@ FactoryGirl.define do
 
     to_create { |instance| instance.save }
 
+    after(:build) do |model, evaluator|
+      RequestStore.store['current_user_id'] = model.id
+    end
+
   end
 end

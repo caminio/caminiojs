@@ -13,6 +13,11 @@ module Caminio
       @current_user.aquire_api_key
     end
 
+    def authenticatePublic!
+      return if try_authorize_organization_key
+      authenticate!
+    end
+
     def authenticate!
       error!('Unauthorized', 401) unless try_authorize_token
     end
@@ -25,14 +30,24 @@ module Caminio
       Organization.find RequestStore.store['organization_id']
     end
 
-    def try_authorize_token
+    def try_authorize_organization_key
+      get_token_from_header
+      return false unless @token.organization_id.nil?
+      true   
+    end
+
+    def get_token_from_header
       if token = headers['Authorization']
         token = token.split(' ').last
       elsif params.api_key
         token = params.api_key
       end
       error!('MissingTokenOrApiKey', 401) unless token
-      return false unless @token = ApiKey.find_by( token: token )
+      @token = ApiKey.find_by( token: token )
+    end
+
+    def try_authorize_token
+      get_token_from_header unless @token
       RequestStore.store['current_user_id'] = @token.user.id.to_s
       if @token.user.organizations.first
         RequestStore.store['organization_id'] ||= headers['Organization-Id'] || @token.user.organizations.first.id.to_s
