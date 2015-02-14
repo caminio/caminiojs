@@ -66,6 +66,34 @@ describe Caminio::V1::Auth do
 
   end
 
+  describe "/auth/test_public_key" do
+
+    before :each do
+      @user = create(:user)
+      @user.organizations.create name: 'test-org'
+      @api_key = create(:api_key, permanent: true, organization_id: @user.organizations.first.id )
+      @url = "v1/auth/test_public_key"
+      header 'Authorization', "Bearer #{@api_key.token}"
+    end
+
+    it "tests a pulic key" do
+      post @url
+      expect( last_response.status ).to be == 201
+    end
+
+    it "returns the api_key: true" do
+      post @url
+      expect( json ).to have_key('api_key')
+      expect( json[:api_key].id ).to eq (@api_key.id.to_s)
+    end
+
+    # it "sets the current_api_key in store" do 
+    #   post @url
+    #   expect( RequestStore.store['current_api_key_id'] ).to eq( @api_key.id )
+    # end 
+
+  end
+
   describe "/auth/request_token" do
 
     before :each do

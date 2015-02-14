@@ -31,9 +31,9 @@ module Caminio
     end
 
     def try_authorize_organization_key
-      puts "here"
       get_token_from_header
-      return false unless @token.organization_id.nil?
+      return false if @token.organization_id.nil?
+      RequestStore.store['current_api_key_id'] = @token.id
       true   
     end
 

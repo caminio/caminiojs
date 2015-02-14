@@ -42,8 +42,10 @@ module Caminio
         {}
       end
 
+      desc "for testing a public key"
       post "test_public_key" do
-
+        authenticate_public!
+        present :api_key, ApiKey.find( RequestStore.store['current_api_key_id'] ), with: ApiKeyEntity
       end
         
     end
