@@ -41,6 +41,10 @@ module Caminio
         ApiKey.where( user_id: current_user.id, permanent: false ).delete_all
         {}
       end
+
+      post "test_public_key" do
+
+      end
         
     end
 

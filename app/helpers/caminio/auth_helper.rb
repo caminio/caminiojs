@@ -13,7 +13,7 @@ module Caminio
       @current_user.aquire_api_key
     end
 
-    def authenticatePublic!
+    def authenticate_public!
       return if try_authorize_organization_key
       authenticate!
     end
