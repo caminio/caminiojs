@@ -31,6 +31,7 @@ module Caminio
     end
 
     def try_authorize_organization_key
+      puts "here"
       get_token_from_header
       return false unless @token.organization_id.nil?
       true   
