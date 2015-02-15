@@ -136,6 +136,7 @@ Em.merge Em.I18n.availableTranslations.de,
     show_all: 'Alle Organisationen anzeigen'
 
   organization:
+    my: 'Meine Organisation'
     title: 'Organisation'
     edit: 'Organisation bearbeiten'
     name: 'Name der Organisation'
@@ -146,7 +147,7 @@ Em.merge Em.I18n.availableTranslations.de,
     fqdn: 'Domäne (FQDN)'
 
   account:
-    settings: 'Einstellungen (Experten)'
+    settings: 'Einstellungen'
     mine: 'Mein Konto'
     manage: 'Konten verwalten'
     personal: 'Angaben zur Person'

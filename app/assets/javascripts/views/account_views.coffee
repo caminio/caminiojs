@@ -1,4 +1,4 @@
-Caminio.AccountsAdminView = Caminio.FadedView.extend()
+Caminio.AccountsSettingsView = Caminio.FadedView.extend()
 
 Caminio.AccountsGroupsView = Caminio.FadedView.extend()
 

@@ -14,7 +14,7 @@ Caminio.Router.map ->
     @route 'confirm', path: 'confirm/:id/:confirmation_key'
   @resource 'accounts', ->
     @route 'mine'
-    @route 'admin'
+    @route 'settings'
   @resource 'users', ->
     @route 'index'
     @route 'new'

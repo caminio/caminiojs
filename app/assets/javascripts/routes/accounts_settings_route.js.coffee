@@ -1,4 +1,4 @@
-Caminio.AccountsAdminRoute = Caminio.AuthenticatedRoute.extend
+Caminio.AccountsSettingsRoute = Caminio.AuthenticatedRoute.extend
   requireAdmin: true
   setupController: (controller)->
     @store.find('organization')

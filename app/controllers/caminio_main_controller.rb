@@ -1,11 +1,24 @@
 class CaminioMainController < ActionController::Base
 
   before_action :set_locale
+  before_filter :set_current_account
  
   def index
   end
 
   private
+
+  def set_current_account
+    if request.subdomains.first
+      if @current_organization = Organization.find_by(fqdn: request.subdomains.first)
+        RequestStore::store['organization_id'] = @current_organization.id
+      end
+    else
+      if @current_organization = Organization.find(headers['Organization-Id'])
+        RequestStore::store['organization_id'] = @current_organization.id
+      end
+    end
+  end
 
   def set_locale
     I18n.locale = get_browser_locale || params[:locale] || I18n.default_locale

@@ -1,0 +1,21 @@
+<div class="card">
+
+  {{#if loadingUsers}}
+    <div class="card-refreshing"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+  {{/if}}
+  <div class="big-num-wrap" {{action 'goTo' 'users.index'}}>
+    <span class="big-num">{{users.length}}</span>
+    <div class="big-num-subtext">{{t 'users.pl_title' countBinding='users.length'}}</div>
+    <div class="bottom-bar row">
+      <div class="col-md-6">{{onlineUsersNum}} {{t 'users.online'}}</div>
+      <div class="col-md-6">
+        {{t 'users.quota'}}: {{users.length}} / {{controllers.application.currentOrganization.user_quota}}
+      </div>
+    </div>
+  </div>
+  {{#link-to 'users.new' class='big-action'}}
+    {{t 'users.new_0'}}
+    <span class="small-text">{{t 'users.new_1'}}</span>
+  {{/link-to}}
+  
+</div>

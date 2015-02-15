@@ -1,4 +1,4 @@
-Caminio.AccountsAdminController = Ember.ObjectController.extend
+Caminio.AccountsSettingsController = Ember.ObjectController.extend
   needs: ['application']
   
   users: Em.A()

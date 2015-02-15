@@ -8,6 +8,7 @@ class UserEntity < Grape::Entity
   expose :admin
   expose :editor
   expose :organization_ids
+  expose :organization_id
   expose :group_ids
   expose :superuser
   expose :suspended
@@ -20,5 +21,9 @@ class UserEntity < Grape::Entity
   expose :updated_at
   expose :last_login_at
   expose :last_request_at
+
+  def organization_id
+    RequestStore::store['organization_id']
+  end
 
 end

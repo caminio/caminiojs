@@ -27,7 +27,7 @@ class Organization
 
   def setup_fqdn
     return unless fqdn.blank?
-    self.fqdn = "#{name.gsub(' ','_').underscore}.camin.io"
+    self.fqdn = name.gsub(' ','_').underscore
   end
 
   def set_user_organization_role

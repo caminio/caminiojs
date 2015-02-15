@@ -1,0 +1,17 @@
+<div class="card col-card purple-col">
+  {{#if loadingGroups}}
+    <div class="card-refreshing"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+  {{/if}}
+  <div class="big-num-wrap" {{action 'goTo' 'groups.index'}}>
+    <span class="big-num">{{groups.length}}</span>
+    <div class="big-num-subtext">{{t 'groups.pl_title' countBinding='groups.length'}}</div>
+    <div class="bottom-bar">
+      {{t 'groups.largest'}}: 
+      {{largestGroup.name}} ({{largestGroup.users.length}} {{t 'group.members'}})
+    </div>
+  </div>
+  {{#link-to 'groups.new' class='big-action'}}
+    {{t 'groups.new_0'}}
+    <span class="small-text">{{t 'groups.new_1'}}</span>
+  {{/link-to}}
+</div>

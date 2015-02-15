@@ -59,13 +59,13 @@ Caminio.ApplicationStore = DS.Store.extend()
 Caminio.AuthenticatedRoute = Ember.Route.extend
   init: ->
     @_super()
-    if Ember.$.cookie('access_token')
+    if Ember.$.cookie('access_token') #&& Ember.$.cookie('organization_id')
       Ember.$.ajaxSetup
-        headers: { 'Authorization': 'Bearer ' + Ember.$.cookie('access_token'), 'Organization_id': Ember.$.cookie('organization_id') }
+        headers: { 'Authorization': 'Bearer ' + Ember.$.cookie('access_token') } #, 'Organization_id': Ember.$.cookie('organization_id') }
 
   beforeModel: (transition)->
     userId = Ember.$.cookie('user_id')
-    orgId = Ember.$.cookie('organization_id')
+    # orgId = Ember.$.cookie('organization_id')
     unless userId
       @controllerFor('sessions').setProperties( token: null, userId: null, organizationId: null )
       return @redirectToLogin(transition)
@@ -73,7 +73,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
       .then (user)=>
         @redirectToLogin(transition) unless user
         @checkAdmin(user) if @get('requireAdmin')
-        @store.find 'organization', orgId
+        # @store.find 'organization', orgId
         $('body').removeClass('authorization-required')
       .catch (error)=>
         console.log 'error caught', error
@@ -142,11 +142,11 @@ Caminio.SessionsController = Ember.Controller.extend
     if Ember.isEmpty(@get('token'))
       Ember.$.removeCookie('access_token')
       Ember.$.removeCookie('user_id')
-      Ember.$.removeCookie('organization_id')
+      # Ember.$.removeCookie('organization_id')
     else
       Ember.$.cookie('access_token', @get('token'))
       Ember.$.cookie('user_id', @get('userId'))
-      Ember.$.cookie('organization_id', @get('organizationId'))
+      # Ember.$.cookie('organization_id', @get('organizationId'))
   ).observes 'token', 'userId'
 
   reset: ->
@@ -158,7 +158,7 @@ Caminio.SessionsController = Ember.Controller.extend
       organizationId: null
     
     Ember.$.ajaxSetup
-      headers: { 'Authorization': 'Bearer none', 'Organization_id': null }
+      headers: { 'Authorization': 'Bearer none', 'Organization_id': undefined }
 
 Caminio.SessionsIndexController = Caminio.SessionsController.extend
 
@@ -178,17 +178,18 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
       Ember.$.post('/api/v1/auth', data)
         .then (response)=>
           Ember.$.ajaxSetup
-            headers: { 'Authorization': 'Bearer ' + response.api_key.token, 'Organization_id': response.api_key.organization_id }
+            headers: { 'Authorization': 'Bearer ' + response.api_key.token }
           # @get('store').find('apiKey').forEach (apiKey)-> apiKey.destroyRecord()
           # key = @get('store').createRecord('apiKey', response.api_key )
           @get('controllers.sessions').set('token', response.api_key.token)
-          @get('controllers.sessions').set('organizationId', response.api_key.organization_id)
           @store.find('user', response.api_key.user_id)
             .then (user)=>
+              console.log 'here', user.get('organizations.firstObject')
+              @get('controllers.sessions').set('organizationId', user.get('organizations.firstObject.id'))
+              console.log 'still here'
               @get('controllers.sessions').set('userId', user.get('id'))
-              # key.set('user', user)
-              # key.save()
-              
+              Ember.$.ajaxSetup
+                headers: { 'Organization_id': @get('controllers.sessions.organizationId') }
               if attemptedTrans
                 attemptedTrans.retry()
                 @set('attemptedTransition', null)
@@ -244,9 +245,9 @@ Caminio.ApplicationController = Ember.Controller.extend
   .property 'controllers.sessions.userId'
 
   currentOrganization: Em.computed ->
-    org = @store.getById 'organization', @get('controllers.sessions.organizationId')
-    org
-  .property 'controllers.sessions.organizationId'
+    console.log 'DEPRECATION WARNING: deprecated. user currentUser.get("organization")'
+    @get('currentUser.organization')
+  .property 'currentUser'
 
   isAuthenticated: Em.computed ->
     !!@get('currentUser')

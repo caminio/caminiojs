@@ -23,7 +23,7 @@ module Caminio
       end
       get do
         authenticate!
-        users = User.where organization_ids: BSON::ObjectId.from_string(headers['Organization-Id'])
+        users = User.where organization_ids: BSON::ObjectId.from_string(RequestStore::store['organization_id'])
         if params.q
           users = users.any_of([ {firstname: /#{params.q}/}, {lastname: /#{params.q}/}, {username: /#{params.q}/}, {email: /#{params.q}/} ])
         end
@@ -68,9 +68,10 @@ module Caminio
       get ':id' do
         authenticate!
         error!('InsufficientRights', 403) unless params.id == @token.user_id.to_s || @token.user.is_admin?
-        user = User.where(id: params.id, organization_ids: headers['Organization-Id']).first
+        user = User.where(id: params.id).first
         error!('NotFound',404) unless user
         present :app_roles, user.app_roles, with: AppRoleEntity
+        present :organizations, user.organizations, with: OrganizationEntity
         present :user, user, with: UserEntity
       end
 
@@ -94,7 +95,7 @@ module Caminio
       post do
         authenticate!
         require_admin!
-        organization_id = headers['Organization-Id'] || params.organization_id
+        organization_id = RequestStore::store['organization_id'] || params.organization_id
         error!('MissingOrganizationId',409) unless organization_id
         user = User.new( declared( params )[:user] )
         error!({ error: 'SavingFailed', details: user.errors.full_messages}, 422) unless user.save
@@ -234,7 +235,7 @@ module Caminio
         params.role = params.user.role_name if current_user.is_admin?
         user.update_attributes( declared(params)[:user] )
         if current_user.is_admin? && current_user._id.to_s != params.id && params.role
-          user_org_role = user.organization_roles.find_or_create_by organization_id: (headers['Organization-Id'] || params.organization_id)
+          user_org_role = user.organization_roles.find_or_create_by organization_id: (RequestStore::store['organization_id'] || params.organization_id)
           user_org_role.update_attributes name: params.role
         end
         present :user, user.reload, with: UserEntity

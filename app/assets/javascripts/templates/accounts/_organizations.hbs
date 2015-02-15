@@ -1,0 +1,34 @@
+<div {{bind-attr class=":row :org-card-wrap showOrgItems:open"}}>
+  <div class="col-md-12 card org-card">
+    <div class="med-text-wrap">
+      <div class="med-text">{{controllers.application.currentOrganization.name}}</div>
+      <div class="med-text-subtext">
+        {{#if otherOrganizationsAmount}}
+          {{t 'organizations.further' count=otherOrganizationsAmount}}
+        {{else}}
+          {{t 'current_organization'}}
+        {{/if}}
+      </div>
+    </div>
+    <div class="med-action org-items-toggle" {{translateAttr title='organizations.show_all'}}
+        {{action 'toggleOrgItems'}}>
+      <i class="fa fa-angle-down"></i>
+    </div>
+    {{#link-to 'organizations.new' class="new-org"}}
+      <div class="new-org-large">{{t 'organization.new_0'}}</div>
+      <div class="new-org-small">{{t 'organization.new_1'}}</div>
+    {{/link-to}}
+  </div>
+  <div class="card org-card org-items">
+    {{#each organization in organizations itemController='organization_item'}}
+    <div {{bind-attr class=":org-item controller.isCurrentOrganization:current"}}
+        {{action 'switchOrganization' organization}}>
+      <span class="org-check fa fa-check"></span>
+      {{#link-to 'organizations.edit' organization bubbles=false class="org-action" titleTranslation='organization.edit'}}
+        <i class="fa fa-pencil"></i>
+      {{/link-to}}
+      <div class="org-title">{{organization.name}}</div>
+    </div>
+    {{/each}}
+  </div>
+</div>
