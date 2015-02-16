@@ -1,18 +1,20 @@
 ul.list{
-  margin: 0;
+  margin: 0 20px;
   padding: 0;
   list-style: none;
-  border: 1px solid #ccc;
+  font-size: 12px;
 }
 
 ul.list li{
-  background: #fff;
-  margin: 0;
-  padding: 3px;
   display: table;
   table-layout: fixed;
   width: 100%;
   border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+}
+
+ul.list li:hover{
+  background: #eee;
 }
 
 ul.list li:last-child{
@@ -26,6 +28,7 @@ ul.list li > div{
 
 ul.list.list-header{
   border: none;
+  margin-top: 20px;
 }
 
 ul.list.list-header li{
@@ -39,12 +42,12 @@ ul.list li > .list-icon .label{
   display: block;
   font-size: 1em;
   margin: 3px 5px 3px 0;
-  padding: 0.4em 0.6em 0.5em;
+  padding: 3px;
 }
 
 ul.list li > .list-icon{
   padding: 0 5px;
-  width: 42px;
+  width: 34px;
 }
 
 ul.list li > .list-icon i{

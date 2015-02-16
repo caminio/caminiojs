@@ -5,6 +5,8 @@ Caminio.UsersIndexController = Ember.ArrayController.extend
   sortProperties: ['name']
   sortAscending: true
 
+  loadingUsers: true
+
   filter: ''
 
   filteredContent: (->

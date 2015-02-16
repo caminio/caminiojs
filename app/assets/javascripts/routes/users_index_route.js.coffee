@@ -3,10 +3,8 @@ Caminio.UsersIndexRoute = Caminio.AuthenticatedRoute.extend
   
   setupController: (controller,model)->
     @_super controller, model
-    @controllerFor('application').set 'rootLevel', true
-    @controllerFor('application').set 'newBtnLink', 'users.new'
-    @controllerFor('application').set 'newBtnLinkHint', 'account.create_account'
-    @controllerFor('application').set 'routeTitle', Em.I18n.t 'account.manage'
+    controller.set 'loadingUsers', false
 
   model: ->
-    @store.find('user', clearCache: new Date())
+    @store
+      .find('user', clearCache: new Date())

@@ -67,14 +67,14 @@ Em.merge Em.I18n.availableTranslations.de,
 
   users:
     title: 'Benutzerkonten'
+    follow: 'Änderungen bei Benutzerkonten folgen'
     pl_title: 
       one: 'Benutzerkonto'
       other: 'Benutzerkonten'
     online: 'Benutzer online'
     quota: 'Quota'
     allowed: 'Max. Benutzer (Quota)'
-    new_0: 'Neuer'
-    new_1: 'Benutzer'
+    new: 'Neuer Benutzer'
 
   roles:
     admin: 'Administrator'

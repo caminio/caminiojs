@@ -13,7 +13,7 @@ class CaminioMainController < ActionController::Base
       if @current_organization = Organization.find_by(fqdn: request.subdomains.first)
         RequestStore::store['organization_id'] = @current_organization.id
       end
-    else
+    elsif headers['Organization-Id']
       if @current_organization = Organization.find(headers['Organization-Id'])
         RequestStore::store['organization_id'] = @current_organization.id
       end

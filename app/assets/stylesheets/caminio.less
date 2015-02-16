@@ -9,7 +9,7 @@
 
 body{ 
   height: 100%;
-  background: @grey-A200;
+  background: @grey-200;
   font-family: 'Ubuntu', sans-serif; 
 }
 
@@ -285,4 +285,119 @@ and (min-device-width : 1281px){
   margin: 19px 0;
   padding: ;
   float: left;
+}
+
+.content-wrap{
+  display: flex;
+  max-width: 1280;
+  height: calc(100% - 60px);
+  min-width: 960px;
+}
+
+nav.content-nav{
+  display: flex;
+  flex: 0 0 300px;
+  flex-direction: column;
+  background: @grey-100;
+}
+
+nav.content-nav section{
+  padding: 0 20px 20px;
+}
+
+nav.content-nav hr{
+  border: none;
+  border-top: 1px solid @grey-300;
+}
+
+nav.content-nav .search{
+  margin: 20px 0 0;
+  position: relative;
+  font-size: 0.8em;
+}
+
+nav.content-nav .search input{
+  text-indent: 20px;
+  width: 100%;
+  background: none;
+  box-shadow: none;
+  border: none;
+  transition: background 0.5s ease;
+}
+
+nav.content-nav .search .fa{
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: #999;
+}
+
+nav.content-nav .search .fa-times{
+  left: auto;
+  right: 12px;
+  cursor: pointer;
+}
+
+nav.content-nav .search input:focus{
+  background: #fff;
+  transition: background 0.5s ease;
+}
+
+section.content{
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  background: #fff;
+  border-left: 1px solid @grey-300;
+}
+
+nav.main-menu{
+  margin-bottom: 10px;
+  padding: 10px 0;
+}
+
+nav.main-menu a{
+  color: @grey-600;
+  display: inline-block;
+  font-size: 10px;
+  text-align: center;
+  width: 100px;
+  transition: transform 0.5s;
+}
+
+nav.main-menu a.active{
+  color: @caminio-dark-blue;
+}
+
+nav.main-menu a:hover{
+  text-decoration: none;
+  transition: transform 0.5s;
+  transform: scale(1.05,1.05);
+}
+
+nav.main-menu a .fa{
+  display: block;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+header.app-header{
+  padding: 20px;
+}
+
+header .app-title{
+  font-size: 14px;
+  color: @caminio-blue;
+}
+
+header .app-btn-group{
+  float: right;
+}
+
+header .app-btn-group a{
+  color: @grey-300;
+}
+
+header .app-btn-group .active{
+  color: @caminio-blue;
 }

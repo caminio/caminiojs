@@ -1,14 +1,34 @@
-<section class="account-admin users">
+<nav class="content-nav">
+  <header class="app-header">
+    <div class="app-btn-group">
+      <a href="#" {{action 'toggleFollow' 'users'}}
+        {{translateAttr data-hint='users.follow'}}
+        class="hint--bottom hint--bounce">
+        <i class="fa fa-rss"></i>
+      </a>
+    </div>
+    <div class="app-title">{{t 'users.title'}}</div>
+  </header>
 
-  <div class="heading">
+  <section>
+
+    {{#link-to 'users.new' class='btn btn-default btn-sm icon-text'}}
+      <i class="fa fa-plus"></i>
+      {{t 'users.new'}}
+    {{/link-to}}
+
+    <hr>
 
     <div {{bind-attr class=":search filter:active"}}>
       <i class="fa fa-search"></i>
       {{#if filter}}<i class="fa fa-times" {{action 'clearFilter'}}></i>{{/if}}
-      {{input value=filter}}
+      {{input value=filter placeholderTranslation='user.search'}}
     </div>
+  </section>
 
-  </div>
+</nav>
+
+<section class="content">
 
   <ul class="list list-header">
     <li>
@@ -20,7 +40,7 @@
   </ul>
   <ul class="list">
     {{#each user in filteredContent}}
-    <li {{bind-attr class="user.suspended:suspended"}} {{action 'editUser' user on='doubleClick'}}>
+    <li {{bind-attr class="user.suspended:suspended"}} {{action 'editUser' user}}>
     <div class="list-icon">
       <label {{bind-attr class=':label user.admin:label-danger user.editor:label-warning:label-default'}}>
         <i class="fa fa-user"></i>

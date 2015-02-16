@@ -222,9 +222,7 @@ Caminio.ApplicationView = Ember.View.extend
       .on 'click', (e)=>
         @checkSidePane(e)
         @checkAccountInfo(e)
-
-    @$('input#search-query')
-      .on 'focus', (e)=>
+      .on 'focus', 'input#search-query', (e)=>
         @get('controller').set 'sidePaneOpen', true 
 
 #

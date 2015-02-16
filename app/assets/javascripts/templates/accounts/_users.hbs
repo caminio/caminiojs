@@ -1,8 +1,5 @@
 <div class="card">
 
-  {{#if loadingUsers}}
-    <div class="card-refreshing"><i class="fa fa-circle-o-notch fa-spin"></i></div>
-  {{/if}}
   <div class="big-num-wrap" {{action 'goTo' 'users.index'}}>
     <span class="big-num">{{users.length}}</span>
     <div class="big-num-subtext">{{t 'users.pl_title' countBinding='users.length'}}</div>

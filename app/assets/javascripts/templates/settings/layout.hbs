@@ -1,0 +1,26 @@
+{{#if controllers.application.currentUser.superuser}}
+  {{partial 'accounts/organizations'}}
+{{/if}}
+
+<nav class="main-menu">
+  {{#link-to 'users.index' currentWhen='users'}}
+    <i class="fa fa-user"></i>
+    {{t 'users.title'}}
+  {{/link-to}}
+  {{#link-to 'groups.index'}}
+    <i class="fa fa-group"></i>
+    {{t 'groups.title'}}
+  {{/link-to}}
+  {{#link-to 'organizations.edit' controllers.application.currentUser.organization.id}}
+    <i class="fa fa-building"></i>
+    {{t 'organization.my'}}
+  {{/link-to}}
+  {{#link-to 'subscriptions.manage'}}
+    <i class="fa fa-money"></i>
+    {{t 'subscriptions.title'}}
+  {{/link-to}}
+</nav>
+
+<div class="content-wrap">
+  {{yield}}
+</div>
