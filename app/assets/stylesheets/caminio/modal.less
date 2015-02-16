@@ -1,0 +1,28 @@
+@import '_colors';
+
+.caminio-modal-overlay{
+  position: fixed;
+  top: 84px;
+  left: 0;
+  right: 0;
+  min-height: calc(100% - 50px);
+  background: rgba(220,220,220,0.8);
+}
+
+.caminio-modal-ctrl{
+  background: #fff;
+  height: 42px;
+  border-bottom: 1px solid @grey-400;
+  position: fixed;
+  top: 42px;
+  left: 0;
+  right: 0;
+}
+
+.caminio-modal-ctrl .btn-close{
+  background-color: @grey-800;
+  color: @grey-100;
+  font-size: 25px;
+  padding: 6px 14px 8px;
+  line-height: 1em;
+}

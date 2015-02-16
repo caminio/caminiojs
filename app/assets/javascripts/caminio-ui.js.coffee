@@ -53,6 +53,13 @@ Caminio.ApplicationAdapter = DS.ActiveModelAdapter.extend
 
 Caminio.ApplicationStore = DS.Store.extend()
 
+Caminio.ApplicationRoute = Ember.Route.extend
+  actions:
+    openModal: (name)->
+      @render name,
+        into: 'application'
+        outlet: 'modal'
+
 #
 # AuthenticatedRoute
 #

@@ -1,5 +1,30 @@
-<section class="card card-padding card-form">
+<div class="caminio-modal-ctrl row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 align-center">
+  </div>
+  <div class="col-md-4 align-right">
+    <a href="#" class="btn btn-close" {{action 'goTo' 'users.index'}}>
+      &times;
+    </a>
+  </div>
+</div>
 
+<div class="caminio-modal-overlay">
+
+  <section>
+
+    <h1>content</h1>
+
+  </section>
+
+  <aside>
+
+  </aside>
+
+</div>
+
+{{!-- 
   <form class="form-horizontal" {{action 'create' on='submit'}}>
     <div class="form-group">
       <label class="control-label col-md-4">{{t 'firstname'}}</label>
@@ -33,9 +58,8 @@
     </div>
 
     <div class="form-actions">
-      {{#link-to 'accounts.admin' class="btn btn-default"}}{{t 'cancel'}}{{/link-to}}
+      {{#link-to 'users.index' class="btn btn-default"}}{{t 'cancel'}}{{/link-to}}
       <button class="btn btn-primary" {{action 'create'}}>{{t 'save'}}</button>
     </div>
   </form>
-
-</section>
+ --}}

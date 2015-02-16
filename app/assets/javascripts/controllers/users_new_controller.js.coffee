@@ -15,7 +15,7 @@ Caminio.UsersNewController = Ember.ObjectController.extend Caminio.Validations,
   actions:
     create: ->
       return unless @isValid()
-      @get('content')
+      @get('user')
         .save()
         .then =>
           Em.$.noty.closeAll()
