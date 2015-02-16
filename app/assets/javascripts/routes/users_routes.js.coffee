@@ -10,6 +10,18 @@ Caminio.UsersIndexRoute = Caminio.AuthenticatedRoute.extend
     @store
       .find('user', clearCache: new Date())
 
+  actions:
+
+    editUser: (user)->
+      @transitionTo 'users.edit', user.id
+    # editUser: (user)->
+    #   editController = @controllerFor('users_edit')
+    #   editController.set('content', user)
+    #   @render 'users.edit',
+    #     into: 'application'
+    #     outlet: 'modal'
+    #     controller: editController
+
 #
 # NEW
 #
@@ -24,7 +36,6 @@ Caminio.UsersNewRoute = Caminio.UsersIndexRoute.extend
         locale: Em.I18n.locale)
 
   renderTemplate: (controller)->
-    console.log arguments
     indexController = @controllerFor 'users_index'
     indexController.set 'content', controller.get 'content'
     @render 'users.index',
@@ -42,12 +53,19 @@ Caminio.UsersNewRoute = Caminio.UsersIndexRoute.extend
 #
 # EDIT
 #
-Caminio.UsersEditRoute = Caminio.AuthenticatedRoute.extend Caminio.DestroyOnCancelMixin,
-  requireAdmin: true
-  setupController: (controller,model)->
-    @_super controller, model
-    @controllerFor('application').set 'backLink', 'users.index'
-    @controllerFor('application').set 'routeTitle', Em.I18n.t 'account.manage'
-    
+Caminio.UsersEditRoute = Caminio.UsersIndexRoute.extend
+
   model: (params)->
-    @store.find 'user', params.id
+    @store
+      .find 'user', params.id
+      .then (user)=>
+        @controllerFor('users_edit').set 'user', user
+    @_super()
+
+  renderTemplate: (controller)->
+    indexController = @controllerFor 'users_index'
+    indexController.set 'content', controller.get 'content'
+    @render 'users.index',
+      controller: indexController
+    @render 'users.edit',
+      outlet: 'modal'

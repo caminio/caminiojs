@@ -1,0 +1,36 @@
+<form class="field-row" {{action 'saveChanges' on='submit'}}>
+  <div class="field-label">
+    {{labelTranslation}}
+  </div>
+  <div {{bind-attr class=":field-content editValue:editing-click-form"}}>
+    {{#if editValue}}
+    <div class="input-group">
+      {{#if password}}
+      {{input type='password' value=value}}
+      {{else}}
+      {{input value=value}}
+      {{/if}}
+      {{#unless content.isNew}}
+        <div {{action 'saveChanges'}} {{bind-attr class=":input-group-addon :btn hasChanges:btn-primary:btn-default :save-changes-btn"}}>
+          {{t 'save'}}
+        </div>
+        <div class="input-group-addon btn btn-default cancel-edit" {{action 'cancelEdit'}} {{translateAttr title='cancel_edit_entry'}}>&times;</div>
+      {{/unless}}
+    </div>
+    {{else}}
+    <span class="hint--bottom hint-bounce" {{action 'edit' bubbles=false}} {{translateAttr data-hint='edit_entry'}}>
+      {{#if value}}
+        {{value}}
+      {{else}}
+        <span class="desc">{{t placeholder}}</span>
+      {{/if}}
+    </span>
+    <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-success valueSaved:active"}}>
+      <i class="fa fa-check"></i>
+    </div>
+    {{/if}}
+  </div>
+</form>

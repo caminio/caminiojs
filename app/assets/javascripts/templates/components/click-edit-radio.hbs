@@ -1,0 +1,18 @@
+<form class="field-row">
+  <div class="field-label">
+    {{t label}}
+  </div>
+  <div class="field-content">
+    <div class="labels">
+      {{#each label in content itemController='click_edit_radio_item'}}
+        <label>{{getLabel}}</label>
+      {{/each}}
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-success valueSaved:active"}}>
+      <i class="fa fa-check"></i>
+    </div>
+  </div>
+</form>

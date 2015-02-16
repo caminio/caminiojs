@@ -75,6 +75,7 @@ Em.merge Em.I18n.availableTranslations.de,
     quota: 'Quota'
     allowed: 'Max. Benutzer (Quota)'
     new: 'Neuer Benutzer'
+    edit: 'Benutzer bearbeiten'
 
   roles:
     admin: 'Administrator'
@@ -83,6 +84,8 @@ Em.merge Em.I18n.availableTranslations.de,
 
   user:
     role: 'Rolle'
+    not_set: 'nicht vergeben'
+    name: 'Voller Name'
     search: 'Benutzer suchen'
     role_changed: 'Benutzerkonto <tt>{{name}}</tt> ist jetzt <strong>{{role}}</strong>'
     locale_changed: 'Sprache für das Benutzerkonto wurde auf <strog>{{locale}}</strong> gesetzt'

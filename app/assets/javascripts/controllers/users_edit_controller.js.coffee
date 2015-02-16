@@ -1,4 +1,4 @@
-Caminio.UsersEditController = Ember.ObjectController.extend Caminio.Validations,
+Caminio.UsersEditController = Ember.ObjectController.extend
   needs: ['application','sessions']
 
   notyMessages: true

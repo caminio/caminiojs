@@ -1,9 +1,58 @@
-<section class="card settings">
+<header class="caminio-modal-ctrl row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 align-center">
+    <div class="breadcrumbs">
+      {{#link-to 'users.index'}}
+        <i class="fa fa-user"></i>
+        {{t 'users.title'}}
+      {{/link-to}}
+      <i class="fa fa-angle-right"></i>
+      {{t 'users.edit'}}
+    </div>
+  </div>
+  <div class="col-md-4 align-right">
+    <a href="#" class="btn btn-close" {{action 'closeModal'}}>
+      &times;
+    </a>
+  </div>
+</header>
+
+<div class="caminio-modal-overlay">
+
+  <div class="caminio-modal-wrap">
+
+    <section class="card">
+
+      {{click-edit-text value=user.username content=user placeholder='user.not_set' label='alias' parentController=controller}}
+      {{click-edit-text value=user.fullName content=user placeholder='user.not_set' label='user.name' parentController=controller}}
+      {{click-edit-text value=user.email content=user placeholder='user.not_set' label='email' parentController=controller}}
+      {{click-edit-text value=user.phone content=user placeholder='user.not_set' label='email' parentController=controller}}
+
+      <hr>
+
+      {{click-edit-radio value=user.role_name content=user.availableRoleNames label='user.role' parentController=controller}}
+
+    </section>
+
+    <aside class="card">
+
+      <h2>comments</h2>
+
+    </aside>
+
+  </div>
+
+</div>
+
+
+
+{{!-- <section class="card settings">
   <h1>{{t 'user.general'}}</h1>
   <div class="click-form">
-    {{click-edit-form value=username label='alias' parentController=controller}}
-    {{click-edit-form value=firstname label='firstname' parentController=controller}}
-    {{click-edit-form value=lastname label='lastname' parentController=controller}}
+    {{click-edit-text value=username label='alias' parentController=controller}}
+    {{click-edit-text value=firstname label='firstname' parentController=controller}}
+    {{click-edit-text value=lastname label='lastname' parentController=controller}}
 
     <div class="ember-view visible-overflow">
       <form class="form-horizontal">
@@ -28,8 +77,8 @@
 <section class="card card-margin-top settings">
   <h1>{{t 'account.contact_info'}}</h2>
   <div class="click-form form-horizontal">
-    {{click-edit-form value=email label='email' parentController=controller}}
-    {{click-edit-form value=phone label='phone' parentController=controller}}
+    {{click-edit-text value=email label='email' parentController=controller}}
+    {{click-edit-text value=phone label='phone' parentController=controller}}
   </div>
 </section>
 
@@ -107,4 +156,4 @@
       
     </div>
   </section>
-{{/if}}
+{{/if}} --}}

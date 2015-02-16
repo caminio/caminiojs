@@ -53,13 +53,6 @@ Caminio.ApplicationAdapter = DS.ActiveModelAdapter.extend
 
 Caminio.ApplicationStore = DS.Store.extend()
 
-Caminio.ApplicationRoute = Ember.Route.extend
-  actions:
-    openModal: (name)->
-      @render name,
-        into: 'application'
-        outlet: 'modal'
-
 #
 # AuthenticatedRoute
 #
@@ -94,6 +87,22 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
   redirectToLogin: (transition)->
     @controllerFor('sessions').set('attemptedTransition', transition)
     @transitionTo 'sessions'
+
+  actions:
+
+    openModal: (name)->
+      @render name,
+        into: 'application'
+        outlet: 'modal'
+
+    closeModal: ->
+      @disconnectOutlet
+        outlet: 'modal'
+        parentView: 'application'
+
+    goTo: (route)->
+      @transitionTo route
+      true
 
   # actions:
   #   # recover from any error that may happen during the transition to this route

@@ -42,8 +42,5 @@ Caminio.UsersIndexController = Ember.ArrayController.extend
       else
         @suspendNow( user )
 
-    editUser: (user)->
-      @transitionToRoute('users.edit',user)
-
     clearFilter: ->
       @set('filter','')

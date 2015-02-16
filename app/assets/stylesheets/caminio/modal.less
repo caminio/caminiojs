@@ -2,16 +2,19 @@
 
 .caminio-modal-overlay{
   position: fixed;
-  top: 84px;
+  top: 92px;
   left: 0;
   right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   min-height: calc(100% - 50px);
   background: rgba(220,220,220,0.8);
 }
 
 .caminio-modal-ctrl{
   background: #fff;
-  height: 42px;
+  height: 50px;
   border-bottom: 1px solid @grey-400;
   position: fixed;
   top: 42px;
@@ -22,7 +25,109 @@
 .caminio-modal-ctrl .btn-close{
   background-color: @grey-800;
   color: @grey-100;
-  font-size: 25px;
-  padding: 6px 14px 8px;
+  font-size: 30px;
   line-height: 1em;
+  padding: 8px 15px 10px;
+}
+
+.caminio-modal-wrap{
+  max-width: 1440px;
+  min-width: 940px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.caminio-modal-wrap section{
+  display: flex;
+  flex: 1 0 600px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.caminio-modal-wrap aside{
+  display: flex;
+  flex: 0 0 300px;
+  margin-left: 40px;
+  flex-direction: column;
+}
+
+.caminio-modal-overlay .save-ctrl{
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  min-width: 940px;
+  max-width: 1440px;
+  height: 80px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.9);
+}
+
+.caminio-modal-wrap .field-row{
+  display: flex;
+}
+
+.caminio-modal-wrap .field-row .field-label{
+  padding: 20px;
+  vertical-align: top;
+  text-align: right;
+  background: @grey-100;
+  flex: 0 0 250px;
+  flex-direction: column;
+  color: @grey-700;
+}
+
+.caminio-modal-wrap .field-row .field-content{
+  flex: 1 1 0;
+  padding: 20px;
+  border-left: 1px solid @grey-300;
+  position: relative;
+}
+
+.caminio-modal-wrap .field-row .field-content.editing-click-form{
+  padding: 13px 20px;
+}
+
+.caminio-modal-wrap .field-row .value-saved{
+  position: absolute;
+  top: 19px;
+  right: -200px;
+  border-radius: 50%;
+  transition: right 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  padding: 7px 8px;
+  font-size: 1em;
+}
+
+.caminio-modal-wrap .field-row .value-saved.active{
+  right: 20px;
+  transition: right 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+
+.caminio-modal-wrap .field-row .input-group,
+.caminio-modal-wrap .field-row input[type=text],
+.caminio-modal-wrap .field-row input[type=password],
+.caminio-modal-wrap .field-row textarea{
+  width: 100%;
+}
+
+.caminio-modal-wrap .field-row input[type=text],
+.caminio-modal-wrap .field-row input[type=password],
+.caminio-modal-wrap .field-row .input-group-addon,
+.caminio-modal-wrap .field-row textarea{
+  box-shadow: none !important;
+}
+
+.caminio-modal-wrap .field-row .cancel-edit{
+  padding: 6px 12px;
+  border-left: 1px solid @grey-300;
+}
+
+.caminio-modal-wrap hr{
+  border: none;
+  border-top: 1px solid @grey-300;
+  margin: 0;
+  width: 250px;
 }

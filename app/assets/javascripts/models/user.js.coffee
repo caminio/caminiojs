@@ -8,7 +8,22 @@ Caminio.User = DS.Model.extend
       str += @get('email')
     str
   ).property 'firstname', 'lastname', 'username', 'email'
+  hasName: (->
+    !Em.isEmpty(@get('firstname')) || !Em.isEmpty(@get('lastname'))
+  ).property 'firstname', 'lastname'
+  fullName: ((key,value,prevValue)->
+    if arguments.length > 1
+      arr = value.split(' ')
+      @set 'firstname', arr[0..arr.length-2].join(' ')
+      @set 'lastname', arr[arr.length-1] if arr.length > 1
+    str = ''
+    str += @get('firstname') unless Em.isEmpty( @get 'firstname' )
+    str += ' ' if str.length > 0 && !Em.isEmpty( @get 'lastname' )
+    str += @get('lastname') unless Em.isEmpty( @get 'lastname' )
+    str
+  ).property 'firstname', 'lastname'
   role_name:        DS.attr 'string', default: 'user'
+  availableRoleNames: Em.A([{label: 'roles.user', id: 'user'}, {label: 'roles.editor', id: 'editor'}, {label: 'roles.admin', id: 'admin'}])
   locale:           DS.attr 'string', default: Em.I18n.locale
   username:         DS.attr 'string'
   superuser:        DS.attr 'boolean'
