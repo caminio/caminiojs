@@ -55,5 +55,16 @@ Caminio.User = DS.Model.extend
     JSON.stringify @get('settings'), null, 2
   ).property 'settings'
   app_roles:             DS.hasMany 'app_roles'
+  
+  apps: (->
+    @get('organization.app_plans')
+  ).property 'organization'
+
+  setLang: ->
+    window.LANG = @get('locale')
+    Ember.$.cookie('locale', @get('locale'))
+    Ember.I18n.locale = window.LANG
+    Ember.I18n.translations = Ember.I18n.availableTranslations[window.LANG]
+
 
 Caminio.UserAdapter = Caminio.ApplicationAdapter.extend()

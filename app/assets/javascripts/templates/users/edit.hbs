@@ -12,7 +12,22 @@
     </div>
   </div>
   <div class="col-md-4 align-right">
-    <a href="#" class="btn btn-close" {{action 'goTo' 'users.index'}}>
+    <div class="dropdown btn btn-actions">
+      <button class="dropdown-toggle" data-toggle="dropdown">{{t 'actions'}}<i class="fa fa-angle-down"></i></button>
+      <ul class="dropdown-menu pull-right align-right">
+        <li>
+          <a href="#" {{action 'toggleSuspended'}}>
+            {{#if user.suspended}}
+            {{t 'user.activate_login'}}
+            {{else}}
+            {{t 'user.suspend_login'}}
+            {{/if}}
+          </a>
+        </li>
+        <li><a href="#" {{action 'delete'}}>{{t 'user.delete'}}</a></li>
+      </ul>
+    </div>
+    <a href="#" class="btn btn-close" {{action 'closeModal'}}>
       &times;
     </a>
   </div>
@@ -23,6 +38,25 @@
   <div class="caminio-modal-wrap">
 
     <section class="card">
+
+      <div class="field-row">
+        <div class="field-label">
+          {{t 'user.status'}}
+        </div>
+        <div class="field-content">
+          <div class="labels">
+            <label {{bind-attr class=":btn user.suspended:btn-default:btn-primary"}}>
+              {{t 'user.active'}}
+            </label>
+            <label {{bind-attr class=":btn user.suspended:btn-warning:btn-default"}}>
+              {{t 'user.suspended'}}
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="vspacer"></div>
 
       {{click-edit-text value=user.username content=user placeholder='user.not_set' label='alias' parentController=controller}}
       {{click-edit-text value=user.fullName content=user placeholder='user.not_set' label='user.name' parentController=controller}}
@@ -37,11 +71,13 @@
 
       {{click-edit-select modalHeader='select_language' value=user.locale content=controllers.sessions.availableLocales label='user.language' parentController=controller}}
 
+      {{#if controllers.application.currentUser.superuser}}
 
         <div class="vspacer"></div>
 
         {{click-edit-text textarea=true value=user.settingsStr content=user placeholder='user.not_set' label='account.settings' parentController=controller}}
 
+      {{/if}}
 
     </section>
 

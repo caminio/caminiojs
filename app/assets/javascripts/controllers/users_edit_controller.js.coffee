@@ -5,39 +5,6 @@ Caminio.UsersEditController = Ember.ObjectController.extend
   user: null
 
   notyMessages: true
-  oldRoleName: null
-  oldLocale: null
-
-  roleNameObserver: (->
-    return unless @get('content.role_name')
-    return if @get('content.role_name') == @get('oldRoleName')
-    unless @get('oldRoleName')
-      return @set('oldRoleName', @get('content.role_name'))
-    return unless @get('controllers.application.currentUser.admin')
-    @set('oldRoleName', @get('content.role_name'))
-    @get('content')
-      .save()
-      .then =>
-        noty
-          type: 'success'
-          text: Em.I18n.t('user.role_changed', name: @get('content.name'), role: Em.I18n.t("roles.#{@get('content.role_name')}") )
-      .catch Caminio.NotyUnknownError
-  ).observes 'content.role_name'
-
-  localeObserver: (->
-    return unless @get('content.locale')
-    return if @get('content.locale') == @get('oldLocale')
-    unless @get('oldLocale')
-      return @set('oldLocale', @get('content.locale'))
-    @set('oldLocale', @get('content.locale'))
-    @get('content')
-      .save()
-      .then =>
-        noty
-          type: 'success'
-          text: Em.I18n.t('user.locale_changed', locale: @get('content.locale') )
-      .catch Caminio.NotyUnknownError
-  ).observes 'content.locale'
 
   suspendNow: (user)->
     user.toggleProperty('suspended')
@@ -52,17 +19,17 @@ Caminio.UsersEditController = Ember.ObjectController.extend
 
   actions:
     save: (callback, scope)->
-      @get('content')
+      @get('user')
         .save()
         .then =>
           if callback
             return callback.call(scope)
           noty
             type: 'success'
-            text: Em.I18n.t('saved', name: @get('content.name'))
+            text: Em.I18n.t('saved', name: @get('user.name'))
 
     toggleSuspended: (user)->
-      user = user || @get('content')
+      user = user || @get('user')
       if user.get('id') == @get('controllers.application.currentUser.id')
         return noty({ type: 'error', text: Em.I18n.t('errors.cannot_suspend_yourself') })
       unless user.get('suspended') # we are about to suspend a user. Double-check
@@ -74,18 +41,18 @@ Caminio.UsersEditController = Ember.ObjectController.extend
 
     delete: ->
 
-      if @get('content.id') == @get('controllers.application.currentUser.id')
+      if @get('user.id') == @get('controllers.application.currentUser.id')
         return noty({ type: 'error', text: Em.I18n.t('errors.please_remove_yourself_in_your_account_settings') })
 
-      bootbox.prompt Em.I18n.t('user.really_delete', email: @get('content.email')), (result)=>
-        if result != @get('content.email')
+      bootbox.prompt Em.I18n.t('user.really_delete', email: @get('user.email')), (result)=>
+        if result != @get('user.email')
           return noty({ type: 'warning', text: Em.I18n.t('aborted')})
-        @get('content')
+        @get('user')
           .destroyRecord()
           .then =>
             noty
               type: 'success'
-              text: Em.I18n.t('user.has_been_deleted', name: @get('content.name'))
+              text: Em.I18n.t('user.has_been_deleted', name: @get('user.name'))
             @transitionToRoute 'users.index'
           .catch (err)->
             console.log 'error', err

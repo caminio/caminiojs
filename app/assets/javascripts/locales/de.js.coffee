@@ -34,6 +34,7 @@ Em.merge Em.I18n.availableTranslations.de,
   search_dots: 'Suche ...'
   select_language: 'Sprache wählen'
   apps: 'Applikationen'
+  actions: 'Aktionen'
   dashboard:
     title: 'Dashboard'
     activity: 'Aktivitäten'
@@ -93,8 +94,10 @@ Em.merge Em.I18n.availableTranslations.de,
     general: 'Allgemein'
     edit: 'Benutzerkonto bearbeiten'
     select_role: 'Rolle wählen'
+    suspend_login: 'Suspendieren'
+    activate_login: 'Suspendierung aufheben'
     suspended: 'Suspendiert'
-    activity_status: 'Aktivitätsstatus'
+    status: 'Status'
     active: 'Aktiv'
     really_suspend: 'Möchtest du dieses Benutzerkonto wirklich suspenieren?'
     has_been_suspended: 'Das Benutzerkonto wurde suspendiert. Login ist nicht mehr möglich'
@@ -108,18 +111,19 @@ Em.merge Em.I18n.availableTranslations.de,
   groups:
     manage: 'Gruppen verwalten'
     title: 'Gruppen'
+    follow: 'Änderungen in Gruppen folgen'
     pl_title: 
       one: 'Gruppe'
       other: 'Gruppen'
     largest: 'Größte Gruppe'
-    new_0: 'Neue'
-    new_1: 'Gruppe'
+    new: 'Neue Gruppe'
 
   group:
     create_new: 'Neue Gruppe erstellen'
     member_added: '{{email}} ist jetzt Mitglied in der Gruppe {{name}}'
     member_removed: '{{email}} ist jetzt kein Mitglied der Gruppe {{name}} mehr'
     name: 'Name der Gruppe'
+    search: 'Gruppe suchen'
     edit: 'Gruppe bearbeiten'
     edit_members: 'Mitglieder bearbeiten'
     general: 'Allgemein'
@@ -164,7 +168,6 @@ Em.merge Em.I18n.availableTranslations.de,
     create_account: 'Konto erstellen'
     edit: 'Konto bearbeiten'
     edit_mine: 'Mein Konto bearbeiten'
-    suspend_login: 'Suspendieren (Login verbieten)'
     admin:
       users: 'Konten verwalten'
       organizations: 'Organisationen'

@@ -74,6 +74,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         @redirectToLogin(transition) unless user
         @checkAdmin(user) if @get('requireAdmin')
         # @store.find 'organization', orgId
+        user.setLang()
         $('body').removeClass('authorization-required')
       .catch (error)=>
         console.log 'error caught', error
@@ -90,6 +91,14 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
 
   actions:
 
+    editUser: (user)->
+      editController = @controllerFor('users_edit')
+      editController.set('user', user)
+      @render 'users.edit',
+        into: 'application'
+        outlet: 'modal'
+        controller: editController
+
     openMiniModal: (name, controller)->
       @render name,
         into: 'application'
@@ -97,6 +106,11 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         controller: controller
       Em.run.later ->
         $('.modal').modal()
+
+    closeModal: ->
+      @disconnectOutlet
+        outlet: 'modal'
+        parentView: 'application'
 
     closeMiniModal: ->
       @disconnectOutlet
@@ -203,9 +217,7 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
           @get('controllers.sessions').set('token', response.api_key.token)
           @store.find('user', response.api_key.user_id)
             .then (user)=>
-              console.log 'here', user.get('organizations.firstObject')
               @get('controllers.sessions').set('organizationId', user.get('organizations.firstObject.id'))
-              console.log 'still here'
               @get('controllers.sessions').set('userId', user.get('id'))
               Ember.$.ajaxSetup
                 headers: { 'Organization_id': @get('controllers.sessions.organizationId') }
@@ -233,7 +245,7 @@ Caminio.ApplicationView = Ember.View.extend
       @get('controller').set 'sidePaneOpen', false
 
   checkAccountInfo: (e)->
-    if $(e.target).closest('.top-pane').length < 1 && $('.top-pane').hasClass('account-info-open')
+    if $(e.target).closest('.account-info-toggle').length < 1 && $('.top-pane').hasClass('account-info-open')
       @get('controller').set 'accountInfoOpen', false
 
   didInsertElement: ->
@@ -243,6 +255,7 @@ Caminio.ApplicationView = Ember.View.extend
         @checkAccountInfo(e)
       .on 'focus', 'input#search-query', (e)=>
         @get('controller').set 'sidePaneOpen', true 
+
 
 #
 # ApplicationController
@@ -262,7 +275,7 @@ Caminio.ApplicationController = Ember.Controller.extend
   .property 'controllers.sessions.userId'
 
   currentOrganization: Em.computed ->
-    console.log 'DEPRECATION WARNING: deprecated. user currentUser.get("organization")'
+    console.log 'CAMINIO DEPRECATION WARNING: deprecated use of currentOrganization, use currentUser.get("organization") instead. Find me in caminio-ui.js.coffee'
     @get('currentUser.organization')
   .property 'currentUser'
 
@@ -284,7 +297,6 @@ Caminio.ApplicationController = Ember.Controller.extend
       return
 
     logout: ->
-      console.log 'here logout'
       for cookie in $.cookie()
         $.removeCookie cookie
       $.ajax
@@ -331,3 +343,8 @@ Caminio.NotyUnknownError = (err)->
     text: Em.I18n.t('errors.unknown')
     timeout: false
 
+Ember.LinkView.reopen
+  attributeBindings: ['data-hint']
+  'data-hint': (->
+    if @get('hint') then Em.I18n.t( @get('hint') ) else null
+  ).property ''

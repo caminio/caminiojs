@@ -1,16 +1,33 @@
-<section class="card settings">
-  <h1>{{t 'organization.general'}}</h1>
-  <div class="click-form">
-    {{click-edit-form value=name label='organization.name' parentController=controller}}
-    {{click-edit-form value=fqdn label='organization.fqdn' parentController=controller}}
-  </div>
-</section>
+<nav class="content-nav">
+  <header class="app-header">
+    <div class="app-btn-group">
+      <a href="#" {{action 'toggleFollow' 'users'}}
+        {{translateAttr data-hint='users.follow'}}
+        class="hint--bottom hint--bounce">
+        <i class="fa fa-rss"></i>
+      </a>
+    </div>
+    <div class="app-title">{{t 'users.title'}}</div>
+  </header>
 
-{{#if controllers.application.currentUser.superuser}}
-<section class="card card-margin-top settings">
-  <h1>{{t 'superuser_actions'}}</h2>
-  <form class="click-form form-horizontal">
-    {{click-edit-form value=user_quota label='users.allowed' parentController=controller}}
-  </form>
+  <section>
+
+    {{#link-to 'users.new' class='btn btn-default btn-sm icon-text'}}
+      <i class="fa fa-plus"></i>
+      {{t 'users.new'}}
+    {{/link-to}}
+
+    <hr>
+
+    <div {{bind-attr class=":search filter:active"}}>
+      <i class="fa fa-search"></i>
+      {{#if filter}}<i class="fa fa-times" {{action 'clearFilter'}}></i>{{/if}}
+      {{input value=filter placeholderTranslation='user.search'}}
+    </div>
+  </section>
+
+</nav>
+
+<section class="content">
+
 </section>
-{{/if}}

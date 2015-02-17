@@ -15,4 +15,4 @@ Caminio.UsersNewView = Caminio.FadedView.extend()
 #
 # EDIT
 #
-Caminio.UsersEditView = Caminio.UsersLayoutView.extend()
+Caminio.UsersEditView = Caminio.FadedView.extend()

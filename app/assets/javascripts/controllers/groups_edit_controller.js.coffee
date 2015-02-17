@@ -1,12 +1,13 @@
-Caminio.GroupsEditController = Ember.ObjectController.extend Caminio.Validations,
+Caminio.GroupsEditController = Ember.ObjectController.extend
   needs: ['application']
+  group: null
 
   notyMessages: true
 
   actions:
 
-    deleteGroup: (group)->
-      group = group || @get('content')
+    delete: (group)->
+      group = group || @get('group')
       bootbox.confirm Em.I18n.t('group.really_delete', name: group.get('name')), (result)=>
         return unless result
         group

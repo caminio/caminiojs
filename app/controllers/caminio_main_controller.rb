@@ -21,7 +21,7 @@ class CaminioMainController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = get_browser_locale || params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || get_browser_locale || I18n.default_locale
   end
 
   def get_browser_locale

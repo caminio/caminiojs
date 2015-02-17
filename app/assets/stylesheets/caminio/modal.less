@@ -20,6 +20,7 @@
   top: 42px;
   left: 0;
   right: 0;
+  z-index: 30;
 }
 
 .caminio-modal-ctrl .btn-close{
@@ -28,6 +29,30 @@
   font-size: 30px;
   line-height: 1em;
   padding: 8px 15px 10px;
+}
+
+.caminio-modal-ctrl .btn-actions button{
+  border: none;
+  background: none;
+  padding: 16px;
+  line-height: 1em;
+}
+
+.caminio-modal-ctrl .btn-actions .dropdown-menu{
+  color: @grey-500;
+  margin-top: 1px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+  border-top: none;
+}
+
+.caminio-modal-ctrl .btn-actions{
+  color: @grey-500;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.caminio-modal-ctrl .btn-actions .fa{
+  margin-left: 5px;
 }
 
 .caminio-modal-wrap{

@@ -28,7 +28,7 @@ module Caminio
       desc "lists all groups for current_user"
       get do
         authenticate!
-        groups = Group.where organization_id: BSON::ObjectId.from_string(headers['Organization-Id'])
+        groups = Group.where organization_id: BSON::ObjectId.from_string(RequestStore::store['organization_id'])
         users = []
         groups.each{ |g| g.users.each{ |u| users << u } }
         present :groups, groups, with: GroupEntity
