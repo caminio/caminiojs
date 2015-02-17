@@ -90,14 +90,17 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
 
   actions:
 
-    openModal: (name)->
+    openMiniModal: (name, controller)->
       @render name,
         into: 'application'
-        outlet: 'modal'
+        outlet: 'mini-modal'
+        controller: controller
+      Em.run.later ->
+        $('.modal').modal()
 
-    closeModal: ->
+    closeMiniModal: ->
       @disconnectOutlet
-        outlet: 'modal'
+        outlet: 'mini-modal'
         parentView: 'application'
 
     goTo: (route)->

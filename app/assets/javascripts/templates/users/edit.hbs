@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="col-md-4 align-right">
-    <a href="#" class="btn btn-close" {{action 'closeModal'}}>
+    <a href="#" class="btn btn-close" {{action 'goTo' 'users.index'}}>
       &times;
     </a>
   </div>
@@ -27,11 +27,21 @@
       {{click-edit-text value=user.username content=user placeholder='user.not_set' label='alias' parentController=controller}}
       {{click-edit-text value=user.fullName content=user placeholder='user.not_set' label='user.name' parentController=controller}}
       {{click-edit-text value=user.email content=user placeholder='user.not_set' label='email' parentController=controller}}
-      {{click-edit-text value=user.phone content=user placeholder='user.not_set' label='email' parentController=controller}}
+      {{click-edit-text value=user.phone content=user placeholder='user.not_set' label='phone' parentController=controller}}
 
-      <hr>
+      <div class="vspacer"></div>
 
       {{click-edit-radio value=user.role_name content=user.availableRoleNames label='user.role' parentController=controller}}
+
+      <div class="vspacer"></div>
+
+      {{click-edit-select modalHeader='select_language' value=user.locale content=controllers.sessions.availableLocales label='user.language' parentController=controller}}
+
+
+        <div class="vspacer"></div>
+
+        {{click-edit-text textarea=true value=user.settingsStr content=user placeholder='user.not_set' label='account.settings' parentController=controller}}
+
 
     </section>
 

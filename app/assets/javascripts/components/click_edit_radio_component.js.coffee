@@ -1,7 +1,10 @@
+# coffeelint: disable=max_line_length
 Caminio.ClickEditRadioComponent = Ember.Component.extend
 
   valueSaved: false
   valueSaving: false
+
+  saveActionName: 'save'
 
   optionLabelPath: 'label'
   optionValuePath: 'id'
@@ -15,25 +18,27 @@ Caminio.ClickEditRadioComponent = Ember.Component.extend
       @set('origValue', @get('value'))
     , 2000
 
-  didInsertElement: ->
-    console.log 'init', @get('content')
-
   actions:
 
-    saveChanges: ->
-      if @get 'content.isNew'
-        return @set 'editValue', false
+    select: (content)->
+      @set 'value', content.get @get('optionValuePath')
+      return if @get 'content.isNew'
       @set('valueSaving', true)
       @get('parentController').send(@get('saveActionName'), @saveCallback, @)
 
-    cancelEdit: ->
-      @set('editValue',false)
-      @set('value', @get('origValue'))
-      Caminio.get('currentClickEdit', null)
-
 Caminio.ClickEditRadioItemController = Em.ObjectController.extend
   
-  getLabel: (->
-    console.log "content.#{parentController.get('optionLabelPath')}"
-    @get("content.#{parentController.get('optionLabelPath')}")
-  ).property ''
+  isActive: (->
+    @get("content.#{@get('parentController.optionValuePath')}") == @get('parentController.value')
+  ).property 'content', 'parentController.value'
+
+  getLabelName: (->
+    @get("content.#{@get 'parentController.optionLabelPath'}")
+  ).property 'content'
+
+  getLabelClasses: (->
+    base = @get('content.classNames') || 'btn btn-default'
+    if @get('isActive')
+      base += ' ' + (@get('content.activeClassNames') || 'btn-primary')
+    base
+  ).property 'content.classNames', 'isActive'

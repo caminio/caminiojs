@@ -23,7 +23,10 @@ Caminio.User = DS.Model.extend
     str
   ).property 'firstname', 'lastname'
   role_name:        DS.attr 'string', default: 'user'
-  availableRoleNames: Em.A([{label: 'roles.user', id: 'user'}, {label: 'roles.editor', id: 'editor'}, {label: 'roles.admin', id: 'admin'}])
+  availableRoleNames: Em.A([
+    Em.Object.create(label: 'roles.user', id: 'user'),
+    Em.Object.create(label: 'roles.editor', id: 'editor'),
+    Em.Object.create(label: 'roles.admin', id: 'admin')])
   locale:           DS.attr 'string', default: Em.I18n.locale
   username:         DS.attr 'string'
   superuser:        DS.attr 'boolean'
@@ -45,7 +48,10 @@ Caminio.User = DS.Model.extend
   settings:         DS.attr 'object'
   settingsStr:      ((key,value,prevVal)->
     if arguments.length > 1
-      @set 'settings', JSON.parse(value)
+      try
+        @set 'settings', JSON.parse(value)
+      catch e
+        console.log e
     JSON.stringify @get('settings'), null, 2
   ).property 'settings'
   app_roles:             DS.hasMany 'app_roles'

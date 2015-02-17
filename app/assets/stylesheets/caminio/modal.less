@@ -71,34 +71,38 @@
 }
 
 .caminio-modal-wrap .field-row .field-label{
-  padding: 20px;
+  padding: 15px;
   vertical-align: top;
   text-align: right;
   background: @grey-100;
   flex: 0 0 250px;
   flex-direction: column;
   color: @grey-700;
+  border-right: 1px solid @grey-300;
 }
 
 .caminio-modal-wrap .field-row .field-content{
   flex: 1 1 0;
-  padding: 20px;
-  border-left: 1px solid @grey-300;
+  padding: 15px 15px 15px 20px;
   position: relative;
 }
 
 .caminio-modal-wrap .field-row .field-content.editing-click-form{
-  padding: 13px 20px;
+  padding: 8px 20px;
 }
 
 .caminio-modal-wrap .field-row .value-saved{
   position: absolute;
-  top: 19px;
+  top: 11px;
   right: -200px;
   border-radius: 50%;
   transition: right 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
   padding: 7px 8px;
   font-size: 1em;
+}
+
+.caminio-modal-wrap .field-row.click-edit-select .field-content .val{
+  cursor: pointer;
 }
 
 .caminio-modal-wrap .field-row .value-saved.active{
@@ -113,6 +117,15 @@
   width: 100%;
 }
 
+.caminio-modal-wrap .field-row textarea{
+  min-height: 15em;
+}
+
+.caminio-modal-wrap .with-textarea .input-group-addon{
+  display: inline-block;
+  width: auto;
+}
+
 .caminio-modal-wrap .field-row input[type=text],
 .caminio-modal-wrap .field-row input[type=password],
 .caminio-modal-wrap .field-row .input-group-addon,
@@ -125,9 +138,53 @@
   border-left: 1px solid @grey-300;
 }
 
-.caminio-modal-wrap hr{
+.caminio-modal-wrap .vspacer{
+  background: @grey-100;
   border: none;
-  border-top: 1px solid @grey-300;
+  border-right: 1px solid @grey-300;
   margin: 0;
+  height: 10px;
   width: 250px;
+}
+
+.caminio-modal-wrap .field-row .labels{
+  float: left;
+  margin-top: -4px;
+}
+
+.caminio-modal-wrap .field-content .btn{
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.mini-modal .select-options{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mini-modal .select-options li{
+  padding: 10px 20px;
+  color: @grey-500;
+  cursor: pointer;
+}
+
+.mini-modal .select-options li.active .fa-check,
+.mini-modal .select-options li.active{
+  color: @grey-700;
+}
+
+.mini-modal .select-options li:hover{
+  background-color: @grey-100;
+  color: @grey-700;
+}
+
+.mini-modal .select-options li .spacer,
+.mini-modal .select-options li .fa-check{
+  float: left;
+  width: 30px;
+  font-size: 18px;
+  color: @grey-500;
+  display: block;
+  height: 1em;
 }

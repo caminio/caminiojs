@@ -1,5 +1,8 @@
 Caminio.UsersEditController = Ember.ObjectController.extend
+
   needs: ['application','sessions']
+
+  user: null
 
   notyMessages: true
   oldRoleName: null

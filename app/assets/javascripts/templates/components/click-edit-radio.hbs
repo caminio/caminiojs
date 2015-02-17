@@ -1,11 +1,14 @@
-<form class="field-row">
+<form class="field-row click-edit-radio">
   <div class="field-label">
     {{t label}}
   </div>
   <div class="field-content">
     <div class="labels">
       {{#each label in content itemController='click_edit_radio_item'}}
-        <label>{{getLabel}}</label>
+        <label {{bind-attr class='controller.getLabelClasses'}}
+              {{action 'select' label}}>
+          {{t controller.getLabelName}}
+        </label>
       {{/each}}
     </div>
     <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>

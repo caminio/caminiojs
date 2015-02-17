@@ -2,13 +2,17 @@
   <div class="field-label">
     {{labelTranslation}}
   </div>
-  <div {{bind-attr class=":field-content editValue:editing-click-form"}}>
+  <div {{bind-attr class=":field-content editValue:editing-click-form textarea:with-textarea"}}>
     {{#if editValue}}
     <div class="input-group">
       {{#if password}}
       {{input type='password' value=value}}
       {{else}}
+      {{#if textarea}}
+      {{textarea value=value}}
+      {{else}}
       {{input value=value}}
+      {{/if}}
       {{/if}}
       {{#unless content.isNew}}
         <div {{action 'saveChanges'}} {{bind-attr class=":input-group-addon :btn hasChanges:btn-primary:btn-default :save-changes-btn"}}>
