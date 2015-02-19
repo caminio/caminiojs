@@ -18,12 +18,7 @@ body{
 }
 
 .main-wrap{
-  bottom: 20px;
-  left: 20px;
-  position: absolute;
-  right: 20px;
-  top: 60px;
-  overflow: auto;
+  margin: 60px 20px 40px;
 }
 
 @media only screen 
@@ -91,7 +86,8 @@ and (min-device-width : 1281px){
   border-color: #aaa;
 }
 
-.card.card-padding{
+.card.card-padding,
+.default-padding{
   padding: 20px;
 }
 
@@ -351,18 +347,33 @@ section.content{
   border-left: 1px solid @grey-300;
 }
 
+section.content h3{
+  text-align: center;
+  font-size: 18px;
+  color: @caminio-blue;
+  font-weight: 400;
+  line-height: 1em;
+}
+
+section.content h3 + .sub{
+  font-size: 12px;
+  color: @grey-500;
+  text-align: center;
+}
+
 nav.main-menu{
   margin-bottom: 10px;
-  padding: 10px 0;
 }
 
 nav.main-menu a{
+  padding: 10px;
   color: @grey-600;
   display: inline-block;
   font-size: 10px;
   text-align: center;
   width: 100px;
   transition: transform 0.5s;
+  border: 1px solid transparent;
 }
 
 nav.main-menu a.active{
@@ -371,8 +382,9 @@ nav.main-menu a.active{
 
 nav.main-menu a:hover{
   text-decoration: none;
-  transition: transform 0.5s;
-  transform: scale(1.05,1.05);
+  transition: background 0.2s;
+  background: @grey-100;
+  border-color: @grey-200;
 }
 
 nav.main-menu a .fa{

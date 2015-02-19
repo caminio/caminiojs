@@ -32,8 +32,12 @@ Em.merge Em.I18n.availableTranslations.de,
   agree_policies: 'Ich bin mit den Allgemeinen Geschäftsbedingungen einverstanden'
   search_app: 'Anwendung suchen'
   search_dots: 'Suche ...'
+  your_selection: 'Deine Auswahl'
   select_language: 'Sprache wählen'
   apps: 'Applikationen'
+  sum: 'Summe exkl. MwSt.'
+  vat: 'MwSt.'
+  total: 'Summe'
   actions: 'Aktionen'
   dashboard:
     title: 'Dashboard'
@@ -69,6 +73,7 @@ Em.merge Em.I18n.availableTranslations.de,
   users:
     title: 'Benutzerkonten'
     follow: 'Änderungen bei Benutzerkonten folgen'
+    select_amount: 'Wähle deine Teamgröße ( {{pricePerUser}} / Benutzer / Monat )'
     pl_title: 
       one: 'Benutzerkonto'
       other: 'Benutzerkonten'
@@ -176,6 +181,11 @@ Em.merge Em.I18n.availableTranslations.de,
     title: 'Abonnements'
     really_switch_to_plan: 'Möchten Sie wirklich auf den Plan <tt>{{title}}</tt> wechseln? Bestätigen Sie den Wechsel bitte mit Ihrem Password'
     switched_to_plan: 'Sie haben nun in den Plan <tt>{{title}}</tt> gewechselt'
+
+  subscription:
+    save: 'Abonnement speichern'
+    no_changes: 'keine Änderungen'
+    saved: 'Abonnement gespeichert'
 
   errors:
     login_failed: 'Anmeldung fehlgeschlagen!'

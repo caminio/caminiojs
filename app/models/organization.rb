@@ -13,10 +13,18 @@ class Organization
   
   has_and_belongs_to_many :users
   has_many :activities
-  embeds_many :app_plans
+  has_many :app_bills
 
   before_create :setup_fqdn
   after_create :set_user_organization_role
+
+  def latest_bill
+    app_bills.desc(:created_at).first
+  end
+
+  def last_paid_bill
+    app_bills.ne(paid_at: nil).desc(:created_at).first
+  end
 
   def access_for_user( user )
     return unless users.find(user.id)

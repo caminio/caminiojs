@@ -23,7 +23,7 @@ module Caminio
         organizations = current_user.organizations
         organizations = Organization.where({}) if current_user.is_superuser?
         present :organizations, organizations, with: OrganizationEntity
-        present :app_plans, organizations.inject(Array.new){ |arr,o| arr.concat o.app_plans }, with: AppPlanEntity
+        # present :app_plans, organizations.inject(Array.new){ |arr,o| arr.concat o.app_plans }, with: AppPlanEntity
       end
 
       #

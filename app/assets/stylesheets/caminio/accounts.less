@@ -306,9 +306,37 @@ textarea.settings-area{
   height: 20em;
 }
 
+.app-plans{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
 .app-plan{
   opacity: 0.6;
   cursor: pointer;
+  flex: 1 1 200px;
+  align-self: flex-start;
+  margin: 10px;
+  background: @grey-50;
+}
+
+.app-plan.title{
+  background: none;
+  flex-basis: 100px;
+  opacity: 1
+}
+
+.app-plan.title h2{
+  font-size: 16px;
+  font-weight: 400;
+  color: @caminio-dark-blue;
+  text-align: left;
+}
+
+.app-plan.w-border{
+  border: 1px solid @grey-300;
 }
 
 .app-plan h1,
@@ -318,50 +346,151 @@ textarea.settings-area{
 
 .app-plan .price{
   text-align: center;
-  margin: 10px 40px;
+  margin: 0 40px;
   background: @lime-500;
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 5px;
   border-radius: 40px;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .app-plan .price small{
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .app-plan ul{
   list-style: none;
   margin: 20px 0;
   padding: 0;
+  font-size: 10px;
 }
 
 .app-plan li{
-  padding: 15px 40px;
-}
-
-.app-plan li:nth-child(even){
-  background: #f5f5f5;
+  padding: 5px 40px;
 }
 
 .app-plan li .fa{
   color: @green-500;
   float: left;
-  font-size: 18px;
-  margin: 1px 10px 0 0;
+  font-size: 12px;
+  margin: 1px 7px 0 0;
 }
 
-.app-plan:hover:not(.active){
+.app-plan li .fa-placeholder{
+  content: ' ';
+  width: 12px;
+}
+
+.app-plan:hover:not(.active):not(.title){
   opacity: 1;
   transform: scale(1.05,1.05);
+}
+
+.app-plan.active{
+  opacity: 1;
+  transform: scale(1.05,1.05);
+  background: @light-blue-100;
+}
+
+.app-plan.active h3{
+  color: #fff;
+  font-weight: 600;
+}
+
+.app-plan.active .fa-check{
+  color: #fff;
 }
 
 .app-plan.active{
   transform: scale(1.05,1.05);
   opacity: 1;
   background: @lime-500;
+  border-color: @grey-500;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.app-plan.active:before{
+  border-left: 50px solid transparent;
+  border-top: 50px solid @grey-500;
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 101;
+}
+
+.app-plan.active:after{
+  display: block;
+  font: normal normal normal 16px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f00c";
+  position: absolute;
+  color: #fff;
+  top: 8px;
+  right: 8px;
+  z-index: 110;
+}
+
+.app-plan.active ul{
+  color: #fff;
 }
 
 .app-plan.active .price{
   background: #fff;
+}
+
+.users-slider{
+  width: 80%;
+  margin: 20px auto;
+}
+
+h3.num-users{
+  margin-top: 2em;
+}
+
+.selected-users-num{
+  text-align: center;
+  padding: 0 20px 20px;
+  color: @grey-500;
+}
+
+.selected-users-num .num{
+  color: @caminio-blue;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+table.price-sum{
+  border-spacing: 0;
+  width: 100%;
+  font-size: 12px;
+}
+
+table.price-sum td{
+  border-bottom: 1px solid @grey-300;
+  padding: 8px 5px;
+}
+
+table.price-sum tfoot td{
+  border: none;
+  padding: 5px;
+}
+
+table.price-sum tfoot tr:first-child td{
+  border-top: 2px solid @grey-500;
+}
+
+table.price-sum tfoot tr:last-child td{
+  font-weight: 600;
+  background-color: #fff;
+  border-bottom-color: transparent;
+}
+
+.save-plan{
+  margin-top: 20px;
+  text-align: right;
 }

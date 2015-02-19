@@ -1,0 +1,114 @@
+@import '../caminio/_colors';
+
+.noUi-target, .noUi-target * {
+    -moz-user-select: none;
+    box-sizing: border-box;
+}
+.noUi-base {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+.noUi-origin {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.noUi-handle {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+.noUi-stacking .noUi-handle {
+    z-index: 10;
+}
+.noUi-stacking + .noUi-origin {
+    z-index: -1;
+}
+.noUi-state-tap .noUi-origin {
+    transition: left 0.3s ease 0s, top 0.3s ease 0s;
+}
+.noUi-state-drag * {
+    cursor: inherit !important;
+}
+.noUi-horizontal {
+    height: 10px;
+}
+.noUi-handle {
+    border: 1px solid;
+    border-radius: 100%;
+    box-sizing: border-box;
+    cursor: ew-resize;
+    height: 12px;
+    left: -10px;
+    top: -5px;
+    transition: all 0.2s ease-out 0s;
+    width: 12px;
+}
+.noUi-vertical .noUi-handle {
+    cursor: ns-resize;
+    margin-left: 5px;
+}
+.noUi-horizontal.noUi-extended {
+    padding: 0 15px;
+}
+.noUi-horizontal.noUi-extended .noUi-origin {
+    right: -15px;
+}
+.noUi-background {
+    height: 2px;
+    margin: 20px 0;
+    background: @grey-300;
+}
+.noUi-origin {
+    background: none repeat scroll 0 0 @grey-300;
+    border-radius: 0;
+    height: 2px;
+    margin: 0;
+}
+.noUi-origin[style^="left: 0"] .noUi-handle {
+    background-color: #fff;
+    border: 2px solid @grey-300;
+}
+.noUi-origin[style^="left: 0"] .noUi-handle.noUi-active {
+    border-width: 1px;
+}
+.noUi-target {
+    border-radius: 2px;
+}
+.noUi-horizontal {
+    height: 2px;
+    margin: 15px 0;
+}
+.noUi-vertical {
+    display: inline-block;
+    height: 100%;
+    margin: 0 15px;
+    width: 2px;
+}
+.noUi-handle.noUi-active {
+    transform: scale(2.5);
+}
+.noUi-slider[disabled] {
+    opacity: 0.5;
+}
+[disabled] .noUi-handle {
+    cursor: not-allowed;
+}
+.slider {
+    background: none repeat scroll 0 0 #c8c8c8;
+}
+.slider.noUi-connect, .slider-default.noUi-connect {
+    background-color: @caminio-blue;
+}
+.slider-primary .noUi-handle {
+  background-color: @caminio-blue;
+}
+.slider-primary .noUi-handle {
+  border-color: @caminio-blue;
+}
+.slider-primary.noUi-connect{
+  background-color: @caminio-blue;
+}

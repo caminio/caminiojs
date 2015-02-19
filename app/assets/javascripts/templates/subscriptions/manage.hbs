@@ -1,16 +1,71 @@
-<section>
+<nav class="content-nav">
+  <header class="app-header">
+    <div class="app-title">{{t 'subscriptions.title'}}</div>
+  </header>
 
-  <div class="row">
+  <section>
 
-    {{#each plan in availablePlans itemController='app_plan_item'}}
-      <div {{bind-attr class='controller.col'}}>
-        <div class="card app-plan" {{action 'selectPlan' plan}}>
-          <h1>{{plan.title}}</h1>
+    <table class="price-sum">
+      {{#each plan in selectedPlans}}
+        <tr>
+          <td>{{plan.app_name}} {{plan.name}}</td>
+          <td></td>
+          <td class="align-right">{{plan.formatted_total_value}}</td>
+        </tr>
+      {{/each}}
+      <tr>
+        <td>{{t 'users.title'}}</td>
+        <td class="align-right">{{numUsers}}</td>
+        <td class="align-right">{{formattedPriceNumUsers}}</td>
+      </tr>
+      <tfoot>
+        <tr>
+          <td>{{t 'sum'}}</td>
+          <td></td>
+          <td class="align-right">{{formattedSum}}</td>
+        </tr>
+        <tr>
+          <td>{{t 'vat'}}</td>
+          <td>{{formattedTaxRate}}</td>
+          <td class="align-right">{{formattedTaxRateSum}}</td>
+        </tr>
+        <tr>
+          <td>{{t 'total'}}</td>
+          <td></td>
+          <td class="align-right">{{formattedTotal}}</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="save-plan">
+
+      {{#if hasChanges}}
+        <button {{action 'save'}} {{bind-attr class=":btn hasChanges:btn-primary:btn-default"}}>
+          <i class="fa fa-check"></i>
+          {{t 'subscription.save'}}
+        </button>
+      {{else}}
+        <span class="desc">{{t 'subscription.no_changes'}}</span>
+      {{/if}}
+    </div>
+
+  </section>
+
+</nav>
+
+<section class="content default-padding">
+
+  {{#each app in availableApps}}
+
+    <div class="app-plans">
+      <div class="app-plan title">
+        <h2>{{app.name}}</h2>
+      </div>
+      {{#each plan in app.plans itemController='app_plan_item'}}
+        <div {{bind-attr class=":app-plan :w-border controller.isCurrent:active"}} {{action 'selectPlan' plan}}>
+          <h3>{{plan.title}}</h3>
           <div class="price">
             {{{controller.price}}}
-            {{#if plan.price_year}}
-              <div class="price_year">{{{controller.price_year}}}</div>
-            {{/if}}
           </div>
           <ul>
           {{#each feature in plan.features}}
@@ -18,9 +73,13 @@
           {{/each}}
           </ul>
         </div>
-      </div>
-    {{/each}}
+      {{/each}}
+    </div>
+  {{/each}}
 
-  </div>
+  <h3 class="num-users">{{numUsers}} {{t 'users.title'}}</h3>
+  <div class="sub">{{t 'users.select_amount' pricePerUserBinding='formattedPricePerUser'}}</div>
+
+  <div class="slider noUi-connect slider-primary users-slider"></div>
 
 </section>

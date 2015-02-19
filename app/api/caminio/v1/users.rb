@@ -73,6 +73,8 @@ module Caminio
         present :app_roles, user.app_roles, with: AppRoleEntity
         present :organizations, user.organizations, with: OrganizationEntity
         present :user, user, with: UserEntity
+        present :app_bills, [current_organization.latest_bill], with: AppBillEntity
+        present :app_bill_entries, current_organization.latest_bill.app_bill_entries, with: AppBillEntryEntity
       end
 
       #

@@ -57,8 +57,15 @@ Caminio.User = DS.Model.extend
   app_roles:             DS.hasMany 'app_roles'
   
   apps: (->
-    @get('organization.app_plans')
-  ).property 'organization'
+    bill = @get('organization.last_paid_bill')
+    return [] unless bill
+    a = Em.A()
+    bill.get('app_bill_entries').forEach (entry)->
+      return if entry.get('app_name') == 'users'
+      a.addObject entry
+    console.log 'a', a
+    a
+  ).property 'organization.latest_paid_bill'
 
   setLang: ->
     window.LANG = @get('locale')
