@@ -4,7 +4,20 @@ Caminio.UsersEditController = Ember.ObjectController.extend
 
   user: null
 
+  old_password: null
+  new_password: null
+  confirm_new_password: null
+
   notyMessages: true
+
+  isNotCurrent: (->
+    @get('user.id') != @get('controllers.application.currentUser.id')
+  ).property 'user'
+
+  isAdminNotCurrent: (->
+    return false unless @get('controllers.application.currentUser.admin')
+    @get('isNotCurrent')
+  ).property 'user'
 
   suspendNow: (user)->
     user.toggleProperty('suspended')
@@ -18,6 +31,7 @@ Caminio.UsersEditController = Ember.ObjectController.extend
       .catch Caminio.NotyUnknownError
 
   actions:
+
     save: (callback, scope)->
       @get('user')
         .save()
@@ -38,6 +52,27 @@ Caminio.UsersEditController = Ember.ObjectController.extend
           @suspendNow( user )
       else
         @suspendNow( user )
+
+    change_password: ->
+      if @get('new_password') != @get('confirm_new_password')
+        return noty({ text: Em.I18n.t('user.passwords_missmatch'), type: 'error' })
+      $.ajax 
+        url: "#{Caminio.get('apiHost')}/users/change_password"
+        type: 'post'
+        data:
+          old: @get('old_password')
+          new: @get('new_password')
+      .then =>
+        noty { text: Em.I18n.t('user.password_changed'), type: 'success' }
+        @set 'old_password', ''
+        @set 'new_password', ''
+        @set 'confirm_new_password', ''
+        @send 'closeMiniModal'
+      .fail (e)->
+        if e.status == 403
+          noty { text: Em.I18n.t('user.old_password_missmatch'), type: 'error' }
+        else
+          Caminio.NotyUnknownError()
 
     delete: ->
 

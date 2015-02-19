@@ -106,6 +106,8 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         controller: controller
       Em.run.later ->
         $('.modal').modal()
+        .on 'shown.bs.modal', ->
+          $(this).find('input.js-get-focus').focus()
 
     closeModal: ->
       @disconnectOutlet

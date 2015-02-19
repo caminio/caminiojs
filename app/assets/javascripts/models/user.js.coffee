@@ -23,6 +23,9 @@ Caminio.User = DS.Model.extend
     str
   ).property 'firstname', 'lastname'
   role_name:        DS.attr 'string', default: 'user'
+  tr_role_name: (->
+    Em.I18n.t "roles.#{@get('role_name')}"
+  ).property 'role_name'
   availableRoleNames: Em.A([
     Em.Object.create(label: 'roles.user', id: 'user'),
     Em.Object.create(label: 'roles.editor', id: 'editor'),
@@ -63,7 +66,6 @@ Caminio.User = DS.Model.extend
     bill.get('app_bill_entries').forEach (entry)->
       return if entry.get('app_name') == 'users'
       a.addObject entry
-    console.log 'a', a
     a
   ).property 'organization.latest_paid_bill'
 

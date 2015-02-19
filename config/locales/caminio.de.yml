@@ -2,11 +2,13 @@ de:
 
   user_mailer:
     signup: 
-      subject: "Dein Konto auf %{site_name}"
+      subject: "Ihr Konto auf %{site_name}"
     reset_pwd:
       subject: "Passwort zurücksetzen auf %{site_name}"
     invite:
       subject: "Willkommen auf %{site_name}"
+    password_changed:
+      subject: "Ihr Passwort wurde geändert %{site_name}"
 
   mongoid:
     errors:

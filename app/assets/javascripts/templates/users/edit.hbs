@@ -63,13 +63,37 @@
       {{click-edit-text value=user.email content=user placeholder='user.not_set' label='email' parentController=controller}}
       {{click-edit-text value=user.phone content=user placeholder='user.not_set' label='phone' parentController=controller}}
 
+      {{#unless controller.isNotCurrent}}
+        <div class="vspacer"></div>
+
+        <div class="field-row">
+          <div class="field-label">
+            {{t 'password'}}
+          </div>
+          <div class="field-content w-cursor" {{action 'openMiniModal' 'users/change_password_modal'}}>
+            <span>{{t 'user.change_password'}}</span>
+          </div>
+        </div>
+      {{/unless}}
+
       <div class="vspacer"></div>
-
-      {{click-edit-radio value=user.role_name content=user.availableRoleNames label='user.role' parentController=controller}}
-
-      <div class="vspacer"></div>
-
+      
       {{click-edit-select modalHeader='select_language' value=user.locale content=controllers.sessions.availableLocales label='user.language' parentController=controller}}
+
+      <div class="vspacer"></div>
+
+        {{#if controller.isAdminNotCurrent}}
+          {{click-edit-radio value=user.role_name content=user.availableRoleNames label='user.role' parentController=controller}}
+        {{else}}
+          <div class="field-row">
+            <div class="field-label">
+              {{t 'user.role'}}
+            </div>
+            <div class="field-content">
+              <span>{{user.tr_role_name}}</span>
+            </div>
+          </div>
+        {{/if}}
 
       {{#if controllers.application.currentUser.superuser}}
 

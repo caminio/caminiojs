@@ -155,8 +155,10 @@ module Caminio
         authenticate!
         user = User.find( @token.user_id )
         return error!("WrongPassword",403) unless user.authenticate( params.old )
+        user.old_password_digest = user.password_digest
         user.password = params.new
         return error("failed to save", 422) unless user.save
+        return error!(UserMailerError,500) unless UserMailer.password_changed( user, base_url ).deliver_now
         user = User.find( @token.user_id )
         present :user, user, with: UserEntity
       end

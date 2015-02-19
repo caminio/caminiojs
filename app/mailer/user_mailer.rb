@@ -10,6 +10,14 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def password_changed(user, base_url)
+    @user = user
+    @base_url = base_url
+    I18n.with_locale(@user.locale || I18n.locale) do
+      mail(to: @user.email, subject: I18n.t('user_mailer.password_changed.subject', site_name: Rails.configuration.site.name))
+    end
+  end
+
   def reset_password(user, base_url)
     @user = user
     @base_url = base_url

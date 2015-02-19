@@ -17,6 +17,7 @@ class User
   field :valid_until, type: DateTime
 
   field :password_digest, type: String
+  field :old_password_digest, type: String
 
   field :confirmation_key, type: String
   field :confirmation_code, type: String
