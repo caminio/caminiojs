@@ -20,6 +20,18 @@ accounting.settings =
     thousand: ","
     decimal : "."
 
+window.tooltipTourTemplate = "<div class='popover tour'>
+        <div class='arrow'></div>
+        <h3 class='popover-title'></h3>
+        <div class='popover-content'></div>
+        <div class='popover-navigation'>
+            <button class='pull-right btn btn-default' data-role='end'>#{Em.I18n.t('finish')}</button>
+            <button class='btn btn-default' data-role='prev'><i class='fa fa-angle-left'></i> #{Em.I18n.t('previous')}</button>
+            <button class='btn btn-default' data-role='next'>#{Em.I18n.t('next')} <i class='fa fa-angle-right'></i></button>
+        </div>
+        </nav>
+      </div>"
+
 moment.locale(LANG)
 
 DS.ObjectTransform = DS.Transform.extend

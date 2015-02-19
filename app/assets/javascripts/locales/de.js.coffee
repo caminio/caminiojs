@@ -51,6 +51,10 @@ Em.merge Em.I18n.availableTranslations.de,
   
   save: 'Speichern'
   cancel: 'Abbrechen'
+  close: 'Schließen'
+  next: 'Weiter'
+  previous: 'Zurück'
+  finish: 'Abschließen'
   saved: '{{name}} wurde gespeichert'
 
   cancel_edit_entry: 'Bearbeiten abbrechen'
@@ -73,7 +77,7 @@ Em.merge Em.I18n.availableTranslations.de,
   users:
     title: 'Benutzerkonten'
     follow: 'Änderungen bei Benutzerkonten folgen'
-    select_amount: 'Wähle deine Teamgröße ( {{pricePerUser}} / Benutzer / Monat )'
+    select_amount: 'Wählen Sie die gewünschte Teamgröße ( {{pricePerUser}} / Benutzer / Monat ). Ziehen Sie dazu den Regler auf die gewünschte Position'
     pl_title: 
       one: 'Benutzerkonto'
       other: 'Benutzerkonten'
@@ -188,11 +192,20 @@ Em.merge Em.I18n.availableTranslations.de,
     title: 'Abonnements'
     really_switch_to_plan: 'Möchten Sie wirklich auf den Plan <tt>{{title}}</tt> wechseln? Bestätigen Sie den Wechsel bitte mit Ihrem Password'
     switched_to_plan: 'Sie haben nun in den Plan <tt>{{title}}</tt> gewechselt'
+    start_tour: 'Einführung starten'
 
   subscription:
-    save: 'Abonnement speichern'
+    checkout: 'Zur Kassa'
     no_changes: 'keine Änderungen'
     saved: 'Abonnement gespeichert'
+    walkthrough:
+      title: 'Einführung in Abonnements'
+      welcome: 'Abonnements sind Anwendungen, die Sie verwenden. Die meisten Anwendungen haben kostenlose- oder Testangebote.<br><br>Sie können Ihre Konfiguration jederzeit ändern. Im Falle eines Upgrades erhalten Sie für die bereits bezahlten Beträge eine Gutschrift. Eine Kündigung bereits bezahlter Perioden ist nicht möglich.'
+      select_plan: 'Wählen Sie für jede Anwendung jenen Plan aus, der die Funktionen bietet, die Sie benötigen. Klicken Sie dazu auf die Box.'
+      select_num_users: 'Außerdem können Sie die Anzahl ihrer Mitarbeiter einstellen, die auf Ihre Anwendungen zugreifen können sollen. <br>Ein Benutzer kostet nichts, ab dem 2. Benutzer kostet jeder Benutzer (inkl. des ersten) 1,-- Euro'
+      overview_price: 'Hier sehen Sie die Summe die monatlich für Ihre ausgewählten Pläne zu bezahlen ist'
+      checkout: 'Erst, wenn Sie auf das "zur Kassa"-Feld klicken und die Bezahlung erfolgreich war, tritt die neue Konfiguration in Kraft'
+      start_again: 'Sie können diese Einführung jederzeit wieder starten, indem Sie auf dieses Symbol klicken'
 
   errors:
     login_failed: 'Anmeldung fehlgeschlagen!'

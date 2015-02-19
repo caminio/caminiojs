@@ -14,6 +14,11 @@ Caminio.SubscriptionsManageView = Caminio.FadedView.extend
     .on 'set', (e,val)=>
       @get('controller').set 'numUsers', parseInt(val)
 
+    $('.slider').Link('lower').to( $('#users-preview'), 'html')
+
+    user = @get('controller.controllers.application.currentUser')
+    if user.get('completed_tours').indexOf('subscriptions') < 0
+      @get('controller').send('startTour')
 
 
 Caminio.SubscriptionsConfirmChangeView = Caminio.FadedView.extend()

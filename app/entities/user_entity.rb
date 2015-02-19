@@ -14,6 +14,7 @@ class UserEntity < Grape::Entity
   expose :suspended
   expose :role_name
   expose :locale
+  expose :completed_tours
 
   expose :settings
 

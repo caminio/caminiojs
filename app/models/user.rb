@@ -16,6 +16,7 @@ class User
   field :last_login_ip, type: String
   field :valid_until, type: DateTime
 
+  field :completed_tours, type: Array
   field :password_digest, type: String
   field :old_password_digest, type: String
 

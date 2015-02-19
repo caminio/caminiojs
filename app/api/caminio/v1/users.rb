@@ -227,6 +227,7 @@ module Caminio
           optional :suspended
           optional :locale
           optional :settings
+          optional :completed_tours, type: Array
         end
         optional :role, values: ['user','admin','editor']
         optional :organization_id

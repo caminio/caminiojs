@@ -1,5 +1,12 @@
 <nav class="content-nav">
   <header class="app-header">
+    <div class="app-btn-group start-again">
+      <a href="#" {{action 'startTour'}}
+        {{translateAttr data-hint='subscriptions.start_tour'}}
+        class="hint--bottom hint--bounce">
+        <i class="fa fa-question"></i>
+      </a>
+    </div>
     <div class="app-title">{{t 'subscriptions.title'}}</div>
   </header>
 
@@ -41,8 +48,8 @@
 
       {{#if hasChanges}}
         <button {{action 'save'}} {{bind-attr class=":btn hasChanges:btn-primary:btn-default"}}>
-          <i class="fa fa-check"></i>
-          {{t 'subscription.save'}}
+          <i class="fa fa-shopping-cart"></i>
+          {{t 'subscription.checkout'}}
         </button>
       {{else}}
         <span class="desc">{{t 'subscription.no_changes'}}</span>
@@ -57,10 +64,11 @@
 
   {{#each app in availableApps}}
 
+    <div class="app-plan-title">
+      <h2>{{app.name}}</h2>
+    </div>
+
     <div class="app-plans">
-      <div class="app-plan title">
-        <h2>{{app.name}}</h2>
-      </div>
       {{#each plan in app.plans itemController='app_plan_item'}}
         <div {{bind-attr class=":app-plan :w-border controller.isCurrent:active"}} {{action 'selectPlan' plan}}>
           <h3>{{plan.title}}</h3>
@@ -77,9 +85,11 @@
     </div>
   {{/each}}
 
-  <h3 class="num-users">{{numUsers}} {{t 'users.title'}}</h3>
-  <div class="sub">{{t 'users.select_amount' pricePerUserBinding='formattedPricePerUser'}}</div>
-
+  <div class="app-plan-title">
+    <h3 class="num-users"><span id="users-preview"></span> {{t 'users.title'}}</h3>
+    <div class="num-users-sub">{{t 'users.select_amount' pricePerUserBinding='formattedPricePerUser'}}</div>
+  </div>
+  
   <div class="slider noUi-connect slider-primary users-slider"></div>
 
 </section>

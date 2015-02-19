@@ -66,6 +66,13 @@ Caminio.SubscriptionsManageController = Ember.ObjectController.extend
 
   actions:
 
+    startTour: ->
+      user = @get('controllers.application.currentUser')
+      Caminio.SubscriptionWalkthrough.start ->
+        return if user.get('completed_tours').indexOf('subscriptions') >= 0
+        user.get('completed_tours').push 'subscriptions'
+        user.save()
+
     selectPlan: (plan)->
       if oldPlan = @get('selectedPlans').findBy('app_name', plan.app_name)
         @get('selectedPlans').removeObject(oldPlan)
