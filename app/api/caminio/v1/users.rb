@@ -74,7 +74,11 @@ module Caminio
         present :organizations, user.organizations, with: OrganizationEntity
         present :user, user, with: UserEntity
         present :app_bills, [current_organization.latest_bill], with: AppBillEntity
-        present :app_bill_entries, current_organization.latest_bill.app_bill_entries, with: AppBillEntryEntity
+        entries = []
+        if current_organization.latest_bill
+          entries = current_organization.latest_bill.app_bill_entries
+        end
+        present :app_bill_entries, entries, with: AppBillEntryEntity
       end
 
       #
