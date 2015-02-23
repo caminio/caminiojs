@@ -75,6 +75,8 @@ Caminio.SubscriptionsManageController = Ember.ObjectController.extend
 
     selectPlan: (plan)->
       if oldPlan = @get('selectedPlans').findBy('app_name', plan.app_name)
+        if oldPlan.name == plan.name
+          return @get('selectedPlans').removeObject(oldPlan)
         @get('selectedPlans').removeObject(oldPlan)
       @get('selectedPlans').pushObject(plan)
       @set 'hasChanges', true
