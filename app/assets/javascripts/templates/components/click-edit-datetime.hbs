@@ -1,0 +1,45 @@
+<form class="field-row" {{action 'saveChanges' on='submit'}}>
+  <div class="field-label">
+    {{labelTranslation}}
+  </div>
+  <div {{bind-attr class=":field-content editValue:editing-click-form"}} {{action 'edit' bubbles=false}}>
+    <div {{bind-attr class=":input-group :date editValue::hide"}}>
+
+      <div class="input-group-addon">{{t 'date'}}:</div>
+      {{input value=dateValue class='datepicker'}}
+      
+      <div class="input-group-addon">{{t 'time'}}:</div>
+      {{input value=timeValue class='timepicker'}}
+
+      {{#unless content.isNew}}
+        <div {{action 'saveChanges'}} {{bind-attr class=":input-group-addon :btn hasChanges:btn-primary:btn-default :save-changes-btn"}}>
+          {{t 'save'}}
+        </div>
+        <div class="input-group-addon btn btn-default cancel-edit" {{action 'cancelEdit'}} {{translateAttr title='cancel_edit_entry'}}>
+          &times;
+        </div>
+      {{/unless}}
+    </div>
+
+    <div {{bind-attr class="hintTop:hint--top:hint--bottom :hint-bounce editValue:hide"}} {{translateAttr data-hint='edit_entry'}}>
+      {{#if value}}
+        <div class="daybox">
+          <div class="daynum">{{dayNum}}</div>
+          <div class="month">{{monthValue}}</div>
+        </div>
+        <div class="full-date">
+          <span class="desc">{{yearValue}}</span>&nbsp;&nbsp;
+          {{formattedDate}}
+        </div>
+      {{else}}
+        <span class="desc">{{t 'click_to_set_time'}}</span>
+      {{/if}}
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-success valueSaved:active"}}>
+      <i class="fa fa-check"></i>
+    </div>
+  </div>
+</form>

@@ -70,10 +70,12 @@ module Caminio
         error!('InsufficientRights', 403) unless params.id == @token.user_id.to_s || @token.user.is_admin?
         user = User.where(id: params.id).first
         error!('NotFound',404) unless user
+        latest_bill = current_organization.latest_bill
+        latest_bill = [ latest_bill ] if latest_bill
         present :app_roles, user.app_roles, with: AppRoleEntity
         present :organizations, user.organizations, with: OrganizationEntity
         present :user, user, with: UserEntity
-        present :app_bills, [current_organization.latest_bill], with: AppBillEntity
+        present :app_bill, latest_bill, with: AppBillEntity
         entries = []
         if current_organization.latest_bill
           entries = current_organization.latest_bill.app_bill_entries

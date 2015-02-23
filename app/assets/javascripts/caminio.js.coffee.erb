@@ -15,12 +15,15 @@
 #= require 3rd/jquery.nouislider.all.min
 #= require 3rd/bootstrap-tour.min
 #= require 3rd/jquery.cookie
+#= require 3rd/jquery.plugin.min
+#= require 3rd/jquery.timeentry
 #= require 3rd/ember-local-storage
 #= require 3rd/jquery.noty
 #= require 3rd/jquery.noty.theme.top-right
 #= require 3rd/accounting.min
 #= require 3rd/selectize
 #= require 3rd/bootstrap-colorselector
+#= require 3rd/pikaday
 #= require noty_options
 #= require_tree ./locales
 #= require_self
@@ -49,4 +52,4 @@ window.Caminio = Ember.Application.create
   debugMode: true
 <% end %>
 
-Caminio.set('apiHost', '/api/v1')
+Caminio.set 'apiHost', '/api/v1'

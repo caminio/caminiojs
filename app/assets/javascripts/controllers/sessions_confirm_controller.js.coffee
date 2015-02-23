@@ -21,7 +21,7 @@ Caminio.SessionsConfirmController = Ember.ObjectController.extend Caminio.Valida
                 token: response.api_key.token
                 organizationId: response.api_key.organization_id
                 userId: user.get('id')
-              @transitionToRoute 'index'
+              @transitionToRoute 'subscriptions.manage'
         .fail (err)=>
           json = err.responseJSON
           if( err.status == 409 )

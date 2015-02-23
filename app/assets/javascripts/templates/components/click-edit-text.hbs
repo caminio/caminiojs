@@ -2,7 +2,7 @@
   <div class="field-label">
     {{labelTranslation}}
   </div>
-  <div {{bind-attr class=":field-content editValue:editing-click-form textarea:with-textarea"}}>
+  <div {{bind-attr class=":field-content editValue:editing-click-form textarea:with-textarea"}} {{action 'edit' bubbles=false}}>
     {{#if editValue}}
     <div class="input-group">
       {{#if password}}
@@ -22,11 +22,11 @@
       {{/unless}}
     </div>
     {{else}}
-    <span class="hint--bottom hint-bounce" {{action 'edit' bubbles=false}} {{translateAttr data-hint='edit_entry'}}>
+    <span class="hint--bottom hint-bounce" {{translateAttr data-hint='edit_entry'}}>
       {{#if value}}
         {{value}}
       {{else}}
-        <span class="desc">{{t placeholder}}</span>
+        <span class="desc">{{#if placeholder}}{{t placeholder}}{{else}}{{t 'click_to_set_text'}}{{/if}}</span>
       {{/if}}
     </span>
     <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>

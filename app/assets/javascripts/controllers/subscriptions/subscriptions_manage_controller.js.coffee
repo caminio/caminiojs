@@ -96,4 +96,7 @@ Caminio.SubscriptionsManageController = Ember.ObjectController.extend
       .then (response)=>  
         noty
           type: 'success'
-          text: Em.I18n.t('subscription.saved')
+          text: Em.I18n.t('subscription.saved_will_reload_now')
+        Em.run.later ->
+          location.reload()
+        , 2000

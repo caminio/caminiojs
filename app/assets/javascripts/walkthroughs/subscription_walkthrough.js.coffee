@@ -33,9 +33,8 @@ Caminio.SubscriptionWalkthrough =
         {
           orphan: true
           placement: 'top'
-          backdrop: true
-          title: Em.I18n.t('subscription.walkthrough.title')
-          content: Em.I18n.t('subscription.walkthrough.welcome')
+          title: Em.I18n.t('subscription.walkthrough.welcome.title')
+          content: Em.I18n.t('subscription.walkthrough.welcome.body')
         }
         {
           placement: 'right'

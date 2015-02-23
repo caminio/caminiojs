@@ -35,10 +35,15 @@ Em.merge Em.I18n.availableTranslations.de,
   your_selection: 'Deine Auswahl'
   select_language: 'Sprache wählen'
   apps: 'Applikationen'
+  date: 'Datum'
+  time: 'Zeit'
+  o_clock: 'Uhr'
   sum: 'Summe exkl. MwSt.'
   vat: 'MwSt.'
   total: 'Summe'
   actions: 'Aktionen'
+  click_to_set_text: '&lt; Klicken um Text einzugeben &gt; '
+  click_to_set_time: '&lt; Klicken um Zeit einzustellen &gt; '
   dashboard:
     title: 'Dashboard'
     activity: 'Aktivitäten'
@@ -197,10 +202,12 @@ Em.merge Em.I18n.availableTranslations.de,
   subscription:
     checkout: 'Zur Kassa'
     no_changes: 'keine Änderungen'
-    saved: 'Abonnement gespeichert'
+    saved_will_reload_now: 'Abonnement gespeichert. Die Seite lädt sich in Kürze neu.'
     walkthrough:
       title: 'Einführung in Abonnements'
-      welcome: 'Abonnements sind Anwendungen, die Sie verwenden. Die meisten Anwendungen haben kostenlose- oder Testangebote.<br><br>Sie können Ihre Konfiguration jederzeit ändern. Im Falle eines Upgrades erhalten Sie für die bereits bezahlten Beträge eine Gutschrift. Eine Kündigung bereits bezahlter Perioden ist nicht möglich.'
+      welcome: 
+        title: 'Willkommen!' 
+        body: 'Hier können Sie Anwendungen und Pläne auswählen, die für Sie von Interesse sind.<br><br>Fast alle Anwendungen haben kostenlose- oder Testangebote.<br><br>Sie können Ihre Konfiguration jederzeit ändern. Im Falle eines Upgrades erhalten Sie für die bereits bezahlten Beträge eine Gutschrift. Eine Kündigung bereits bezahlter Perioden ist nicht möglich.'
       select_plan: 'Wählen Sie für jede Anwendung jenen Plan aus, der die Funktionen bietet, die Sie benötigen. Klicken Sie dazu auf die Box.'
       select_num_users: 'Außerdem können Sie die Anzahl ihrer Mitarbeiter einstellen, die auf Ihre Anwendungen zugreifen können sollen. <br>Ein Benutzer kostet nichts, ab dem 2. Benutzer kostet jeder Benutzer (inkl. des ersten) 1,-- Euro'
       overview_price: 'Hier sehen Sie die Summe die monatlich für Ihre ausgewählten Pläne zu bezahlen ist'

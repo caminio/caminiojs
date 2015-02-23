@@ -34,6 +34,11 @@ window.tooltipTourTemplate = "<div class='popover tour'>
 
 moment.locale(LANG)
 
+Pikaday.lang = Pikaday.i18n[LANG]
+
+if LANG != 'en'
+  $.timeEntry.setDefaults show24Hours: true
+
 DS.ObjectTransform = DS.Transform.extend
   deserialize: (serialized)->
     return {} if Em.isNone(serialized)
