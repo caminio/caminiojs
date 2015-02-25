@@ -1,12 +1,29 @@
 <div class="modal-dialog">
-  <div class="modal-content">
+  <div {{bind-attr class=":modal-content filteredOptions.length::create-new"}}>
     <header class="modal-header">
+      <div {{bind-attr class=':pull-left noFilterNoText:hint--always noFilterNoText:hint--bottom:hide--hint'}}
+            {{translateAttr data-hint='enter_name_to_create_new'}}>
+        {{#if filteredOptions.length}}
+          <button class="filter-input-addon">
+            <i class="fa fa-search"></i>
+          </button>
+        {{else}}
+          <button class="filter-input-addon">
+            <i class="fa fa-bookmark"></i>
+          </button>
+          {{#if filter}}
+          <button class="btn btn-primary pull-right create-btn hint--bottom hint--always" {{translateAttr data-hint='click_to_create_item'}}>
+            <i class="fa fa-plus"></i>{{t 'create'}}
+          </button>
+          {{/if}}
+        {{/if}}
+        {{input value=filter placeholderTranslation=selectReferenceTrKey class='filter-reference js-get-focus' autocomplete='off' autocorrect='off' autocapitalize='off'}}
+      </div>
       <button class="close" data-dismiss='modal'>&times;</button>
-      {{controller.getModalHeader}}
     </header>
     <section class="modal-body">
       <ul class="select-options">
-      {{#each option in content itemController='select_option_item'}}
+      {{#each option in filteredOptions itemController='select_reference_item'}}
         <li {{bind-attr class='controller.isActive:active'}}
             {{action 'select' option}}>
           {{#if controller.isActive}}
@@ -18,6 +35,9 @@
         </li>
       {{/each}}
       </ul>
+      {{#unless filteredOptions.length}}
+        <div class="creating-new-desc">{{t 'no_results_found_creating_new'}}</div>
+      {{/unless}}
     </section>
     <footer class="modal-footer">
     </footer>

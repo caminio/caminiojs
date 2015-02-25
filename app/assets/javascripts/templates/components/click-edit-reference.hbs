@@ -2,15 +2,21 @@
   <div class="field-label">
     {{labelTranslation}}
   </div>
-  <div class="field-content" {{action 'openModal' bubbles=false}}>
-    <div {{bind-attr class="hintTop:hint--top:hint--bottom :hint-bounce editValue:hide"}} 
-        {{bind-attr data-hint=selectReferenceTr}}>
+  <div class="field-content">
+    <div class="reference-box" {{action 'openModal' bubbles=false}}>
+      <div {{bind-attr class="hintTop:hint--top:hint--bottom :hint-bounce :edit-reference"}}
+          {{bind-attr data-hint=selectReferenceTr}}>
+        {{#if reference}}
+          Ref: {{referenceTitle}}<br>
+          {{referenceSubtitle}}
+        {{else}}
+          <div class="title desc">{{t selectReferenceTrKey}}</div>
+          <div class="subtitle desc">{{t selectReferenceSubtitleTrKey}}</div>
+        {{/if}}
+      </div>
       {{#if reference}}
-        Ref: {{referenceTitle}}<br>
-        {{referenceSubtitle}}
-      {{else}}
-        <span class="desc">&lt; {{t selectReferenceTrKey}} &gt;</span>
-      {{/if}}
+        <div class="visit-reference hint--left hint--bounce" {{translateAttr data-hint='edit_details'}}><i class="fa fa-angle-right"></i></div>
+      {{/if}}      
     </div>
     <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>
       <i class="fa fa-refresh fa-spin"></i>

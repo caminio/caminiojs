@@ -194,6 +194,43 @@
   width: 200px;
 }
 
+.caminio-modal-wrap .reference-box{
+  background: @grey-100;
+  padding: 10px 60px 10px 10px;
+  float: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.caminio-modal-wrap .reference-box .title{
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.caminio-modal-wrap .reference-box .subtitle{
+  font-size: 0.8em;
+  color: @grey-500;
+}
+
+.caminio-modal-wrap .visit-reference{
+  background: @grey-300;
+  bottom: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 23px;
+  line-height: 1em;
+  padding: 15px 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: @grey-500;
+}
+
+.caminio-modal-wrap .visit-reference:hover{
+  background: @caminio-blue;
+  color: #fff;
+}
+
 .caminio-modal-wrap .field-row input[type=text],
 .caminio-modal-wrap .field-row input[type=password],
 .caminio-modal-wrap .field-row .input-group-addon,
@@ -255,4 +292,36 @@
   color: @grey-500;
   display: block;
   height: 1em;
+}
+
+.mini-modal input.filter-reference{
+  color: @grey-600;
+  background: none;
+  border: medium none;
+  box-shadow: none !important;
+  float: left;
+}
+
+.mini-modal .filter-input-addon{
+  float: left;
+  padding: 6px 10px;
+  border: none;
+  background: none;
+}
+
+.mini-modal .create-new .filter-input-addon{
+  color: @caminio-blue;
+}
+
+.mini-modal .create-new input.filter-reference{
+  color: @caminio-blue;
+}
+
+.mini-modal .creating-new-desc{
+  padding: 40px;
+  color: @grey-500;
+}
+
+.mini-modal .create-new .create-btn .fa{
+  margin-right: 5px;
 }
