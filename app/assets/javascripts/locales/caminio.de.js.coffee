@@ -34,6 +34,7 @@ Em.merge Em.I18n.availableTranslations.de,
   search_dots: 'Suche ...'
   your_selection: 'Deine Auswahl'
   select_language: 'Sprache wählen'
+  select_reference: 'Referenz auswählen'
   apps: 'Applikationen'
   date: 'Datum'
   time: 'Zeit'

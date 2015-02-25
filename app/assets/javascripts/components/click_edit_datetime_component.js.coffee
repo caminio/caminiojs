@@ -24,18 +24,22 @@ Caminio.ClickEditDatetimeComponent = Ember.Component.extend
   saveActionName: 'save'
 
   timeValue: ((key,val)->
-    @set 'value', moment().toDate() unless @get('value')
+    return moment().format('HH')+':00' if !val && !@get('value')
     if arguments.length > 1
       @set 'value', moment(@get('value')).hours(val.split(':')[0]).minutes(val.split(':')[1]).toDate()
     moment(@get('value')).format('HH:mm')
   ).property 'value'
 
   dateValue: ((key,val)->
-    @set 'value', moment().toDate() unless @get('value')
-    hours = moment(@get('value')).hours()
-    minutes = moment(@get('value')).minutes()
+    return moment().format('DD-MM-YYYY') if !val && !@get('value')
+    hours = moment().format('HH')
+    minutes = 0
+    if @get 'value'
+      hours = moment(@get('value')).hours()
+      minutes = moment(@get('value')).minutes()
     if arguments.length > 1
       @set 'value', moment(val, 'DD-MM-YYYY').hours(hours).minutes(minutes).toDate()
+      console.log 'set to ', val, @get('value')
     moment(@get('value')).format('DD-MM-YYYY')
   ).property 'value'
 

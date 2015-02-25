@@ -1,0 +1,22 @@
+<form class="field-row">
+  <div class="field-label">
+    {{labelTranslation}}
+  </div>
+  <div class="field-content" {{action 'openModal' bubbles=false}}>
+    <div {{bind-attr class="hintTop:hint--top:hint--bottom :hint-bounce editValue:hide"}} 
+        {{bind-attr data-hint=selectReferenceTr}}>
+      {{#if reference}}
+        Ref: {{referenceTitle}}<br>
+        {{referenceSubtitle}}
+      {{else}}
+        <span class="desc">&lt; {{t selectReferenceTrKey}} &gt;</span>
+      {{/if}}
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-success valueSaved:active"}}>
+      <i class="fa fa-check"></i>
+    </div>
+  </div>
+</form>

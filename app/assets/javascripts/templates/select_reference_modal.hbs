@@ -1,0 +1,25 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <header class="modal-header">
+      <button class="close" data-dismiss='modal'>&times;</button>
+      {{controller.getModalHeader}}
+    </header>
+    <section class="modal-body">
+      <ul class="select-options">
+      {{#each option in content itemController='select_option_item'}}
+        <li {{bind-attr class='controller.isActive:active'}}
+            {{action 'select' option}}>
+          {{#if controller.isActive}}
+            <i class="fa fa-check"></i>
+          {{else}}
+            <i class="spacer"></i>
+          {{/if}}
+          {{option.label}}
+        </li>
+      {{/each}}
+      </ul>
+    </section>
+    <footer class="modal-footer">
+    </footer>
+  </div>
+</div>

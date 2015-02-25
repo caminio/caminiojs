@@ -22,7 +22,7 @@
       {{/unless}}
     </div>
     {{else}}
-    <span class="hint--bottom hint-bounce" {{translateAttr data-hint='edit_entry'}}>
+    <span {{bind-attr class="hintTop:hint--top:hint--bottom :hint-bounce"}} {{translateAttr data-hint='edit_entry'}}>
       {{#if value}}
         {{value}}
       {{else}}
