@@ -50,6 +50,7 @@ module Caminio
 
     def try_authorize_token
       get_token_from_header unless @token
+      return false unless @token
       RequestStore.store['current_user_id'] = @token.user.id.to_s
       if @token.user.organizations.first
         RequestStore.store['organization_id'] ||= headers['Organization-Id'] || @token.user.organizations.first.id.to_s

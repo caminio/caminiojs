@@ -221,6 +221,13 @@ Em.merge Em.I18n.availableTranslations.de,
       checkout: 'Erst, wenn Sie auf das "zur Kassa"-Feld klicken und die Bezahlung erfolgreich war, tritt die neue Konfiguration in Kraft'
       start_again: 'Sie können diese Einführung jederzeit wieder starten, indem Sie auf dieses Symbol klicken'
 
+  location:
+    street: 'Straße'
+    zip: 'PLZ'
+    city: 'Stadt'
+    county: 'Bundesland'
+    country: 'Land'
+    
   errors:
     login_failed: 'Anmeldung fehlgeschlagen!'
     email_required: 'Email Adresse erforderlich'
