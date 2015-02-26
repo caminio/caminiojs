@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in caminio.gemspec
 gemspec
 
+gem 'grape','0.10.1'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
