@@ -31,9 +31,6 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
     @get("reference.#{@get('referenceSubtitleName')}")
   ).property 'referenceSubtitleName'
 
-  labelTranslation: Em.computed ->
-    Em.I18n.t( @get('label') )
-
   noFilterNoText: Em.computed ->
     @get('filteredOptions.length') < 1 && @get('filter.length') < 1
   .property 'filter', 'filteredOptions.length'
@@ -48,7 +45,6 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
         @get('parentController').send( @get('createNewReferenceAction'), @get('filter') )
 
     editDetails: ->
-      console.log 'transition to', @get('editDetailsRouteName')
       @get('parentController').transitionToRoute(@get('editDetailsRouteName'))
       false
 
@@ -60,12 +56,10 @@ Caminio.SelectReferenceItemController = Em.ObjectController.extend
   ).property 'parentController.reference.id'
 
   getTitle: (->
-    console.log @get('content.title')
     @get("content.#{@get('parentController.referenceTitleName')}")
   ).property 'content'
 
   getSubtitle: (->
-    console.log @get('content.shortAddress')
     @get("content.#{@get('parentController.referenceSubtitleName')}")
   ).property 'content'
 
@@ -74,3 +68,4 @@ Caminio.SelectReferenceItemController = Em.ObjectController.extend
 
     select: ->
       @get('parentController').set 'reference', @get 'content'
+      $('.modal-content .close').click()
