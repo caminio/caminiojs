@@ -20,6 +20,7 @@ module Caminio
 
     def authenticate!
       error!('Unauthorized', 401) unless try_authorize_token
+      I18n.locale = current_user.locale
     end
 
     def current_user
