@@ -7,8 +7,8 @@
       <div {{bind-attr class="hintTop:hint--top:hint--bottom :hint-bounce :edit-reference"}}
           {{bind-attr data-hint=selectReferenceTr}}>
         {{#if reference}}
-          Ref: {{referenceTitle}}<br>
-          {{referenceSubtitle}}
+          <div class="title">{{referenceTitle}}</div>
+          <div class="subtitle">{{referenceSubtitle}}</div>
         {{else}}
           <div class="title desc">{{t selectReferenceTrKey}}</div>
           <div class="subtitle desc">{{t selectReferenceSubtitleTrKey}}</div>

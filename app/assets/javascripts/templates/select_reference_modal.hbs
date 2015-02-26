@@ -1,8 +1,9 @@
 <div class="modal-dialog">
   <div {{bind-attr class=":modal-content filteredOptions.length::create-new"}}>
     <header class="modal-header">
-      <div {{bind-attr class=':pull-left noFilterNoText:hint--always noFilterNoText:hint--bottom:hide--hint'}}
-            {{translateAttr data-hint='enter_name_to_create_new'}}>
+      <form {{bind-attr class=':pull-left noFilterNoText:hint--always noFilterNoText:hint--bottom:hide--hint'}}
+            {{translateAttr data-hint='enter_name_to_create_new'}}
+            {{action 'searchOrCreate' on='submit'}}>
         {{#if filteredOptions.length}}
           <button class="filter-input-addon">
             <i class="fa fa-search"></i>
@@ -12,13 +13,14 @@
             <i class="fa fa-bookmark"></i>
           </button>
           {{#if filter}}
-          <button class="btn btn-primary pull-right create-btn hint--bottom hint--always" {{translateAttr data-hint='click_to_create_item'}}>
+          <button class="btn btn-primary pull-right create-btn hint--bottom hint--always" 
+                {{translateAttr data-hint='click_to_create_item'}} type='submit'>
             <i class="fa fa-plus"></i>{{t 'create'}}
           </button>
           {{/if}}
         {{/if}}
         {{input value=filter placeholderTranslation=selectReferenceTrKey class='filter-reference js-get-focus' autocomplete='off' autocorrect='off' autocapitalize='off'}}
-      </div>
+      </form>
       <button class="close" data-dismiss='modal'>&times;</button>
     </header>
     <section class="modal-body">
@@ -26,12 +28,22 @@
       {{#each option in filteredOptions itemController='select_reference_item'}}
         <li {{bind-attr class='controller.isActive:active'}}
             {{action 'select' option}}>
-          {{#if controller.isActive}}
-            <i class="fa fa-check"></i>
-          {{else}}
-            <i class="spacer"></i>
-          {{/if}}
-          {{option.label}}
+          <div class="check-wrap">
+            {{#if controller.isActive}}
+              <i class="fa fa-check"></i>
+            {{else}}
+              <i class="spacer"></i>
+            {{/if}}
+          </div>
+          <div class="select-content-wrap">
+            <div class="title">{{controller.getTitle}}</div>
+            <div class="subtitle">{{controller.getSubtitle}}</div>
+          </div>
+          <div class="visit-reference hint--left hint--bounce" 
+              {{translateAttr data-hint='edit_details'}}
+              {{action 'editDetails' bubbles=false}}>
+            <i class="fa fa-angle-right"></i>
+          </div>
         </li>
       {{/each}}
       </ul>

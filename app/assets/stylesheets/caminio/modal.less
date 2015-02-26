@@ -272,6 +272,7 @@
   padding: 10px 20px;
   color: @grey-500;
   cursor: pointer;
+  position: relative;
 }
 
 .mini-modal .select-options li.active .fa-check,
@@ -283,6 +284,41 @@
   background-color: @grey-100;
   color: @grey-700;
 }
+
+.mini-modal .select-options li .check-wrap{
+  width: 30px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.mini-modal .select-options li .select-content-wrap{
+  display: table-cell;
+}
+
+.mini-modal .select-options li .visit-reference{
+  background: @grey-300;
+  bottom: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 23px;
+  line-height: 1em;
+  padding: 6px 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: @grey-500;
+  display: none;
+}
+
+.mini-modal .select-options li:hover .visit-reference{
+  display: block;
+}
+
+.mini-modal .select-options li .visit-reference:hover{
+  background: @caminio-blue;
+  color: #fff;
+}
+
 
 .mini-modal .select-options li .spacer,
 .mini-modal .select-options li .fa-check{
@@ -324,4 +360,12 @@
 
 .mini-modal .create-new .create-btn .fa{
   margin-right: 5px;
+}
+
+.mini-modal .select-options .title{
+  font-weight: 600;
+}
+
+.mini-modal .select-options .subtitle{
+  font-size: 0.8em;
 }
