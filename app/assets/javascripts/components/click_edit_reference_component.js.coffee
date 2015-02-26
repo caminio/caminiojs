@@ -6,6 +6,7 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
 
   filteredOptions: Em.computed ->
     return @get('options') if Em.isEmpty @get('filter')
+    console.log @get('options')
     @get('options').filterBy( @get('referenceTitleBinding'), @get('filter') )
   .property 'options.@each', 'filter'
 
