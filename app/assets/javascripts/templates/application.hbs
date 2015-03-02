@@ -31,7 +31,7 @@
           {{currentUser.name}}
         </div>
         <div class="section">
-          <a href="#" {{action 'editUser' currentUser}} class="link-item">{{t 'account.edit_mine'}}</a>
+          <a href="#" {{action 'editContent' currentUser 'user' 'users.edit'}} class="link-item">{{t 'account.edit_mine'}}</a>
           {{#link-to 'subscriptions.manage' class='link-item'}}{{t 'subscriptions.title'}}{{/link-to}}
         </div>
         <div class="section">

@@ -10,7 +10,8 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
     refSubtitleName = @get('referenceSubtitleName')
     f = new RegExp(@get('filter'),'i')
     o = @get('options').filter (item)=>
-      item.get(refTitleName).match f || item.get('refSubtitleName').match f
+      (!Em.isEmpty(item.get(refTitleName)) && item.get(refTitleName).match f) || 
+      (!Em.isEmpty(item.get(refSubtitleName)) && item.get(refSubtitleName).match f)
     o.sortBy( @get('referenceTitleName') )
   .property 'options.@each', 'filter'
 
@@ -42,10 +43,11 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
 
     searchOrCreate: ->
       if @get('filteredOptions.length') < 1
-        @get('parentController').send( @get('createNewReferenceAction'), @get('filter') )
+        @get('parentController').send( @get('createNewReferenceAction'), @get('filter'), @ )
 
-    editDetails: ->
-      @get('parentController').transitionToRoute(@get('editDetailsRouteName'))
+    editDetails: (content)->
+      $('.modal-content .close').click()
+      @get('parentController').transitionToRoute( @get('editDetailsRouteName'), content.id )
       false
 
 
@@ -63,9 +65,8 @@ Caminio.SelectReferenceItemController = Em.ObjectController.extend
     @get("content.#{@get('parentController.referenceSubtitleName')}")
   ).property 'content'
 
-
   actions:
 
     select: ->
-      @get('parentController').set 'reference', @get 'content'
+      #@get('parentController').set 'reference', @get 'content'
       $('.modal-content .close').click()

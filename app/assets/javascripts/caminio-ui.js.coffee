@@ -108,10 +108,10 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
 
   actions:
 
-    editUser: (user)->
-      editController = @controllerFor('users_edit')
-      editController.set('user', user)
-      @render 'users.edit',
+    editContent: (obj, objName, routeName)->
+      editController = @controllerFor(routeName.replace('.','_'))
+      editController.set(objName, obj)
+      @render routeName,
         into: 'application'
         outlet: 'modal'
         controller: editController
@@ -221,6 +221,7 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
     loginUser: ->
       data = @getProperties('login', 'password')
       attemptedTrans = @get('attemptedTransition')
+      console.log 'attemtped transition is ', attemptedTrans
 
       @setProperties
         login: null
@@ -240,8 +241,10 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
               @get('controllers.sessions').set('userId', user.get('id'))
               Ember.$.ajaxSetup
                 headers: { 'Organization_id': @get('controllers.sessions.organizationId') }
+              console.log 'still attempt to trans', attemtpedTrans
               if attemptedTrans
                 attemptedTrans.retry()
+                console.log 'attempt retry was done'
                 @set('attemptedTransition', null)
               else
                 @transitionToRoute 'index'
@@ -288,6 +291,13 @@ Caminio.ApplicationController = Ember.Controller.extend
 
   sidePaneOpen: false
   accountInfoOpen: false
+
+  currentPath: ''
+  lastPath: ''
+  updateCurrentPath: (->
+    Caminio.set 'lastPath', Caminio.get('currentPath') unless Em.isEmpty(Caminio.get('currentPath'))
+    Caminio.set 'currentPath', @get('currentPath')
+  ).observes 'currentPath'
 
   currentUser: Em.computed ->
     @store.getById 'user', @get('controllers.sessions.userId')
