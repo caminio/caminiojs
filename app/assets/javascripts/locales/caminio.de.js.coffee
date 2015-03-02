@@ -40,6 +40,8 @@ Em.merge Em.I18n.availableTranslations.de,
   date: 'Datum'
   time: 'Zeit'
   o_clock: 'Uhr'
+  no_address_set: 'Keine Adresse vorhanden'
+  no_title_set: 'Kein Titel vorhanden'
   sum: 'Summe exkl. MwSt.'
   vat: 'MwSt.'
   total: 'Summe'

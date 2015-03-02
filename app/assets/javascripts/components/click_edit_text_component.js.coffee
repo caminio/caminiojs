@@ -30,6 +30,13 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
   labelTranslation: Em.computed ->
     Em.I18n.t( @get('label') )
 
+  trPlaceholder: (->
+    if @get('placeholder')
+      return @get 'placeholder'
+    return '' if Em.isEmpty @get('placeholder')
+    Em.I18n.t @get('placeholderKey')
+  ).property 'placeholder', 'placeholderKey'
+
   editValueObserver: (->
     Em.run.later =>
       @$('input[type=text]').focus()
