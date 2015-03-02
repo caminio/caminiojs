@@ -227,7 +227,7 @@ Em.merge Em.I18n.availableTranslations.de,
     street: 'Straße'
     zip: 'PLZ'
     city: 'Stadt'
-    county: 'Bundesland'
+    state: 'Bundesland'
     country: 'Land'
     
   errors:
