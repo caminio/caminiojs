@@ -46,6 +46,41 @@ and (min-device-width : 1281px){
   width: 500px;
 }
 
+.card-nav{
+  height: 70px;
+  background: #fff;
+}
+
+.card-nav .spacer{
+  width: 250px;
+  float: left;
+  content: ' ';
+  background: @grey-100;
+  height: 70px;
+  border-right: 1px solid @grey-300;
+}
+
+.card-nav a{
+  border-top: 2px solid @grey-200;
+  color: @grey-500;
+  padding: 15px 30px 15px;
+  float: left;
+  margin: 3px 2px 0;
+}
+
+.card-nav a:hover,
+.card-nav a.active{
+  color: @grey-700;
+  border-color: @grey-400;
+  border-top-width: 4px;
+  padding-top: 13px;
+  text-decoration: none;
+}
+
+.card-nav a.active{
+  color: @caminio-blue;
+  border-color: @caminio-blue;
+}
 
 .card > .card-refreshing{
   position: absolute;
