@@ -41,6 +41,7 @@ module Caminio
           optional :name
           optional :permanent
           optional :organization_id
+          optional :user_id
         end
       end
       post do

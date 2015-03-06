@@ -24,6 +24,7 @@ describe Caminio::V1::ApiKeys do
       before :each do
         get "v1/api_keys/#{@api_key.id}"
       end
+
       it{ expect( json.api_key ).to have_key(:id) }
       it{ expect( json.api_key ).to have_key(:name) }
       it{ expect( json.api_key ).to have_key(:token) }
@@ -71,6 +72,26 @@ describe Caminio::V1::ApiKeys do
       it{ expect( json.api_key ).to have_key(:token) }
 
     end
+
+    describe "can create an permanent api_key" do
+
+      before :each do
+        @o_id = @user.organizations.first.id;
+        post url, { 
+          api_key: { 
+            organization_id: @o_id,
+            name: "permanent api_key",
+            permanent: true
+          }
+        } 
+      end
+
+      it{ expect( last_response.status ).to be == 201 }
+      it{ expect( json ).to have_key :api_key }
+      it{ expect( json[:api_key].organization_id ).to match(/#{@o_id}/) }
+    
+    end
+
 
   end
 
