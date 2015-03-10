@@ -26,6 +26,7 @@ require "caminio/config_namespace"
 # require "caminio/access_rules"
 require "caminio/userstamps"
 require "caminio/timestamps"
+require "caminio/access_rules"
 
 # Rails engine
 require "caminio/engine"
