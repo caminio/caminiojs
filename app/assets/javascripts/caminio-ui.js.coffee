@@ -116,7 +116,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         outlet: 'modal'
         controller: editController
 
-    openMiniModal: (name, controller)->
+    openMiniModal: (name, controller, callback)->
       @render name,
         into: 'application'
         outlet: 'mini-modal'
@@ -125,6 +125,8 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         $('.modal').modal()
         .on 'shown.bs.modal', ->
           $(this).find('input.js-get-focus').focus()
+          if typeof(callback) == 'function'
+            callback(this)
 
     closeModal: ->
       @disconnectOutlet
@@ -221,7 +223,6 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
     loginUser: ->
       data = @getProperties('login', 'password')
       attemptedTrans = @get('attemptedTransition')
-      console.log 'attemtped transition is ', attemptedTrans
 
       @setProperties
         login: null
@@ -241,7 +242,7 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
               @get('controllers.sessions').set('userId', user.get('id'))
               Ember.$.ajaxSetup
                 headers: { 'Organization_id': @get('controllers.sessions.organizationId') }
-              console.log 'still attempt to trans', attemtpedTrans
+              console.log 'still attempt to trans', attemptedTrans
               if attemptedTrans
                 attemptedTrans.retry()
                 console.log 'attempt retry was done'

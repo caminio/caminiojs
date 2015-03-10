@@ -224,6 +224,7 @@ Em.merge Em.I18n.availableTranslations.de,
       start_again: 'Sie können diese Einführung jederzeit wieder starten, indem Sie auf dieses Symbol klicken'
 
   location:
+    title: 'Ort'
     street: 'Straße'
     zip: 'PLZ'
     city: 'Stadt'
