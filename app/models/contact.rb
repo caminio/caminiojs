@@ -8,6 +8,10 @@ class Contact
   field :firstname, type: String
   field :lastname, type: String
   field :email, type: String
+  field :organization, type: String
+  field :degree, type: String
+  field :gender, type: String
+  field :phone, type: String
 
   embeds_many :locations
 
