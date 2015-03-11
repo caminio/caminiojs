@@ -23,8 +23,12 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
     Em.I18n.t @get 'selectReferenceTrKey'
   ).property 'selectReferenceTrKey'
 
+  labelTranslation: (->
+    Em.I18n.t @get('label')
+  ).property 'label'
+
   referenceTitle: (->
-    @get("reference.#{@get('referenceTitleName')}")
+    @get("reference.#{@get('referenceTitleName')}") || Em.I18n.t('no_title_set')
   ).property 'referenceTitleName'
 
   referenceSubtitle: (->
@@ -68,5 +72,5 @@ Caminio.SelectReferenceItemController = Em.ObjectController.extend
   actions:
 
     select: ->
-      #@get('parentController').set 'reference', @get 'content'
+      @get('parentController').set 'reference', @get 'content'
       $('.modal-content .close').click()

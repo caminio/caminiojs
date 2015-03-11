@@ -43,7 +43,7 @@ Caminio.SessionsResetPasswordController = Ember.ObjectController.extend Caminio.
                 token: response.api_key.token
                 organizationId: response.api_key.organization_id
                 userId: user.get('id')
-              @transitionToRoute 'accounts.mine'
+              @transitionToRoute 'index'
         .fail (err)=>
           if err.status == 404
             @set 'valid', false

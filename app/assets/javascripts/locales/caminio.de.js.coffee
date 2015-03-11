@@ -40,6 +40,8 @@ Em.merge Em.I18n.availableTranslations.de,
   date: 'Datum'
   time: 'Zeit'
   o_clock: 'Uhr'
+  no_address_set: 'Keine Adresse vorhanden'
+  no_title_set: 'Kein Titel vorhanden'
   sum: 'Summe exkl. MwSt.'
   vat: 'MwSt.'
   total: 'Summe'
@@ -222,10 +224,11 @@ Em.merge Em.I18n.availableTranslations.de,
       start_again: 'Sie können diese Einführung jederzeit wieder starten, indem Sie auf dieses Symbol klicken'
 
   location:
+    title: 'Ort'
     street: 'Straße'
     zip: 'PLZ'
     city: 'Stadt'
-    county: 'Bundesland'
+    state: 'Bundesland'
     country: 'Land'
     
   errors:

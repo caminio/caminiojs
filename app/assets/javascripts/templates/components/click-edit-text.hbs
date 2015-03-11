@@ -15,10 +15,10 @@
       {{/if}}
       {{/if}}
       {{#unless content.isNew}}
-        <div {{action 'saveChanges'}} {{bind-attr class=":input-group-addon :btn hasChanges:btn-primary:btn-default :save-changes-btn"}}>
+        <div {{action 'saveChanges' bubbles=false}} {{bind-attr class=":input-group-addon :btn hasChanges:btn-primary:btn-default :save-changes-btn"}}>
           {{t 'save'}}
         </div>
-        <div class="input-group-addon btn btn-default cancel-edit" {{action 'cancelEdit'}} {{translateAttr title='cancel_edit_entry'}}>&times;</div>
+        <div class="input-group-addon btn btn-default cancel-edit" {{action 'cancelEdit' bubbles=false}} {{translateAttr title='cancel_edit_entry'}}>&times;</div>
       {{/unless}}
     </div>
     {{else}}
@@ -26,7 +26,7 @@
       {{#if value}}
         {{value}}
       {{else}}
-        <span class="desc">{{#if placeholder}}{{t placeholder}}{{else}}{{t 'click_to_set_text'}}{{/if}}</span>
+        <span class="desc">{{#if trPlaceholder}}{{trPlaceholder}}{{else}}{{t 'click_to_set_text'}}{{/if}}</span>
       {{/if}}
     </span>
     <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>

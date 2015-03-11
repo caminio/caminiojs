@@ -26,6 +26,7 @@ Caminio.ClickEditDatetimeComponent = Ember.Component.extend
   timeValue: ((key,val)->
     return moment().format('HH')+':00' if !val && !@get('value')
     if arguments.length > 1
+      @set 'value', moment() unless @get('value')
       @set 'value', moment(@get('value')).hours(val.split(':')[0]).minutes(val.split(':')[1]).toDate()
     moment(@get('value')).format('HH:mm')
   ).property 'value'

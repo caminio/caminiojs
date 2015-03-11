@@ -1,7 +1,7 @@
 <div class="modal-dialog">
   <div {{bind-attr class=":modal-content filteredOptions.length::create-new"}}>
-    <header class="modal-header">
-      <form {{bind-attr class=':pull-left noFilterNoText:hint--always noFilterNoText:hint--bottom:hide--hint'}}
+    <header class="modal-header clearfix">
+      <form {{bind-attr class='noFilterNoText:hint--always noFilterNoText:hint--bottom:hide--hint'}}
             {{translateAttr data-hint='enter_name_to_create_new'}}
             {{action 'searchOrCreate' on='submit'}}>
         {{#if filteredOptions.length}}

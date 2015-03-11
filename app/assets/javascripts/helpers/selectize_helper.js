@@ -68,14 +68,7 @@
 
       var options = {
         plugins: {
-          remove_button: {},
-          dropdown_footer: {
-            btnText: Em.I18n.t('accounts.organizations.add'),
-            action: function(){
-              this.clear();
-              view.get('controller').send('openModal','accounts/new_organization');
-            }
-          }
+          remove_button: {}
         },
         labelField : 'label',
         valueField : 'value',
@@ -90,6 +83,16 @@
           }
         }
       };
+
+      if( allowCreate )
+        options.plugins.dropdown_footer = {
+          btnText: Em.I18n.t('accounts.organizations.add'),
+          action: function(){
+            this.clear();
+            view.get('controller').send('openModal','accounts/new_organization');
+          }
+        };
+        
       this.$().selectize( options );
 
       //Save the created selectize instance

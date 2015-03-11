@@ -8,9 +8,6 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
 
   init: ->
     @_super()
-    @set('origValue', '')
-    @set('origValue', @get('value')) unless Em.isEmpty(@get('value'))
-    @set('value','') if Em.isEmpty(@get('value'))
     
     $(document)
       .off('click', $.proxy(@saveClickComponent, @))
@@ -23,12 +20,21 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
 
   saveActionName: 'save'
 
+  value: ''
+  origValue: undefined
   editValue: false
   valueSaved: false
   valueSaving: false
 
   labelTranslation: Em.computed ->
     Em.I18n.t( @get('label') )
+
+  trPlaceholder: (->
+    if @get('placeholder')
+      return @get 'placeholder'
+    return '' if Em.isEmpty @get('placeholder')
+    Em.I18n.t @get('placeholderKey')
+  ).property 'placeholder', 'placeholderKey'
 
   editValueObserver: (->
     Em.run.later =>
@@ -40,10 +46,6 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
     @get('origValue') != @get('value')
   .property 'origValue', 'value'
 
-  valueObserver: (->
-    return if @get('origValue') == @get('value')
-  ).observes 'value'
-
   saveCallback: ->
     @set('editValue',false)
     @set('valueSaving', false)
@@ -53,17 +55,34 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
       @set('origValue', @get('value'))
     , 2000
 
+  didInsertElement: ->
+    @$('.field-row').on 'keydown', 'input:first', (e)=>
+      return unless e.keyCode == 9 # TAB KEY
+      if e.shiftKey
+        $nextView = @$().prev('.ember-view')
+      else
+        $nextView = @$().next('.ember-view')
+      $nextFieldRow = $nextView.find('.field-row')
+      if $nextFieldRow
+        $nextFieldRow.find('.field-content').click()
+
+    Em.run.later =>
+      @set 'origValue', @get('value')
+    , 100
+
   actions:
 
     saveChanges: ->
       if @get 'content.isNew'
         return @set 'editValue', false
-      @set('valueSaving', true)
+      return if @get('value') == @get('origValue')
+      @set 'editValue', false
+      @set 'valueSaving', true
       @get('parentController').send(@get('saveActionName'), @saveCallback, @)
 
     cancelEdit: ->
-      @set('editValue',false)
-      @set('value', @get('origValue'))
+      @set 'editValue', false
+      @set 'value', @get('origValue')
       Caminio.get('currentClickEdit', null)
 
     edit: ->
