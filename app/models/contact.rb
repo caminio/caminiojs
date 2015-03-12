@@ -13,6 +13,8 @@ class Contact
   field :gender, type: String
   field :phone, type: String
 
+  field :locale, type: String, default: I18n.locale
+
   embeds_many :locations
 
   field :field_data, type: Hash
