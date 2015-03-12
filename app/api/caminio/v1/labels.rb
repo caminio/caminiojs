@@ -4,23 +4,36 @@ module Caminio
 
     class Labels < Grape::API
 
-      version 'v1', using: :header, vendor: 'caminio', cascade: false
-      format :json
       default_format :json
-
-      formatter :json, Grape::Formatter::ActiveModelSerializers
-      helpers Caminio::API::Helpers
+      helpers Caminio::AuthHelper
 
       before { authenticate! }
 
+      #
+      # GET /
+      #
+      desc "returns lineup_ensemble with :id"
       params do
         optional :category
       end
       get '/', root: 'labels' do
-        Label.where category: params.category
+        labels = Label.where category: params.category
+        present :labels, labels, with: LabelEntity
       end
 
-      # POST
+      #
+      # GET /:id
+      #
+      desc "returns lineup_ensemble with :id"
+      get '/:id' do
+        label = Label.find params.id
+        error!('NotFound',404) unless label
+        present :label, label, with: LabelEntity
+      end
+
+      #
+      # POST /
+      #
       params do
         requires :label, type: Hash do
           requires :name
@@ -31,15 +44,14 @@ module Caminio
         end
       end
       post '/' do
-        Label.create(
-          name: params.label.name, 
-          fgcolor: params.label.fgcolor, 
-          bgcolor: params.label.bgcolor, 
-          bdcolor: params.label.bdcolor, 
-          category: params.label.category )
+        label = Label.new( declared( params )[:label] )
+        error!({ error: 'SavingFailed', details: label.errors.full_messages}, 422) unless label.save
+        present :label, label, with: LabelEntity
       end
 
-      # PUT
+      #
+      # PUT /:id
+      #
       params do
         requires :label, type: Hash do
           requires :name
@@ -50,17 +62,19 @@ module Caminio
         end
       end
       put '/:id' do
-        label = Label.find(params.id)
-        if label.update( declared(params)[:label] )
-          label.reload
-        end
+        label = Label.find params.id 
+        error! "LocationNotFound", 404 unless label
+        label.update_attributes( declared(params)[:label] )
+        present :label, label, with: LabelEntity
       end
-
-      # DELETE
+      
+      #
+      # DELETE /:id
+      #
       delete '/:id' do
-        return error!('not found',404) unless label = Label.find(params.id)
-        return error!('failed',500) unless label.destroy
-        {}
+        label = Label.find params.id 
+        error! "LocationNotFound", 404 unless label
+        error!("DeletionFailed",500) unless label.destroy
       end
 
     end

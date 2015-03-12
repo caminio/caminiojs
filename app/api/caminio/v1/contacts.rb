@@ -15,7 +15,6 @@ module Caminio
       #
       desc "lists all ticketeer_customers"
       get '/' do
-        puts "HERE"
         present :contacts, Contact.all, with: ContactEntity
       end
 
@@ -24,12 +23,9 @@ module Caminio
       #
       desc "returns ticketeer_customer with :id"
       get '/:id' do
-        authenticate!
-        customer = TicketeerCustomer.where(id: params.id).first
-        ticketeer_contacts = customer.ticketeer_contacts
-        error!('NotFound',404) unless customer
-        present :ticketeer_customer, customer, with: TicketeerCustomerEntity
-        present :ticketeer_contacts, ticketeer_contacts, with: TicketeerContactEntity
+        contact = Contact.find params.id
+        error!('NotFound',404) unless contact
+        present :contact, contact, with: ContactEntity
       end
 
       #
@@ -48,13 +44,9 @@ module Caminio
         end
       end
       post do
-        customer = get_customer!
-        location = Location.where( id: params.contact[:location_id] ).first
-        error! 'NoParentIdGiven', 400 unless customer
-        contact = get_contact! customer
-        present :contact, contact, with: TicketeerContactEntity
-        present :location, location, with: LocationEntity
-        present :customer, customer, with: TicketeerCustomerEntity
+        contact = Contact.new( declared( params )[:contact] )
+        error!({ error: 'SavingFailed', details: contact.errors.full_messages}, 422) unless contact.save
+        present :contact, contact, with: ContactEntity
       end
 
       #
@@ -68,40 +60,25 @@ module Caminio
           optional :lastname
           optional :degree
           optional :gender
-          optional :email
           optional :phone
-          optional :billing
-          optional :shipping
-          optional :location_id 
+          optional :email
         end
-        requires :customer_id
       end
-      put '/:id' do
-        authenticate!
-        check_email_address!
-        customer = TicketeerCustomer.where(id: params.customer_id).first
-        location = Location.where( id: params.contact[:location_id] ).first
-        contact = customer.contacts.where( id: params.id ).first
-        error! "TicketeerContactNotFound", 404 unless contact
+      put '/:id' do        
+        contact = Contact.find params.id
+        error!('NotFound',404) unless contact
         contact.update_attributes( declared(params)[:contact] )
-        present :contact, contact.reload, with: TicketeerContactEntity
-        present :location, location, with: LocationEntity
-        present :customer, customer, with: TicketeerCustomerEntity
+        present :contact, contact, with: ContactEntity
       end
 
       #
       # DELETE /:id
       #
-      params do
-        requires :customer_id
-      end
       desc "delete an contact"
       formatter :json, lambda{ |o,env| "{}" }
       delete '/:id' do
-        authenticate!
-        customer = TicketeerCustomer.where(id: params.customer_id).first
-        contact = customer.contacts.where( id: params.id ).first
-        error! "TicketeerContactNotFound", 404 unless contact
+        contact = Contact.find params.id
+        error!('NotFound',404) unless contact
         error!("DeletionFailed",500) unless contact.destroy
       end
 

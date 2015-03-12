@@ -6,7 +6,7 @@ describe Caminio::V1::Contacts do
 
    describe "/contacts" do
 
-    let(:contact){ create(:contact) }
+    let!(:contact){ create(:contact) }
 
     before :each do
       @url = "v1/contacts"
@@ -16,9 +16,9 @@ describe Caminio::V1::Contacts do
 
     it "returns ticketeer_customers json" do
       get @url
-      puts last_response.body
       expect( last_response.status ).to be == 200
       expect( json ).to have_key(:contacts)
+      expect( json.contacts.length ).to eq(1)
     end
 
     describe "json return properties" do
@@ -27,8 +27,8 @@ describe Caminio::V1::Contacts do
         get "v1/contacts/#{contact.id}"
       end
 
-      it{ expect( json.ticketeer_customer ).to have_key(:id) }
       it{ expect( json ).to have_key(:contact) }
+      it{ expect( json.contact ).to have_key(:id) }
 
     end
 

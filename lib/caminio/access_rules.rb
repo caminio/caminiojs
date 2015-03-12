@@ -14,8 +14,8 @@ module Caminio
     end
 
     def create_access_rules
-      access_rules.build organization: RequestStore.store['organization_id'],
-        user: RequestStore.store['current_user_id'],
+      access_rules.build organization_id: RequestStore.store['organization_id'],
+        user_id: RequestStore.store['current_user_id'],
         can_write: true,
         can_share: true,
         can_delete: true
