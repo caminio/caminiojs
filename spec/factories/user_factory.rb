@@ -12,5 +12,10 @@ FactoryGirl.define do
       RequestStore.store['current_user_id'] = model.id
     end
 
+    after(:create) do |model, evaluator|
+      org = model.organizations.create( name: "an organization" )
+      RequestStore.store['organization_id'] = org.id
+    end
+
   end
 end
