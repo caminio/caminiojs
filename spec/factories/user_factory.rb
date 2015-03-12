@@ -15,6 +15,7 @@ FactoryGirl.define do
     after(:create) do |model, evaluator|
       org = model.organizations.create( name: "an organization" )
       RequestStore.store['organization_id'] = org.id
+      model.reload
     end
 
   end
