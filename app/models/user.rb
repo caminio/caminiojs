@@ -38,6 +38,7 @@ class User
   field :expires_at, type: DateTime
 
   field :settings, type: Hash, default: {}
+  field :app_config, type: Hash, default: {}
 
   field :suspended, type: Boolean, default: false
 

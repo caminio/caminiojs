@@ -254,9 +254,9 @@ module Caminio
 
 
       #
-      # POST /:id
+      # POST /:id/settings
       #
-      desc "update an existing user"
+      desc "update an existing user's settings"
       params do
         requires :settings, type: Hash
       end
@@ -268,6 +268,23 @@ module Caminio
         user.save
         present :user, user.reload, with: UserEntity
       end
+
+      #
+      # POST /:id/app_setup
+      #
+      desc "update an existing user with app_config"
+      params do
+        requires :app_config, type: Hash
+      end
+      post '/:id/app_config' do
+        authenticate!
+        user = get_user!
+        require_admin_or_current_user!
+        params.app_config.each_pair{ |k,v| user.settings[k] = v }
+        user.save
+        present :user, user.reload, with: UserEntity
+      end
+
 
       #
       # DELETE /:id

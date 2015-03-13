@@ -230,6 +230,12 @@ Em.merge Em.I18n.availableTranslations.de,
     city: 'Stadt'
     state: 'Bundesland'
     country: 'Land'
+    search: 'Ort suchen'
+    delete: 'Ort löschen'
+    edit: 'Ort bearbeiten'
+    
+  locations:
+    title: 'Orte'
     
   errors:
     login_failed: 'Anmeldung fehlgeschlagen!'

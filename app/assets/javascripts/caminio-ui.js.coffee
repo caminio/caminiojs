@@ -78,7 +78,9 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
     @_super()
     if Ember.$.cookie('access_token') #&& Ember.$.cookie('organization_id')
       Ember.$.ajaxSetup
-        headers: { 'Authorization': 'Bearer ' + Ember.$.cookie('access_token') } #, 'Organization_id': Ember.$.cookie('organization_id') }
+        headers: 
+          Authorization: 'Bearer ' + Ember.$.cookie('access_token'), 
+          Organization_id: Ember.$.cookie('organization_id')
 
   beforeModel: (transition)->
     userId = Ember.$.cookie('user_id')
@@ -196,11 +198,11 @@ Caminio.SessionsController = Ember.Controller.extend
     if Ember.isEmpty(@get('token'))
       Ember.$.removeCookie('access_token')
       Ember.$.removeCookie('user_id')
-      # Ember.$.removeCookie('organization_id')
+      Ember.$.removeCookie('organization_id')
     else
       Ember.$.cookie('access_token', @get('token'))
       Ember.$.cookie('user_id', @get('userId'))
-      # Ember.$.cookie('organization_id', @get('organizationId'))
+      Ember.$.cookie('organization_id', @get('organizationId'))
   ).observes 'token', 'userId'
 
   reset: ->
@@ -242,10 +244,8 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
               @get('controllers.sessions').set('userId', user.get('id'))
               Ember.$.ajaxSetup
                 headers: { 'Organization_id': @get('controllers.sessions.organizationId') }
-              console.log 'still attempt to trans', attemptedTrans
               if attemptedTrans
                 attemptedTrans.retry()
-                console.log 'attempt retry was done'
                 @set('attemptedTransition', null)
               else
                 @transitionToRoute 'index'
