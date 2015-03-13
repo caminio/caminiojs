@@ -35,6 +35,7 @@ module Caminio
       get_token_from_header
       return false if @token.organization_id.nil?
       RequestStore.store['current_api_key_id'] = @token.id
+      RequestStore.store['organization_id'] = @token.organization_id
       true   
     end
 
