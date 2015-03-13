@@ -1,22 +1,23 @@
 @import "_colors";
 
 .side-pane{
-  left: -250px;
   position: fixed;
+  transform: translateX(-100%);
   top: 42px;
   bottom: 0;
   width: 244px;
   overflow: hidden;
   background: @grey-100;
   border-right: 1px solid @caminio_med_grey2;
-  transition: left 0.8s ease;
+  transition: transform 200ms ease-in-out 0s;
   z-index: 40;
   font-size: 12px;
 }
 
 .side-pane-open .side-pane{
   left: 0;
-  transition: left 0.5s ease;
+  transform: translateX(0px);
+  transition: transform 200ms ease-in-out 0s;
 }
 
 .side-pane h3{

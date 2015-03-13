@@ -49,6 +49,7 @@ Caminio.User = DS.Model.extend
   last_login_at:    DS.attr 'date'
   last_request_at:  DS.attr 'date'
   completed_tours:  DS.attr 'array'
+  app_config:       DS.attr 'object'
   settings:         DS.attr 'object'
   settingsStr:      ((key,value,prevVal)->
     if arguments.length > 1

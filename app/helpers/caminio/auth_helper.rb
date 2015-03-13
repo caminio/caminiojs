@@ -1,5 +1,10 @@
 module Caminio
   module AuthHelper
+
+    def set_organization
+      RequestStore.store['organization_id'] = headers['Organization-Id']
+    end
+
     def authenticate_user
       @current_user = User
               .or( [ { username: params.login }, { email: params.login } ] )
