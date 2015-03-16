@@ -1,0 +1,183 @@
+@import './_colors.less';
+
+.adv-table-wrap{
+  padding: 20px;
+}
+
+.adv-table-actions{
+  padding: 5px;
+}
+
+.adv-table-actions:after{
+  clear: both;
+  display: block;
+  content: '';
+}
+
+.adv-table-overview{
+  float: left;
+  font-size: 12px;
+  color: #444;
+  padding: 10px;
+}
+
+.adv-table-actions .action-btn{
+  text-align: center;
+  color: #999;
+  float: right;
+  margin-left: 10px;
+}
+
+.adv-table-actions .action-btn.rows-selected{
+  margin-right: 10px;
+  font-size: 12px;
+  padding-top: 1px;
+}
+
+.adv-table-actions .action-btn.hint--bottom:before,
+.adv-table-actions .action-btn.hint--bottom:after{
+  right: 0;
+  left: auto;
+}
+
+.adv-table{
+  width: 100%;
+}
+
+.adv-table thead tr{
+  border-bottom: 1px solid #eee;
+}
+
+.adv-table thead th{
+  padding: 5px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.adv-table thead .header-actions-title{
+  font-size: 0.8em;
+  padding: 5px;
+}
+
+.adv-table thead th.row-checkbox-header{
+  padding: 0;
+}
+
+.adv-table thead th .select-all-label{
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  height: 16px;
+  position: relative;
+  width: 16px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.adv-table thead th .select-all-label .fa-check{
+  display: none;
+  position: absolute;
+  top: 1px;
+  right: 0;
+  left: 1px;
+  bottom: 0;
+  margin: auto;
+}
+
+.adv-table thead th .select-all-label.selected:not(.all-selected){
+  background: #ddd;
+}
+
+.adv-table thead th .select-all-label.selected .fa-check{
+  display: block;
+}
+
+.adv-table tbody tr:hover,
+.adv-table tbody tr.selected:hover{
+  background: #f5f5f5;
+  transition: background 0.3s;
+}
+
+.adv-table tbody tr{
+  transition: background 0.3s;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+}
+
+.adv-table tbody tr:last-child{
+  border: none;
+}
+
+.adv-table tbody tr.saving{
+  opacity: 0.5;
+  transition: all 0.8s;
+}
+
+.adv-table tbody td{
+  padding: 5px;
+}
+
+.adv-table tbody .adv-table-icon{
+  text-align: center;
+  width: 35px;
+  border-left: 3px solid transparent;
+  padding: 0;
+}
+
+.adv-table .adv-table-icon i{
+  position: absolute;
+  top: 3px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.adv-table .adv-table-icon .checked-icon{
+  display: none;
+}
+
+.adv-table .adv-table-icon:hover .app-icon{
+  display: none;
+}
+
+.adv-table .adv-table-icon:hover .checked-icon{
+  display: block;
+}
+
+.adv-table tbody .icon-label{
+  background: #eee;
+  width: 22px;
+  text-align: center;
+  padding: 2px;
+  position: relative;
+  height: 22px;
+  border-radius: 2px;
+  float: left;
+  margin-left: 10px;
+}
+
+.adv-table thead .row-checkbox .fa-check:not(.all-selected){
+  color: #ddd;
+}
+
+.adv-table tr.selected .adv-table-icon{
+  border-color: @caminio-blue;
+}
+
+.adv-table tbody tr.selected{
+  background: #ffe;
+  transition: all 0.3s;
+}
+
+.adv-table tr.selected .adv-table-icon .icon-label{
+  background: none;
+  color: @caminio-blue;
+}
+
+.adv-table tr.selected .adv-table-icon .checked-icon{
+  display: block;
+}
+
+.adv-table tr.selected .adv-table-icon .app-icon{
+  display: none;
+}

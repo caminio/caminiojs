@@ -41,11 +41,15 @@ Em.merge Em.I18n.availableTranslations.de,
   time: 'Zeit'
   o_clock: 'Uhr'
   no_address_set: 'Keine Adresse vorhanden'
+  no_address_set_abbr: 'k.A.'
   no_title_set: 'Kein Titel vorhanden'
   sum: 'Summe exkl. MwSt.'
   vat: 'MwSt.'
   total: 'Summe'
   actions: 'Aktionen'
+  filter: 'Nach Kriterien filtern...'
+  sort: 'Sortierung ändern'
+  col_setup: 'Spalten konfigurieren'
   click_to_set_text: '&lt; Klicken um Text einzugeben &gt; '
   click_to_set_time: '&lt; Klicken um Zeit einzustellen &gt; '
   click_to_create_item: 'Klicken Sie hier um das Element anzulegen'
@@ -82,6 +86,7 @@ Em.merge Em.I18n.availableTranslations.de,
   new: 'Neu'
   settings_saved: 'Einstellungen gespeichert'
   name: 'Name'
+  title: 'Titel'
   create: 'Erstellen'
   created_at: 'Erstellt am'
   email: 'Email'
@@ -202,6 +207,17 @@ Em.merge Em.I18n.availableTranslations.de,
       users: 'Konten verwalten'
       organizations: 'Organisationen'
 
+  table:
+    start_tour: 'Einführung über Tabellen starten'
+    select_unselect_all_rows: 'Alle Zeile selektieren / Selektion aller Zeilen aufheben'
+    select_unselect_row: 'Diese Zeile selektieren / Selektion aufheben'
+    rows:
+      one: 'Eine Zeile gesamt'
+      other: '{{count}} Zeilen gesamt'
+    rows_selected:
+      one: 'Eine Zeile markiert'
+      other: '{{count}} markiert'
+
   subscriptions:
     title: 'Abonnements'
     really_switch_to_plan: 'Möchten Sie wirklich auf den Plan <tt>{{title}}</tt> wechseln? Bestätigen Sie den Wechsel bitte mit Ihrem Password'
@@ -233,6 +249,7 @@ Em.merge Em.I18n.availableTranslations.de,
     search: 'Ort suchen'
     delete: 'Ort löschen'
     edit: 'Ort bearbeiten'
+    address: 'Adresse'
     
   locations:
     title: 'Orte'

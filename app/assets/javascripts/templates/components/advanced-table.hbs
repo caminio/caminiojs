@@ -1,0 +1,70 @@
+<div class="adv-table-wrap">
+
+  <div class="adv-table-overview">
+    <div class="total">{{t 'table.rows' count=totalRows}}</div>
+  </div>
+
+  <div class="adv-table-actions">
+
+    <a href="#" class="action-btn hint--bottom hint--bounce" {{translateAttr data-hint='table.start_tour'}}>
+      <i class="fa fa-question"></i>
+    </a>
+
+    <a href="#" class="action-btn hint--bottom hint--bounce" {{translateAttr data-hint='col_setup'}}>
+      <i class="fa fa-cog"></i>
+    </a>
+
+    <a href="#" class="action-btn hint--bottom hint--bounce" {{translateAttr data-hint='filter'}}>
+      <i class="fa fa-filter"></i>
+    </a>
+
+    <a href="#" class="action-btn hint--bottom hint--bounce" {{translateAttr data-hint='sort'}}>
+      <i class="fa fa-sort-alpha-asc"></i>
+    </a>
+
+    <div class="action-btn rows-selected">
+      {{#if selectedRows.length}}
+        <span>{{t 'table.rows_selected' count=selectedRows.length}}</span>
+      {{/if}}
+    </div>
+
+  </div>
+
+  <table class="adv-table">
+    <thead>
+      <tr>
+        {{#if tableRowIcons}}
+        <th>
+          <div {{bind-attr class=":select-all-label someRowsSelected:selected allRowsSelected:all-selected :hint--right :hint--bounce"}} {{translateAttr data-hint='table.select_unselect_all_rows'}} {{action 'toggleAllRows'}}>
+            <i class="fa fa-check"></i>
+          </div>
+        </th>
+        {{/if}}
+      {{#each column in columns itemController='advanced_table_header_item'}}
+        <th>{{controller.getTitleTranslation}}</th>
+      {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each row in rows itemController='advanced_table_row_item'}}
+        <tr {{bind-attr class='controller.selected:selected'}}
+            {{action 'editRow'}}>
+          {{#if tableRowIcons}}
+          <td class="adv-table-icon">
+            <div class="icon-label hint--right hint--bounce" 
+              {{action 'selectRow' bubbles=false}} 
+              {{translateAttr data-hint='table.select_unselect_row'}}>
+                <i {{bind-attr class='tableRowIcons :app-icon'}}></i>
+                <i class="checked-icon fa fa-check"></i>
+            </div>
+          </td>
+          {{/if}}
+          {{#each column in columns itemController='advanced_table_column_item'}}
+            <td {{bind-attr class=controller.cssClasses}}>{{{controller.value}}}</td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</div>
