@@ -57,7 +57,7 @@ module Caminio
           return error!({ error: 'ValidationError', details: org.errors.full_messages }, 422)
         end
         present :organization, org, with: OrganizationEntity
-        present :app_plans, org.app_plans, with: AppPlanEntity
+        present :app_bills, org.app_bills, with: AppBillEntity
       end
 
       #

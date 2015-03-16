@@ -9,6 +9,9 @@ Caminio.UsersIndexController = Ember.ArrayController.extend
 
   filter: ''
 
+  showOrgItems: false
+  organizations: Em.A()
+
   filteredContent: (->
     filter = @get('filter');
     return @get('arrangedContent') if Em.isEmpty(filter)
@@ -41,6 +44,17 @@ Caminio.UsersIndexController = Ember.ArrayController.extend
           @suspendNow( user )
       else
         @suspendNow( user )
+
+    toggleOrgItems: ->
+      @toggleProperty 'showOrgItems'
+
+    switchOrganization: (org)->
+      Ember.$.cookie('organization_id', org.id)
+      Ember.$.ajaxSetup
+        headers: 
+          Authorization: 'Bearer ' + Ember.$.cookie('access_token'), 
+          Organization_id: Ember.$.cookie('organization_id')
+      location.reload()
 
     clearFilter: ->
       @set('filter','')

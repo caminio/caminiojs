@@ -16,5 +16,8 @@ Caminio.OrganizationsNewController = Ember.ObjectController.extend Caminio.Valid
         .then =>
           Em.$.noty.closeAll()
           noty( type: 'success', text: Em.I18n.t('saved', name: @get('content.name')), timeout: 2000 )
-          @transitionToRoute 'accounts.admin'
-
+          @transitionToRoute 'users.index'
+        .catch =>
+          noty
+            type: 'error'
+            text: Em.I18n.t('errors.organization_exists')

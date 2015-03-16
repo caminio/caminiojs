@@ -110,13 +110,13 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
 
   actions:
 
-    editContent: (obj, objName, routeName)->
-      editController = @controllerFor(routeName.replace('.','_'))
-      editController.set(objName, obj)
-      @render routeName,
-        into: 'application'
-        outlet: 'modal'
-        controller: editController
+    # editContent: (obj, objName, routeName)->
+    #   editController = @controllerFor(routeName.replace('.','_'))
+    #   editController.set(objName, obj)
+    #   @render routeName,
+    #     into: 'application'
+    #     outlet: 'modal'
+    #     controller: editController
 
     openMiniModal: (name, controller, callback)->
       @render name,
@@ -130,10 +130,10 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
           if typeof(callback) == 'function'
             callback(this)
 
-    closeModal: ->
-      @disconnectOutlet
-        outlet: 'modal'
-        parentView: 'application'
+    closeModal: (routeName)->
+      if lastPath = @controllerFor('application').get('lastPath')
+        routeName = lastPath
+      @transitionTo routeName
 
     closeMiniModal: ->
       @disconnectOutlet
@@ -296,7 +296,9 @@ Caminio.ApplicationController = Ember.Controller.extend
   currentPath: ''
   lastPath: ''
   updateCurrentPath: (->
-    Caminio.set 'lastPath', Caminio.get('currentPath') unless Em.isEmpty(Caminio.get('currentPath'))
+    unless Em.isEmpty(Caminio.get('currentPath'))
+      Caminio.set 'lastPath', Caminio.get('currentPath') 
+      @set 'lastPath', Caminio.get('currentPath')
     Caminio.set 'currentPath', @get('currentPath')
   ).observes 'currentPath'
 

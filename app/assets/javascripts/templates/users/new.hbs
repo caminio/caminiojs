@@ -12,9 +12,13 @@
     </div>
   </div>
   <div class="col-md-4 align-right">
+    
+    <button class="btn btn-primary" {{action 'save' true}}>{{t 'save'}}</button>
+    
     <a href="#" class="btn btn-close" {{action 'goTo' 'users.index'}}>
       &times;
     </a>
+
   </div>
 </header>
 
@@ -24,9 +28,9 @@
 
     <section class="card">
 
-      {{click-edit-text value=user.username content=user placeholder='user.not_set' label='alias' parentController=controller}}
-      {{click-edit-text value=user.fullName content=user placeholder='user.not_set' label='user.name' parentController=controller}}
-      {{click-edit-text value=user.email content=user placeholder='user.not_set' label='email' parentController=controller}}
+      {{click-edit-text value=user.username content=user placeholderKey='user.not_set' label='alias' parentController=controller}}
+      {{click-edit-text value=user.fullName content=user placeholderKey='user.not_set' label='user.name' parentController=controller}}
+      {{click-edit-text value=user.email content=user placeholderKey='user.not_set' label='email' parentController=controller}}
 
     </section>
 
@@ -36,11 +40,6 @@
 
     </aside>
 
-  </div>
-
-  <div class="save-ctrl align-right card">
-    {{#link-to 'users.index' class="btn btn-default"}}{{t 'cancel'}}{{/link-to}}
-    <button class="btn btn-primary" {{action 'save' true}}>{{t 'save'}}</button>
   </div>
 
 </div>

@@ -10,6 +10,7 @@ Caminio.UsersNewController = Ember.ObjectController.extend
       # model
       if typeof(callback) == 'function'
         return callback.call(scope)
+      return unless @get('controllers.application.currentUser.admin')
       if Em.isEmpty(@get('user.email')) || !@get('user.email').match(/.+@.+/)
         return noty( type: 'error', text: Em.I18n.t('errors.email_required'))
       @get('user')
