@@ -89,7 +89,7 @@ module Caminio
       desc "create a new user within the new organization"
       params do
         requires :user, type: Hash do
-          optional :email
+          requires :email
           optional :username
           optional :firstname
           optional :lastname
