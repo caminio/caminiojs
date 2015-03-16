@@ -279,6 +279,12 @@ Caminio.ApplicationView = Ember.View.extend
       .on 'focus', 'input#search-query', (e)=>
         @get('controller').set 'sidePaneOpen', true 
 
+Caminio.SidePaneAppItemController = Em.ObjectController.extend
+
+  appName: (->
+    console.log @get('content')
+    Em.I18n.t("#{@get('content.app_name')}.title")
+  ).property ''
 
 #
 # ApplicationController
