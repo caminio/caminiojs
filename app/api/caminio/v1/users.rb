@@ -154,13 +154,17 @@ module Caminio
       #
       desc "changes the password for the current user"
       params do
-        requires :old, desc: "the current password"
+        optional :user_id
+        optional :old, desc: "the current password"
         requires :new, desc: "the new password"
       end
       post '/change_password' do
         authenticate!
         user = User.find( @token.user_id )
-        return error!("WrongPassword",403) unless user.authenticate( params.old )
+        if !current_user.is_admin? && !user.authenticate( params.old )
+          return error!("WrongPassword",403)
+        end
+        user = User.find( params.user_id ) if current_user.is_admin?
         user.old_password_digest = user.password_digest
         user.password = params.new
         return error("failed to save", 422) unless user.save

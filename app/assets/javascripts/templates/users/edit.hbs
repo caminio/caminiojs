@@ -63,18 +63,16 @@
       {{click-edit-text value=user.email content=user placeholderKey='user.not_set' label='email' parentController=controller}}
       {{click-edit-text value=user.phone content=user placeholderKey='user.not_set' label='phone' parentController=controller}}
 
-      {{#unless controller.isNotCurrent}}
-        <div class="vspacer"></div>
+      <div class="vspacer"></div>
 
-        <div class="field-row">
-          <div class="field-label">
-            {{t 'password'}}
-          </div>
-          <div class="field-content w-cursor" {{action 'openMiniModal' 'users/change_password_modal'}}>
-            <span>{{t 'user.change_password'}}</span>
-          </div>
+      <div class="field-row">
+        <div class="field-label">
+          {{t 'password'}}
         </div>
-      {{/unless}}
+        <div class="field-content w-cursor" {{action 'openMiniModal' 'users/change_password_modal'}}>
+          <span>{{t 'user.change_password'}}</span>
+        </div>
+      </div>
 
       <div class="vspacer"></div>
       
