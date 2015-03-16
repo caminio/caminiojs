@@ -50,10 +50,10 @@
           <i class="fa fa-home"></i>
           {{t 'dashboard.title'}}
         {{/link-to}}
-        {{#each app in currentUser.apps}}
+        {{#each app in currentUser.apps itemController='side_pane_app_item'}}
           <a {{bind-attr href=app.app_link}} class="side-pane-link">
             <i {{bind-attr class='app.app_icon'}}></i>
-            {{app.app_name}}
+            {{controller.appName}}
           </a>
         {{/each}}
         {{#if currentUser.admin}}
