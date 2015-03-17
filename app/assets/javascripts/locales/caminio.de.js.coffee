@@ -212,6 +212,9 @@ Em.merge Em.I18n.availableTranslations.de,
     start_tour: 'Einführung über Tabellen starten'
     select_unselect_all_rows: 'Alle Zeile selektieren / Selektion aller Zeilen aufheben'
     select_unselect_row: 'Diese Zeile selektieren / Selektion aufheben'
+    click_here_to_save: 'Klicken Sie hier, um die Einstellungen für diese Zeile zu speichern'
+    delete_row: 'Diese Zeile löschen'
+    cancel_edit: 'Bearbeiten abbrechen und Änderungen verwerfen'
     rows:
       one: 'Eine Zeile gesamt'
       other: '{{count}} Zeilen gesamt'

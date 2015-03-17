@@ -8,8 +8,8 @@ $.noty.layouts.topRight = {
         selector: 'ul#noty_topRight_layout_container',
         style   : function() {
             $(this).css({
-                top          : 80,
-                right        : 20,
+                top          : 40,
+                right        : 2,
                 position     : 'fixed',
                 width        : '310px',
                 height       : 'auto',
@@ -64,9 +64,9 @@ $.noty.themes.relax = {
         this.$message.css({
             fontSize  : '14px',
             lineHeight: '16px',
-            fontWeight : '600',
+            fontWeight : '400',
             textAlign : 'center',
-            padding   : '10px',
+            padding   : '20px 40px',
             width     : 'auto',
             position  : 'relative'
         });
@@ -163,17 +163,17 @@ $.noty.themes.relax = {
                 this.$buttons.css({borderTop: '1px solid #FFC237'});
                 break;
             case 'error':
-                this.$bar.css({backgroundColor: '#d55', borderColor: '#d55', color: '#FFF'});
-                this.$message.css({fontWeight: 'bold'});
-                this.$buttons.css({borderTop: '1px solid darkred'});
+                this.$bar.css({backgroundColor: 'rgb(231, 115, 45)', border: 'none', color: '#FFF'});
+                // this.$message.css({fontWeight: 'bold'});
+                this.$buttons.css({borderTop: '1px solid rgb(231, 115, 45)'});
                 break;
             case 'information':
-                this.$bar.css({backgroundColor: '#1b8fc3', borderColor: '#1b8fc3', color: '#FFF'});
+                this.$bar.css({backgroundColor: '#1b8fc3', border: 'none', color: '#FFF'});
                 this.$buttons.css({borderTop: '1px solid #0B90C4'});
                 break;
             case 'success':
-                this.$bar.css({backgroundColor: '#5cb85c', borderColor: '#5cb85c', color: '#fff'});
-                this.$buttons.css({borderTop: '1px solid #50C24E'});
+                this.$bar.css({backgroundColor: 'rgb(152, 204, 102)', border: 'none', color: '#fff'});
+                this.$buttons.css({borderTop: '1px solid rgb(152, 204, 102)'});
                 break;
             default:
                 this.$bar.css({backgroundColor: '#FFF', borderColor: '#CCC', color: '#444'});

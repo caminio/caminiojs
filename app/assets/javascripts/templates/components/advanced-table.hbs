@@ -25,7 +25,7 @@
     <div class="action-btn rows-selected">
       {{#if selectedRows.length}}
         <span>{{t 'table.rows_selected' count=selectedRows.length}}</span>
-        <button class="btn btn-xs" {{action 'deleteSelectedRows'}}><i class="fa fa-trash"></i>{{t 'delete'}}</button>
+        <button class="btn btn-xs btn-delete" {{action 'deleteSelectedRows'}}><i class="fa fa-trash"></i>{{t 'delete'}}</button>
       {{/if}}
     </div>
 
@@ -41,27 +41,60 @@
           </div>
         </th>
         {{/if}}
-      {{#each column in columns itemController='advanced_table_header_item'}}
-        <th>{{controller.getTitleTranslation}}</th>
+      {{#each column in controller.columns itemController='advanced_table_header_item'}}
+        <th {{bind-attr class=controller.cssHeaderClasses}}
+             {{bind-attr style=controller.cssHeaderStyles}}>
+             {{controller.getTitleTranslation}}
+        </th>
       {{/each}}
       </tr>
     </thead>
     <tbody>
       {{#each row in rows itemController='advanced_table_row_item'}}
-        <tr {{bind-attr class='controller.selected:selected'}}
+        <tr {{bind-attr class='controller.selected:selected row.isEditing:is-editing'}}
             {{action 'editRow'}}>
           {{#if tableRowIcons}}
           <td class="adv-table-icon">
-            <div class="icon-label hint--right hint--bounce" 
-              {{action 'selectRow' bubbles=false}} 
-              {{translateAttr data-hint='table.select_unselect_row'}}>
-                <i {{bind-attr class='tableRowIcons :app-icon'}}></i>
-                <i class="checked-icon fa fa-check"></i>
-            </div>
+            {{#if row.isEditing}}
+              <div class="icon-label-actions-wrap">
+                <div class="icon-label cancel-icon-label hint--bottom hint--bounce"
+                  {{action 'cancelEdit' bubbles=false}}
+                  {{translateAttr data-hint='table.cancel_edit'}}>
+                  <i class="fa fa-times"></i>
+                </div> 
+                <div class="icon-label delete-icon-label hint--bottom hint--bounce"
+                  {{action 'deleteRow' bubbles=false}}
+                  {{translateAttr data-hint='table.delete_row'}}>
+                  <i class="fa fa-trash"></i>
+                </div> 
+                <div class="icon-label hint--bottom save-icon-label" 
+                  {{action 'saveRow' bubbles=false}}
+                  {{translateAttr data-hint='table.click_here_to_save'}}>
+                  <i class="fa fa-check"></i>
+                </div>
+              </div>
+            {{else}}
+              <div class="icon-label hint--right hint--bounce" 
+                {{action 'selectRow' bubbles=false}} 
+                {{translateAttr data-hint='table.select_unselect_row'}}>
+                  <i {{bind-attr class='tableRowIcons :app-icon'}}></i>
+                  <i class="checked-icon fa fa-check"></i>
+              </div>
+            {{/if}}
           </td>
           {{/if}}
           {{#each column in columns itemController='advanced_table_column_item'}}
-            <td {{bind-attr class=controller.cssClasses}}>{{{controller.value}}}</td>
+            <td {{bind-attr class=controller.cssClasses}} {{bind-attr style=controller.cssStyles}}>
+              {{#if isInlineEditable}}
+                <div class="form">
+                  {{input value=controller.editValue}}
+                </div>
+              {{/if}}
+              <div class="default">
+                {{{controller.value}}}
+              </div>
+            </td>
+            
           {{/each}}
         </tr>
       {{/each}}

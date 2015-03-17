@@ -79,8 +79,9 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
     if Ember.$.cookie('access_token') #&& Ember.$.cookie('organization_id')
       Ember.$.ajaxSetup
         headers: 
-          Authorization: 'Bearer ' + Ember.$.cookie('access_token'), 
+          Authorization: 'Bearer ' + Ember.$.cookie('access_token')
           Organization_id: Ember.$.cookie('organization_id')
+          'Accept-Language': Ember.$.cookie('accept-language')
 
   beforeModel: (transition)->
     userId = Ember.$.cookie('user_id')
@@ -94,6 +95,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         @checkAdmin(user) if @get('requireAdmin')
         # @store.find 'organization', orgId
         user.setLang()
+        Ember.$.cookie('accept-language', window.LANG)
         $('body').removeClass('authorization-required')
       .catch (error)=>
         console.log 'error caught', error
@@ -133,6 +135,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
     closeModal: (routeName)->
       if lastPath = @controllerFor('application').get('lastPath')
         routeName = lastPath
+        @controllerFor('application').set 'lastPath', null
       @transitionTo routeName
 
     closeMiniModal: ->
@@ -282,7 +285,6 @@ Caminio.ApplicationView = Ember.View.extend
 Caminio.SidePaneAppItemController = Em.ObjectController.extend
 
   appName: (->
-    console.log @get('content')
     Em.I18n.t("#{@get('content.app_name')}.title")
   ).property ''
 
