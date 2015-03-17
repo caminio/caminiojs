@@ -161,10 +161,16 @@ module Caminio
       post '/change_password' do
         authenticate!
         user = User.find( @token.user_id )
-        if !current_user.is_admin? && !user.authenticate( params.old )
-          return error!("WrongPassword",403)
+        unless user.authenticate( params.old )
+          if params.user_id.blank?
+            return error!("WrongPassword",403)
+          elsif params.user_id && params.user_id == current_user.id.to_s
+            return error!("WrongPassword",403)
+          elsif !current_user.is_admin?
+            return error!("WrongPassword",403)
+          end
         end
-        user = User.find( params.user_id ) if current_user.is_admin?
+        user = User.find( params.user_id ) if current_user.is_admin? && params.user_id
         user.old_password_digest = user.password_digest
         user.password = params.new
         return error("failed to save", 422) unless user.save
