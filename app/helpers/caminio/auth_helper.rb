@@ -69,7 +69,7 @@ module Caminio
     end
 
     def set_locale
-      I18n.locale = headers['Accept-Language'].split(',').first
+      I18n.locale = headers['Accept-Language'] ? headers['Accept-Language'].split(',') : 'en'
     end
 
   end
