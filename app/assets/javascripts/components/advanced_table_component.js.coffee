@@ -132,6 +132,14 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
     switch column.type
       when 'date'
         moment(value).fromNow()
+      when 'niceDate'
+        "<div class=\"daybox\"><div class=\"daynum\"> #{moment(value).format('DD')} </div>
+          <div class=\"month\"> #{moment(value).format('MMMM')} </div>
+         </div>
+         <div class=\"full-date\">
+          <span class=\"desc\"> #{moment(value).format('YYYY')} </span>&nbsp;&nbsp;
+          #{moment(value).format('DDDD, HH:mm')}
+         </div>"
       else
         value
   ).property 'parentController.content.updated_at'

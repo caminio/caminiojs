@@ -30,6 +30,7 @@ Em.merge Em.I18n.availableTranslations.de,
   private: 'Privat'
   color: 'Farbe'
   agree_policies: 'Ich bin mit den Allgemeinen Geschäftsbedingungen einverstanden'
+  search: 'Suchen'
   search_app: 'Anwendung suchen'
   search_dots: 'Suche ...'
   your_selection: 'Deine Auswahl'
