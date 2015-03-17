@@ -47,6 +47,7 @@ Em.merge Em.I18n.availableTranslations.de,
   vat: 'MwSt.'
   total: 'Summe'
   actions: 'Aktionen'
+  delete: 'Löschen'
   filter: 'Nach Kriterien filtern...'
   sort: 'Sortierung ändern'
   col_setup: 'Spalten konfigurieren'
@@ -215,8 +216,8 @@ Em.merge Em.I18n.availableTranslations.de,
       one: 'Eine Zeile gesamt'
       other: '{{count}} Zeilen gesamt'
     rows_selected:
-      one: 'Eine Zeile markiert'
-      other: '{{count}} markiert'
+      one: 'Eine ausgewählte Zeile'
+      other: '{{count}} ausgewählte Zeilen'
 
   subscriptions:
     title: 'Abonnements'

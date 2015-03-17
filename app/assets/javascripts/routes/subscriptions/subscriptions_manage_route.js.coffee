@@ -15,10 +15,12 @@ Caminio.SubscriptionsManageRoute = Caminio.AuthenticatedRoute.extend
       for key, raw_app of data.app_plans
         app = 
           name: key
+          tr_name: Em.I18n.t("#{key}.title")
           plans: Em.A()
         for key2, plan of raw_app
           plan.name = key2
           plan.app_name = key
+          plan.tr_app_name = Em.I18n.t("#{key}.title")
           plan.unique_name = "#{key}-#{key2}"
           plan.formatted_total_value = accounting.formatMoney(plan.total_value/100)
           app.plans.pushObject( plan )

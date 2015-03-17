@@ -25,6 +25,7 @@
     <div class="action-btn rows-selected">
       {{#if selectedRows.length}}
         <span>{{t 'table.rows_selected' count=selectedRows.length}}</span>
+        <button class="btn btn-xs" {{action 'deleteSelectedRows'}}><i class="fa fa-trash"></i>{{t 'delete'}}</button>
       {{/if}}
     </div>
 
