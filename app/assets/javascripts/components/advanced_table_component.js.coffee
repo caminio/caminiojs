@@ -26,6 +26,10 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
     if typeof(@get('targetObject.tableBridge')) != 'undefined'
       @get('targetObject').set 'tableBridge', @
 
+    @$().on 'click', 'button[data-toggle=dropdown]', (e)->
+      $(@).dropdown('toggle')
+      e.stopPropagation()
+
   loadData: ->
     @get('rows').clear()
     return @loadCachedData() if @get('cachedData')
@@ -138,7 +142,7 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
          </div>
          <div class=\"full-date\">
           <span class=\"desc\"> #{moment(value).format('YYYY')} </span>&nbsp;&nbsp;
-          #{moment(value).format('DDDD, HH:mm')}
+          #{moment(value).format('dddd, HH:mm')}
          </div>"
       else
         value
