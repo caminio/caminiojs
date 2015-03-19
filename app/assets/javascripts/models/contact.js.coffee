@@ -11,5 +11,4 @@ Caminio.Contact   = DS.Model.extend
   billing:                    DS.attr('boolean')
   shipping:                   DS.attr('string')
 
-  # location:                   DS.belongsTo('location')
-  # ticketeer_contact:         DS.belongsTo('ticketeer_contact')
+  locations:                   DS.hasMany('location')

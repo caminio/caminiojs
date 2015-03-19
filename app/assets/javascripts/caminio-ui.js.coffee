@@ -274,11 +274,16 @@ Caminio.ApplicationView = Ember.View.extend
     if $(e.target).closest('.account-info-toggle').length < 1 && $('.top-pane').hasClass('account-info-open')
       @get('controller').set 'accountInfoOpen', false
 
+  checkEditing: (e)->
+    if !$(e.target).closest('.editing').length && !$(e).hasClass('editing')
+      $('.editing').find('.close-editing').click()
+
   didInsertElement: ->
     @$(document)
       .on 'click', (e)=>
         @checkSidePane(e)
         @checkAccountInfo(e)
+        @checkEditing(e)
       .on 'focus', 'input#search-query', (e)=>
         @get('controller').set 'sidePaneOpen', true 
 
