@@ -68,11 +68,13 @@ module Caminio
       true
     end
 
-    def set_locale
+    def set_locale *args
       if headers['Accept-Language']
         locale =  headers['Accept-Language'].split(',').first
         locale = locale.sub(/-..$/,'')
         I18n.locale= locale
+      elsif args[0]        
+        I18n.locale = args[0]   
       else
         I18n.locale = 'en'
       end

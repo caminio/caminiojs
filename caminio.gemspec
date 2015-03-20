@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "request_store", "1.1.0"
   spec.add_dependency "bcrypt", "3.1.10"
-
+  
   spec.add_development_dependency "factory_girl", "4.5.0"
   spec.add_development_dependency "database_cleaner", "1.3.0"
   spec.add_development_dependency "bundler", "1.8.5"
