@@ -113,6 +113,10 @@ Caminio.AdvancedTableRowItemController = Ember.ObjectController.extend
       else
         @get('parentController.selectedRows').pushObject row
 
+    sendControllerAction: (actionName)->
+      @get('parentController.targetObject').send actionName, @get('content')
+      return
+
 Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
 
   cssClasses: (->
