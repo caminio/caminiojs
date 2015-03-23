@@ -3,6 +3,7 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
   referenceTitleName: 'title'
 
   filter: ''
+  saveActionName: 'save'
 
   filteredOptions: Em.computed ->
     return @get('options') if Em.isEmpty @get('filter')
@@ -40,6 +41,15 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
     @get('filteredOptions.length') < 1 && @get('filter.length') < 1
   .property 'filter', 'filteredOptions.length'
 
+  saveCallback: ->
+    @set('editValue',false)
+    @set('valueSaving', false)
+    @set('valueSaved', true)
+    Ember.run.later =>
+      @set('valueSaved',false)
+      @set('origValue', @get('value'))
+    , 2000
+
   actions:
 
     openModal: ->
@@ -74,3 +84,8 @@ Caminio.SelectReferenceItemController = Em.ObjectController.extend
     select: ->
       @get('parentController').set 'reference', @get 'content'
       $('.modal-content .close').click()
+      content = @get('parentController.targetObject.content')
+      if content.get 'isNew'
+        return
+      @set 'valueSaving', true
+      @get('parentController.targetObject').send(@get('parentController.saveActionName'), @get('parentController').saveCallback, @)

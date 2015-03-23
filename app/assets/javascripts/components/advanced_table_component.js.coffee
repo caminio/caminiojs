@@ -20,6 +20,10 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
     @get('selectedRows.length') == @get('rows.length')
   ).property 'selectedRows.length'
 
+  reload: ->
+    @set 'rows', Em.A()
+    @loadData()
+
   didInsertElement: ->
     @set 'rows', Em.A()
     @loadData()
@@ -29,6 +33,9 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
     @$().on 'click', 'button[data-toggle=dropdown]', (e)->
       $(@).dropdown('toggle')
       e.stopPropagation()
+
+    @$().on 'click', '.dropdown-menu', (e)->
+      $(this).parent().find('.dropdown-toggle').dropdown('toggle')
 
   loadData: ->
     @get('rows').clear()
