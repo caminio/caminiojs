@@ -8,6 +8,8 @@ class Contact
   field :firstname, type: String
   field :lastname, type: String
   field :email, type: String
+  field :organization, type: String
+
   field :company, type: String
   field :degree, type: String
   field :gender, type: String
