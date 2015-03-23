@@ -2,9 +2,11 @@ class LocationEntity < Grape::Entity
         
   expose :id
 
+  expose :created_at
+  expose :updated_at
+        
   expose :title
   expose :description
-
 
   expose :street
   expose :zip
@@ -25,8 +27,5 @@ class LocationEntity < Grape::Entity
   expose :url
   expose :phone
   expose :email
-
-  expose :created_at
-  expose :updated_at
 
 end

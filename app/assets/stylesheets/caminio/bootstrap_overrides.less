@@ -68,7 +68,8 @@ body .btn.btn-transparent{
   color: #d55;
 }
 
-.btn.btn-highlight-danger:hover{
+.btn-highlight-danger:hover,
+.highlight-danger:hover{
   background-color: #d55 !important;
   color: #fff !important;
 }
@@ -444,4 +445,8 @@ input[type="radio"], input[type="checkbox"] {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+.selectize-dropdown, .selectize-dropdown.form-control{
+  z-index: 10000;
 }

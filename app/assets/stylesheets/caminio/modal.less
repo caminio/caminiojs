@@ -111,12 +111,13 @@
   border-right: 1px solid @grey-300;
 }
 
-.caminio-modal-wrap .field-row .field-content.w-cursor{
-  cursor: pointer;
+.caminio-modal-wrap .field-row .field-content .desc{
+  color: #ccc;
 }
 
-.caminio-modal-wrap .field-row .field-content.w-cursor:hover{
-  background: #ffc;
+.caminio-modal-wrap .field-row .field-content:hover:not(.no-hover){
+  background: #f0f0f0;
+  cursor: pointer;
 }
 
 .caminio-modal-wrap .field-row .field-content{
@@ -159,7 +160,7 @@
   min-height: 15em;
 }
 
-.caminio-modal-wrap .daybox{
+.daybox{
   float: left;
   border-right: 2px solid #ddd;
   padding-right: 10px;
@@ -168,19 +169,19 @@
   margin-top: -5px;
 }
 
-.caminio-modal-wrap .daybox .daynum{
+.daybox .daynum{
   color: @caminio-blue;
   font-size: 24px;
   font-weight: 600;
   line-height: 1em;
 }
 
-.caminio-modal-wrap .daybox .month{
+.daybox .month{
   font-size: 10px;
   line-height: 1em;
 }
 
-.caminio-modal-wrap .full-date{
+.full-date{
   padding: 5px;
   margin-top: -4px;
   float: left;
@@ -265,6 +266,18 @@
 .caminio-modal-wrap .field-content .btn{
   padding: 5px 10px;
   font-size: 12px;
+}
+
+.caminio-modal-wrap .can-edit form{
+  display: none;
+}
+
+.caminio-modal-wrap .can-edit.editing form{
+  display: block;
+}
+
+.caminio-modal-wrap .can-edit.editing .default-text{
+  display: none;
 }
 
 .mini-modal .select-options{

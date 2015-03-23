@@ -4,11 +4,15 @@ Caminio.UsersEditController = Ember.ObjectController.extend
 
   user: null
 
-  old_password: null
-  new_password: null
-  confirm_new_password: null
+  old_password: ''
+  new_password: ''
+  confirm_new_password: ''
 
   notyMessages: true
+
+  isCurrent: (->
+    @get('user.id') == @get('controllers.application.currentUser.id')
+  ).property 'user'
 
   isNotCurrent: (->
     @get('user.id') != @get('controllers.application.currentUser.id')
@@ -54,6 +58,7 @@ Caminio.UsersEditController = Ember.ObjectController.extend
         @suspendNow( user )
 
     change_password: ->
+      return if Em.isEmpty @get('new_password')
       if @get('new_password') != @get('confirm_new_password')
         return noty({ text: Em.I18n.t('user.passwords_missmatch'), type: 'error' })
       $.ajax 
@@ -62,6 +67,7 @@ Caminio.UsersEditController = Ember.ObjectController.extend
         data:
           old: @get('old_password')
           new: @get('new_password')
+          user_id: @get('user.id')
       .then =>
         noty { text: Em.I18n.t('user.password_changed'), type: 'success' }
         @set 'old_password', ''

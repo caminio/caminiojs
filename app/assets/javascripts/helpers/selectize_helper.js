@@ -315,7 +315,10 @@
      */
     contentArrayDidChange : function(array, idx, removedCount, addedCount) {
       for (var i = idx; i < idx + addedCount; i++) {
-        if( !Ember.isEmpty(array.objectAt(i).get( get(this,'_labelPath') ) ) )
+        elem = array.objectAt(i)[ get(this,'_labelPath')];
+        if( typeof(array.objectAt(i).get) === 'function' )
+          elem = array.objectAt(i).get( get(this,'_labelPath') )
+        if( !Ember.isEmpty( elem ) )
           this.objectWasAdded(array.objectAt(i), i);
       }
       this._selectionDidChange();

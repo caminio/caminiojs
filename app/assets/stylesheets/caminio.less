@@ -60,6 +60,10 @@ and (min-device-width : 1281px){
   border-right: 1px solid @grey-300;
 }
 
+.card-nav .spacer.spacer-white{
+  background: #fff;
+}
+
 .card-nav a{
   border-top: 2px solid @grey-200;
   color: @grey-500;
@@ -103,7 +107,8 @@ and (min-device-width : 1281px){
   margin-top: 20px;
 }
 
-.card.card-margin-bottom{
+.card.card-margin-bottom,
+.margin-bottom{
   margin-bottom: 20px;
 }
 
@@ -386,11 +391,11 @@ section.content{
 }
 
 section.content h3{
-  text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   color: @caminio-blue;
-  font-weight: 400;
+  font-weight: 100;
   line-height: 1em;
+  padding: 20px;
 }
 
 section.content h3 + .sub{
@@ -411,6 +416,7 @@ nav.main-menu a{
   text-align: center;
   transition: transform 0.5s;
   border: 1px solid transparent;
+  min-width: 100px;
 }
 
 nav.main-menu a.active{

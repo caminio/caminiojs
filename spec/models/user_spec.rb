@@ -74,7 +74,7 @@ describe User do
 
   describe "organizations" do
 
-    let!(:admin){ user = create(:user); user.organizations.create name: 'test-org'; user.reload }
+    let!(:admin){ user = create(:user) }
 
     it { expect(admin).to respond_to(:organizations) }
 
@@ -99,7 +99,7 @@ describe User do
         describe "other user" do
 
           let!(:user) do
-            user = create(:user, email: 'user@example.com')
+            user = User.create( email: 'user@example.com' )
             user.organizations << admin.current_organization
             user.organization_roles.create organization: admin.current_organization
             user.reload

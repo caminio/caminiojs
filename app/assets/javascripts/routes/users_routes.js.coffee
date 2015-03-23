@@ -10,6 +10,11 @@ Caminio.UsersIndexRoute = Caminio.AuthenticatedRoute.extend
     @store
       .find('user', clearCache: new Date())
 
+  setupController: (controller,model)->
+    @_super(controller,model)
+    return unless @controllerFor('application').get('currentUser.admin')
+    controller.set 'organizations', @store.find('organization')
+
   actions:
 
     editUser: (user)->

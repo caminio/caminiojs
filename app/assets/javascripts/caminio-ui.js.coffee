@@ -78,7 +78,10 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
     @_super()
     if Ember.$.cookie('access_token') #&& Ember.$.cookie('organization_id')
       Ember.$.ajaxSetup
-        headers: { 'Authorization': 'Bearer ' + Ember.$.cookie('access_token') } #, 'Organization_id': Ember.$.cookie('organization_id') }
+        headers: 
+          Authorization: 'Bearer ' + Ember.$.cookie('access_token')
+          Organization_id: Ember.$.cookie('organization_id')
+          'Accept-Language': Ember.$.cookie('accept-language')
 
   beforeModel: (transition)->
     userId = Ember.$.cookie('user_id')
@@ -92,6 +95,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         @checkAdmin(user) if @get('requireAdmin')
         # @store.find 'organization', orgId
         user.setLang()
+        Ember.$.cookie('accept-language', window.LANG)
         $('body').removeClass('authorization-required')
       .catch (error)=>
         console.log 'error caught', error
@@ -108,13 +112,13 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
 
   actions:
 
-    editContent: (obj, objName, routeName)->
-      editController = @controllerFor(routeName.replace('.','_'))
-      editController.set(objName, obj)
-      @render routeName,
-        into: 'application'
-        outlet: 'modal'
-        controller: editController
+    # editContent: (obj, objName, routeName)->
+    #   editController = @controllerFor(routeName.replace('.','_'))
+    #   editController.set(objName, obj)
+    #   @render routeName,
+    #     into: 'application'
+    #     outlet: 'modal'
+    #     controller: editController
 
     openMiniModal: (name, controller, callback)->
       @render name,
@@ -128,10 +132,11 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
           if typeof(callback) == 'function'
             callback(this)
 
-    closeModal: ->
-      @disconnectOutlet
-        outlet: 'modal'
-        parentView: 'application'
+    closeModal: (routeName)->
+      if lastPath = @controllerFor('application').get('lastPath')
+        routeName = lastPath
+        @controllerFor('application').set 'lastPath', null
+      @transitionTo routeName
 
     closeMiniModal: ->
       @disconnectOutlet
@@ -196,11 +201,11 @@ Caminio.SessionsController = Ember.Controller.extend
     if Ember.isEmpty(@get('token'))
       Ember.$.removeCookie('access_token')
       Ember.$.removeCookie('user_id')
-      # Ember.$.removeCookie('organization_id')
+      Ember.$.removeCookie('organization_id')
     else
       Ember.$.cookie('access_token', @get('token'))
       Ember.$.cookie('user_id', @get('userId'))
-      # Ember.$.cookie('organization_id', @get('organizationId'))
+      Ember.$.cookie('organization_id', @get('organizationId'))
   ).observes 'token', 'userId'
 
   reset: ->
@@ -242,10 +247,8 @@ Caminio.SessionsIndexController = Caminio.SessionsController.extend
               @get('controllers.sessions').set('userId', user.get('id'))
               Ember.$.ajaxSetup
                 headers: { 'Organization_id': @get('controllers.sessions.organizationId') }
-              console.log 'still attempt to trans', attemptedTrans
               if attemptedTrans
                 attemptedTrans.retry()
-                console.log 'attempt retry was done'
                 @set('attemptedTransition', null)
               else
                 @transitionToRoute 'index'
@@ -271,14 +274,24 @@ Caminio.ApplicationView = Ember.View.extend
     if $(e.target).closest('.account-info-toggle').length < 1 && $('.top-pane').hasClass('account-info-open')
       @get('controller').set 'accountInfoOpen', false
 
+  checkEditing: (e)->
+    if !$(e.target).closest('.editing').length && !$(e).hasClass('editing')
+      $('.editing').find('.close-editing').click()
+
   didInsertElement: ->
     @$(document)
       .on 'click', (e)=>
         @checkSidePane(e)
         @checkAccountInfo(e)
+        @checkEditing(e)
       .on 'focus', 'input#search-query', (e)=>
         @get('controller').set 'sidePaneOpen', true 
 
+Caminio.SidePaneAppItemController = Em.ObjectController.extend
+
+  appName: (->
+    Em.I18n.t("#{@get('content.app_name')}.title")
+  ).property ''
 
 #
 # ApplicationController
@@ -296,7 +309,9 @@ Caminio.ApplicationController = Ember.Controller.extend
   currentPath: ''
   lastPath: ''
   updateCurrentPath: (->
-    Caminio.set 'lastPath', Caminio.get('currentPath') unless Em.isEmpty(Caminio.get('currentPath'))
+    unless Em.isEmpty(Caminio.get('currentPath'))
+      Caminio.set 'lastPath', Caminio.get('currentPath') 
+      @set 'lastPath', Caminio.get('currentPath')
     Caminio.set 'currentPath', @get('currentPath')
   ).observes 'currentPath'
 

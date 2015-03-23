@@ -15,7 +15,7 @@
     <table class="price-sum">
       {{#each plan in selectedPlans}}
         <tr>
-          <td>{{plan.app_name}} {{plan.name}}</td>
+          <td>{{plan.tr_app_name}} &raquo;{{plan.name}}&laquo;</td>
           <td></td>
           <td class="align-right">{{plan.formatted_total_value}}</td>
         </tr>
@@ -65,7 +65,7 @@
   {{#each app in availableApps}}
 
     <div class="app-plan-title">
-      <h2>{{app.name}}</h2>
+      <h2>{{app.tr_name}}</h2>
     </div>
 
     <div class="app-plans">

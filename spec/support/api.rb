@@ -10,6 +10,7 @@ module Caminio
       mount Caminio::V1::Organizations => '/v1/organizations'
       mount Caminio::V1::Auth => '/v1/auth'
       mount Caminio::V1::Initial => '/v1/initial'
+      mount Caminio::V1::Contacts => "/v1/contacts"
 
     end
 

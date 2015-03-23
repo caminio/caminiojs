@@ -8,6 +8,12 @@ class Contact
   field :firstname, type: String
   field :lastname, type: String
   field :email, type: String
+  field :company, type: String
+  field :degree, type: String
+  field :gender, type: String
+  field :phone, type: String
+
+  field :locale, type: String, default: I18n.locale
 
   embeds_many :locations
 

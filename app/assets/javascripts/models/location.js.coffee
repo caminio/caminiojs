@@ -35,6 +35,6 @@ Caminio.Location = DS.Model.extend
       str += @get('zip')
       str += ' '
     str += @get('city') unless Em.isEmpty(@get('city'))
-    str = Em.I18n.t('no_address_set') if Em.isEmpty(str)
+    str = Em.I18n.t('no_address_set_abbr') if Em.isEmpty(str)
     str
   .property 'street', 'city', 'zip'

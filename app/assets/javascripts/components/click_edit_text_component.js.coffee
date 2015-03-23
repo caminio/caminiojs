@@ -65,6 +65,7 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
       $nextFieldRow = $nextView.find('.field-row')
       if $nextFieldRow
         $nextFieldRow.find('.field-content').click()
+      @.send('saveChanges')
 
     Em.run.later =>
       @set 'origValue', @get('value')
@@ -73,7 +74,8 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
   actions:
 
     saveChanges: ->
-      if @get 'content.isNew'
+      content = @get('content') || @get('targetObject.content')
+      if content.get 'isNew'
         return @set 'editValue', false
       return if @get('value') == @get('origValue')
       @set 'editValue', false

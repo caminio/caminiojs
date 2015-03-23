@@ -1,5 +1,11 @@
 module Caminio
   module AuthHelper
+
+    def set_organization
+      set_locale
+      RequestStore.store['organization_id'] = headers['Organization-Id']
+    end
+
     def authenticate_user
       @current_user = User
               .or( [ { username: params.login }, { email: params.login } ] )
@@ -14,13 +20,14 @@ module Caminio
     end
 
     def authenticate_public!
+      set_locale
       return if try_authorize_organization_key
       authenticate!
     end
 
     def authenticate!
       error!('Unauthorized', 401) unless try_authorize_token
-      I18n.locale = current_user.locale
+      set_locale
     end
 
     def current_user
@@ -35,6 +42,7 @@ module Caminio
       get_token_from_header
       return false if @token.organization_id.nil?
       RequestStore.store['current_api_key_id'] = @token.id
+      RequestStore.store['organization_id'] = @token.organization_id
       true   
     end
 
@@ -58,6 +66,16 @@ module Caminio
       return false if @token.expires_at < Time.now
       @token.update_attributes(last_request_at: Time.now, expires_at: 8.hours.from_now)
       true
+    end
+
+    def set_locale
+      if headers['Accept-Language']
+        locale =  headers['Accept-Language'].split(',').first
+        locale = locale.sub(/-..$/,'')
+        I18n.locale= locale
+      else
+        I18n.locale = 'en'
+      end
     end
 
   end

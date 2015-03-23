@@ -124,7 +124,6 @@ describe Caminio::V1::Users do
 
     before :each do
       @admin = create(:user)
-      @admin.organizations.create name: 'test-org'
       header 'Authorization', "Bearer #{@admin.aquire_api_key.token}"
       header 'organization_id', @admin.current_organization_id
     end
@@ -134,7 +133,7 @@ describe Caminio::V1::Users do
       describe "email" do
 
         before :each do
-          @user = create(:user, email: 'old@example.com')
+          @user = User.create( email: 'old@example.com')
           put "v1/users/#{@user.id}", { user: { email: 'new@example.com' } }
         end
 
@@ -154,7 +153,7 @@ describe Caminio::V1::Users do
       @admin.organizations.create name: 'test-org'
       header 'Authorization', "Bearer #{@admin.aquire_api_key.token}"
       header 'organization_id', @admin.current_organization_id
-      @user = create(:user, email: 'deleteme@example.com')
+      @user = User.create( email: 'old@example.com')
       delete "v1/users/#{@user.id}"
     end
 

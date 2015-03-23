@@ -154,13 +154,23 @@ module Caminio
       #
       desc "changes the password for the current user"
       params do
-        requires :old, desc: "the current password"
+        optional :user_id
+        optional :old, desc: "the current password"
         requires :new, desc: "the new password"
       end
       post '/change_password' do
         authenticate!
         user = User.find( @token.user_id )
-        return error!("WrongPassword",403) unless user.authenticate( params.old )
+        unless user.authenticate( params.old )
+          if params.user_id.blank?
+            return error!("WrongPassword",403)
+          elsif params.user_id && params.user_id == current_user.id.to_s
+            return error!("WrongPassword",403)
+          elsif !current_user.is_admin?
+            return error!("WrongPassword",403)
+          end
+        end
+        user = User.find( params.user_id ) if current_user.is_admin? && params.user_id
         user.old_password_digest = user.password_digest
         user.password = params.new
         return error("failed to save", 422) unless user.save
@@ -254,9 +264,9 @@ module Caminio
 
 
       #
-      # POST /:id
+      # POST /:id/settings
       #
-      desc "update an existing user"
+      desc "update an existing user's settings"
       params do
         requires :settings, type: Hash
       end
@@ -268,6 +278,23 @@ module Caminio
         user.save
         present :user, user.reload, with: UserEntity
       end
+
+      #
+      # POST /:id/app_setup
+      #
+      desc "update an existing user with app_config"
+      params do
+        requires :app_config, type: Hash
+      end
+      post '/:id/app_config' do
+        authenticate!
+        user = get_user!
+        require_admin_or_current_user!
+        params.app_config.each_pair{ |k,v| user.settings[k] = v }
+        user.save
+        present :user, user.reload, with: UserEntity
+      end
+
 
       #
       # DELETE /:id

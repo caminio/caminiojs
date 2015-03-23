@@ -1,26 +1,214 @@
+/* ------------------------------------------------------------------ */
+/* ---                                                            --- */
+/* ---  Web font kit of Ubuntu font family by Dalton Maag         --- */
+/* ---  Ubuntu + Ubuntu Condensed -- Western Latin Subset         --- */
+/* ---                                                            --- */
+/* ---  REDUNDANT FONT FAMILIES:you can use <strong><b><em><i>   --- */
+/* ---  Ubuntu Light +bold = Ubuntu Regular                       --- */
+/* ---  Ubuntu Regular +bold = Ubuntu Medium                      --- */
+/* ---  Ubuntu Medium +bold = Ubuntu Bold                         --- */
+/* ---                                                            --- */
+/* ---  CSS font families:                                       --- */
+/* ---  ubuntu-light, ubuntu, ubuntu-medium, ubuntu-bold,         --- */
+/* ---  ubuntu-condensed                                          --- */
+/* ---                                                            --- */
+/* ---  family names are lowercase                                --- */
+/* ---  to work with CKeditor config                              --- */
+/* ---                                                            --- */
+/* ------------------------------------------------------------------ */
+
+
+/* LIGHT */
+
 @font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Ubuntu'), url('/fonts/Ubuntu-Regular.ttf') format('truetype');
+  font-family:'ubuntu-light';
+  src:url('/fonts/Ubuntu-L-webfont.eot');
+  src:local('Ubuntu Light'), local('Ubuntu-Light'), local('UbuntuLight'),
+      url('/fonts/Ubuntu-L-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-L-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-L-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-L-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
 }
+
 @font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Ubuntu Medium'), local('Ubuntu-Medium'), url('/fonts/Ubuntu-Medium.ttf') format('truetype');
+  font-family:'ubuntu-light';
+  src:url('/fonts/Ubuntu-LI-webfont.eot');
+  src:local('Ubuntu Light Italic'), local('Ubuntu-LightItalic'), local('UbuntuLight-Italic'),
+      url('/fonts/Ubuntu-LI-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-LI-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-LI-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-LI-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:italic;
 }
+
 @font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url('/fonts/Ubuntu-Bold.ttf') format('truetype');
+  font-family:'ubuntu-light';
+  src:url('/fonts/Ubuntu-R-webfont.eot');
+  src:local('Ubuntu'), local('Ubuntu Regular'), 
+      url('/fonts/Ubuntu-R-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-R-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-R-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-R-webfont.ttf') format('truetype');
+  font-weight:bold;
+  font-style:normal;
 }
+
 @font-face {
-  font-family: 'Ubuntu';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Ubuntu Italic'), local('Ubuntu-Italic'), url('/fonts/Ubuntu-Italic.ttf') format('truetype');
+  font-family:'ubuntu-light';
+  src:url('/fonts/Ubuntu-RI-webfont.eot');
+  src:local('Ubuntu Italic'), local('Ubuntu-Italic'), 
+      url('/fonts/Ubuntu-RI-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-RI-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-RI-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-RI-webfont.ttf') format('truetype');
+  font-weight:bold;
+  font-style:italic;
+}
+
+
+/* REGULAR */
+
+@font-face {
+  font-family:'ubuntu';
+  src:url('/fonts/Ubuntu-R-webfont.eot');
+  src:local('Ubuntu'), local('Ubuntu Regular'), 
+      url('/fonts/Ubuntu-R-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-R-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-R-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-R-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:'ubuntu';
+  src:url('/fonts/Ubuntu-RI-webfont.eot');
+  src:local('Ubuntu Italic'), local('Ubuntu-Italic'), 
+      url('/fonts/Ubuntu-RI-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-RI-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-RI-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-RI-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:italic;
+}
+
+@font-face {
+  font-family:'ubuntu';
+  src:url('/fonts/Ubuntu-M-webfont.eot');
+  src:local('Ubuntu Medium'), local('Ubuntu-Medium'), local('UbuntuMedium'),
+      url('/fonts/Ubuntu-M-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-M-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-M-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-M-webfont.ttf') format('truetype');
+  font-weight:bold;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:'ubuntu';
+  src:url('/fonts/Ubuntu-MI-webfont.eot');
+  src:local('Ubuntu Medium Italic'), local('Ubuntu-MediumItalic'), local('UbuntuMedium-Italic'),
+      url('/fonts/Ubuntu-MI-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-MI-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-MI-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-MI-webfont.ttf') format('truetype');
+  font-weight:bold;
+  font-style:italic;
+}
+
+
+/* MEDIUM */
+
+@font-face {
+  font-family:'ubuntu-medium';
+  src:url('/fonts/Ubuntu-M-webfont.eot');
+  src:local('Ubuntu Medium'), local('Ubuntu-Medium'), local('UbuntuMedium'),
+      url('/fonts/Ubuntu-M-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-M-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-M-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-M-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:'ubuntu-medium';
+  src:url('/fonts/Ubuntu-MI-webfont.eot');
+  src:local('Ubuntu Medium Italic'), local('Ubuntu-MediumItalic'), local('UbuntuMedium-Italic'),
+      url('/fonts/Ubuntu-MI-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-MI-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-MI-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-MI-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:italic;
+}
+
+@font-face {
+  font-family:'ubuntu-medium';
+  src:url('/fonts/Ubuntu-B-webfont.eot');
+  src:local('Ubuntu Bold'), local('Ubuntu-Bold'), local('UbuntuBold'),
+      url('/fonts/Ubuntu-B-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-B-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-B-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-B-webfont.ttf') format('truetype');
+  font-weight:bold;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:'ubuntu-medium';
+  src:url('/fonts/Ubuntu-BI-webfont.eot');
+  src:local('Ubuntu Bold Italic'), local('Ubuntu-BoldItalic'), local('UbuntuBold-Italic'),
+      url('/fonts/Ubuntu-BI-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-BI-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-BI-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-BI-webfont.ttf') format('truetype');
+  font-weight:bold;
+  font-style:italic;
+}
+
+
+/* BOLD */
+
+@font-face {
+  font-family:'ubuntu-bold';
+  src:url('/fonts/Ubuntu-B-webfont.eot');
+  src:local('Ubuntu Bold'), local('Ubuntu-Bold'), local('UbuntuBold'),
+      url('/fonts/Ubuntu-B-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-B-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-B-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-B-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:'ubuntu-bold';
+  src:url('/fonts/Ubuntu-BI-webfont.eot');
+  src:local('Ubuntu Bold Italic'), local('Ubuntu-BoldItalic'), local('UbuntuBold-Italic'),
+      url('/fonts/Ubuntu-BI-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-BI-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-BI-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-BI-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:italic;
+}
+
+/* CONDENSED */
+
+@font-face {
+  font-family:'ubuntu-condensed';
+  src:url('/fonts/Ubuntu-C-webfont.eot');
+  src:local('Ubuntu Condensed'), local('Ubuntu-Condensed'), local('UbuntuCondensed'),
+      url('/fonts/Ubuntu-C-webfont.eot?#iefix') format('embedded-opentype'),
+      url('/fonts/Ubuntu-C-webfont.woff2') format('woff2'),
+      url('/fonts/Ubuntu-C-webfont.woff') format('woff'),
+      url('/fonts/Ubuntu-C-webfont.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
 }
 
 @font-face {

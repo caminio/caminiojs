@@ -31,7 +31,9 @@
           {{currentUser.name}}
         </div>
         <div class="section">
-          <a href="#" {{action 'editContent' currentUser 'user' 'users.edit'}} class="link-item">{{t 'account.edit_mine'}}</a>
+          {{#link-to 'users.edit' currentUser.id class='link-item'}}
+            {{t 'account.edit_mine'}}
+          {{/link-to}}
           {{#link-to 'subscriptions.manage' class='link-item'}}{{t 'subscriptions.title'}}{{/link-to}}
         </div>
         <div class="section">
@@ -48,10 +50,10 @@
           <i class="fa fa-home"></i>
           {{t 'dashboard.title'}}
         {{/link-to}}
-        {{#each app in currentUser.apps}}
+        {{#each app in currentUser.apps itemController='side_pane_app_item'}}
           <a {{bind-attr href=app.app_link}} class="side-pane-link">
             <i {{bind-attr class='app.app_icon'}}></i>
-            {{app.app_name}}
+            {{controller.appName}}
           </a>
         {{/each}}
         {{#if currentUser.admin}}
