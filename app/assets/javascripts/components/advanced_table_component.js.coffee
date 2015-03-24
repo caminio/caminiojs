@@ -1,6 +1,7 @@
 Caminio.AdvancedTableComponent = Ember.Component.extend
 
   cachedData: undefined
+  cachedDataType: undefined
   filter: null
   url: null
   limit: 30
@@ -9,6 +10,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   columns: Em.A()
   rows: null
   isInlineEditable: false
+  deleteRowAction: 'deleteRow'
 
   selectedRows: Em.A()
 
@@ -49,8 +51,8 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
         data = {}
         data[ response.data_type ] = response.data
         store.pushPayload response.data_type, data
+        @set 'cachedDataType', response.data_type
         response.data.forEach (d)=>
-          @set 'cachedDataType', response.data_type
           @get('rows').pushObject store.getById( response.data_type, d.id )
 
   loadCachedData: ->
@@ -71,6 +73,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
 
     addRow: ->
       defaults = @get('newDataDefaults') || {}
+      console.log @get('cachedAtaType')
       row = @get('targetObject.store').createRecord( @get('cachedDataType'), defaults )
       row.set 'isEditing', true
       @get('rows').unshiftObject row
@@ -101,6 +104,11 @@ Caminio.AdvancedTableRowItemController = Ember.ObjectController.extend
         row.set 'isEditing', true
         return
       @get('parentController.targetObject').transitionToRoute @get('parentController.editRouteName'), row.get('id')
+
+    deleteRow: ->
+      row = @get('content')
+      @get('parentController.rows').removeObject(row)
+      @get('parentController.targetObject').send @get('parentController.deleteRowAction'), row
 
     cancelEdit: ->
       row = @get('content')
@@ -147,6 +155,8 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
     switch column.type
       when 'date'
         moment(value).fromNow()
+      when 'currency'
+        accounting.formatMoney value
       when 'niceDate'
         "<div class=\"daybox\"><div class=\"daynum\"> #{moment(value).format('DD')} </div>
           <div class=\"month\"> #{moment(value).format('MMMM')} </div>

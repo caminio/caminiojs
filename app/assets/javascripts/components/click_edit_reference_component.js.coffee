@@ -61,7 +61,7 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
 
     editDetails: (content)->
       $('.modal-content .close').click()
-      @get('parentController').transitionToRoute( @get('editDetailsRouteName'), content.id )
+      @get('parentController').transitionToRoute( @get('editDetailsRouteName'), content.get('id') )
       false
 
 
