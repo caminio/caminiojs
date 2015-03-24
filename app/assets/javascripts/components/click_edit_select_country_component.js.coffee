@@ -1,15 +1,22 @@
 # coffeelint: disable=max_line_length
-Caminio.ClickEditSelectComponent = Ember.Component.extend
+Caminio.ClickEditSelectCountryComponent = Ember.Component.extend
+
+  countries: (->
+    Em.A( countryCodes[LANG].map (c)-> Em.Object.create(c) )
+  ).property ''
 
   valueSaved: false
   valueSaving: false
 
   saveActionName: 'save'
 
-  optionLabelPath: 'label'
-  optionValuePath: 'value'
+  optionLabelPath: 'name'
+  optionValuePath: 'code'
 
-  modalHeader: 'please_select'
+  selectedCountryName: (->
+    country = @get('countries').findBy('code', @get('value'))
+    country.get('name')
+  ).property 'value'
 
   saveCallback: ->
     @set('editValue',false)
@@ -21,22 +28,14 @@ Caminio.ClickEditSelectComponent = Ember.Component.extend
     , 2000
 
   obj: (->
-    obj = @get('content').findBy( @get('optionValuePath'), @get('value') )
+    obj = countryCodes[LANG].findBy( @get('optionValuePath'), @get('value') )
     Em.Object.create obj
-  ).property 'value', 'content.@each'
-
-  getLabelName: (->
-    @get('obj').get( @get('optionLabelPath') )
-  ).property 'value', 'content.@each'
-
-  getModalHeader: (->
-    Em.I18n.t @get('modalHeader')
-  ).property ''
+  ).property 'value'
 
   actions:
 
     openModal: ->
-      @get('targetObject').send 'openMiniModal', 'select_for_click_edit', @
+      @get('targetObject').send 'openMiniModal', 'select_for_country_edit', @
 
     select: (content)->
       content = Em.Object.create(content)

@@ -76,7 +76,7 @@ module Caminio
       elsif args[0]        
         I18n.locale = args[0]   
       else
-        I18n.locale = 'en'
+        I18n.locale = params[:locale] || get_browser_locale || I18n.default_locale
       end
     end
 

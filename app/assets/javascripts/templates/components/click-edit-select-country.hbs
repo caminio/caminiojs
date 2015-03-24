@@ -1,0 +1,22 @@
+<form class="field-row click-edit-select">
+  <div class="field-label">
+    {{t label}}
+  </div>
+  <div class="field-content" {{action 'openModal'}}>
+    <span class="val">
+
+      {{#if value}}
+        {{selectedCountryName}}
+      {{else}}
+        <span class="desc">{{t 'select_country'}}</span>
+      {{/if}}
+
+    </span>
+    <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-success valueSaved:active"}}>
+      <i class="fa fa-check"></i>
+    </div>
+  </div>
+</form>
