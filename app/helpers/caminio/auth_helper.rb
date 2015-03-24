@@ -72,9 +72,9 @@ module Caminio
       if headers['Accept-Language']
         locale =  headers['Accept-Language'].split(',').first
         locale = locale.sub(/-..$/,'')
-        I18n.locale= locale
+        I18n.locale = locale
       else
-        I18n.locale = 'en'
+        I18n.locale = params[:locale] || get_browser_locale || I18n.default_locale
       end
     end
 

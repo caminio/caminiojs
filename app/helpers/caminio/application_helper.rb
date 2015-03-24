@@ -23,10 +23,6 @@ module Caminio
       end
     end
 
-    def set_locale
-      I18n.locale = params[:locale] || get_browser_locale || I18n.default_locale
-    end
-
     private
 
     def get_browser_locale

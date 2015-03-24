@@ -4,6 +4,8 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
 
   filter: ''
   saveActionName: 'save'
+  valueSaved: false
+  valueSaving: false
 
   filteredOptions: Em.computed ->
     return @get('options') if Em.isEmpty @get('filter')
@@ -30,24 +32,22 @@ Caminio.ClickEditReferenceComponent = Ember.Component.extend
 
   referenceTitle: (->
     @get("reference.#{@get('referenceTitleName')}") || Em.I18n.t('no_title_set')
-  ).property 'referenceTitleName'
+  ).property 'referenceTitleName', 'reference', 'reference.isFulfilled'
 
   referenceSubtitle: (->
     return unless @get('referenceSubtitleName')
     @get("reference.#{@get('referenceSubtitleName')}")
-  ).property 'referenceSubtitleName'
+  ).property 'referenceSubtitleName', 'reference', 'reference.isFulfilled'
 
   noFilterNoText: Em.computed ->
     @get('filteredOptions.length') < 1 && @get('filter.length') < 1
   .property 'filter', 'filteredOptions.length'
 
   saveCallback: ->
-    @set('editValue',false)
     @set('valueSaving', false)
     @set('valueSaved', true)
     Ember.run.later =>
       @set('valueSaved',false)
-      @set('origValue', @get('value'))
     , 2000
 
   actions:
@@ -88,4 +88,4 @@ Caminio.SelectReferenceItemController = Em.ObjectController.extend
       if content.get 'isNew'
         return
       @set 'valueSaving', true
-      @get('parentController.targetObject').send(@get('parentController.saveActionName'), @get('parentController').saveCallback, @)
+      @get('parentController.targetObject').send(@get('parentController.saveActionName'), @get('parentController').saveCallback, @get('parentController'))

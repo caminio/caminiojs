@@ -47,7 +47,9 @@
              {{controller.getTitleTranslation}}
         </th>
       {{/each}}
-      <th></th>
+      {{#unless isInlineEditable}}
+        <th class="dropdown-actions"></th>
+      {{/unless}}
       </tr>
     </thead>
     <tbody>
@@ -96,7 +98,8 @@
               </div>
             </td>
           {{/each}}
-          <td>
+          {{#unless isInlineEditable}}
+          <td class="dropdown-actions">
             <div class="dropdown">
               <button class="btn btn-options dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-angle-down"></i>
@@ -112,6 +115,8 @@
                 </li>
               </ul>
             </div>
+          </td>
+          {{/unless}}
         </tr>
       {{/each}}
     </tbody>

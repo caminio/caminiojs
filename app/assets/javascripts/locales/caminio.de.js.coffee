@@ -37,6 +37,7 @@ Em.merge Em.I18n.availableTranslations.de,
   your_selection: 'Deine Auswahl'
   select_language: 'Sprache wählen'
   select_reference: 'Referenz auswählen'
+  select_country: 'Land wählen'
   nothing_selected: 'Nichts ausgewählt'
   note: 'Notiz'
   apps: 'Applikationen'
