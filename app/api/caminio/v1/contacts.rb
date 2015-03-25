@@ -34,7 +34,7 @@ module Caminio
       desc "create a new contact"
       params do
         requires :contact, type: Hash do
-          optional :organization
+          optional :company
           optional :firstname
           optional :lastname
           optional :degree
@@ -55,7 +55,7 @@ module Caminio
       desc "update an existing contact"
       params do
         requires :contact, type: Hash do
-          optional :organization
+          optional :company
           optional :firstname
           optional :lastname
           optional :degree
