@@ -2,7 +2,7 @@ class ContactEntity < Grape::Entity
         
   expose :id
 
-  expose :organization
+  expose :company
   expose :firstname
   expose :lastname
 

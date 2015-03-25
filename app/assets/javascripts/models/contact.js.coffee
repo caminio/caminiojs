@@ -12,3 +12,11 @@ Caminio.Contact   = DS.Model.extend
   shipping:                   DS.attr('string')
 
   locations:                   DS.hasMany('location')
+
+  name:                       (->
+    str = ''
+    str += @get('firstname') unless Em.isEmpty(@get('firstname'))
+    str += ' ' unless Em.isEmpty(str)
+    str += @get('lastname') unless Em.isEmpty(@get('lastname'))
+    str
+  ).property 'firstname', 'lastname'

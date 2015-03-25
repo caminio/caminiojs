@@ -11,6 +11,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   rows: null
   isInlineEditable: false
   deleteRowAction: 'deleteRow'
+  footer: null
 
   selectedRows: Em.A()
 
@@ -50,10 +51,14 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
         @set 'limit', response.limit
         data = {}
         data[ response.data_type ] = response.data
-        store.pushPayload response.data_type, data
+        if response.data_type
+          store.pushPayload response.data_type, data
         @set 'cachedDataType', response.data_type
         response.data.forEach (d)=>
-          @get('rows').pushObject store.getById( response.data_type, d.id )
+          if response.data_type
+            @get('rows').pushObject store.getById( response.data_type, d.id )
+          else
+            @get('rows').pushObject Em.Object.create(d)
 
   loadCachedData: ->
     cachedDataType = @get('cachedDataType')
@@ -73,7 +78,6 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
 
     addRow: ->
       defaults = @get('newDataDefaults') || {}
-      console.log @get('cachedAtaType')
       row = @get('targetObject.store').createRecord( @get('cachedDataType'), defaults )
       row.set 'isEditing', true
       @get('rows').unshiftObject row
@@ -137,6 +141,7 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
   cssClasses: (->
     column = @get('content')
     cssClasses = column.cssClasses || ""
+    cssClasses += " " unless Em.isEmpty(cssClasses)
     cssClasses += "align-right" if column.align && column.align == 'right'
     cssClasses += "adv-table-icon" if column.type == 'icon'
     cssClasses
@@ -202,3 +207,24 @@ Caminio.AdvancedTableHeaderItemController = Ember.ObjectController.extend
     return '' if Em.isEmpty @get('content.name')
     Em.I18n.t( @get 'content.name' )
   ).property ''
+
+Caminio.AdvancedTableFooterItemController = Ember.ObjectController.extend
+
+  cssHeaderClasses: (->
+    index = @get('parentController.footer').indexOf( @get('content') )
+    column = @get('parentController.columns')[index]
+    cssClasses = column.cssHeaderClasses || ""
+    cssClasses += "align-right" if column.align && column.align == 'right'
+    cssClasses
+  ).property ''
+  
+  calculatedValue: (->
+    return '' unless @get('content.type') == 'sum'
+    index = @get('parentController.footer').indexOf( @get('content') )
+    column = @get('parentController.columns')[index]
+    result = 0
+    return unless @get('parentController.rows')
+    @get('parentController.rows').forEach (row)->
+      result += row.get( column['name'] )
+    result
+  ).property 'parentController.rows.@each'

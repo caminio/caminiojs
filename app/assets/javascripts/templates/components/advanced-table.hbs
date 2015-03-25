@@ -120,6 +120,17 @@
         </tr>
       {{/each}}
     </tbody>
+    {{#if footer}}
+      <tfoot>
+        <tr>
+          <th></th>
+          {{#each col in footer itemController='advanced_table_footer_item'}}
+            <th {{bind-attr class=controller.cssHeaderClasses}}>{{controller.calculatedValue}}</th>
+          {{/each}}
+          <th></th>
+        </tr>
+      </tfoot>
+    {{/if}}
   </table>
 
 </div>

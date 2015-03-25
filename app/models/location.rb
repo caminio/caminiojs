@@ -28,4 +28,6 @@ class Location
   field :phone, type: String
   field :email, type: String
 
+  embedded_in :contact
+
 end
