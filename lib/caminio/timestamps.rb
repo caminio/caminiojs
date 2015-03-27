@@ -10,7 +10,7 @@ module Caminio
       field :created_at, type: DateTime, default: lambda{ DateTime.now }
       field :updated_at, type: DateTime, default: lambda{ DateTime.now }
 
-      after_update :set_updated_at
+      before_update :set_updated_at
 
       protected
 
