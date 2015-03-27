@@ -3,9 +3,9 @@ Caminio.FadedView = Ember.View.extend
     @$().css 'opacity', 0
 
   animateIn: (done)->
-    @$().fadeTo 250, 1, =>
+    @$().fadeTo 150, 1, =>
       @$('.js-get-focus').focus()
       done()
 
   animateOut: (done)->
-    @$().fadeTo 500, 0, done
+    @$().fadeTo 200, 0, done

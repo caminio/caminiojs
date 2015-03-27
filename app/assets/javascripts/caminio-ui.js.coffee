@@ -143,8 +143,11 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         outlet: 'mini-modal'
         parentView: 'application'
 
-    goTo: (route)->
-      @transitionTo route
+    goTo: (route, idx)->
+      if idx
+        @transitionTo route, idx
+      else
+        @transitionTo route
       true
 
   # actions:

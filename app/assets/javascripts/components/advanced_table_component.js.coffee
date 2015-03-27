@@ -12,6 +12,8 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   isInlineEditable: false
   deleteRowAction: 'deleteRow'
   footer: null
+  order: null
+  orderAsc: true
 
   selectedRows: Em.A()
 
@@ -44,7 +46,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
     @get('rows').clear()
     return @loadCachedData() if @get('cachedData')
     store = @get('targetObject.store')
-    $.getJSON @get('url'), { limit: @get('limit'), page: @get('page') }
+    $.getJSON @get('url'), { limit: @get('limit'), page: @get('page'), order_by: (@get('order') || 'created_at'), order_asc: @get('orderAsc'), filter: @get('filter') }
       .then (response)=>
         @set 'totalRows', response.total
         @set 'page', response.page
@@ -67,7 +69,23 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
       @get('rows').pushObject store.getById( cachedDataType, d.id )
     @set 'totalRows', @get('rows.length')
 
+  lastFilterAction: null
+  filter: null
+
+  filterObserver: (->
+    @set 'filter', @get('targetObject.filter')
+    @set('filter', null) if Em.isEmpty( @get('filter') )
+    @set('lastFilterAction', new Date())
+    Em.run.later =>
+      if @get('lastFilterAction') < (new Date()) - 2000
+        @loadData()
+    , 2010
+  ).observes 'targetObject.filter'
+
   actions:
+
+    search: (filter)->
+      console.log 'searching for ', filter
 
     toggleAllRows: ->
       if @get('selectedRows.length') > 0
@@ -142,6 +160,7 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
     column = @get('content')
     cssClasses = column.cssClasses || ""
     cssClasses += " " unless Em.isEmpty(cssClasses)
+    cssClasses += "nicedate-cell" if column.type == 'niceDate'
     cssClasses += "align-right" if column.align && column.align == 'right'
     cssClasses += "adv-table-icon" if column.type == 'icon'
     cssClasses
@@ -191,6 +210,7 @@ Caminio.AdvancedTableHeaderItemController = Ember.ObjectController.extend
   cssHeaderClasses: (->
     column = @get('content')
     cssClasses = column.cssHeaderClasses || ""
+    cssClasses += "nicedate-cell" if column.type == 'niceDate'
     cssClasses += "align-right" if column.align && column.align == 'right'
     cssClasses
   ).property ''

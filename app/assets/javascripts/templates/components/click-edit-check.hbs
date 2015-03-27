@@ -1,0 +1,21 @@
+<form class="field-row click-edit-radio">
+  <div class="field-label">
+    {{t label}}
+  </div>
+  <div {{bind-attr class=":field-content :checkbox-field-content editValue:editing-click-form"}} {{action 'edit' bubbles=false}}>
+    {{#if editValue}}
+      <div class="field-checkbox" {{action 'toggleCheck' bubbles=false}}>
+        {{#if value}}<i class="fa fa-check"></i>{{/if}}  
+      </div>
+      <div class="cancel-edit" {{action 'cancelEdit' bubbles=false}} {{translateAttr title='cancel_edit_entry'}}>&times;</div>
+    {{else}}
+      {{#if value}}<i class="fa fa-check"></i>{{/if}}
+    {{/if}}
+    <div {{bind-attr class=":value-saved :label :label-warning valueSaving:active"}}>
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div {{bind-attr class=":value-saved :label :label-success valueSaved:active"}}>
+      <i class="fa fa-check"></i>
+    </div>
+  </div>
+</form>

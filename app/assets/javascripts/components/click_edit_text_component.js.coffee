@@ -80,7 +80,7 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
       return if @get('value') == @get('origValue')
       @set 'editValue', false
       @set 'valueSaving', true
-      @get('parentController').send(@get('saveActionName'), @saveCallback, @)
+      @get('targetObject').send(@get('saveActionName'), @saveCallback, @)
 
     cancelEdit: ->
       @set 'editValue', false

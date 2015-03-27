@@ -14,6 +14,7 @@ Em.merge Em.I18n.availableTranslations.de,
   login: 'Anmelden'
   logout: 'Abmelden'
   aborted: 'Abgebrochen'
+  status: 'Status'
   no_account_yet: 'Noch kein Konto?'
   back_to_login: 'Zurück zum Login'
   signup: 'Kostenlos Registrieren'
