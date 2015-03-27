@@ -7,16 +7,16 @@ module Caminio
 
     included do
 
-      field :created_at, type: DateTime, default: lambda{ Time.now }
-      field :updated_at, type: DateTime, default: lambda{ Time.now }
+      field :created_at, type: DateTime, default: lambda{ DateTime.now }
+      field :updated_at, type: DateTime, default: lambda{ DateTime.now }
 
-      before_update :set_updated_at
+      after_update :set_updated_at
 
       protected
 
-      def set_updated_at
-        self.updated_at = Time.now
-      end
+        def set_updated_at
+          self.updated_at = DateTime.now
+        end
 
     end
   end
