@@ -23,7 +23,7 @@ describe User do
 
     it { expect(User.find_by( username: 'test2' )).not_to be(nil) }
     it { expect(User.find_by( username: 'test-update' )).to be(nil) }
-
+    it { expect( user.updated_at ).to be_a( DateTime ) }
   end
 
   describe "delete" do
