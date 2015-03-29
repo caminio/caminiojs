@@ -195,7 +195,7 @@ Em.merge Em.I18n.availableTranslations.de,
     fqdn: 'Domäne (FQDN)'
 
   account:
-    settings: 'Einstellungen'
+    settings: 'Administration'
     mine: 'Mein Konto'
     manage: 'Konten verwalten'
     personal: 'Angaben zur Person'
