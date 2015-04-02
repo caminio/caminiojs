@@ -3,8 +3,15 @@ module Caminio
 
     include ApplicationHelper
 
-    def set_organization_id id
-      RequestStore.store['organization_id'] = id
+    def set_organization_id *args
+      id = args[0] || nil
+      if id
+        RequestStore.store['organization_id'] = id
+      else
+        return unless headers['Organization-Id']
+        return unless params.organization_id
+        RequestStore.store['organization_id'] = headers['Organization-Id'] || params.organization_id
+      end
     end
 
     def authenticate_user

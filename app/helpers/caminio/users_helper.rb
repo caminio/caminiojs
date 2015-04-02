@@ -7,12 +7,6 @@ module Caminio
       user
     end
 
-    def set_organization_id
-      return unless headers['Organization-Id']
-      return unless params.organization_id
-      RequestStore.store['organization_id'] = headers['Organization-Id'] || params.organization_id
-    end
-
     def require_admin!
       error! "InsufficientRights", 403 unless current_user.is_admin?
     end
