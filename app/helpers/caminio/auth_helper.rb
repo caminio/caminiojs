@@ -3,6 +3,10 @@ module Caminio
 
     include ApplicationHelper
 
+    def set_organization_id id
+      RequestStore.store['organization_id'] = id
+    end
+
     def authenticate_user
       @current_user = User
               .or( [ { username: params.login }, { email: params.login } ] )
