@@ -221,8 +221,8 @@ Em.merge Em.I18n.availableTranslations.de,
     delete_row: 'Diese Zeile löschen'
     cancel_edit: 'Bearbeiten abbrechen und Änderungen verwerfen'
     rows:
-      one: 'Eine Zeile gesamt'
-      other: '{{count}} Zeilen gesamt'
+      one: 'Eine in Summe'
+      other: '{{count}} gesamt'
     rows_selected:
       one: 'Eine ausgewählte Zeile'
       other: '{{count}} ausgewählte Zeilen'

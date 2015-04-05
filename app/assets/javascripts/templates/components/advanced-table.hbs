@@ -1,7 +1,7 @@
 <div class="adv-table-wrap">
 
   <div class="adv-table-overview">
-    <div class="total">{{t 'table.rows' count=totalRows}}</div>
+    <div class="total">{{curRowsMin}} &ndash; {{curRowsMax}} ({{t 'table.rows' count=totalRows}})</div>
   </div>
 
   <div class="adv-table-actions">
@@ -53,6 +53,9 @@
       </tr>
     </thead>
     <tbody>
+      {{#if loading}}
+        <div class="loading"><i class="fa fa-refresh fa-spin"></i></div>
+      {{/if}}
       {{#each row in rows itemController='advanced_table_row_item'}}
         <tr {{bind-attr class='controller.selected:selected row.isEditing:is-editing'}}
             {{action 'editRow'}}>
@@ -132,5 +135,21 @@
       </tfoot>
     {{/if}}
   </table>
+
+  <nav class="adv-table-pagination">
+    <ul class="pagination">
+      <li {{bind-attr class='firstPage:disabled'}}>
+        <a href="#"><i class="fa fa-angle-left"></i></a>
+      </li>
+      {{#each p in totalPages itemController='advanced_table_pagination_item'}}
+        <li {{bind-attr class='controller.isCurrentPage:active'}}>
+          <a href="#" {{action 'goToPage' p.content}}>{{p.content}}</a>
+        </li>
+      {{/each}}
+      <li {{bind-attr class='lastPage:disabled'}}>
+        <a href="#"><i class="fa fa-angle-right"></i></a>
+      </li>
+    </ul>
+  </nav>
 
 </div>

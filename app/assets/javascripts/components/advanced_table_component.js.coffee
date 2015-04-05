@@ -4,7 +4,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   cachedDataType: undefined
   filter: null
   url: null
-  limit: 30
+  limit: 5
   page: 0
   totalRows: 0
   columns: Em.A()
@@ -16,6 +16,28 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   orderAsc: true
 
   selectedRows: Em.A()
+
+  totalPages: (->
+    [1..parseInt(@get('totalRows') / @get('limit'))+1]
+  ).property 'totalRows', 'limit'
+  
+  firstPage: (->
+    @get('page') == 0
+  ).property 'page'
+
+  lastPage: (->
+    @get('page') == @get('totalPages')-1
+  ).property 'page'
+
+  curRowsMin: (->
+    @get('limit') * @get('page') + 1
+  ).property 'page', 'totalRows'
+
+  curRowsMax: (->
+    max = @get('limit') * @get('page') + @get('limit')
+    max = @get('totalRows') if max > @get('totalRows')
+    max
+  ).property 'page', 'totalRows'
 
   someRowsSelected: (->
     @get('selectedRows.length') > 0
@@ -43,11 +65,13 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
       $(this).parent().find('.dropdown-toggle').dropdown('toggle')
 
   loadData: ->
+    @set('loading', true)
     @get('rows').clear()
     return @loadCachedData() if @get('cachedData')
     store = @get('targetObject.store')
     $.getJSON @get('url'), { limit: @get('limit'), page: @get('page'), order_by: (@get('order') || 'created_at'), order_asc: @get('orderAsc'), filter: @get('filter') }
       .then (response)=>
+        @set('loading', false)
         @set 'totalRows', response.total
         @set 'page', response.page
         @set 'limit', response.limit
@@ -100,6 +124,11 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
       row.set 'isEditing', true
       @get('rows').unshiftObject row
       @set 'totalRows', @get('totalRows')+1
+
+    goToPage: (page)->
+      @set 'page', page
+      @loadData()
+      return
         
     
 Caminio.AdvancedTableRowItemController = Ember.ObjectController.extend
@@ -248,3 +277,14 @@ Caminio.AdvancedTableFooterItemController = Ember.ObjectController.extend
       result += row.get( column['name'] )
     result
   ).property 'parentController.rows.@each'
+
+Caminio.AdvancedTablePaginationItemController = Ember.ObjectController.extend
+  
+  isCurrentPage: (->
+    @get('content') == @get('parentController.page')+1
+  ).property 'parentController.page'
+
+  actions:
+
+    goToPage: ->
+      @get('parentController').send('goToPage', @get('content')-1)
