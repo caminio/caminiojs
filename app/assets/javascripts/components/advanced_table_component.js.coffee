@@ -18,7 +18,6 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
 
   totalPages: (->
     total = parseInt(@get('totalRows') / @get('limit'))
-    # console.log('modulo', @get('totalRows'), total, @get('totalRows') % total)
     if @get('totalRows') % total < 1 && total > 1
       total = total - 1
     [1..total+1]
@@ -33,7 +32,8 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   ).property 'page'
 
   curRowsMin: (->
-    @get('limit') * @get('page') + 1
+    num = @get('limit') * @get('page') + 1
+    num
   ).property 'page', 'totalRows'
 
   curRowsMax: (->
@@ -72,7 +72,6 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
     @get('rows').clear()
     return @loadCachedData() if @get('cachedData')
     store = @get('targetObject.store')
-    console.log @get('filter')
     $.getJSON @get('url'), { limit: @get('limit'), page: @get('page'), order_by: (@get('order') || 'created_at'), order_asc: @get('orderAsc'), filter: @get('filter') }
       .then (response)=>
         @set('loading', false)
