@@ -2,9 +2,8 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
 
   cachedData: undefined
   cachedDataType: undefined
-  filter: null
   url: null
-  limit: 5
+  limit: 30
   page: 0
   totalRows: 0
   columns: Em.A()
@@ -18,7 +17,11 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   selectedRows: Em.A()
 
   totalPages: (->
-    [1..parseInt(@get('totalRows') / @get('limit'))+1]
+    total = parseInt(@get('totalRows') / @get('limit'))
+    # console.log('modulo', @get('totalRows'), total, @get('totalRows') % total)
+    if @get('totalRows') % total < 1 && total > 1
+      total = total - 1
+    [1..total+1]
   ).property 'totalRows', 'limit'
   
   firstPage: (->
@@ -69,6 +72,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
     @get('rows').clear()
     return @loadCachedData() if @get('cachedData')
     store = @get('targetObject.store')
+    console.log @get('filter')
     $.getJSON @get('url'), { limit: @get('limit'), page: @get('page'), order_by: (@get('order') || 'created_at'), order_asc: @get('orderAsc'), filter: @get('filter') }
       .then (response)=>
         @set('loading', false)
@@ -94,22 +98,20 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
     @set 'totalRows', @get('rows.length')
 
   lastFilterAction: null
-  filter: null
+  filter: {}
 
   filterObserver: (->
-    @set 'filter', @get('targetObject.filter')
-    @set('filter', null) if Em.isEmpty( @get('filter') )
     @set('lastFilterAction', new Date())
     Em.run.later =>
       if @get('lastFilterAction') < (new Date()) - 2000
         @loadData()
     , 2010
-  ).observes 'targetObject.filter'
+  ).observes 'filter.name'
 
   actions:
 
-    search: (filter)->
-      console.log 'searching for ', filter
+    # search: (filter)->
+    #   console.log 'searching for ', filter
 
     toggleAllRows: ->
       if @get('selectedRows.length') > 0
@@ -214,6 +216,7 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
   ).property ''
 
   valCssClasses: (->
+    column = @get('content')
     value = @get("parentController.content.#{column.name}")
     switch column.type
       when 'boolean'

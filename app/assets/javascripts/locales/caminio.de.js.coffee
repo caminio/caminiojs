@@ -3,6 +3,8 @@ Em.I18n.availableTranslations.de ||= {}
 
 Em.merge Em.I18n.availableTranslations.de,
   alias: 'Alias'
+  on: 'an'
+  off: 'aus'
   or: 'oder'
   year: 'Jahr'
   month: 'Monat'
