@@ -126,7 +126,14 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
       @set 'totalRows', @get('totalRows')+1
 
     goToPage: (page)->
-      @set 'page', page
+      if page == 'previous'
+        @set 'page', @get('page') - 1
+        @set('page', 0) if @get('page') < 0
+      else if page == 'next'
+        @set 'page', @get('page') + 1
+        @set('page', @get('totalPages')) if @get('page') > @get('totalPages')
+      else
+        @set 'page', page
       @loadData()
       return
         
@@ -136,6 +143,10 @@ Caminio.AdvancedTableRowItemController = Ember.ObjectController.extend
   selected: (->
     @get('parentController.selectedRows').findBy('id', @get('content.id'))
   ).property 'parentController.selectedRows.[]'
+
+  rowIndex: (->
+    @get('parentController.rows').indexOf( @get('content') ) + @get('parentController.curRowsMin')
+  ).property 'content'
 
   rowEditingObserver: (->
     row = @get('content')
@@ -202,6 +213,16 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
     styles
   ).property ''
 
+  valCssClasses: (->
+    value = @get("parentController.content.#{column.name}")
+    switch column.type
+      when 'boolean'
+        if value
+          'trueVal'
+      else
+        ''
+  ).property ''
+
   value: (->
     column = @get('content')
     value = @get("parentController.content.#{column.name}")
@@ -210,6 +231,14 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
         moment(value).fromNow()
       when 'currency'
         accounting.formatMoney value
+      when 'boolean'
+        if value
+          unless Em.isEmpty(column.booleanTrueI18n)
+            Em.I18n.t( column.booleanTrueI18n )
+          else
+            '<i class="fa fa-check"></i>'
+        else
+          ''
       when 'niceDate'
         "<div class=\"daybox\"><div class=\"daynum\"> #{moment(value).format('DD')} </div>
           <div class=\"month\"> #{moment(value).format('MMMM')} </div>

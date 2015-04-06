@@ -34,8 +34,9 @@
   <table class="adv-table">
     <thead>
       <tr>
+        <th class="row-index"></th>
         {{#if tableRowIcons}}
-        <th>
+        <th class="adv-table-icon">
           <div {{bind-attr class=":select-all-label someRowsSelected:selected allRowsSelected:all-selected :hint--right :hint--bounce"}} {{translateAttr data-hint='table.select_unselect_all_rows'}} {{action 'toggleAllRows'}}>
             <i class="fa fa-check"></i>
           </div>
@@ -59,6 +60,9 @@
       {{#each row in rows itemController='advanced_table_row_item'}}
         <tr {{bind-attr class='controller.selected:selected row.isEditing:is-editing'}}
             {{action 'editRow'}}>
+          <td class="row-index">
+            <div>{{controller.rowIndex}}</div>
+          </td>
           {{#if tableRowIcons}}
           <td class="adv-table-icon">
             {{#if row.isEditing}}
@@ -83,7 +87,7 @@
               <div class="icon-label hint--right hint--bounce" 
                 {{action 'selectRow' bubbles=false}} 
                 {{translateAttr data-hint='table.select_unselect_row'}}>
-                  <i {{bind-attr class='tableRowIcons :app-icon'}}></i>
+                  <i {{bind-attr class=':app-icon'}}></i>
                   <i class="checked-icon fa fa-check"></i>
               </div>
             {{/if}}
@@ -96,7 +100,7 @@
                   {{input value=controller.editValue}}
                 </div>  
               {{/if}}
-              <div class="default">
+              <div {{bind-attr class=":default valCssClass"}}>
                 {{{controller.value}}}
               </div>
             </td>
@@ -136,10 +140,11 @@
     {{/if}}
   </table>
 
+  {{#unless loading}}
   <nav class="adv-table-pagination">
     <ul class="pagination">
       <li {{bind-attr class='firstPage:disabled'}}>
-        <a href="#"><i class="fa fa-angle-left"></i></a>
+        <a href="#" {{action 'goToPage' 'previous'}}><i class="fa fa-angle-left"></i></a>
       </li>
       {{#each p in totalPages itemController='advanced_table_pagination_item'}}
         <li {{bind-attr class='controller.isCurrentPage:active'}}>
@@ -147,9 +152,10 @@
         </li>
       {{/each}}
       <li {{bind-attr class='lastPage:disabled'}}>
-        <a href="#"><i class="fa fa-angle-right"></i></a>
+        <a href="#" {{action 'goToPage' 'next'}}><i class="fa fa-angle-right"></i></a>
       </li>
     </ul>
   </nav>
+  {{/unless}}
 
 </div>
