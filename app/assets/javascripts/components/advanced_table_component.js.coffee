@@ -13,6 +13,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   footer: null
   order: null
   orderAsc: true
+  showIndex: true
 
   selectedRows: Em.A()
 
@@ -90,6 +91,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
             @get('rows').pushObject Em.Object.create(d)
 
   loadCachedData: ->
+    @set('loading', false)
     cachedDataType = @get('cachedDataType')
     store = @get('targetObject.store')
     @get('cachedData').forEach (d)=>
@@ -102,9 +104,9 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   filterObserver: (->
     @set('lastFilterAction', new Date())
     Em.run.later =>
-      if @get('lastFilterAction') < (new Date()) - 2000
+      if @get('lastFilterAction') < (new Date()) - 300
         @loadData()
-    , 2010
+    , 310
   ).observes 'filter.name'
 
   actions:
@@ -256,6 +258,10 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
   editValue: ( (key,val)->
     column = @get('content')
     if val
+      if column.type == 'number' || column.type == 'currency' && LANG == 'de'
+        val = val.replace ',', '.'
+      if column.type == 'currency'
+        val = val.replace ',--', ''
       @get('parentController.content').set column.name, val
     value = @get("parentController.content.#{column.name}")
     switch column.type

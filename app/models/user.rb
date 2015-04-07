@@ -83,6 +83,7 @@ class User
   end
 
   def name
+    return self.username unless self.username.blank?
     return self.email unless self.lastname
     return self.lastname unless self.firstname
     return self.firstname + ' ' + self.lastname

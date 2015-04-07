@@ -43,7 +43,9 @@
   <table class="adv-table">
     <thead>
       <tr>
+        {{#if showIndex}}
         <th class="row-index"></th>
+        {{/if}}
         {{#if tableRowIcons}}
         <th class="adv-table-icon">
           <div {{bind-attr class=":select-all-label someRowsSelected:selected allRowsSelected:all-selected :hint--right :hint--bounce"}} {{translateAttr data-hint='table.select_unselect_all_rows'}} {{action 'toggleAllRows'}}>
@@ -69,9 +71,11 @@
       {{#each row in rows itemController='advanced_table_row_item'}}
         <tr {{bind-attr class='controller.selected:selected row.isEditing:is-editing'}}
             {{action 'editRow'}}>
+          {{#if controller.parentController.showIndex}}
           <td class="row-index">
             <div>{{controller.rowIndex}}</div>
           </td>
+          {{/if}}
           {{#if tableRowIcons}}
           <td class="adv-table-icon">
             {{#if row.isEditing}}
@@ -105,9 +109,9 @@
           {{#each column in columns itemController='advanced_table_column_item'}}
             <td {{bind-attr class=controller.cssClasses}} {{bind-attr style=controller.cssStyles}}>
               {{#if isInlineEditable}}
-                <div class="form">
+                <form class="form" {{action 'saveRow' on='submit'}}>
                   {{input value=controller.editValue}}
-                </div>  
+                </form>  
               {{/if}}
               <div {{bind-attr class=":default controller.valCssClasses"}}>
                 {{{controller.value}}}
@@ -139,6 +143,7 @@
     {{#if footer}}
       <tfoot>
         <tr>
+          <th></th>
           <th></th>
           {{#each col in footer itemController='advanced_table_footer_item'}}
             <th {{bind-attr class=controller.cssHeaderClasses}}>{{controller.calculatedValue}}</th>

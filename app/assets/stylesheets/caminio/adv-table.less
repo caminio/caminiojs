@@ -61,7 +61,8 @@
   color: #777;
   font-size: 12px;
   border-left: 3px solid transparent;
-  max-width: 5em;
+  width: 1px;
+  white-space: nowrap;
 }
 
 .adv-table .row-index div{
@@ -154,6 +155,10 @@
 
 .adv-table tbody tr.is-editing .default{
   display: none;
+}
+
+.adv-table tbody tr.is-editing td input{
+  width: 100%;
 }
 
 .adv-table tbody tr.is-editing .form{
