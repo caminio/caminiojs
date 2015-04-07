@@ -18,5 +18,7 @@ Caminio.Contact   = DS.Model.extend
     str += @get('firstname') unless Em.isEmpty(@get('firstname'))
     str += ' ' unless Em.isEmpty(str)
     str += @get('lastname') unless Em.isEmpty(@get('lastname'))
+    str += ' ' unless Em.isEmpty(str)
+    str += @get('company') unless Em.isEmpty(@get('company'))
     str
-  ).property 'firstname', 'lastname'
+  ).property 'firstname', 'lastname', 'company'
