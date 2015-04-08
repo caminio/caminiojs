@@ -1,3 +1,5 @@
+require File::expand_path '../application_helper', __FILE__
+
 module Caminio
   module AuthHelper
 
