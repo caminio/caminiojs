@@ -123,7 +123,7 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
 
     addRow: ->
       defaults = @get('newDataDefaults') || {}
-      row = @get('targetObject.store').createRecord( @get('cachedDataType'), defaults )
+      row = @get('targetObject').store.createRecord( @get('cachedDataType'), defaults )
       row.set 'isEditing', true
       @get('rows').unshiftObject row
       @set 'totalRows', @get('totalRows')+1
