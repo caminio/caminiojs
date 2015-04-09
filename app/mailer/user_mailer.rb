@@ -1,6 +1,7 @@
 class UserMailer < ActionMailer::Base
 
   default from: Rails.configuration.caminio.default_mail_from || 'support@tastenwerk.com'
+  
   include Roadie::Rails::Automatic
 
   def signup(user, base_url)
