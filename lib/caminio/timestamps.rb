@@ -7,7 +7,7 @@ module Caminio
 
     included do
 
-      field :created_at, type: DateTime, default: lambda{ puts "BEFORE"; Time.now ; puts "AFTER "}
+      field :created_at, type: DateTime, default: lambda{ Time.now }
       field :updated_at, type: DateTime, default: lambda{ Time.now }
 
       before_update :set_updated_at
