@@ -28,3 +28,6 @@ Caminio.Router.map ->
   @resource 'organizations', ->
     @route 'new'
     @route 'edit', path: ':id'
+  @resource 'api_keys', ->
+    @route 'new'
+    @route 'edit', path: ':id'

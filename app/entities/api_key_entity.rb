@@ -4,8 +4,5 @@ class ApiKeyEntity < Grape::Entity
   expose :name
   expose :token
   expose :expires_at
-  expose :permanent
-  expose :user_id
-  expose :organization_id
   
 end

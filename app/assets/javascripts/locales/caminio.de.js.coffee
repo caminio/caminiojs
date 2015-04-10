@@ -97,6 +97,8 @@ Em.merge Em.I18n.availableTranslations.de,
   title: 'Titel'
   create: 'Erstellen'
   created_at: 'Erstellt am'
+  created_by: 'Erstellt von'
+  expires_at: 'Läuft ab'
   email: 'Email'
   phone: 'Mobiltelefon'
   current_organization: 'Aktuelle Organisation'
@@ -264,6 +266,14 @@ Em.merge Em.I18n.availableTranslations.de,
     
   locations:
     title: 'Orte'
+
+  api_keys:
+    title: 'API Schlüssel'
+
+  api_key:
+    name: 'Schlüsselname'
+    new: 'Neuer Schlüssel'
+    search: 'Schlüssel suchen'
     
   errors:
     login_failed: 'Anmeldung fehlgeschlagen!'

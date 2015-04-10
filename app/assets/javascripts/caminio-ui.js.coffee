@@ -150,6 +150,9 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
         @transitionTo route
       true
 
+    toggleContentNav: ->
+      @controllerFor('application').toggleProperty('hideContentNav')
+
   # actions:
   #   # recover from any error that may happen during the transition to this route
   #   error: (reason, transition)->

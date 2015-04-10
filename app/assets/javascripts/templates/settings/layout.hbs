@@ -11,6 +11,10 @@
     <i class="fa fa-group"></i>
     {{t 'groups.title'}}
   {{/link-to}}
+  {{#link-to 'api_keys.index' current-when='api_keys'}}
+    <i class="fa fa-key"></i>
+    {{t 'api_keys.title'}}
+  {{/link-to}}
 {{!--   {{#link-to 'organizations.edit' controllers.application.currentUser.organization.id}}
     <i class="fa fa-building"></i>
     {{t 'organization.my'}}

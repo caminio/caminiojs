@@ -1,0 +1,13 @@
+<div data-ticketeer-button class="ticketeer-button"><a class="ticket-button"><img src="/assets/img/ticket_29x28.png">Tickets...</a></div>
+<script>
+window.TicketeerApiKey = "1ef3786aaff50dc04ec3d7123acaa53e"
+  var s = document.createElement('script')
+  s.src = 'http://localhost:4000/assets/ticketeer-widget.js'
+  document.body.appendChild( s )
+  var buttons = document.querySelectorAll("[data-ticketeer-button]")
+
+  for( var i=0; i<buttons.length; i++ ){  
+    var buttonId = 'ticketeer-button-'+i
+    buttons[i].setAttribute('id', buttonId )
+  }
+</script>

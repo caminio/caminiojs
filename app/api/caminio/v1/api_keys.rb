@@ -21,6 +21,31 @@ module Caminio
       end
 
       #
+      # GET /table_data
+      #
+      desc "gets data for table"
+      params do
+        optional :order_by, default: 'title'
+        optional :order_asc, default: true, type: Boolean
+        requires :page, type: Fixnum
+        requires :limit, type: Fixnum
+        optional :filter, type: Hash
+      end
+      get 'table_data' do
+        authenticate!
+        q = ApiKey.where(organization_id: current_organization.id, user_id: nil)
+        total_api_keys = q.count
+        api_keys = q.offset( params.page * params.limit ).limit( params.limit ).all
+        api_keys = api_keys.where(title: /#{params.filter.name}/i) if params.filter && !params.filter.name.blank?
+        api_keys = params.order_asc ? api_keys.asc( params.order_by ) : api_keys.desc( params.order_by )
+        present :data, api_keys, with: ApiKeyEntity
+        present :total, total_api_keys
+        present :page, params.page
+        present :limit, params.limit
+        present :data_type, 'api_key'
+      end
+
+      #
       # GET /:id
       #
       desc "returns api_key with :id"

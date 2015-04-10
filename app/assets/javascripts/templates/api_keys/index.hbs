@@ -1,0 +1,39 @@
+<nav class="content-nav">
+  <header class="app-header">
+    <div class="app-btn-group">
+      <a href="#" {{action 'toggleFollow' 'api_keys'}}
+        {{translateAttr data-hint='api_keys.follow'}}
+        class="hint--bottom hint--bounce">
+        <i class="fa fa-rss"></i>
+      </a>
+    </div>
+    <div class="app-title">{{t 'api_keys.title'}}</div>
+  </header>
+
+  <section>
+
+    {{#link-to 'api_keys.new' class='btn btn-default btn-sm icon-text'}}
+      <i class="fa fa-plus"></i>
+      {{t 'api_key.new'}}
+    {{/link-to}}
+
+    <hr>
+
+    <div {{bind-attr class=":search filter:active"}}>
+      <i class="fa fa-search"></i>
+      {{#if filter.name}}<i class="fa fa-times" {{action 'clearFilter'}}></i>{{/if}}
+      {{input value=filter.name placeholderTranslation='api_key.search'}}
+    </div>
+  </section>
+
+</nav>
+
+<section class="content">
+
+  {{advanced-table
+    columns=tableColumns
+    order=tableOrder
+    filter=filter
+    url='/api/v1/api_keys/table_data'}}
+
+</section>
