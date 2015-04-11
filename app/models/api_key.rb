@@ -1,12 +1,14 @@
 class ApiKey
   include Mongoid::Document
   include Caminio::Timestamps
+  include Caminio::Userstamps
 
   field :token, type: String
   field :expires_at, type: DateTime
   field :last_request_at, type: DateTime
   field :permanent, type: Boolean, default: false
   field :name, type: String
+  field :ip_addresses, type: String
   field :organization_id, type: String
 
   belongs_to :user
@@ -27,7 +29,8 @@ class ApiKey
   end
 
   def setup_expires_at
-    self.expires_at = permanent ? 1.year.from_now : 8.hours.from_now
+    return if expires_at
+    self.expires_at = permanent ? nil : 8.hours.from_now
   end
 
 end

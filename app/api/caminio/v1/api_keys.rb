@@ -64,15 +64,14 @@ module Caminio
       params do
         requires :api_key, type: Hash do
           optional :name
-          optional :permanent
-          optional :organization_id
           optional :user_id
+          optional :expires_at
         end
       end
       post do
         authenticate!
         require_admin!
-        key = ApiKey.new( declared( params )[:api_key] )
+        key = ApiKey.new( declared( params )[:api_key].merge({ permanent: true, organization_id: headers['Organization-Id'] }) )
         error!({ error: 'SavingFailed', details: key.errors.full_messages}, 422) unless key.save
         present :api_key, key, with: ApiKeyEntity
       end
@@ -86,6 +85,7 @@ module Caminio
         requires :api_key, type: Hash do
           optional :name
           optional :permanent
+          optional :expires_at
         end
       end
       put '/:id' do

@@ -2,7 +2,7 @@
   <div class="field-label">
     {{labelTranslation}}
   </div>
-  <div {{bind-attr class=":field-content editValue:editing-click-form textarea:with-textarea"}} {{action 'edit' bubbles=false}}>
+  <div {{bind-attr class=":field-content disabled:no-hover editValue:editing-click-form textarea:with-textarea"}} {{action 'edit' bubbles=false}}>
     {{#if editValue}}
     <div class="input-group">
       {{#if password}}

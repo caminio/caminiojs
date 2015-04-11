@@ -139,6 +139,11 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
         @set 'page', page
       @loadData()
       return
+
+    deleteSelectedRows: ->
+      @get('selectedRows').forEach (row)=>
+        @get('rows').removeObject(row)
+        @get('targetObject').send @get('deleteRowAction'), row
         
     
 Caminio.AdvancedTableRowItemController = Ember.ObjectController.extend
@@ -232,7 +237,13 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
     value = @get("parentController.content.#{column.name}")
     switch column.type
       when 'date'
-        moment(value).fromNow()
+        if Em.isEmpty(value) then '' else moment(value).format('LL')
+      when 'datetime'
+        if Em.isEmpty(value) then '' else moment(value).format('LLL')
+      when 'dateFrom'
+        if Em.isEmpty(value) then '' else "<span class=\"hint--bottom\" data-hint=\"#{moment(value).format('LLLL')}\">#{moment(value).fromNow()}</span>"
+      when 'dateTo'
+        if Em.isEmpty(value) then '' else "<span class=\"hint--bottom\" data-hint=\"#{moment(value).format('LLLL')}\">#{moment(value).from(new Date())}</span>"
       when 'currency'
         accounting.formatMoney value
       when 'boolean'

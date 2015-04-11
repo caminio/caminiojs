@@ -1,4 +1,8 @@
-{{click-edit-text value=name content=venue label='api_key.name'}}
+{{click-edit-text value=name label='api_key.name'}}
 
-{{click-edit-datetime value=expires_at
+{{click-edit-text value=ip_addresses label='api_key.ip_addresses'}}
+
+{{click-edit-text disabled=true value=token label='api_key.token' classNames='api-token'}}
+
+{{click-edit-datetime value=expires_at hintTop=true
   label='expires_at'}}

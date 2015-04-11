@@ -272,8 +272,14 @@ Em.merge Em.I18n.availableTranslations.de,
 
   api_key:
     name: 'Schlüsselname'
+    edit: 'Schlüssel bearbeiten'
+    ip_addresses: 'Zugangsadressen (IP)'
     new: 'Neuer Schlüssel'
+    deleted: 'Schlüssel {{name}} wurde gelöscht'
     search: 'Schlüssel suchen'
+    token: 'Public Key'
+    errors:
+      name_required: 'Schlüsselname erforderlich'
     
   errors:
     login_failed: 'Anmeldung fehlgeschlagen!'

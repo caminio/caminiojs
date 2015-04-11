@@ -6,12 +6,18 @@
         {{t 'api_keys.title'}}
       {{/link-to}}
       <i class="fa fa-angle-right"></i>
-      {{t 'api_key.new'}}
+      {{t 'api_key.edit'}}
     </div>
   </div>
   <div class="col-md-4 align-right">
 
-    <button class="btn btn-primary" {{action 'save' 'api_keys.index'}}>{{t 'create'}}</button>
+    <div class="dropdown btn btn-actions">
+
+      <button class="dropdown-toggle" data-toggle="dropdown">{{t 'actions'}}<i class="fa fa-angle-down"></i></button>
+      <ul class="dropdown-menu pull-right align-right">
+        <li><a href="#" {{action 'delete'}}>{{t 'delete'}}</a></li>
+      </ul>
+    </div>
 
     <a href="#" class="btn btn-close" {{action 'goTo' 'api_keys.index'}}>
       &times;

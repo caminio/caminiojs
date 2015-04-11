@@ -88,6 +88,7 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
       Caminio.get('currentClickEdit', null)
 
     edit: ->
+      return if @get('disabled')
       return if @get('editValue')
       other = Caminio.get('currentClickEdit') 
       if other && !other.isDestroyed && other != @

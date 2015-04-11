@@ -10,6 +10,7 @@ Caminio.ClickEditDatetimeComponent = Ember.Component.extend
     @_super()
     @set('origValue', '')
     @set('origValue', @get('value')) unless Em.isEmpty(@get('value'))
+    @set('content', @get('targetObject.content')) unless @get('content')
     @set('value','') if Em.isEmpty(@get('value'))
     
     $(document)
@@ -108,7 +109,7 @@ Caminio.ClickEditDatetimeComponent = Ember.Component.extend
       if @get 'content.isNew'
         return @set 'editValue', false
       @set('valueSaving', true)
-      @get('parentController').send(@get('saveActionName'), @saveCallback, @)
+      @get('targetObject').send(@get('saveActionName'), @saveCallback, @)
 
     cancelEdit: ->
       @set('editValue',false)
