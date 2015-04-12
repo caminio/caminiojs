@@ -10,7 +10,7 @@
       <i class="fa fa-question"></i>
     </a>
 
-    <a href="#" class="action-btn hint--bottom hint--bounce" {{translateAttr data-hint='col_setup'}}>
+    <a href="#" class="settings-btn action-btn hint--bottom hint--bounce" {{translateAttr data-hint='col_setup'}} {{action 'reload'}}>
       <i class="fa fa-cog"></i>
     </a>
 
@@ -30,6 +30,12 @@
         {{/each}}
       </ul>
     </div>
+
+    {{#each action in controller.headerActions}}
+      <a {{bind-attr href=action.link}} {{bind-attr class=action.cssClasses}} {{bind-attr data-hint=action.hint}}>
+        <i {{bind-attr class='action.icon'}}></i>
+      </a>
+    {{/each}}
 
     <div class="action-btn rows-selected">
       {{#if selectedRows.length}}

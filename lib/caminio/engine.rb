@@ -18,7 +18,8 @@ module Caminio
     end
 
     initializer :assets do |config|
-      Rails.application.config.assets.precompile += %w( caminio.js 
+      Rails.application.config.assets.precompile += %w( caminio-3rd.js
+                                                        caminio.js 
                                                         caminio.css
                                                         mailer.css
                                                         3rd/bootstrap.min.css

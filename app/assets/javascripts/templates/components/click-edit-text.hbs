@@ -14,7 +14,7 @@
       {{input value=value}}
       {{/if}}
       {{/if}}
-      {{#unless content.isNew}}
+      {{#unless isNewContent}}
         <div {{action 'saveChanges' bubbles=false}} {{bind-attr class=":input-group-addon :btn hasChanges:btn-primary:btn-default :save-changes-btn"}}>
           <i class="fa fa-check"></i>
         </div>

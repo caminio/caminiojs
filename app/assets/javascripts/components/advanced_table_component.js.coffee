@@ -15,6 +15,11 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   orderAsc: true
   showIndex: true
 
+  headerActions: (->
+    return [] unless @get('targetObject.tableHeaderActions')
+    @get('targetObject.tableHeaderActions')
+  ).property 'targetObject.tableHeaderActions'
+
   selectedRows: Em.A()
 
   totalPages: (->
@@ -110,6 +115,10 @@ Caminio.AdvancedTableComponent = Ember.Component.extend
   ).observes 'filter.name'
 
   actions:
+
+    reload: ->
+      @set 'rows', Em.A()
+      @loadData()
 
     # search: (filter)->
     #   console.log 'searching for ', filter
@@ -235,6 +244,8 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
   value: (->
     column = @get('content')
     value = @get("parentController.content.#{column.name}")
+    if typeof(column.name) == 'function'
+      value = column.name( @get('parentController.content') )
     switch column.type
       when 'date'
         if Em.isEmpty(value) then '' else moment(value).format('LL')

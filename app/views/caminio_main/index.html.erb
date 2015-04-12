@@ -11,6 +11,7 @@
     window.CAMINIO_ENGINE_VERSION = '<%= Caminio::VERSION %>';
     window.CAMINIO_SHOW_OPEN_REG_LINK = <%= Rails.application.config.caminio.open_registration_link || false %>;
   </script>
+  <%= javascript_include_tag 'caminio-3rd' %>
   <%= javascript_include_tag 'caminio' %>
 
 </head>

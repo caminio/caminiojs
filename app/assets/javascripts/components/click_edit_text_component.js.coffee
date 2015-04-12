@@ -71,11 +71,15 @@ Caminio.ClickEditTextComponent = Ember.Component.extend
       @set 'origValue', @get('value')
     , 100
 
+  isNewContent: (->
+    content = @get('content') || @get('targetObject.content')
+    content.get 'isNew'
+  ).property 'content', 'targetObject.content'
+
   actions:
 
     saveChanges: ->
-      content = @get('content') || @get('targetObject.content')
-      if content.get 'isNew'
+      if @get('isNewContent')
         return @set 'editValue', false
       return if @get('value') == @get('origValue')
       @set 'editValue', false
