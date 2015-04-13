@@ -223,6 +223,7 @@ module Caminio
       post ':id/confirm' do
         user = User.where( id: params.id, confirmation_key: params.confirmation_key, confirmation_code: params.confirmation_code ).first
         return error!('InvalidKey',409) unless user
+        RequestStore.store['current_user_id'] = user.id
         user.update_attributes( confirmation_key: nil, confirmation_code: nil, confirmation_key_expires_at: nil )
         error!({ error: 'SavingFailed', details: user.errors.full_messages},500) if user.errors.size > 0
         status 200
