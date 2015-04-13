@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   mount Caminio::V1::Locations => "/api/v1/locations"
   mount Caminio::V1::Mediafiles => "/api/v1/mediafiles"
   mount Caminio::V1::Contacts => "/api/v1/contacts"
+  mount Caminio::V1::Comments => "/api/v1/comments"
 
 end
