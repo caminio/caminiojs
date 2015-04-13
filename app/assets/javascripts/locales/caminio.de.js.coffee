@@ -75,6 +75,7 @@ Em.merge Em.I18n.availableTranslations.de,
   administration: 'Administration'
   
   save: 'Speichern'
+  ok: 'Ok'
   cancel: 'Abbrechen'
   close: 'Schließen'
   next: 'Weiter'
