@@ -8,12 +8,18 @@
     </nav>
 
     <div id="comments" class="content-box comments-box">
-      <form {{action 'saveComment' on='submit'}}>
-        {{textarea placeholderTranslation='comments.add' value=comment}}
-        <div class="form-ctrl">
-          <button type="submit" class="btn btn-primary">{{t 'add'}}</button>
+      {{#if addComment}}
+        <form {{action 'saveComment' on='submit'}}>
+          {{textarea placeholderTranslation='comments.add' value=comment}}
+          <div class="form-ctrl">
+            <button type="submit" class="btn btn-primary">{{t 'add'}}</button>
+          </div>
+        </form>
+      {{else}}
+        <div class="comment-fakebox">
+          {{t 'comments.add'}}
         </div>
-      </form>
+      {{/if}}
     </div>
 
     <div id="activities">
