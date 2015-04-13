@@ -25,3 +25,4 @@
 #= require 3rd/bootstrap-colorselector
 #= require 3rd/pikaday
 #= require 3rd/qrcode.min
+#= require 3rd/jquery.autogrow-textarea

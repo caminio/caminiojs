@@ -5,6 +5,7 @@ Em.merge Em.I18n.availableTranslations.de,
   alias: 'Alias'
   on: 'an'
   off: 'aus'
+  add: 'Hinzufügen'
   or: 'oder'
   year: 'Jahr'
   month: 'Monat'
@@ -252,6 +253,12 @@ Em.merge Em.I18n.availableTranslations.de,
       overview_price: 'Hier sehen Sie die Summe die monatlich für Ihre ausgewählten Pläne zu bezahlen ist'
       checkout: 'Erst, wenn Sie auf das "zur Kassa"-Feld klicken und die Bezahlung erfolgreich war, tritt die neue Konfiguration in Kraft'
       start_again: 'Sie können diese Einführung jederzeit wieder starten, indem Sie auf dieses Symbol klicken'
+
+  comments:
+    title: 'Kommentare'
+
+  activities:
+    title: 'Aktivitäten'
 
   location:
     title: 'Ort'
