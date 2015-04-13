@@ -8,7 +8,7 @@ require "paperclip"
 require "mongoid_paperclip"
 
 require 'jquery-rails'
-require 'ember-rails'
+require 'ember-rails' #unless Rails.env.test?
 
 require 'request_store'
 

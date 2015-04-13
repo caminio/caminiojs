@@ -6,6 +6,10 @@ Dir.glob( File.expand_path("../../app/{helpers,entities,api}", __FILE__)+'/**/*.
   require file
 end
 
+Dir.glob( File.expand_path("../helpers", __FILE__)+'/**/*.rb' ).each do |file|
+  require file
+end
+
 require File.expand_path("../dummy/config/environment.rb", __FILE__)
 # require 'rspec/rails'
 require 'rack/test'

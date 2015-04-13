@@ -11,6 +11,7 @@ module Caminio
       mount Caminio::V1::Auth => '/v1/auth'
       mount Caminio::V1::Initial => '/v1/initial'
       mount Caminio::V1::Contacts => "/v1/contacts"
+      mount Caminio::V1::Comments => "/v1/comments"
 
     end
 
