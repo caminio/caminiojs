@@ -35,13 +35,21 @@ module Caminio
       params do
         requires :comment, type: Hash do
           optional :title
-          optional :description
+          optional :content
+          requires :commentable_id
+          requires :commentable_type
         end
       end
       post do
-        comment = Comment.new( declared( params )[:comment] )
-        error!({ error: 'SavingFailed', details: comment.errors.full_messages}, 422) unless comment.save
-        present :comment, comment, with: CommentEntity
+        begin
+          parent = params.comment.commentable_type.classify.constantize.find params.comment.commentable_id
+          comment = parent.comments.build( declared( params, include_missing: false )[:comment].except(:commentable_id,:commentable_type) )
+          error!({ error: 'SavingFailed', details: comment.errors.full_messages}, 422) unless comment.save
+          puts "HERE #{comment.inspect}"
+          present :comment, comment, with: CommentEntity
+        rescue
+          error!({ error: 'FailedToFindParent', details: "parent type #{params.comment.commentable_type.classify} with id #{params.comment.commentable_id} not found"})
+        end
       end
 
       #
@@ -51,7 +59,7 @@ module Caminio
       params do
         requires :comment, type: Hash do
           optional :title
-          optional :description
+          optional :content
         end
       end
       put '/:id' do        

@@ -75,7 +75,7 @@ aside .card-nav{
 .card-nav a{
   border-top: 2px solid @grey-200;
   color: @grey-500;
-  padding: 15px 30px 15px;
+  padding: 15px 20px 15px;
   float: left;
   margin: 3px 2px 0;
 }
@@ -103,18 +103,20 @@ aside .card-nav{
   padding: 20px;
 }
 
-.comments-box textarea{
+.comments-form-wrap textarea{
   min-height: 48px;
   width: 100%;
   border: 1px solid #ddd;
   resize: none;
-}
-
-.comments-box textarea:hover{
   box-shadow: none;
 }
 
-.comments-box .form-ctrl{
+.comments-form-wrap textarea:focus,
+.comments-form-wrap textarea:hover{
+  box-shadow: none;
+}
+
+.comments-form-wrap .form-ctrl{
   margin: 5px 0;
   text-align: right;
 }

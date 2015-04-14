@@ -256,6 +256,10 @@ Em.merge Em.I18n.availableTranslations.de,
 
   comments:
     title: 'Kommentare'
+    add: 'Kommentar hinzufügen'
+
+  comment:
+    saved: 'Kommentar gespeichert'
 
   activities:
     title: 'Aktivitäten'

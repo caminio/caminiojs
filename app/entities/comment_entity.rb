@@ -3,6 +3,8 @@ require "caminio/entity"
 class CommentEntity < CaminioEntity
         
   expose :title
-  expose :description
+  expose :content
+  # expose :commentable_type
+  # expose :commentable_id
 
 end

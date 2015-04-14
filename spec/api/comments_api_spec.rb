@@ -27,7 +27,7 @@ describe Caminio::V1::Comments do
   describe "POST /#{pluralized_classname}" do
     it "creates a #{classname}" do
       post_error_400 'comment is missing' 
-      post_attr( { comment: { title: "a comment", description: "the discription" } } )
+      post_attr( { comment: { title: "a comment", content: "the discription" } } )
       post_test
     end
   end
