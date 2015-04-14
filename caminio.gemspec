@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "roadie", "3.0.2"
   spec.add_dependency "roadie-rails", "1.0.4"
   spec.add_dependency "ember-rails", "0.16.1"
-  spec.add_dependency "ember-data-source", "1.0.0.beta.15"
+  # spec.add_dependency "ember-data-source", "1.0.0.beta.15"
   spec.add_dependency "ember-source", "1.10.0"
   spec.add_dependency "sprockets", "2.12.3"
 
