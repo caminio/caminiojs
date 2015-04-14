@@ -1,0 +1,39 @@
+<div class="card-nav-wrap">
+
+  <nav class="card-nav grey-header">
+    <a href="#comments" data-select-first="1">{{t 'comments.title'}}</a>
+    <a href="#activities">{{t 'activities.title'}}</a>
+  </nav>
+
+  <div id="comments">
+
+    <ul class="comments-list">
+      {{#each comment in comments}}
+        <li class="comment-item">
+          {{{comment.content}}}
+        </li>
+      {{/each}}
+    </ul>
+
+    <div class="comments-form-wrap">
+      <form {{action 'saveCurComment' on='submit'}} {{bind-attr class='newComment::hide'}}>
+        {{textarea placeholderTranslation='comments.add' value=curComment.content}}
+        <div class="form-ctrl">
+          <a href="#" class="btn btn-link" {{action 'toggleNewComment'}}>
+            {{t 'cancel'}}
+          </a>
+          <button type="submit" class="btn btn-primary">{{t 'add'}}</button>
+        </div>
+      </form>
+      <div {{bind-attr class=":comments-fakebox newComment:hide"}} {{action 'toggleNewComment'}}>
+        {{t 'comments.add'}}
+      </div>
+    </div>
+
+  </div>
+
+  <div id="activities">
+    activities
+  </div>
+
+</div>
