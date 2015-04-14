@@ -11,24 +11,6 @@ module Caminio
       before { authenticate! }
 
       #
-      # GET /
-      #
-      desc "lists all comments"
-      get '/' do
-        present :comments, Comment.all, with: CommentEntity
-      end
-
-      #
-      # GET /:id
-      #
-      desc "returns comment with :id"
-      get '/:id' do
-        comment = Comment.find params.id
-        error!('NotFound',404) unless comment
-        present :comment, comment, with: CommentEntity
-      end
-
-      #
       # POST /
       #
       desc "create a new comment"
@@ -45,7 +27,6 @@ module Caminio
           parent = params.comment.commentable_type.classify.constantize.find params.comment.commentable_id
           comment = parent.comments.build( declared( params, include_missing: false )[:comment].except(:commentable_id,:commentable_type) )
           error!({ error: 'SavingFailed', details: comment.errors.full_messages}, 422) unless comment.save
-          puts "HERE #{comment.inspect}"
           present :comment, comment, with: CommentEntity
         rescue
           error!({ error: 'FailedToFindParent', details: "parent type #{params.comment.commentable_type.classify} with id #{params.comment.commentable_id} not found"})

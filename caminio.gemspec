@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "4.2.0"
   spec.add_dependency "grape", "0.10.1"
   spec.add_dependency "hashie_rails", "0.0.1"
-  spec.add_dependency "grape-entity", "0.4.6"
+  spec.add_dependency "grape-entity", "0.4.5"
   spec.add_dependency "i18n", "~> 0.7.0"
   spec.add_dependency "mongoid", "4.0.1"
   spec.add_dependency "roadie", "3.0.2"
