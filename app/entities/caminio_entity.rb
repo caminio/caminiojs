@@ -4,8 +4,8 @@ class CaminioEntity < Grape::Entity
 
   expose :created_at
   expose :updated_at 
-  expose :created_by
+  expose :created_by_id
   expose :created_by_api_key
-  expose :updated_by
+  expose :updated_by_id
 
 end

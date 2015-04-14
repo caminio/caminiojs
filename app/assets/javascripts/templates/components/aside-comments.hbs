@@ -8,9 +8,33 @@
   <div id="comments">
 
     <ul class="comments-list">
-      {{#each comment in comments}}
+      {{#each comment in comments itemController='comment_item'}}
         <li class="comment-item">
-          {{{comment.content}}}
+          <div class="commenter-img">
+            {{#if comment.created_by.avatar}}
+              <img {{bind-attr src=comment.created_by.imgStr}}>
+            {{else}}
+              <div class="default">
+                <i class="glyphicon glyphicon-user"></i>
+              </div>
+            {{/if}}
+          </div>
+          <div class="comment-content">
+            <div class="commenter-name">
+              {{comment.created_by.name}}
+            </div>
+            <div class="comment-time">
+              {{formatDate comment.updated_at}}
+            </div>
+            <div class="comment-text">
+              {{{comment.formattedContent}}}
+            </div>
+            <div class="action-btns">
+              <button class="btn btn-xs btn-link hint--left hint--bounce" {{action 'delete'}} {{bind-attr data-hint='comment.delete'}}>
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
         </li>
       {{/each}}
     </ul>
@@ -33,7 +57,62 @@
   </div>
 
   <div id="activities">
-    activities
+    
+    <ul class="comments-list">
+      
+      <li class="comment-item">
+        <div class="commenter-img">
+          {{#if content.created_by.avatar}}
+            <img {{bind-attr src=content.created_by.imgStr}}>
+          {{else}}
+            <div class="default">
+              <i class="glyphicon glyphicon-user"></i>
+            </div>
+          {{/if}}
+        </div>
+        <div class="comment-content">
+          <div class="commenter-name">
+            {{content.created_by.name}}
+          </div>
+          <div class="comment-time">
+            {{formatDate content.created_at}}
+          </div>
+          <div class="comment-text">
+            <i class="fa fa-asterisk"></i>
+            {{t 'created_this'}}
+          </div>
+        </div>
+
+      </li>
+
+      {{#if updatedDiffersCreated}}
+        <li class="comment-item">
+          <div class="commenter-img">
+            {{#if content.updated_by.avatar}}
+              <img {{bind-attr src=content.updated_by.imgStr}}>
+            {{else}}
+              <div class="default">
+                <i class="glyphicon glyphicon-user"></i>
+              </div>
+            {{/if}}
+          </div>
+          <div class="comment-content">
+            <div class="commenter-name">
+              {{content.updated_by.name}}
+            </div>
+            <div class="comment-time">
+              {{formatDate content.updated_at}}
+            </div>
+            <div class="comment-text">
+              <i class="fa fa-refresh"></i>
+              {{t 'updated_this'}}
+            </div>
+          </div>
+        </li>
+      {{/if}}
+
+    </ul>
+
   </div>
 
 </div>

@@ -8,6 +8,7 @@ class Activity
 
   belongs_to :organization
   belongs_to :user
+  belongs_to :activitable, polymorphic: true
 
   before_save :set_current_user_and_timestamps
 

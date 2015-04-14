@@ -7,6 +7,7 @@ Ember.I18n.locale = (Ember.$.cookie('locale') || LANG).replace(/\"/g,'')
 Ember.I18n.translations = Ember.I18n.availableTranslations[Ember.I18n.locale]
 # inject <attr>Translation into {{input }} helper
 Ember.TextField.reopen(Ember.I18n.TranslateableAttributes)
+Ember.TextArea.reopen(Ember.I18n.TranslateableAttributes)
 
 accounting.settings =
   currency:

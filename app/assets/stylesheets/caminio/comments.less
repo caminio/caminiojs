@@ -1,0 +1,103 @@
+@import './_colors.less';
+
+
+.comments-form-wrap{
+  background: @grey-100;
+  padding: 20px;
+}
+
+.comments-form-wrap textarea{
+  min-height: 48px;
+  width: 100%;
+  border: 1px solid #ddd;
+  resize: none;
+  box-shadow: none;
+  font-style: italic;
+}
+
+.comments-form-wrap textarea:focus,
+.comments-form-wrap textarea:hover{
+  box-shadow: none;
+}
+
+.comments-form-wrap .form-ctrl{
+  margin: 5px 0;
+  text-align: right;
+}
+
+.comments-fakebox{
+  border: 1px solid #ddd;
+  padding: 15px 25px;
+  color: #777;
+  background: #fff;
+}
+
+.comments-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item{
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.comment-item .commenter-img{
+  flex: 1 1 none;
+  width: 32px;
+  margin-right: 10px;
+}
+
+.comment-item .commenter-img .default{
+  width: 32px;
+  height: 32px;
+  background: @grey-200;
+  text-align: center;
+  padding-top: 7px;
+  float: left;
+}
+
+.comment-item .action-btns{
+  display: none;
+  color: #999;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.comment-item:hover .action-btns{
+  display: block;
+}
+
+.comment-item .commenter-img img{
+  width: 50px;
+  height: 50px;
+}
+
+.comment-item .comment-content{
+  flex: 1 1 none;
+  font-size: 12px;
+}
+
+.comment-item .comment-time{
+  font-size: 10px;
+  color: #777;
+}
+
+.comment-item .commenter-name{
+  font-weight: 600;
+}
+
+.comment-item .comment-text{
+  margin-top: 5px;
+  color: #555;
+  font-style: italic;
+}
+
+.comment-item .comment-text .fa-asterisk{
+  float: left;
+  margin: 2px 5px 0 0;
+}

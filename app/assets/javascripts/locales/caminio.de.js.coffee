@@ -100,6 +100,8 @@ Em.merge Em.I18n.availableTranslations.de,
   create: 'Erstellen'
   created_at: 'Erstellt am'
   created_by: 'Erstellt von'
+  created_this: 'Hat dieses Element erstellt'
+  updated_this: 'Hat dieses Element bearbeitet'
   expires_at: 'Läuft ab'
   email: 'Email'
   phone: 'Mobiltelefon'
@@ -260,6 +262,8 @@ Em.merge Em.I18n.availableTranslations.de,
 
   comment:
     saved: 'Kommentar gespeichert'
+    delete: 'Diesen Kommentar löschen'
+    deleted: 'Kommentar wurde gelöscht'
 
   activities:
     title: 'Aktivitäten'

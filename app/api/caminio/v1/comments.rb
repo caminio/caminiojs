@@ -55,10 +55,15 @@ module Caminio
       #
       desc "delete an comment"
       formatter :json, lambda{ |o,env| "{}" }
-      delete '/:id' do
-        comment = Comment.find params.id
-        error!('NotFound',404) unless comment
-        error!("DeletionFailed",500) unless comment.destroy
+      delete '/:id/:commentable_type/:commentable_id' do
+        begin
+          parent = params.commentable_type.classify.constantize.find params.commentable_id
+          comment = parent.comments.find params.id
+          error!('NotFound',404) unless comment
+          error!("DeletionFailed",500) unless comment.destroy
+        rescue
+          error!({ error: 'FailedToFindParent', details: "parent type #{params.commentable_type.classify} with id #{params.commentable_id} not found"})
+        end
       end
 
     end

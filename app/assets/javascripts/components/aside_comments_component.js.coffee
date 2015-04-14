@@ -14,6 +14,14 @@ Caminio.AsideCommentsComponent = Ember.Component.extend Caminio.CardNavTabsMixin
     @get('targetObject.content.comments')
   ).property 'targetObject.content.comments.@each'
 
+  content: (->
+    @get('targetObject.content')
+  ).property 'targetObject.content'
+
+  updatedDiffersCreated: (->
+    moment(@get('targetObject.content.created_at')).format('LLL') != moment(@get('targetObject.content.updated_at')).format('LLL')
+  ).property 'targetObject.content.updated_at'
+
   actions:
 
     toggleNewComment: ->
@@ -42,3 +50,19 @@ Caminio.AsideCommentsComponent = Ember.Component.extend Caminio.CardNavTabsMixin
         .catch (err)->
           console.log 'error', err
           Caminio.NotyUnknownError(err)
+
+Caminio.CommentItemController = Ember.ObjectController.extend
+
+  actions:
+
+    delete: ->
+      comment = @get('content')
+      content = @get('parentController.content')
+      $.ajax
+        url: "/api/v1/comments/#{comment.get('id')}/#{comment.get('commentable_type')}/#{comment.get('commentable_id')}"
+        type: 'delete'
+      .then ->
+        noty
+          text: Em.I18n.t('comment.deleted')
+          type: 'success'
+        content.reload()
