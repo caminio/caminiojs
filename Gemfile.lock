@@ -21,6 +21,7 @@ PATH
       roadie (= 3.0.2)
       roadie-rails (= 1.0.4)
       sprockets (= 2.12.3)
+      tubesock (= 0.2.5)
 
 GEM
   remote: https://rubygems.org/
@@ -251,6 +252,9 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    tubesock (0.2.5)
+      rack (>= 1.5.0)
+      websocket (>= 1.1.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     virtus (1.0.5)
@@ -258,6 +262,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    websocket (1.2.1)
 
 PLATFORMS
   ruby
