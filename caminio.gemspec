@@ -37,6 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "paperclip", "~> 4.2.1"
   spec.add_dependency "mongoid-paperclip", "0.0.9"
   spec.add_dependency "less-rails", "2.6.0"
+  spec.add_dependency "tubesock", "0.2.5"
 
   spec.add_dependency "request_store", "1.1.0"
   spec.add_dependency "bcrypt", "3.1.10"

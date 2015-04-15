@@ -12,6 +12,8 @@ require 'ember-rails' #unless Rails.env.test?
 
 require 'request_store'
 
+require 'tubesock'
+
 # require "mongoid_paperclip"
 # require "caminio/paperclip_grape_ext"
 # require "doorkeeper"

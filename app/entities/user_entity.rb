@@ -16,6 +16,7 @@ class UserEntity < Grape::Entity
   expose :locale
   expose :completed_tours
   expose :app_config
+  expose :dashboard_tiles
 
   expose :settings
 

@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   mount Caminio::V1::Contacts => "/api/v1/contacts"
   mount Caminio::V1::Comments => "/api/v1/comments"
 
+  get '/activities/:user_id/:organization_id' => 'activities#index'
+
 end

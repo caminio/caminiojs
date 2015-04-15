@@ -134,6 +134,7 @@ Caminio.AuthenticatedRoute = Ember.Route.extend
             callback(this)
 
     closeModal: (routeName)->
+      return history.back()
       if lastPath = @controllerFor('application').get('lastPath')
         routeName = lastPath
         @controllerFor('application').set 'lastPath', null

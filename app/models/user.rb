@@ -40,6 +40,8 @@ class User
   field :settings, type: Hash, default: {}
   field :app_config, type: Hash, default: {}
 
+  field :dashboard_tiles, type: Array
+
   field :suspended, type: Boolean, default: false
 
   has_and_belongs_to_many :organizations

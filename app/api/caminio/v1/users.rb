@@ -244,6 +244,7 @@ module Caminio
           optional :suspended
           optional :locale
           optional :settings
+          optional :dashboard_tiles, type: Array
           optional :completed_tours, type: Array
         end
         optional :role, values: ['user','admin','editor']
@@ -255,7 +256,7 @@ module Caminio
         require_admin_or_current_user!
         params.user.suspended = false if params.id == current_user._id.to_s
         params.role = params.user.role_name if current_user.is_admin?
-        user.update_attributes( declared(params)[:user] )
+        user.update_attributes( declared(params, include_missing: false)[:user] )
         if current_user.is_admin? && current_user._id.to_s != params.id && params.role
           user_org_role = user.organization_roles.find_or_create_by organization_id: (RequestStore::store['organization_id'] || params.organization_id)
           user_org_role.update_attributes name: params.role

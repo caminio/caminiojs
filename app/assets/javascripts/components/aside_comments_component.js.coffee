@@ -42,8 +42,12 @@ Caminio.AsideCommentsComponent = Ember.Component.extend Caminio.CardNavTabsMixin
       parent = @get('targetObject.content')
       @get('curComment')
         .save()
-        .then (comment)->
+        .then (comment)=>
           parent.reload()
+          @set 'curComment', @get('targetObject').store.createRecord('comment', 
+            commentable_type: parent.get('constructor.typeKey'),
+            commentable_id: parent.get('id')
+            )
           noty
             text: Em.I18n.t('comment.saved')
             type: 'success'

@@ -1,5 +1,6 @@
 Caminio.User = DS.Model.extend
   name:             (->
+    return @get('username') unless Em.isEmpty(@get('username'))
     str = ''
     str += @get('firstname') unless Em.isEmpty(@get('firstname'))
     str += ' ' if str.length > 0 && !Em.isEmpty(@get('lastname'))
@@ -50,6 +51,7 @@ Caminio.User = DS.Model.extend
   last_request_at:  DS.attr 'date'
   completed_tours:  DS.attr 'array'
   app_config:       DS.attr 'object'
+  dashboard_tiles:  DS.attr 'array'
   settings:         DS.attr 'object'
   settingsStr:      ((key,value,prevVal)->
     if arguments.length > 1
