@@ -18,7 +18,7 @@ module Caminio
         mount Caminio::V1::Contacts => "/api/v1/contacts"
         mount Caminio::V1::Comments => "/api/v1/comments"
 
-        add_swagger_documentation hide_format: true, hide_documentation_path: true, mount_path: '/api/v1/ticketeer_doc'
+        add_swagger_documentation hide_format: true, hide_documentation_path: true, mount_path: '/api/v1/doc'
       end
 
     end
