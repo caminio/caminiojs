@@ -10,6 +10,8 @@ require "mongoid_paperclip"
 require 'jquery-rails'
 require 'ember-rails' #unless Rails.env.test?
 
+require 'delayed_job_mongoid'
+
 require 'request_store'
 
 require 'tubesock'
