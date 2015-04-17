@@ -210,10 +210,3 @@
   font-weight:normal;
   font-style:normal;
 }
-
-@font-face {
-  font-family: 'Audiowide';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Audiowide'), local('Audiowide-Regular'), url('/fonts/audiowide.ttf') format('truetype');
-}
