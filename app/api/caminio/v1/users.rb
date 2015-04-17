@@ -140,6 +140,7 @@ module Caminio
         error!('UserNotFound',404) unless user
         error!('UserNotFound',404) unless user.confirmation_key == params.confirmation_key
         error!('UserNotFound',404) if user.confirmation_key_expires_at < Time.now
+        RequestStore.store['current_user_id'] = user.id
         user.password = params.password
         user.confirmation_key = nil
         user.confirmation_key_expires_at = nil

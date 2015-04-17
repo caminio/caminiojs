@@ -44,6 +44,9 @@ Caminio.SessionsResetPasswordController = Ember.ObjectController.extend Caminio.
                 organizationId: response.api_key.organization_id
                 userId: user.get('id')
               @transitionToRoute 'index'
+              noty
+                text: Em.I18n.t('password_has_been_saved')
+                type: 'success'
         .fail (err)=>
           if err.status == 404
             @set 'valid', false
