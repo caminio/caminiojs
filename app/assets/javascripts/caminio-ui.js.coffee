@@ -396,6 +396,19 @@ Caminio.NotyUnknownError = (err)->
     text: Em.I18n.t('errors.unknown')
     timeout: false
 
+Caminio.createTourAction = (name)->  
+  user = @get('controllers.application.currentUser')
+  className = "#{name.camelize().capitalize()}Walkthrough"
+  Caminio[className].start ->
+    return if user.get('completed_tours').indexOf(name) >= 0
+    user.get('completed_tours').push name
+    user.save()
+
+Caminio.checkShowTour = (name)->
+  user = @get('controller.controllers.application.currentUser')
+  if user.get('completed_tours').indexOf(name) < 0
+    @get('controller').send('startTour')
+
 Ember.LinkView.reopen
   attributeBindings: ['data-hint']
   'data-hint': (->

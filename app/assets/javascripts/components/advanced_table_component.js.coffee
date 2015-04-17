@@ -281,11 +281,15 @@ Caminio.AdvancedTableColumnItemController = Ember.ObjectController.extend
     column = @get('content')
     if val
       if column.type == 'number' || column.type == 'currency' && LANG == 'de'
-        val = val.replace ',', '.'
+        val = val.toString().replace ',', '.'
+        val = parseInt(val)
       if column.type == 'currency'
-        val = val.replace ',--', ''
+        val = val.toString().replace ',--', ''
+        val = parseFloat(val)
       @get('parentController.content').set column.name, val
     value = @get("parentController.content.#{column.name}")
+    if column.editName
+      value = @get("parentController.content.#{column.editName}")
     switch column.type
       when 'date'
         moment(value).fromNow()

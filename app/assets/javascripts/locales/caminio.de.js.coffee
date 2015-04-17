@@ -10,6 +10,7 @@ Em.merge Em.I18n.availableTranslations.de,
   year: 'Jahr'
   month: 'Monat'
   username_or_email: 'Benutzername oder Email'
+  show_tour: 'Einführung noch einmal anzeigen'
   action_required: 'Handlung erforderlich'
   firstname: 'Vorname'
   lastname: 'Nachname'
@@ -257,6 +258,7 @@ Em.merge Em.I18n.availableTranslations.de,
       overview_price: 'Hier sehen Sie die Summe die monatlich für Ihre ausgewählten Pläne zu bezahlen ist'
       checkout: 'Erst, wenn Sie auf das "zur Kassa"-Feld klicken und die Bezahlung erfolgreich war, tritt die neue Konfiguration in Kraft'
       start_again: 'Sie können diese Einführung jederzeit wieder starten, indem Sie auf dieses Symbol klicken'
+      youre_done: 'Fertig!'
 
   comments:
     title: 'Kommentare'
