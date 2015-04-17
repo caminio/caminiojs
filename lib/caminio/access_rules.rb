@@ -8,9 +8,14 @@ module Caminio
       before_create :create_access_rules
       embeds_many :access_rules
       
-      default_scope lambda { return where({}); 
-        elem_match( access_rules: { 
-        organization_id: BSON::ObjectId.from_string( RequestStore.store['organization_id']) } )        
+      default_scope lambda { 
+        puts "WE ARE HERe?"
+        if RequestStore::store['organization_id']
+          elem_match( access_rules: { 
+            organization_id: BSON::ObjectId.from_string( RequestStore.store['organization_id']) } )
+        else
+          where({})
+        end
       }
     end
 

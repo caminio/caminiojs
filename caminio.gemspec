@@ -30,9 +30,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ember-data-source", "1.0.0.beta.15"
   spec.add_dependency "ember-source", "1.9.1"
   spec.add_dependency "sprockets", "2.12.3"
-  spec.add_dependency 'delayed_job_active_record'
-  spec.add_dependency 'delayed_job_mongoid'
-  spec.add_dependency 'daemons'
+  spec.add_dependency 'delayed_job_active_record', "4.0.3"
+  spec.add_dependency 'delayed_job_mongoid', "2.1.0"
+  spec.add_dependency 'daemons', "1.2.2"
 
   # spec.add_dependency "font-awesome-rails", "~> 4.2.0"
   spec.add_dependency "jquery-rails", "4.0.3"
