@@ -9,8 +9,9 @@ module Caminio
     config.paths.add File.join('app', 'entities'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[File.join( File.expand_path('../../../',__FILE__), 'app', 'entities')]
 
+    puts Rails.env.test?
     # DELAY
-    config.active_job.queue_adapter = :delayed_job
+    config.active_job.queue_adapter = :delayed_job unless Rails.env.test?
 
     # rspec
     config.generators do |g|

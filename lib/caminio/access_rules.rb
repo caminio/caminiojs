@@ -9,6 +9,7 @@ module Caminio
       embeds_many :access_rules
       
       default_scope lambda { 
+        puts "WE ARE HERe?"
         if RequestStore::store['organization_id']
           elem_match( access_rules: { 
             organization_id: BSON::ObjectId.from_string( RequestStore.store['organization_id']) } )
