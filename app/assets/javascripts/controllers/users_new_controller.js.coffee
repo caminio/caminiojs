@@ -17,7 +17,7 @@ Caminio.UsersNewController = Ember.ObjectController.extend
         .save()
         .then =>
           Em.$.noty.closeAll()
-          noty( type: 'success', text: Em.I18n.t('saved', name: @get('content.name')), timeout: 2000 )
+          noty( type: 'success', text: Em.I18n.t('saved', name: @get('user.name')), timeout: 2000 )
           @transitionToRoute 'users.index'
         .catch (e)=>
           noty
