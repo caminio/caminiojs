@@ -1,4 +1,4 @@
-unless Rails.env.test?
+unless Rails.env.test? || Rails.env.ticket_app?
   # config/initializers/delayed_job_config.rb
   Delayed::Worker.destroy_failed_jobs = false
   Delayed::Worker.sleep_delay = 10

@@ -10,11 +10,11 @@ require "mongoid_paperclip"
 require 'jquery-rails'
 require 'ember-rails' #unless Rails.env.test?
 
-require 'delayed_job_mongoid' unless Rails.env.test?
+require 'delayed_job_mongoid' unless Rails.env.test? || Rails.env.ticket_app?
 
 require 'request_store'
 
-require 'tubesock'
+require 'tubesock' unless  Rails.env.test? || Rails.env.ticket_app?
 
 # require "mongoid_paperclip"
 # require "caminio/paperclip_grape_ext"
