@@ -76,6 +76,11 @@ RSpec.configure do |config|
     end
   end
 
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf( File.expand_path("../../:file", __FILE__) )
+    end 
+  end 
 end
 
 # as we are not using rails autoloader,
