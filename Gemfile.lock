@@ -280,7 +280,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (= 1.8.5)
   caminio!
   database_cleaner (= 1.3.0)
   factory_girl (= 4.5.0)
