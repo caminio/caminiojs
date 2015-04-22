@@ -4,7 +4,7 @@ module Caminio
 
     class Root < Grape::API
 
-      unless Rails.env.test? || Rails.env.ticket_app?
+      unless Rails.env.test?
 
         mount Caminio::V1::Auth => "/api/v1/auth"
         mount Caminio::V1::Activities => "/api/v1/activities"
